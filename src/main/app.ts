@@ -19,8 +19,8 @@ import { Feature as AdminFeature } from 'admin/index'
 export const app: express.Express = express()
 
 logging.config({
-  microservice: 'citizen-frontend',
-  team: 'cmc',
+  microservice: 'fees-register-admin-web',
+  team: 'cc',
   environment: process.env.NODE_ENV
 })
 
