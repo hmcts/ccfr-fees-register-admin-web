@@ -1,0 +1,29 @@
+{% extends "layout.njk" %}
+
+{% set title = t('Categories | Fees Register Admin Console') %}
+{% set heading = t('Categories') %}
+
+{% block content %}
+
+<div class="column-full">
+    <table>
+      <thead>
+        <tr>
+          <th scope="col">Id</th>
+          <th class="numeric" scope="col">Range count</th>
+          <th class="numeric" scope="col">Flat fee count</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for category in categories %}
+          <tr>
+            <th scope="row"><a href="/admin/categories/{{ category.id }}">{{ category.id }}</a></th>
+            <td class="numeric">{{ category.ranges.length }}</td>
+            <td class="numeric">{{ category.flatFees.length }}</td>
+          </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+</div>
+
+{% endblock %}

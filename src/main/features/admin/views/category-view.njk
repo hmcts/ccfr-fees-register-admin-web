@@ -1,0 +1,47 @@
+{% extends "layout.njk" %}
+{% from "includes/macros/task-list.njk" import task, taskListHeading, disabledTask %}
+
+{% set title = t('Category | Fees Register Admin Console') %}
+{% set heading = t('Category') %}
+
+{% block content %}
+
+<div class="column-full">
+
+    <table>
+      <tbody>
+        <tr>
+          <th>Id</th>
+          <td>{{ category.id }}</td>
+        </tr>
+        <tr>
+          <th>Ranges</th>
+          <td>
+            <ul class="list list-bullet">
+              {% for range in category.ranges %}
+                <li>{{ range.start }} - {{ range.upto }}: {{ range.fee.amount }}</li>
+              {% endfor %}
+            </ul>
+          </td>
+        </tr>
+        <tr>
+          <th>Flat Fees</th>
+          <td>
+            <ul class="list list-bullet">
+              {% for flatFee in category.flatFees %}
+                <li>{{ flatFee.description }}</li>
+              {% endfor %}
+            </ul>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+
+    <br />
+
+    <div>
+        <a class="button" href="/admin/categories" role="button">{{ t("Cancel") }}</a>
+    </div>
+</div>
+
+{% endblock %}

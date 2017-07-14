@@ -1,0 +1,22 @@
+{
+  "security": {
+    "referrerPolicy": "origin"
+  },
+  "idam": {
+    "registration-web": {
+      "url": "http://localhost:9000"
+    },
+    "authentication-web": {
+      "url": "http://localhost:8000"
+    },
+    "api": {
+      "url": "http://localhost:8080"
+    }
+  },
+  "session": {
+    "cookieName": "SESSION_ID"
+  },
+  "fees": {
+    "url": "https://test-proxy.fees-register.reform.hmcts.net"
+  }
+}
