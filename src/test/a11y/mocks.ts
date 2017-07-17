@@ -6,8 +6,8 @@ import FlatFee from 'app/fees/flatFee'
 function someCategory () {
   return new FeeCategory(
     'onlinefees',
-    [new FeeRange(1, 100, new FlatFee('X001', 'fixed', 'Some description', 100))],
-    [new FlatFee('X002', 'fixed', 'Other description', 200)]
+    [new FeeRange(1, 100, new FlatFee('X001', 'fixed', 'Some description', 100, null))],
+    [new FlatFee('X002', 'fixed', 'Other description', 200, null)]
   )
 }
 

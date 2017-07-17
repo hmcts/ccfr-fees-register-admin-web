@@ -49,7 +49,8 @@ export default class FeesClient {
       flatFeeObject.id,
       flatFeeObject.type,
       flatFeeObject.description,
-      flatFeeObject.amount
+      flatFeeObject.amount,
+      flatFeeObject.percentage
     )
   }
 }

@@ -6,42 +6,70 @@
 
 {% block content %}
 
-<div class="column-full">
+{% macro feeAmount(fee) %}
+  {% if fee.type == 'fixed' %}
+    £{{ fee.amount / 100.0 }}
+  {% elif fee.type == 'percentage' %}
+    {{ fee.percentage }}%
+  {% else %}
+    Unknown fee type
+  {% endif %}
+{% endmacro %}
 
-    <table>
-      <tbody>
-        <tr>
-          <th>Id</th>
-          <td>{{ category.id }}</td>
-        </tr>
-        <tr>
-          <th>Ranges</th>
-          <td>
-            <ul class="list list-bullet">
-              {% for range in category.ranges %}
-                <li>{{ range.start }} - {{ range.upto }}: {{ range.fee.amount }}</li>
-              {% endfor %}
-            </ul>
-          </td>
-        </tr>
-        <tr>
-          <th>Flat Fees</th>
-          <td>
-            <ul class="list list-bullet">
-              {% for flatFee in category.flatFees %}
-                <li>{{ flatFee.description }}</li>
-              {% endfor %}
-            </ul>
-          </td>
-        </tr>
-      </tbody>
-    </table>
+<div class="grid-row">
+  <div class="column-full">
+    <h3 class="heading-medium">Id</h3>
+    {{ category.id }}
+    <h3 class="heading-medium">Ranges</h3>
+    {% if category.ranges.length > 0 %}
+      <table>
+        <thead>
+          <tr>
+            <th scope="col">{{ t('Range') }}</th>
+            <th scope="col">{{ t('Amount') }}</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for range in category.ranges %}
+            <tr>
+              <td>£{{ range.start / 100 }} - £{{ range.upto / 100 }}</td>
+              <td>{{ feeAmount(range.fee) }}</td>
+            </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    {% else %}
+      No ranges defined
+    {% endif %}
 
-    <br />
 
-    <div>
-        <a class="button" href="/admin/categories" role="button">{{ t("Cancel") }}</a>
-    </div>
+    <h3 class="heading-medium">Flat Fees</h3>
+    {% if category.flatFees.length > 0 %}
+      <table>
+        <thead>
+          <tr>
+            <th scope="col">{{ t('Id') }}</th>
+            <th scope="col">{{ t('Description') }}</th>
+            <th scope="col">{{ t('Amount') }}</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for flatFee in category.flatFees %}
+            <tr>
+              <td>{{ flatFee.id }}</td>
+              <td>{{ flatFee.description }}</td>
+              <td>{{ feeAmount(flatFee) }}</td>
+            </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    {% else %}
+      No flat fees defined
+    {% endif %}
+
+    <p><a class="button" href="/admin/categories" role="button">{{ t("Cancel") }}</a></p>
+  </div>
 </div>
+
 
 {% endblock %}
