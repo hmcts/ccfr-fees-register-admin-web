@@ -6,9 +6,15 @@
 
 {% block content %}
 
+{% macro penniesAsPounds(amount) %}
+  {% if amount >= 0 %}
+    £{{ amount / 100.0 }}
+  {% endif %}
+{% endmacro %}
+
 {% macro feeAmount(fee) %}
   {% if fee.type == 'fixed' %}
-    £{{ fee.amount / 100.0 }}
+    {{ penniesAsPounds(fee.amount) }}
   {% elif fee.type == 'percentage' %}
     {{ fee.percentage }}%
   {% else %}
@@ -32,7 +38,7 @@
         <tbody>
           {% for range in category.ranges %}
             <tr>
-              <td>£{{ range.start / 100 }} - £{{ range.upto / 100 }}</td>
+              <td>{{ penniesAsPounds(range.start) }} - {{ penniesAsPounds(range.upto) }}</td>
               <td>{{ feeAmount(range.fee) }}</td>
             </tr>
           {% endfor %}
