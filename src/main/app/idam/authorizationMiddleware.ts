@@ -2,7 +2,7 @@ import * as express from 'express'
 import * as config from 'config'
 import * as HttpStatus from 'http-status-codes'
 
-// import JwtExtractor from 'idam/jwtExtractor'
+import JwtExtractor from 'idam/jwtExtractor'
 
 import IdamClient from 'idam/idamClient'
 import User from 'app/idam/user'
@@ -28,7 +28,7 @@ export class AuthorizationMiddleware {
     }
 
     return (req: express.Request, res: express.Response, next: express.NextFunction) => {
-      const jwt: string = 'bypass' // JwtExtractor.extract(req)
+      const jwt = JwtExtractor.extract(req)
 
       if (isPathUnprotected(req.path)) {
         logger.debug(`Unprotected path - access to ${req.path} granted`)

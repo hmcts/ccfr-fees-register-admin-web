@@ -8,11 +8,11 @@ export class AuthorizationMiddlewareFactory {
 
   static genericRequestHandler (): express.RequestHandler {
     function accessDeniedCallback (req: express.Request, res: express.Response): void {
-      res.redirect(`${config.get('idam.authentication-web.url')}/login?continue-url=${buildURL(req, '/some-return-url')}`)
+      res.redirect(`${config.get('idam.authentication-web.url')}/login?continue-url=${buildURL(req, '')}`)
     }
 
     const requiredRoles = [
-      'some-role'
+      'admin'
     ]
     const unprotectedPaths = [
       '/health',

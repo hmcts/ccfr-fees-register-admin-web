@@ -3,11 +3,8 @@
     "referrerPolicy": "origin"
   },
   "idam": {
-    "registration-web": {
-      "url": "http://localhost:9000"
-    },
     "authentication-web": {
-      "url": "http://localhost:8000"
+      "url": "https://idam-test.dev.ccidam.reform.hmcts.net"
     },
     "api": {
       "url": "http://localhost:8080"

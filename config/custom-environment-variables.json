@@ -7,9 +7,6 @@
     }
   },
   "idam": {
-    "registration-web": {
-      "url": "IDAM_REGISTRATION_WEB_URL"
-    },
     "authentication-web": {
       "url": "IDAM_AUTHENTICATION_WEB_URL"
     },
