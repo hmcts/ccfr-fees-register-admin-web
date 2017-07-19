@@ -33,6 +33,7 @@
       <table>
         <thead>
           <tr>
+            <th scope="col">{{ t('Id') }}</th>
             <th scope="col">{{ t('Range') }}</th>
             <th scope="col">{{ t('Amount') }}</th>
           </tr>
@@ -40,6 +41,7 @@
         <tbody>
           {% for range in category.ranges %}
             <tr>
+              <td>{{ range.fee.id }}</td>
               <td>{{ penniesAsPounds(range.start) }} - {{ penniesAsPounds(range.upto) }}</td>
               <td>{{ feeAmount(range.fee) }}</td>
             </tr>
