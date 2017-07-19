@@ -9,7 +9,7 @@ properties(
    pipelineTriggers([[$class: 'GitHubPushTrigger']])]
 )
 
-Ansible ansible = new Ansible(this, 'ccfr')
+Ansible ansible = new Ansible(this, 'ccfr_admin')
 Packager packager = new Packager(this, 'cc')
 
 timestamps {
