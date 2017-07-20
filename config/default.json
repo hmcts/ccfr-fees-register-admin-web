@@ -7,7 +7,7 @@
       "url": "https://idam-test.dev.ccidam.reform.hmcts.net"
     },
     "api": {
-      "url": "http://localhost:8080"
+      "url": "https://idam-test.dev.ccidam.reform.hmcts.net"
     }
   },
   "session": {
