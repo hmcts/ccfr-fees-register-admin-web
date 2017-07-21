@@ -33,16 +33,16 @@
     {% for row in [1, 2, 3] %}
       <div class="grid-row ranges-row">
         <div class="column-one-quarter">
-          <p>{{ textInputInline('id')  }}</p>
+          <p>{{ textInputInline("rangeId[" + row + "]")  }}</p>
         </div>
         <div class="column-one-quarter">
-          <p>{{ textInputInline('from')  }}</p>
+          <p>{{ textInputInline("rangeFrom[" + row + "]")  }}</p>
         </div>
         <div class="column-one-quarter">
-          <p>{{ textInputInline('upto')  }}</p>
+          <p>{{ textInputInline("rangeUpTo[" + row + "]")  }}</p>
         </div>
         <div class="column-one-quarter">
-          <p>{{ textInputInline('amount')  }}</p>
+          <p>{{ textInputInline("rangeAmount[" + row + "]")  }}</p>
         </div>
       </div>
     {% endfor %}
@@ -64,13 +64,13 @@
     {% for row in [1, 2, 3] %}
       <div class="grid-row ranges-row">
         <div class="column-one-quarter">
-          <p>{{ textInputInline('id')  }}</p>
+          <p>{{ textInputInline("feeId[" + row + "]")  }}</p>
         </div>
         <div class="column-one-quarter">
-          <p>{{ textInputInline('amount')  }}</p>
+          <p>{{ textInputInline("feeAmount[" + row + "]")  }}</p>
         </div>
         <div class="column-one-half">
-          <p>{{ textInputInline('description')  }}</p>
+          <p>{{ textInputInline("feeDescription[" + row + "]")  }}</p>
         </div>
       </div>
     {% endfor %}
