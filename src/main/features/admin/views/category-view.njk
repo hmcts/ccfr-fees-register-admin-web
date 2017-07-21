@@ -1,5 +1,4 @@
 {% extends "layout.njk" %}
-{% from "includes/macros/task-list.njk" import task, taskListHeading, disabledTask %}
 
 {% set title = t('Category | Fees Register Admin Console') %}
 {% set heading = t('Category') %}
@@ -51,7 +50,6 @@
     {% else %}
       No ranges defined
     {% endif %}
-
 
     <h3 class="heading-medium">Flat Fees</h3>
     {% if category.flatFees.length > 0 %}

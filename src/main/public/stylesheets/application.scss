@@ -12,3 +12,24 @@ $path: '/img/lib/';
     margin-bottom: 3rem;
   }
 }
+
+.from,
+.upto,
+.amount {
+  width: 20%;
+}
+
+.ranges-row {
+  .form-control {
+    width: 100%;
+  }
+
+  .column-one-quarter,
+  .column-one-half {
+    padding-right: 0;
+
+    p {
+      margin-bottom: 0;
+    }
+  }
+}

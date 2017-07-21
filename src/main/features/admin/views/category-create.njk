@@ -1,0 +1,84 @@
+{% extends "layout.njk" %}
+{% from "includes/macros/form.njk" import textInput, textInputInline, textArea %}
+
+{% set title = t('Create Category | Fees Register Admin Console') %}
+{% set heading = t('Create Category') %}
+
+{% block content %}
+
+
+<div class="grid-row">
+  <div class="column-full">
+    {{ textInput('Id', 'id', null, '' , 'form-control-1-4')  }}
+
+    <h3 class="heading-medium">Ranges</h3>
+    <div class="grid-row">
+      <div class="column-one-quarter">
+        <span class="form-label-bold">Id</span>
+      </div>
+
+      <div class="column-one-quarter">
+        <span class="form-label-bold">From (£)</span>
+      </div>
+
+      <div class="column-one-quarter">
+        <span class="form-label-bold">Up to (£)</span>
+      </div>
+
+      <div class="column-one-quarter">
+        <span class="form-label-bold">Amount (£)</span>
+      </div>
+    </div>
+
+    {% for row in [1, 2, 3] %}
+      <div class="grid-row ranges-row">
+        <div class="column-one-quarter">
+          <p>{{ textInputInline('id')  }}</p>
+        </div>
+        <div class="column-one-quarter">
+          <p>{{ textInputInline('from')  }}</p>
+        </div>
+        <div class="column-one-quarter">
+          <p>{{ textInputInline('upto')  }}</p>
+        </div>
+        <div class="column-one-quarter">
+          <p>{{ textInputInline('amount')  }}</p>
+        </div>
+      </div>
+    {% endfor %}
+    <p><a class="button" href="/admin/categories" role="button">{{ t("Add range") }}</a></p>
+
+    <h3 class="heading-medium">Flat Fees</h3>
+    <div class="grid-row">
+      <div class="column-one-quarter">
+        <span class="form-label-bold">Id</span>
+      </div>
+      <div class="column-one-quarter">
+        <span class="form-label-bold">Amount (£)</span>
+      </div>
+      <div class="column-one-half">
+        <span class="form-label-bold">Description</span>
+      </div>
+    </div>
+
+    {% for row in [1, 2, 3] %}
+      <div class="grid-row ranges-row">
+        <div class="column-one-quarter">
+          <p>{{ textInputInline('id')  }}</p>
+        </div>
+        <div class="column-one-quarter">
+          <p>{{ textInputInline('amount')  }}</p>
+        </div>
+        <div class="column-one-half">
+          <p>{{ textInputInline('description')  }}</p>
+        </div>
+      </div>
+    {% endfor %}
+    <p><a class="button" href="/admin/categories" role="button">{{ t("Add flat fee") }}</a></p>
+
+    <p><a class="button" href="/admin/categories" role="button">{{ t("Cancel") }}</a></p>
+  </div>
+</div>
+
+
+{% endblock %}
