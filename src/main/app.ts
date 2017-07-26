@@ -45,7 +45,7 @@ app.use(bodyParser.urlencoded({
 app.use(cookieParser())
 app.use(express.static(path.join(__dirname, 'public')))
 
-app.all(/^\/(?!admin).*$/, AuthorizationMiddlewareFactory.genericRequestHandler())
+app.all(/^.*$/, AuthorizationMiddlewareFactory.genericRequestHandler())
 
 new AdminFeature().enableFor(app)
 
