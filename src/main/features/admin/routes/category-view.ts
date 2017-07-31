@@ -3,7 +3,7 @@ import * as express from 'express'
 import {Paths} from 'admin/paths'
 
 import FeesClient from 'app/fees/feesClient'
-import FeeCategory from 'app/fees/feeCategory'
+import FeeCategory from 'app/fees/category'
 
 export default express.Router()
   .get(Paths.categoryViewPage.uri, (req: express.Request, res: express.Response) => {

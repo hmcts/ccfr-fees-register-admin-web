@@ -1,14 +1,16 @@
 import * as express from 'express'
 import * as mock from 'mock-require'
-import FeeCategory from 'app/fees/feeCategory'
-import FeeRange from 'app/fees/feeRange'
-import FlatFee from 'app/fees/flatFee'
+import Category from 'app/fees/category'
+import Range from 'app/fees/range'
+import Fee from 'app/fees/fee'
 
 function someCategory () {
-  return new FeeCategory(
-    'onlinefees',
-    [new FeeRange(1, 100, new FlatFee('X001', 'fixed', 'Some description', 100, null))],
-    [new FlatFee('X002', 'fixed', 'Other description', 200, null)]
+  return new Category(
+    1,
+    'online-fees',
+    'Online Fees',
+    [new Range(1, 100, new Fee(1, 'X001', 'fixed', 'Some description', 100, null))],
+    [new Fee(2, 'X002', 'fixed', 'Other description', 200, null)]
   )
 }
 
