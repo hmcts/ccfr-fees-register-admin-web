@@ -1,52 +1,58 @@
 import * as config from 'config'
 
 import request from 'client/request'
-import FeeCategory from 'app/fees/feeCategory'
-import FeeRange from 'app/fees/feeRange'
-import FlatFee from 'app/fees/flatFee'
+import Category from 'app/fees/category'
+import Range from 'app/fees/range'
+import Fee from 'app/fees/fee'
+
 const feesUrl = config.get('fees.url')
 
 export default class FeesClient {
 
-  static retrieveCategories (): Promise<Array<FeeCategory>> {
+  static retrieveCategories (): Promise<Array<Category>> {
     return request.get({
-      uri: `${feesUrl}/fees-register/categories`
+      uri: `${feesUrl}/categories`
     }).then((response: Array<any>) => {
-      return response.map(categoryObject => new FeeCategory(
+      return response.map(categoryObject => new Category(
         categoryObject.id,
-        FeesClient.toFeeRanges(categoryObject.ranges || []),
-        FeesClient.toFlatFees(categoryObject.flatFees || [])
+        categoryObject.code,
+        categoryObject.description,
+        FeesClient.toRanges(categoryObject.rangeGroup || {ranges: []}),
+        FeesClient.toFees(categoryObject.fees || [])
       ))
     })
   }
 
-  static retrieveCategory (id: string): Promise<FeeCategory> {
+  static retrieveCategory (id: string): Promise<Category> {
     return request.get({
-      uri: `${feesUrl}/fees-register/categories/${id}`
+      uri: `${feesUrl}/categories/${id}`
     }).then((categoryObject: any) => {
-      return new FeeCategory(
+      return new Category(
         categoryObject.id,
-        FeesClient.toFeeRanges(categoryObject.ranges || []),
-        FeesClient.toFlatFees(categoryObject.flatFees || [])
+        categoryObject.code,
+        categoryObject.description,
+        FeesClient.toRanges(categoryObject.rangeGroup || {ranges: []}),
+        FeesClient.toFees(categoryObject.fees || [])
       )
     })
   }
 
-  private static toFeeRanges (feeRangesObject: Array<any>): Array<FeeRange> {
-    return feeRangesObject.map(feeRangeObject => new FeeRange(
-      feeRangeObject.start,
-      feeRangeObject.upto,
-      FeesClient.toFlatFee(feeRangeObject.fee)
+  private static toRanges (rangeGroupObject: any): Array<Range> {
+    return rangeGroupObject.ranges.map(feeRangeObject => new Range(
+      feeRangeObject.from,
+      feeRangeObject.to,
+      FeesClient.toFee(feeRangeObject.fee)
     ))
   }
 
-  private static toFlatFees (flatFeesObject: Array<any>): Array<FlatFee> {
-    return flatFeesObject.map(this.toFlatFee)
+  private static toFees (flatFeesObject: Array<any>): Array<Fee> {
+    return flatFeesObject.map(this.toFee)
   }
 
-  private static toFlatFee (flatFeeObject: any): FlatFee {
-    return new FlatFee(
+  private static toFee (flatFeeObject: any): Fee {
+    return new Fee(
       flatFeeObject.id,
+      flatFeeObject.code,
       flatFeeObject.type,
       flatFeeObject.description,
       flatFeeObject.amount,

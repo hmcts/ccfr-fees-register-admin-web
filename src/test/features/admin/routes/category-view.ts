@@ -25,9 +25,9 @@ describe('Category view page', () => {
       idamServiceMock.resolveRetrieveUserFor(1, 'admin', 'admin')
 
       await request(app)
-        .get(AdminPaths.categoryViewPage.uri.replace(':categoryId', 'hearingfees'))
+        .get(AdminPaths.categoryViewPage.uri.replace(':categoryId', '2'))
         .set('Cookie', `${cookieName}=JWT`)
-        .expect(res => expect(res).to.be.successful.withText('hearingfees', 'Civil Court fees - Hearing fees - Multi track claim', '£1,090'))
+        .expect(res => expect(res).to.be.successful.withText('hearing-fees', 'Civil Court fees - Hearing fees - Multi track claim', '£1,090'))
     })
   })
 })

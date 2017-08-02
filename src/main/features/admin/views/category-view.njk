@@ -27,52 +27,56 @@
   <div class="column-full">
     <h3 class="heading-medium">Id</h3>
     {{ category.id }}
-    <h3 class="heading-medium">Ranges</h3>
+    <h3 class="heading-medium">Code</h3>
+    {{ category.code }}
+    <h3 class="heading-medium">Description</h3>
+    {{ category.description }}
+    <h3 class="heading-medium">Range Group</h3>
     {% if category.ranges.length > 0 %}
       <table>
         <thead>
           <tr>
-            <th scope="col">{{ t('Id') }}</th>
             <th scope="col">{{ t('Range') }}</th>
-            <th scope="col">{{ t('Amount') }}</th>
+            <th scope="col">{{ t('Fee Code') }}</th>
+            <th scope="col">{{ t('Fee Amount') }}</th>
           </tr>
         </thead>
         <tbody>
           {% for range in category.ranges %}
             <tr>
-              <td>{{ range.fee.id }}</td>
-              <td>{{ penniesAsPounds(range.start) }} - {{ penniesAsPounds(range.upto) }}</td>
+              <td>{{ penniesAsPounds(range.from) }} - {{ penniesAsPounds(range.to) }}</td>
+              <td>{{ range.fee.code }}</td>
               <td>{{ feeAmount(range.fee) }}</td>
             </tr>
           {% endfor %}
         </tbody>
       </table>
     {% else %}
-      No ranges defined
+      Category has no range group defined
     {% endif %}
 
     <h3 class="heading-medium">Flat Fees</h3>
-    {% if category.flatFees.length > 0 %}
+    {% if category.fees.length > 0 %}
       <table>
         <thead>
           <tr>
-            <th scope="col">{{ t('Id') }}</th>
+            <th scope="col">{{ t('Code') }}</th>
             <th scope="col">{{ t('Description') }}</th>
             <th scope="col">{{ t('Amount') }}</th>
           </tr>
         </thead>
         <tbody>
-          {% for flatFee in category.flatFees %}
+          {% for fee in category.fees %}
             <tr>
-              <td>{{ flatFee.id }}</td>
-              <td>{{ flatFee.description }}</td>
-              <td>{{ feeAmount(flatFee) }}</td>
+              <td>{{ fee.code }}</td>
+              <td>{{ fee.description }}</td>
+              <td>{{ feeAmount(fee) }}</td>
             </tr>
           {% endfor %}
         </tbody>
       </table>
     {% else %}
-      No flat fees defined
+      Category has no fees defined
     {% endif %}
 
     <p><a class="button" href="/admin/categories" role="button">{{ t("Cancel") }}</a></p>
