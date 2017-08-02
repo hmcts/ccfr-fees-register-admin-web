@@ -35,7 +35,7 @@ export default express.Router()
       FeesClient
         .updateFee(new Fee(model.code, model.type, model.description, model.amount * 100, model.percentage))
         .then((fee: Fee) => {
-          res.redirect(Paths.categoryListPage.uri)
+          res.redirect(Paths.categoryViewPage.uri.replace(':categoryId', req.params.categoryId))
         })
     }
   })

@@ -48,7 +48,7 @@
               <td>{{ penniesAsPounds(range.from) }} - {{ penniesAsPounds(range.to) }}</td>
               <td>{{ range.fee.code }}</td>
               <td>{{ feeAmount(range.fee) }}</td>
-              <td><a class="button" href="/admin/fees/{{ range.fee.code }}" role="button">{{ t("Edit") }}</a></td>
+              <td><a class="button" href="/admin/categories/{{ category.id }}/fees/{{ range.fee.code }}" role="button">{{ t("Edit") }}</a></td>
             </tr>
           {% endfor %}
         </tbody>
@@ -74,7 +74,7 @@
               <td>{{ fee.code }}</td>
               <td>{{ fee.description }}</td>
               <td>{{ feeAmount(fee) }}</td>
-              <td><a class="button" href="/admin/fees/{{ fee.code }}" role="button">{{ t("Edit") }}</a></td>
+              <td><a class="button" href="/admin/categories/{{ category.id }}/fees/{{ fee.code }}" role="button">{{ t("Edit") }}</a></td>
             </tr>
           {% endfor %}
         </tbody>
