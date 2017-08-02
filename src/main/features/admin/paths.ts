@@ -6,4 +6,5 @@ export class Paths {
   static readonly categoryListPage = new RoutablePath('/admin/categories', 'admin/views/category-list')
   static readonly categoryCreatePage = new RoutablePath('/admin/categories/create', 'admin/views/category-create')
   static readonly categoryViewPage = new RoutablePath('/admin/categories/:categoryId', 'admin/views/category-view')
+  static readonly feeViewPage = new RoutablePath('/admin/fees/:feeCode', 'admin/views/fee-view')
 }

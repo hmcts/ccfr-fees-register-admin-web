@@ -37,6 +37,24 @@ export default class FeesClient {
     })
   }
 
+  static retrieveFee (code: string): Promise<Fee> {
+    return request.get({
+      uri: `${feesUrl}/fees/${code}`
+    }).then((feeObject: any) => {
+      return FeesClient.toFee(feeObject)
+    })
+  }
+
+  static updateFee (fee: Fee): Promise<Fee> {
+    return request.put({
+      uri: `${feesUrl}/fees/${fee.code}`,
+      json: true,
+      body: fee
+    }).then((feeObject: any) => {
+      return FeesClient.toFee(feeObject)
+    })
+  }
+
   private static toRanges (rangeGroupObject: any): Array<Range> {
     return rangeGroupObject.ranges.map(feeRangeObject => new Range(
       feeRangeObject.from,
@@ -51,7 +69,6 @@ export default class FeesClient {
 
   private static toFee (flatFeeObject: any): Fee {
     return new Fee(
-      flatFeeObject.id,
       flatFeeObject.code,
       flatFeeObject.type,
       flatFeeObject.description,

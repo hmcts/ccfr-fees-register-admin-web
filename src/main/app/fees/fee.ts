@@ -1,13 +1,5 @@
 export default class Fee {
-  id: number
-  code: string
-  type: string
-  description: string
-  amount: number
-  percentage: number
-
-  constructor (id: number, code: string, type: string, description: string, amount: number, percentage: number) {
-    this.id = id
+  constructor (public code: string, public type: string, public description: string, public amount: number, public percentage: number) {
     this.code = code
     this.type = type
     this.description = description

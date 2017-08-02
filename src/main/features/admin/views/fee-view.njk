@@ -1,0 +1,20 @@
+{% from "includes/macros/form.njk" import errorSummary, textArea, textInput, submitButton %}
+{% extends "layout.njk" %}
+
+{% set title = t('Fee | Fees Register Admin Console') %}
+{% set heading = t('Fee ') + form.model.code %}
+
+{% block content %}
+
+<div class="grid-row">
+  <div class="column-full">
+    <form method="post">
+      <input type="hidden" name="type" value="{{ form.model.type }}" />
+      {{ textInput(t('Amount'), 'amount', form) }}
+      {{ textArea(t('Description'), 'description', form) }}
+      {{ submitButton(t('Save')) }}
+    </form>
+  </div>
+</div>
+
+{% endblock %}

@@ -9,8 +9,8 @@ function someCategory () {
     1,
     'online-fees',
     'Online Fees',
-    [new Range(1, 100, new Fee(1, 'X001', 'fixed', 'Some description', 100, null))],
-    [new Fee(2, 'X002', 'fixed', 'Other description', 200, null)]
+    [new Range(1, 100, new Fee('X001', 'fixed', 'Some description', 100, null))],
+    [new Fee('X002', 'fixed', 'Other description', 200, null)]
   )
 }
 
@@ -21,7 +21,8 @@ function mockUser () {
 mock('app/fees/feesClient', {
   'default': {
     retrieveCategory: (categoryId) => Promise.resolve(someCategory()),
-    retrieveCategories: () => Promise.resolve([someCategory(), someCategory(), someCategory()])
+    retrieveCategories: () => Promise.resolve([someCategory(), someCategory(), someCategory()]),
+    retrieveFee: (feeCode) => Promise.resolve(new Fee('X003', 'fixed', 'Some description', 200, null))
   }
 })
 
