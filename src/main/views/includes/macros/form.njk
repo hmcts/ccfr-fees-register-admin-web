@@ -64,18 +64,18 @@
   }}
 {% endmacro %}
 
-{% macro radioOption(label, name, form, value, hint = '', checked = form.valueFor(name) == value, bold = false) %}
-  {{ option(label, name, form, value, 'radio', hint, checked, bold) }}
+{% macro radioOption(label, name, form, value, hint = '', checked = form.valueFor(name) == value, bold = false, disabled = false) %}
+  {{ option(label, name, form, value, 'radio', hint, checked, bold, disabled) }}
 {% endmacro %}
 
 {% macro checkboxOption(label, name, form, value, hint = '', checked = false, bold = false) %}
   {{ option(label, name, form, value, 'checkbox', hint, checked, bold) }}
 {% endmacro %}
 
-{% macro option(label, name, form, value, type, hint = '', checked = false, bold = false) %}
+{% macro option(label, name, form, value, type, hint = '', checked = false, bold = false, disabled = false) %}
   <div class="multiple-choice" data-target="{{ name }}-{{ value }}">
     {% set idValue = name + value | replace(' ', '') %}
-    <input id="{{ idValue }}" type="{{ type }}" name="{{ name }}" value="{{ value }}" {% if checked %} checked="checked" {% endif %}>
+    <input id="{{ idValue }}" type="{{ type }}" name="{{ name }}" value="{{ value }}" {% if checked %} checked="checked" {% endif %} {% if disabled %} disabled {% endif %}>
     <label for="{{ idValue }}">
       {% if hint == '' %}
         {{ t(label) }}
@@ -120,7 +120,7 @@
 {% endmacro %}
 
 
-{% macro radioGroup(label, name, options, form, isInline = false) %}
+{% macro radioGroup(label, name, options, form, isInline = false, disabled = false) %}
   {% set error = form.errorFor(name) %}
   {% set selection = form.valueFor(name) %}
   <div class="form-group {% if error %} form-group-error {% endif %}">
@@ -139,7 +139,8 @@
             value = option.value,
             hint = option.hint,
             checked = (selection === option.value),
-            bold = option.bold
+            bold = option.bold,
+            disabled = disabled
           )
         }}
       {% endfor %}

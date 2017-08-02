@@ -1,4 +1,4 @@
-{% from "includes/macros/form.njk" import errorSummary, textArea, textInput, submitButton %}
+{% from "includes/macros/form.njk" import errorSummary, textArea, textInput, radioGroup, submitButton %}
 {% extends "layout.njk" %}
 
 {% set title = t('Fee | Fees Register Admin Console') %}
@@ -10,7 +10,17 @@
   <div class="column-full">
     <form method="post">
       <input type="hidden" name="type" value="{{ form.model.type }}" />
-      {{ textInput(t('Amount'), 'amount', form) }}
+      {{
+        radioGroup(form = form, name = 'type', label = t('Type'), disabled = true, options = [
+          { label: t('Fixed'), value: 'fixed' },
+          { label: t('Percentage'), value: 'percentage' }
+        ])
+      }}
+      {% if form.model.type == 'fixed' %}
+        {{ textInput(t('Amount'), 'amount', form) }}
+      {% elif form.model.type == 'percentage' %}
+        {{ textInput(t('Percentage'), 'percentage', form) }}
+      {% endif %}
       {{ textArea(t('Description'), 'description', form) }}
       {{ submitButton(t('Save')) }}
     </form>
