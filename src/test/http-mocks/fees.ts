@@ -17,7 +17,6 @@ export function resolveGetCategories () {
               'from': 1,
               'to': 30000,
               'fee': {
-                'id': 1,
                 'code': 'X0024',
                 'type': 'fixed',
                 'description': 'Civil Court fees - Money Claims Online - Claim Amount - 0.01 upto 300 GBP',
@@ -28,7 +27,6 @@ export function resolveGetCategories () {
               'from': 30001,
               'to': 50000,
               'fee': {
-                'id': 2,
                 'code': 'X0025',
                 'type': 'fixed',
                 'description': 'Civil Court fees - Money Claims Online - Claim Amount - 300.01 upto 500 GBP',
@@ -47,7 +45,6 @@ export function resolveGetCategories () {
               'from': 1,
               'to': 30000,
               'fee': {
-                'id': 3,
                 'code': 'X0048',
                 'type': 'fixed',
                 'description': 'Civil Court fees - Hearing fees - Claim Amount - 0.01 upto 300 GBP',
@@ -58,7 +55,6 @@ export function resolveGetCategories () {
               'from': 30001,
               'to': 50000,
               'fee': {
-                'id': 4,
                 'code': 'X0049',
                 'type': 'fixed',
                 'description': 'Civil Court fees - Hearing fees - Claim Amount - 300.01 upto 500 GBP',
@@ -69,14 +65,12 @@ export function resolveGetCategories () {
         },
         'fees': [
           {
-            'id': 5,
             'code': 'X0046',
             'type': 'fixed',
             'description': 'Civil Court fees - Hearing fees - Multi track claim',
             'amount': 109000
           },
           {
-            'id': 6,
             'code': 'X0047',
             'type': 'fixed',
             'description': 'Civil Court fees - Hearing fees - Fast track claim',
@@ -99,7 +93,6 @@ export function resolveGetCategory () {
             'from': 1,
             'to': 30000,
             'fee': {
-              'id': 3,
               'code': 'X0048',
               'type': 'fixed',
               'description': 'Civil Court fees - Hearing fees - Claim Amount - 0.01 upto 300 GBP',
@@ -110,7 +103,6 @@ export function resolveGetCategory () {
             'from': 30001,
             'to': 50000,
             'fee': {
-              'id': 4,
               'code': 'X0049',
               'type': 'fixed',
               'description': 'Civil Court fees - Hearing fees - Claim Amount - 300.01 upto 500 GBP',
@@ -121,19 +113,28 @@ export function resolveGetCategory () {
       },
       'fees': [
         {
-          'id': 5,
           'code': 'X0046',
           'type': 'fixed',
           'description': 'Civil Court fees - Hearing fees - Multi track claim',
           'amount': 109000
         },
         {
-          'id': 6,
           'code': 'X0047',
           'type': 'fixed',
           'description': 'Civil Court fees - Hearing fees - Fast track claim',
           'amount': 54500
         }
       ]
+    })
+}
+
+export function resolveGetFee () {
+  mock(`${serviceBaseURL}/fees-register`)
+    .get(new RegExp(`/fees/X0001`))
+    .reply(HttpStatus.OK, {
+      'code': 'X0001',
+      'type': 'fixed',
+      'description': 'Civil Court fees - Hearing fees - Claim Amount - 0.01 upto 300 GBP',
+      'amount': 2500
     })
 }

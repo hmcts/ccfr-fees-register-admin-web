@@ -39,6 +39,7 @@
             <th scope="col">{{ t('Range') }}</th>
             <th scope="col">{{ t('Fee Code') }}</th>
             <th scope="col">{{ t('Fee Amount') }}</th>
+            <th></th>
           </tr>
         </thead>
         <tbody>
@@ -47,6 +48,7 @@
               <td>{{ penniesAsPounds(range.from) }} - {{ penniesAsPounds(range.to) }}</td>
               <td>{{ range.fee.code }}</td>
               <td>{{ feeAmount(range.fee) }}</td>
+              <td><a class="button" href="/admin/categories/{{ category.id }}/fees/{{ range.fee.code }}" role="button">{{ t("Edit") }}</a></td>
             </tr>
           {% endfor %}
         </tbody>
@@ -63,6 +65,7 @@
             <th scope="col">{{ t('Code') }}</th>
             <th scope="col">{{ t('Description') }}</th>
             <th scope="col">{{ t('Amount') }}</th>
+            <th scope="col"></th>
           </tr>
         </thead>
         <tbody>
@@ -71,6 +74,7 @@
               <td>{{ fee.code }}</td>
               <td>{{ fee.description }}</td>
               <td>{{ feeAmount(fee) }}</td>
+              <td><a class="button" href="/admin/categories/{{ category.id }}/fees/{{ fee.code }}" role="button">{{ t("Edit") }}</a></td>
             </tr>
           {% endfor %}
         </tbody>
@@ -79,7 +83,7 @@
       Category has no fees defined
     {% endif %}
 
-    <p><a class="button" href="/admin/categories" role="button">{{ t("Cancel") }}</a></p>
+    <p><a href="/admin/categories/" class="link-back">{{ t("Back to category list") }}</a></p>
   </div>
 </div>
 
