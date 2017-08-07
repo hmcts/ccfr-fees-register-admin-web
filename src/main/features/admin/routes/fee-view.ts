@@ -1,12 +1,12 @@
 import * as express from 'express'
 
-import {Paths} from 'admin/paths'
+import { Paths } from 'admin/paths'
 
 import FeesClient from 'app/fees/feesClient'
 import Fee from 'app/fees/fee'
-import {Form} from 'app/forms/form'
-import {FormValidator} from 'app/forms/validation/formValidator'
-import {FeeForm} from 'app/forms/models/feeForm'
+import { Form } from 'app/forms/form'
+import { FormValidator } from 'app/forms/validation/formValidator'
+import { FeeForm } from 'app/forms/models/feeForm'
 
 function renderView (categoryCode: string, form: Form<FeeForm>, res: express.Response): void {
   res.render(Paths.feeViewPage.associatedView, {
@@ -35,7 +35,7 @@ export default express.Router()
       renderView(categoryCode, form, res)
     } else {
       FeesClient
-        .updateFee(new Fee(model.code, model.type, model.description, model.amount * 100, model.percentage))
+        .updateFee(res.locals.user, new Fee(model.code, model.type, model.description, model.amount * 100, model.percentage))
         .then((fee: Fee) => {
           res.redirect(Paths.categoryViewPage.uri.replace(':categoryCode', categoryCode))
         })
