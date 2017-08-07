@@ -9,6 +9,7 @@ export class ValidationErrors {
 
   static readonly AMOUNT_REQUIRED: string = 'Enter amount'
   static readonly AMOUNT_NOT_NEGATIVE: string = 'Enter amount equal or greater than zero'
+  static readonly AMOUNT_TOO_BIG: string = 'Enter amount lower than 10,000,000'
   static readonly AMOUNT_INVALID_DECIMALS: string = 'Enter amount with maximum two decimal places'
 
   static readonly PERCENTAGE_REQUIRED: string = 'Enter percentage'
@@ -29,6 +30,7 @@ export class FeeForm {
   @ValidateIf(o => o.type === 'fixed')
   @IsDefined({message: ValidationErrors.AMOUNT_REQUIRED})
   @Min(0, {message: ValidationErrors.AMOUNT_NOT_NEGATIVE})
+  @Max(9999999.99, {message: ValidationErrors.AMOUNT_TOO_BIG})
   @Fractions(0, 2, {message: ValidationErrors.AMOUNT_INVALID_DECIMALS})
   amount?: number
 

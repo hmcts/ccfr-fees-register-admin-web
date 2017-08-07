@@ -48,6 +48,12 @@ describe('FeeForm', () => {
       expectValidationError(errors, ValidationErrors.AMOUNT_NOT_NEGATIVE)
     })
 
+    it('should reject large amount', () => {
+      const errors = validator.validateSync(FeeForm.fromObject(_.merge(validFixedFee, {amount: '10000000'})))
+      expect(errors.length).to.equal(1)
+      expectValidationError(errors, ValidationErrors.AMOUNT_TOO_BIG)
+    })
+
     it('should reject 3 decimal places amount', () => {
       const errors = validator.validateSync(FeeForm.fromObject(_.merge(validFixedFee, {amount: '0.001'})))
       expect(errors.length).to.equal(1)
