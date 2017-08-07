@@ -6,7 +6,6 @@ import Fee from 'app/fees/fee'
 
 function someCategory () {
   return new Category(
-    1,
     'online-fees',
     'Online Fees',
     [new Range(1, 100, new Fee('X001', 'fixed', 'Some description', 100, null))],

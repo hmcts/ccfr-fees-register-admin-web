@@ -9,7 +9,6 @@ export function resolveGetCategories () {
     .get(new RegExp(`/categories`))
     .reply(HttpStatus.OK, [
       {
-        'id': 1,
         'code': 'online-fees',
         'rangeGroup': {
           'ranges': [
@@ -37,7 +36,6 @@ export function resolveGetCategories () {
         }
       },
       {
-        'id': 2,
         'code': 'hearing-fees',
         'rangeGroup': {
           'ranges': [
@@ -85,7 +83,6 @@ export function resolveGetCategory () {
   mock(`${serviceBaseURL}/fees-register`)
     .get(new RegExp(`/categories/2`))
     .reply(HttpStatus.OK, {
-      'id': 2,
       'code': 'hearing-fees',
       'rangeGroup': {
         'ranges': [
