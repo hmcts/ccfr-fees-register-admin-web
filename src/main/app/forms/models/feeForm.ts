@@ -14,7 +14,7 @@ export class ValidationErrors {
 
   static readonly PERCENTAGE_REQUIRED: string = 'Enter percentage'
   static readonly PERCENTAGE_GREATER_THAN_0: string = 'Enter percentage greater than 0'
-  static readonly PERCENTAGE_LOWER_THAN_100: string = 'Enter percentage lower than 100'
+  static readonly PERCENTAGE_LOWER_THAN_100: string = 'Enter percentage equal or lower than 100'
   static readonly PERCENTAGE_INVALID_DECIMALS: string = 'Enter percentage with maximum two decimal places'
 }
 

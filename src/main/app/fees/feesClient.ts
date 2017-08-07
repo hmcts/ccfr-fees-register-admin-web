@@ -15,7 +15,6 @@ export default class FeesClient {
       uri: `${feesUrl}/categories`
     }).then((response: Array<any>) => {
       return response.map(categoryObject => new Category(
-        categoryObject.id,
         categoryObject.code,
         categoryObject.description,
         FeesClient.toRanges(categoryObject.rangeGroup || {ranges: []}),
@@ -29,7 +28,6 @@ export default class FeesClient {
       uri: `${feesUrl}/categories/${id}`
     }).then((categoryObject: any) => {
       return new Category(
-        categoryObject.id,
         categoryObject.code,
         categoryObject.description,
         FeesClient.toRanges(categoryObject.rangeGroup || {ranges: []}),
