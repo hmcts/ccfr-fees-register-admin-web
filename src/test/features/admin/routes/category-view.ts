@@ -25,7 +25,7 @@ describe('Category view page', () => {
       idamServiceMock.resolveRetrieveUserFor(1, 'admin', 'admin')
 
       await request(app)
-        .get(AdminPaths.categoryViewPage.uri.replace(':categoryId', '2'))
+        .get(AdminPaths.categoryViewPage.uri.replace(':categoryCode', '2'))
         .set('Cookie', `${cookieName}=JWT`)
         .expect(res => expect(res).to.be.successful.withText('hearing-fees', 'Civil Court fees - Hearing fees - Multi track claim', '£1,090'))
     })
