@@ -35,7 +35,7 @@ export default express.Router()
       renderView(categoryCode, form, res)
     } else {
       FeesClient
-        .updateFee(res.locals.user, new Fee(model.code, model.type, model.description, model.amount * 100, model.percentage))
+        .updateFee(res.locals.user, model.toFee())
         .then((fee: Fee) => {
           res.redirect(Paths.categoryViewPage.uri.replace(':categoryCode', categoryCode))
         })

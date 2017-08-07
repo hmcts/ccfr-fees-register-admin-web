@@ -1,7 +1,8 @@
 import * as _ from 'lodash'
-import {IsDefined, Max, MaxLength, Min, ValidateIf} from 'class-validator'
-import {IsNotBlank} from 'app/forms/validation/validators/isBlank'
-import {Fractions} from 'app/forms/validation/validators/fractions'
+import { IsDefined, Max, MaxLength, Min, ValidateIf } from 'class-validator'
+import { IsNotBlank } from 'app/forms/validation/validators/isBlank'
+import { Fractions } from 'app/forms/validation/validators/fractions'
+import Fee from 'app/fees/fee'
 
 export class ValidationErrors {
   static readonly DESCRIPTION_REQUIRED: string = 'Enter description'
@@ -61,5 +62,9 @@ export class FeeForm {
     const percentage = value.percentage ? _.toNumber(value.percentage) : undefined
 
     return new FeeForm(code, type, description, amount, percentage)
+  }
+
+  toFee (): Fee {
+    return new Fee(this.code, this.type, this.description, Math.round(this.amount * 100), this.percentage)
   }
 }
