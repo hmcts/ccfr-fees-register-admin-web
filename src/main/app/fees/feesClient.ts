@@ -4,6 +4,7 @@ import request from 'client/request'
 import Category from 'app/fees/category'
 import Range from 'app/fees/range'
 import Fee from 'app/fees/fee'
+import User from 'app/idam/user'
 
 const feesUrl = config.get('fees.url')
 
@@ -45,14 +46,18 @@ export default class FeesClient {
     })
   }
 
-  static updateFee (fee: Fee): Promise<Fee> {
-    return request.put({
-      uri: `${feesUrl}/fees/${fee.code}`,
-      json: true,
-      body: fee
-    }).then((feeObject: any) => {
-      return FeesClient.toFee(feeObject)
-    })
+  static updateFee (user: User, fee: Fee): Promise<Fee> {
+    return request
+      .put({
+        uri: `${feesUrl}/fees/${fee.code}`,
+        json: true,
+        headers: {
+          Authorization: `Bearer ${user.bearerToken}`
+        },
+        body: fee
+      }).then((feeObject: any) => {
+        return FeesClient.toFee(feeObject)
+      })
   }
 
   private static toRanges (rangeGroupObject: any): Array<Range> {
