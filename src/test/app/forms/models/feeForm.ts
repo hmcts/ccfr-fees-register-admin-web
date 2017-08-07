@@ -8,6 +8,7 @@ import { expectValidationError } from './validationUtils'
 
 import { FeeForm, ValidationErrors } from 'app/forms/models/feeForm'
 import * as _ from 'lodash'
+import Fee from 'app/fees/fee'
 
 describe('FeeForm', () => {
 
@@ -103,6 +104,18 @@ describe('FeeForm', () => {
     it('should accept 100 percentage', () => {
       const errors = validator.validateSync(FeeForm.fromObject(_.merge(validFixedFee, {percentage: '100.00'})))
       expect(errors.length).to.equal(0)
+    })
+  })
+
+  describe('percentage validation', () => {
+    it('should convert to Fee', () => {
+      let feeForm = new FeeForm('code', 'type', 'description', 111, 222)
+      expect(feeForm.toFee()).deep.equal(new Fee('code', 'type', 'description', 11100, 222))
+    })
+
+    it('should convert float point correctly', () => {
+      let feeForm = new FeeForm('code', 'type', 'description', 0.57, 222)
+      expect(feeForm.toFee()).deep.equal(new Fee('code', 'type', 'description', 57, 222))
     })
   })
 })
