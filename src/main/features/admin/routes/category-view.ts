@@ -7,10 +7,10 @@ import FeeCategory from 'app/fees/category'
 
 export default express.Router()
   .get(Paths.categoryViewPage.uri, (req: express.Request, res: express.Response) => {
-    const { categoryId } = req.params
+    const { categoryCode } = req.params
 
     FeesClient
-      .retrieveCategory(categoryId)
+      .retrieveCategory(categoryCode)
       .then((category: FeeCategory) => {
         res.render(Paths.categoryViewPage.associatedView, {
           category: category

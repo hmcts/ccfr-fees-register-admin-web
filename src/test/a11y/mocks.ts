@@ -20,7 +20,7 @@ function mockUser () {
 
 mock('app/fees/feesClient', {
   'default': {
-    retrieveCategory: (categoryId) => Promise.resolve(someCategory()),
+    retrieveCategory: (categoryCode) => Promise.resolve(someCategory()),
     retrieveCategories: () => Promise.resolve([someCategory(), someCategory(), someCategory()]),
     retrieveFee: (feeCode) => Promise.resolve(new Fee('X003', 'fixed', 'Some description', 200, null))
   }
