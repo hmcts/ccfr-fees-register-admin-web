@@ -41,7 +41,7 @@
           </tr>
         </thead>
         <tbody>
-          {% for range in category.ranges %}
+          {% for range in category.ranges | sort(attribute='from') %}
             <tr>
               <td>{{ penniesAsPounds(range.from) }} - {{ penniesAsPounds(range.to) }}</td>
               <td>{{ range.fee.code }}</td>
