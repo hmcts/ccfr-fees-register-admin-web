@@ -20,16 +20,14 @@
             <th scope="col">{{ t('Range') }}</th>
             <th scope="col">{{ t('Fee Code') }}</th>
             <th scope="col">{{ t('Fee Amount') }}</th>
-            <th></th>
           </tr>
         </thead>
         <tbody>
           {% for range in category.ranges | sort(attribute='from') %}
             <tr>
               <td>{{ penniesAsPounds(range.from) }} - {{ penniesAsPounds(range.to) }}</td>
-              <td>{{ range.fee.code }}</td>
+              <td><a href="/admin/fees/{{ range.fee.code }}?returnUri=/admin/categories/{{ category.code }}">{{ range.fee.code }}</a></td>
               <td>{{ feeAmount(range.fee) }}</td>
-              <td><a class="button" href="/admin/fees/{{ range.fee.code }}?returnUri=/admin/categories/{{ category.code }}" role="button">{{ t("Edit") }}</a></td>
             </tr>
           {% endfor %}
         </tbody>
@@ -46,16 +44,14 @@
             <th scope="col">{{ t('Code') }}</th>
             <th scope="col">{{ t('Description') }}</th>
             <th scope="col">{{ t('Amount') }}</th>
-            <th scope="col"></th>
           </tr>
         </thead>
         <tbody>
           {% for fee in category.fees %}
             <tr>
-              <td>{{ fee.code }}</td>
+              <td><a href="/admin/fees/{{ fee.code }}?returnUri=/admin/categories/{{ category.code }}">{{ fee.code }}</a></td>
               <td>{{ fee.description }}</td>
               <td>{{ feeAmount(fee) }}</td>
-              <td><a class="button" href="/admin/fees/{{ fee.code }}?returnUri=/admin/categories/{{ category.code }}" role="button">{{ t("Edit") }}</a></td>
             </tr>
           {% endfor %}
         </tbody>

@@ -14,16 +14,14 @@
         <th scope="col">{{ t('Code') }}</th>
         <th scope="col">{{ t('Description') }}</th>
         <th scope="col">{{ t('Amount') }}</th>
-        <th scope="col"></th>
       </tr>
     </thead>
     <tbody>
       {% for fee in fees | sort(attribute='code') %}
         <tr>
-          <td>{{ fee.code }}</td>
+          <td><a href="/admin/fees/{{ fee.code }}">{{ fee.code }}</a></td>
           <td>{{ fee.description }}</td>
           <td>{{ feeAmount(fee) }}</td>
-          <td><a class="button" href="/admin/fees/{{ fee.code }}" role="button">{{ t("Edit") }}</a></td>
         </tr>
       {% endfor %}
     </tbody>
