@@ -16,6 +16,15 @@ function renderView (categoryCode: string, form: Form<FeeForm>, res: express.Res
 }
 
 export default express.Router()
+  .get(Paths.feeListPage.uri, (req: express.Request, res: express.Response) => {
+    FeesClient
+      .retrieveFees()
+      .then((fees: Array<Fee>) => {
+        res.render(Paths.feeListPage.associatedView, {
+          fees: fees
+        })
+      })
+  })
   .get(Paths.feeViewPage.uri, (req: express.Request, res: express.Response) => {
     const {feeCode, categoryCode} = req.params
 

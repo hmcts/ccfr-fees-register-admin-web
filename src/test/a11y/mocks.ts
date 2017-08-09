@@ -13,15 +13,20 @@ function someCategory () {
   )
 }
 
+function someFee () {
+  return new Fee('X003', 'fixed', 'Some description', 200, null)
+}
+
 function mockUser () {
-  return { id: 123, roles: ['admin', 'admin'] }
+  return {id: 123, roles: ['admin', 'admin']}
 }
 
 mock('app/fees/feesClient', {
   'default': {
     retrieveCategory: (categoryCode) => Promise.resolve(someCategory()),
     retrieveCategories: () => Promise.resolve([someCategory(), someCategory(), someCategory()]),
-    retrieveFee: (feeCode) => Promise.resolve(new Fee('X003', 'fixed', 'Some description', 200, null))
+    retrieveFee: (feeCode) => Promise.resolve(someFee()),
+    retrieveFees: () => Promise.resolve([someFee(), someFee(), someFee()])
   }
 })
 
