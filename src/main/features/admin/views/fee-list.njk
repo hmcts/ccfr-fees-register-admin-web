@@ -19,7 +19,7 @@
     <tbody>
       {% for fee in fees | sort(attribute='code') %}
         <tr>
-          <td><a href="/admin/fees/{{ fee.code }}">{{ fee.code }}</a></td>
+          <td><a href="/admin/fees/edit/{{ fee.code }}">{{ fee.code }}</a></td>
           <td>{{ fee.description }}</td>
           <td>{{ feeAmount(fee) }}</td>
         </tr>
@@ -27,6 +27,8 @@
     </tbody>
   </table>
 
+
+  <p><a href="/admin/fees/create" class="button" role="button">{{ t("Create new fee") }}</a></p>
   <p><a href="/admin/welcome/" class="link-back">{{ t("Back to welcome page") }}</a></p>
 </div>
 

@@ -26,7 +26,7 @@
           {% for range in category.ranges | sort(attribute='from') %}
             <tr>
               <td>{{ penniesAsPounds(range.from) }} - {{ penniesAsPounds(range.to) }}</td>
-              <td><a href="/admin/fees/{{ range.fee.code }}?returnUri=/admin/categories/{{ category.code }}">{{ range.fee.code }}</a></td>
+              <td><a href="/admin/fees/edit/{{ range.fee.code }}?returnUri=/admin/categories/{{ category.code }}">{{ range.fee.code }}</a></td>
               <td>{{ feeAmount(range.fee) }}</td>
             </tr>
           {% endfor %}
@@ -49,7 +49,7 @@
         <tbody>
           {% for fee in category.fees %}
             <tr>
-              <td><a href="/admin/fees/{{ fee.code }}?returnUri=/admin/categories/{{ category.code }}">{{ fee.code }}</a></td>
+              <td><a href="/admin/fees/edit/{{ fee.code }}?returnUri=/admin/categories/{{ category.code }}">{{ fee.code }}</a></td>
               <td>{{ fee.description }}</td>
               <td>{{ feeAmount(fee) }}</td>
             </tr>
