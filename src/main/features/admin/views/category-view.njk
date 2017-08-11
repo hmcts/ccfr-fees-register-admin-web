@@ -1,27 +1,10 @@
+{% from "includes/macros/fee-amount.njk" import feeAmount, penniesAsPounds %}
 {% extends "layout.njk" %}
 
 {% set title = t('Category | Fees Register Admin Console') %}
 {% set heading = t('Category') %}
 
 {% block content %}
-
-{% macro penniesAsPounds(amount) %}
-  {% if amount === 0 %}
-    £0 {# special case as (0).toLocaleString() is not working as expected #}
-  {% elif amount > 0 %}
-    £{{ (amount / 100.0 + 0.00).toLocaleString() }}
-  {% endif %}
-{% endmacro %}
-
-{% macro feeAmount(fee) %}
-  {% if fee.type == 'fixed' %}
-    {{ penniesAsPounds(fee.amount) }}
-  {% elif fee.type == 'percentage' %}
-    {{ fee.percentage }}%
-  {% else %}
-    Unknown fee type
-  {% endif %}
-{% endmacro %}
 
 <div class="grid-row">
   <div class="column-full">
@@ -37,16 +20,14 @@
             <th scope="col">{{ t('Range') }}</th>
             <th scope="col">{{ t('Fee Code') }}</th>
             <th scope="col">{{ t('Fee Amount') }}</th>
-            <th></th>
           </tr>
         </thead>
         <tbody>
           {% for range in category.ranges | sort(attribute='from') %}
             <tr>
               <td>{{ penniesAsPounds(range.from) }} - {{ penniesAsPounds(range.to) }}</td>
-              <td>{{ range.fee.code }}</td>
+              <td><a href="/admin/fees/edit/{{ range.fee.code }}?returnUri=/admin/categories/{{ category.code }}">{{ range.fee.code }}</a></td>
               <td>{{ feeAmount(range.fee) }}</td>
-              <td><a class="button" href="/admin/categories/{{ category.code }}/fees/{{ range.fee.code }}" role="button">{{ t("Edit") }}</a></td>
             </tr>
           {% endfor %}
         </tbody>
@@ -63,16 +44,14 @@
             <th scope="col">{{ t('Code') }}</th>
             <th scope="col">{{ t('Description') }}</th>
             <th scope="col">{{ t('Amount') }}</th>
-            <th scope="col"></th>
           </tr>
         </thead>
         <tbody>
           {% for fee in category.fees %}
             <tr>
-              <td>{{ fee.code }}</td>
+              <td><a href="/admin/fees/edit/{{ fee.code }}?returnUri=/admin/categories/{{ category.code }}">{{ fee.code }}</a></td>
               <td>{{ fee.description }}</td>
               <td>{{ feeAmount(fee) }}</td>
-              <td><a class="button" href="/admin/categories/{{ category.code }}/fees/{{ fee.code }}" role="button">{{ t("Edit") }}</a></td>
             </tr>
           {% endfor %}
         </tbody>

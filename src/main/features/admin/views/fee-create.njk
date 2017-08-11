@@ -1,0 +1,24 @@
+{% from "includes/macros/form.njk" import errorSummary, textArea, textInput, radioGroup, submitButton %}
+{% extends "layout.njk" %}
+
+{% set title = t('Create Fee | Fees Register Admin Console') %}
+{% set heading = t('Create Fee') %}
+
+{% block content %}
+
+  <div class="grid-row">
+    <div class="column-full">
+      <form method="post" action="create">
+        {{ textInput(t('Code'), 'code', form) }}
+        {{ radioGroup(form = form, name = 'type', disabled = false, label = t('Type'), options = [
+          { label: t('Fixed'), value: 'fixed' },
+          { label: t('Percentage'), value: 'percentage' }
+        ]) }}
+        {{ submitButton(t('Next')) }}
+      </form>
+
+      <a href="/admin/fees" class="link-back">{{ t('Cancel') }}</a>
+    </div>
+  </div>
+
+{% endblock %}

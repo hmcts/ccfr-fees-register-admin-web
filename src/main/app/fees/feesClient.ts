@@ -36,6 +36,18 @@ export default class FeesClient {
     })
   }
 
+  static retrieveFees (): Promise<Array<Fee>> {
+    return request.get({
+      uri: `${feesUrl}/fees`
+    }).then((response: Array<any>) => {
+      return response.map(feeObject => FeesClient.toFee(feeObject))
+    })
+  }
+
+  static checkFeeExists (code: string): Promise<boolean> {
+    return FeesClient.retrieveFee(code).then(() => true).catch(() => false)
+  }
+
   static retrieveFee (code: string): Promise<Fee> {
     return request.get({
       uri: `${feesUrl}/fees/${code}`

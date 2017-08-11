@@ -135,3 +135,22 @@ export function resolveGetFee () {
       'amount': 2500
     })
 }
+
+export function resolveGetFees () {
+  mock(`${serviceBaseURL}/fees-register`)
+    .get(new RegExp(`/fees`))
+    .reply(HttpStatus.OK, [
+      {
+        'code': 'X0001',
+        'type': 'fixed',
+        'description': 'Civil Court fees - Hearing fees - Claim Amount - 0.01 upto 300 GBP',
+        'amount': 2500
+      },
+      {
+        'code': 'X0002',
+        'type': 'fixed',
+        'description': 'Civil Court fees - Hearing fees - Claim Amount - 0.01 upto 300 GBP',
+        'amount': 123400
+      }
+    ])
+}
