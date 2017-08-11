@@ -3,11 +3,14 @@ import { IsDefined, Matches, Max, MaxLength, Min, ValidateIf } from 'class-valid
 import { IsNotBlank } from 'app/forms/validation/validators/isBlank'
 import { Fractions } from 'app/forms/validation/validators/fractions'
 import Fee from 'app/fees/fee'
+import { IsUnique } from 'app/forms/validation/validators/isUnique'
+import FeesClient from 'fees/feesClient'
 
 export class ValidationErrors {
   static readonly CODE_REQUIRED: string = 'Enter code'
   static readonly CODE_TOO_LONG: string = 'Enter code no longer than $constraint1 characters'
   static readonly CODE_INVALID_CHARACTERS: string = 'Enter code containing on alphanumeric characters, underscore or dash'
+  static readonly CODE_EXISTS: string = 'Enter code that does not exist'
 
   static readonly DESCRIPTION_REQUIRED: string = 'Enter description'
   static readonly DESCRIPTION_TOO_LONG: string = 'Enter description no longer than $constraint1 characters'
@@ -87,6 +90,7 @@ export class CreateFeeForm {
   @IsNotBlank({message: ValidationErrors.CODE_REQUIRED})
   @MaxLength(50, {message: ValidationErrors.CODE_TOO_LONG})
   @Matches(/[A-Za-z0-9_-]+/, {message: ValidationErrors.CODE_INVALID_CHARACTERS})
+  @IsUnique((value) => FeesClient.checkFeeExists(value).then((exists) => !exists), {message: ValidationErrors.CODE_EXISTS})
   code?: string
 
   @IsDefined({message: ValidationErrors.TYPE_REQUIRED})

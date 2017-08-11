@@ -44,6 +44,10 @@ export default class FeesClient {
     })
   }
 
+  static checkFeeExists (code: string): Promise<boolean> {
+    return FeesClient.retrieveFee(code).then(() => true).catch(() => false)
+  }
+
   static retrieveFee (code: string): Promise<Fee> {
     return request.get({
       uri: `${feesUrl}/fees/${code}`
