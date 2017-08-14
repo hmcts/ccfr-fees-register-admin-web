@@ -11,7 +11,7 @@
         <tr>
           <th scope="col">Code</th>
           <th scope="col">Description</th>
-          <th class="numeric" scope="col">Range count</th>
+          <th class="numeric" scope="col">Range group code</th>
           <th class="numeric" scope="col">Flat fee count</th>
         </tr>
       </thead>
@@ -20,7 +20,7 @@
           <tr>
             <td><a href="/admin/categories/{{ category.code }}">{{ category.code }}</a></td>
             <td>{{ category.description }}</td>
-            <td class="numeric">{{ category.ranges.length }}</td>
+            <td class="numeric">{{ category.rangeGroup.code }}</td>
             <td class="numeric">{{ category.fees.length }}</td>
           </tr>
         {% endfor %}

@@ -5,6 +5,7 @@ import Category from 'app/fees/category'
 import Range from 'app/fees/range'
 import Fee from 'app/fees/fee'
 import User from 'app/idam/user'
+import RangeGroup from 'fees/rangeGroup'
 
 const feesUrl = config.get('fees.url')
 
@@ -14,25 +15,21 @@ export default class FeesClient {
     return request.get({
       uri: `${feesUrl}/categories`
     }).then((response: Array<any>) => {
-      return response.map(categoryObject => new Category(
-        categoryObject.code,
-        categoryObject.description,
-        FeesClient.toRanges(categoryObject.rangeGroup || {ranges: []}),
-        FeesClient.toFees(categoryObject.fees || [])
-      ))
+      return response.map(FeesClient.toCategory)
     })
   }
 
   static retrieveCategory (id: string): Promise<Category> {
     return request.get({
       uri: `${feesUrl}/categories/${id}`
-    }).then((categoryObject: any) => {
-      return new Category(
-        categoryObject.code,
-        categoryObject.description,
-        FeesClient.toRanges(categoryObject.rangeGroup || {ranges: []}),
-        FeesClient.toFees(categoryObject.fees || [])
-      )
+    }).then(FeesClient.toCategory)
+  }
+
+  static retrieveRangeGroups (): Promise<Array<RangeGroup>> {
+    return request.get({
+      uri: `${feesUrl}/range-groups`
+    }).then((response: Array<any>) => {
+      return response.map(FeesClient.toRangeGroup)
     })
   }
 
@@ -40,7 +37,7 @@ export default class FeesClient {
     return request.get({
       uri: `${feesUrl}/fees`
     }).then((response: Array<any>) => {
-      return response.map(feeObject => FeesClient.toFee(feeObject))
+      return response.map(FeesClient.toFee)
     })
   }
 
@@ -51,27 +48,39 @@ export default class FeesClient {
   static retrieveFee (code: string): Promise<Fee> {
     return request.get({
       uri: `${feesUrl}/fees/${code}`
-    }).then((feeObject: any) => {
-      return FeesClient.toFee(feeObject)
-    })
+    }).then(FeesClient.toFee)
   }
 
   static updateFee (user: User, fee: Fee): Promise<Fee> {
-    return request
-      .put({
-        uri: `${feesUrl}/fees/${fee.code}`,
-        json: true,
-        headers: {
-          Authorization: `Bearer ${user.bearerToken}`
-        },
-        body: fee
-      }).then((feeObject: any) => {
-        return FeesClient.toFee(feeObject)
-      })
+    return request.put({
+      uri: `${feesUrl}/fees/${fee.code}`,
+      json: true,
+      headers: {
+        Authorization: `Bearer ${user.bearerToken}`
+      },
+      body: fee
+    }).then(FeesClient.toFee)
   }
 
-  private static toRanges (rangeGroupObject: any): Array<Range> {
-    return rangeGroupObject.ranges.map(feeRangeObject => new Range(
+  private static toCategory (categoryObject: any): Category {
+    return new Category(
+      categoryObject.code,
+      categoryObject.description,
+      categoryObject.rangeGroup ? FeesClient.toRangeGroup(categoryObject.rangeGroup) : null,
+      FeesClient.toFees(categoryObject.fees || [])
+    )
+  }
+
+  private static toRangeGroup (rangeGroupObject: any): RangeGroup {
+    return new RangeGroup(
+      rangeGroupObject.code,
+      rangeGroupObject.description,
+      FeesClient.toRanges(rangeGroupObject.ranges)
+    )
+  }
+
+  private static toRanges (rangesObject: Array<any>): Array<Range> {
+    return rangesObject.map(feeRangeObject => new Range(
       feeRangeObject.from,
       feeRangeObject.to,
       FeesClient.toFee(feeRangeObject.fee)
