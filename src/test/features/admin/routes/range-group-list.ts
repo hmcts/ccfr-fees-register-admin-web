@@ -14,20 +14,20 @@ import * as idamServiceMock from '../../../http-mocks/idam'
 
 const cookieName: string = config.get<string>('session.cookieName')
 
-describe('Category view page', () => {
+describe('Range groups list page', () => {
   beforeEach(() => {
     mock.cleanAll()
   })
 
   describe('on GET', () => {
-    it('should render category when fees-register returns data', async () => {
-      feesServiceMock.resolveGetFee()
+    it('should render range groups when fees-register returns data', async () => {
+      feesServiceMock.resolveGetRangeGroups()
       idamServiceMock.resolveRetrieveUserFor(1, 'admin', 'admin')
 
       await request(app)
-        .get(AdminPaths.feeEditPage.uri.replace(':categoryCode', 'any').replace(':feeCode', 'X0001') )
+        .get(AdminPaths.rangeGroupListPage.uri)
         .set('Cookie', `${cookieName}=JWT`)
-        .expect(res => expect(res).to.be.successful.withText('X0001', 'Civil Court fees - Hearing fees - Claim Amount - 0.01 upto 300 GBP', '25'))
+        .expect(res => expect(res).to.be.successful.withText('range-group-code', 'Range Group Description', '<td class="numeric">2</td>'))
     })
   })
 })

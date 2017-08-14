@@ -125,6 +125,70 @@ export function resolveGetCategory () {
     })
 }
 
+export function resolveGetRangeGroups () {
+  mock(`${serviceBaseURL}/fees-register`)
+    .get(new RegExp(`/range-groups`))
+    .reply(HttpStatus.OK, [
+      {
+        'code': 'range-group-code',
+        'description': 'Range Group Description',
+        'ranges': [
+          {
+            'from': 1,
+            'to': 30000,
+            'fee': {
+              'code': 'X0024',
+              'type': 'fixed',
+              'description': 'Civil Court fees - Money Claims Online - Claim Amount - 0.01 upto 300 GBP',
+              'amount': 2500
+            }
+          },
+          {
+            'from': 30001,
+            'to': 50000,
+            'fee': {
+              'code': 'X0025',
+              'type': 'fixed',
+              'description': 'Civil Court fees - Money Claims Online - Claim Amount - 300.01 upto 500 GBP',
+              'amount': 3500
+            }
+          }
+        ]
+      }
+    ])
+}
+
+export function resolveGetRangeGroup () {
+  mock(`${serviceBaseURL}/fees-register`)
+    .get(new RegExp(`/range-groups/range-group-code`))
+    .reply(HttpStatus.OK, {
+      'code': 'range-group-code',
+      'description': 'Range Group Edit Description',
+      'ranges': [
+        {
+          'from': 1,
+          'to': 30000,
+          'fee': {
+            'code': 'X0024',
+            'type': 'fixed',
+            'description': 'Civil Court fees - Money Claims Online - Claim Amount - 0.01 upto 300 GBP',
+            'amount': 2500
+          }
+        },
+        {
+          'from': 30001,
+          'to': 50000,
+          'fee': {
+            'code': 'X0025',
+            'type': 'fixed',
+            'description': 'Civil Court fees - Money Claims Online - Claim Amount - 300.01 upto 500 GBP',
+            'amount': 3500
+          }
+        }
+      ]
+    })
+}
+
 export function resolveGetFee () {
   mock(`${serviceBaseURL}/fees-register`)
     .get(new RegExp(`/fees/X0001`))

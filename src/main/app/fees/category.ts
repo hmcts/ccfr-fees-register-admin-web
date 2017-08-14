@@ -1,16 +1,11 @@
-import Range from 'app/fees/range'
 import Fee from 'app/fees/fee'
+import RangeGroup from 'fees/rangeGroup'
 
 export default class Category {
-  code: string
-  description: string
-  ranges: Array<Range>
-  fees: Array<Fee>
-
-  constructor (code: string, description: string, ranges: Array<Range>, fees: Array<Fee>) {
+  constructor (public code: string, public description: string, public rangeGroup: RangeGroup, public fees: Array<Fee>) {
     this.code = code
     this.description = description
-    this.ranges = ranges
+    this.rangeGroup = rangeGroup
     this.fees = fees
   }
 }

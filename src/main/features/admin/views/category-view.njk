@@ -13,7 +13,7 @@
     <h3 class="heading-medium">Description</h3>
     {{ category.description }}
     <h3 class="heading-medium">Range Group</h3>
-    {% if category.ranges.length > 0 %}
+    {% if category.rangeGroup != null %}
       <table>
         <thead>
           <tr>
@@ -23,7 +23,7 @@
           </tr>
         </thead>
         <tbody>
-          {% for range in category.ranges | sort(attribute='from') %}
+          {% for range in category.rangeGroup.ranges | sort(attribute='from') %}
             <tr>
               <td>{{ penniesAsPounds(range.from) }} - {{ penniesAsPounds(range.to) }}</td>
               <td><a href="/admin/fees/edit/{{ range.fee.code }}?returnUri=/admin/categories/{{ category.code }}">{{ range.fee.code }}</a></td>
