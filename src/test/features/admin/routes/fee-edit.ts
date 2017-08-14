@@ -14,18 +14,18 @@ import * as idamServiceMock from '../../../http-mocks/idam'
 
 const cookieName: string = config.get<string>('session.cookieName')
 
-describe('Category view page', () => {
+describe('Fee edit page', () => {
   beforeEach(() => {
     mock.cleanAll()
   })
 
   describe('on GET', () => {
-    it('should render category when fees-register returns data', async () => {
+    it('should render fee when fees-register returns data', async () => {
       feesServiceMock.resolveGetFee()
       idamServiceMock.resolveRetrieveUserFor(1, 'admin', 'admin')
 
       await request(app)
-        .get(AdminPaths.feeEditPage.uri.replace(':categoryCode', 'any').replace(':feeCode', 'X0001') )
+        .get(AdminPaths.feeEditPage.uri.replace(':feeCode', 'X0001'))
         .set('Cookie', `${cookieName}=JWT`)
         .expect(res => expect(res).to.be.successful.withText('X0001', 'Civil Court fees - Hearing fees - Claim Amount - 0.01 upto 300 GBP', '25'))
     })

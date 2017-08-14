@@ -35,6 +35,7 @@ mock('app/fees/feesClient', {
     retrieveCategory: (categoryCode) => Promise.resolve(someCategory()),
     retrieveCategories: () => Promise.resolve([someCategory(), someCategory(), someCategory()]),
     retrieveRangeGroups: () => Promise.resolve([someRangeGroup(), someRangeGroup()]),
+    retrieveRangeGroup: (rangeGroupCode) => Promise.resolve(someRangeGroup()),
     retrieveFee: (feeCode) => Promise.resolve(someFee()),
     retrieveFees: () => Promise.resolve([someFee(), someFee(), someFee()])
   }

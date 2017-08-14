@@ -19,9 +19,9 @@ export default class FeesClient {
     })
   }
 
-  static retrieveCategory (id: string): Promise<Category> {
+  static retrieveCategory (code: string): Promise<Category> {
     return request.get({
-      uri: `${feesUrl}/categories/${id}`
+      uri: `${feesUrl}/categories/${code}`
     }).then(FeesClient.toCategory)
   }
 
@@ -31,6 +31,12 @@ export default class FeesClient {
     }).then((response: Array<any>) => {
       return response.map(FeesClient.toRangeGroup)
     })
+  }
+
+  static retrieveRangeGroup (code: string): Promise<RangeGroup> {
+    return request.get({
+      uri: `${feesUrl}/range-groups/${code}`
+    }).then(FeesClient.toRangeGroup)
   }
 
   static retrieveFees (): Promise<Array<Fee>> {
