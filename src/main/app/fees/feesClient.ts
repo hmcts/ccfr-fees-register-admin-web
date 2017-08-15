@@ -39,6 +39,24 @@ export default class FeesClient {
     }).then(FeesClient.toRangeGroup)
   }
 
+  static updateRangeGroup (user: User, rangeGroup: RangeGroup): Promise<RangeGroup> {
+    return request.put({
+      uri: `${feesUrl}/range-groups/${rangeGroup.code}`,
+      json: true,
+      headers: {
+        Authorization: `Bearer ${user.bearerToken}`
+      },
+      body: {
+        description: rangeGroup.description,
+        ranges: rangeGroup.ranges.map(range => ({
+          from: range.from,
+          to: range.to,
+          feeCode: range.fee.code
+        }))
+      }
+    }).then(FeesClient.toRangeGroup)
+  }
+
   static retrieveFees (): Promise<Array<Fee>> {
     return request.get({
       uri: `${feesUrl}/fees`

@@ -19,7 +19,7 @@
   {% set error = form.errorFor(name) %}
   <label for="{{ name }}"></label>
   <span class="{{ prefixClass }}">
-    <input id="{{ name }}" name="{{ name }}" type="text" class="form-control {{ inputClass }} {% if error %} form-control-error {% endif %}" value="{#{ form.valueFor(name) }#}">
+    <input id="{{ name }}" name="{{ name }}" type="text" class="form-control {{ inputClass }} {% if error %} form-control-error {% endif %}" value="{{ form.valueFor(name) }}">
   </span>
 {% endmacro %}
 

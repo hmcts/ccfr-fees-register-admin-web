@@ -1,38 +1,42 @@
 {% from "includes/macros/fee-amount.njk" import feeAmount, penniesAsPounds %}
+{% from "includes/macros/form.njk" import errorSummary, textArea, textInputInline, submitButton %}
 {% extends "layout.njk" %}
 
 {% set title = t('Range Group | Fees Register Admin Console') %}
-{% set heading = t('Range Group') %}
+{% set heading = t('Range Group ') + form.model.code %}
 
 {% block content %}
 
   <div class="grid-row">
     <div class="column-full">
-      <h3 class="heading-medium">Code</h3>
-      {{ rangeGroup.code }}
-      <h3 class="heading-medium">Description</h3>
-      {{ rangeGroup.description }}
-      <h3 class="heading-medium">Ranges</h3>
-      <table>
-        <thead>
-        <tr>
-          <th scope="col">{{ t('Range') }}</th>
-          <th scope="col">{{ t('Fee Code') }}</th>
-          <th scope="col">{{ t('Fee Amount') }}</th>
-        </tr>
-        </thead>
-        <tbody>
-        {% for range in rangeGroup.ranges | sort(attribute='from') %}
+      <form method="post">
+        <input type="hidden" name="code" value="{{ form.model.code }}"/>
+        {{ textArea(t('Description'), 'description', form) }}
+
+        <h3 class="heading-medium">Ranges</h3>
+        <table>
+          <thead>
           <tr>
-            <td>{{ penniesAsPounds(range.from) }} - {{ penniesAsPounds(range.to) }}</td>
-            <td><a
-              href="/admin/fees/edit/{{ range.fee.code }}?returnUri=/admin/range-groups/edit/{{ rangeGroup.code }}">{{ range.fee.code }}</a>
-            </td>
-            <td>{{ feeAmount(range.fee) }}</td>
+            <th scope="col">{{ t('From') }}</th>
+            <th scope="col">{{ t('To') }}</th>
+            <th scope="col">{{ t('Fee') }}</th>
           </tr>
-        {% endfor %}
-        </tbody>
-      </table>
+          </thead>
+          <tbody>
+          {% for range in form.model.ranges | sort(attribute='from') %}
+            <tr>
+              <td>{{ textInputInline('ranges['+loop.index0+'][from]', form) }}</td>
+              <td>{{ textInputInline('ranges['+loop.index0+'][to]', form) }}</td>
+              <td>{{ textInputInline('ranges['+loop.index0+'][feeCode]', form) }}</td>
+            </tr>
+          {% endfor %}
+          </tbody>
+        </table>
+
+        <p>
+          {{ submitButton(t('Save')) }}
+        </p>
+      </form>
 
       <p><a href="/admin/range-groups/" class="link-back">{{ t("Back to range group list") }}</a></p>
     </div>
