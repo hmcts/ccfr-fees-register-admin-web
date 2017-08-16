@@ -32,7 +32,7 @@ export class RangeForm {
   @Fractions(0, 2, {message: ValidationErrors.FROM_AMOUNT_INVALID_DECIMALS})
   from?: number
 
-  @ValidateIf(o => o.to !== undefined)
+  @ValidateIf(o => o.to !== undefined && o.to !== null)
   @Min(0, {message: ValidationErrors.TO_AMOUNT_NOT_NEGATIVE})
   @Max(9999999.99, {message: ValidationErrors.TO_AMOUNT_TOO_BIG})
   @Fractions(0, 2, {message: ValidationErrors.TO_AMOUNT_INVALID_DECIMALS})
@@ -81,7 +81,7 @@ export class EditRangeGroupForm {
   constructor (code?: string, description?: string, ranges?: RangeForm[]) {
     this.code = code
     this.description = description
-    this.ranges = ranges
+    this.ranges = ranges.sort((a, b) => a.from - b.from)
   }
 
   static fromObject (value?: any): EditRangeGroupForm {

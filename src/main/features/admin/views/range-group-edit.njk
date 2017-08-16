@@ -23,7 +23,7 @@
           </tr>
           </thead>
           <tbody>
-          {% for range in form.model.ranges | sort(attribute='from') %}
+          {% for range in form.model.ranges %}
             <tr>
               <td>{{ textInputInline('ranges['+loop.index0+'][from]', form) }}</td>
               <td>{{ textInputInline('ranges['+loop.index0+'][to]', form) }}</td>
