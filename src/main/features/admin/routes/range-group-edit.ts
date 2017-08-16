@@ -10,9 +10,9 @@ import { FormValidator } from 'app/forms/validation/formValidator'
 
 export default express.Router()
   .get(Paths.rangeGroupEditPage.uri, (req: express.Request, res: express.Response) => {
-    FeesClient
-      .retrieveRangeGroup(req.params.rangeGroupCode)
-      .then((rangeGroup: RangeGroup) => {
+    Promise
+      .all([FeesClient.retrieveRangeGroup(req.params.rangeGroupCode), FeesClient.retrieveFees()])
+      .then(([rangeGroup, fees]) => {
         res.render(Paths.rangeGroupEditPage.associatedView, {
           form: new Form(new EditRangeGroupForm(
             rangeGroup.code,
@@ -22,7 +22,8 @@ export default express.Router()
               range.to >= 0 ? range.to / 100 : null,
               range.fee.code
             ))
-          ))
+          )),
+          feeOptions: fees.map(fee => ({value: fee.code, label: fee.code}))
         })
       })
   })

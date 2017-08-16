@@ -1,5 +1,5 @@
 {% from "includes/macros/fee-amount.njk" import feeAmount, penniesAsPounds %}
-{% from "includes/macros/form.njk" import errorSummary, textArea, textInputInline, submitButton %}
+{% from "includes/macros/form.njk" import errorSummary, textArea, textInputInline, selectInline, submitButton %}
 {% extends "layout.njk" %}
 
 {% set title = t('Range Group | Fees Register Admin Console') %}
@@ -27,7 +27,7 @@
             <tr>
               <td>{{ textInputInline('ranges['+loop.index0+'][from]', form) }}</td>
               <td>{{ textInputInline('ranges['+loop.index0+'][to]', form) }}</td>
-              <td>{{ textInputInline('ranges['+loop.index0+'][feeCode]', form) }}</td>
+              <td>{{ selectInline('ranges['+loop.index0+'][feeCode]', feeOptions, form) }}</td>
             </tr>
           {% endfor %}
           </tbody>

@@ -22,6 +22,7 @@ describe('Range group edit page', () => {
   describe('on GET', () => {
     it('should render range group when fees-register returns data', async () => {
       feesServiceMock.resolveGetRangeGroup()
+      feesServiceMock.resolveGetFees()
       idamServiceMock.resolveRetrieveUserFor(1, 'admin', 'admin')
 
       await request(app)
