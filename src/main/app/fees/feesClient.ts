@@ -6,63 +6,80 @@ import Range from 'app/fees/range'
 import Fee from 'app/fees/fee'
 import User from 'app/idam/user'
 import RangeGroup from 'fees/rangeGroup'
+import { StatusCodeError } from 'request-promise-native/errors'
 
 const feesUrl = config.get('fees.url')
 
-export default class FeesClient {
+export class FeesClientError extends Error {
+  constructor (public message: string) {
+    super(message)
+  }
+}
+
+function FeesClientErrorMapper (reason: Error) {
+  if (reason instanceof StatusCodeError) {
+    throw new FeesClientError((reason as any).response.body.message)
+  } else {
+    throw reason
+  }
+}
+
+export class FeesClient {
 
   static retrieveCategories (): Promise<Array<Category>> {
-    return request.get({
-      uri: `${feesUrl}/categories`
-    }).then((response: Array<any>) => {
-      return response.map(FeesClient.toCategory)
-    })
+    return request
+      .get(`${feesUrl}/categories`)
+      .then((response: Array<any>) => response.map(FeesClient.toCategory))
+      .catch(FeesClientErrorMapper)
   }
 
   static retrieveCategory (code: string): Promise<Category> {
-    return request.get({
-      uri: `${feesUrl}/categories/${code}`
-    }).then(FeesClient.toCategory)
+    return request
+      .get(`${feesUrl}/categories/${code}`)
+      .then(FeesClient.toCategory)
+      .catch(FeesClientErrorMapper)
   }
 
   static retrieveRangeGroups (): Promise<Array<RangeGroup>> {
-    return request.get({
-      uri: `${feesUrl}/range-groups`
-    }).then((response: Array<any>) => {
-      return response.map(FeesClient.toRangeGroup)
-    })
+    return request
+      .get(`${feesUrl}/range-groups`)
+      .then((response: Array<any>) => response.map(FeesClient.toRangeGroup))
+      .catch(FeesClientErrorMapper)
   }
 
   static retrieveRangeGroup (code: string): Promise<RangeGroup> {
-    return request.get({
-      uri: `${feesUrl}/range-groups/${code}`
-    }).then(FeesClient.toRangeGroup)
+    return request
+      .get(`${feesUrl}/range-groups/${code}`)
+      .then(FeesClient.toRangeGroup)
+      .catch(FeesClientErrorMapper)
   }
 
   static updateRangeGroup (user: User, rangeGroup: RangeGroup): Promise<RangeGroup> {
-    return request.put({
-      uri: `${feesUrl}/range-groups/${rangeGroup.code}`,
-      json: true,
-      headers: {
-        Authorization: `Bearer ${user.bearerToken}`
-      },
-      body: {
-        description: rangeGroup.description,
-        ranges: rangeGroup.ranges.map(range => ({
-          from: range.from,
-          to: range.to,
-          feeCode: range.fee.code
-        }))
-      }
-    }).then(FeesClient.toRangeGroup)
+    return request
+      .put({
+        uri: `${feesUrl}/range-groups/${rangeGroup.code}`,
+        json: true,
+        headers: {
+          Authorization: `Bearer ${user.bearerToken}`
+        },
+        body: {
+          description: rangeGroup.description,
+          ranges: rangeGroup.ranges.map(range => ({
+            from: range.from,
+            to: range.to,
+            feeCode: range.fee.code
+          }))
+        }
+      })
+      .then(FeesClient.toRangeGroup)
+      .catch(FeesClientErrorMapper)
   }
 
   static retrieveFees (): Promise<Array<Fee>> {
-    return request.get({
-      uri: `${feesUrl}/fees`
-    }).then((response: Array<any>) => {
-      return response.map(FeesClient.toFee)
-    })
+    return request
+      .get(`${feesUrl}/fees`)
+      .then((response: Array<any>) => response.map(FeesClient.toFee))
+      .catch(FeesClientErrorMapper)
   }
 
   static checkFeeExists (code: string): Promise<boolean> {
@@ -70,20 +87,24 @@ export default class FeesClient {
   }
 
   static retrieveFee (code: string): Promise<Fee> {
-    return request.get({
-      uri: `${feesUrl}/fees/${code}`
-    }).then(FeesClient.toFee)
+    return request
+      .get(`${feesUrl}/fees/${code}`)
+      .then(FeesClient.toFee)
+      .catch(FeesClientErrorMapper)
   }
 
   static updateFee (user: User, fee: Fee): Promise<Fee> {
-    return request.put({
-      uri: `${feesUrl}/fees/${fee.code}`,
-      json: true,
-      headers: {
-        Authorization: `Bearer ${user.bearerToken}`
-      },
-      body: fee
-    }).then(FeesClient.toFee)
+    return request
+      .put({
+        uri: `${feesUrl}/fees/${fee.code}`,
+        json: true,
+        headers: {
+          Authorization: `Bearer ${user.bearerToken}`
+        },
+        body: fee
+      })
+      .then(FeesClient.toFee)
+      .catch(FeesClientErrorMapper)
   }
 
   private static toCategory (categoryObject: any): Category {

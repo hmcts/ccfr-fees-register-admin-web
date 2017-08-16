@@ -2,7 +2,7 @@ import * as express from 'express'
 
 import { Paths } from 'admin/paths'
 
-import FeesClient from 'app/fees/feesClient'
+import { FeesClient, FeesClientError } from 'app/fees/feesClient'
 import RangeGroup from 'fees/rangeGroup'
 import { Form } from 'app/forms/form'
 import { EditRangeGroupForm, RangeForm } from 'app/forms/models/rangeGroupForms'
@@ -35,8 +35,14 @@ export default express.Router()
       FeesClient
         .updateRangeGroup(res.locals.user, form.model.toRangeGroup())
         .then((rangeGroup: RangeGroup) => {
-          console.log(rangeGroup)
           res.redirect(Paths.rangeGroupListPage.uri)
+        })
+        .catch((err: Error) => {
+          if (err instanceof FeesClientError) {
+            // display error message
+          } else {
+            throw err
+          }
         })
     }
   })

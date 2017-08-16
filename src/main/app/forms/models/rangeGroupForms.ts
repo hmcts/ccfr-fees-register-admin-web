@@ -1,4 +1,4 @@
-import { IsDefined, Matches, Max, MaxLength, Min, ValidateNested } from 'class-validator'
+import { IsDefined, Matches, Max, MaxLength, Min, ValidateIf, ValidateNested } from 'class-validator'
 import { IsNotBlank } from 'app/forms/validation/validators/isBlank'
 import RangeGroup from 'fees/rangeGroup'
 import { Fractions } from 'app/forms/validation/validators/fractions'
@@ -20,7 +20,6 @@ export class ValidationErrors {
   static readonly FROM_AMOUNT_TOO_BIG: string = 'Enter from amount lower than 10,000,000'
   static readonly FROM_AMOUNT_INVALID_DECIMALS: string = 'Enter from amount with maximum two decimal places'
 
-  static readonly TO_AMOUNT_REQUIRED: string = 'Enter to amount'
   static readonly TO_AMOUNT_NOT_NEGATIVE: string = 'Enter to amount equal or greater than zero'
   static readonly TO_AMOUNT_TOO_BIG: string = 'Enter to amount lower than 10,000,000'
   static readonly TO_AMOUNT_INVALID_DECIMALS: string = 'Enter to amount with maximum two decimal places'
@@ -33,7 +32,7 @@ export class RangeForm {
   @Fractions(0, 2, {message: ValidationErrors.FROM_AMOUNT_INVALID_DECIMALS})
   from?: number
 
-  @IsDefined({message: ValidationErrors.TO_AMOUNT_REQUIRED})
+  @ValidateIf(o => o.to !== undefined)
   @Min(0, {message: ValidationErrors.TO_AMOUNT_NOT_NEGATIVE})
   @Max(9999999.99, {message: ValidationErrors.TO_AMOUNT_TOO_BIG})
   @Fractions(0, 2, {message: ValidationErrors.TO_AMOUNT_INVALID_DECIMALS})
