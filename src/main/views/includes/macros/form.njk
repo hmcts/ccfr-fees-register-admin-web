@@ -152,12 +152,14 @@
   {% if form.hasErrors() %}
     <div class="error-summary" role="group" aria-labelledby="error-summary-heading" tabindex="-1">
       <h1 class="heading-medium error-summary-heading" id="error-summary-heading">
-        {{ t('Message to alert the user to a problem goes here') }}
+        {{ t('Please correct the following errors') }}
       </h1>
-      <p> {{ t('Optional description of the errors and how to correct them') }} </p>
       <ul class="error-summary-list">
-        {% for error in form.errors %}
+        {% for error in form.validationErrors %}
           <li><a href="#{{ error.fieldName }}[label]">{{ t(error.message) }}</a></li>
+        {% endfor %}
+        {% for error in form.backendErrors %}
+          <li><a href="#">{{ t(error) }}</a></li>
         {% endfor %}
       </ul>
     </div>

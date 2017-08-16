@@ -13,6 +13,7 @@ const feesUrl = config.get('fees.url')
 export class FeesClientError extends Error {
   constructor (public message: string) {
     super(message)
+    Object.setPrototypeOf(this, FeesClientError.prototype)
   }
 }
 

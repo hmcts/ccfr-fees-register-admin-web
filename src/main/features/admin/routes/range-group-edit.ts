@@ -39,7 +39,8 @@ export default express.Router()
         })
         .catch((err: Error) => {
           if (err instanceof FeesClientError) {
-            // display error message
+            form.backendErrors.push(err.message)
+            res.render(Paths.rangeGroupEditPage.associatedView, {form: form})
           } else {
             throw err
           }

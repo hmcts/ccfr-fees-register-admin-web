@@ -75,10 +75,10 @@ describe('Form', () => {
         ])
 
         const form: Form<any> = new Form(null, [simpleError, nestedError])
-        expect(form.errors.length).to.equal(3)
-        expectPropertyValidationError(form.errors, 'amount', 'Total amount is required')
-        expectPropertyValidationError(form.errors, 'rows.0.reason', 'Reason is required')
-        expectPropertyValidationError(form.errors, 'rows.1.amount', 'Amount is required')
+        expect(form.validationErrors.length).to.equal(3)
+        expectPropertyValidationError(form.validationErrors, 'amount', 'Total amount is required')
+        expectPropertyValidationError(form.validationErrors, 'rows.0.reason', 'Reason is required')
+        expectPropertyValidationError(form.validationErrors, 'rows.1.amount', 'Amount is required')
       })
     })
 

@@ -47,15 +47,13 @@ export class Form<Model> {
 
   @ValidateNested()
   model: Model
-  errors: FormValidationError[]
+  validationErrors: FormValidationError[]
+  backendErrors: string[]
 
-  /**
-   * @param model - a object used to fill the form
-   * @param errors - an array of error objects
-   */
-  constructor (model: Model, errors: ValidationError[] = []) {
+  constructor (model: Model, validationErrors: ValidationError[] = [], backendErrors: string[] = []) {
     this.model = model
-    this.errors = this.flatMapDeep(errors)
+    this.validationErrors = this.flatMapDeep(validationErrors)
+    this.backendErrors = backendErrors
   }
 
   static empty<Model> (): Form<Model> {
@@ -63,7 +61,7 @@ export class Form<Model> {
   }
 
   hasErrors (): boolean {
-    return this.errors.length > 0
+    return this.validationErrors.length > 0 || this.backendErrors.length > 0
   }
 
   /**
@@ -72,7 +70,7 @@ export class Form<Model> {
    * @param fieldName - field name / model property
    */
   errorFor (fieldName: string): string {
-    return this.errors
+    return this.validationErrors
       .filter((error: FormValidationError) => error.fieldName === fieldName)
       .map((error: FormValidationError) => error.message)[0]
   }
