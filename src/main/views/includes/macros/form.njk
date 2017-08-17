@@ -42,14 +42,6 @@
   </div>
 {% endmacro %}
 
-{% macro saveAndContinueButton() %}
-  {{ submitButton('Save and continue') }}
-{% endmacro %}
-
-{% macro linkButton(label, name, class) %}
-  <input type="submit" class="{{ class }}" name="{{ name }}" value="{{ t(label) }}">
-{% endmacro %}
-
 {% macro yesNoRadio(label, name, form) %}
   {{ radioGroup(
       label,
@@ -151,7 +143,7 @@
   {% set error = form.errorFor(name) %}
   {% set selection = form.valueFor(name) %}
   <label for="{{ name }}"></label>
-  <select class="form-control form-control-3-4" id="{{ name }}" name="{{ name }}">
+  <select class="form-control" id="{{ name }}" name="{{ name }}">
     {% for option in options %}
       <option value="{{ option.value }}" {% if option.value == selection %} selected {% endif %}>{{ option.label }}</option>
     {% endfor %}
