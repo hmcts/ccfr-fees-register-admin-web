@@ -2,7 +2,7 @@ import * as express from 'express'
 
 import { Paths } from 'admin/paths'
 
-import FeesClient from 'app/fees/feesClient'
+import { FeesClient } from 'app/fees/feesClient'
 import Fee from 'app/fees/fee'
 import { Form } from 'app/forms/form'
 import { FormValidator } from 'app/forms/validation/formValidator'

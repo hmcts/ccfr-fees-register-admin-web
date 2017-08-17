@@ -53,9 +53,9 @@ describe('FormValidator', () => {
     req.body = {}
 
     FormValidator.requestHandler(Person)(req, res, next).then(() => {
-      chai.expect(req.body.errors.length).to.be.equal(1)
-      chai.expect(req.body.errors[0].property).to.be.equal('name')
-      chai.expect(req.body.errors[0].message).to.be.equal('Name is required')
+      chai.expect(req.body.validationErrors.length).to.be.equal(1)
+      chai.expect(req.body.validationErrors[0].property).to.be.equal('name')
+      chai.expect(req.body.validationErrors[0].message).to.be.equal('Name is required')
       done()
     })
   })
@@ -64,7 +64,7 @@ describe('FormValidator', () => {
     req.body = {action: {reload: 'Reload page'}}
 
     FormValidator.requestHandler(Person, null, ['reload'])(req, res, next)
-    chai.expect(req.body.errors.length).to.be.equal(0)
+    chai.expect(req.body.validationErrors.length).to.be.equal(0)
   })
 
   it('should pass control to the next middleware', (done) => {

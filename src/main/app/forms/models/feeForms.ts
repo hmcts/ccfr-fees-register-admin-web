@@ -4,7 +4,7 @@ import { IsNotBlank } from 'app/forms/validation/validators/isBlank'
 import { Fractions } from 'app/forms/validation/validators/fractions'
 import Fee from 'app/fees/fee'
 import { IsUnique } from 'app/forms/validation/validators/isUnique'
-import FeesClient from 'fees/feesClient'
+import { FeesClient } from 'fees/feesClient'
 
 export class ValidationErrors {
   static readonly CODE_REQUIRED: string = 'Enter code'
