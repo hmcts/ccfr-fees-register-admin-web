@@ -48,6 +48,10 @@ export class FeesClient {
       .catch(FeesClientErrorMapper)
   }
 
+  static checkRangeGroupExists (code: string): Promise<boolean> {
+    return FeesClient.retrieveRangeGroup(code).then(() => true).catch(() => false)
+  }
+
   static retrieveRangeGroup (code: string): Promise<RangeGroup> {
     return request
       .get(`${feesUrl}/range-groups/${code}`)

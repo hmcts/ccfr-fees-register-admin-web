@@ -8,7 +8,7 @@
 
   <div class="grid-row">
     <div class="column-full">
-      <form method="post">
+      <form method="post" action="/admin/range-groups/edit/{{ form.model.code }}">
         <input type="hidden" name="code" value="{{ form.model.code }}"/>
         {{ textArea(t('Description'), 'description', form) }}
 

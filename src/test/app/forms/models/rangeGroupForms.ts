@@ -3,9 +3,10 @@
 
 import { expect } from 'chai'
 import { Validator } from 'class-validator'
+import './feesClientMocks'
 import { expectValidationError } from './validationUtils'
 import * as _ from 'lodash'
-import { EditRangeGroupForm, RangeForm, ValidationErrors } from 'app/forms/models/rangeGroupForms'
+import { CreateRangeGroupForm, EditRangeGroupForm, RangeForm, ValidationErrors } from 'app/forms/models/rangeGroupForms'
 
 describe('EditRangeGroupForm', () => {
   function validEditRangeGroupFormWith (otherFields: any) {
@@ -137,6 +138,32 @@ describe('RangeForm', () => {
     it('should accept zero amount', () => {
       const errors = validator.validateSync(validRangeFormWith({to: '0.00'}))
       expect(errors.length).to.equal(0)
+    })
+  })
+})
+
+describe('CreateRangeGroupForm', () => {
+  function validCreateRangeGroupFormWith (otherFields: any) {
+    const validRangeGroup = {code: 'any', description: 'any', ranges: []}
+    return CreateRangeGroupForm.fromObject(_.merge(validRangeGroup, otherFields))
+  }
+
+  describe('code uniqueness validation', () => {
+    const validator: Validator = new Validator()
+
+    it('should allow non existing code', (done) => {
+      validator.validate(validCreateRangeGroupFormWith({code: 'non-existing-range-group'})).then((errors) => {
+        expect(errors.length).to.equal(0)
+        done()
+      })
+    })
+
+    it('should reject existing code', (done) => {
+      validator.validate(validCreateRangeGroupFormWith({code: 'existing-range-group'})).then((errors) => {
+        expect(errors.length).to.equal(1)
+        expectValidationError(errors, ValidationErrors.CODE_EXISTS)
+        done()
+      })
     })
   })
 })

@@ -5,7 +5,7 @@ import { Paths } from 'admin/paths'
 import { FeesClient, FeesClientError } from 'app/fees/feesClient'
 import RangeGroup from 'fees/rangeGroup'
 import { Form } from 'app/forms/form'
-import { EditRangeGroupForm, RangeForm } from 'app/forms/models/rangeGroupForms'
+import { CreateRangeGroupForm, EditRangeGroupForm, RangeForm } from 'app/forms/models/rangeGroupForms'
 import { FormValidator } from 'app/forms/validation/formValidator'
 
 function renderEditPage (form: Form<EditRangeGroupForm>, res: express.Response) {
@@ -33,6 +33,19 @@ function actionHandler (req: express.Request, res: express.Response, next: expre
 }
 
 export default express.Router()
+  .get(Paths.rangeGroupCreatePage.uri, (req: express.Request, res: express.Response) => {
+    res.render(Paths.rangeGroupCreatePage.associatedView, {form: new Form(new CreateRangeGroupForm())})
+  })
+  .post(Paths.rangeGroupCreatePage.uri, FormValidator.requestHandler(CreateRangeGroupForm, CreateRangeGroupForm.fromObject), (req: express.Request, res: express.Response) => {
+    const form: Form<CreateRangeGroupForm> = req.body
+
+    if (form.hasErrors()) {
+      res.render(Paths.rangeGroupCreatePage.associatedView, {form: form})
+    } else {
+      let editFeeForm = new EditRangeGroupForm(form.model.code, '', [])
+      renderEditPage(new Form(editFeeForm), res)
+    }
+  })
   .get(Paths.rangeGroupEditPage.uri, (req: express.Request, res: express.Response) => {
     FeesClient
       .retrieveRangeGroup(req.params.rangeGroupCode)

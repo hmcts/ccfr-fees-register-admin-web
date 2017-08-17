@@ -5,27 +5,28 @@
 
 {% block content %}
 
-<div class="column-full">
+  <div class="column-full">
     <table>
       <thead>
-        <tr>
-          <th scope="col">Code</th>
-          <th scope="col">Description</th>
-          <th class="numeric" scope="col">Range count</th>
-        </tr>
+      <tr>
+        <th scope="col">Code</th>
+        <th scope="col">Description</th>
+        <th class="numeric" scope="col">Range count</th>
+      </tr>
       </thead>
       <tbody>
-        {% for rangeGroup in rangeGroups %}
-          <tr>
-            <td><a href="/admin/range-groups/edit/{{ rangeGroup.code }}">{{ rangeGroup.code }}</a></td>
-            <td>{{ rangeGroup.description }}</td>
-            <td class="numeric">{{ rangeGroup.ranges.length }}</td>
-          </tr>
-        {% endfor %}
+      {% for rangeGroup in rangeGroups %}
+        <tr>
+          <td><a href="/admin/range-groups/edit/{{ rangeGroup.code }}">{{ rangeGroup.code }}</a></td>
+          <td>{{ rangeGroup.description }}</td>
+          <td class="numeric">{{ rangeGroup.ranges.length }}</td>
+        </tr>
+      {% endfor %}
       </tbody>
     </table>
 
+    <p><a href="/admin/range-groups/create" class="button" role="button">{{ t("Create new range group") }}</a></p>
     <p><a href="/admin/welcome/" class="link-back">{{ t("Back to welcome page") }}</a></p>
-</div>
+  </div>
 
 {% endblock %}
