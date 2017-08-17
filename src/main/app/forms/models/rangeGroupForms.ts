@@ -81,7 +81,11 @@ export class EditRangeGroupForm {
   constructor (code?: string, description?: string, ranges?: RangeForm[]) {
     this.code = code
     this.description = description
-    this.ranges = ranges.sort((a, b) => a.from - b.from)
+    this.ranges = ranges.sort((a, b) => {
+      let aFrom = _.isNumber(a.from) ? a.from : Number.MAX_VALUE
+      let bFrom = _.isNumber(b.from) ? b.from : Number.MAX_VALUE
+      return aFrom - bFrom
+    })
   }
 
   static fromObject (value?: any): EditRangeGroupForm {
@@ -94,6 +98,16 @@ export class EditRangeGroupForm {
     const ranges = value.ranges ? value.ranges.map(RangeForm.fromObject) : []
 
     return new EditRangeGroupForm(code, description, ranges)
+  }
+
+  addRange (): EditRangeGroupForm {
+    this.ranges.push(new RangeForm())
+    return this
+  }
+
+  deleteLastRange (): EditRangeGroupForm {
+    this.ranges.splice(-1)
+    return this
   }
 
   toRangeGroup (): RangeGroup {

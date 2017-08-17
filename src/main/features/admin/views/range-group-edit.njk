@@ -31,8 +31,10 @@
           {% endfor %}
           </tbody>
         </table>
+
         <p>
-          <input type="submit" class="link-button" name="action[addRow]" value="{{ t('Add another range') }}">
+          <input type="submit" class="link-button" name="action[addRow]" value="{{ t('+ Add another range') }}">
+          <input type="submit" class="link-button" name="action[deleteRow]" value="{{ t('- Delete last range') }}">
         </p>
 
         <p>

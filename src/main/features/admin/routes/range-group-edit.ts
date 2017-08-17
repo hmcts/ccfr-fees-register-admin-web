@@ -23,7 +23,9 @@ function actionHandler (req: express.Request, res: express.Response, next: expre
   if (req.body.action) {
     const form: Form<EditRangeGroupForm> = req.body
     if (req.body.action.addRow) {
-      form.model.ranges.push(new RangeForm())
+      form.model.addRange()
+    } else if (req.body.action.deleteRow) {
+      form.model.deleteLastRange()
     }
     return renderEditPage(form, res)
   }
@@ -48,7 +50,7 @@ export default express.Router()
           res
         ))
   })
-  .post(Paths.rangeGroupEditPage.uri, FormValidator.requestHandler(EditRangeGroupForm, EditRangeGroupForm.fromObject, ['addRow']), actionHandler,
+  .post(Paths.rangeGroupEditPage.uri, FormValidator.requestHandler(EditRangeGroupForm, EditRangeGroupForm.fromObject, ['addRow', 'deleteRow']), actionHandler,
     (req: express.Request, res: express.Response, next: express.NextFunction) => {
       const form: Form<EditRangeGroupForm> = req.body
 
