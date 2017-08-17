@@ -27,20 +27,22 @@ export class FormValidator {
 
     return (req: express.Request, res: express.Response, next: express.NextFunction) => {
       const model: T = modelTypeMapper(req.body)
+      const action: object = req.body.action
+      const exposeAction = () => {
+        if (action) {
+          req.body.action = action // Workaround to expose action to request handlers
+        }
+      }
 
       if (isValidationEnabledFor(req)) {
         return validator.validate(model).then(errors => {
           req.body = new Form<T>(model, errors)
-
-          const action: object = req.body.action
-          if (action) {
-            req.body.action = action // Workaround to expose action to request handlers
-          }
-
+          exposeAction()
           next()
         })
       } else {
         req.body = new Form<T>(model, [])
+        exposeAction()
         next()
       }
     }

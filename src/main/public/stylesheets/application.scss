@@ -13,23 +13,25 @@ $path: '/img/lib/';
   }
 }
 
-.from,
-.upto,
-.amount {
-  width: 20%;
-}
-
 .ranges-row {
   .form-control {
     width: 100%;
   }
 
-  .column-one-quarter,
-  .column-one-half {
-    padding-right: 0;
-
-    p {
-      margin-bottom: 0;
-    }
+  .from,
+  .to {
+    width: 15%;
   }
+
+  .fee-code {
+    width: 70%;
+  }
+}
+
+.link-button {
+  background: none;
+  border: 0;
+  color: $link-colour;
+  cursor: pointer;
+  text-decoration: underline;
 }

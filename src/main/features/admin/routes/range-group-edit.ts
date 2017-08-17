@@ -8,13 +8,35 @@ import { Form } from 'app/forms/form'
 import { EditRangeGroupForm, RangeForm } from 'app/forms/models/rangeGroupForms'
 import { FormValidator } from 'app/forms/validation/formValidator'
 
+function renderEditPage (form: Form<EditRangeGroupForm>, res: express.Response) {
+  FeesClient
+    .retrieveFees()
+    .then(fees => {
+      res.render(Paths.rangeGroupEditPage.associatedView, {
+        form: form,
+        feeOptions: fees.map(fee => ({value: fee.code, label: fee.code + ': ' + fee.description}))
+      })
+    })
+}
+
+function actionHandler (req: express.Request, res: express.Response, next: express.NextFunction): void {
+  if (req.body.action) {
+    const form: Form<EditRangeGroupForm> = req.body
+    if (req.body.action.addRow) {
+      form.model.ranges.push(new RangeForm())
+    }
+    return renderEditPage(form, res)
+  }
+  next()
+}
+
 export default express.Router()
   .get(Paths.rangeGroupEditPage.uri, (req: express.Request, res: express.Response) => {
-    Promise
-      .all([FeesClient.retrieveRangeGroup(req.params.rangeGroupCode), FeesClient.retrieveFees()])
-      .then(([rangeGroup, fees]) => {
-        res.render(Paths.rangeGroupEditPage.associatedView, {
-          form: new Form(new EditRangeGroupForm(
+    FeesClient
+      .retrieveRangeGroup(req.params.rangeGroupCode)
+      .then(rangeGroup =>
+        renderEditPage(
+          new Form(new EditRangeGroupForm(
             rangeGroup.code,
             rangeGroup.description,
             rangeGroup.ranges.map(range => new RangeForm(
@@ -23,28 +45,28 @@ export default express.Router()
               range.fee.code
             ))
           )),
-          feeOptions: fees.map(fee => ({value: fee.code, label: fee.code}))
-        })
-      })
+          res
+        ))
   })
-  .post(Paths.rangeGroupEditPage.uri, FormValidator.requestHandler(EditRangeGroupForm, EditRangeGroupForm.fromObject), (req: express.Request, res: express.Response, next: express.NextFunction) => {
-    const form: Form<EditRangeGroupForm> = req.body
+  .post(Paths.rangeGroupEditPage.uri, FormValidator.requestHandler(EditRangeGroupForm, EditRangeGroupForm.fromObject, ['addRow']), actionHandler,
+    (req: express.Request, res: express.Response, next: express.NextFunction) => {
+      const form: Form<EditRangeGroupForm> = req.body
 
-    if (form.hasErrors()) {
-      res.render(Paths.rangeGroupEditPage.associatedView, {form: form})
-    } else {
-      FeesClient
-        .updateRangeGroup(res.locals.user, form.model.toRangeGroup())
-        .then((rangeGroup: RangeGroup) => {
-          res.redirect(Paths.rangeGroupListPage.uri)
-        })
-        .catch((err: Error) => {
-          if (err instanceof FeesClientError) {
-            form.backendErrors.push(err.message)
-            res.render(Paths.rangeGroupEditPage.associatedView, {form: form})
-          } else {
-            throw err
-          }
-        })
-    }
-  })
+      if (form.hasErrors()) {
+        renderEditPage(form, res)
+      } else {
+        FeesClient
+          .updateRangeGroup(res.locals.user, form.model.toRangeGroup())
+          .then((rangeGroup: RangeGroup) => {
+            res.redirect(Paths.rangeGroupListPage.uri)
+          })
+          .catch((err: Error) => {
+            if (err instanceof FeesClientError) {
+              form.backendErrors.push(err.message)
+              renderEditPage(form, res)
+            } else {
+              throw err
+            }
+          })
+      }
+    })

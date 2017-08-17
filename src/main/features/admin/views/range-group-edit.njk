@@ -1,4 +1,3 @@
-{% from "includes/macros/fee-amount.njk" import feeAmount, penniesAsPounds %}
 {% from "includes/macros/form.njk" import errorSummary, textArea, textInputInline, selectInline, submitButton %}
 {% extends "layout.njk" %}
 
@@ -24,14 +23,17 @@
           </thead>
           <tbody>
           {% for range in form.model.ranges %}
-            <tr>
-              <td>{{ textInputInline('ranges['+loop.index0+'][from]', form) }}</td>
-              <td>{{ textInputInline('ranges['+loop.index0+'][to]', form) }}</td>
-              <td>{{ selectInline('ranges['+loop.index0+'][feeCode]', feeOptions, form) }}</td>
+            <tr class="ranges-row">
+              <td class="from">{{ textInputInline('ranges['+loop.index0+'][from]', form) }}</td>
+              <td class="to">{{ textInputInline('ranges['+loop.index0+'][to]', form) }}</td>
+              <td class="fee-code">{{ selectInline('ranges['+loop.index0+'][feeCode]', feeOptions, form) }}</td>
             </tr>
           {% endfor %}
           </tbody>
         </table>
+        <p>
+          <input type="submit" class="link-button" name="action[addRow]" value="{{ t('Add another range') }}">
+        </p>
 
         <p>
           {{ submitButton(t('Save')) }}
