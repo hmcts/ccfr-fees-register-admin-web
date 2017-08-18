@@ -5,6 +5,8 @@ import { Fractions } from 'app/forms/validation/validators/fractions'
 import Range from 'fees/range'
 import Fee from 'fees/fee'
 import _ = require('lodash')
+import { IsUnique } from 'app/forms/validation/validators/isUnique'
+import { FeesClient } from 'fees/feesClient'
 
 export class ValidationErrors {
   static readonly CODE_REQUIRED: string = 'Enter code'
@@ -41,7 +43,7 @@ export class RangeForm {
   @IsDefined({message: ValidationErrors.CODE_REQUIRED})
   @IsNotBlank({message: ValidationErrors.CODE_REQUIRED})
   @MaxLength(50, {message: ValidationErrors.CODE_TOO_LONG})
-  @Matches(/[A-Za-z0-9_-]/, {message: ValidationErrors.CODE_INVALID_CHARACTERS})
+  @Matches(/^[A-Za-z0-9_-]+$/, {message: ValidationErrors.CODE_INVALID_CHARACTERS})
   feeCode?: string
 
   constructor (from?: number, to?: number, feeCode?: string) {
@@ -67,7 +69,7 @@ export class EditRangeGroupForm {
   @IsDefined({message: ValidationErrors.CODE_REQUIRED})
   @IsNotBlank({message: ValidationErrors.CODE_REQUIRED})
   @MaxLength(50, {message: ValidationErrors.CODE_TOO_LONG})
-  @Matches(/[A-Za-z0-9_-]/, {message: ValidationErrors.CODE_INVALID_CHARACTERS})
+  @Matches(/^[A-Za-z0-9_-]+$/, {message: ValidationErrors.CODE_INVALID_CHARACTERS})
   code?: string
 
   @IsDefined({message: ValidationErrors.DESCRIPTION_REQUIRED})
@@ -116,5 +118,28 @@ export class EditRangeGroupForm {
       Math.round(range.to * 100),
       new Fee(range.feeCode, null, null, null, null))
     ))
+  }
+}
+
+export class CreateRangeGroupForm {
+  @IsDefined({message: ValidationErrors.CODE_REQUIRED})
+  @IsNotBlank({message: ValidationErrors.CODE_REQUIRED})
+  @MaxLength(50, {message: ValidationErrors.CODE_TOO_LONG})
+  @Matches(/^[A-Za-z0-9_-]+$/, {message: ValidationErrors.CODE_INVALID_CHARACTERS})
+  @IsUnique((value) => FeesClient.checkRangeGroupExists(value).then((exists) => !exists), {message: ValidationErrors.CODE_EXISTS})
+  code?: string
+
+  constructor (code?: string) {
+    this.code = code
+  }
+
+  static fromObject (value?: any): CreateRangeGroupForm {
+    if (!value) {
+      return value
+    }
+
+    const code = value.code ? value.code : undefined
+
+    return new CreateRangeGroupForm(code)
   }
 }

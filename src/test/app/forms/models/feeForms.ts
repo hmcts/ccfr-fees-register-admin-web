@@ -3,7 +3,7 @@
 
 import { expect } from 'chai'
 import { Validator } from 'class-validator'
-import './feeFormsMocks'
+import './feesClientMocks'
 import { expectValidationError } from './validationUtils'
 import { CreateFeeForm, EditFeeForm, ValidationErrors } from 'app/forms/models/feeForms'
 import * as _ from 'lodash'

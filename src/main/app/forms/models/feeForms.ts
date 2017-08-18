@@ -32,7 +32,7 @@ export class EditFeeForm {
   @IsDefined({message: ValidationErrors.CODE_REQUIRED})
   @IsNotBlank({message: ValidationErrors.CODE_REQUIRED})
   @MaxLength(50, {message: ValidationErrors.CODE_TOO_LONG})
-  @Matches(/[A-Za-z0-9_-]/, {message: ValidationErrors.CODE_INVALID_CHARACTERS})
+  @Matches(/^[A-Za-z0-9_-]+$/, {message: ValidationErrors.CODE_INVALID_CHARACTERS})
   code?: string
 
   @IsDefined({message: ValidationErrors.TYPE_REQUIRED})
