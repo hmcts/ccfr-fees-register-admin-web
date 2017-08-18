@@ -30,4 +30,37 @@ describe('Range groups list page', () => {
         .expect(res => expect(res).to.be.successful.withText('range-group-code', 'Range Group Description', '<td class="numeric">2</td>'))
     })
   })
+
+  describe('on POST', () => {
+    it('should display error message if validation failed', async () => {
+      feesServiceMock.resolveGetFees()
+      idamServiceMock.resolveRetrieveUserFor(1, 'admin', 'admin')
+
+      await request(app)
+        .post(AdminPaths.rangeGroupEditPage.uri.replace(':rangeGroupCode', 'range-group-update-code'))
+        .set('Cookie', `${cookieName}=JWT`)
+        .send({
+          code: 'range-group-update-code',
+          description: '',
+          ranges: []
+        })
+        .expect(res => expect(res).to.be.successful.withText('Enter description'))
+    })
+
+    it('should update range-group and redirect to fees list page', async () => {
+      feesServiceMock.resolvePutRangeGroup()
+      feesServiceMock.resolveGetFees()
+      idamServiceMock.resolveRetrieveUserFor(1, 'admin', 'admin')
+
+      await request(app)
+        .post(AdminPaths.rangeGroupEditPage.uri.replace(':rangeGroupCode', 'ange-group-update-code'))
+        .set('Cookie', `${cookieName}=JWT`)
+        .send({
+          code: 'range-group-update-code',
+          description: 'description',
+          ranges: []
+        })
+        .expect(res => expect(res).to.be.redirect.toLocation(AdminPaths.rangeGroupListPage.uri))
+    })
+  })
 })
