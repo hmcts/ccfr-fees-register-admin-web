@@ -4,6 +4,15 @@ import * as HttpStatus from 'http-status-codes'
 
 const serviceBaseURL: string = config.get<string>('fees.url')
 
+function validFeeWithCode (code: string, description?: string) {
+  return {
+    'code': code,
+    'type': 'fixed',
+    'description': description || `Description for ${code}`,
+    'amount': 109000
+  }
+}
+
 export function resolveGetCategories () {
   mock(`${serviceBaseURL}/fees-register`)
     .get(new RegExp(`/categories`))
@@ -15,22 +24,12 @@ export function resolveGetCategories () {
             {
               'from': 1,
               'to': 30000,
-              'fee': {
-                'code': 'X0024',
-                'type': 'fixed',
-                'description': 'Civil Court fees - Money Claims Online - Claim Amount - 0.01 upto 300 GBP',
-                'amount': 2500
-              }
+              'fee': validFeeWithCode('X0024', 'Civil Court fees - Money Claims Online - Claim Amount - 0.01 upto 300 GBP')
             },
             {
               'from': 30001,
               'to': 50000,
-              'fee': {
-                'code': 'X0025',
-                'type': 'fixed',
-                'description': 'Civil Court fees - Money Claims Online - Claim Amount - 300.01 upto 500 GBP',
-                'amount': 3500
-              }
+              'fee': validFeeWithCode('X0025', 'Civil Court fees - Money Claims Online - Claim Amount - 300.01 upto 500 GBP')
             }
           ]
         }
@@ -42,38 +41,18 @@ export function resolveGetCategories () {
             {
               'from': 1,
               'to': 30000,
-              'fee': {
-                'code': 'X0048',
-                'type': 'fixed',
-                'description': 'Civil Court fees - Hearing fees - Claim Amount - 0.01 upto 300 GBP',
-                'amount': 2500
-              }
+              'fee': validFeeWithCode('X0048', 'Civil Court fees - Hearing fees - Claim Amount - 0.01 upto 300 GBP')
             },
             {
               'from': 30001,
               'to': 50000,
-              'fee': {
-                'code': 'X0049',
-                'type': 'fixed',
-                'description': 'Civil Court fees - Hearing fees - Claim Amount - 300.01 upto 500 GBP',
-                'amount': 5500
-              }
+              'fee': validFeeWithCode('X0049', 'Civil Court fees - Hearing fees - Claim Amount - 300.01 upto 500 GBP')
             }
           ]
         },
         'fees': [
-          {
-            'code': 'X0046',
-            'type': 'fixed',
-            'description': 'Civil Court fees - Hearing fees - Multi track claim',
-            'amount': 109000
-          },
-          {
-            'code': 'X0047',
-            'type': 'fixed',
-            'description': 'Civil Court fees - Hearing fees - Fast track claim',
-            'amount': 54500
-          }
+          validFeeWithCode('X0046', 'Civil Court fees - Hearing fees - Multi track claim'),
+          validFeeWithCode('X0047', 'Civil Court fees - Hearing fees - Fast track claim')
         ]
       }
     ])
@@ -89,38 +68,18 @@ export function resolveGetCategory () {
           {
             'from': 1,
             'to': 30000,
-            'fee': {
-              'code': 'X0048',
-              'type': 'fixed',
-              'description': 'Civil Court fees - Hearing fees - Claim Amount - 0.01 upto 300 GBP',
-              'amount': 2500
-            }
+            'fee': validFeeWithCode('X0048', 'Civil Court fees - Hearing fees - Claim Amount - 0.01 upto 300 GBP')
           },
           {
             'from': 30001,
             'to': 50000,
-            'fee': {
-              'code': 'X0049',
-              'type': 'fixed',
-              'description': 'Civil Court fees - Hearing fees - Claim Amount - 300.01 upto 500 GBP',
-              'amount': 5500
-            }
+            'fee': validFeeWithCode('X0049', 'Civil Court fees - Hearing fees - Claim Amount - 300.01 upto 500 GBP')
           }
         ]
       },
       'fees': [
-        {
-          'code': 'X0046',
-          'type': 'fixed',
-          'description': 'Civil Court fees - Hearing fees - Multi track claim',
-          'amount': 109000
-        },
-        {
-          'code': 'X0047',
-          'type': 'fixed',
-          'description': 'Civil Court fees - Hearing fees - Fast track claim',
-          'amount': 54500
-        }
+        validFeeWithCode('X0046', 'Civil Court fees - Hearing fees - Multi track claim'),
+        validFeeWithCode('X0047', 'Civil Court fees - Hearing fees - Fast track claim')
       ]
     })
 }
@@ -136,22 +95,12 @@ export function resolveGetRangeGroups () {
           {
             'from': 1,
             'to': 30000,
-            'fee': {
-              'code': 'X0024',
-              'type': 'fixed',
-              'description': 'Civil Court fees - Money Claims Online - Claim Amount - 0.01 upto 300 GBP',
-              'amount': 2500
-            }
+            'fee': validFeeWithCode('X0024', 'Civil Court fees - Money Claims Online - Claim Amount - 0.01 upto 300 GBP')
           },
           {
             'from': 30001,
             'to': 50000,
-            'fee': {
-              'code': 'X0025',
-              'type': 'fixed',
-              'description': 'Civil Court fees - Money Claims Online - Claim Amount - 300.01 upto 500 GBP',
-              'amount': 3500
-            }
+            'fee': validFeeWithCode('X0025', 'Civil Court fees - Money Claims Online - Claim Amount - 300.01 upto 500 GBP')
           }
         ]
       }
@@ -168,53 +117,44 @@ export function resolveGetRangeGroup () {
         {
           'from': 1,
           'to': 30000,
-          'fee': {
-            'code': 'X0024',
-            'type': 'fixed',
-            'description': 'Civil Court fees - Money Claims Online - Claim Amount - 0.01 upto 300 GBP',
-            'amount': 2500
-          }
+          'fee': validFeeWithCode('X0024', 'Civil Court fees - Money Claims Online - Claim Amount - 0.01 upto 300 GBP')
         },
         {
           'from': 30001,
           'to': 50000,
-          'fee': {
-            'code': 'X0025',
-            'type': 'fixed',
-            'description': 'Civil Court fees - Money Claims Online - Claim Amount - 300.01 upto 500 GBP',
-            'amount': 3500
-          }
+          'fee': validFeeWithCode('X0025', 'Civil Court fees - Money Claims Online - Claim Amount - 300.01 upto 500 GBP')
         }
       ]
+    })
+}
+
+export function resolvePutRangeGroup () {
+  mock(`${serviceBaseURL}/fees-register/`)
+    .put(new RegExp(`/range-groups/range-group-update-code`))
+    .reply(HttpStatus.OK, {
+      'code': 'range-group-code',
+      'description': 'Range Group Put Description',
+      'ranges': []
     })
 }
 
 export function resolveGetFee () {
   mock(`${serviceBaseURL}/fees-register`)
     .get(new RegExp(`/fees/X0001`))
-    .reply(HttpStatus.OK, {
-      'code': 'X0001',
-      'type': 'fixed',
-      'description': 'Civil Court fees - Hearing fees - Claim Amount - 0.01 upto 300 GBP',
-      'amount': 2500
-    })
+    .reply(HttpStatus.OK, validFeeWithCode('X0001', 'Civil Court fees - Hearing fees - Claim Amount - 0.01 upto 300 GBP'))
 }
 
 export function resolveGetFees () {
   mock(`${serviceBaseURL}/fees-register`)
     .get(new RegExp(`/fees`))
     .reply(HttpStatus.OK, [
-      {
-        'code': 'X0001',
-        'type': 'fixed',
-        'description': 'Civil Court fees - Hearing fees - Claim Amount - 0.01 upto 300 GBP',
-        'amount': 2500
-      },
-      {
-        'code': 'X0002',
-        'type': 'fixed',
-        'description': 'Civil Court fees - Hearing fees - Claim Amount - 0.01 upto 300 GBP',
-        'amount': 123400
-      }
+      validFeeWithCode('X0001', 'Civil Court fees - Hearing fees - Claim Amount - 0.01 upto 300 GBP'),
+      validFeeWithCode('X0002', 'Civil Court fees - Hearing fees - Claim Amount - 0.01 upto 300 GBP')
     ])
+}
+
+export function resolvePutFee () {
+  mock(`${serviceBaseURL}/fees-register/`)
+    .put(new RegExp(`/fees/X0001`))
+    .reply(HttpStatus.OK, validFeeWithCode('X0001', 'Updated Description'))
 }
