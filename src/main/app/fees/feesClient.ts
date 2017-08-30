@@ -6,7 +6,7 @@ import Range from 'app/fees/range'
 import Fee from 'app/fees/fee'
 import User from 'app/idam/user'
 import RangeGroup from 'fees/rangeGroup'
-import { StatusCodeError } from 'request-promise-native/errors'
+import {StatusCodeError} from 'request-promise-native/errors'
 
 const feesUrl = config.get('fees.url')
 
@@ -34,11 +34,33 @@ export class FeesClient {
       .catch(FeesClientErrorMapper)
   }
 
+  static checkCategoryExists (code: string): Promise<boolean> {
+    return FeesClient.retrieveCategory(code).then(() => true).catch(() => false)
+  }
+
   static retrieveCategory (code: string): Promise<Category> {
     return request
       .get(`${feesUrl}/categories/${code}`)
       .then(FeesClient.toCategory)
       .catch(FeesClientErrorMapper)
+  }
+
+  static updateCategory (user: User, category: Category): Promise<Category> {
+    return request
+          .put({
+            uri: `${feesUrl}/categories/${category.code}`,
+            json: true,
+            headers: {
+              Authorization: `Bearer ${user.bearerToken}`
+            },
+            body: {
+              description: category.description,
+              rangeGroupCode: category.rangeGroup.code,
+              feeCodes: category.fees.map(fee => fee.code)
+            }
+          })
+          .then(FeesClient.toCategory)
+          .catch(FeesClientErrorMapper)
   }
 
   static retrieveRangeGroups (): Promise<Array<RangeGroup>> {
