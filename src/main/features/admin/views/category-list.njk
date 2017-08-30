@@ -18,7 +18,7 @@
       <tbody>
         {% for category in categories %}
           <tr>
-            <td><a href="/admin/categories/{{ category.code }}">{{ category.code }}</a></td>
+            <td><a href="/admin/categories/edit/{{ category.code }}">{{ category.code }}</a></td>
             <td>{{ category.description }}</td>
             <td class="numeric">{{ category.rangeGroup.code }}</td>
             <td class="numeric">{{ category.fees.length }}</td>
@@ -26,7 +26,7 @@
         {% endfor %}
       </tbody>
     </table>
-
+    <p><a href="/admin/categories/create" class="button" role="button">{{ t("Create new category") }}</a></p>
     <p><a href="/admin/welcome/" class="link-back">{{ t("Back to welcome page") }}</a></p>
 </div>
 

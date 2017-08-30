@@ -1,11 +1,12 @@
-import { RoutablePath } from 'common/router/routablePath'
+import {RoutablePath} from 'common/router/routablePath'
 
 export class Paths {
   static readonly loginReceiver = new RoutablePath('/admin/receiver', 'n/a')
   static readonly welcomePage = new RoutablePath('/admin/welcome', 'admin/views/welcome')
 
   static readonly categoryListPage = new RoutablePath('/admin/categories', 'admin/views/category-list')
-  static readonly categoryViewPage = new RoutablePath('/admin/categories/:categoryCode', 'admin/views/category-view')
+  static readonly categoryCreatePage = new RoutablePath('/admin/categories/create', 'admin/views/category-create')
+  static readonly categoryEditPage = new RoutablePath('/admin/categories/edit/:categoryCode', 'admin/views/category-edit')
 
   static readonly rangeGroupListPage = new RoutablePath('/admin/range-groups', 'admin/views/range-group-list')
   static readonly rangeGroupEditPage = new RoutablePath('/admin/range-groups/edit/:rangeGroupCode', 'admin/views/range-group-edit')

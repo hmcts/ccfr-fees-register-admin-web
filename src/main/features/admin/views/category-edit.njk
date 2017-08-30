@@ -1,0 +1,61 @@
+{% from "includes/macros/form.njk" import errorSummary, textArea, textInputInline, selectInline, submitButton %}
+{% extends "layout.njk" %}
+
+{% set title = t('Category | Fees Register Admin Console') %}
+{% set heading = t('Category ') + form.model.code %}
+
+{% block content %}
+
+  <div class="grid-row">
+    <div class="column-full">
+      <form method="post" action="/admin/categories/edit/{{ form.model.code }}">
+        <input type="hidden" name="code" value="{{ form.model.code }}"/>
+        {{ textArea(t('Description'), 'description', form) }}
+
+        <h3 class="heading-medium">Range Group</h3>
+        <table>
+          <thead>
+          <tr>
+            <th scope="col">{{ t('Select Range Group') }}</th>
+          </tr>
+          </thead>
+          <tbody>
+            <tr class="ranges-row">
+              <td class="fee-code">{{ selectInline('rangeGroupCode',rangeOptions, form) }}</td>
+            </tr>
+          </tbody>
+        </table>
+
+        <h3 class="heading-medium">Flat Fees</h3>
+        <table>
+          <thead>
+          <tr>
+            <th scope="col">{{ t('Add fees') }}</th>
+          </tr>
+          </thead>
+          <tbody>
+          {% for fee in form.model.feeCodes %}
+            <tr class="ranges-row">
+               <td class="fee-code">{{ selectInline('feeCodes['+loop.index0+'][feeCode]',feeOptions, form) }}</td>
+            </tr>
+          {% endfor %}
+          </tbody>
+        </table>
+
+        <p>
+          <input type="submit" class="link-button" name="action[addRow]" value="{{ t('+ Add fee') }}">
+          <input type="submit" class="link-button" name="action[deleteRow]" value="{{ t('- Delete last fee') }}">
+        </p>
+
+        <p>
+          {{ submitButton(t('Save')) }}
+        </p>
+      </form>
+
+      <p><a href="/admin/categories/" class="link-back">{{ t("Back to categories list") }}</a></p>
+    </div>
+  </div>
+
+
+{% endblock %}
+
