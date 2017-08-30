@@ -36,7 +36,7 @@
           <tbody>
           {% for fee in form.model.feeCodes %}
             <tr class="ranges-row">
-               <td class="fee-code">{{ selectInline('feeCodes['+loop.index0+'][feeCode]',feeOptions, form) }}</td>
+               <td class="fee-code">{{ selectInline('feeCodes['+loop.index0+']',feeOptions, form) }}</td>
             </tr>
           {% endfor %}
           </tbody>

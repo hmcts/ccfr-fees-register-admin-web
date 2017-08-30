@@ -34,15 +34,15 @@ export class FeesClient {
       .catch(FeesClientErrorMapper)
   }
 
+  static checkCategoryExists (code: string): Promise<boolean> {
+    return FeesClient.retrieveCategory(code).then(() => true).catch(() => false)
+  }
+
   static retrieveCategory (code: string): Promise<Category> {
     return request
       .get(`${feesUrl}/categories/${code}`)
       .then(FeesClient.toCategory)
       .catch(FeesClientErrorMapper)
-  }
-
-  static checkCategoryExists (code: string): Promise<boolean> {
-    return FeesClient.retrieveCategory(code).then(() => true).catch(() => false)
   }
 
   static updateCategory (user: User, category: Category): Promise<Category> {

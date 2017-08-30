@@ -4,7 +4,7 @@ import {Paths} from 'admin/paths'
 
 import {Form} from 'app/forms/form'
 import {FormValidator} from 'app/forms/validation/formValidator'
-import {CreateCategoryForm, EditCategoryForm, FeeForm} from 'app/forms/models/categoryForms'
+import {CreateCategoryForm, EditCategoryForm} from 'app/forms/models/categoryForms'
 import {FeesClient} from 'app/fees/feesClient'
 import Category from 'app/fees/category'
 import RangeGroup from 'app/fees/rangeGroup'
@@ -15,11 +15,14 @@ function renderEditPage (form: Form<EditCategoryForm>, res: express.Response) {
   Promise
     .all([FeesClient.retrieveFees(), FeesClient.retrieveRangeGroups()])
     .then(([fees, rangeGroups]) => {
-      rangeGroups.unshift(new RangeGroup('','       ',null))
+      rangeGroups.unshift(new RangeGroup('', '       ', null))
       res.render(Paths.categoryEditPage.associatedView, {
         form: form,
         feeOptions: fees.map(fee => ({value: fee.code, label: fee.code + ': ' + fee.description})),
-        rangeOptions: rangeGroups.map(rangeGroup => ({value: rangeGroup.code, label: rangeGroup.code + '' + rangeGroup.description}))
+        rangeOptions: rangeGroups.map(rangeGroup => ({
+          value: rangeGroup.code,
+          label: rangeGroup.code + '' + rangeGroup.description
+        }))
       })
     })
 }
@@ -60,15 +63,15 @@ export default express.Router()
         renderEditPage(
           new Form(new EditCategoryForm(category.code,
             category.description,
-            _.isNull(category.rangeGroup) ? '' : category.rangeGroup.code ,
-            category.fees.map(fee => new FeeForm(
-            fee.code
-  ))
-)),
+            _.isNull(category.rangeGroup) ? '' : category.rangeGroup.code,
+            category.fees.map(fee =>
+              fee.code
+            )
+          )),
           res
         ))
   })
-  .post(Paths.categoryEditPage.uri, FormValidator.requestHandler(EditCategoryForm, EditCategoryForm.fromObject, ['addRow', 'deleteRow','assignRangeGroup','unAssignRangeGroup']), actionHandler,
+  .post(Paths.categoryEditPage.uri, FormValidator.requestHandler(EditCategoryForm, EditCategoryForm.fromObject, ['addRow', 'deleteRow', 'assignRangeGroup', 'unAssignRangeGroup']), actionHandler,
     (req: express.Request, res: express.Response, next: express.NextFunction) => {
       const form: Form<EditCategoryForm> = req.body
       if (form.hasErrors()) {
