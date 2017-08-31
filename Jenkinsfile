@@ -11,7 +11,6 @@ properties(
 
 Ansible ansible = new Ansible(this, 'ccfr_admin')
 Packager packager = new Packager(this, 'cc')
-RPMTagger rpmTagger = new RPMTagger(this, 'fees-register-admin-web', packager.rpmName('fees-register-admin-web', rpmVersion), 'cc-local')
 
 timestamps {
   milestone()
@@ -83,6 +82,7 @@ timestamps {
 
           stage('Deploy (Dev)') {
             ansible.runDeployPlaybook("{fees_register_admin_version: ${rpmVersion}}", 'dev')
+            RPMTagger rpmTagger = new RPMTagger(this, 'fees-register-admin-web', packager.rpmName('fees-register-admin-web', rpmVersion), 'cc-local')
             rpmTagger.tagDeploymentSuccessfulOn('dev')
           }
         }
