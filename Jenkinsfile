@@ -17,8 +17,6 @@ timestamps {
   lock(resource: "fees-register-admin-web-${env.BRANCH_NAME}", inversePrecedence: true) {
     node('slave') {
       try {
-        def version
-
         stage('Checkout') {
           deleteDir()
           checkout scm
@@ -70,24 +68,21 @@ timestamps {
           }
         }
 
-        stage('Package application (RPM)') {
-          rpmVersion = packager.nodeRPM('fees-register-admin-web')
-          version = "{fees_register_admin_version: ${rpmVersion}}"
-
-          onMaster {
-            packager.publishNodeRPM('fees-register-admin-web')
-          }
+        stage('Build Docker') {
+          dockerImage imageName: 'fees-register/fees-admin-web'
         }
 
-        RPMTagger rpmTagger = new RPMTagger(this,
-          'fees-register-admin-web',
-          packager.rpmName('fees-register-admin-web', rpmVersion),
-          'cc-local'
-        )
-
         onMaster {
+          def rpmVersion
+
+          stage('Publish RPM') {
+            rpmVersion = packager.nodeRPM('fees-register-admin-web')
+            packager.publishNodeRPM('fees-register-admin-web')
+          }
+
           stage('Deploy (Dev)') {
-            ansible.runDeployPlaybook(version, 'dev')
+            ansible.runDeployPlaybook("{fees_register_admin_version: ${rpmVersion}}", 'dev')
+            RPMTagger rpmTagger = new RPMTagger(this, 'fees-register-admin-web', packager.rpmName('fees-register-admin-web', rpmVersion), 'cc-local')
             rpmTagger.tagDeploymentSuccessfulOn('dev')
           }
         }
