@@ -12,5 +12,7 @@ COPY config /usr/src/app/config
 COPY gulpfile.js tsconfig.json /usr/src/app/
 RUN yarn setup
 
+HEALTHCHECK --interval=10s --timeout=10s --retries=10 CMD http_proxy= curl -k --silent --fail https://localhost:3000/health
+
 EXPOSE 3000
 CMD [ "yarn", "start" ]
