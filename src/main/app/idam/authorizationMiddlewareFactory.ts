@@ -1,9 +1,9 @@
 import * as express from 'express'
 import * as config from 'config'
 
-import {AuthorizationMiddleware} from 'idam/authorizationMiddleware'
-import {buildURL} from 'app/utils/CallbackBuilder'
-import {Paths} from 'admin/paths'
+import { AuthorizationMiddleware } from 'idam/authorizationMiddleware'
+import { buildURL } from 'app/utils/CallbackBuilder'
+import { Paths } from 'admin/paths'
 
 export class AuthorizationMiddlewareFactory {
 
@@ -18,7 +18,8 @@ export class AuthorizationMiddlewareFactory {
     const unprotectedPaths = [
       '/health',
       '/version',
-      '/analytics'
+      '/analytics',
+      '/admin/health'
     ]
     return AuthorizationMiddleware.requestHandler(requiredRoles, accessDeniedCallback, unprotectedPaths)
   }
