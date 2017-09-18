@@ -17,4 +17,5 @@ export class Paths {
   static readonly feeCreatePage = new RoutablePath('/admin/fees/create', 'admin/views/fee-create')
   static readonly healthInfoPage = new RoutablePath('/admin/health', 'admin/views/health-info')
 
+  static readonly notFoundPage = new RoutablePath('n/a', 'admin/views/not-found')
 }

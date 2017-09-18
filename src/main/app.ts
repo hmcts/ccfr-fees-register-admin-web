@@ -5,6 +5,7 @@ import * as favicon from 'serve-favicon'
 import * as cookieParser from 'cookie-parser'
 import * as bodyParser from 'body-parser'
 import * as logging from 'nodejs-logging'
+import * as featureToggles from 'feature-toggles'
 import { NotFoundError } from './errors'
 import { AccessLogger } from 'logging/accessLogger'
 import { ErrorLogger } from 'logging/errorLogger'
@@ -23,6 +24,13 @@ logging.config({
   team: 'cc',
   environment: process.env.NODE_ENV
 })
+
+
+// Feature toggle to supress/disable edit features
+const toggles = {edit: false}
+featureToggles.load(toggles)
+app.use(featureToggles.middleware)
+
 
 const env = process.env.NODE_ENV || 'development'
 app.locals.ENV = env
@@ -45,6 +53,7 @@ app.use(bodyParser.urlencoded({
 app.use(cookieParser())
 app.use(express.static(path.join(__dirname, 'public')))
 
+
 app.all(/^.*$/, AuthorizationMiddlewareFactory.genericRequestHandler())
 
 new AdminFeature().enableFor(app)
@@ -55,6 +64,8 @@ app.use('/', RouterFinder.findAll(path.join(__dirname, 'routes')))
 app.use((req, res, next) => {
   next(new NotFoundError(req.path))
 })
+
+
 
 // error handlers
 const errorLogger = new ErrorLogger()
