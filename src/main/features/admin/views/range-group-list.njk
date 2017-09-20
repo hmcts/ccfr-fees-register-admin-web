@@ -23,7 +23,7 @@
            <td>{{ rangeGroup.code }}</td>
           {% endif %}
           <td>{{ rangeGroup.description }}</td>
-          <td class="numeric">{{ rangeGroup.ranges.length }}</td>
+          <td class="numeric"><a href="/admin/ranges-group/{{ rangeGroup.code }}">{{ rangeGroup.ranges.length }}</a></td>
         </tr>
       {% endfor %}
       </tbody>
