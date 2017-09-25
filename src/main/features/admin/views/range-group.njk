@@ -10,12 +10,13 @@
     <table>
           <thead>
             <tr>
-              <th>Service</th>
+              <th>Category</th>
               <th>Fee code</th>
               <th>Fee description</th>
               <th>Range from</th>
               <th>Range to</th>
-              <th>Fee</th>
+              <th>Fixed fee</th>
+              <th>Percentage fee</th>
             </tr>
           </thead>
           <tbody>
@@ -26,12 +27,8 @@
                   <td>{{ range.fee.description }}</td>
                   <td>{{ range.from }}</td>
                   <td>{{ range.to }}</td>
-                  {% if range.fee.amount > -1 %}
-                    <td>{{ range.fee.amount }}</td>
-                  {% else %}
-                    <td>{{ range.fee.percentage }}%</td>
-                  {% endif %}
-
+                  <td>{{ range.fee.amount }}</td>
+                  <td>{{ range.fee.percentage }}</td>
                 </tr>
               {% endfor %}
           </tbody>
