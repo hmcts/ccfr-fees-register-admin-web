@@ -27,7 +27,7 @@ logging.config({
 
 
 // Feature toggle to supress/disable edit features
-const toggles = {edit: false}
+const toggles = {edit: process.env.TOGGLE || false }
 featureToggles.load(toggles)
 app.use(featureToggles.middleware)
 
