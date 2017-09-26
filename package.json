@@ -70,7 +70,8 @@
     "tsconfig-paths": "^2.1.2",
     "typescript": "2.x",
     "uuid": "^3.0.1",
-    "uuid-validate": "^0.0.2"
+    "uuid-validate": "^0.0.2",
+    "feature-toggles": "^1.4.0"
   },
   "devDependencies": {
     "@types/chai": "^3.4.34",

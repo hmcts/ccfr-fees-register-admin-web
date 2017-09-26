@@ -5,6 +5,7 @@ import * as favicon from 'serve-favicon'
 import * as cookieParser from 'cookie-parser'
 import * as bodyParser from 'body-parser'
 import * as logging from 'nodejs-logging'
+import * as featureToggles from 'feature-toggles'
 import { NotFoundError } from './errors'
 import { AccessLogger } from 'logging/accessLogger'
 import { ErrorLogger } from 'logging/errorLogger'
@@ -23,6 +24,11 @@ logging.config({
   team: 'cc',
   environment: process.env.NODE_ENV
 })
+
+// Feature toggle to supress/disable edit features
+const toggles = {edit: process.env.FEATURE_TOGGLE || false }
+featureToggles.load(toggles)
+app.use(featureToggles.middleware)
 
 const env = process.env.NODE_ENV || 'development'
 app.locals.ENV = env

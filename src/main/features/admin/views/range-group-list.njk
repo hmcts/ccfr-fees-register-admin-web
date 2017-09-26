@@ -17,15 +17,22 @@
       <tbody>
       {% for rangeGroup in rangeGroups %}
         <tr>
-          <td><a href="/admin/range-groups/edit/{{ rangeGroup.code }}">{{ rangeGroup.code }}</a></td>
+          {% if (isFeatureEnabled('edit')) %}
+            <td><a href="/admin/range-groups/edit/{{ rangeGroup.code }}">{{ rangeGroup.code }}</a></td>
+          {% else %}
+           <td>{{ rangeGroup.code }}</td>
+          {% endif %}
           <td>{{ rangeGroup.description }}</td>
-          <td class="numeric">{{ rangeGroup.ranges.length }}</td>
+          <td class="numeric"><a href="/admin/ranges-group/{{ rangeGroup.code }}">{{ rangeGroup.ranges.length }}</a></td>
         </tr>
       {% endfor %}
       </tbody>
     </table>
 
-    <p><a href="/admin/range-groups/create" class="button" role="button">{{ t("Create new range group") }}</a></p>
+    {% if (isFeatureEnabled('edit')) %}
+      <p><a href="/admin/range-groups/create" class="button" role="button">{{ t("Create new range group") }}</a></p>
+    {% endif %}
+
     <p><a href="/admin/welcome/" class="link-back">{{ t("Back to welcome page") }}</a></p>
   </div>
 

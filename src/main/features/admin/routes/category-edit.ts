@@ -1,4 +1,5 @@
 import * as express from 'express'
+import * as featureToggles from 'feature-toggles'
 
 import {Paths} from 'admin/paths'
 
@@ -57,30 +58,41 @@ export default express.Router()
   })
 
   .get(Paths.categoryEditPage.uri, (req: express.Request, res: express.Response) => {
-    FeesClient
-      .retrieveCategory(req.params.categoryCode)
-      .then(category =>
-        renderEditPage(
-          new Form(new EditCategoryForm(category.code,
-            category.description,
-            _.isNull(category.rangeGroup) ? '' : category.rangeGroup.code,
-            category.fees.map(fee =>
-              fee.code
-            )
-          )),
-          res
-        ))
+
+    if (featureToggles.isFeatureEnabled('edit')) {
+      FeesClient
+        .retrieveCategory(req.params.categoryCode)
+        .then(category =>
+          renderEditPage(
+            new Form(new EditCategoryForm(category.code,
+              category.description,
+              _.isNull(category.rangeGroup) ? '' : category.rangeGroup.code,
+              category.fees.map(fee =>
+                fee.code
+              )
+            )),
+            res
+          ))
+    } else {
+      res.render(Paths.notFoundPage.associatedView)
+    }
+
   })
   .post(Paths.categoryEditPage.uri, FormValidator.requestHandler(EditCategoryForm, EditCategoryForm.fromObject, ['addRow', 'deleteRow', 'assignRangeGroup', 'unAssignRangeGroup']), actionHandler,
     (req: express.Request, res: express.Response, next: express.NextFunction) => {
-      const form: Form<EditCategoryForm> = req.body
-      if (form.hasErrors()) {
-        renderEditPage(form, res)
+
+      if (featureToggles.isFeatureEnabled('edit')) {
+        const form: Form<EditCategoryForm> = req.body
+        if (form.hasErrors()) {
+          renderEditPage(form, res)
+        } else {
+          FeesClient
+            .updateCategory(res.locals.user, form.model.toCategory())
+            .then((category: Category) => {
+              res.redirect(Paths.categoryListPage.uri)
+            })
+        }
       } else {
-        FeesClient
-          .updateCategory(res.locals.user, form.model.toCategory())
-          .then((category: Category) => {
-            res.redirect(Paths.categoryListPage.uri)
-          })
+        res.render(Paths.notFoundPage.associatedView)
       }
     })

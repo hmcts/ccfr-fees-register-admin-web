@@ -19,7 +19,11 @@
     <tbody>
       {% for fee in fees | sort(attribute='code') %}
         <tr>
-          <td><a href="/admin/fees/edit/{{ fee.code }}">{{ fee.code }}</a></td>
+          {% if (isFeatureEnabled('edit')) %}
+            <td><a href="/admin/fees/edit/{{ fee.code }}">{{ fee.code }}</a></td>
+          {% else %}
+            <td>{{ fee.code }}</td>
+          {% endif %}
           <td>{{ fee.description }}</td>
           <td>{{ feeAmount(fee) }}</td>
         </tr>
@@ -27,8 +31,10 @@
     </tbody>
   </table>
 
+  {% if (isFeatureEnabled('edit')) %}
+    <p><a href="/admin/fees/create" class="button" role="button">{{ t("Create new fee") }}</a></p>
+  {% endif %}
 
-  <p><a href="/admin/fees/create" class="button" role="button">{{ t("Create new fee") }}</a></p>
   <p><a href="/admin/welcome/" class="link-back">{{ t("Back to welcome page") }}</a></p>
 </div>
 

@@ -11,9 +11,16 @@
     <div class="column-full">
         <h4 class="heading-small">Choose an action</h4>
         <ul class="list list-bullet">
-          <li><a href="/admin/categories" style="font-size: 1.5em">{{ t("Edit categories") }}</a></li>
-          <li><a href="/admin/range-groups">{{ t("Edit range groups") }}</a></li>
-          <li><a href="/admin/fees">{{ t("Edit fees") }}</a></li>
+          {% if (isFeatureEnabled('edit')) %}
+            <li><a href="/admin/categories" style="font-size: 1.5em">{{ t("Edit categories") }}</a></li>
+            <li><a href="/admin/range-groups">{{ t("Edit range groups") }}</a></li>
+            <li><a href="/admin/fees">{{ t("Edit fees") }}</a></li>
+          {% else %}
+            <li><a href="/admin/categories" style="font-size: 1.5em">{{ t("Categories") }}</a></li>
+            <li><a href="/admin/range-groups">{{ t("Range groups") }}</a></li>
+            <li><a href="/admin/fees">{{ t("Fees") }}</a></li>
+          {% endif %}
+
         </ul>
     </div>
 </div>

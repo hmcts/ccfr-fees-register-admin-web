@@ -18,15 +18,21 @@
       <tbody>
         {% for category in categories %}
           <tr>
-            <td><a href="/admin/categories/edit/{{ category.code }}">{{ category.code }}</a></td>
+            {% if (isFeatureEnabled('edit')) %}
+              <td><a href="/admin/categories/edit/{{ category.code }}">{{ category.code }}</a></td>
+            {% else %}
+              <td>{{ category.code }}</td>
+            {% endif %}
             <td>{{ category.description }}</td>
-            <td class="numeric">{{ category.rangeGroup.code }}</td>
+            <td class="numeric"><a href="/admin/ranges-group/{{ category.rangeGroup.code }}">{{ category.rangeGroup.code }}</a></td>
             <td class="numeric">{{ category.fees.length }}</td>
           </tr>
         {% endfor %}
       </tbody>
     </table>
-    <p><a href="/admin/categories/create" class="button" role="button">{{ t("Create new category") }}</a></p>
+    {% if (isFeatureEnabled('edit')) %}
+      <p><a href="/admin/categories/create" class="button" role="button">{{ t("Create new category") }}</a></p>
+    {% endif %}
     <p><a href="/admin/welcome/" class="link-back">{{ t("Back to welcome page") }}</a></p>
 </div>
 

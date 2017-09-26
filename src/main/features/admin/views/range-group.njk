@@ -1,0 +1,40 @@
+{% extends "layout.njk" %}
+
+{% set title = t('Range Group | Fees Register Admin Console') %}
+{% set service = rangeGroup.code %}
+{% set heading = 'Range group for: ' + service %}
+
+{% block content %}
+
+  <div class="column-full">
+    <table>
+          <thead>
+            <tr>
+              <th>Category</th>
+              <th>Fee code</th>
+              <th>Fee description</th>
+              <th>Range from</th>
+              <th>Range to</th>
+              <th>Fixed fee</th>
+              <th>Percentage fee</th>
+            </tr>
+          </thead>
+          <tbody>
+              {% for range in rangeGroup.ranges %}
+                <tr>
+                  <td>{{ rangeGroup.code }}</td>
+                  <td>{{ range.fee.code }}</td>
+                  <td>{{ range.fee.description }}</td>
+                  <td>{{ range.from }}</td>
+                  <td>{{ range.to }}</td>
+                  <td>{{ range.fee.amount }}</td>
+                  <td>{{ range.fee.percentage }}</td>
+                </tr>
+              {% endfor %}
+          </tbody>
+    </table>
+
+    <p><a href="/admin/welcome/" class="link-back">{{ t("Back to welcome page") }}</a></p>
+  </div>
+
+{% endblock %}
