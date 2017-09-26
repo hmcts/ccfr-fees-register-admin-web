@@ -25,12 +25,10 @@ logging.config({
   environment: process.env.NODE_ENV
 })
 
-
 // Feature toggle to supress/disable edit features
 const toggles = {edit: process.env.FEATURE_TOGGLE || false }
 featureToggles.load(toggles)
 app.use(featureToggles.middleware)
-
 
 const env = process.env.NODE_ENV || 'development'
 app.locals.ENV = env
@@ -53,7 +51,6 @@ app.use(bodyParser.urlencoded({
 app.use(cookieParser())
 app.use(express.static(path.join(__dirname, 'public')))
 
-
 app.all(/^.*$/, AuthorizationMiddlewareFactory.genericRequestHandler())
 
 new AdminFeature().enableFor(app)
@@ -64,8 +61,6 @@ app.use('/', RouterFinder.findAll(path.join(__dirname, 'routes')))
 app.use((req, res, next) => {
   next(new NotFoundError(req.path))
 })
-
-
 
 // error handlers
 const errorLogger = new ErrorLogger()
