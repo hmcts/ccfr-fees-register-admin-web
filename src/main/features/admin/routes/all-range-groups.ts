@@ -6,12 +6,12 @@ import { FeesClient } from 'app/fees/feesClient'
 import RangeGroup from 'fees/rangeGroup'
 
 export default express.Router()
-  .get(Paths.allRangeGroupsPage.uri, (req: express.Request, res: express.Response) => {
+  .get(Paths.allFeesListPage.uri, (req: express.Request, res: express.Response) => {
 
     FeesClient
       .retrieveRangeGroups()
       .then((rangeGroups: Array<RangeGroup>) => {
-        res.render(Paths.allRangeGroupsPage.associatedView, {
+        res.render(Paths.allFeesListPage.associatedView, {
           rangeGroups: rangeGroups
         })
       })
