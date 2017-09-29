@@ -19,23 +19,32 @@
             </tr>
           </thead>
           <tbody>
-              {% for rangeGroup in rangeGroups %}
-                  {% for range in rangeGroup.ranges %}
+              {% for category in categories %}
+                {% for range in category.rangeGroup.ranges %}
                   <tr>
-                    <td>{{ rangeGroup.code }}</td>
+                    <td>{{ category.code }}</td>
                     <td>{{ range.fee.code }}</td>
                     <td>{{ range.fee.description }}</td>
                     <td>{{ range.from }}</td>
                     <td>{{ range.to }}</td>
                     <td>{{ range.fee.amount }}</td>
                     <td>{{ range.fee.percentage }}</td>
+                   </tr>
+                 {% endfor %}
+                 {% for fee in category.fees %}
+                  <tr>
+                    <td>{{ category.code }}</td>
+                    <td>{{ fee.code }}</td>
+                    <td>{{ fee.description }}</td>
+                    <td>{{ fee.from }}</td>
+                    <td>{{ fee.to }}</td>
+                    <td>{{ fee.amount }}</td>
+                    <td>{{ fee.percentage }}</td>
                   </tr>
-                  {% endfor %}
-
+                 {% endfor %}
               {% endfor %}
           </tbody>
     </table>
-    <p><a href="/admin/download-range-groups" class="button" role="button">{{ t("Download") }}</a></p>
     <p><a href="/admin/welcome/" class="link-back">{{ t("Back to welcome page") }}</a></p>
   </div>
 
