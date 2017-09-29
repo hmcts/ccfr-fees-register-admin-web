@@ -6,11 +6,11 @@ import { FeesClient } from 'app/fees/feesClient'
 import Category from 'fees/category'
 
 export default express.Router()
-  .get(Paths.allFeesListPage.uri, (req: express.Request, res: express.Response) => {
+  .get(Paths.allFeesPage.uri, (req: express.Request, res: express.Response) => {
     FeesClient
       .retrieveCategories()
       .then((categories: Array<Category>) => {
-        res.render(Paths.allFeesListPage.associatedView, {
+        res.render(Paths.allFeesPage.associatedView, {
           categories: categories
         })
       })

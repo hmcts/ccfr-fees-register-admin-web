@@ -13,7 +13,7 @@ export class Paths {
   static readonly rangeGroupCreatePage = new RoutablePath('/admin/range-groups/create', 'admin/views/range-group-create')
   static readonly rangeGroupPage = new RoutablePath('/admin/ranges-group/:rangeGroupCode', 'admin/views/range-group')
 
-  static readonly allFeesListPage = new RoutablePath('/admin/all-range-groups', 'admin/views/all-range-groups')
+  static readonly allFeesPage = new RoutablePath('/admin/all-fees', 'admin/views/all-fees')
 
   static readonly feeListPage = new RoutablePath('/admin/fees', 'admin/views/fee-list')
   static readonly feeEditPage = new RoutablePath('/admin/fees/edit/:feeCode', 'admin/views/fee-edit')
