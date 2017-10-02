@@ -27,7 +27,7 @@ describe('Range groups list page', () => {
       await request(app)
         .get(AdminPaths.rangeGroupListPage.uri)
         .set('Cookie', `${cookieName}=JWT`)
-        .expect(res => expect(res).to.be.successful.withText('range-group-code', 'Range Group Description', '<td class="numeric">2</td>'))
+        .expect(res => expect(res).to.be.successful.withText('range-group-code', 'Range Group Description'))
     })
   })
 
