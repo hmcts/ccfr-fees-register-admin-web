@@ -1432,6 +1432,10 @@ fd-slicer@~1.0.1:
   dependencies:
     pend "~1.2.0"
 
+feature-toggles@^1.4.0:
+  version "1.4.0"
+  resolved "https://artifactory.reform.hmcts.net:443/artifactory/api/npm/npm/feature-toggles/-/feature-toggles-1.4.0.tgz#8134e76eac3483f1a034b857c15c850762beac63"
+
 figures@^1.3.5:
   version "1.7.0"
   resolved "https://artifactory.reform.hmcts.net:443/artifactory/api/npm/npm/figures/-/figures-1.7.0.tgz#cbe1e3affcf1cd44b80cadfed28dc793a9701d2e"
@@ -3309,9 +3313,9 @@ node.extend@^1.1.6, node.extend@~1.1.6:
   dependencies:
     is "^3.1.0"
 
-nodejs-logging@^1.0.0:
-  version "1.1.0"
-  resolved "https://artifactory.reform.hmcts.net:443/artifactory/api/npm/npm/nodejs-logging/-/nodejs-logging-1.1.0.tgz#e2eb317d3b51cead3c0c723369790c9b604dc0ee"
+nodejs-logging@^1.2.2:
+  version "1.1.1"
+  resolved "https://artifactory.reform.hmcts.net:443/artifactory/api/npm/npm/nodejs-logging/-/nodejs-logging-1.1.1.tgz#2da870e07a3c70bdfa676dff77e81be8ecbe47bb"
   dependencies:
     lodash "^4.17.4"
     log4js "^1.1.0"

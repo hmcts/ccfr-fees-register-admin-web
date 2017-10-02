@@ -6,6 +6,7 @@ import * as cookieParser from 'cookie-parser'
 import * as bodyParser from 'body-parser'
 import * as logging from 'nodejs-logging'
 import * as featureToggles from 'feature-toggles'
+import * as isUndefined from 'is-undefined'
 import { NotFoundError } from './errors'
 import { AccessLogger } from 'logging/accessLogger'
 import { ErrorLogger } from 'logging/errorLogger'
@@ -26,7 +27,7 @@ logging.config({
 })
 
 // Feature toggle to supress/disable edit features
-const toggles = {edit: process.env.FEATURE_TOGGLE || false }
+const toggles = {edit: process.env.FEATURE_TOGGLE || isUndefined(process.env.NODE_ENV) ? true : false }
 featureToggles.load(toggles)
 app.use(featureToggles.middleware)
 
