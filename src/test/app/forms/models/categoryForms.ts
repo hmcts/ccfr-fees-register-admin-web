@@ -1,12 +1,12 @@
 /* Allow chai assertions which don't end in a function call, e.g. expect(thing).to.be.undefined */
 /* tslint:disable:no-unused-expression */
 
-import {expect} from 'chai'
-import {Validator} from 'class-validator'
+import { expect } from 'chai'
+import { Validator } from 'class-validator'
 import './feesClientMocks'
-import {expectValidationError} from './validationUtils'
+import { expectValidationError } from './validationUtils'
 import * as _ from 'lodash'
-import {CreateCategoryForm, EditCategoryForm, ValidationErrors} from 'app/forms/models/categoryForms'
+import { CreateCategoryForm, EditCategoryForm, ValidationErrors } from 'app/forms/models/categoryForms'
 
 describe('EditCategoryForm', () => {
   function validEditRangeGroupFormWith (otherFields: any) {

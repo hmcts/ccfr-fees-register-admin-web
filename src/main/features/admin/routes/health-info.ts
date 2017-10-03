@@ -1,10 +1,10 @@
 import * as express from 'express'
 
-import {Paths} from 'admin/paths'
+import { Paths } from 'admin/paths'
 
 import * as config from 'config'
 import * as healthcheck from '@hmcts/nodejs-healthcheck'
-import {CompositeCheck} from '@hmcts/nodejs-healthcheck/healthcheck/checks'
+import { CompositeCheck } from '@hmcts/nodejs-healthcheck/healthcheck/checks'
 import * as outputs from '@hmcts/nodejs-healthcheck/healthcheck/outputs'
 
 function renderHealthPage (config, req: express.Request, res: express.Response) {

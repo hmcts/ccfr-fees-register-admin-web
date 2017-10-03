@@ -6,7 +6,7 @@ import Range from 'app/fees/range'
 import Fee from 'app/fees/fee'
 import User from 'app/idam/user'
 import RangeGroup from 'fees/rangeGroup'
-import {StatusCodeError} from 'request-promise-native/errors'
+import { StatusCodeError } from 'request-promise-native/errors'
 
 const feesUrl = config.get('fees.url')
 
