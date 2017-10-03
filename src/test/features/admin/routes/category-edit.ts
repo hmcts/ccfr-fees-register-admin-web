@@ -1,13 +1,13 @@
-import {expect} from 'chai'
+import { expect } from 'chai'
 import * as config from 'config'
 import * as request from 'supertest'
 import * as mock from 'nock'
 
 import '../../../routes/expectations'
 
-import {Paths as AdminPaths} from 'admin/paths'
+import { Paths as AdminPaths } from 'admin/paths'
 
-import {app} from '../../../../main/app'
+import { app } from '../../../../main/app'
 
 import * as feesServiceMock from '../../../http-mocks/fees'
 import * as idamServiceMock from '../../../http-mocks/idam'

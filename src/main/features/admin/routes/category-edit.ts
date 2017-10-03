@@ -1,12 +1,12 @@
 import * as express from 'express'
 import * as featureToggles from 'feature-toggles'
 
-import {Paths} from 'admin/paths'
+import { Paths } from 'admin/paths'
 
-import {Form} from 'app/forms/form'
-import {FormValidator} from 'app/forms/validation/formValidator'
-import {CreateCategoryForm, EditCategoryForm} from 'app/forms/models/categoryForms'
-import {FeesClient} from 'app/fees/feesClient'
+import { Form } from 'app/forms/form'
+import { FormValidator } from 'app/forms/validation/formValidator'
+import { CreateCategoryForm, EditCategoryForm } from 'app/forms/models/categoryForms'
+import { FeesClient } from 'app/fees/feesClient'
 import Category from 'app/fees/category'
 import RangeGroup from 'app/fees/rangeGroup'
 import * as _ from 'lodash'

@@ -1,6 +1,6 @@
 import * as express from 'express'
 
-import {Paths} from 'admin/paths'
+import { Paths } from 'admin/paths'
 
 import { FeesClient } from 'app/fees/feesClient'
 import FeeCategory from 'app/fees/category'
