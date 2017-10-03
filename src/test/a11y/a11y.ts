@@ -36,7 +36,9 @@ function check (url: string): void {
 describe('Accessibility', () => {
   function checkPaths (pathsRegistry: object): void {
     Object.values(pathsRegistry).forEach((path: RoutablePath) => {
-      check(path.uri)
+      if (path.uri !== 'n/a') {
+        check(path.uri)
+      }
     })
   }
 
