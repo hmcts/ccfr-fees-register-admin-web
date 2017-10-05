@@ -26,8 +26,9 @@ logging.config({
   environment: process.env.NODE_ENV
 })
 
-// Feature toggle to supress/disable edit features
+// Feature toggle to supress/disable edit features, defaultToggle for making the existing middleware test to pass
 let defaultToggle = isUndefined(process.env.NODE_ENV) ? true : false
+
 const toggles = {edit: process.env.FEATURE_TOGGLE || defaultToggle }
 featureToggles.load(toggles)
 app.use(featureToggles.middleware)
