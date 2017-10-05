@@ -14,6 +14,6 @@
     "cookieName": "SESSION_ID"
   },
   "fees": {
-    "url": "https://test-proxy.fees-register.reform.hmcts.net"
+    "url": "http://localhost:8080"
   }
 }
