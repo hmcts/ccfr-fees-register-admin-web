@@ -27,7 +27,8 @@ logging.config({
 })
 
 // Feature toggle to supress/disable edit features
-const toggles = {edit: process.env.FEATURE_TOGGLE || isUndefined(process.env.NODE_ENV) ? true : false }
+let defaultToggle = isUndefined(process.env.NODE_ENV) ? true : false
+const toggles = {edit: process.env.FEATURE_TOGGLE || defaultToggle }
 featureToggles.load(toggles)
 app.use(featureToggles.middleware)
 
