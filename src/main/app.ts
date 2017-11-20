@@ -26,6 +26,9 @@ logging.config({
   environment: process.env.NODE_ENV
 })
 
+import * as dateFilter from 'nunjucks-date-filter'
+dateFilter.setDefaultFormat('DD-MM-YYYY')
+
 // Feature toggle to supress/disable edit features, defaultToggle for making the existing middleware test to pass
 let defaultToggle = isUndefined(process.env.NODE_ENV) ? true : false
 
@@ -44,6 +47,9 @@ new Nunjucks(developmentMode, i18next)
   .enableFor(app)
 new Helmet(config.get<HelmetConfig>('security'), developmentMode)
   .enableFor(app)
+
+let nunjucksDate = require('nunjucks-date')
+nunjucksDate.setDefaultFormat('Do MMMM YYYY')
 
 app.enable('trust proxy')
 app.use(favicon(path.join(__dirname, '/public/img/favicon.ico')))

@@ -1,0 +1,27 @@
+{% extends "layout.njk" %}
+
+{% set title = t('directions | Fees Register Admin Console V2') %}
+{% set heading = t('directions') %}
+
+{% block content %}
+
+  <div class="column-full">
+    <table>
+      <thead>
+      <tr>
+        <th scope="col">Name</th>
+      </tr>
+      </thead>
+      <tbody>
+      {% for direction in directions %}
+        <tr>
+           <td>{{ direction.name }}</td>
+        </tr>
+      {% endfor %}
+      </tbody>
+    </table>
+
+    <p><a href="/admin/welcome/" class="link-back">{{ t("Back to welcome page") }}</a></p>
+  </div>
+
+{% endblock %}

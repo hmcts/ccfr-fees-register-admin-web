@@ -1,0 +1,79 @@
+{% extends "layout.njk" %}
+
+{% set title = t('Fees | Fees Register Admin Console') %}
+{% set heading = 'Fees' %}
+
+{% block content %}
+
+  <div class="column-full">
+    <table>
+          <thead>
+            <tr>
+              <th>Fee code</th>
+              <th width="600">Fee description</th>
+              <th>Fee type</th>
+              <th>Range from </th>
+              <th>Range to</th>
+              <th>Amount Type</th>
+              <th>Fee Amount / %</th>
+              <th>Jurisdiction 1</th>
+              <th>Jurisdiction 2</th>
+              <th>Service</th>
+              <th>Event</th>
+              <th>Channel</th>
+              <th>Direction</th>
+              <th>Memo</th>
+              <th>Version</th>
+              <th>Valid From</th>
+              <th>Valid To</th>
+            </tr>
+          </thead>
+          <tbody>
+              {% for fee in fees %}
+                <tr>
+                  <td>{{ fee.code }}</td>
+                  <td width="600">{{ fee.currentVersion.description }}</td>
+                  <td>{{ fee.feeType }}</td>
+                  {% if fee.minRange %}
+                  <td>£{{ fee.minRange }}</td>
+                  {% else %}
+                  <td/>
+                  {% endif %}
+                  {% if fee.maxRange %}
+                  <td>£{{ fee.maxRange }}</td>
+                  {% else %}
+                  <td/>
+                  {% endif %}
+                  {% if fee.currentVersion.flatAmount %}
+                    <td>Flat</td>
+                    <td>£{{ fee.currentVersion.flatAmount.amount }}</td>
+                  {% else %}
+                    <td>Percentage</td>
+                  <td>{{ fee.currentVersion.percentageAmount.percentage }}%</td>
+                  {% endif %}
+                  <td>{{ fee.jurisdiction1Dto.name }}</td>
+                  <td>{{ fee.jurisdiction2Dto.name }}</td>
+                  <td>{{ fee.serviceTypeDto.name }}</td>
+                  <td>{{ fee.eventTypeDto.name }}</td>
+                  <td>{{ fee.channelTypeDto.name }}</td>
+                  <td>{{ fee.directionTypeDto.name }}</td>
+                  <td>{{ fee.memoLine }}</td>
+                  <td>{{ fee.currentVersion.version }}</td>
+                  {% if fee.currentVersion.validFrom %}
+                    <td>{{ fee.currentVersion.validFrom | date }}</td>
+                  {% else %}
+                    <td/>
+                  {% endif %}
+                  {% if fee.currentVersion.validTo %}
+                    <td>{{ fee.currentVersion.validTo | date }}</td>
+                  {% else %}
+                    <td/>
+                  {% endif %}
+                </tr>
+              {% endfor %}
+          </tbody>
+    </table>
+    <p><a href="/admin/welcome/" class="link-back">{{ t("Back to welcome page") }}</a></p>
+  </div>
+
+{% endblock %}

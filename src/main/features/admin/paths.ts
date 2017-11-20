@@ -21,4 +21,16 @@ export class Paths {
   static readonly healthInfoPage = new RoutablePath('/admin/health', 'admin/views/health-info')
 
   static readonly notFoundPage = new RoutablePath('n/a', 'admin/views/not-found')
+
+  /* V2 */
+
+  static readonly serviceListPage = new RoutablePath('/admin/v2/services', 'admin/v2/views/service-list')
+  static readonly directionListPage = new RoutablePath('/admin/v2/directions', 'admin/v2/views/direction-list')
+  static readonly channelListPage = new RoutablePath('/admin/v2/channels', 'admin/v2/views/channel-list')
+  static readonly jurisdiction1ListPage = new RoutablePath('/admin/v2/jurisdictions1', 'admin/v2/views/jurisdiction1-list')
+  static readonly jurisdiction2ListPage = new RoutablePath('/admin/v2/jurisdictions2', 'admin/v2/views/jurisdiction2-list')
+  static readonly eventListPage = new RoutablePath('/admin/v2/events', 'admin/v2/views/event-list')
+
+  static readonly allFeesPageV2 = new RoutablePath('/admin/v2/all-fees', 'admin/v2/views/all-fees')
+
 }

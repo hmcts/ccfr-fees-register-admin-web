@@ -5,6 +5,11 @@ import { RouterFinder } from 'common/router/routerFinder'
 
 export class Feature {
   enableFor (app: express.Express) {
-    app.use('/', RouterFinder.findAll(path.join(__dirname, 'routes')))
+    app.use('/',
+      RouterFinder.findAll(path.join(__dirname, 'routes'))
+        .concat(
+          RouterFinder.findAll(path.join(__dirname, 'v2/routes'))
+        )
+    )
   }
 }
