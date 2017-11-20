@@ -48,9 +48,6 @@ new Nunjucks(developmentMode, i18next)
 new Helmet(config.get<HelmetConfig>('security'), developmentMode)
   .enableFor(app)
 
-let nunjucksDate = require('nunjucks-date')
-nunjucksDate.setDefaultFormat('Do MMMM YYYY')
-
 app.enable('trust proxy')
 app.use(favicon(path.join(__dirname, '/public/img/favicon.ico')))
 app.use(bodyParser.json())
