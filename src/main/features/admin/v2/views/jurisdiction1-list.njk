@@ -1,0 +1,27 @@
+{% extends "layout.njk" %}
+
+{% set title = t('jurisdictions 1 | Fees Register Admin Console V2') %}
+{% set heading = t('jurisdictions 1') %}
+
+{% block content %}
+
+  <div class="column-full">
+    <table>
+      <thead>
+      <tr>
+        <th scope="col">Name</th>
+      </tr>
+      </thead>
+      <tbody>
+      {% for jurisdiction in jurisdictions %}
+        <tr>
+           <td>{{ jurisdiction.name }}</td>
+        </tr>
+      {% endfor %}
+      </tbody>
+    </table>
+
+    <p><a href="/admin/welcome/" class="link-back">{{ t("Back to welcome page") }}</a></p>
+  </div>
+
+{% endblock %}
