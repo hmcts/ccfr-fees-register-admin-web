@@ -139,6 +139,17 @@
   </div>
 {% endmacro %}
 
+{% macro selectReferenceData(name, options, form) %}
+  {% set error = form.errorFor(name) %}
+  {% set selection = form.valueFor(name) %}
+<label for="{{ name }}"></label>
+<select class="form-control" id="{{ name }}" name="{{ name }}">
+{% for option in options %}
+  <option value="{{ option.name }}" {% if option.value == selection %} selected {% endif %}>{{ option.name }}</option>
+{% endfor %}
+</select>
+{% endmacro %}
+
 {% macro selectInline(name, options, form) %}
   {% set error = form.errorFor(name) %}
   {% set selection = form.valueFor(name) %}
