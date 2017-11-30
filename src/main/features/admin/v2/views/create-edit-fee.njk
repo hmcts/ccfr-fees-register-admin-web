@@ -1,25 +1,75 @@
-{% from "includes/macros/form.njk" import errorSummary, textArea, textInput, radioGroup, submitButton, selectInline %}
-{% extends "layout.njk" %}
+{% from "includes/macros/form.njk" import errorSummary, textArea, textInput, radioGroup, submitButton, selectInline, selectReferenceData %}
+  {% extends "layout.njk" %}
 
-{% set title = t('Create Fee | Fees Register Admin Console') %}
-{% set heading = t('Create Fee') %}
+  {% set title = t('Create Fee | Fees Register Admin Console') %}
+  {% set heading = t('Create Fee') %}
 
-{% block content %}
+  {% block content %}
 
-  <div class="grid-row">
-    <div class="column-full">
-      <form method="post" action="create">
-        {{ textInput(t('Code'), 'code', form) }}
-        {{ radioGroup(form = form, name = 'type', disabled = false, label = t('Type'), options = [
-          { label: t('Fixed'), value: 'fixed' },
-          { label: t('Percentage'), value: 'percentage' }
-        ]) }}
-        {{ selectReferenceData ('service', referenceData.services, form}}
-        {{ submitButton(t('Next')) }}
-      </form>
+<div class="grid-row">
+  <div class="column-full">
+    <form method="post" action="create">
+      <table>
+        <tr>
+          <td> {{ textInput(t('Code'), 'code', form) }}</td>
+          <td/>
 
-      <a href="/admin/fees" class="link-back">{{ t('Cancel') }}</a>
-    </div>
+          <td> {{ textInput(t('Memo Line'), 'memoLine', form) }}</td>
+          <td/>
+        </tr>
+
+        <tr>
+          <td colspan="2">
+            {{ textInput(t('Description'), 'description', form) }}
+          </td>
+        </tr>
+
+        <tr>
+          <td rowspan="2">
+            {{ radioGroup(form = form, name = 'type', disabled = false, label = t('Type'), options = [
+            { label: t('Fixed'), value: 'fixed' },
+            { label: t('Ranged'), value: 'ranged' }
+            ]) }}
+          </td>
+
+          <td> <span hidden="hidden">{{ textInput(t('From more than (£)'), 'fromRange', form) }}</span></td>
+
+        </tr>
+
+        <tr>
+          <td><span hidden="hidden">{{ textInput(t('Up to (£)'), 'toRange', form) }}</span></td>
+        </tr>
+
+        <tr>
+          <td rowspan="2">
+            {{ radioGroup(form = form, name = 'amountType', disabled = false, label = t('Amount Type'), options = [
+            { label: t('Flat'), value: 'flat' },
+            { label: t('Percentage'), value: 'percentage' }
+            ]) }}
+          </td>
+
+          <td>{{ textInput(t('Amount (£)'), 'amount', form) }} </td>
+
+        </tr>
+
+        <tr style="display:none;">
+          <td><span hidden="hidden">{{ textInput(t('Percentage (%)'), 'percentage', form) }}</span></td>
+        </tr>
+
+        {{ selectReferenceData ('service', referenceData.serviceTypes, form, 'Service') }}
+        {{ selectReferenceData ('channel', referenceData.channelTypes, form, 'Channel') }}
+        {{ selectReferenceData ('event', referenceData.eventTypes, form, 'Event') }}
+        {{ selectReferenceData ('jurisdiction1', referenceData.jurisdictions1, form, 'Jurisdiction 1') }}
+        {{ selectReferenceData ('jurisdiction2', referenceData.jurisdictions2, form, 'Jurisdiction 2') }}
+        {{ selectReferenceData ('direction', referenceData.directionTypes, form, 'Direction') }}
+      </table>
+
+
+      {{ submitButton(t('Next')) }}
+    </form>
+
+    <a href="/admin/fees" class="link-back">{{ t('Cancel') }}</a>
   </div>
+</div>
 
-{% endblock %}
+  {% endblock %}

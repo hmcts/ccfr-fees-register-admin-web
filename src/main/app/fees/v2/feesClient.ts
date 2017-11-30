@@ -3,7 +3,7 @@ import * as config from 'config'
 import request from 'client/request'
 import * as model from 'app/fees/v2/model/fees-register-api-contract'
 import { StatusCodeError } from 'request-promise-native/errors'
-import { AllReferenceDataDto } from 'fees/v2/model/fees-register-api-contract'
+import { AllReferenceDataDto, CreateFixedFeeDto } from 'fees/v2/model/fees-register-api-contract'
 
 const feesUrl = config.get('fees.url')
 
@@ -16,13 +16,29 @@ export class FeesClientError extends Error {
 
 function FeesClientErrorMapper (reason: Error) {
   if (reason instanceof StatusCodeError) {
-    throw new FeesClientError((reason as any).response.body.message)
+    throw new FeesClientError((reason as any).response.body.cause)
   } else {
     throw reason
   }
 }
 
 export class FeesClient {
+
+  static createFixedFee (user, dto: CreateFixedFeeDto): Promise<boolean> {
+
+    return request
+      .post({
+        uri: `${feesUrl}/fees-register/fixedfees/`,
+        json: true,
+        headers: {
+          Authorization: `Bearer ${user.bearerToken}`
+        },
+        body: dto
+      })
+      .then(() => true)
+      .catch(FeesClientErrorMapper)
+
+  }
 
   static checkFeeExists (code: string ): Promise<boolean> {
 
