@@ -3,6 +3,7 @@ import * as config from 'config'
 import request from 'client/request'
 import * as model from 'app/fees/v2/model/fees-register-api-contract'
 import { StatusCodeError } from 'request-promise-native/errors'
+import { AllReferenceDataDto, CreateFixedFeeDto } from 'fees/v2/model/fees-register-api-contract'
 
 const feesUrl = config.get('fees.url')
 
@@ -15,13 +16,36 @@ export class FeesClientError extends Error {
 
 function FeesClientErrorMapper (reason: Error) {
   if (reason instanceof StatusCodeError) {
-    throw new FeesClientError((reason as any).response.body.message)
+    throw new FeesClientError((reason as any).response.body.cause)
   } else {
     throw reason
   }
 }
 
 export class FeesClient {
+
+  static createFixedFee (user, dto: CreateFixedFeeDto): Promise<boolean> {
+
+    return request
+      .post({
+        uri: `${feesUrl}/fees-register/fixedfees/`,
+        json: true,
+        headers: {
+          Authorization: `Bearer ${user.bearerToken}`
+        },
+        body: dto
+      })
+      .then(() => true)
+      .catch(FeesClientErrorMapper)
+
+  }
+
+  static checkFeeExists (code: string ): Promise<boolean> {
+
+    return request.head(`${feesUrl}/fees-register/fees/${code}`)
+      .then(() => true).catch(() => false)
+
+  }
 
   static searchFees (): Promise<Array<model.Fee2Dto>> {
     return request
@@ -30,11 +54,11 @@ export class FeesClient {
 
         /* Hack dates */
 
-        if ( response.validFrom ) {
+        if (response.validFrom) {
           response.validFrom = new Date(response.validFrom)
         }
 
-        if ( response.validTo ) {
+        if (response.validTo) {
           response.validTo = new Date(response.validTo)
         }
 
@@ -43,13 +67,19 @@ export class FeesClient {
 
   }
 
+  static retrieveReferenceData (): Promise<AllReferenceDataDto> {
+    return request
+      .get(`${feesUrl}/fees-register/referenceData`)
+      .then(response => {
+        return response as AllReferenceDataDto
+      })
+      .catch(FeesClientErrorMapper)
+  }
+
   static retrieveServices (): Promise<Array<model.ServiceType>> {
     return request
       .get(`${feesUrl}/fees-register/servicetypes`)
       .then(response => {
-
-        console.log(response)
-
         return response as Array<model.ServiceTypeDto>
       })
       .catch(FeesClientErrorMapper)
@@ -59,9 +89,6 @@ export class FeesClient {
     return request
       .get(`${feesUrl}/fees-register/directiontypes`)
       .then(response => {
-
-        console.log(response)
-
         return response as Array<model.DirectionTypeDto>
       })
       .catch(FeesClientErrorMapper)
@@ -71,9 +98,6 @@ export class FeesClient {
     return request
       .get(`${feesUrl}/fees-register/channeltypes`)
       .then(response => {
-
-        console.log(response)
-
         return response as Array<model.ChannelTypeDto>
       })
       .catch(FeesClientErrorMapper)
@@ -83,9 +107,6 @@ export class FeesClient {
     return request
       .get(`${feesUrl}/fees-register/jurisdictions1`)
       .then(response => {
-
-        console.log(response)
-
         return response as Array<model.Jurisdiction1Dto>
       })
       .catch(FeesClientErrorMapper)
@@ -95,9 +116,6 @@ export class FeesClient {
     return request
       .get(`${feesUrl}/fees-register/jurisdictions2`)
       .then(response => {
-
-        console.log(response)
-
         return response as Array<model.Jurisdiction2Dto>
       })
       .catch(FeesClientErrorMapper)
@@ -107,9 +125,6 @@ export class FeesClient {
     return request
       .get(`${feesUrl}/fees-register/eventtypes`)
       .then(response => {
-
-        console.log(response)
-
         return response as Array<model.EventTypeDto>
       })
       .catch(FeesClientErrorMapper)
