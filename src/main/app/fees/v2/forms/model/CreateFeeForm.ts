@@ -139,7 +139,7 @@ export class CreateFeeForm {
     dto.jurisdiction1 = this.jurisdiction1
     dto.jurisdiction2 = this.jurisdiction2
     dto.event = this.event
-    dto.direction = dto.direction
+    dto.direction = this.direction
     dto.memoLine = this.memoLine
 
     dto.version = new FeeVersionDto()
