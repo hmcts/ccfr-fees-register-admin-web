@@ -40,6 +40,22 @@ export class FeesClient {
 
   }
 
+  static createRangedFee (user, dto: CreateFixedFeeDto): Promise<boolean> {
+
+    return request
+      .post({
+        uri: `${feesUrl}/fees-register/rangedfees/`,
+        json: true,
+        headers: {
+          Authorization: `Bearer ${user.bearerToken}`
+        },
+        body: dto
+      })
+      .then(() => true)
+      .catch(FeesClientErrorMapper)
+
+  }
+
   static checkFeeExists (code: string ): Promise<boolean> {
 
     return request.head(`${feesUrl}/fees-register/fees/${code}`)

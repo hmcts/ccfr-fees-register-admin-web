@@ -1,10 +1,10 @@
 {% from "includes/macros/form.njk" import errorSummary, textArea, textInput, radioGroup, submitButton, selectInline, selectReferenceData %}
-  {% extends "layout.njk" %}
+{% extends "layout.njk" %}
 
-  {% set title = t('Create Fee | Fees Register Admin Console') %}
-  {% set heading = t('Create Fee') %}
+{% set title = t('Create Fee | Fees Register Admin Console') %}
+{% set heading = t('Create Fee') %}
 
-  {% block content %}
+{% block content %}
 
 <div class="grid-row">
   <div class="column-full">
@@ -12,10 +12,9 @@
       <table>
         <tr>
           <td> {{ textInput(t('Code'), 'code', form) }}</td>
-          <td/>
 
           <td> {{ textInput(t('Memo Line'), 'memoLine', form) }}</td>
-          <td/>
+
         </tr>
 
         <tr>
@@ -25,20 +24,23 @@
         </tr>
 
         <tr>
-          <td rowspan="2">
+          <td>
             {{ radioGroup(form = form, name = 'type', disabled = false, label = t('Type'), options = [
-            { label: t('Fixed'), value: 'fixed' },
-            { label: t('Ranged'), value: 'ranged' }
+            { label: t('Fixed'), value: 'fixed', onclick: "disableRangedFees" },
+            { label: t('Ranged'), value: 'ranged', onclick: "enableRangedFees" }
             ]) }}
           </td>
-
-          <td> <span hidden="hidden">{{ textInput(t('From more than (£)'), 'fromRange', form) }}</span></td>
-
         </tr>
+
+
+        {% set isRanged = form.valueFor('type') == 'ranged' %}
 
         <tr>
-          <td><span hidden="hidden">{{ textInput(t('Up to (£)'), 'toRange', form) }}</span></td>
+          <td>{{ textInput(t('From more than (£)'), 'fromRange', form, disabled = not isRanged) }}</td>
+          <td>{{ textInput(t('Up to (£)'),          'toRange',   form, disabled = not isRanged) }}</td>
         </tr>
+
+        {% set isPercentage = form.valueFor('amountType') == 'percentage' %}
 
         <tr>
           <td rowspan="2">
@@ -48,12 +50,12 @@
             ]) }}
           </td>
 
-          <td>{{ textInput(t('Amount (£)'), 'amount', form) }} </td>
+          <td>{{ textInput(t('Amount (£)'), 'amount', form, disabled = isPercentage) }} </td>
 
         </tr>
 
-        <tr style="display:none;">
-          <td><span hidden="hidden">{{ textInput(t('Percentage (%)'), 'percentage', form) }}</span></td>
+        <tr>
+          <td>{{ textInput(t('Percentage (%)'), 'percentage', form, disabled = not isPercentage) }}</td>
         </tr>
 
         {{ selectReferenceData ('service', referenceData.serviceTypes, form, 'Service') }}
