@@ -81,8 +81,6 @@ export class CreateFeeForm {
     this.code = ''
     this.type = 'fixed'
     this.amountType = 'flat'
-    this.amount = 0
-    this.percentage = 0
     this.description = ''
     this.memoLine = ''
     this.service = ''
@@ -101,6 +99,22 @@ export class CreateFeeForm {
 
     const form: CreateFeeForm = new CreateFeeForm()
     Object.keys(value).forEach(key => form[key] = value[key])
+
+    if (form.amount) {
+      form.amount = +form.amount
+    }
+
+    if (form.fromRange) {
+      form.fromRange = +form.fromRange
+    }
+
+    if (form.toRange) {
+      form.toRange = +form.toRange
+    }
+
+    if (form.percentage) {
+      form.percentage = +form.percentage
+    }
 
     return form
   }
@@ -125,7 +139,7 @@ export class CreateFeeForm {
     dto.jurisdiction1 = this.jurisdiction1
     dto.jurisdiction2 = this.jurisdiction2
     dto.event = this.event
-    dto.direction = dto.direction
+    dto.direction = this.direction
     dto.memoLine = this.memoLine
 
     dto.version = new FeeVersionDto()

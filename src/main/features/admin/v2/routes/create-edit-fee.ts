@@ -46,6 +46,17 @@ export default express.Router()
           )
 
           break
+        case 'ranged' :
+          FeesClient.createRangedFee(res.locals.user, form.model.toDto() as CreateFixedFeeDto).then(
+            () => res.redirect('/')
+          ).catch(
+            (e: Error) => {
+              form.backendErrors.push(e.message)
+              Renderer.renderPage(form, res)
+            }
+          )
+
+          break
         default :
           Renderer.renderPage(form, res)
       }
