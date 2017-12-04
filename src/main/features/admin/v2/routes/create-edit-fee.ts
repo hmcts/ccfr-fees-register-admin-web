@@ -37,7 +37,7 @@ export default express.Router()
 
         case 'fixed' :
           FeesClient.createFixedFee(res.locals.user, form.model.toDto() as CreateFixedFeeDto).then(
-            () => res.redirect('/')
+            () => res.render('admin/v2/views/confirm-create-fee')
           ).catch(
             (e: Error) => {
               form.backendErrors.push(e.message)
