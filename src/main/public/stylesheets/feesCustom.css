@@ -1,0 +1,15 @@
+/* Large table header columns */
+.font-xxsmall {
+  font-family: "nta", Arial, sans-serif;
+  font-weight: 300;
+  text-transform: none;
+  font-size: 13px;
+  line-height: 1.14286; }
+
+/* Large table data columns */
+.bold-xxsmall {
+  font-family: "nta", Arial, sans-serif;
+  font-weight: 600;
+  text-transform: none;
+  font-size: 14px;
+  line-height: 1.14286; }
