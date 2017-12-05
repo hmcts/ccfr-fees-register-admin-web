@@ -8,8 +8,34 @@
 {% block content %}
 
 <div class="grid-row">
+
+  <div class="column-full">
+    <h4 class="heading-small">Choose an action</h4>
+    <ul class="list list-bullet">
+
+      <li><a href="/admin/v2/fees/create">{{ t("New fee") }}</a></li>
+      <li><a href="/admin/v2/all-fees">{{ t("All fees") }}</a></li>
+      <li><a href="/admin/v2/upload">{{ t("Fee upload") }}</a></li>
+      <li><a href="/admin/v2/dashboard">{{ t("MY OPEN ACTIONS") }}</a></li>
+    </ul>
+  </div>
+
+  <div class="column-full">
+    <h4 class="heading-small">Reference Data</h4>
+    <ul class="list list-bullet">
+
+      <li><a href="/admin/v2/services">{{ t("Services") }}</a></li>
+      <li><a href="/admin/v2/events">{{ t("Events") }}</a></li>
+      <li><a href="/admin/v2/channels">{{ t("Channels") }}</a></li>
+      <li><a href="/admin/v2/directions">{{ t("Directions") }}</a></li>
+      <li><a href="/admin/v2/jurisdictions1">{{ t("Jurisdictions 1") }}</a></li>
+      <li><a href="/admin/v2/jurisdictions2">{{ t("Jurisdictions 2") }}</a></li>
+
+    </ul>
+  </div>
+
     <div class="column-full">
-        <h4 class="heading-small">Choose an action</h4>
+        <h4 class="heading-small">Legacy Register: Choose an action</h4>
         <ul class="list list-bullet">
           {% if (isFeatureEnabled('edit')) %}
             <li><a href="/admin/categories" style="font-size: 1.5em">{{ t("Edit categories") }}</a></li>
@@ -24,23 +50,7 @@
         </ul>
     </div>
 
-  <div class="column-full">
-    <h4 class="heading-small">V2: Choose an action</h4>
-    <ul class="list list-bullet">
 
-      <li><a href="/admin/v2/fees/create">{{ t("New fee") }}</a></li>
-      <li><a href="/admin/v2/all-fees">{{ t("All fees") }}</a></li>
-
-      <li><a href="/admin/v2/services">{{ t("Services") }}</a></li>
-      <li><a href="/admin/v2/events">{{ t("Events") }}</a></li>
-      <li><a href="/admin/v2/channels">{{ t("Channels") }}</a></li>
-      <li><a href="/admin/v2/directions">{{ t("Directions") }}</a></li>
-      <li><a href="/admin/v2/jurisdictions1">{{ t("Jurisdictions 1") }}</a></li>
-      <li><a href="/admin/v2/jurisdictions2">{{ t("Jurisdictions 2") }}</a></li>
-      <li><a href="/admin/v2/upload">{{ t("Fee upload") }}</a></li>
-
-    </ul>
-  </div>
 
 </div>
 

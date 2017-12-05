@@ -1,0 +1,78 @@
+{% extends "layout.njk" %}
+
+{% set title = t('Dashboard | Fees Register Admin Console') %}
+{% set heading = 'Dashboard' %}
+
+{% block content %}
+
+  <div class="column-full">
+
+    <h4 class="heading-small">Fees pending approval</h4>
+
+    <table>
+          <thead>
+            <tr>
+              <th class="bold-xxsmall">Fee code</th>
+              <th class="bold-xxsmall">Fee description</th>
+              <th class="bold-xxsmall">Fee type</th>
+              <th class="bold-xxsmall">Range from </th>
+              <th class="bold-xxsmall">Range to</th>
+              <th class="bold-xxsmall">Amount Type</th>
+              <th class="bold-xxsmall">Fee Amount / %</th>
+              <th class="bold-xxsmall">Jurisdiction 1</th>
+              <th class="bold-xxsmall">Jurisdiction 2</th>
+              <th class="bold-xxsmall">Service</th>
+              <th class="bold-xxsmall">Event</th>
+              <th class="bold-xxsmall">Channel</th>
+              <th class="bold-xxsmall">Version</th>
+              <th class="bold-xxsmall">Valid From</th>
+              <th class="bold-xxsmall">Valid To</th>
+            </tr>
+          </thead>
+          <tbody>
+              {% for fee in fees %}
+                <tr>
+                  <td class="font-xxsmall">{{ fee.code }}</td>
+                  <td class="font-xxsmall">{{ fee.currentVersion.description }}</td>
+                  <td class="font-xxsmall">{{ fee.feeType }}</td>
+                  {% if fee.minRange %}
+                  <td class="font-xxsmall">£{{ fee.minRange }}</td>
+                  {% else %}
+                  <td/>
+                  {% endif %}
+                  {% if fee.maxRange %}
+                  <td class="font-xxsmall">£{{ fee.maxRange }}</td>
+                  {% else %}
+                  <td/>
+                  {% endif %}
+                  {% if fee.currentVersion.flatAmount %}
+                    <td class="font-xxsmall">Flat</td>
+                    <td class="font-xxsmall">£{{ fee.currentVersion.flatAmount.amount }}</td>
+                  {% else %}
+                    <td class="font-xxsmall">Percentage</td>
+                  <td class="font-xxsmall">{{ fee.currentVersion.percentageAmount.percentage }}%</td>
+                  {% endif %}
+                  <td class="font-xxsmall">{{ fee.jurisdiction1Dto.name }}</td>
+                  <td class="font-xxsmall">{{ fee.jurisdiction2Dto.name }}</td>
+                  <td class="font-xxsmall">{{ fee.serviceTypeDto.name }}</td>
+                  <td class="font-xxsmall">{{ fee.eventTypeDto.name }}</td>
+                  <td class="font-xxsmall">{{ fee.channelTypeDto.name }}</td>
+                  <td class="font-xxsmall">{{ fee.currentVersion.version }}</td>
+                  {% if fee.currentVersion.validFrom %}
+                    <td class="font-xxsmall">{{ fee.currentVersion.validFrom | date }}</td>
+                  {% else %}
+                    <td/>
+                  {% endif %}
+                  {% if fee.currentVersion.validTo %}
+                    <td class="font-xxsmall">{{ fee.currentVersion.validTo | date }}</td>
+                  {% else %}
+                    <td/>
+                  {% endif %}
+                </tr>
+              {% endfor %}
+          </tbody>
+    </table>
+    <p><a href="/admin/welcome/" class="link-back">{{ t("Back to welcome page") }}</a></p>
+  </div>
+
+{% endblock %}

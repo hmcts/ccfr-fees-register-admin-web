@@ -83,6 +83,14 @@ export class FeesClient {
 
   }
 
+  static fetchFeesPendingApproval (): Promise<Array<model.Fee2Dto>> {
+    return request
+      .get(`${feesUrl}/fees-register/fees?feeVersionStatus=draft`)
+      .then(response => {
+        return response as Array<model.Fee2Dto>
+      }).catch(FeesClientErrorMapper)
+  }
+
   static retrieveReferenceData (): Promise<AllReferenceDataDto> {
     return request
       .get(`${feesUrl}/fees-register/referenceData`)

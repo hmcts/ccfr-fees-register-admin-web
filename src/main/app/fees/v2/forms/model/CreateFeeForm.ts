@@ -61,23 +61,40 @@ export class CreateFeeForm {
   percentage?: number
 
   @IsDefined ( { message: ValidationErrors.CHANNEL_REQUIRED } )
+  @IsNotBlank ( { message: ValidationErrors.CHANNEL_REQUIRED } )
   channel?: string
 
   @IsDefined ( { message: ValidationErrors.EVENT_REQUIRED } )
+  @IsNotBlank ( { message: ValidationErrors.EVENT_REQUIRED } )
   event?: string
 
   direction?: string
 
   @IsDefined ( { message: ValidationErrors.SERVICE_REQUIRED } )
+  @IsNotBlank ( { message: ValidationErrors.SERVICE_REQUIRED } )
   service?: string
 
   @IsDefined ( { message: ValidationErrors.JURISDICTION1_REQUIRED } )
+  @IsNotBlank ( { message: ValidationErrors.JURISDICTION1_REQUIRED } )
   jurisdiction1?: string
 
   @IsDefined ( { message: ValidationErrors.JURISDICTION2_REQUIRED } )
+  @IsNotBlank ( { message: ValidationErrors.JURISDICTION2_REQUIRED } )
   jurisdiction2?: string
 
-  constructor () { //  code?: string, type?: string, amountType?: string
+  naturalAccountCode?: string
+
+  fromDate?: Date
+
+  toDate?: Date
+
+  statutoryInstrument?: string
+
+  siRefId?: string
+
+  feeOrderName?: string
+
+  constructor () {
     this.code = ''
     this.type = 'fixed'
     this.amountType = 'flat'
@@ -142,8 +159,21 @@ export class CreateFeeForm {
     dto.direction = this.direction
     dto.memoLine = this.memoLine
 
+    dto.naturalAccountCode = this.naturalAccountCode
+    dto.statutoryInstrument = this.statutoryInstrument
+    dto.siRefId = this.siRefId
+    dto.feeOrderName = this.feeOrderName
+
     dto.version = new FeeVersionDto()
     dto.version.description = this.description
+
+    if (this.fromDate) {
+      dto.version.validFrom = this.fromDate
+    }
+
+    if (this.toDate) {
+      dto.version.validTo = this.toDate
+    }
 
     if (this.amountType === 'flat') {
       dto.version.flatAmount = new FlatAmountDto()
