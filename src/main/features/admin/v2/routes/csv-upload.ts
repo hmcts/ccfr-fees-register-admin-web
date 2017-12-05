@@ -33,6 +33,7 @@ export default express.Router()
       res.render(Paths.csvUploadPage.associatedView, { UPLOAD_ERR_MSG: 'No file was uploaded.', UPLOAD_ERR: true})
     } else {
       console.log('Upload file received:' + req.file.size)
+      console.log('Uploaded file name:' + req.file.originalname)
 
       const index = req.file.originalname.indexOf('.')
       if (index > 0 && req.file.originalname.substr(index + 1) !== 'csv') {
