@@ -1,4 +1,4 @@
-export class CsvParam {
+export class CsvFeeDto {
   feeCode: string
   feeDescription: string
   feeAmount: string

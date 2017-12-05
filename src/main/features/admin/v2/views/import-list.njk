@@ -34,27 +34,27 @@
             </tr>
           </thead>
             <tbody>
-             {% for csvParam in csvParams %}
+             {% for csvFeeDto in csvFeeDtos %}
               <tr>
-                <td class="font-xxsmall">{{ csvParam.feeCode }}</td>
-                <td class="font-xxsmall">{{ csvParam.feeDescription }}</td>
-                <td class="font-xxsmall">{{ csvParam.feeAmount }}</td>
-                <td class="font-xxsmall">{{ csvParam.feeVersion }}</td>
-                <td class="font-xxsmall">{{ csvParam.feeStatus }}</td>
-                <td class="font-xxsmall">{{ csvParam.validFrom }}</td>
-                <td class="font-xxsmall">{{ csvParam.validTo }}</td>
-                <td class="font-xxsmall">{{ csvParam.feeOrderStatutoryInstrument }}</td>
-                <td class="font-xxsmall">{{ csvParam.jurisdiction1 }}</td>
-                <td class="font-xxsmall">{{ csvParam.jurisdiction2 }}</td>
-                <td class="font-xxsmall">{{ csvParam.service }}</td>
-                <td class="font-xxsmall">{{ csvParam.event }}</td>
-                <td class="font-xxsmall">{{ csvParam.channel }}</td>
-                <td class="font-xxsmall">{{ csvParam.direction }}</td>
-                <td class="font-xxsmall">{{ csvParam.feeType }}</td>
-                <td class="font-xxsmall">{{ csvParam.amountType }}</td>
-                <td class="font-xxsmall">{{ csvParam.operation }}</td>
-                <td class="font-xxsmall">{{ csvParam.naturalAccountCode }}</td>
-                <td class="font-xxsmall">{{ csvParam.memoLine }}</td>
+                <td class="font-xxsmall">{{ csvFeeDto.feeCode }}</td>
+                <td class="font-xxsmall">{{ csvFeeDto.feeDescription }}</td>
+                <td class="font-xxsmall">{{ csvFeeDto.feeAmount }}</td>
+                <td class="font-xxsmall">{{ csvFeeDto.feeVersion }}</td>
+                <td class="font-xxsmall">{{ csvFeeDto.feeStatus }}</td>
+                <td class="font-xxsmall">{{ csvFeeDto.validFrom }}</td>
+                <td class="font-xxsmall">{{ csvFeeDto.validTo }}</td>
+                <td class="font-xxsmall">{{ csvFeeDto.feeOrderStatutoryInstrument }}</td>
+                <td class="font-xxsmall">{{ csvFeeDto.jurisdiction1 }}</td>
+                <td class="font-xxsmall">{{ csvFeeDto.jurisdiction2 }}</td>
+                <td class="font-xxsmall">{{ csvFeeDto.service }}</td>
+                <td class="font-xxsmall">{{ csvFeeDto.event }}</td>
+                <td class="font-xxsmall">{{ csvFeeDto.channel }}</td>
+                <td class="font-xxsmall">{{ csvFeeDto.direction }}</td>
+                <td class="font-xxsmall">{{ csvFeeDto.feeType }}</td>
+                <td class="font-xxsmall">{{ csvFeeDto.amountType }}</td>
+                <td class="font-xxsmall">{{ csvFeeDto.operation }}</td>
+                <td class="font-xxsmall">{{ csvFeeDto.naturalAccountCode }}</td>
+                <td class="font-xxsmall">{{ csvFeeDto.memoLine }}</td>
               </tr>
              {% endfor %}
             </tbody>

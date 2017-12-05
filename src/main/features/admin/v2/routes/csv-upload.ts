@@ -4,7 +4,7 @@ import * as csv from 'csv-string'
 import * as fastCsv from 'fast-csv'
 
 import { Paths } from 'admin/paths'
-import { CsvParam } from 'fees/v2/model/csv-param'
+import { CsvFeeDto } from 'fees/v2/model/csv-contract'
 
 const upload = multer({ inMemory: true }).single('csvdata')
 
@@ -45,8 +45,8 @@ export default express.Router()
         const data = JSON.stringify(records)
         console.log('import fee json: ' + data)
 
-        let csvParams = <CsvParam> JSON.parse(data)
-        res.render(Paths.csvImportFeePage.associatedView, {csvParams: csvParams, resObj: JSON.stringify(csvParams)})
+        let CsvFeeDtos = JSON.parse(data) as CsvFeeDto
+        res.render(Paths.csvImportFeePage.associatedView, {csvFeeDtos: CsvFeeDtos, resObj: JSON.stringify(CsvFeeDtos)})
       })
     }
   })
