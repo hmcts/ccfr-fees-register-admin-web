@@ -11,16 +11,23 @@
     <form method="post" action="create">
       <table>
         <tr>
-          <td> {{ textInput(t('Code'), 'code', form) }}</td>
+          <td>{{ textInput(t('Fee Code'), 'code', form) }}</td>
 
-          <td> {{ textInput(t('Memo Line'), 'memoLine', form) }}</td>
+          <td>{{ textInput(t('Memo Line'), 'memoLine', form) }}</td>
+
+          <td>{{ textInput(t('Natural Account Code'), 'naturalAccountCode', form) }}</td>
 
         </tr>
 
         <tr>
-          <td colspan="2">
-            {{ textInput(t('Description'), 'description', form) }}
+          <td colspan="3">
+            {{ textArea(t('Description'), 'description', form) }}
           </td>
+        </tr>
+
+        <tr>
+          <td><label class="form-label-bold" for="fromDate">From Date</label> <input type="date" id="fromDate" name="fromDate" value="{{ form.valueFor('fromDate') }}" /></td>
+          <td><label class="form-label-bold" for="toDate">To Date</label> <input type="date" id="toDate" name="toDate" value="{{ form.valueFor('toDate') }}" /></td>
         </tr>
 
         <tr>
@@ -30,15 +37,11 @@
             { label: t('Ranged'), value: 'ranged', onclick: "enableRangedFees" }
             ]) }}
           </td>
-        </tr>
-
-
-        {% set isRanged = form.valueFor('type') == 'ranged' %}
-
-        <tr>
           <td>{{ textInput(t('From more than (£)'), 'fromRange', form, disabled = not isRanged) }}</td>
           <td>{{ textInput(t('Up to (£)'),          'toRange',   form, disabled = not isRanged) }}</td>
         </tr>
+
+        {% set isRanged = form.valueFor('type') == 'ranged' %}
 
         {% set isPercentage = form.valueFor('amountType') == 'percentage' %}
 
@@ -58,12 +61,22 @@
           <td>{{ textInput(t('Percentage (%)'), 'percentage', form, disabled = not isPercentage) }}</td>
         </tr>
 
-        {{ selectReferenceData ('service', referenceData.serviceTypes, form, 'Service') }}
-        {{ selectReferenceData ('channel', referenceData.channelTypes, form, 'Channel') }}
-        {{ selectReferenceData ('event', referenceData.eventTypes, form, 'Event') }}
         {{ selectReferenceData ('jurisdiction1', referenceData.jurisdictions1, form, 'Jurisdiction 1') }}
         {{ selectReferenceData ('jurisdiction2', referenceData.jurisdictions2, form, 'Jurisdiction 2') }}
+        {{ selectReferenceData ('service', referenceData.serviceTypes, form, 'Service') }}
+        {{ selectReferenceData ('event', referenceData.eventTypes, form, 'Event') }}
+        {{ selectReferenceData ('channel', referenceData.channelTypes, form, 'Channel') }}
         {{ selectReferenceData ('direction', referenceData.directionTypes, form, 'Direction') }}
+
+        <tr>
+          <td> {{ textInput(t('Statutory Instrument'), 'statutoryInstrument', form) }}</td>
+
+          <td> {{ textInput(t('SI REF ID'), 'siRefId', form) }}</td>
+
+          <td> {{ textInput(t('Fee Order Name'), 'feeOrderName', form) }}</td>
+
+        </tr>
+
       </table>
 
 

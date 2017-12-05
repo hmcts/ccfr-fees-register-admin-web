@@ -9,7 +9,7 @@
   <span class="error-message">{{ error }}</span>
   <input id="{{ name }}" name="{{ name }}" type="{{ type }}"
          class="form-control {{ inputClass }} {% if error %} form-control-error {% endif %}"
-         value="{{ form.valueFor(name) }}" {% if disabled %} disabled {% endif %}>
+         value="{{ form.valueFor(name) }}" {% if disabled %} disabled="disabled" {% endif %}>
 </div>
   {% endmacro %}
 
@@ -73,7 +73,7 @@
 <div class="multiple-choice" data-target="{{ name }}-{{ value }}">
 {% set idValue = name + value | replace(' ', '') %}
 <input id="{{ idValue }}" type="{{ type }}" name="{{ name }}" value="{{ value }}" {% if checked %} checked="checked" {%
-endif %} {% if disabled %} disabled {% endif %}>
+endif %} {% if disabled %} disabled="disabled" {% endif %}>
 <label for="{{ idValue }}">
   {% if hint == '' %}
   {{ t(label) }}
@@ -154,12 +154,11 @@ disabled = disabled
 <td><label for="{{ name }}">{{ displayName }} </label></td>
 <td>
   <select class="form-control" id="{{ name }}" name="{{ name }}">
-
-    <option disabled
-    {% if '' == selection %} selected {% endif %} value="" />
+    <option disabled="disabled" {% if '' == selection %}selected{% endif %} value="" />
     {% for option in options %}
-    <option value="{{ option.name }}"
-    {% if option.value == selection %} selected {% endif %} >{{ option.name }}</option>
+    <option value="{{ option.name }}" {% if option.value == selection %}selected{% endif %} >
+    {{ option.name }}
+  </option>
   {% endfor %}
 </select>
 </td>

@@ -120,6 +120,9 @@ export class CreateFeeDto {
   feeOrderName: string;
   naturalAccountCode: string;
   unspecifiedClaimAmount: boolean;
+  statutoryInstrument: string;
+  siRefId: string
+
 }
 
 export class CreateFixedFeeDto extends CreateFeeDto {
