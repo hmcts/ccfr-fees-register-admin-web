@@ -1,0 +1,71 @@
+{% from "includes/macros/form.njk" import submitButton %}
+{% extends "layout.njk" %}
+
+{% set title = t('CSV import view | Fees Register Admin Console V2') %}
+{% set heading = t('CSV import view') %}
+
+{% block content %}
+
+   <div class="grid-row">
+      <div class="column-quarter">
+       <form method="post" action="bulkfees">
+        <table class="column-quarter">
+          <thead>
+            <tr>
+              <th class="bold-xxsmall">Fee code</th>
+              <th class="bold-xxsmall">Fee Description</th>
+              <th class="bold-xxsmall">Amount</th>
+              <th class="bold-xxsmall">Version</th>
+              <th class="bold-xxsmall">Status</th>
+              <th class="bold-xxsmall">Valid from</th>
+              <th class="bold-xxsmall">Valid to</th>
+              <th class="bold-xxsmall">Fee order statutory instrument(SI)</th>
+              <th class="bold-xxsmall">Jurisdiction1</th>
+              <th class="bold-xxsmall">Jurisdiction2</th>
+              <th class="bold-xxsmall">Service</th>
+              <th class="bold-xxsmall">Event</th>
+              <th class="bold-xxsmall">Channel</th>
+              <th class="bold-xxsmall">Direction</th>
+              <th class="bold-xxsmall">Fee type</th>
+              <th class="bold-xxsmall">Amount type</th>
+              <th class="bold-xxsmall">Operation</th>
+              <th class="bold-xxsmall">Natural account code</th>
+              <th class="bold-xxsmall">Memo line</th>
+            </tr>
+          </thead>
+            <tbody>
+             {% for csvParam in csvParams %}
+              <tr>
+                <td class="font-xxsmall">{{ csvParam.feeCode }}</td>
+                <td class="font-xxsmall">{{ csvParam.feeDescription }}</td>
+                <td class="font-xxsmall">{{ csvParam.feeAmount }}</td>
+                <td class="font-xxsmall">{{ csvParam.feeVersion }}</td>
+                <td class="font-xxsmall">{{ csvParam.feeStatus }}</td>
+                <td class="font-xxsmall">{{ csvParam.validFrom }}</td>
+                <td class="font-xxsmall">{{ csvParam.validTo }}</td>
+                <td class="font-xxsmall">{{ csvParam.feeOrderStatutoryInstrument }}</td>
+                <td class="font-xxsmall">{{ csvParam.jurisdiction1 }}</td>
+                <td class="font-xxsmall">{{ csvParam.jurisdiction2 }}</td>
+                <td class="font-xxsmall">{{ csvParam.service }}</td>
+                <td class="font-xxsmall">{{ csvParam.event }}</td>
+                <td class="font-xxsmall">{{ csvParam.channel }}</td>
+                <td class="font-xxsmall">{{ csvParam.direction }}</td>
+                <td class="font-xxsmall">{{ csvParam.feeType }}</td>
+                <td class="font-xxsmall">{{ csvParam.amountType }}</td>
+                <td class="font-xxsmall">{{ csvParam.operation }}</td>
+                <td class="font-xxsmall">{{ csvParam.naturalAccountCode }}</td>
+                <td class="font-xxsmall">{{ csvParam.memoLine }}</td>
+              </tr>
+             {% endfor %}
+            </tbody>
+         </table>
+        </form>
+
+        <p>
+          <a href="/admin/v2/upload" class="link-back">{{ t('Back') }}</a>
+        </p>
+      </div>
+   </div>
+
+
+{% endblock %}
