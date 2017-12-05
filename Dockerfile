@@ -6,6 +6,7 @@ WORKDIR /usr/src/app
 COPY package.json yarn.lock /usr/src/app/
 RUN yarn install
 
+COPY types /usr/src/app/types
 COPY src/main /usr/src/app/src/main
 COPY config /usr/src/app/config
 
