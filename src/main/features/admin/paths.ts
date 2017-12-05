@@ -34,4 +34,9 @@ export class Paths {
   static readonly allFeesPageV2 = new RoutablePath('/admin/v2/all-fees', 'admin/v2/views/all-fees')
   static readonly feeCreatePageV2 = new RoutablePath('/admin/v2/fees/create', 'admin/v2/views/create-edit-fee')
 
+  /* CSV upload */
+  static readonly csvUploadPage = new RoutablePath('/admin/v2/upload', 'admin/v2/views/upload')
+  static readonly csvImportFeePage = new RoutablePath('/admin/v2/upload', 'admin/v2/views/import-list')
+  static readonly createBulkFeesPage = new RoutablePath('/admin/v2/bulkfees', 'admin/v2/views/import-result')
+
 }

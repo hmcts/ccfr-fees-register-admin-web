@@ -9,63 +9,63 @@
     <table>
           <thead>
             <tr>
-              <th>Fee code</th>
-              <th width="600">Fee description</th>
-              <th>Fee type</th>
-              <th>Range from </th>
-              <th>Range to</th>
-              <th>Amount Type</th>
-              <th>Fee Amount / %</th>
-              <th>Jurisdiction 1</th>
-              <th>Jurisdiction 2</th>
-              <th>Service</th>
-              <th>Event</th>
-              <th>Channel</th>
-              <th>Direction</th>
-              <th>Memo</th>
-              <th>Version</th>
-              <th>Valid From</th>
-              <th>Valid To</th>
+              <th class="bold-xxsmall">Fee code</th>
+              <th class="bold-xxsmall">Fee description</th>
+              <th class="bold-xxsmall">Fee type</th>
+              <th class="bold-xxsmall">Range from </th>
+              <th class="bold-xxsmall">Range to</th>
+              <th class="bold-xxsmall">Amount Type</th>
+              <th class="bold-xxsmall">Fee Amount / %</th>
+              <th class="bold-xxsmall">Jurisdiction 1</th>
+              <th class="bold-xxsmall">Jurisdiction 2</th>
+              <th class="bold-xxsmall" >Service</th>
+              <th class="bold-xxsmall">Event</th>
+              <th class="bold-xxsmall">Channel</th>
+              <th class="bold-xxsmall">Direction</th>
+              <th class="bold-xxsmall">Memo</th>
+              <th class="bold-xxsmall">Version</th>
+              <th class="bold-xxsmall">Valid From</th>
+              <th class="bold-xxsmall">Valid To</th>
             </tr>
           </thead>
           <tbody>
               {% for fee in fees %}
                 <tr>
-                  <td>{{ fee.code }}</td>
-                  <td width="600">{{ fee.currentVersion.description }}</td>
-                  <td>{{ fee.feeType }}</td>
+                  <td class="font-xxsmall">{{ fee.code }}</td>
+                  <td class="font-xxsmall">{{ fee.currentVersion.description }}</td>
+                  <td class="font-xxsmall">{{ fee.feeType }}</td>
                   {% if fee.minRange %}
-                  <td>£{{ fee.minRange }}</td>
+                  <td class="font-xxsmall">£{{ fee.minRange }}</td>
                   {% else %}
                   <td/>
                   {% endif %}
                   {% if fee.maxRange %}
-                  <td>£{{ fee.maxRange }}</td>
+                  <td class="font-xxsmall">£{{ fee.maxRange }}</td>
                   {% else %}
                   <td/>
                   {% endif %}
                   {% if fee.currentVersion.flatAmount %}
-                    <td>Flat</td>
-                    <td>£{{ fee.currentVersion.flatAmount.amount }}</td>
+                    <td class="font-xxsmall">Flat</td>
+                    <td class="font-xxsmall">£{{ fee.currentVersion.flatAmount.amount }}</td>
                   {% else %}
-                    <td>Percentage</td>
-                  <td>{{ fee.currentVersion.percentageAmount.percentage }}%</td>
+                    <td class="font-xxsmall">Percentage</td>
+                  <td class="font-xxsmall">{{ fee.currentVersion.percentageAmount.percentage }}%</td>
                   {% endif %}
-                  <td>{{ fee.jurisdiction1Dto.name }}</td>
-                  <td>{{ fee.jurisdiction2Dto.name }}</td>
-                  <td>{{ fee.serviceTypeDto.name }}</td>
-                  <td>{{ fee.eventTypeDto.name }}</td>
-                  <td>{{ fee.channelTypeDto.name }}</td>
-                  <td>{{ fee.directionTypeDto.name }}</td>
-                  <td>{{ fee.memoLine }}</td>
-                  <td>{{ fee.currentVersion.version }}</td>
+                  <td class="font-xxsmall">{{ fee.jurisdiction1Dto.name }}</td>
+                  <td class="font-xxsmall">{{ fee.jurisdiction2Dto.name }}</td>
+                  <td class="font-xxsmall">{{ fee.serviceTypeDto.name }}</td>
+                  <td class="font-xxsmall">{{ fee.eventTypeDto.name }}</td>
+                  <td class="font-xxsmall">{{ fee.channelTypeDto.name }}</td>
+                  <td class="font-xxsmall">{{ fee.directionTypeDto.name }}</td>
+                  <td class="font-xxsmall">{{ fee.memoLine }}</td>
+                  <td class="font-xxsmall">{{ fee.currentVersion.version }}</td>
                   {% if fee.currentVersion.validFrom %}
-                    <td>{{ fee.currentVersion.validFrom | date }}</td>
+                    <td class="font-xxsmall">{{ fee.currentVersion.validFrom | date }}</td>
                   {% else %}
                     <td/>
                   {% endif %}
                   {% if fee.currentVersion.validTo %}
-                    <td>{{ fee.currentVersion.validTo | date }}</td>
+                    <td class="font-xxsmall">{{ fee.currentVersion.validTo | date }}</td>
                   {% else %}
                     <td/>
                   {% endif %}
