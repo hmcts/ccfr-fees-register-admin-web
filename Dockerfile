@@ -8,7 +8,6 @@ RUN yarn install
 
 COPY src/main /usr/src/app/src/main
 COPY config /usr/src/app/config
-COPY types /usr/src/app/types
 
 COPY gulpfile.js tsconfig.json /usr/src/app/
 RUN yarn setup
