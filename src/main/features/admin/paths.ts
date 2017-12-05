@@ -32,6 +32,7 @@ export class Paths {
   static readonly eventListPage = new RoutablePath('/admin/v2/events', 'admin/v2/views/event-list')
 
   static readonly allFeesPageV2 = new RoutablePath('/admin/v2/all-fees', 'admin/v2/views/all-fees')
+  static readonly feeCreatePageV2 = new RoutablePath('/admin/v2/fees/create', 'admin/v2/views/create-edit-fee')
 
   /* CSV upload */
   static readonly csvUploadPage = new RoutablePath('/admin/v2/upload', 'admin/v2/views/upload')

@@ -1,0 +1,26 @@
+{% from "includes/macros/form.njk" import errorSummary, textArea, textInput, radioGroup, submitButton, selectInline, selectReferenceData %}
+  {% extends "layout.njk" %}
+
+  {% set title = t('Fee Created | Fees Register Admin Console') %}
+  {% set heading = t('Fee Created') %}
+
+  {% block content %}
+
+<div class="grid-row">
+  <div class="column-full">
+    Fee has been created successfully.
+  </div>
+  <div class="column-full">
+
+  </div>
+  <div class="column-full">
+    <a href="/admin/v2/fees/create" class="link-back">{{ t('Create another fee') }}</a>
+  </div>
+
+  <div class="column-full">
+    <a href="/admin/welcome" class="link-back">{{ t('Return to welcome page') }}</a>
+  </div>
+
+</div>
+
+  {% endblock %}

@@ -1,0 +1,77 @@
+{% from "includes/macros/form.njk" import errorSummary, textArea, textInput, radioGroup, submitButton, selectInline, selectReferenceData %}
+{% extends "layout.njk" %}
+
+{% set title = t('Create Fee | Fees Register Admin Console') %}
+{% set heading = t('Create Fee') %}
+
+{% block content %}
+
+<div class="grid-row">
+  <div class="column-full">
+    <form method="post" action="create">
+      <table>
+        <tr>
+          <td> {{ textInput(t('Code'), 'code', form) }}</td>
+
+          <td> {{ textInput(t('Memo Line'), 'memoLine', form) }}</td>
+
+        </tr>
+
+        <tr>
+          <td colspan="2">
+            {{ textInput(t('Description'), 'description', form) }}
+          </td>
+        </tr>
+
+        <tr>
+          <td>
+            {{ radioGroup(form = form, name = 'type', disabled = false, label = t('Type'), options = [
+            { label: t('Fixed'), value: 'fixed', onclick: "disableRangedFees" },
+            { label: t('Ranged'), value: 'ranged', onclick: "enableRangedFees" }
+            ]) }}
+          </td>
+        </tr>
+
+
+        {% set isRanged = form.valueFor('type') == 'ranged' %}
+
+        <tr>
+          <td>{{ textInput(t('From more than (£)'), 'fromRange', form, disabled = not isRanged) }}</td>
+          <td>{{ textInput(t('Up to (£)'),          'toRange',   form, disabled = not isRanged) }}</td>
+        </tr>
+
+        {% set isPercentage = form.valueFor('amountType') == 'percentage' %}
+
+        <tr>
+          <td rowspan="2">
+            {{ radioGroup(form = form, name = 'amountType', disabled = false, label = t('Amount Type'), options = [
+            { label: t('Flat'), value: 'flat' },
+            { label: t('Percentage'), value: 'percentage' }
+            ]) }}
+          </td>
+
+          <td>{{ textInput(t('Amount (£)'), 'amount', form, disabled = isPercentage) }} </td>
+
+        </tr>
+
+        <tr>
+          <td>{{ textInput(t('Percentage (%)'), 'percentage', form, disabled = not isPercentage) }}</td>
+        </tr>
+
+        {{ selectReferenceData ('service', referenceData.serviceTypes, form, 'Service') }}
+        {{ selectReferenceData ('channel', referenceData.channelTypes, form, 'Channel') }}
+        {{ selectReferenceData ('event', referenceData.eventTypes, form, 'Event') }}
+        {{ selectReferenceData ('jurisdiction1', referenceData.jurisdictions1, form, 'Jurisdiction 1') }}
+        {{ selectReferenceData ('jurisdiction2', referenceData.jurisdictions2, form, 'Jurisdiction 2') }}
+        {{ selectReferenceData ('direction', referenceData.directionTypes, form, 'Direction') }}
+      </table>
+
+
+      {{ submitButton(t('Next')) }}
+    </form>
+
+    <a href="/admin/fees" class="link-back">{{ t('Cancel') }}</a>
+  </div>
+</div>
+
+  {% endblock %}

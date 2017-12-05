@@ -62,11 +62,11 @@ export class FeeVersionDto {
   flatAmount: FlatAmountDto;
   percentageAmount: PercentageAmountDto;
 
-  public getValidFrom(){
+  public getValidFrom() {
     return new Date(this.validFrom).toDateString;
   }
 
-  public getValidTo(){
+  public getValidTo() {
     return new Date(this.validTo).toDateString;
   }
 
@@ -164,6 +164,20 @@ export class ServiceType {
   name: string;
   creationTime: Date;
   lastUpdated: Date;
+}
+
+export class AllReferenceDataDto {
+  channelTypes: ChannelTypeDto[];
+
+  directionTypes: DirectionTypeDto[];
+
+  eventTypes: EventTypeDto[];
+
+  serviceTypes: ServiceTypeDto[];
+
+  jurisdictions1: Jurisdiction1Dto[];
+
+  jurisdictions2: Jurisdiction2Dto[];
 }
 
 export type FeeVersionStatus = "draft" | "approved";
