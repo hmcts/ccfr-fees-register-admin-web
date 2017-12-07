@@ -8,7 +8,22 @@ export class ValidationErrors {
   static readonly DESCRIPTION_REQUIRED: string = 'Enter description'
   static readonly DESCRIPTION_TOO_LONG: string = 'Enter description no longer than $constraint1 characters'
 
+  static readonly MEMO_LINE_REQUIRED: string = 'Enter memo line'
+  static readonly MEMO_LINE_TOO_LONG: string = 'Enter a memo line no longer than $constraint1 characters'
+
   static readonly TYPE_REQUIRED: string = 'Enter type'
+
+  static readonly NAC_REQUIRED: string = 'Enter natural account code'
+
+  static readonly FROM_DATE_REQUIRED: string = 'Enter From Date'
+
+  static readonly TO_DATE_REQUIRED: string = 'Enter To Date'
+
+  static readonly STATUTORY_INSTRUMENT_REQUIRED: string = 'Enter Statutory Instrument'
+
+  static readonly SI_REF_ID_REQUIRED: string = 'Enter SI Ref ID'
+
+  static readonly FEE_ORDER_NAME_REQUIRED: string = 'Enter Fee Order Name'
 
   static readonly AMOUNT_REQUIRED: string = 'Enter amount'
   static readonly AMOUNT_NOT_NEGATIVE: string = 'Enter amount equal or greater than zero'
@@ -25,5 +40,6 @@ export class ValidationErrors {
   static readonly CHANNEL_REQUIRED: string = 'Select a channel'
   static readonly EVENT_REQUIRED: string = 'Select a event'
   static readonly SERVICE_REQUIRED: string = 'Select a service'
+  static readonly DIRECTION_REQUIRED: string = 'Select a direction'
 
 }
