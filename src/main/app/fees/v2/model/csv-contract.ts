@@ -8,7 +8,7 @@ export class CsvFeeDto {
   validTo: string
   feeOrderStatutoryInstrument: string
   jurisdiction1: string
-  jursidiction2: string
+  jurisdiction2: string
   service: string
   event: string
   channel: string

@@ -5,6 +5,9 @@ import * as fastCsv from 'fast-csv'
 
 import { Paths } from 'admin/paths'
 import { CsvFeeDto } from 'fees/v2/model/csv-contract'
+import { CreateFixedFeeDto } from 'fees/v2/model/fees-register-api-contract'
+import { FeesClient } from 'fees/v2/feesClient'
+import { CreateBulkFixedFee } from 'fees/v2/forms/model/CreateBulkFixedFee'
 
 const upload = multer({ inMemory: true }).single('csvdata')
 
@@ -25,6 +28,10 @@ function getCsvData (arr) {
 export default express.Router()
   .get(Paths.csvUploadPage.uri, (req: express.Request, res: express.Response) => {
     res.render(Paths.csvUploadPage.associatedView)
+  })
+
+  .get(Paths.createBulkFeesPage.uri, (req: express.Request, res: express.Response) => {
+    res.render(Paths.createBulkFeesPage.associatedView)
   })
 
   .post(Paths.csvImportFeePage.uri, upload, (req: express.Request, res: express.Response, next: express.NextFunction) => {
@@ -50,4 +57,25 @@ export default express.Router()
         res.render(Paths.csvImportFeePage.associatedView, {csvFeeDtos: CsvFeeDtos, resObj: JSON.stringify(CsvFeeDtos)})
       })
     }
+  })
+
+  .post(Paths.createBulkFeesPage.uri, (req: express.Request, res: express.Response) => {
+    const csvFees: Object[] = JSON.parse(req.body.csvFees)
+    const fixedFees = []
+
+    csvFees.forEach((csvFee: CsvFeeDto) => {
+      console.log('Fee code: ' + csvFee.feeCode)
+
+      const fixedFee = new CreateBulkFixedFee()
+      fixedFees.push(fixedFee.createFixedFeeDto(csvFee))
+    })
+
+    FeesClient.createBulkFixedFee(res.locals.user, fixedFees as CreateFixedFeeDto[])
+      .then(() => res.render(Paths.createBulkFeesPage.associatedView, {msg: 'Successfully created bulk fixed fees.', success: true}))
+      .catch(
+        (err: Error) => {
+          console.log('Response err: ' + err.message)
+          res.render(Paths.createBulkFeesPage.associatedView, {errCause: err.message, bulkFeeError: true})
+        }
+      )
   })

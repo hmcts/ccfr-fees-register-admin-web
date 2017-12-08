@@ -1,0 +1,32 @@
+{% extends "layout.njk" %}
+
+{% set title = t('Create csv bulk fee confirmation | Fees Register Admin Console V2') %}
+{% set heading = t('Create csv bulk fees confirmation') %}
+
+{% block content %}
+
+<div class="grid-row">
+  <div class="column-full">
+
+    {% if bulkFeeError %}
+      <div class="error-summary" role="group" aria-labelledby="failure-error-summary-heading" tabindex="-1">
+        <h2 class="heading-medium error-summary-heading" id="failure-error-summary-heading">
+        {{ errCause }}
+        </h2>
+      </div>
+    {% elif success %}
+    <div class="success-summary" role="group" aria-labelledby="failure-error-summary-heading" tabindex="1">
+      <h2 class="heading-medium error-summary-heading">
+        {{ msg }}
+      </h2>
+    </div>
+    {% endif %}
+  </div>
+
+  <div class="column-full">
+    <a href="/admin/welcome" class="link-back">{{ t('Return to welcome page') }}</a>
+  </div>
+
+</div>
+
+{% endblock %}

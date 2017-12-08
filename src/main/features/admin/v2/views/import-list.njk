@@ -8,12 +8,12 @@
 
    <div class="grid-row">
       <div class="column-quarter">
-
+       <form action="bulkfixedfees" method="post">
         <table class="column-quarter">
           <thead>
             <tr>
               <th class="bold-xxsmall">Fee code</th>
-              <th class="bold-xxsmall">Fee Description</th>
+              <th class="bold-xxsmall">Fee description</th>
               <th class="bold-xxsmall">Amount</th>
               <th class="bold-xxsmall">Version</th>
               <th class="bold-xxsmall">Status</th>
@@ -60,6 +60,11 @@
             </tbody>
          </table>
 
+         <p>
+          <input type="hidden" name="csvFees" value="{{ resObj }}"/>
+          {{ submitButton(t('Save')) }}
+         </p>
+        </form>
         <p>
           <a href="/admin/v2/upload" class="link-back">{{ t('Back') }}</a>
         </p>
