@@ -71,10 +71,9 @@ export default express.Router()
     })
 
     FeesClient.createBulkFixedFee(res.locals.user, fixedFees as CreateFixedFeeDto[])
-      .then(() => res.render(Paths.createBulkFeesPage.associatedView, {msg: 'Successfully created bulk fixed fees.', success: true}))
+      .then(() => res.render(Paths.createBulkFeesPage.associatedView, {msg: 'Successfully created csv bulk fixed fees.', success: true}))
       .catch(
         (err: Error) => {
-          console.log('Response err: ' + err.message)
           res.render(Paths.createBulkFeesPage.associatedView, {errCause: err.message, bulkFeeError: true})
         }
       )
