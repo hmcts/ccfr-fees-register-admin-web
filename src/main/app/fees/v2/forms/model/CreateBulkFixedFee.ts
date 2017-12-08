@@ -51,11 +51,11 @@ export class CreateBulkFixedFee {
     createFeeDto.direction = dto.direction
     createFeeDto.event = dto.event
     createFeeDto.memoLine = dto.memoLine
-    createFeeDto.feeOrderName = 'Fee order name'
+    createFeeDto.feeOrderName = dto.feeOrderName
     createFeeDto.naturalAccountCode = dto.naturalAccountCode
     createFeeDto.unspecifiedClaimAmount = false
     createFeeDto.statutoryInstrument = dto.statutoryInstrument
-    createFeeDto.siRefId = 'siRefId'
+    createFeeDto.siRefId = dto.siRefId
 
     return createFeeDto
   }
