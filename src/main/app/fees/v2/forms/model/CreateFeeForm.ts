@@ -33,10 +33,12 @@ export class CreateFeeForm {
   @MaxLength ( 2000, { message: ValidationErrors.DESCRIPTION_TOO_LONG } )
   description?: string
 
-  @MaxLength ( 2000, { message: ValidationErrors.DESCRIPTION_TOO_LONG } )
+  @MaxLength ( 2000, { message: ValidationErrors.MEMO_LINE_TOO_LONG } )
+  @IsDefined ( { message: ValidationErrors.MEMO_LINE_REQUIRED } )
+  @IsNotBlank ( { message: ValidationErrors.MEMO_LINE_REQUIRED } )
   memoLine?: string
 
-  @ValidateIf ( o => o.amountType === 'fixed' )
+  @ValidateIf ( o => o.amountType === 'flat' )
   @Min ( 0, { message: ValidationErrors.AMOUNT_NOT_NEGATIVE } )
   @Max ( 9999999.99, { message: ValidationErrors.AMOUNT_TOO_BIG } )
   @Fractions ( 0, 2, { message: ValidationErrors.AMOUNT_INVALID_DECIMALS } )
@@ -68,6 +70,8 @@ export class CreateFeeForm {
   @IsNotBlank ( { message: ValidationErrors.EVENT_REQUIRED } )
   event?: string
 
+  @IsDefined ( { message: ValidationErrors.DIRECTION_REQUIRED } )
+  @IsNotBlank ( { message: ValidationErrors.DIRECTION_REQUIRED } )
   direction?: string
 
   @IsDefined ( { message: ValidationErrors.SERVICE_REQUIRED } )
@@ -82,16 +86,28 @@ export class CreateFeeForm {
   @IsNotBlank ( { message: ValidationErrors.JURISDICTION2_REQUIRED } )
   jurisdiction2?: string
 
+  @IsDefined ( { message: ValidationErrors.NAC_REQUIRED } )
+  @IsNotBlank ( { message: ValidationErrors.NAC_REQUIRED } )
   naturalAccountCode?: string
 
+  @IsDefined ( { message: ValidationErrors.FROM_DATE_REQUIRED } )
+  @IsNotBlank ( { message: ValidationErrors.FROM_DATE_REQUIRED } )
   fromDate?: Date
 
+  @IsDefined ( { message: ValidationErrors.TO_DATE_REQUIRED } )
+  @IsNotBlank ( { message: ValidationErrors.TO_DATE_REQUIRED } )
   toDate?: Date
 
+  @IsDefined ( { message: ValidationErrors.STATUTORY_INSTRUMENT_REQUIRED } )
+  @IsNotBlank ( { message: ValidationErrors.STATUTORY_INSTRUMENT_REQUIRED } )
   statutoryInstrument?: string
 
+  @IsDefined ( { message: ValidationErrors.SI_REF_ID_REQUIRED } )
+  @IsNotBlank ( { message: ValidationErrors.SI_REF_ID_REQUIRED } )
   siRefId?: string
 
+  @IsDefined ( { message: ValidationErrors.FEE_ORDER_NAME_REQUIRED } )
+  @IsNotBlank ( { message: ValidationErrors.FEE_ORDER_NAME_REQUIRED } )
   feeOrderName?: string
 
   constructor () {
