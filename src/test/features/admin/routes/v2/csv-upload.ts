@@ -2,6 +2,7 @@ import { expect } from 'chai'
 import * as config from 'config'
 import * as request from 'supertest'
 import * as mock from 'nock'
+import * as path from 'path'
 
 import '../../../../routes/expectations'
 
@@ -27,6 +28,18 @@ describe('Csv fees upload', () => {
         .get(AdminPaths.csvUploadPage.uri)
         .set('Cookie', `${cookieName}=JWT`)
         .expect(res => expect(res).to.be.successful.withText('CSV upload'))
+    })
+  })
+
+  describe('on POST render the CSV import fees', () => {
+    it('should render the CSV import fees after upload', async () => {
+      idamServiceMock.resolveRetrieveUserFor(1, 'admin', 'admin')
+
+      await request(app)
+        .post(AdminPaths.csvImportFeePage.uri)
+        .set('Cookie', `${cookieName}=JWT`)
+        .attach('csvdata', path.join(__dirname, 'feeimport.csv'))
+        .expect(res => expect(res).to.be.successful.withText('X0033', 'xxxRecovery of Land - High Court'))
     })
   })
 

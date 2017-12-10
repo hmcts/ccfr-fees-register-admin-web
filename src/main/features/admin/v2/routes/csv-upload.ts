@@ -54,7 +54,6 @@ export default express.Router()
         console.log('import fee json: ' + data)
 
         let CsvFeeDtos = JSON.parse(data) as CsvFeeDto
-        res.contentType('application/json')
         res.render(Paths.csvImportFeePage.associatedView, {csvFeeDtos: CsvFeeDtos, resObj: JSON.stringify(CsvFeeDtos)})
       })
     }
