@@ -6,16 +6,17 @@ export class CsvFeeDto {
   feeStatus: string
   validFrom: string
   validTo: string
-  feeOrderStatutoryInstrument: string
+  statutoryInstrument: string
   jurisdiction1: string
-  jursidiction2: string
+  jurisdiction2: string
   service: string
   event: string
   channel: string
   direction: string
   feeType: string
   amountType: string
-  operation: string
+  feeOrderName: string
   naturalAccountCode: string
   memoLine: string
+  siRefId: string
 }

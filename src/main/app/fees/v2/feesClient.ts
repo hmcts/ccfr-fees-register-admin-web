@@ -24,6 +24,21 @@ function FeesClientErrorMapper (reason: Error) {
 
 export class FeesClient {
 
+  static createBulkFixedFee (user, dtos: CreateFixedFeeDto[]): Promise<boolean> {
+
+    return request
+      .post({
+        uri: `${feesUrl}/fees-register/bulkfixedfees/`,
+        json: true,
+        headers: {
+          Authorization: `Bearer ${user.bearerToken}`
+        },
+        body: dtos
+      })
+      .then(() => true)
+      .catch(FeesClientErrorMapper)
+  }
+
   static createFixedFee (user, dto: CreateFixedFeeDto): Promise<boolean> {
 
     return request

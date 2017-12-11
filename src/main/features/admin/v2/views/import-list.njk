@@ -8,18 +8,18 @@
 
    <div class="grid-row">
       <div class="column-quarter">
-
+       <form action="bulkfixedfees" method="post">
         <table class="column-quarter">
           <thead>
             <tr>
               <th class="bold-xxsmall">Fee code</th>
-              <th class="bold-xxsmall">Fee Description</th>
+              <th class="bold-xxsmall">Fee description</th>
               <th class="bold-xxsmall">Amount</th>
               <th class="bold-xxsmall">Version</th>
               <th class="bold-xxsmall">Status</th>
               <th class="bold-xxsmall">Valid from</th>
               <th class="bold-xxsmall">Valid to</th>
-              <th class="bold-xxsmall">Fee order statutory instrument(SI)</th>
+              <th class="bold-xxsmall">Statutory instrument(SI)</th>
               <th class="bold-xxsmall">Jurisdiction1</th>
               <th class="bold-xxsmall">Jurisdiction2</th>
               <th class="bold-xxsmall">Service</th>
@@ -28,9 +28,10 @@
               <th class="bold-xxsmall">Direction</th>
               <th class="bold-xxsmall">Fee type</th>
               <th class="bold-xxsmall">Amount type</th>
-              <th class="bold-xxsmall">Operation</th>
+              <th class="bold-xxsmall">Fee order name</th>
               <th class="bold-xxsmall">Natural account code</th>
               <th class="bold-xxsmall">Memo line</th>
+              <th class="bold-xxsmall">SI Ref ID</th>
             </tr>
           </thead>
             <tbody>
@@ -43,7 +44,7 @@
                 <td class="font-xxsmall">{{ csvFeeDto.feeStatus }}</td>
                 <td class="font-xxsmall">{{ csvFeeDto.validFrom }}</td>
                 <td class="font-xxsmall">{{ csvFeeDto.validTo }}</td>
-                <td class="font-xxsmall">{{ csvFeeDto.feeOrderStatutoryInstrument }}</td>
+                <td class="font-xxsmall">{{ csvFeeDto.statutoryInstrument }}</td>
                 <td class="font-xxsmall">{{ csvFeeDto.jurisdiction1 }}</td>
                 <td class="font-xxsmall">{{ csvFeeDto.jurisdiction2 }}</td>
                 <td class="font-xxsmall">{{ csvFeeDto.service }}</td>
@@ -52,14 +53,20 @@
                 <td class="font-xxsmall">{{ csvFeeDto.direction }}</td>
                 <td class="font-xxsmall">{{ csvFeeDto.feeType }}</td>
                 <td class="font-xxsmall">{{ csvFeeDto.amountType }}</td>
-                <td class="font-xxsmall">{{ csvFeeDto.operation }}</td>
+                <td class="font-xxsmall">{{ csvFeeDto.feeOrderName }}</td>
                 <td class="font-xxsmall">{{ csvFeeDto.naturalAccountCode }}</td>
                 <td class="font-xxsmall">{{ csvFeeDto.memoLine }}</td>
+                <td class="font-xxsmall">{{ csvFeeDto.siRefId }}</td>
               </tr>
              {% endfor %}
             </tbody>
          </table>
 
+         <p>
+          <input type="hidden" name="csvFees" value="{{ resObj }}"/>
+          {{ submitButton(t('Save')) }}
+         </p>
+        </form>
         <p>
           <a href="/admin/v2/upload" class="link-back">{{ t('Back') }}</a>
         </p>
