@@ -12,6 +12,7 @@
     <table>
           <thead>
             <tr>
+
               <th class="bold-xxsmall">Fee code</th>
               <th class="bold-xxsmall">Fee description</th>
               <th class="bold-xxsmall">Fee type</th>
@@ -27,6 +28,7 @@
               <th class="bold-xxsmall">Version</th>
               <th class="bold-xxsmall">Valid From</th>
               <th class="bold-xxsmall">Valid To</th>
+              <th/>
             </tr>
           </thead>
           <tbody>
@@ -68,6 +70,8 @@
                   {% else %}
                     <td/>
                   {% endif %}
+                  <td> <a href="/admin/v2/dashboard?approveFeeCode={{ fee.code }}&approveVersion={{ fee.currentVersion.version }}" class="button">Approve</a></td>
+
                 </tr>
               {% endfor %}
           </tbody>

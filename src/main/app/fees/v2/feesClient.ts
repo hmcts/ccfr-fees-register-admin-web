@@ -3,20 +3,20 @@ import * as config from 'config'
 import request from 'client/request'
 import * as model from 'app/fees/v2/model/fees-register-api-contract'
 import { StatusCodeError } from 'request-promise-native/errors'
-import { AllReferenceDataDto, CreateFixedFeeDto } from 'fees/v2/model/fees-register-api-contract'
+import { AllReferenceDataDto, ApproveFeeDto, CreateFixedFeeDto } from 'fees/v2/model/fees-register-api-contract'
 
-const feesUrl = config.get('fees.url')
+const feesUrl = config.get ( 'fees.url' )
 
 export class FeesClientError extends Error {
-  constructor (public message: string) {
-    super(message)
-    Object.setPrototypeOf(this, FeesClientError.prototype)
+  constructor ( public message: string ) {
+    super ( message )
+    Object.setPrototypeOf ( this, FeesClientError.prototype )
   }
 }
 
-function FeesClientErrorMapper (reason: Error) {
-  if (reason instanceof StatusCodeError) {
-    throw new FeesClientError((reason as any).response.body.cause)
+function FeesClientErrorMapper ( reason: Error ) {
+  if ( reason instanceof StatusCodeError ) {
+    throw new FeesClientError ( (reason as any).response.body.cause )
   } else {
     throw reason
   }
@@ -24,148 +24,165 @@ function FeesClientErrorMapper (reason: Error) {
 
 export class FeesClient {
 
-  static createBulkFixedFee (user, dtos: CreateFixedFeeDto[]): Promise<boolean> {
+  static approveFee ( user, feeCode: string, version: number ): Promise<boolean> {
+
+    const dto: ApproveFeeDto = new ApproveFeeDto ()
+
+    dto.feeCode = feeCode
+    dto.feeVersion = version
 
     return request
-      .post({
-        uri: `${feesUrl}/fees-register/bulkfixedfees/`,
+      .patch ( {
+        uri: `${feesUrl}/fees-register/fees/approve`,
         json: true,
         headers: {
           Authorization: `Bearer ${user.bearerToken}`
         },
-        body: dtos
-      })
-      .then(() => true)
-      .catch(FeesClientErrorMapper)
+        body: dto
+      } )
+      .then ( () => true )
+      .catch ( FeesClientErrorMapper )
   }
 
-  static createFixedFee (user, dto: CreateFixedFeeDto): Promise<boolean> {
+  static createBulkFixedFee ( user, dtos: CreateFixedFeeDto[] ): Promise<boolean> {
 
     return request
-      .post({
+      .post ( {
+        uri: `${feesUrl}/fees-register/bulkfixedfees/`,
+        body: dtos
+      } )
+      .then ( () => true )
+      .catch ( FeesClientErrorMapper )
+
+  }
+
+  static createFixedFee ( user, dto: CreateFixedFeeDto ): Promise<boolean> {
+
+    return request
+      .post ( {
         uri: `${feesUrl}/fees-register/fixedfees/`,
         json: true,
         headers: {
           Authorization: `Bearer ${user.bearerToken}`
         },
         body: dto
-      })
-      .then(() => true)
-      .catch(FeesClientErrorMapper)
+      } )
+      .then ( () => true )
+      .catch ( FeesClientErrorMapper )
 
   }
 
-  static createRangedFee (user, dto: CreateFixedFeeDto): Promise<boolean> {
+  static createRangedFee ( user, dto: CreateFixedFeeDto ): Promise<boolean> {
 
     return request
-      .post({
+      .post ( {
         uri: `${feesUrl}/fees-register/rangedfees/`,
         json: true,
         headers: {
           Authorization: `Bearer ${user.bearerToken}`
         },
         body: dto
-      })
-      .then(() => true)
-      .catch(FeesClientErrorMapper)
+      } )
+      .then ( () => true )
+      .catch ( FeesClientErrorMapper )
 
   }
 
-  static checkFeeExists (code: string ): Promise<boolean> {
+  static checkFeeExists ( code: string ): Promise<boolean> {
 
-    return request.head(`${feesUrl}/fees-register/fees/${code}`)
-      .then(() => true).catch(() => false)
+    return request.head ( `${feesUrl}/fees-register/fees/${code}` )
+      .then ( () => true ).catch ( () => false )
 
   }
 
   static searchFees (): Promise<Array<model.Fee2Dto>> {
     return request
-      .get(`${feesUrl}/fees-register/fees`)
-      .then(response => {
+      .get ( `${feesUrl}/fees-register/fees` )
+      .then ( response => {
 
         /* Hack dates */
 
-        if (response.validFrom) {
-          response.validFrom = new Date(response.validFrom)
+        if ( response.validFrom ) {
+          response.validFrom = new Date ( response.validFrom )
         }
 
-        if (response.validTo) {
-          response.validTo = new Date(response.validTo)
+        if ( response.validTo ) {
+          response.validTo = new Date ( response.validTo )
         }
 
         return response as Array<model.Fee2Dto>
-      }).catch(FeesClientErrorMapper)
+      } ).catch ( FeesClientErrorMapper )
 
   }
 
   static fetchFeesPendingApproval (): Promise<Array<model.Fee2Dto>> {
     return request
-      .get(`${feesUrl}/fees-register/fees?feeVersionStatus=draft`)
-      .then(response => {
+      .get ( `${feesUrl}/fees-register/fees?feeVersionStatus=draft` )
+      .then ( response => {
         return response as Array<model.Fee2Dto>
-      }).catch(FeesClientErrorMapper)
+      } ).catch ( FeesClientErrorMapper )
   }
 
   static retrieveReferenceData (): Promise<AllReferenceDataDto> {
     return request
-      .get(`${feesUrl}/fees-register/referenceData`)
-      .then(response => {
+      .get ( `${feesUrl}/fees-register/referenceData` )
+      .then ( response => {
         return response as AllReferenceDataDto
-      })
-      .catch(FeesClientErrorMapper)
+      } )
+      .catch ( FeesClientErrorMapper )
   }
 
   static retrieveServices (): Promise<Array<model.ServiceType>> {
     return request
-      .get(`${feesUrl}/fees-register/servicetypes`)
-      .then(response => {
+      .get ( `${feesUrl}/fees-register/servicetypes` )
+      .then ( response => {
         return response as Array<model.ServiceTypeDto>
-      })
-      .catch(FeesClientErrorMapper)
+      } )
+      .catch ( FeesClientErrorMapper )
   }
 
   static retrieveDirections (): Promise<Array<model.DirectionTypeDto>> {
     return request
-      .get(`${feesUrl}/fees-register/directiontypes`)
-      .then(response => {
+      .get ( `${feesUrl}/fees-register/directiontypes` )
+      .then ( response => {
         return response as Array<model.DirectionTypeDto>
-      })
-      .catch(FeesClientErrorMapper)
+      } )
+      .catch ( FeesClientErrorMapper )
   }
 
   static retrieveChannels (): Promise<Array<model.ChannelTypeDto>> {
     return request
-      .get(`${feesUrl}/fees-register/channeltypes`)
-      .then(response => {
+      .get ( `${feesUrl}/fees-register/channeltypes` )
+      .then ( response => {
         return response as Array<model.ChannelTypeDto>
-      })
-      .catch(FeesClientErrorMapper)
+      } )
+      .catch ( FeesClientErrorMapper )
   }
 
   static retrieveJurisdiction1 (): Promise<Array<model.Jurisdiction1Dto>> {
     return request
-      .get(`${feesUrl}/fees-register/jurisdictions1`)
-      .then(response => {
+      .get ( `${feesUrl}/fees-register/jurisdictions1` )
+      .then ( response => {
         return response as Array<model.Jurisdiction1Dto>
-      })
-      .catch(FeesClientErrorMapper)
+      } )
+      .catch ( FeesClientErrorMapper )
   }
 
   static retrieveJurisdiction2 (): Promise<Array<model.Jurisdiction2Dto>> {
     return request
-      .get(`${feesUrl}/fees-register/jurisdictions2`)
-      .then(response => {
+      .get ( `${feesUrl}/fees-register/jurisdictions2` )
+      .then ( response => {
         return response as Array<model.Jurisdiction2Dto>
-      })
-      .catch(FeesClientErrorMapper)
+      } )
+      .catch ( FeesClientErrorMapper )
   }
 
   static retrieveEvents (): Promise<Array<model.EventTypeDto>> {
     return request
-      .get(`${feesUrl}/fees-register/eventtypes`)
-      .then(response => {
+      .get ( `${feesUrl}/fees-register/eventtypes` )
+      .then ( response => {
         return response as Array<model.EventTypeDto>
-      })
-      .catch(FeesClientErrorMapper)
+      } )
+      .catch ( FeesClientErrorMapper )
   }
 }
