@@ -61,7 +61,7 @@ function someEventTypes () {
   return eventTypes
 }
 
-function someJurisdictions1() {
+function someJurisdictions1 () {
   const jurisdictions1 = []
   const jurisdiction1 = new Jurisdiction1()
   jurisdiction1.name = 'civil'
@@ -71,7 +71,7 @@ function someJurisdictions1() {
   return jurisdictions1
 }
 
-function someJurisdictions2() {
+function someJurisdictions2 () {
   const jurisdictions2 = []
   const jurisdiction2 = new Jurisdiction1()
   jurisdiction2.name = 'civil court'
