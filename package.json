@@ -94,7 +94,7 @@
     "gulp-plumber": "^1.0.0",
     "gulp-sass": "^3.1.0",
     "husky": "^0.13.3",
-    "mocha": "^3.0.2",
+    "mocha": "^3.5.3",
     "mochawesome": "^2.2.0",
     "mock-require": "^2.0.1",
     "nsp": "^2.6.3",

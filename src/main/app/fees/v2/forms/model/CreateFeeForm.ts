@@ -56,6 +56,11 @@ export class CreateFeeForm {
   @Fractions ( 0, 2, { message: ValidationErrors.AMOUNT_INVALID_DECIMALS } )
   toRange?: number
 
+  @ValidateIf ( o => o.type === 'ranged' )
+  @IsDefined ( { message: ValidationErrors.RANGE_UNIT_REQUIRED } )
+  @IsNotBlank ( { message: ValidationErrors.RANGE_UNIT_REQUIRED } )
+  rangeUnit?: string
+
   @ValidateIf ( o => o.amountType === 'percentage' )
   @Min ( 0.01, { message: ValidationErrors.PERCENTAGE_GREATER_THAN_0 } )
   @Max ( 100, { message: ValidationErrors.PERCENTAGE_LOWER_THAN_100 } )
@@ -122,6 +127,7 @@ export class CreateFeeForm {
     this.direction = ''
     this.jurisdiction1 = ''
     this.jurisdiction2 = ''
+    this.rangeUnit = ''
   }
 
   static fromObject ( value?: any ): CreateFeeForm {

@@ -45,6 +45,9 @@ export class Fee2Dto {
   minRange: number;
   maxRange: number;
   unspecifiedClaimAmount: boolean;
+  rangeUnit: string;
+  statutoryInstrument: String;
+  siRefId: string;
 }
 
 export class FeeTypeDto {
@@ -131,6 +134,7 @@ export class CreateFixedFeeDto extends CreateFeeDto {
 export class CreateRangedFeeDto extends CreateFeeDto {
   minRange: number;
   maxRange: number;
+  rangeUnit: string;
 }
 
 export class ChannelType {
@@ -152,6 +156,12 @@ export class EventType {
 }
 
 export class Jurisdiction1 {
+  name: string;
+  creationTime: Date;
+  lastUpdated: Date;
+}
+
+export class RangeUnit {
   name: string;
   creationTime: Date;
   lastUpdated: Date;
@@ -181,6 +191,8 @@ export class AllReferenceDataDto {
   jurisdictions1: Jurisdiction1Dto[];
 
   jurisdictions2: Jurisdiction2Dto[];
+
+  rangeUnits : RangeUnit[];
 }
 
 export type FeeVersionStatus = "draft" | "approved";

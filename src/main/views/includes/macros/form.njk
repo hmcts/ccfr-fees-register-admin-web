@@ -147,13 +147,19 @@ disabled = disabled
   </div>
   {% endmacro %}
 
-  {% macro selectReferenceData(name, options, form, displayName) %}
-  {% set error = form.errorFor(name) %}
-  {% set selection = form.valueFor(name) %}
-<tr>
-<td><label for="{{ name }}">{{ displayName }} </label></td>
-<td>
-  <select class="form-control" id="{{ name }}" name="{{ name }}">
+{% macro selectReferenceData(name, options, form, displayName, disabled = false) %}
+{% set error = form.errorFor(name) %}
+{% set selection = form.valueFor(name) %}
+<div class="form-group {% if error %} form-group-error {% endif %}">
+
+<label for="{{ name }}" class="form-label-bold" id="{{ name }}[label]" {{ displayName }}>
+  {% if hint != '' %}
+  <span class="form-hint">{{ hint }}</span>
+  {% endif %}
+</label>
+<span class="error-message">{{ error }}</span>
+
+  <select class="form-control" id="{{ name }}" name="{{ name }}" {% if disabled %} disabled="disabled" {% endif %} >
     <option disabled="disabled" {% if '' == selection %}selected{% endif %} value="" />
     {% for option in options %}
     <option value="{{ option.name }}" {% if option.value == selection %}selected{% endif %} >
@@ -161,8 +167,9 @@ disabled = disabled
   </option>
   {% endfor %}
 </select>
-</td>
-  </tr>
+
+</div>
+
   {% endmacro %}
 
   {% macro selectInline(name, options, form) %}

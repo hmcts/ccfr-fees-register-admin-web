@@ -1,14 +1,15 @@
 'use strict'
 
 function enableRangedFees() {
+  document.getElementById("rangeUnit").removeAttribute("disabled")
   document.getElementById("fromRange").removeAttribute("disabled")
   document.getElementById("toRange").removeAttribute("disabled")
 }
 
 function disabledRangedFees() {
-
-  document.getElementById("fromRange").setAttribute("disabled", "")
-  document.getElementById("toRange").setAttribute("disabled", "")
+  document.getElementById("rangeUnit").setAttribute("disabled", "disabled")
+  document.getElementById("fromRange").setAttribute("disabled", "disabled")
+  document.getElementById("toRange").setAttribute("disabled", "disabled")
 }
 
 document.addEventListener('DOMContentLoaded', function () {
@@ -23,12 +24,12 @@ document.addEventListener('DOMContentLoaded', function () {
 
 function enableFlatAmount() {
   document.getElementById("amount").removeAttribute("disabled")
-  document.getElementById("percentage").setAttribute("disabled", "")
+  document.getElementById("percentage").setAttribute("disabled", "disabled")
 }
 
 function enablePercentageAmount() {
   document.getElementById("percentage").removeAttribute("disabled")
-  document.getElementById("amount").setAttribute("disabled", "")
+  document.getElementById("amount").setAttribute("disabled", "disabled")
 }
 
 document.addEventListener('DOMContentLoaded', function () {

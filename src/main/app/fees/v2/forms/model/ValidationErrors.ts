@@ -41,5 +41,6 @@ export class ValidationErrors {
   static readonly EVENT_REQUIRED: string = 'Select a event'
   static readonly SERVICE_REQUIRED: string = 'Select a service'
   static readonly DIRECTION_REQUIRED: string = 'Select a direction'
+  static readonly RANGE_UNIT_REQUIRED: string = 'Select a unit for the range'
 
 }
