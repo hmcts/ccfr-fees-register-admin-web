@@ -93,6 +93,12 @@ timestamps {
             RPMTagger rpmTagger = new RPMTagger(this, 'fees-register-admin-web', packager.rpmName('fees-register-admin-web', rpmVersion), 'cc-local')
             rpmTagger.tagDeploymentSuccessfulOn('dev')
           }
+
+          stage('Deploy (Test)') {
+            ansible.runDeployPlaybook("{fees_register_admin_version: ${rpmVersion}}", 'test')
+            RPMTagger rpmTagger = new RPMTagger(this, 'fees-register-admin-web', packager.rpmName('fees-register-admin-web', rpmVersion), 'cc-local')
+            rpmTagger.tagDeploymentSuccessfulOn('test')
+          }
         }
       } catch (Throwable err) {
         notifyBuildFailure channel: '#cc-payments-tech'
