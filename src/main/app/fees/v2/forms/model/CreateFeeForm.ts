@@ -50,7 +50,7 @@ export class CreateFeeForm {
   @Fractions ( 0, 2, { message: ValidationErrors.AMOUNT_INVALID_DECIMALS } )
   fromRange?: number
 
-  @ValidateIf ( o => o.type === 'ranged' )
+  @ValidateIf ( o => o.type === 'ranged' && o.toRange)
   @Min ( 0, { message: ValidationErrors.AMOUNT_NOT_NEGATIVE } )
   @Max ( 9999999.99, { message: ValidationErrors.AMOUNT_TOO_BIG } )
   @Fractions ( 0, 2, { message: ValidationErrors.AMOUNT_INVALID_DECIMALS } )
@@ -99,8 +99,6 @@ export class CreateFeeForm {
   @IsNotBlank ( { message: ValidationErrors.FROM_DATE_REQUIRED } )
   fromDate?: Date
 
-  @IsDefined ( { message: ValidationErrors.TO_DATE_REQUIRED } )
-  @IsNotBlank ( { message: ValidationErrors.TO_DATE_REQUIRED } )
   toDate?: Date
 
   @IsDefined ( { message: ValidationErrors.STATUTORY_INSTRUMENT_REQUIRED } )
@@ -164,6 +162,8 @@ export class CreateFeeForm {
       const dto = new CreateRangedFeeDto ()
       dto.maxRange = this.toRange
       dto.minRange = this.fromRange
+      dto.rangeUnit = this.rangeUnit
+
       return this.fillCommon(dto)
     }
     return this.fillCommon(new CreateFixedFeeDto())

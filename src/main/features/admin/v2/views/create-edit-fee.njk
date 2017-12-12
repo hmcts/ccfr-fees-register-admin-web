@@ -11,23 +11,23 @@
     <form method="post" action="create">
       <table id="create-fee-form-table">
         <tr>
-          <td>{{ textInput(t('Fee Code'), 'code', form) }}</td>
+          <td>{{ textInput(t('Fee Code*'), 'code', form) }}</td>
 
-          <td>{{ textInput(t('Memo Line'), 'memoLine', form) }}</td>
+          <td>{{ textInput(t('Memo Line*'), 'memoLine', form) }}</td>
 
-          <td>{{ textInput(t('Natural Account Code'), 'naturalAccountCode', form) }}</td>
+          <td>{{ textInput(t('Natural Account Code*'), 'naturalAccountCode', form) }}</td>
 
         </tr>
 
         <tr>
           <td colspan="3">
-            {{ textArea(t('Description'), 'description', form) }}
+            {{ textArea(t('Description*'), 'description', form) }}
           </td>
         </tr>
 
         <tr>
           <td>
-            <label class="form-label-bold" for="fromDate" id="fromDate[label]">From Date</label>
+            <label class="form-label-bold" for="fromDate" id="fromDate[label]">From Date*</label>
             <input type="date" id="fromDate"
                    name="fromDate"
                    value="{{ form.valueFor('fromDate') }}"/>
@@ -53,12 +53,12 @@
           </td>
 
           <td>
-            {{ textInput(t('From more than'), 'fromRange', form, disabled = not isRanged) }}
+            {{ textInput(t('From more than*'), 'fromRange', form, disabled = not isRanged) }}
             {{ textInput(t('Up to'), 'toRange', form, disabled = not isRanged) }}
           </td>
 
           <td>
-            {{ selectReferenceData ('rangeUnit', referenceData.rangeUnits, form, 'Range Units', disabled = not isRanged)
+            {{ selectReferenceData ('rangeUnit', referenceData.rangeUnits, form, 'Range Units*', disabled = not isRanged)
             }}
           </td>
 
@@ -74,58 +74,58 @@
             ]) }}
           </td>
 
-          <td>{{ textInput(t('Amount (£)'), 'amount', form, disabled = isPercentage) }}</td>
+          <td>{{ textInput(t('Amount (£)*'), 'amount', form, disabled = isPercentage) }}</td>
 
         </tr>
 
         <tr>
-          <td>{{ textInput(t('Percentage (%)'), 'percentage', form, disabled = not isPercentage) }}</td>
+          <td>{{ textInput(t('Percentage (%)*'), 'percentage', form, disabled = not isPercentage) }}</td>
         </tr>
 
         <tr>
           <td colspan="2">
-            {{ selectReferenceData ('jurisdiction1', referenceData.jurisdictions1, form, 'Jurisdiction 1') }}
+            {{ selectReferenceData ('jurisdiction1', referenceData.jurisdictions1, form, 'Jurisdiction 1*') }}
           </td>
         </tr>
 
         <tr>
           <td colspan="2">
-            {{ selectReferenceData ('jurisdiction2', referenceData.jurisdictions2, form, 'Jurisdiction 2') }}
-          </td>
-        </tr>
-
-
-        <tr>
-          <td colspan="2">
-            {{ selectReferenceData ('service', referenceData.serviceTypes, form, 'Service') }}
-          </td>
-        </tr>
-
-        <tr>
-          <td colspan="2">
-            {{ selectReferenceData ('event', referenceData.eventTypes, form, 'Event') }}
+            {{ selectReferenceData ('jurisdiction2', referenceData.jurisdictions2, form, 'Jurisdiction 2*') }}
           </td>
         </tr>
 
 
         <tr>
           <td colspan="2">
-            {{ selectReferenceData ('channel', referenceData.channelTypes, form, 'Channel') }}
+            {{ selectReferenceData ('service', referenceData.serviceTypes, form, 'Service*') }}
           </td>
         </tr>
 
         <tr>
           <td colspan="2">
-            {{ selectReferenceData ('direction', referenceData.directionTypes, form, 'Direction') }}
+            {{ selectReferenceData ('event', referenceData.eventTypes, form, 'Event*') }}
+          </td>
+        </tr>
+
+
+        <tr>
+          <td colspan="2">
+            {{ selectReferenceData ('channel', referenceData.channelTypes, form, 'Channel*') }}
           </td>
         </tr>
 
         <tr>
-          <td> {{ textInput(t('Statutory Instrument'), 'statutoryInstrument', form) }}</td>
+          <td colspan="2">
+            {{ selectReferenceData ('direction', referenceData.directionTypes, form, 'Direction*') }}
+          </td>
+        </tr>
 
-          <td> {{ textInput(t('SI REF ID'), 'siRefId', form) }}</td>
+        <tr>
+          <td> {{ textInput(t('Statutory Instrument*'), 'statutoryInstrument', form) }}</td>
 
-          <td> {{ textInput(t('Fee Order Name'), 'feeOrderName', form) }}</td>
+          <td> {{ textInput(t('SI REF ID*'), 'siRefId', form) }}</td>
+
+          <td> {{ textInput(t('Fee Order Name*'), 'feeOrderName', form) }}</td>
 
         </tr>
 
