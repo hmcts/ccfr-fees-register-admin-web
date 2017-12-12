@@ -11,7 +11,7 @@ class Renderer {
   static render ( res: express.Response ) {
 
     FeesClient
-      .fetchFeesPendingApproval ()
+      .searchFees('draft')
       .then ( ( fees: Array<Fee2Dto> ) => {
         res.render ( Paths.dashboard.associatedView, {
           fees: fees

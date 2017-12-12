@@ -95,9 +95,9 @@ export class FeesClient {
 
   }
 
-  static searchFees (): Promise<Array<model.Fee2Dto>> {
+  static searchFees (versionStatus: String): Promise<Array<model.Fee2Dto>> {
     return request
-      .get ( `${feesUrl}/fees-register/fees` )
+      .get ( `${feesUrl}/fees-register/fees?feeVersionStatus=${versionStatus}`)
       .then ( response => {
 
         /* Hack dates */
@@ -113,14 +113,6 @@ export class FeesClient {
         return response as Array<model.Fee2Dto>
       } ).catch ( FeesClientErrorMapper )
 
-  }
-
-  static fetchFeesPendingApproval (): Promise<Array<model.Fee2Dto>> {
-    return request
-      .get ( `${feesUrl}/fees-register/fees?feeVersionStatus=draft` )
-      .then ( response => {
-        return response as Array<model.Fee2Dto>
-      } ).catch ( FeesClientErrorMapper )
   }
 
   static retrieveReferenceData (): Promise<AllReferenceDataDto> {

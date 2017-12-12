@@ -152,11 +152,8 @@ disabled = disabled
 {% set selection = form.valueFor(name) %}
 <div class="form-group {% if error %} form-group-error {% endif %}">
 
-<label for="{{ name }}" class="form-label-bold" id="{{ name }}[label]" {{ displayName }}>
-  {% if hint != '' %}
-  <span class="form-hint">{{ hint }}</span>
-  {% endif %}
-</label>
+<label for="{{ name }}" class="form-label-bold" id="{{ name }}[label]"> {{ displayName }} </label>
+
 <span class="error-message">{{ error }}</span>
 
   <select class="form-control" id="{{ name }}" name="{{ name }}" {% if disabled %} disabled="disabled" {% endif %} >

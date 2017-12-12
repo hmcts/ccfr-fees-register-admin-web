@@ -11,14 +11,16 @@
             <tr>
               <th class="bold-xxsmall">Fee code</th>
               <th class="bold-xxsmall">Fee description</th>
-              <th class="bold-xxsmall">Fee type</th>
               <th class="bold-xxsmall">Range from </th>
               <th class="bold-xxsmall">Range to</th>
+              <th class="bold-xxsmall">Unit</th>
+              <th class="bold-xxsmall">Fee type</th>
               <th class="bold-xxsmall">Amount Type</th>
-              <th class="bold-xxsmall">Fee Amount / %</th>
+              <th class="bold-xxsmall">Currency</th>
+              <th class="bold-xxsmall">%</th>
               <th class="bold-xxsmall">Jurisdiction 1</th>
               <th class="bold-xxsmall">Jurisdiction 2</th>
-              <th class="bold-xxsmall" >Service</th>
+              <th class="bold-xxsmall">Service</th>
               <th class="bold-xxsmall">Event</th>
               <th class="bold-xxsmall">Channel</th>
               <th class="bold-xxsmall">Direction</th>
@@ -26,30 +28,32 @@
               <th class="bold-xxsmall">Version</th>
               <th class="bold-xxsmall">Valid From</th>
               <th class="bold-xxsmall">Valid To</th>
+
+              <th class="bold-xxsmall">Statutory Instrument</th>
+              <th class="bold-xxsmall">SI Ref ID</th>
+              <th class="bold-xxsmall">Fee Order Name</th>
+              <th class="bold-xxsmall">Natural Account Code</th>
             </tr>
           </thead>
           <tbody>
               {% for fee in fees %}
+                {% for version in fee.feeVersionDtos %}
+                  {% if version.status === 'approved' %}
                 <tr>
                   <td class="font-xxsmall">{{ fee.code }}</td>
-                  <td class="font-xxsmall">{{ fee.currentVersion.description }}</td>
+                  <td class="font-xxsmall">{{ version.description }}</td>
+                  {% if fee.minRange %}<td class="font-xxsmall">{{ fee.minRange }}</td>{% else %}<td/>{% endif %}
+                  {% if fee.maxRange %}<td class="font-xxsmall">{{ fee.maxRange }}</td>{% else %}<td/>{% endif %}
+                  <td class="font-xxsmall">{{ fee.rangeUnit }}</td>
                   <td class="font-xxsmall">{{ fee.feeType }}</td>
-                  {% if fee.minRange %}
-                  <td class="font-xxsmall">£{{ fee.minRange }}</td>
-                  {% else %}
-                  <td/>
-                  {% endif %}
-                  {% if fee.maxRange %}
-                  <td class="font-xxsmall">£{{ fee.maxRange }}</td>
-                  {% else %}
-                  <td/>
-                  {% endif %}
-                  {% if fee.currentVersion.flatAmount %}
+                  {% if version.flatAmount %}
                     <td class="font-xxsmall">Flat</td>
-                    <td class="font-xxsmall">£{{ fee.currentVersion.flatAmount.amount }}</td>
+                    <td class="font-xxsmall">£{{ version.flatAmount.amount }}</td>
+                    <td/>
                   {% else %}
-                    <td class="font-xxsmall">Percentage</td>
-                  <td class="font-xxsmall">{{ fee.currentVersion.percentageAmount.percentage }}%</td>
+                  <td class="font-xxsmall">Percentage</td>
+                  <td/>
+                  <td class="font-xxsmall">{{ version.percentageAmount.percentage }}%</td>
                   {% endif %}
                   <td class="font-xxsmall">{{ fee.jurisdiction1Dto.name }}</td>
                   <td class="font-xxsmall">{{ fee.jurisdiction2Dto.name }}</td>
@@ -58,18 +62,24 @@
                   <td class="font-xxsmall">{{ fee.channelTypeDto.name }}</td>
                   <td class="font-xxsmall">{{ fee.directionTypeDto.name }}</td>
                   <td class="font-xxsmall">{{ fee.memoLine }}</td>
-                  <td class="font-xxsmall">{{ fee.currentVersion.version }}</td>
-                  {% if fee.currentVersion.validFrom %}
-                    <td class="font-xxsmall">{{ fee.currentVersion.validFrom | date }}</td>
+                  <td class="font-xxsmall">{{ version.version }}</td>
+                  {% if version.validFrom %}
+                    <td class="font-xxsmall">{{ version.validFrom | date }}</td>
                   {% else %}
                     <td/>
                   {% endif %}
-                  {% if fee.currentVersion.validTo %}
-                    <td class="font-xxsmall">{{ fee.currentVersion.validTo | date }}</td>
+                  {% if version.validTo %}
+                    <td class="font-xxsmall">{{ version.validTo | date }}</td>
                   {% else %}
                     <td/>
                   {% endif %}
+                  <td class="font-xxsmall">{{ fee.statutoryInstrument }}</td>
+                  <td class="font-xxsmall">{{ fee.siRefId }}</td>
+                  <td class="font-xxsmall">{{ fee.feeOrderName }}</td>
+                  <td class="font-xxsmall">{{ fee.naturalAccountCode }}</td>
                 </tr>
+                  {% endif %}
+                {% endfor %}
               {% endfor %}
           </tbody>
     </table>
