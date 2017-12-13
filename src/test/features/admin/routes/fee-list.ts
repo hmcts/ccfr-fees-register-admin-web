@@ -27,7 +27,7 @@ describe('Fees list page', () => {
       await request(app)
         .get(AdminPaths.feeListPage.uri)
         .set('Cookie', `${cookieName}=JWT`)
-        .expect(res => expect(res).to.be.successful.withText('X0002', '£1090'))
+        .expect(res => expect(res).to.be.successful.withText('X0002'))
     })
   })
 })
