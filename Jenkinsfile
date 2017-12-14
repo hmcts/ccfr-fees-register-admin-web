@@ -74,11 +74,7 @@ timestamps {
           feesAdminWebDockerVersion = dockerImage imageName: 'fees-register/fees-admin-web'
         }
 
-        stage("Trigger acceptance tests") {
-          build job: '/fees-register/fees-register-admin-web-acceptance-tests/master', parameters: [
-            [$class: 'StringParameterValue', name: 'feesAdminWebDockerVersion', value: feesAdminWebDockerVersion]
-          ]
-        }
+
 
         onMaster {
           def rpmVersion
