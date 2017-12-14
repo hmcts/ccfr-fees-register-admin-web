@@ -44,13 +44,7 @@ timestamps {
           sh "rm nsp-report.txt"
         }
 
-        stage('Test') {
-          try {
-            sh "yarn test"
-          } finally {
-            archiveArtifacts 'mochawesome-report/unit.html'
-          }
-        }
+
 
         stage('Test routes') {
           try {
@@ -72,6 +66,12 @@ timestamps {
 
         stage('Build Docker') {
           feesAdminWebDockerVersion = dockerImage imageName: 'fees-register/fees-admin-web'
+        }
+
+        stage("Trigger acceptance tests") {
+          build job: '/fees-register/fees-register-admin-web-acceptance-tests/master', parameters: [
+            [$class: 'StringParameterValue', name: 'feesAdminWebDockerVersion', value: feesAdminWebDockerVersion]
+          ]
         }
 
 
