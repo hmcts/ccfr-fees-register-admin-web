@@ -31,7 +31,7 @@ export class CreateBulkFixedFee {
 
   createFixedFeeDto (dto): CreateFeeDto {
     const flatAmount = new FlatAmountDto()
-    flatAmount.amount = Number(dto.amount)
+    flatAmount.amount = Number(dto.feeAmount)
 
     const feeVersionDto = new FeeVersionDto()
     feeVersionDto.version = Number(dto.feeVersion)
