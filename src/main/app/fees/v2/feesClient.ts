@@ -49,6 +49,10 @@ export class FeesClient {
     return request
       .post ( {
         uri: `${feesUrl}/fees-register/bulkfixedfees/`,
+        json: true,
+        headers: {
+          Authorization: `Bearer ${user.bearerToken}`
+        },
         body: dtos
       } )
       .then ( () => true )
