@@ -37,46 +37,46 @@
           </thead>
           <tbody>
               {% for fee in fees %}
-                {% for version in fee.feeVersionDtos %}
+                {% for version in fee.fee_versions %}
                   {% if version.status === 'approved' %}
                 <tr>
                   <td class="font-xxsmall">{{ fee.code }}</td>
                   <td class="font-xxsmall">{{ version.description }}</td>
-                  {% if fee.minRange %}<td class="font-xxsmall">{{ fee.minRange }}</td>{% else %}<td/>{% endif %}
-                  {% if fee.maxRange %}<td class="font-xxsmall">{{ fee.maxRange }}</td>{% else %}<td/>{% endif %}
-                  <td class="font-xxsmall">{{ fee.rangeUnit }}</td>
-                  <td class="font-xxsmall">{{ fee.feeType }}</td>
-                  {% if version.flatAmount %}
+                  {% if fee.minRange %}<td class="font-xxsmall">{{ fee.min_range }}</td>{% else %}<td/>{% endif %}
+                  {% if fee.maxRange %}<td class="font-xxsmall">{{ fee.max_range }}</td>{% else %}<td/>{% endif %}
+                  <td class="font-xxsmall">{{ fee.range_unit }}</td>
+                  <td class="font-xxsmall">{{ fee.fee_type }}</td>
+                  {% if version.flat_amount %}
                     <td class="font-xxsmall">Flat</td>
-                    <td class="font-xxsmall">£{{ version.flatAmount.amount }}</td>
+                    <td class="font-xxsmall">£{{ version.flat_amount.amount }}</td>
                     <td/>
                   {% else %}
                   <td class="font-xxsmall">Percentage</td>
                   <td/>
-                  <td class="font-xxsmall">{{ version.percentageAmount.percentage }}%</td>
+                  <td class="font-xxsmall">{{ version.percentage_amount.percentage }}%</td>
                   {% endif %}
-                  <td class="font-xxsmall">{{ fee.jurisdiction1Dto.name }}</td>
-                  <td class="font-xxsmall">{{ fee.jurisdiction2Dto.name }}</td>
-                  <td class="font-xxsmall">{{ fee.serviceTypeDto.name }}</td>
-                  <td class="font-xxsmall">{{ fee.eventTypeDto.name }}</td>
-                  <td class="font-xxsmall">{{ fee.channelTypeDto.name }}</td>
-                  <td class="font-xxsmall">{{ fee.directionTypeDto.name }}</td>
-                  <td class="font-xxsmall">{{ fee.memoLine }}</td>
+                  <td class="font-xxsmall">{{ fee.jurisdiction1.name }}</td>
+                  <td class="font-xxsmall">{{ fee.jurisdiction2.name }}</td>
+                  <td class="font-xxsmall">{{ fee.service_type.name }}</td>
+                  <td class="font-xxsmall">{{ fee.event_type.name }}</td>
+                  <td class="font-xxsmall">{{ fee.channel_type.name }}</td>
+                  <td class="font-xxsmall">{{ fee.direction_type.name }}</td>
+                  <td class="font-xxsmall">{{ fee.memo_line }}</td>
                   <td class="font-xxsmall">{{ version.version }}</td>
                   {% if version.validFrom %}
-                    <td class="font-xxsmall">{{ version.validFrom | date }}</td>
+                    <td class="font-xxsmall">{{ version.valid_from | date }}</td>
                   {% else %}
                     <td/>
                   {% endif %}
                   {% if version.validTo %}
-                    <td class="font-xxsmall">{{ version.validTo | date }}</td>
+                    <td class="font-xxsmall">{{ version.valid_to | date }}</td>
                   {% else %}
                     <td/>
                   {% endif %}
-                  <td class="font-xxsmall">{{ fee.statutoryInstrument }}</td>
-                  <td class="font-xxsmall">{{ fee.siRefId }}</td>
-                  <td class="font-xxsmall">{{ fee.feeOrderName }}</td>
-                  <td class="font-xxsmall">{{ fee.naturalAccountCode }}</td>
+                  <td class="font-xxsmall">{{ fee.statutory_instrument }}</td>
+                  <td class="font-xxsmall">{{ fee.si_ref_id }}</td>
+                  <td class="font-xxsmall">{{ fee.fee_order_name }}</td>
+                  <td class="font-xxsmall">{{ fee.natural_account_code }}</td>
                 </tr>
                   {% endif %}
                 {% endfor %}

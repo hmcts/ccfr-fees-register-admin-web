@@ -35,11 +35,11 @@ export class CreateBulkFixedFee {
 
     const feeVersionDto = new FeeVersionDto()
     feeVersionDto.version = Number(dto.feeVersion)
-    feeVersionDto.validFrom = new Date(dto.validFrom)
-    feeVersionDto.validTo = new Date(dto.validTo)
+    feeVersionDto.valid_from = new Date(dto.validFrom)
+    feeVersionDto.valid_to = new Date(dto.validTo)
     feeVersionDto.description = dto.feeDescription
     feeVersionDto.status = dto.feeStatus as FeeVersionStatus
-    feeVersionDto.flatAmount = flatAmount
+    feeVersionDto.flat_amount = flatAmount
 
     const createFeeDto = new CreateFixedFeeDto()
     createFeeDto.code = dto.feeCode
@@ -50,12 +50,12 @@ export class CreateBulkFixedFee {
     createFeeDto.channel = dto.channel
     createFeeDto.direction = dto.direction
     createFeeDto.event = dto.event
-    createFeeDto.memoLine = dto.memoLine
-    createFeeDto.feeOrderName = dto.feeOrderName
-    createFeeDto.naturalAccountCode = dto.naturalAccountCode
-    createFeeDto.unspecifiedClaimAmount = false
-    createFeeDto.statutoryInstrument = dto.statutoryInstrument
-    createFeeDto.siRefId = dto.siRefId
+    createFeeDto.memo_line = dto.memoLine
+    createFeeDto.fee_order_name = dto.feeOrderName
+    createFeeDto.natural_account_code = dto.naturalAccountCode
+    createFeeDto.unspecified_claim_amount = false
+    createFeeDto.statutory_instrument = dto.statutoryInstrument
+    createFeeDto.si_ref_id = dto.siRefId
 
     return createFeeDto
   }

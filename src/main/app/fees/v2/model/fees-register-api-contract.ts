@@ -30,24 +30,24 @@ export class EventTypeDtoBuilder {
 
 export class Fee2Dto {
   code: string;
-  feeType: String;
-  memoLine: string;
-  channelTypeDto: ChannelType;
-  directionTypeDto: DirectionType;
-  eventTypeDto: EventType;
-  jurisdiction1Dto: Jurisdiction1;
-  jurisdiction2Dto: Jurisdiction2;
-  serviceTypeDto: ServiceType;
-  naturalAccountCode: string;
-  feeOrderName: string;
-  feeVersionDtos: FeeVersionDto[];
-  currentVersion: FeeVersionDto;
-  minRange: number;
-  maxRange: number;
-  unspecifiedClaimAmount: boolean;
-  rangeUnit: string;
-  statutoryInstrument: String;
-  siRefId: string;
+  fee_type: String;
+  memo_line: string;
+  channel_type: ChannelType;
+  direction_type: DirectionType;
+  event_type: EventType;
+  jurisdiction1: Jurisdiction1;
+  jurisdiction2: Jurisdiction2;
+  service_type: ServiceType;
+  natural_account_code: string;
+  fee_order_name: string;
+  fee_versions: FeeVersionDto[];
+  current_version: FeeVersionDto;
+  min_range: number;
+  max_range: number;
+  unspecified_claim_amount: boolean;
+  range_unit: string;
+  statutory_instrument: String;
+  si_ref_id: string;
 }
 
 export class FeeTypeDto {
@@ -58,19 +58,19 @@ export class FeeTypeDto {
 
 export class FeeVersionDto {
   version: number;
-  validFrom: Date;
-  validTo: Date;
+  valid_from: Date;
+  valid_to: Date;
   description: string;
   status: FeeVersionStatus;
-  flatAmount: FlatAmountDto;
-  percentageAmount: PercentageAmountDto;
+  flat_amount: FlatAmountDto;
+  percentage_amount: PercentageAmountDto;
 
   public getValidFrom() {
-    return new Date(this.validFrom).toDateString;
+    return new Date(this.valid_from).toDateString;
   }
 
   public getValidTo() {
-    return new Date(this.validTo).toDateString;
+    return new Date(this.valid_to).toDateString;
   }
 
 }
@@ -119,12 +119,12 @@ export class CreateFeeDto {
   channel: string;
   direction: string;
   event: string;
-  memoLine: string;
-  feeOrderName: string;
-  naturalAccountCode: string;
-  unspecifiedClaimAmount: boolean;
-  statutoryInstrument: string;
-  siRefId: string
+  memo_line: string;
+  fee_order_name: string;
+  natural_account_code: string;
+  unspecified_claim_amount: boolean;
+  statutory_instrument: string;
+  si_ref_id: string
 
 }
 
@@ -132,9 +132,9 @@ export class CreateFixedFeeDto extends CreateFeeDto {
 }
 
 export class CreateRangedFeeDto extends CreateFeeDto {
-  minRange: number;
-  maxRange: number;
-  rangeUnit: string;
+  min_range: number;
+  max_range: number;
+  range_unit: string;
 }
 
 export class ChannelType {

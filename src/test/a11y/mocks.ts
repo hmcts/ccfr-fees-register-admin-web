@@ -95,8 +95,8 @@ function someFee2Dto () {
   const fee2Dtos = []
   const fee2Dto = new Fee2Dto()
   fee2Dto.code = 'X0001'
-  fee2Dto.unspecifiedClaimAmount = false
-  fee2Dto.memoLine = 'Mock memo line'
+  fee2Dto.unspecified_claim_amount = false
+  fee2Dto.memo_line = 'Mock memo line'
   fee2Dtos.push(fee2Dto)
   return fee2Dtos
 }

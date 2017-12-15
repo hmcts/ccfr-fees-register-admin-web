@@ -160,9 +160,9 @@ export class CreateFeeForm {
 
     if ( this.type === 'ranged' ) {
       const dto = new CreateRangedFeeDto ()
-      dto.maxRange = this.toRange
-      dto.minRange = this.fromRange
-      dto.rangeUnit = this.rangeUnit
+      dto.max_range = this.toRange
+      dto.min_range = this.fromRange
+      dto.range_unit = this.rangeUnit
 
       return this.fillCommon(dto)
     }
@@ -179,30 +179,30 @@ export class CreateFeeForm {
     dto.jurisdiction2 = this.jurisdiction2
     dto.event = this.event
     dto.direction = this.direction
-    dto.memoLine = this.memoLine
+    dto.memo_line = this.memoLine
 
-    dto.naturalAccountCode = this.naturalAccountCode
-    dto.statutoryInstrument = this.statutoryInstrument
-    dto.siRefId = this.siRefId
-    dto.feeOrderName = this.feeOrderName
+    dto.natural_account_code = this.naturalAccountCode
+    dto.statutory_instrument = this.statutoryInstrument
+    dto.si_ref_id = this.siRefId
+    dto.fee_order_name = this.feeOrderName
 
     dto.version = new FeeVersionDto()
     dto.version.description = this.description
 
     if (this.fromDate) {
-      dto.version.validFrom = this.fromDate
+      dto.version.valid_from = this.fromDate
     }
 
     if (this.toDate) {
-      dto.version.validTo = this.toDate
+      dto.version.valid_to = this.toDate
     }
 
     if (this.amountType === 'flat') {
-      dto.version.flatAmount = new FlatAmountDto()
-      dto.version.flatAmount.amount = this.amount
+      dto.version.flat_amount = new FlatAmountDto()
+      dto.version.flat_amount.amount = this.amount
     } else if (this.amountType === 'percentage') {
-      dto.version.percentageAmount = new PercentageAmountDto()
-      dto.version.percentageAmount.percentage = this.percentage
+      dto.version.percentage_amount = new PercentageAmountDto()
+      dto.version.percentage_amount.percentage = this.percentage
     }
 
     return dto

@@ -35,42 +35,42 @@
               {% for fee in fees %}
                 <tr>
                   <td class="font-xxsmall">{{ fee.code }}</td>
-                  <td class="font-xxsmall">{{ fee.currentVersion.description }}</td>
-                  <td class="font-xxsmall">{{ fee.feeType }}</td>
-                  {% if fee.minRange %}
-                  <td class="font-xxsmall">£{{ fee.minRange }}</td>
+                  <td class="font-xxsmall">{{ fee.current_version.description }}</td>
+                  <td class="font-xxsmall">{{ fee.fee_type }}</td>
+                  {% if fee.min_range %}
+                  <td class="font-xxsmall">£{{ fee.min_range }}</td>
                   {% else %}
                   <td/>
                   {% endif %}
-                  {% if fee.maxRange %}
-                  <td class="font-xxsmall">£{{ fee.maxRange }}</td>
+                  {% if fee.max_range %}
+                  <td class="font-xxsmall">£{{ fee.max_range }}</td>
                   {% else %}
                   <td/>
                   {% endif %}
-                  {% if fee.currentVersion.flatAmount %}
+                  {% if fee.current_version.flat_amount %}
                     <td class="font-xxsmall">Flat</td>
-                    <td class="font-xxsmall">£{{ fee.currentVersion.flatAmount.amount }}</td>
+                    <td class="font-xxsmall">£{{ fee.current_version.flat_amount.amount }}</td>
                   {% else %}
                     <td class="font-xxsmall">Percentage</td>
-                  <td class="font-xxsmall">{{ fee.currentVersion.percentageAmount.percentage }}%</td>
+                  <td class="font-xxsmall">{{ fee.current_version.percentage_amount.percentage }}%</td>
                   {% endif %}
-                  <td class="font-xxsmall">{{ fee.jurisdiction1Dto.name }}</td>
-                  <td class="font-xxsmall">{{ fee.jurisdiction2Dto.name }}</td>
-                  <td class="font-xxsmall">{{ fee.serviceTypeDto.name }}</td>
-                  <td class="font-xxsmall">{{ fee.eventTypeDto.name }}</td>
-                  <td class="font-xxsmall">{{ fee.channelTypeDto.name }}</td>
-                  <td class="font-xxsmall">{{ fee.currentVersion.version }}</td>
-                  {% if fee.currentVersion.validFrom %}
-                    <td class="font-xxsmall">{{ fee.currentVersion.validFrom | date }}</td>
+                  <td class="font-xxsmall">{{ fee.jurisdiction1.name }}</td>
+                  <td class="font-xxsmall">{{ fee.jurisdiction2.name }}</td>
+                  <td class="font-xxsmall">{{ fee.service_type.name }}</td>
+                  <td class="font-xxsmall">{{ fee.event_type.name }}</td>
+                  <td class="font-xxsmall">{{ fee.channel_type.name }}</td>
+                  <td class="font-xxsmall">{{ fee.current_version.version }}</td>
+                  {% if fee.current_version.valid_from %}
+                    <td class="font-xxsmall">{{ fee.current_version.valid_from | date }}</td>
                   {% else %}
                     <td/>
                   {% endif %}
-                  {% if fee.currentVersion.validTo %}
-                    <td class="font-xxsmall">{{ fee.currentVersion.validTo | date }}</td>
+                  {% if fee.current_version.valid_to %}
+                    <td class="font-xxsmall">{{ fee.current_version.valid_to | date }}</td>
                   {% else %}
                     <td/>
                   {% endif %}
-                  <td> <a href="/admin/v2/dashboard?approveFeeCode={{ fee.code }}&approveVersion={{ fee.currentVersion.version }}" class="button">Approve</a></td>
+                  <td> <a href="/admin/v2/dashboard?approveFeeCode={{ fee.code }}&approveVersion={{ fee.current_version.version }}" class="button">Approve</a></td>
 
                 </tr>
               {% endfor %}
