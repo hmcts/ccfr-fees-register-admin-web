@@ -64,6 +64,7 @@ export class FeeVersionDto {
   status: FeeVersionStatus;
   flat_amount: FlatAmountDto;
   percentage_amount: PercentageAmountDto;
+  volume_amount: VolumeAmountDto;
 
   public getValidFrom() {
     return new Date(this.valid_from).toDateString;
@@ -105,9 +106,13 @@ export class PercentageAmountDto {
   percentage: number;
 }
 
+export class VolumeAmountDto {
+  amount: number;
+}
+
 export class ApproveFeeDto {
-  feeCode: string;
-  feeVersion: number;
+  fee_code: string;
+  fee_version: number;
 }
 
 export class CreateFeeDto {

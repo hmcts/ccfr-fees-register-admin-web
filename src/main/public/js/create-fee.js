@@ -22,7 +22,7 @@ document.addEventListener('DOMContentLoaded', function () {
     .addEventListener('click', enableRangedFees);
 });
 
-function enableFlatAmount() {
+function enableFlatOrVolumeAmount() {
   document.getElementById("amount").removeAttribute("disabled")
   document.getElementById("percentage").setAttribute("disabled", "disabled")
 }
@@ -39,5 +39,10 @@ document.addEventListener('DOMContentLoaded', function () {
 
 document.addEventListener('DOMContentLoaded', function () {
   document.getElementById('amountTypeflat')
-    .addEventListener('click', enableFlatAmount);
+    .addEventListener('click', enableFlatOrVolumeAmount);
+});
+
+document.addEventListener('DOMContentLoaded', function () {
+  document.getElementById('amountTypevolume')
+    .addEventListener('click', enableFlatOrVolumeAmount);
 });

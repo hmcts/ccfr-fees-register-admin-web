@@ -50,6 +50,10 @@
                     <td class="font-xxsmall">Flat</td>
                     <td class="font-xxsmall">£{{ version.flat_amount.amount }}</td>
                     <td/>
+                  {% elif version.volume_amount %}
+                    <td class="font-xxsmall">Volume</td>
+                    <td class="font-xxsmall">£{{ version.volume_amount.amount }}</td>
+                    <td/>
                   {% else %}
                   <td class="font-xxsmall">Percentage</td>
                   <td/>

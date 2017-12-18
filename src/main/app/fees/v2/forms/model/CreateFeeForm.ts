@@ -9,7 +9,7 @@ import { FeesClient } from 'app/fees/v2/feesClient'
 import { ValidationErrors } from 'fees/v2/forms/model/ValidationErrors'
 import {
   CreateFeeDto, CreateFixedFeeDto, CreateRangedFeeDto,
-  FeeVersionDto, FlatAmountDto, PercentageAmountDto
+  FeeVersionDto, FlatAmountDto, PercentageAmountDto, VolumeAmountDto
 } from 'fees/v2/model/fees-register-api-contract'
 
 export class CreateFeeForm {
@@ -197,12 +197,20 @@ export class CreateFeeForm {
       dto.version.valid_to = this.toDate
     }
 
-    if (this.amountType === 'flat') {
-      dto.version.flat_amount = new FlatAmountDto()
-      dto.version.flat_amount.amount = this.amount
-    } else if (this.amountType === 'percentage') {
-      dto.version.percentage_amount = new PercentageAmountDto()
-      dto.version.percentage_amount.percentage = this.percentage
+    switch (this.amountType) {
+
+      case 'flat' :
+        dto.version.flat_amount = new FlatAmountDto ()
+        dto.version.flat_amount.amount = this.amount
+        break
+      case 'percentage' :
+        dto.version.percentage_amount = new PercentageAmountDto ()
+        dto.version.percentage_amount.percentage = this.percentage
+        break
+      case 'volume' :
+        dto.version.volume_amount = new VolumeAmountDto ()
+        dto.version.volume_amount.amount = this.amount
+        break
     }
 
     return dto

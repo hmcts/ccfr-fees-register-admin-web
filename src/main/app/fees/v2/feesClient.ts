@@ -28,8 +28,8 @@ export class FeesClient {
 
     const dto: ApproveFeeDto = new ApproveFeeDto ()
 
-    dto.feeCode = feeCode
-    dto.feeVersion = version
+    dto.fee_code = feeCode
+    dto.fee_version = version
 
     return request
       .patch ( {
