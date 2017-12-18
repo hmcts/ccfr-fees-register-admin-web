@@ -42,8 +42,8 @@
                 <tr>
                   <td class="font-xxsmall">{{ fee.code }}</td>
                   <td class="font-xxsmall">{{ version.description }}</td>
-                  {% if fee.minRange %}<td class="font-xxsmall">{{ fee.min_range }}</td>{% else %}<td/>{% endif %}
-                  {% if fee.maxRange %}<td class="font-xxsmall">{{ fee.max_range }}</td>{% else %}<td/>{% endif %}
+                  {% if fee.min_range %}<td class="font-xxsmall">{{ fee.min_range }}</td>{% else %}<td/>{% endif %}
+                  {% if fee.max_range %}<td class="font-xxsmall">{{ fee.max_range }}</td>{% else %}<td/>{% endif %}
                   <td class="font-xxsmall">{{ fee.range_unit }}</td>
                   <td class="font-xxsmall">{{ fee.fee_type }}</td>
                   {% if version.flat_amount %}
@@ -63,12 +63,12 @@
                   <td class="font-xxsmall">{{ fee.direction_type.name }}</td>
                   <td class="font-xxsmall">{{ fee.memo_line }}</td>
                   <td class="font-xxsmall">{{ version.version }}</td>
-                  {% if version.validFrom %}
+                  {% if version.valid_from %}
                     <td class="font-xxsmall">{{ version.valid_from | date }}</td>
                   {% else %}
                     <td/>
                   {% endif %}
-                  {% if version.validTo %}
+                  {% if version.valid_to %}
                     <td class="font-xxsmall">{{ version.valid_to | date }}</td>
                   {% else %}
                     <td/>
