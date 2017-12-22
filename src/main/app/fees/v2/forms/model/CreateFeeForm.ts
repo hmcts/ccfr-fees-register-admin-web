@@ -101,12 +101,8 @@ export class CreateFeeForm {
 
   toDate?: Date
 
-  @IsDefined ( { message: ValidationErrors.STATUTORY_INSTRUMENT_REQUIRED } )
-  @IsNotBlank ( { message: ValidationErrors.STATUTORY_INSTRUMENT_REQUIRED } )
   statutoryInstrument?: string
 
-  @IsDefined ( { message: ValidationErrors.SI_REF_ID_REQUIRED } )
-  @IsNotBlank ( { message: ValidationErrors.SI_REF_ID_REQUIRED } )
   siRefId?: string
 
   @IsDefined ( { message: ValidationErrors.FEE_ORDER_NAME_REQUIRED } )

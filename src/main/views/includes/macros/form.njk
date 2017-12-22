@@ -156,7 +156,8 @@ disabled = disabled
 
 <span class="error-message">{{ error }}</span>
 
-  <select class="form-control" id="{{ name }}" name="{{ name }}" {% if disabled %} disabled="disabled" {% endif %} >
+  <select class="form-control {% if error %} form-control-error {% endif %}"
+          id="{{ name }}" name="{{ name }}" {% if disabled %} disabled="disabled" {% endif %} >
     <option disabled="disabled" {% if '' == selection %}selected{% endif %} value="" />
     {% for option in options %}
     <option value="{{ option.name }}" {% if option.value == selection %}selected{% endif %} >

@@ -27,18 +27,24 @@
 
         <tr>
           <td>
+
+            {% set fromDateError = form.errorFor('fromDate') %}
+            <div class="form-group {% if fromDateError %} form-group-error {% endif %}">
             <label class="form-label-bold" for="fromDate" id="fromDate[label]">From Date*</label>
-            <input type="date" id="fromDate"
+            <input type="date" id="fromDate" class="form-control {% if fromDateError %} form-control-error {% endif %}"
                    name="fromDate"
                    value="{{ form.valueFor('fromDate') }}"/>
+            </div>
           </td>
 
           <td>
+            <div class="form-group">
             <label class="form-label-bold" for="toDate" id="toDate[label]">To Date</label>
-            <input type="date"
+            <input type="date" class="form-control"
                    id="toDate"
                    name="toDate"
                    value="{{ form.valueFor('toDate') }}"/>
+            </div>
           </td>
         </tr>
 
@@ -122,11 +128,12 @@
         </tr>
 
         <tr>
-          <td> {{ textInput(t('Statutory Instrument*'), 'statutoryInstrument', form) }}</td>
-
-          <td> {{ textInput(t('SI REF ID*'), 'siRefId', form) }}</td>
 
           <td> {{ textInput(t('Fee Order Name*'), 'feeOrderName', form) }}</td>
+
+          <td> {{ textInput(t('Statutory Instrument'), 'statutoryInstrument', form) }}</td>
+
+          <td> {{ textInput(t('SI REF ID'), 'siRefId', form) }}</td>
 
         </tr>
 
