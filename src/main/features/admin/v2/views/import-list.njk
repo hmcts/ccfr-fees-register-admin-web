@@ -8,7 +8,11 @@
 
    <div class="grid-row">
       <div class="column-quarter">
+      {% if (env === 'production') %}
        <form action="bulkfixedfees" method="post">
+      {% else %}
+       <form action="tojson" method="post">
+      {% endif %}
         <table class="column-quarter">
           <thead>
             <tr>
@@ -64,7 +68,11 @@
 
          <p>
           <input type="hidden" name="csvFees" value="{{ resObj }}"/>
-          {{ submitButton(t('Save')) }}
+          {% if (env === 'production') %}
+            {{ submitButton(t('Save')) }}
+          {% else %}
+            {{ submitButton(t('To Json')) }}
+          {% endif %}
          </p>
         </form>
         <p>

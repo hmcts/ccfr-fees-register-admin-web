@@ -34,6 +34,10 @@ export default express.Router()
     res.render(Paths.createBulkFeesPage.associatedView)
   })
 
+  .get(Paths.csvToJsonPage.uri, (req: express.Request, res: express.Response) => {
+    res.render(Paths.csvToJsonPage.associatedView, {jsonData: 'No data found.'})
+  })
+
   .post(Paths.csvImportFeePage.uri, upload, (req: express.Request, res: express.Response, next: express.NextFunction) => {
     if (!req.file) {
       console.log('No upload file received')
@@ -54,7 +58,7 @@ export default express.Router()
         console.log('import fee json: ' + data)
 
         let CsvFeeDtos = JSON.parse(data) as CsvFeeDto
-        res.render(Paths.csvImportFeePage.associatedView, {csvFeeDtos: CsvFeeDtos, resObj: JSON.stringify(CsvFeeDtos)})
+        res.render(Paths.csvImportFeePage.associatedView, {csvFeeDtos: CsvFeeDtos, resObj: JSON.stringify(CsvFeeDtos), env: process.env.NODE_ENV})
       })
     }
   })
@@ -77,4 +81,8 @@ export default express.Router()
           res.render(Paths.createBulkFeesPage.associatedView, {errCause: err.message, bulkFeeError: true})
         }
       )
+  })
+
+  .post(Paths.csvToJsonPage.uri, (req: express.Request, res: express.Response) => {
+    res.render(Paths.csvToJsonPage.associatedView, {jsonData: req.body.csvFees})
   })

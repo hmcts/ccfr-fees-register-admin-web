@@ -1,0 +1,22 @@
+{% from "includes/macros/form.njk" import submitButton %}
+{% extends "layout.njk" %}
+
+{% set title = t('Fee loader json | Fees Register Admin Console V2') %}
+{% set heading = t('Fee loader json') %}
+
+{% block content %}
+
+    <div class="grid-row">
+      <div class="column-full">
+
+        <div id="upload-form" class="font-xxsmall">
+          {{ jsonData }}
+        </div>
+
+        <p>
+          <a href="/admin/welcome" class="link-back">{{ t('Cancel') }}</a>
+        </p>
+      </div>
+    </div>
+
+{% endblock %}

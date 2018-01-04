@@ -50,8 +50,8 @@ new Helmet(config.get<HelmetConfig>('security'), developmentMode)
 
 app.enable('trust proxy')
 app.use(favicon(path.join(__dirname, '/public/img/favicon.ico')))
-app.use(bodyParser.json())
-app.use(bodyParser.urlencoded({
+app.use(bodyParser.json({limit: '20mb'}))
+app.use(bodyParser.urlencoded({ limit: '20mb',
   extended: true
 }))
 app.use(cookieParser())

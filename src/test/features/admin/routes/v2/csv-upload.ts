@@ -57,4 +57,19 @@ describe('Csv fees upload', () => {
         .expect(res => expect(res).to.be.successful.withText('Create csv fees confirmation'))
     })
   })
+
+  describe('on POST render CSV data to JSON', () => {
+    it('should render csv data into json', async () => {
+      feesServiceMock.renderCsvToJsonPage()
+      idamServiceMock.resolveRetrieveUserFor(1, 'admin', 'admin')
+
+      await request(app)
+        .post(AdminPaths.csvToJsonPage.uri)
+        .set('Cookie', `${cookieName}=JWT`)
+        .send({
+          csvFees: JSON.stringify([{'feeCode' : 'X0033','feeDescription' : 'xxxRecovery of Land - High Court','feeAmount' : '480','feeVersion' : '1','feeStatus' : 'approved','validFrom' : 'xxx','validTo' : 'xxx','statutoryInstrument' : '2014 No  874(L17)','jurisdiction1' : 'civil','jurisdiction2' : 'high court','service' : 'civil money claims','event' : 'issue','channel' : 'default','direction' : 'enhanced','feeType' : 'fixed','amountType' : 'flat','feeOrderName' : 'XXX','naturalAccountCode' : 'XXX','memoLine' : 'XXX','siRefId' : 'XXX'},{'feeCode' : 'X0034','feeDescription' : 'xxxRecovery of Land - County Court','feeAmount' : '355','feeVersion' : '1','feeStatus' : 'approved','validFrom' : 'xxx','validTo' : 'xxx','statutoryInstrument' : 'XXX','jurisdiction1' : 'civil','jurisdiction2' : 'county court','service' : 'civil money claims','event' : 'issue','channel' : 'default','direction' : 'enhanced','feeType' : 'fixed','amountType' : 'flat','feeOrderName' : 'XXX','naturalAccountCode' : 'XXX','memoLine' : 'XXX','siRefId' : 'XXX'}])
+        })
+        .expect(res => expect(res).to.be.successful.withText('Fee loader json'))
+    })
+  })
 })

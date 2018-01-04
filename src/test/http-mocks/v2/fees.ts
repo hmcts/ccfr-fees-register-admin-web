@@ -26,6 +26,15 @@ export function renderCsvImportFee () {
     .post(new RegExp(`/upload`))
     .reply(HttpStatus.OK, {
       csvFeeDtos: csvJSONStr,
+      resObj: csvJSONStr,
+      env: 'production'
+    })
+}
+
+export function renderCsvToJsonPage () {
+  mock(`/admin/v2`)
+    .post(new RegExp(`/tojson`))
+    .reply(HttpStatus.OK, {
       resObj: csvJSONStr
     })
 }
