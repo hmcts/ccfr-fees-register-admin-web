@@ -29,3 +29,25 @@
     width: 66%;
   }
 }
+
+.delete-button:link {
+  background-color: #e00;
+  position: relative;
+  display: inline-block;
+  padding: .526315em .789473em .263157em;
+  border: none;
+  border-radius: 0;
+  outline: 1px solid transparent;
+  outline-offset: -1px;
+  box-shadow: 0 2px 0 darkred;
+  font-size: 1em;
+  line-height: 1.25;
+  text-decoration: none;
+  cursor: pointer;
+  color: white;
+  box-sizing: border-box;
+  vertical-align: top; }
+
+.delete-button:hover, .delete-button:focus {
+  background-color: darkred;
+}

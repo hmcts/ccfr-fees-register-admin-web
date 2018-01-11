@@ -29,6 +29,7 @@
               <th class="bold-xxsmall">Valid From</th>
               <th class="bold-xxsmall">Valid To</th>
               <th/>
+              <th/>
             </tr>
           </thead>
           <tbody>
@@ -74,7 +75,7 @@
                     <td/>
                   {% endif %}
                   <td> <a href="/admin/v2/dashboard?approveFeeCode={{ fee.code }}&approveVersion={{ fee.current_version.version }}" class="button">Approve</a></td>
-
+                  <td> <a href="/admin/v2/dashboard?deleteFeeCode={{ fee.code }}&deleteVersion={{ fee.current_version.version }}" class="delete-button">Delete</a></td>
                 </tr>
               {% endfor %}
           </tbody>
