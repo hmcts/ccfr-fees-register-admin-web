@@ -30,7 +30,14 @@ export default express.Router ()
         .approveFee ( res.locals.user, req.query.approveFeeCode, req.query.approveVersion )
         .then ( () => Renderer.render ( res ) )
         .catch ( () => Renderer.render ( res ) )
+
+    } else if ( req.query.deleteFeeCode && req.query.deleteVersion ) {
+      FeesClient
+        .deleteFeeVersion ( res.locals.user, req.query.deleteFeeCode, req.query.deleteVersion )
+        .then ( () => Renderer.render ( res ) )
+        .catch ( () => Renderer.render ( res ) )
     } else {
       Renderer.render ( res )
     }
+
   } )
