@@ -44,6 +44,19 @@ export class FeesClient {
       .catch ( FeesClientErrorMapper )
   }
 
+  static deleteFeeVersion ( user, feeCode: string, version: number ): Promise<boolean> {
+
+    return request
+      .delete ( {
+        uri: `${feesUrl}/fees-register/fees/${feeCode}/version/${version}`,
+        headers: {
+          Authorization: `Bearer ${user.bearerToken}`
+        }
+      } )
+      .then ( () => true )
+      .catch ( FeesClientErrorMapper )
+  }
+
   static createBulkFixedFee ( user, dtos: CreateFixedFeeDto[] ): Promise<boolean> {
 
     return request
