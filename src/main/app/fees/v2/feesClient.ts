@@ -3,7 +3,10 @@ import * as config from 'config'
 import request from 'client/request'
 import * as model from 'app/fees/v2/model/fees-register-api-contract'
 import { StatusCodeError } from 'request-promise-native/errors'
-import { AllReferenceDataDto, ApproveFeeDto, CreateFixedFeeDto } from 'fees/v2/model/fees-register-api-contract'
+import {
+  AllReferenceDataDto, CreateFixedFeeDto,
+  FeeVersionStatus
+} from 'fees/v2/model/fees-register-api-contract'
 
 const feesUrl = config.get ( 'fees.url' )
 
@@ -24,21 +27,20 @@ function FeesClientErrorMapper ( reason: Error ) {
 
 export class FeesClient {
 
-  static approveFee ( user, feeCode: string, version: number ): Promise<boolean> {
+  static changeFeeStatus ( user, feeCode: string, version: number, status: FeeVersionStatus ): Promise<boolean> {
 
-    const dto: ApproveFeeDto = new ApproveFeeDto ()
-
-    dto.fee_code = feeCode
-    dto.fee_version = version
+    console.log ( user )
+    console.log ( feeCode )
+    console.log ( version )
+    console.log ( status )
 
     return request
       .patch ( {
-        uri: `${feesUrl}/fees/approve`,
+        uri: `${feesUrl}/fees/${feeCode}/versions/${version}/status/${status}`,
         json: true,
         headers: {
           Authorization: `Bearer ${user.bearerToken}`
-        },
-        body: dto
+        }
       } )
       .then ( () => true )
       .catch ( FeesClientErrorMapper )
@@ -48,7 +50,7 @@ export class FeesClient {
 
     return request
       .delete ( {
-        uri: `${feesUrl}/fees/${feeCode}/version/${version}`,
+        uri: `${feesUrl}/fees/${feeCode}/versions/${version}`,
         headers: {
           Authorization: `Bearer ${user.bearerToken}`
         }
@@ -112,9 +114,16 @@ export class FeesClient {
 
   }
 
-  static searchFees (versionStatus: String): Promise<Array<model.Fee2Dto>> {
+  static searchFees ( versionStatus: String, author: String ): Promise<Array<model.Fee2Dto>> {
+
+    let uri: string = `${feesUrl}/fees-register/fees?feeVersionStatus=${versionStatus}`
+
+    if ( author ) {
+      uri = uri + `&author=${author}`
+    }
+
     return request
-      .get ( `${feesUrl}/fees-register/fees?feeVersionStatus=${versionStatus}`)
+      .get ( uri )
       .then ( response => {
 
         /* Hack dates */
