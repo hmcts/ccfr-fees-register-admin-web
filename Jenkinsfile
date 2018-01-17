@@ -5,7 +5,7 @@ import uk.gov.hmcts.Packager
 import uk.gov.hmcts.RPMTagger
 
 properties(
-  [[$class: 'GithubProjectProperty', projectUrlStr: 'http://git.reform.hmcts.net/fees-register/fees-register-admin-web'],
+  [[$class: 'GithubProjectProperty', projectUrlStr: 'https://github.com/hmcts/ccfr-fees-register-admin-web'],
    pipelineTriggers([[$class: 'GitHubPushTrigger']])]
 )
 
