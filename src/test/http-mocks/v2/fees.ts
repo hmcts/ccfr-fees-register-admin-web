@@ -13,8 +13,8 @@ export function retrieveCsvFee () {
 }
 
 export function createBulkFixedFee () {
-  mock(`${serviceBaseURL}/fees-register`)
-    .post(new RegExp(`/bulkfixedfees`))
+  mock(`${serviceBaseURL}`)
+    .post(new RegExp(`/bulk-fixed-fees`))
     .reply(HttpStatus.CREATED, [{
       msg: 'Successfully saved the csv fixed fees.',
       success: true
