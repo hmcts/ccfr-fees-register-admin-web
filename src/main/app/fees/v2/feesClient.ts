@@ -33,7 +33,7 @@ export class FeesClient {
 
     return request
       .patch ( {
-        uri: `${feesUrl}/fees-register/fees/approve`,
+        uri: `${feesUrl}/fees/approve`,
         json: true,
         headers: {
           Authorization: `Bearer ${user.bearerToken}`
@@ -48,7 +48,7 @@ export class FeesClient {
 
     return request
       .delete ( {
-        uri: `${feesUrl}/fees-register/fees/${feeCode}/version/${version}`,
+        uri: `${feesUrl}/fees/${feeCode}/version/${version}`,
         headers: {
           Authorization: `Bearer ${user.bearerToken}`
         }
@@ -61,7 +61,7 @@ export class FeesClient {
 
     return request
       .post ( {
-        uri: `${feesUrl}/fees-register/bulkfixedfees/`,
+        uri: `${feesUrl}/bulk-fixed-fees/`,
         json: true,
         headers: {
           Authorization: `Bearer ${user.bearerToken}`
@@ -77,7 +77,7 @@ export class FeesClient {
 
     return request
       .post ( {
-        uri: `${feesUrl}/fees-register/fixedfees/`,
+        uri: `${feesUrl}/fixed-fees/`,
         json: true,
         headers: {
           Authorization: `Bearer ${user.bearerToken}`
@@ -93,7 +93,7 @@ export class FeesClient {
 
     return request
       .post ( {
-        uri: `${feesUrl}/fees-register/rangedfees/`,
+        uri: `${feesUrl}/ranged-fees/`,
         json: true,
         headers: {
           Authorization: `Bearer ${user.bearerToken}`
@@ -134,7 +134,7 @@ export class FeesClient {
 
   static retrieveReferenceData (): Promise<AllReferenceDataDto> {
     return request
-      .get ( `${feesUrl}/fees-register/referenceData` )
+      .get ( `${feesUrl}/referenceData` )
       .then ( response => {
         return response as AllReferenceDataDto
       } )
@@ -143,7 +143,7 @@ export class FeesClient {
 
   static retrieveServices (): Promise<Array<model.ServiceType>> {
     return request
-      .get ( `${feesUrl}/fees-register/servicetypes` )
+      .get ( `${feesUrl}/service-types` )
       .then ( response => {
         return response as Array<model.ServiceTypeDto>
       } )
@@ -152,7 +152,7 @@ export class FeesClient {
 
   static retrieveDirections (): Promise<Array<model.DirectionTypeDto>> {
     return request
-      .get ( `${feesUrl}/fees-register/directiontypes` )
+      .get ( `${feesUrl}/direction-types` )
       .then ( response => {
         return response as Array<model.DirectionTypeDto>
       } )
@@ -161,7 +161,7 @@ export class FeesClient {
 
   static retrieveChannels (): Promise<Array<model.ChannelTypeDto>> {
     return request
-      .get ( `${feesUrl}/fees-register/channeltypes` )
+      .get ( `${feesUrl}/channel-types` )
       .then ( response => {
         return response as Array<model.ChannelTypeDto>
       } )
@@ -170,7 +170,7 @@ export class FeesClient {
 
   static retrieveJurisdiction1 (): Promise<Array<model.Jurisdiction1Dto>> {
     return request
-      .get ( `${feesUrl}/fees-register/jurisdictions1` )
+      .get ( `${feesUrl}/jurisdictions1` )
       .then ( response => {
         return response as Array<model.Jurisdiction1Dto>
       } )
@@ -179,7 +179,7 @@ export class FeesClient {
 
   static retrieveJurisdiction2 (): Promise<Array<model.Jurisdiction2Dto>> {
     return request
-      .get ( `${feesUrl}/fees-register/jurisdictions2` )
+      .get ( `${feesUrl}/jurisdictions2` )
       .then ( response => {
         return response as Array<model.Jurisdiction2Dto>
       } )
@@ -188,7 +188,7 @@ export class FeesClient {
 
   static retrieveEvents (): Promise<Array<model.EventTypeDto>> {
     return request
-      .get ( `${feesUrl}/fees-register/eventtypes` )
+      .get ( `${feesUrl}/event-types` )
       .then ( response => {
         return response as Array<model.EventTypeDto>
       } )
