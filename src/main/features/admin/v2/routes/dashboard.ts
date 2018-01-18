@@ -5,39 +5,46 @@ import { Paths } from 'admin/paths'
 import { FeesClient } from 'app/fees/v2/feesClient'
 
 import { Fee2Dto } from 'fees/v2/model/fees-register-api-contract'
+import { AuthOptions } from 'request'
 
 class Renderer {
 
   static render ( res: express.Response ) {
 
-    FeesClient
-      .searchFees('draft')
-      .then ( ( fees: Array<Fee2Dto> ) => {
-        res.render ( Paths.dashboard.associatedView, {
-          fees: fees
-        } )
+    Promise.all ( [
+      FeesClient.searchFees ( 'draft', null ) /* TODO: Pass this user as author for draft fees */,
+      FeesClient.searchFees ( 'pending_approval', null )
+    ] ).then ( ( fees: Fee2Dto[][] ) => {
+      res.render ( Paths.dashboard.associatedView, {
+        draftFees: fees[ 0 ],
+        pendingApprovalFees: fees[ 1 ]
       } )
+    } )
 
   }
 
+  static executeAction ( user: AuthOptions, action: string, feeCode: string, version: number ): Promise<Boolean> {
+    switch ( action ) {
+      case 'approve':
+        return FeesClient.changeFeeStatus ( user, feeCode, version, 'approved' )
+      case 'delete':
+        return FeesClient.deleteFeeVersion ( user, feeCode, version )
+      case 'reject':
+        return FeesClient.changeFeeStatus ( user, feeCode, version, 'draft' )
+      case 'submit':
+        return FeesClient.changeFeeStatus ( user, feeCode, version, 'pending_approval' )
+    }
+  }
 }
 
 export default express.Router ()
   .get ( Paths.dashboard.uri, ( req: express.Request, res: express.Response ) => {
 
-    if ( req.query.approveFeeCode && req.query.approveVersion ) {
-      FeesClient
-        .approveFee ( res.locals.user, req.query.approveFeeCode, req.query.approveVersion )
-        .then ( () => Renderer.render ( res ) )
-        .catch ( () => Renderer.render ( res ) )
-
-    } else if ( req.query.deleteFeeCode && req.query.deleteVersion ) {
-      FeesClient
-        .deleteFeeVersion ( res.locals.user, req.query.deleteFeeCode, req.query.deleteVersion )
+    if ( req.query.action ) {
+      Renderer.executeAction ( res.locals.user, req.query.action, req.query.feeCode, req.query.version )
         .then ( () => Renderer.render ( res ) )
         .catch ( () => Renderer.render ( res ) )
     } else {
       Renderer.render ( res )
     }
-
   } )

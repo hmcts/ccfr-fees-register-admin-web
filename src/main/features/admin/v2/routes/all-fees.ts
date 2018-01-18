@@ -9,7 +9,7 @@ import { Fee2Dto } from 'fees/v2/model/fees-register-api-contract'
 export default express.Router()
   .get(Paths.allFeesPageV2.uri, (req: express.Request, res: express.Response) => {
     FeesClient
-      .searchFees('approved')
+      .searchFees('approved', null)
       .then((fees: Array<Fee2Dto>) => {
         res.render(Paths.allFeesPageV2.associatedView, {
           fees: fees
