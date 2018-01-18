@@ -29,11 +29,6 @@ export class FeesClient {
 
   static changeFeeStatus ( user, feeCode: string, version: number, status: FeeVersionStatus ): Promise<boolean> {
 
-    console.log ( user )
-    console.log ( feeCode )
-    console.log ( version )
-    console.log ( status )
-
     return request
       .patch ( {
         uri: `${feesUrl}/fees/${feeCode}/versions/${version}/status/${status}`,

@@ -1,3 +1,4 @@
+// tslint:disable
 export class ChannelTypeDto {
   name: string
   creationTime: Date
