@@ -104,7 +104,7 @@ export class FeesClient {
 
   static retrieveFees (): Promise<Array<Fee>> {
     return request
-      .get(`${feesUrl}/fees`)
+      .get(`${feesUrl}/fees-register/fees`)
       .then((response: Array<any>) => response.map(FeesClient.toFee))
       .catch(FeesClientErrorMapper)
   }
@@ -115,7 +115,7 @@ export class FeesClient {
 
   static retrieveFee (code: string): Promise<Fee> {
     return request
-      .get(`${feesUrl}/fees/${code}`)
+      .get(`${feesUrl}/fees-register/fees/${code}`)
       .then(FeesClient.toFee)
       .catch(FeesClientErrorMapper)
   }
@@ -123,7 +123,7 @@ export class FeesClient {
   static updateFee (user: User, fee: Fee): Promise<Fee> {
     return request
       .put({
-        uri: `${feesUrl}/fees/${fee.code}`,
+        uri: `${feesUrl}/fees-register/fees/${fee.code}`,
         json: true,
         headers: {
           Authorization: `Bearer ${user.bearerToken}`
