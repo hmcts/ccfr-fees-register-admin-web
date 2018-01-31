@@ -17,7 +17,7 @@ function renderHealthPage (config, req: express.Request, res: express.Response) 
       const output = Object.assign(
         outputs.status(allOk),
         results)
-      console.log(output)
+
       res.render(Paths.healthInfoPage.associatedView, {output: output})
 
     })
