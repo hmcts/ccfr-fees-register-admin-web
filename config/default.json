@@ -3,17 +3,17 @@
     "referrerPolicy": "origin"
   },
   "idam": {
-    "authentication-web": {
-      "url": "https://idam-test.dev.ccidam.reform.hmcts.net"
+    "loginurl": {
+      "url": "http://localhost:9000/login"
     },
-    "api": {
-      "url": "https://idam-test.dev.ccidam.reform.hmcts.net"
+    "apiurl": {
+      "url": "http://localhost:8080"
     }
   },
   "session": {
     "cookieName": "SESSION_ID"
   },
   "fees": {
-    "url": "http://localhost:8080"
+    "url": "http://localhost:8081"
   }
 }

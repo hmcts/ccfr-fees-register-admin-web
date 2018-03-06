@@ -10,8 +10,8 @@ import * as isUndefined from 'is-undefined'
 import { NotFoundError } from './errors'
 import { AccessLogger } from 'logging/accessLogger'
 import { ErrorLogger } from 'logging/errorLogger'
+import * as IDAM from 'idam/security'
 import { RouterFinder } from 'common/router/routerFinder'
-import { AuthorizationMiddlewareFactory } from 'idam/authorizationMiddlewareFactory'
 import { Helmet, Config as HelmetConfig } from 'modules/helmet'
 import I18Next from 'modules/i18n'
 import Nunjucks from 'modules/nunjucks'
@@ -57,11 +57,22 @@ app.use(bodyParser.urlencoded({ limit: '20mb',
 app.use(cookieParser())
 app.use(express.static(path.join(__dirname, 'public')))
 
-app.all(/^.*$/, AuthorizationMiddlewareFactory.genericRequestHandler())
+// app.all(/^.*$/, AuthorizationMiddlewareFactory.genericRequestHandler())
 
 new AdminFeature().enableFor(app)
 
-app.use('/', RouterFinder.findAll(path.join(__dirname, 'routes')))
+const security = new IDAM({
+  clientId : 'registration_web',
+  clientSecret : 'QM5RQQ53LZFOSIXJ',
+  loginUrl: config.get<String>('idam.loginurl'),
+  apiUrl: config.get<String>('idam.apiurl'),
+  redirectUri: '/oauth2/callback'
+})
+
+app.use('/logout', security.logout())
+app.use('/oauth2/callback', security.OAuth2CallbackEndpoint())
+
+app.use('/', security.protect('admin'), RouterFinder.findAll(path.join(__dirname, 'routes')))
 
 // Below will match all routes not covered by the router, which effectively translates to a 404 response
 app.use((req, res, next) => {
