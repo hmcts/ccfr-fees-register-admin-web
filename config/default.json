@@ -3,10 +3,10 @@
     "referrerPolicy": "origin"
   },
   "idam": {
-    "loginurl": {
-      "url": "http://localhost:9000/login"
+    "login": {
+      "url": "https://localhost:8000/login"
     },
-    "apiurl": {
+    "api": {
       "url": "http://localhost:8080"
     }
   },

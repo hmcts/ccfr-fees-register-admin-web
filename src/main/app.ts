@@ -64,15 +64,15 @@ new AdminFeature().enableFor(app)
 const security = new IDAM({
   clientId : 'registration_web',
   clientSecret : 'QM5RQQ53LZFOSIXJ',
-  loginUrl: config.get<String>('idam.loginurl'),
-  apiUrl: config.get<String>('idam.apiurl'),
+  loginUrl: config.get<String>('idam.login.url'),
+  apiUrl: config.get<String>('idam.api.url'),
   redirectUri: '/oauth2/callback'
 })
 
 app.use('/logout', security.logout())
 app.use('/oauth2/callback', security.OAuth2CallbackEndpoint())
 
-app.use('/', security.protect('admin'), RouterFinder.findAll(path.join(__dirname, 'routes')))
+app.use('/', security.protect('super'), RouterFinder.findAll(path.join(__dirname, 'routes')))
 
 // Below will match all routes not covered by the router, which effectively translates to a 404 response
 app.use((req, res, next) => {

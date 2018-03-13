@@ -7,7 +7,7 @@ export default express.Router()
     checks: {
       'fees': basicHealthCheck('fees'),
       'idam-api': basicHealthCheck('idam.api'),
-      'idam-authentication-web': basicHealthCheck('idam.authentication-web')
+      'idam-login': basicHealthCheck('idam.login')
     }
   }))
 
