@@ -30,7 +30,6 @@ function addOAuth2Parameters(url, state, self, req) {
 }
 
 function login(req, res, roles, self) {
-  req.log = logger(req.sessionID);
 
   const originalUrl = req.protocol + '://' + req.get('host') + req.originalUrl;
   var state = generateState();
@@ -133,7 +132,6 @@ Security.prototype.logout = function () {
 };
 
 function protectImpl(req, res, next, self) {
-  req.log = logger(req.sessionID);
 
   var securityCookie = handleCookie(req);
 
@@ -201,7 +199,6 @@ Security.prototype.protectWithUplift = function (role, roleToUplift) {
   };
 
   return function (req, res, next) {
-    req.log = logger(req.sessionID);
 
     /* Read the value of the token from the cookie */
     var securityCookie = handleCookie(req);
