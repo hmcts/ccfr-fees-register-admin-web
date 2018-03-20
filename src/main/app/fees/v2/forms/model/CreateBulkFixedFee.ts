@@ -15,7 +15,7 @@ export class CreateBulkFixedFee {
   validTo?: Date
   description?: string
   status?: FeeVersionStatus
-
+  applicantType?: string
   channel?: string
   direction?: string
   event?: string
@@ -40,6 +40,12 @@ export class CreateBulkFixedFee {
     feeVersionDto.description = dto.feeDescription
     feeVersionDto.status = dto.feeStatus as FeeVersionStatus
     feeVersionDto.flat_amount = flatAmount
+    feeVersionDto.direction = dto.direction
+    feeVersionDto.memo_line = dto.memoLine
+    feeVersionDto.fee_order_name = dto.feeOrderName
+    feeVersionDto.natural_account_code = dto.naturalAccountCode
+    feeVersionDto.statutory_instrument = dto.statutoryInstrument
+    feeVersionDto.si_ref_id = dto.siRefId
 
     const createFeeDto = new CreateFixedFeeDto()
     createFeeDto.code = dto.feeCode
@@ -48,14 +54,9 @@ export class CreateBulkFixedFee {
     createFeeDto.jurisdiction2 = dto.jurisdiction2
     createFeeDto.service = dto.service
     createFeeDto.channel = dto.channel
-    createFeeDto.direction = dto.direction
     createFeeDto.event = dto.event
-    createFeeDto.memo_line = dto.memoLine
-    createFeeDto.fee_order_name = dto.feeOrderName
-    createFeeDto.natural_account_code = dto.naturalAccountCode
+    createFeeDto.applicant_type = dto.applicant_type
     createFeeDto.unspecified_claim_amount = false
-    createFeeDto.statutory_instrument = dto.statutoryInstrument
-    createFeeDto.si_ref_id = dto.siRefId
 
     return createFeeDto
   }

@@ -7,6 +7,7 @@ export class CsvFeeDto {
   validFrom: string
   validTo: string
   statutoryInstrument: string
+  applicantType: string
   jurisdiction1: string
   jurisdiction2: string
   service: string

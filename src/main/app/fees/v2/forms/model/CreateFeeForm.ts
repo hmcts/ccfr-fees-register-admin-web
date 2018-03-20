@@ -79,6 +79,10 @@ export class CreateFeeForm {
   @IsNotBlank ( { message: ValidationErrors.DIRECTION_REQUIRED } )
   direction?: string
 
+  @IsDefined ( { message: ValidationErrors.APPLICATION_TYPE_REQUIRED } )
+  @IsNotBlank ( { message: ValidationErrors.APPLICATION_TYPE_REQUIRED } )
+  applicantType?: string
+
   @IsDefined ( { message: ValidationErrors.SERVICE_REQUIRED } )
   @IsNotBlank ( { message: ValidationErrors.SERVICE_REQUIRED } )
   service?: string
@@ -122,6 +126,7 @@ export class CreateFeeForm {
     this.jurisdiction1 = ''
     this.jurisdiction2 = ''
     this.rangeUnit = ''
+    this.applicantType = ''
   }
 
   static fromObject ( value?: any ): CreateFeeForm {
@@ -174,15 +179,16 @@ export class CreateFeeForm {
     dto.jurisdiction1 = this.jurisdiction1
     dto.jurisdiction2 = this.jurisdiction2
     dto.event = this.event
-    dto.direction = this.direction
-    dto.memo_line = this.memoLine
-
-    dto.natural_account_code = this.naturalAccountCode
-    dto.statutory_instrument = this.statutoryInstrument
-    dto.si_ref_id = this.siRefId
-    dto.fee_order_name = this.feeOrderName
+    dto.applicant_type = this.applicantType
 
     dto.version = new FeeVersionDto()
+    dto.version.direction = this.direction
+    dto.version.memo_line = this.memoLine
+
+    dto.version.natural_account_code = this.naturalAccountCode
+    dto.version.statutory_instrument = this.statutoryInstrument
+    dto.version.si_ref_id = this.siRefId
+    dto.version.fee_order_name = this.feeOrderName
     dto.version.description = this.description
 
     if (this.fromDate) {
