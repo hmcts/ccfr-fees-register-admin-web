@@ -91,6 +91,12 @@
 
         <tr>
           <td colspan="2">
+              {{ selectReferenceData ('applicantType', referenceData.applicantTypes, form, 'Applicant type*') }}
+          </td>
+        </tr>
+
+        <tr>
+          <td colspan="2">
             {{ selectReferenceData ('jurisdiction1', referenceData.jurisdictions1, form, 'Jurisdiction 1*') }}
           </td>
         </tr>
