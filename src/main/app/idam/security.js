@@ -159,6 +159,7 @@ function protectImpl(req, res, next, self) {
       }
 
       req.roles = response.body.roles;
+      req.bearerToken = securityCookie;
       req.userInfo = response.body;
       authorize(req.roles, res, next, self);
 

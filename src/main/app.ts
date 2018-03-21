@@ -72,7 +72,7 @@ const security = new IDAM({
 app.use('/logout', security.logout())
 app.use('/oauth2/callback', security.OAuth2CallbackEndpoint())
 
-app.use('/', security.protect('super'), RouterFinder.findAll(path.join(__dirname, 'routes')))
+app.use('/', security.protect('citizen'), RouterFinder.findAll(path.join(__dirname, 'routes')))
 
 // Below will match all routes not covered by the router, which effectively translates to a 404 response
 app.use((req, res, next) => {
