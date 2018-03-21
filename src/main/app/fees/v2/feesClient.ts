@@ -172,6 +172,15 @@ export class FeesClient {
       .catch ( FeesClientErrorMapper )
   }
 
+  static retrieveApplicants (): Promise<Array<model.ApplicantTypeDto>> {
+    return request
+      .get ( `${feesUrl}/applicant-types` )
+      .then ( response => {
+        return response as Array<model.ApplicantTypeDto>
+      } )
+      .catch ( FeesClientErrorMapper )
+  }
+
   static retrieveJurisdiction1 (): Promise<Array<model.Jurisdiction1Dto>> {
     return request
       .get ( `${feesUrl}/jurisdictions1` )
