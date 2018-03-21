@@ -3,10 +3,10 @@
 
 {% set title = t('CSV import view | Fees Register Admin Console V2') %}
 {% set heading = t('CSV import view') %}
-
+{% set xLargeTable = t('custom') %}
 {% block content %}
 
-   <div class="grid-row">
+   <div class="custom-grid-row">
       <div class="column-quarter">
       {% if (env === 'production') %}
        <form action="bulkfixedfees" method="post">
