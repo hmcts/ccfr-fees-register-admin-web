@@ -6,7 +6,7 @@
 			"pins": "SECURITY_HPKP_PINS"
 		}
 	},
-	"idam": {
+	"idam": { //todo: fix this so matches the structure in ansible
 		"authentication-web": {
 			"url": "IDAM_AUTHENTICATION_WEB_URL"
 		},
