@@ -4,16 +4,16 @@
   },
   "idam": {
     "login": {
-      "url": "https://localhost:8000/login"
+      "url": "https://idam-test.dev.ccidam.reform.hmcts.net/login"
     },
     "api": {
-      "url": "http://localhost:8080"
+      "url": "https://idam-test.dev.ccidam.reform.hmcts.net"
     }
   },
   "session": {
     "cookieName": "SESSION_ID"
   },
   "fees": {
-    "url": "http://localhost:8081"
+    "url": "http://localhost:8080"
   }
 }
