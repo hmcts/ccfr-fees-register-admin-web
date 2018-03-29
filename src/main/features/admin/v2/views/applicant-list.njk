@@ -1,0 +1,27 @@
+{% extends "layout.njk" %}
+
+{% set title = t('applicants | Fees Register Admin Console V2') %}
+{% set heading = t('applicants') %}
+
+{% block content %}
+
+  <div class="column-full">
+    <table>
+      <thead>
+      <tr>
+        <th scope="col">Name</th>
+      </tr>
+      </thead>
+      <tbody>
+      {% for applicant in applicants %}
+        <tr>
+           <td>{{ applicant.name }}</td>
+        </tr>
+      {% endfor %}
+      </tbody>
+    </table>
+
+    <p><a href="/admin/welcome/" class="link-back">{{ t("Back to welcome page") }}</a></p>
+  </div>
+
+{% endblock %}
