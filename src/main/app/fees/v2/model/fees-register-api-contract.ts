@@ -11,6 +11,12 @@ export class DirectionTypeDto {
   lastUpdated: Date
 }
 
+export class ApplicantTypeDto {
+  name: string
+  creationTime: Date
+  lastUpdated: Date
+}
+
 export class EventTypeDto {
   name: string
   creationTime: Date
@@ -20,23 +26,18 @@ export class EventTypeDto {
 export class Fee2Dto {
   code: string
   fee_type: String
-  memo_line: string
   channel_type: ChannelType
-  direction_type: DirectionType
   event_type: EventType
   jurisdiction1: Jurisdiction1
   jurisdiction2: Jurisdiction2
   service_type: ServiceType
-  natural_account_code: string
-  fee_order_name: string
+  applicant_type: ApplicantType
   fee_versions: FeeVersionDto[]
   current_version: FeeVersionDto
   min_range: number
   max_range: number
   unspecified_claim_amount: boolean
   range_unit: string
-  statutory_instrument: String
-  si_ref_id: string
 }
 
 export class FeeTypeDto {
@@ -56,6 +57,12 @@ export class FeeVersionDto {
   volume_amount: VolumeAmountDto
   author: string /* READ ONLY */
   approvedBy: string /* READ ONLY */
+  memo_line: string
+  fee_order_name: string
+  natural_account_code: string
+  statutory_instrument: string
+  si_ref_id: string
+  direction: string
 
   public getValidFrom() {
     return new Date(this.valid_from).toDateString
@@ -108,14 +115,9 @@ export class CreateFeeDto {
   jurisdiction2: string
   service: string
   channel: string
-  direction: string
   event: string
-  memo_line: string
-  fee_order_name: string
-  natural_account_code: string
+  applicant_type: string
   unspecified_claim_amount: boolean
-  statutory_instrument: string
-  si_ref_id: string
 }
 
 export class CreateFixedFeeDto extends CreateFeeDto {
@@ -169,6 +171,12 @@ export class ServiceType {
   lastUpdated: Date
 }
 
+export class ApplicantType {
+  name: string
+  creationTime: Date
+  lastUpdated: Date
+}
+
 export class AllReferenceDataDto {
   channelTypes: ChannelTypeDto[]
 
@@ -183,6 +191,8 @@ export class AllReferenceDataDto {
   jurisdictions2: Jurisdiction2Dto[]
 
   rangeUnits: RangeUnit[]
+
+  applicantTypes: ApplicantTypeDto[]
 }
 
 export type FeeVersionStatus = 'draft' | 'pending_approval' | 'approved'
