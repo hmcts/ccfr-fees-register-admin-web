@@ -62,10 +62,10 @@ app.use(express.static(path.join(__dirname, 'public')))
 new AdminFeature().enableFor(app)
 
 const security = new IDAM({
-  clientId : 'freg',
+  clientId : 'fees_admin_frontend',
   clientSecret : 'F2GWCFSFI6SXPTAA',
-  loginUrl: config.get<String>('idam.login.url'), //todo: make sure ansible file is read properly per environment
-  apiUrl: config.get<String>('idam.api.url'), //todo: same as above
+  loginUrl: config.get<String>('idam.login.url'),
+  apiUrl: config.get<String>('idam.api.url'),
   redirectUri: '/oauth2/callback'
 })
 
