@@ -158,10 +158,14 @@ function protectImpl(req, res, next, self) {
         }
       }
 
+      res.locals.user = {
+        userInfo: response.body.roles,
+        bearerToken: securityCookie
+      };
       req.roles = response.body.roles;
       req.bearerToken = securityCookie;
       req.userInfo = response.body;
-      authorize(req.roles, res, next, self);
+      authorize(response.body.roles, res, next, self);
 
     });
 }
