@@ -57,9 +57,7 @@ app.use(bodyParser.urlencoded({ limit: '20mb',
 app.use(cookieParser())
 app.use(express.static(path.join(__dirname, 'public')))
 
-// app.all(/^.*$/, AuthorizationMiddlewareFactory.genericRequestHandler())
 
-new AdminFeature().enableFor(app)
 
 const security = new IDAM({
   clientId : 'fees_admin_frontend',
@@ -69,10 +67,11 @@ const security = new IDAM({
   redirectUri: '/oauth2/callback'
 })
 
-app.use('/logout', security.logout())
 app.use('/oauth2/callback', security.OAuth2CallbackEndpoint())
+app.use('/logout', security.logout())
+new AdminFeature().enableFor(app, security)
 
-app.use('/', security.protect('citizen'), RouterFinder.findAll(path.join(__dirname, 'routes')))
+app.use('/', security.protect('freg'), RouterFinder.findAll(path.join(__dirname, 'routes')))
 
 // Below will match all routes not covered by the router, which effectively translates to a 404 response
 app.use((req, res, next) => {
