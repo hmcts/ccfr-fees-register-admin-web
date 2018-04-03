@@ -57,8 +57,6 @@ app.use(bodyParser.urlencoded({ limit: '20mb',
 app.use(cookieParser())
 app.use(express.static(path.join(__dirname, 'public')))
 
-
-
 const security = new IDAM({
   clientId : 'fees_admin_frontend',
   clientSecret : 'F2GWCFSFI6SXPTAA',
