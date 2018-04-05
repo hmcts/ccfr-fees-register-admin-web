@@ -171,6 +171,16 @@ function protectImpl(req, res, next, self) {
 }
 
 Security.prototype.protect = function (role) {
+  if(process.env.DISABLE_AUTH === 'true'){
+    return function (req, res, next) {
+      res.locals.user = {
+        userInfo: ['freg'],
+        bearerToken: 'spoof_bearer_token'
+      }
+      next()
+    };
+  }
+
   const self = {
     roles: [role],
     new: false,
