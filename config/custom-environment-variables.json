@@ -6,13 +6,16 @@
 			"pins": "SECURITY_HPKP_PINS"
 		}
 	},
-	"idam": {
+	"idam": { //todo: fix this so matches the structure in ansible
 		"authentication-web": {
 			"url": "IDAM_AUTHENTICATION_WEB_URL"
 		},
 		"api": {
 			"url": "IDAM_API_URL"
-		}
+		},
+    "login": {
+      "url": "IDAM_AUTHENTICATION_WEB_URL"
+    }
 	},
 	"session": {
 		"cookieName": "JWT_COOKIE_NAME"

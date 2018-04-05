@@ -1,7 +1,7 @@
 import * as config from 'config'
 
 import request from 'client/request'
-import User from 'app/idam/user'
+import User from 'app/idam/old/user'
 
 const idamApiUrl = config.get<string>('idam.api.url')
 

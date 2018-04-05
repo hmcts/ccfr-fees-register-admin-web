@@ -3,11 +3,14 @@
     "referrerPolicy": "origin"
   },
   "idam": {
-    "authentication-web": {
-      "url": "https://idam-test.dev.ccidam.reform.hmcts.net"
+    "login": {
+      "url": "https://idam-test.dev.ccidam.reform.hmcts.net/login"
     },
     "api": {
       "url": "https://idam-test.dev.ccidam.reform.hmcts.net"
+    },
+    "authentication-web": {
+      "url": "https://idam-test.dev.ccidam.reform.hmcts.net/login"
     }
   },
   "session": {
