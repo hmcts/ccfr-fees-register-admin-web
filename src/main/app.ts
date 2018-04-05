@@ -10,8 +10,8 @@ import * as isUndefined from 'is-undefined'
 import { NotFoundError } from './errors'
 import { AccessLogger } from 'logging/accessLogger'
 import { ErrorLogger } from 'logging/errorLogger'
+import * as IDAM from 'idam/security'
 import { RouterFinder } from 'common/router/routerFinder'
-import { AuthorizationMiddlewareFactory } from 'idam/authorizationMiddlewareFactory'
 import { Helmet, Config as HelmetConfig } from 'modules/helmet'
 import I18Next from 'modules/i18n'
 import Nunjucks from 'modules/nunjucks'
@@ -57,11 +57,19 @@ app.use(bodyParser.urlencoded({ limit: '20mb',
 app.use(cookieParser())
 app.use(express.static(path.join(__dirname, 'public')))
 
-app.all(/^.*$/, AuthorizationMiddlewareFactory.genericRequestHandler())
+const security = new IDAM({
+  clientId : 'fees_admin_frontend',
+  clientSecret : 'F2GWCFSFI6SXPTAA',
+  loginUrl: config.get<String>('idam.login.url'),
+  apiUrl: config.get<String>('idam.api.url'),
+  redirectUri: '/oauth2/callback'
+})
 
-new AdminFeature().enableFor(app)
+app.use('/oauth2/callback', security.OAuth2CallbackEndpoint())
+app.use('/logout', security.logout())
+new AdminFeature().enableFor(app, security)
 
-app.use('/', RouterFinder.findAll(path.join(__dirname, 'routes')))
+app.use('/', security.protect('freg'), RouterFinder.findAll(path.join(__dirname, 'routes')))
 
 // Below will match all routes not covered by the router, which effectively translates to a 404 response
 app.use((req, res, next) => {

@@ -1,9 +1,9 @@
 import * as express from 'express'
 import * as config from 'config'
 
-import { AuthorizationMiddleware } from 'idam/authorizationMiddleware'
+import { AuthorizationMiddleware } from 'app/idam/old/authorizationMiddleware'
 import { buildURL } from 'app/utils/CallbackBuilder'
-import { Paths } from 'admin/paths'
+import { Paths } from 'features/admin/paths'
 
 export class AuthorizationMiddlewareFactory {
 
