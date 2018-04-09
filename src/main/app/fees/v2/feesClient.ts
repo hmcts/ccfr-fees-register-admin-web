@@ -31,7 +31,7 @@ export class FeesClient {
 
     return request
       .patch ( {
-        uri: `${feesUrl}/fees-register/fees/${feeCode}/versions/${version}/status/${status}`,
+        uri: `${feesUrl}/fees/${feeCode}/versions/${version}/status/${status}`,
         json: true,
         headers: {
           Authorization: `Bearer ${user.bearerToken}`
