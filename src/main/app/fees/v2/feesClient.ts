@@ -45,7 +45,7 @@ export class FeesClient {
 
     return request
       .delete ( {
-        uri: `${feesUrl}/fees-register/fees/${feeCode}/version/${version}`,
+        uri: `${feesUrl}/fees/${feeCode}/version/${version}`,
         headers: {
           Authorization: `Bearer ${user.bearerToken}`
         }
