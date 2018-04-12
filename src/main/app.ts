@@ -57,9 +57,17 @@ app.use(bodyParser.urlencoded({ limit: '20mb',
 app.use(cookieParser())
 app.use(express.static(path.join(__dirname, 'public')))
 
+if (!config.has('security.clientId') || !config.has('security.clientSecret')) {
+  console.error('Client id or client secret not found.')
+  console.error('If this is a dev environment, please set FEES_CLIENT_ID and FEES_CLIENT_SECRET environment variable')
+  console.error('Ask a dev on the team for the id and secret')
+
+  process.exit(1)
+}
+
 const security = new IDAM({
-  clientId : 'fees_admin_frontend',
-  clientSecret : 'F2GWCFSFI6SXPTAA',
+  clientId : config.get<String>('security.clientId'),
+  clientSecret : config.get<String>('security.clientSecret'),
   loginUrl: config.get<String>('idam.login.url'),
   apiUrl: config.get<String>('idam.api.url'),
   redirectUri: '/oauth2/callback'

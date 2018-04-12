@@ -1,12 +1,9 @@
 {
 	"security": {
-		"referrerPolicy": "SECURITY_REFERRER_POLICY",
-		"hpkp": {
-			"maxAge": "SECURITY_HPKP_MAX_AGE",
-			"pins": "SECURITY_HPKP_PINS"
-		}
+    "clientId": "FEES_CLIENT_ID",
+    "clientSecret": "FEES_CLIENT_SECRET"
 	},
-	"idam": { //todo: fix this so matches the structure in ansible
+	"idam": {
 		"authentication-web": {
 			"url": "IDAM_AUTHENTICATION_WEB_URL"
 		},
@@ -14,11 +11,11 @@
 			"url": "IDAM_API_URL"
 		},
     "login": {
-      "url": "IDAM_AUTHENTICATION_WEB_URL"
+      "url": "IDAM_LOGIN_WEB_URL"
     }
 	},
 	"session": {
-		"cookieName": "JWT_COOKIE_NAME"
+		"cookieName": "SESSION_ID"
 	},
 	"fees": {
 		"url": "FEES_URL"
