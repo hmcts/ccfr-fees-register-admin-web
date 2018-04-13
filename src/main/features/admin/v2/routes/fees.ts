@@ -12,7 +12,6 @@ export default express.Router()
     FeesClient
       .retrieveFeeByCode(req.params.feeCode)
       .then((feeDto: Fee2Dto) => {
-        console.log('Tarun: ', JSON.stringify(feeDto))
         res.render(Paths.feeViewPagev2.associatedView, {feeDto: feeDto})
       })
   })

@@ -30,17 +30,11 @@ export default express.Router()
     const form: Form<CreateFeeVersionForm> = req.body
 
     FeesClient
-      .checkFeeVersionExists(req.params.feeCode, form.model.toDto().version)
-      .then( () => FeesClient
-        .createFeeVersion(res.locals.user, req.params.feeCode, form.model.toDto() as FeeVersionDto)
-        .then( () => res.render('admin/v2/views/confirm-create-fee-version'))
-        .catch(
-          (e: Error) => {
-            form.backendErrors.push(e.message)
-            Renderer.renderPage(form, res)
-          }))
-      .catch((e: Error) => {
-        form.backendErrors.push('Fee version already exists.')
-        Renderer.renderPage(form, res)
-      })
+      .createFeeVersion(res.locals.user, req.params.feeCode, form.model.toDto() as FeeVersionDto)
+      .then( () => res.render('admin/v2/views/confirm-create-fee-version'))
+      .catch(
+        (e: Error) => {
+          form.backendErrors.push(e.message)
+          Renderer.renderPage(form, res)
+        })
   })

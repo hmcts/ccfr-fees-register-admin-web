@@ -1,19 +1,35 @@
 {% extends "layout.njk" %}
 
 {% set title = t('Fee | Fees Register Admin Console') %}
-{% set heading = t('Fee view')  %}
+{% set heading = t('Fee details')  %}
 {% block content %}
-
 
 <div class="gird-row">
   <div class="column-third">
       <label class="bold">Code:</label> {{ feeDto.code }}
   </div>
   <div class="column-third">
-    <label class="bold">Type:</label> {{ feeDto.fee_type}}
+    <label class="bold">Type:</label> {{ feeDto.fee_type }}
   </div>
 </div>
 <hr width=100%>
+
+{% if feeDto.fee_type == 'ranged' %}
+
+<div class="gird-row">
+  <div class="column-third">
+      <label class="bold">Min range:</label> {{ feeDto.min_range }}
+  </div>
+  <div class="column-third">
+    <label class="bold">Max range:</label> {{ feeDto.max_range }}
+  </div>
+  <div class="column-third">
+    <label class="bold">Range unit:</label> {{ feeDto.range_unit }}
+  </div>
+</div>
+<hr width=100%>
+
+{% endif %}
 
 <div class="gird-row">
   <div class="column-third">
@@ -41,7 +57,9 @@
 
 <div class="gird-row">
   <div class="column">
-    <label class="bold">Current version</label>
+    <h2 class="heading-medium">
+      <label class="bold">Live version</label>
+    </h2>
   </div>
 </div>
 
@@ -62,13 +80,18 @@
     <label class="bold">Approved by:</label> {{ feeDto.current_version.approvedBy }}
   </div>
   <div class="column-third">
-    <label class="bold">Direction:</label> {{ feeDto.current_version.direction.name }}
+    <label class="bold">Direction:</label> {{ feeDto.current_version.direction }}
   </div>
   <div class="column-third">
     <label class="bold">Status:</label> {{ feeDto.current_version.status }}
   </div>
   <div class="column-third">
-     <label class="bold">Amount:</label> {{ feeDto.current_version.flat_amount.amount }}
+     <label class="bold">Amount:</label>
+      {% if feeDto.current_version.flat_amount.amount %}
+        {{ feeDto.current_version.flat_amount.amount }}
+      {% elif feeDto.current_version.percentage_amount.percentage %}
+        {{ feeDto.current_version.percentage_amount.percentage }}
+      {% endif %}
   </div>
   <div class="column-two-thirds">
     <label class="bold">Memo line:</label> {{ feeDto.current_version.memo_line }}
@@ -84,7 +107,9 @@
 
 <div class="gird-row">
   <div class="column">
-    <label class="bold">Versions</label>
+    <h2 class="heading-medium">
+      <label class="bold">Versions</label>
+    </h2>
   </div>
 </div>
 
@@ -107,13 +132,18 @@
     <label class="bold">Approved by:</label> {{ version.approvedBy }}
   </div>
   <div class="column-third">
-    <label class="bold">Direction:</label> {{ version.direction.name }}
+    <label class="bold">Direction:</label> {{ version.direction }}
   </div>
   <div class="column-third">
     <label class="bold">Status:</label> {{ version.status }}
   </div>
   <div class="column-third">
-     <label class="bold">Amount:</label> {{ version.flat_amount.amount }}
+     <label class="bold">Amount:</label>
+     {% if feeDto.current_version.flat_amount.amount %}
+        {{ feeDto.current_version.flat_amount.amount }}
+     {% elif feeDto.current_version.percentage_amount.percentage %}
+        {{ feeDto.current_version.percentage_amount.percentage }}
+     {% endif %}
   </div>
   <div class="column-two-thirds">
     <label class="bold">Memo line:</label> {{ version.memo_line }}
@@ -130,7 +160,9 @@
 
 <div class="gird-row">
   <div class="column">
-    <label class="bold">Actions</label>
+    <h2 class="heading-medium">
+      <label class="bold">Actions</label>
+    </h2>
   </div>
 </div>
 
@@ -144,7 +176,7 @@
 <hr width=100%>
 <div class="grid-row">
   <div class="column">
-    <p><a href="/admin/welcome/" class="link-back">{{ t("Back to welcome page") }}</a></p>
+    <p><a href="/admin/v2/all-fees" class="link-back">{{ t("View all fees") }}</a></p>
   </div>
 </div>
 {% endblock %}
