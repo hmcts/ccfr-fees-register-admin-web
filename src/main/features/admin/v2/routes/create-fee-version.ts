@@ -1,0 +1,46 @@
+import * as express from 'express'
+import { Paths } from 'admin/paths'
+import { Form } from 'app/forms/form'
+
+import { FeesClient } from 'app/fees/v2/feesClient'
+
+import { CreateFeeVersionForm } from 'fees/v2/forms/model/CreateFeeVersionForm'
+import { FormValidator } from 'app/forms/validation/formValidator'
+import { FeeVersionDto } from 'fees/v2/model/fees-register-api-contract'
+
+class Renderer {
+  static renderPage (form: Form<CreateFeeVersionForm>, res: express.Response) {
+    FeesClient.retrieveReferenceData().then(
+      data => {
+        res.render(Paths.createFeeVersionPageV2.associatedView,
+          {
+            form: form,
+            referenceData: data
+          })
+      }
+    )
+  }
+}
+
+export default express.Router()
+  .get(Paths.createFeeVersionPageV2.uri, (req: express.Request, res: express.Response) => {
+    Renderer.renderPage(new Form(new CreateFeeVersionForm()), res)
+  })
+  .post(Paths.createFeeVersionPageV2.uri, FormValidator.requestHandler(CreateFeeVersionForm, CreateFeeVersionForm.fromObject), (req: express.Request, res: express.Response) => {
+    const form: Form<CreateFeeVersionForm> = req.body
+
+    FeesClient
+      .checkFeeVersionExists(req.params.feeCode, form.model.toDto().version)
+      .then( () => FeesClient
+        .createFeeVersion(res.locals.user, req.params.feeCode, form.model.toDto() as FeeVersionDto)
+        .then( () => res.render('admin/v2/views/confirm-create-fee-version'))
+        .catch(
+          (e: Error) => {
+            form.backendErrors.push(e.message)
+            Renderer.renderPage(form, res)
+          }))
+      .catch((e: Error) => {
+        form.backendErrors.push('Fee version already exists.')
+        Renderer.renderPage(form, res)
+      })
+  })

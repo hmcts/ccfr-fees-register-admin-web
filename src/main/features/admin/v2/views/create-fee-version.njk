@@ -1,0 +1,97 @@
+{% from "includes/macros/form.njk" import errorSummary, textArea, textInput, radioGroup, submitButton, selectInline, selectReferenceData %}
+  {% extends "layout.njk" %}
+
+  {% set title = t('Create Fee Version | Fees Register Admin Console') %}
+  {% set heading = t('Create Fee Version') %}
+
+  {% block content %}
+
+<div class="grid-row">
+  <div class="column-full">
+    <form method="post" action="">
+      <table id="create-fee-form-table">
+        <tr>
+          <td>{{ textInput(t('Version*'), 'version', form) }}</td>
+
+          <td>{{ textInput(t('Memo Line*'), 'memoLine', form) }}</td>
+
+          <td>{{ textInput(t('Natural Account Code*'), 'naturalAccountCode', form) }}</td>
+
+        </tr>
+
+        <tr>
+          <td colspan="3">
+            {{ textArea(t('Description*'), 'description', form) }}
+          </td>
+        </tr>
+
+        <tr>
+          <td>
+
+            {% set fromDateError = form.errorFor('fromDate') %}
+            <div class="form-group {% if fromDateError %} form-group-error {% endif %}">
+            <label class="form-label-bold" for="fromDate" id="fromDate[label]">From Date*</label>
+            <input type="date" id="fromDate" class="form-control {% if fromDateError %} form-control-error {% endif %}"
+                   name="fromDate"
+                   value="{{ form.valueFor('fromDate') }}"/>
+            </div>
+          </td>
+
+          <td>
+            <div class="form-group">
+            <label class="form-label-bold" for="toDate" id="toDate[label]">To Date</label>
+            <input type="date" class="form-control"
+                   id="toDate"
+                   name="toDate"
+                   value="{{ form.valueFor('toDate') }}"/>
+            </div>
+          </td>
+        </tr>
+
+        </tr>
+
+        {% set isPercentage = form.valueFor('amountType') == 'percentage' %}
+
+        <tr>
+          <td rowspan="2">
+            {{ radioGroup(form = form, name = 'amountType', disabled = false, label = t('Amount Type'), options = [
+            { label: t('Flat'), value: 'flat' },
+            { label: t('Percentage'), value: 'percentage' },
+            { label: t('Volume'), value: 'volume' }
+            ]) }}
+          </td>
+
+          <td>{{ textInput(t('Amount (£)*'), 'amount', form, disabled = isPercentage) }}</td>
+
+        </tr>
+
+        <tr>
+          <td>{{ textInput(t('Percentage (%)*'), 'percentage', form, disabled = not isPercentage) }}</td>
+        </tr>
+
+        <tr>
+          <td colspan="2">
+            {{ selectReferenceData ('direction', referenceData.directionTypes, form, 'Direction*') }}
+          </td>
+        </tr>
+
+        <tr>
+
+          <td> {{ textInput(t('Fee Order Name*'), 'feeOrderName', form) }}</td>
+
+          <td> {{ textInput(t('Statutory Instrument'), 'statutoryInstrument', form) }}</td>
+
+          <td> {{ textInput(t('SI REF ID'), 'siRefId', form) }}</td>
+
+        </tr>
+
+      </table>
+
+      {{ submitButton(t('Next')) }}
+    </form>
+    <input type="hidden" name="feeCode" value="{{ feeCode }}"/>
+    <a href="/admin/welcome" class="link-back">{{ t('Cancel') }}</a>
+  </div>
+</div>
+
+  {% endblock %}
