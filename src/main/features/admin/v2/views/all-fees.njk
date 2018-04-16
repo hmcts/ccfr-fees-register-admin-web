@@ -41,7 +41,9 @@
                 {% for version in fee.fee_versions %}
                   {% if version.status === 'approved' %}
                 <tr>
-                  <td class="font-xxsmall">{{ fee.code }}</td>
+                  <td class="font-xxsmall">
+                    <a href="/admin/v2/fees/{{fee.code}}">{{ fee.code }}</a>
+                  </td>
                   <td class="font-xxsmall">{{ version.description }}</td>
                   {% if fee.min_range %}<td class="font-xxsmall">{{ fee.min_range }}</td>{% else %}<td/>{% endif %}
                   {% if fee.max_range %}<td class="font-xxsmall">{{ fee.max_range }}</td>{% else %}<td/>{% endif %}

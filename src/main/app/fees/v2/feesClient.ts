@@ -4,7 +4,7 @@ import request from 'client/request'
 import * as model from 'app/fees/v2/model/fees-register-api-contract'
 import { StatusCodeError } from 'request-promise-native/errors'
 import {
-  AllReferenceDataDto, CreateFixedFeeDto,
+  AllReferenceDataDto, CreateFixedFeeDto, Fee2Dto, FeeVersionDto,
   FeeVersionStatus
 } from 'fees/v2/model/fees-register-api-contract'
 
@@ -39,6 +39,18 @@ export class FeesClient {
       } )
       .then ( () => true )
       .catch ( FeesClientErrorMapper )
+  }
+
+  static createFeeVersion ( user, feeCode: string, dto: FeeVersionDto): Promise<boolean> {
+    return request
+        .post({
+          uri: `${feesUrl}/fees/${feeCode}/versions`,
+          headers: {
+            Authorization: `Bearer ${user.bearerToken}`
+          },
+          body: dto
+        }).then( () => true )
+        .catch( FeesClientErrorMapper )
   }
 
   static deleteFeeVersion ( user, feeCode: string, version: number ): Promise<boolean> {
@@ -107,6 +119,23 @@ export class FeesClient {
     return request.head ( `${feesUrl}/fees-register/fees/${code}` )
       .then ( () => true ).catch ( () => false )
 
+  }
+
+  static checkFeeVersionExists ( code: string, version: number): Promise<boolean> {
+    return request.head( `${feesUrl}/fees/${code}/versions/${version}` )
+      .then( () => false ).catch( () => true )
+  }
+
+  static retrieveFeeByCode ( code: string): Promise<model.Fee2Dto> {
+
+    let uri: string = `${feesUrl}/fees-register/fees/${code}`
+
+    return request
+      .get( uri )
+      .then( response => {
+        return response as Fee2Dto
+      })
+      .catch(FeesClientError)
   }
 
   static searchFees ( versionStatus: String, author: String ): Promise<Array<model.Fee2Dto>> {
