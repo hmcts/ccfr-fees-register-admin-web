@@ -8,6 +8,9 @@ export class ValidationErrors {
   static readonly DESCRIPTION_REQUIRED: string = 'Enter description'
   static readonly DESCRIPTION_TOO_LONG: string = 'Enter description no longer than $constraint1 characters'
 
+  static readonly VERSION_EXISTS: string = 'Enter version that does not exist'
+  static readonly VERSION_REQUIRED: string = 'Enter the version number'
+
   static readonly MEMO_LINE_REQUIRED: string = 'Enter memo line'
   static readonly MEMO_LINE_TOO_LONG: string = 'Enter a memo line no longer than $constraint1 characters'
 
