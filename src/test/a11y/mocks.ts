@@ -6,7 +6,7 @@ import Fee from 'app/fees/fee'
 import RangeGroup from 'fees/rangeGroup'
 import {
   AllReferenceDataDto,
-  ChannelType, CreateFixedFeeDto, CreateRangedFeeDto, DirectionType, EventType, Fee2Dto, Jurisdiction1,
+  ChannelType, CreateFixedFeeDto, CreateRangedFeeDto, DirectionType, EventType, Fee2Dto, FeeVersionDto, Jurisdiction1,
   ServiceType
 } from 'fees/v2/model/fees-register-api-contract'
 
@@ -112,8 +112,16 @@ function mockRangedFee () {
   return new CreateRangedFeeDto()
 }
 
+function mockFeeVersionDto () {
+  return new FeeVersionDto()
+}
+
 function mockCheckFeeExists () {
   return 'true'
+}
+
+function mockRetrieveFeeByCode () {
+  return new Fee2Dto()
 }
 
 function mockUser () {
@@ -149,6 +157,25 @@ mock('app/fees/v2/feesClient', {
     checkFeeExists: () => Promise.resolve([mockCheckFeeExists()]),
     fetchFeesPendingApproval: () => Promise.resolve([mockFetchFeesPendingApproval()]),
     retrieveReferenceData: () => Promise.resolve(mockAllReferenceData)
+  }
+})
+
+mock('app/fees/v2/feesClient', {
+  'FeesClient': {
+    retrieveChannels: () => Promise.resolve([someChannelTypes()]),
+    retrieveDirections: () => Promise.resolve([someDirectionTypes()]),
+    retrieveEvents: () => Promise.resolve([someEventTypes()]),
+    retrieveJurisdiction1: () => Promise.resolve([someJurisdictions1()]),
+    retrieveJurisdiction2: () => Promise.resolve([someJurisdictions2()]),
+    retrieveServices: () => Promise.resolve([someServiceTypes()]),
+    searchFees: () => Promise.resolve([someFee2Dto()]),
+    createRangedFee: () => Promise.resolve([mockRangedFee()]),
+    createFixedFee: () => Promise.resolve([mockFixedFee()]),
+    checkFeeExists: () => Promise.resolve([mockCheckFeeExists()]),
+    fetchFeesPendingApproval: () => Promise.resolve([mockFetchFeesPendingApproval()]),
+    retrieveReferenceData: () => Promise.resolve(mockAllReferenceData),
+    createFeeVersion: () => Promise.resolve(mockFeeVersionDto),
+    retrieveFeeByCode: () => Promise.resolve(mockRetrieveFeeByCode)
   }
 })
 
