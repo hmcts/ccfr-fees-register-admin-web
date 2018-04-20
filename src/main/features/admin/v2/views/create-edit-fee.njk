@@ -1,8 +1,15 @@
+{% set currentPage = 'create-edit-fee' %}
+
 {% from "includes/macros/form.njk" import errorSummary, textArea, textInput, radioGroup, submitButton, selectInline, selectReferenceData %}
   {% extends "layout.njk" %}
 
-  {% set title = t('Create Fee | Fees Register Admin Console') %}
-  {% set heading = t('Create Fee') %}
+  {% if edit %}
+    {% set title = t('Edit Fee | Fees Register Admin Console') %}
+    {% set heading = t('Edit Fee') %}
+  {% else %}
+    {% set title = t('Create Fee | Fees Register Admin Console') %}
+    {% set heading = t('Create Fee') %}
+  {% endif %}
 
   {% block content %}
 
@@ -145,7 +152,9 @@
 
       </table>
 
-      {{ submitButton(t('Next')) }}
+      <input type="hidden" name="edit" id="edit" value="{{edit}}">
+
+      {{ submitButton(t('Save draft')) }}
     </form>
 
     <a href="/admin/welcome" class="link-back">{{ t('Cancel') }}</a>
