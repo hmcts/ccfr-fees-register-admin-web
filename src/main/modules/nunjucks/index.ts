@@ -44,6 +44,12 @@ export default class Nunjucks {
     nunjucksEnv.addGlobal('t', (key: string, options?: TranslationOptions): string => this.i18next.t(key, options))
     nunjucksEnv.addFilter('date', dateFilter)
     nunjucksEnv.addFilter('numeral', numeralFilter)
-    nunjucksEnv.addGlobal('hasApprovedVersion', (ar: Array<FeeVersionDto>): boolean => ar.findIndex((el) => el.status === 'approved') !== -1 )
+    nunjucksEnv.addGlobal('hasApprovedVersion', (ar: Array<FeeVersionDto>): boolean => {
+      if (ar != null) {
+        return ar.findIndex((el) => el.status === 'approved') !== -1
+      } else {
+        return false
+      }
+    })
   }
 }
