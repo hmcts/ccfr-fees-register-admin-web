@@ -43,9 +43,13 @@
       <td><a href="/admin/v2/dashboard?action=delete&feeCode={{ fee.code }}&version={{ fee.current_version.version }}"
              class="delete-button">Delete</a></td>
       <td class="font-xxsmall center-text">
-        <a title="Edit fee" href="/admin/v2/fees/create?action=edit&feeCode={{ fee.code }}">
+        {% if hasApprovedVersion(fee.fee_versions) %}
           {{ fee.code }}
-        </a>
+        {% else %}
+          <a title="Edit fee" href="/admin/v2/fees/create?action=edit&feeCode={{ fee.code }}">
+            {{ fee.code }}
+          </a>
+        {% endif %}
       </td>
       <td class="font-xxsmall center-text">{{ fee.current_version.description }}</td>
       <td class="font-xxsmall center-text">{{ fee.fee_type }}</td>

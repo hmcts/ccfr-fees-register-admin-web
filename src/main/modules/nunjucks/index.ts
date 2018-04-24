@@ -5,6 +5,7 @@ import * as nunjucks from 'nunjucks'
 import * as dateFilter from 'nunjucks-date-filter'
 import * as numeralFilter from 'nunjucks-numeral-filter'
 import * as numeral from 'numeral'
+import { FeeVersionDto } from 'fees/v2/model/fees-register-api-contract'
 
 const packageDotJson = require('../../../../package.json')
 
@@ -43,5 +44,6 @@ export default class Nunjucks {
     nunjucksEnv.addGlobal('t', (key: string, options?: TranslationOptions): string => this.i18next.t(key, options))
     nunjucksEnv.addFilter('date', dateFilter)
     nunjucksEnv.addFilter('numeral', numeralFilter)
+    nunjucksEnv.addGlobal('hasApprovedVersion', (ar: Array<FeeVersionDto>): boolean => ar.findIndex((el) => el.status === 'approved') !== -1 )
   }
 }
