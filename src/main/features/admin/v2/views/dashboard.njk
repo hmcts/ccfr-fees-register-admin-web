@@ -38,8 +38,16 @@
     <tbody>
     {% for fee in draftFees %}
     <tr>
-      <td><a href="/admin/v2/dashboard?action=submit&feeCode={{ fee.code }}&version={{ fee.current_version.version }}"
-             class="button">Submit</a></td>
+
+      <td>
+        {% if isDraftFeeSubmittable(fee) %}
+          <a href="/admin/v2/dashboard?action=submit&feeCode={{ fee.code }}&version={{ fee.current_version.version }}"
+             class="button">
+            Submit
+          </a>
+        {% endif %}
+      </td>
+
       <td><a href="/admin/v2/dashboard?action=delete&feeCode={{ fee.code }}&version={{ fee.current_version.version }}"
              class="delete-button">Delete</a></td>
       <td class="font-xxsmall center-text">

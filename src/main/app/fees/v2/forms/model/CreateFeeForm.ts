@@ -40,7 +40,6 @@ export class CreateFeeForm {
 
   @MaxLength(2000, {message: ValidationErrors.MEMO_LINE_TOO_LONG})
   @IsDefined({message: ValidationErrors.MEMO_LINE_REQUIRED})
-  @IsNotBlank({message: ValidationErrors.MEMO_LINE_REQUIRED})
   memoLine?: string
 
   @ValidateIf(o => o.amountType === 'flat')
@@ -101,7 +100,6 @@ export class CreateFeeForm {
   jurisdiction2?: string
 
   @IsDefined({message: ValidationErrors.NAC_REQUIRED})
-  @IsNotBlank({message: ValidationErrors.NAC_REQUIRED})
   naturalAccountCode?: string
 
   @IsDefined({message: ValidationErrors.FROM_DATE_REQUIRED})
@@ -117,7 +115,6 @@ export class CreateFeeForm {
   siRefId?: string
 
   @IsDefined({message: ValidationErrors.FEE_ORDER_NAME_REQUIRED})
-  @IsNotBlank({message: ValidationErrors.FEE_ORDER_NAME_REQUIRED})
   feeOrderName?: string
 
   constructor () {
