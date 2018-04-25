@@ -5,7 +5,7 @@ import * as nunjucks from 'nunjucks'
 import * as dateFilter from 'nunjucks-date-filter'
 import * as numeralFilter from 'nunjucks-numeral-filter'
 import * as numeral from 'numeral'
-import { FeeVersionDto } from 'fees/v2/model/fees-register-api-contract'
+import { Fee2Dto, FeeVersionDto } from 'fees/v2/model/fees-register-api-contract'
 
 const packageDotJson = require('../../../../package.json')
 
@@ -50,6 +50,20 @@ export default class Nunjucks {
       } else {
         return false
       }
+    })
+    nunjucksEnv.addGlobal('isDraftFeeSubmittable', (fee: Fee2Dto): boolean => {
+      if (fee != null && (fee.current_version || fee.fee_versions) ) {
+        let testVersion: FeeVersionDto = fee.current_version ? fee.current_version : fee.fee_versions[0]
+        if (testVersion.natural_account_code.length === 0 ||
+          testVersion.memo_line.length === 0 ||
+          testVersion.si_ref_id.length === 0 ||
+          testVersion.statutory_instrument.length === 0 ||
+          testVersion.fee_order_name.length === 0) {
+          return false
+        }
+        return true
+      }
+      return false
     })
   }
 }
