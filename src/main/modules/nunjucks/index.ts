@@ -52,15 +52,18 @@ export default class Nunjucks {
       }
     })
     nunjucksEnv.addGlobal('isDraftFeeSubmittable', (fee: Fee2Dto): boolean => {
-      let testVersion: FeeVersionDto = fee.current_version ? fee.current_version : fee.fee_versions[0]
-      if (testVersion.natural_account_code.length === 0 ||
-        testVersion.memo_line.length === 0 ||
-        testVersion.si_ref_id.length === 0 ||
-        testVersion.statutory_instrument.length === 0 ||
-        testVersion.fee_order_name.length === 0) {
-        return false
+      if (fee != null && (fee.current_version || fee.fee_versions) ) {
+        let testVersion: FeeVersionDto = fee.current_version ? fee.current_version : fee.fee_versions[0]
+        if (testVersion.natural_account_code.length === 0 ||
+          testVersion.memo_line.length === 0 ||
+          testVersion.si_ref_id.length === 0 ||
+          testVersion.statutory_instrument.length === 0 ||
+          testVersion.fee_order_name.length === 0) {
+          return false
+        }
+        return true
       }
-      return true
+      return false
     })
   }
 }
