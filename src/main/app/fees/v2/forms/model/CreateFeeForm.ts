@@ -144,9 +144,9 @@ export class CreateFeeForm {
     Object.keys(fee).forEach(key => form[key] = fee[key])
     Object.keys(feeVersionInfo).forEach(key => form[key] = feeVersionInfo[key])
 
-    form.applicantType = (form as any).applicant_type
-    form.channel = (form as any).channel_type
-    form.event = (form as any).event_type
+    form.applicantType = (form as any).applicant_type.name
+    form.channel = (form as any).channel_type.name
+    form.event = (form as any).event_type.name
     if (feeVersionInfo.flat_amount) {
       form.amount = feeVersionInfo.flat_amount.amount
       form.amountType = 'flat'
@@ -159,7 +159,9 @@ export class CreateFeeForm {
       form.percentage = (form as any).percentage_amount.percentage
       form.amountType = 'percentage'
     }
-    form.service = (form as any).service_type
+    form.service = (form as any).service_type.name
+    form.jurisdiction1 = (form as any).jurisdiction1.name
+    form.jurisdiction2 = (form as any).jurisdiction2.name
     form.memoLine = (form as any).memo_line
     form.naturalAccountCode = (form as any).natural_account_code
     form.siRefId = (form as any).si_ref_id
@@ -200,6 +202,10 @@ export class CreateFeeForm {
 
     if (form.percentage) {
       form.percentage = +form.percentage
+    }
+
+    if (form.edit) {
+      form.edit = (form.edit as any) === 'true'
     }
 
     return form
