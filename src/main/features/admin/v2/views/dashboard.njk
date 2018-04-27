@@ -1,6 +1,6 @@
 {% extends "layout.njk" %}
 
-  {% set title = t('Dashboard | Fees Register Admin Console') %}
+  {% set title = t('Dashboard | ' + serviceName) %}
   {% set heading = 'Dashboard' %}
 
   {% block content %}
@@ -38,17 +38,21 @@
     <tbody>
     {% for fee in draftFees %}
     <tr>
-
+      {% if fee.current_version != null %}
+        {% set displayedFeeVersion = fee.current_version %}
+      {% else %}
+        {% set displayedFeeVersion = fee.fee_versions[0] %}
+      {% endif %}
       <td>
         {% if isDraftFeeSubmittable(fee) %}
-          <a href="/admin/v2/dashboard?action=submit&feeCode={{ fee.code }}&version={{ fee.current_version.version }}"
+          <a href="/admin/v2/dashboard?action=submit&feeCode={{ fee.code }}&version={{ displayedFeeVersion.version }}"
              class="button">
             Submit
           </a>
         {% endif %}
       </td>
 
-      <td><a href="/admin/v2/dashboard?action=delete&feeCode={{ fee.code }}&version={{ fee.current_version.version }}"
+      <td><a href="/admin/v2/dashboard?action=delete&feeCode={{ fee.code }}&version={{ displayedFeeVersion.version }}"
              class="delete-button">Delete</a></td>
       <td class="font-xxsmall center-text">
         {% if hasApprovedVersion(fee.fee_versions) %}
@@ -59,41 +63,41 @@
           </a>
         {% endif %}
       </td>
-      <td class="font-xxsmall center-text">{{ fee.current_version.description }}</td>
+      <td class="font-xxsmall center-text">{{ displayedFeeVersion.description }}</td>
       <td class="font-xxsmall center-text">{{ fee.fee_type }}</td>
       {% if fee.min_range %}
       <td class="font-xxsmall center-text">£{{ fee.min_range }}</td>
       {% else %}
-      <td/>
+        <td class="font-xxsmall center-text">n/a</td>
       {% endif %}
       {% if fee.max_range %}
       <td class="font-xxsmall center-text">£{{ fee.max_range }}</td>
       {% else %}
-      <td/>
+        <td class="font-xxsmall center-text">n/a</td>
       {% endif %}
-      {% if fee.current_version.flat_amount %}
+      {% if displayedFeeVersion.flat_amount %}
       <td class="font-xxsmall center-text">Flat</td>
-      <td class="font-xxsmall center-text">£{{ fee.current_version.flat_amount.amount }}</td>
-      {% elif fee.current_version.volume_amount %}
+      <td class="font-xxsmall center-text">£{{ displayedFeeVersion.flat_amount.amount }}</td>
+      {% elif displayedFeeVersion.volume_amount %}
       <td class="font-xxsmall center-text">Volume</td>
-      <td class="font-xxsmall center-text">£{{ fee.current_version.volume_amount.amount }}</td>
+      <td class="font-xxsmall center-text">£{{ displayedFeeVersion.volume_amount.amount }}</td>
       {% else %}
       <td class="font-xxsmall center-text">Percentage</td>
-      <td class="font-xxsmall center-text">{{ fee.current_version.percentage_amount.percentage }}%</td>
+      <td class="font-xxsmall center-text">{{ displayedFeeVersion.percentage_amount.percentage }}%</td>
       {% endif %}
       <td class="font-xxsmall center-text">{{ fee.jurisdiction1.name }}</td>
       <td class="font-xxsmall center-text">{{ fee.jurisdiction2.name }}</td>
       <td class="font-xxsmall center-text">{{ fee.service_type.name }}</td>
       <td class="font-xxsmall center-text">{{ fee.event_type.name }}</td>
       <td class="font-xxsmall center-text">{{ fee.channel_type.name }}</td>
-      <td class="font-xxsmall center-text">{{ fee.current_version.version }}</td>
-      {% if fee.current_version.valid_from %}
-      <td class="font-xxsmall center-text">{{ fee.current_version.valid_from | date }}</td>
+      <td class="font-xxsmall center-text">{{ displayedFeeVersion.version }}</td>
+      {% if displayedFeeVersion.valid_from %}
+      <td class="font-xxsmall center-text">{{ displayedFeeVersion.valid_from | date}}</td>
       {% else %}
       <td/>
       {% endif %}
-      {% if fee.current_version.valid_to %}
-      <td class="font-xxsmall center-text">{{ fee.current_version.valid_to | date }}</td>
+      {% if displayedFeeVersion.valid_to %}
+      <td class="font-xxsmall center-text">{{ displayedFeeVersion.valid_to | date }}</td>
       {% else %}
       <td/>
       {% endif %}
@@ -138,47 +142,52 @@
     </thead>
     <tbody>
     {% for fee in pendingApprovalFees %}
+      {% if fee.current_version != null %}
+        {% set displayedFeeVersion = fee.current_version %}
+      {% else %}
+        {% set displayedFeeVersion = fee.fee_versions[0] %}
+      {% endif %}
     <tr>
-      <td><a href="/admin/v2/dashboard?action=approve&feeCode={{ fee.code }}&version={{ fee.current_version.version }}"
+      <td><a href="/admin/v2/dashboard?action=approve&feeCode={{ fee.code }}&version={{ displayedFeeVersion.version }}"
              class="button">Approve</a></td>
-      <td><a href="/admin/v2/dashboard?action=reject&feeCode={{ fee.code }}&version={{ fee.current_version.version }}"
+      <td><a href="/admin/v2/dashboard?action=reject&feeCode={{ fee.code }}&version={{ displayedFeeVersion.version }}"
              class="delete-button">Reject</a></td>
       <td class="font-xxsmall center-text">{{ fee.code }}</td>
-      <td class="font-xxsmall center-text">{{ fee.current_version.description }}</td>
+      <td class="font-xxsmall center-text">{{ displayedFeeVersion.description }}</td>
       <td class="font-xxsmall center-text">{{ fee.fee_type }}</td>
       {% if fee.min_range %}
-      <td class="font-xxsmall center-text">£{{ fee.min_range }}</td>
+        <td class="font-xxsmall center-text">£{{ fee.min_range }}</td>
       {% else %}
-      <td/>
+        <td class="font-xxsmall center-text">n/a</td>
       {% endif %}
       {% if fee.max_range %}
-      <td class="font-xxsmall center-text">£{{ fee.max_range }}</td>
+        <td class="font-xxsmall center-text">£{{ fee.max_range }}</td>
       {% else %}
-      <td/>
+        <td class="font-xxsmall center-text">n/a</td>
       {% endif %}
-      {% if fee.current_version.flat_amount %}
+      {% if displayedFeeVersion.flat_amount %}
       <td class="font-xxsmall center-text">Flat</td>
-      <td class="font-xxsmall center-text">£{{ fee.current_version.flat_amount.amount }}</td>
-      {% elif fee.current_version.volume_amount %}
+      <td class="font-xxsmall center-text">£{{ displayedFeeVersion.flat_amount.amount }}</td>
+      {% elif displayedFeeVersion.volume_amount %}
       <td class="font-xxsmall center-text">Volume</td>
-      <td class="font-xxsmall center-text">£{{ fee.current_version.volume_amount.amount }}</td>
+      <td class="font-xxsmall center-text">£{{ displayedFeeVersion.volume_amount.amount }}</td>
       {% else %}
       <td class="font-xxsmall center-text">Percentage</td>
-      <td class="font-xxsmall center-text">{{ fee.current_version.percentage_amount.percentage }}%</td>
+      <td class="font-xxsmall center-text">{{ displayedFeeVersion.percentage_amount.percentage }}%</td>
       {% endif %}
       <td class="font-xxsmall center-text">{{ fee.jurisdiction1.name }}</td>
       <td class="font-xxsmall center-text">{{ fee.jurisdiction2.name }}</td>
       <td class="font-xxsmall center-text">{{ fee.service_type.name }}</td>
       <td class="font-xxsmall center-text">{{ fee.event_type.name }}</td>
       <td class="font-xxsmall center-text">{{ fee.channel_type.name }}</td>
-      <td class="font-xxsmall center-text">{{ fee.current_version.version }}</td>
-      {% if fee.current_version.valid_from %}
-      <td class="font-xxsmall center-text">{{ fee.current_version.valid_from | date }}</td>
+      <td class="font-xxsmall center-text">{{ displayedFeeVersion.version }}</td>
+      {% if displayedFeeVersion.valid_from %}
+      <td class="font-xxsmall center-text">{{ displayedFeeVersion.valid_from | date }}</td>
       {% else %}
       <td/>
       {% endif %}
-      {% if fee.current_version.valid_to %}
-      <td class="font-xxsmall center-text">{{ fee.current_version.valid_to | date }}</td>
+      {% if displayedFeeVersion.valid_to %}
+      <td class="font-xxsmall center-text">{{ displayedFeeVersion.valid_to | date }}</td>
       {% else %}
       <td/>
       {% endif %}
