@@ -63,6 +63,7 @@ function authorize(roles, res, next, self) {
   if (roles !== null) {
     for (var role in self.roles) {
       if (roles.includes(self.roles[role])) {
+        res.locals.isLoggedIn = true
         return next();
       }
     }

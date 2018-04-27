@@ -3,13 +3,14 @@
 {% from "includes/macros/form.njk" import errorSummary, textArea, textInput, radioGroup, submitButton, selectInline, selectReferenceData %}
   {% extends "layout.njk" %}
 
-  {% if edit %}
-    {% set title = t('Edit Fee | Fees Register Admin Console') %}
-    {% set heading = t('Edit Fee') %}
-  {% else %}
-    {% set title = t('Create Fee | Fees Register Admin Console') %}
-    {% set heading = t('Create Fee') %}
-  {% endif %}
+    {% if edit %}
+      {% set thisPageHeading =  'Edit Fee' %}
+    {% else %}
+      {% set thisPageHeading = 'Create Fee' %}
+    {% endif %}
+
+    {% set title = t(thisPageHeading + ' | ' + serviceName) %}
+    {% set heading = t(thisPageHeading) %}
 
   {% block content %}
 
@@ -18,12 +19,17 @@
     <form method="post" action="create">
       <table id="create-fee-form-table">
         <tr>
-          <td>{{ textInput(t('Fee Code*'), 'code', form) }}</td>
-
+          {% if edit %}
+          <td>
+            <div class="form-group">
+              <label class="form-label-bold">Fee Code</label>
+              <p>{{ form.valueFor('code') }}</p>
+            </div>
+            <input type="hidden" name="code" id="code" value="{{ form.valueFor('code') }}">
+          </td>
+          {% endif %}
           <td>{{ textInput(t('Memo Line'), 'memoLine', form) }}</td>
-
           <td>{{ textInput(t('Natural Account Code'), 'naturalAccountCode', form) }}</td>
-
         </tr>
 
         <tr>
@@ -34,7 +40,6 @@
 
         <tr>
           <td>
-
             {% set fromDateError = form.errorFor('fromDate') %}
             <div class="form-group {% if fromDateError %} form-group-error {% endif %}">
             <label class="form-label-bold" for="fromDate" id="fromDate[label]">From Date*</label>
@@ -59,7 +64,7 @@
 
         <tr>
           <td>
-            {{ radioGroup(form = form, name = 'type', disabled = false, label = t('Type'), options = [
+            {{ radioGroup(form = form, name = 'type', disabled = false, label = t('Fee Type'), options = [
             { label: t('Fixed'), value: 'fixed', onclick: "disableRangedFees" },
             { label: t('Ranged'), value: 'ranged', onclick: "enableRangedFees" }
             ]) }}

@@ -38,7 +38,7 @@ export default express.Router()
     const form: Form<CreateFeeForm> = req.body
 
     if (form.hasErrors()) {
-      Renderer.renderPage(form, res)
+      Renderer.renderPage(form, res, form.model.edit)
     } else {
       switch (form.model.type) {
         case 'fixed' :
@@ -54,7 +54,7 @@ export default express.Router()
             ).catch(
               (e: Error) => {
                 form.backendErrors.push(e.message)
-                Renderer.renderPage(form, res)
+                Renderer.renderPage(form, res, form.model.edit)
               }
             )
           } else {
@@ -63,7 +63,7 @@ export default express.Router()
             ).catch(
               (e: Error) => {
                 form.backendErrors.push(e.message)
-                Renderer.renderPage(form, res)
+                Renderer.renderPage(form, res, form.model.edit)
               }
             )
           }
@@ -81,7 +81,7 @@ export default express.Router()
             ).catch(
               (e: Error) => {
                 form.backendErrors.push(e.message)
-                Renderer.renderPage(form, res)
+                Renderer.renderPage(form, res, form.model.edit)
               }
             )
           } else {
@@ -90,13 +90,13 @@ export default express.Router()
             ).catch(
               (e: Error) => {
                 form.backendErrors.push(e.message)
-                Renderer.renderPage(form, res)
+                Renderer.renderPage(form, res, form.model.edit)
               }
             )
           }
           break
         default :
-          Renderer.renderPage(form, res)
+          Renderer.renderPage(form, res, form.model.edit)
       }
     }
   })

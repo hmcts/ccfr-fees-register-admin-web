@@ -1,7 +1,7 @@
 {% from "includes/macros/form.njk" import errorSummary, textArea, textInputInline, selectInline, submitButton %}
 {% extends "layout.njk" %}
 
-{% set title = t('Category | Fees Register Admin Console') %}
+{% set title = t('Category | ' + serviceName) %}
 {% set heading = t('Category ') + form.model.code %}
 
 {% block content %}

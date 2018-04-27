@@ -1,12 +1,9 @@
-import { IsDefined, Matches, Max, MaxLength, Min, ValidateIf } from 'class-validator'
+import { IsDefined, Max, MaxLength, Min, ValidateIf } from 'class-validator'
 
 import { IsNotBlank } from 'app/forms/validation/validators/isBlank'
 import { Fractions } from 'app/forms/validation/validators/fractions'
-import { IsUnique } from 'app/forms/validation/validators/isUnique'
 
 const moment = require('moment')
-
-import { FeesClient } from 'app/fees/v2/feesClient'
 
 import { ValidationErrors } from 'fees/v2/forms/model/ValidationErrors'
 import {
@@ -15,14 +12,6 @@ import {
 } from 'fees/v2/model/fees-register-api-contract'
 
 export class CreateFeeForm {
-  @IsDefined({message: ValidationErrors.CODE_REQUIRED})
-  @IsNotBlank({message: ValidationErrors.CODE_REQUIRED})
-  @MaxLength(50, {message: ValidationErrors.CODE_TOO_LONG})
-  @Matches(/[A-Za-z0-9_-]+/, {message: ValidationErrors.CODE_INVALID_CHARACTERS})
-  @ValidateIf(form => {
-    return Boolean(!form.edit)
-  })
-  @IsUnique((value) => FeesClient.checkFeeExists(value).then((exists) => !exists), {message: ValidationErrors.CODE_EXISTS})
   code?: string
 
   @IsDefined({message: ValidationErrors.TYPE_REQUIRED})
@@ -118,7 +107,7 @@ export class CreateFeeForm {
   feeOrderName?: string
 
   constructor () {
-    this.code = ''
+    this.code = null
     this.type = 'fixed'
     this.amountType = 'flat'
     this.description = ''
@@ -223,7 +212,7 @@ export class CreateFeeForm {
 
   private fillCommon (dto: CreateFeeDto): CreateFeeDto {
 
-    dto.code = this.code
+    dto.code = this.code !== '' ? this.code : null
 
     dto.channel = this.channel
     dto.service = this.service
