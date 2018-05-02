@@ -26,13 +26,13 @@ class Renderer {
   static executeAction ( user: AuthOptions, action: string, feeCode: string, version: number ): Promise<Boolean> {
     switch ( action ) {
       case 'approve':
-        return FeesClient.changeFeeStatus ( user, feeCode, version, 'approved' )
+        return FeesClient.approveFee ( user, feeCode, version)
       case 'delete':
         return FeesClient.deleteFeeVersion ( user, feeCode, version )
       case 'reject':
-        return FeesClient.changeFeeStatus ( user, feeCode, version, 'draft' )
+        return FeesClient.rejectFee ( user, feeCode, version)
       case 'submit':
-        return FeesClient.changeFeeStatus ( user, feeCode, version, 'pending_approval' )
+        return FeesClient.submitForReview ( user, feeCode, version)
     }
   }
 }
