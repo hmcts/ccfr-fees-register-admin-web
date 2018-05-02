@@ -4,8 +4,7 @@ import request from 'client/request'
 import * as model from 'app/fees/v2/model/fees-register-api-contract'
 import { StatusCodeError } from 'request-promise-native/errors'
 import {
-  AllReferenceDataDto, CreateFixedFeeDto, Fee2Dto, FeeVersionDto,
-  FeeVersionStatus
+  AllReferenceDataDto, CreateFixedFeeDto, Fee2Dto, FeeVersionDto
 } from 'fees/v2/model/fees-register-api-contract'
 
 const feesUrl = config.get('fees.url')
@@ -27,18 +26,16 @@ function FeesClientErrorMapper (reason: Error) {
 
 export class FeesClient {
 
-  static changeFeeStatus (user, feeCode: string, version: number, status: FeeVersionStatus): Promise<boolean> {
+  static approveFee (user, feeCode: string, version: number): Promise<boolean> {
+    return FeesClient.invokePatch(`${feesUrl}/fees/${feeCode}/versions/${version}/approve`, user)
+  }
 
-    return request
-      .patch({
-        uri: `${feesUrl}/fees/${feeCode}/versions/${version}/status/${status}`,
-        json: true,
-        headers: {
-          Authorization: `Bearer ${user.bearerToken}`
-        }
-      })
-      .then(() => true)
-      .catch(FeesClientErrorMapper)
+  static rejectFee (user, feeCode: string, version: number): Promise<boolean> {
+    return FeesClient.invokePatch(`${feesUrl}/fees/${feeCode}/versions/${version}/reject`, user)
+  }
+
+  static submitForReview (user, feeCode: string, version: number): Promise<boolean> {
+    return FeesClient.invokePatch(`${feesUrl}/fees/${feeCode}/versions/${version}/submit-for-review`, user)
   }
 
   static deleteFee (user, feeCode: string): Promise<boolean> {
@@ -285,6 +282,19 @@ export class FeesClient {
       .then(response => {
         return response as Array<model.EventTypeDto>
       })
+      .catch(FeesClientErrorMapper)
+  }
+
+  private static invokePatch (url: string, user): Promise<boolean> {
+    return request
+      .patch({
+        uri: `${url}`,
+        json: true,
+        headers: {
+          Authorization: `Bearer ${user.bearerToken}`
+        }
+      })
+      .then(() => true)
       .catch(FeesClientErrorMapper)
   }
 }
