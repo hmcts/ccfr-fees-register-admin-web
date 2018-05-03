@@ -14,8 +14,6 @@
   <table>
     <thead>
     <tr>
-      <th class="bold-xxsmall center"></th>
-      <th class="bold-xxsmall center-text"></th>
       <th class="bold-xxsmall center-text">Code</th>
       <th class="bold-xxsmall center-text">Description</th>
       <th class="bold-xxsmall center-text">Type</th>
@@ -23,16 +21,15 @@
       <th class="bold-xxsmall center-text">Range to</th>
       <th class="bold-xxsmall center-text">Amount Type</th>
       <th class="bold-xxsmall center-text">Amount / %</th>
-      <th class="bold-xxsmall center-text">Jurisdiction 1</th>
-      <th class="bold-xxsmall center-text">Jurisdiction 2</th>
+      <th class="bold-xxsmall center-text">Jurisdiction1</th>
+      <th class="bold-xxsmall center-text">Jurisdiction2</th>
       <th class="bold-xxsmall center-text">Service</th>
       <th class="bold-xxsmall center-text">Event</th>
       <th class="bold-xxsmall center-text">Channel</th>
       <th class="bold-xxsmall center-text">Version</th>
       <th class="bold-xxsmall center-text">Valid From</th>
       <th class="bold-xxsmall center-text">Valid To</th>
-      <th/>
-      <th/>
+      <th class="bold-xxsmall center-text">Actions</th>
     </tr>
     </thead>
     <tbody>
@@ -43,17 +40,7 @@
       {% else %}
         {% set displayedFeeVersion = fee.fee_versions[0] %}
       {% endif %}
-      <td>
-        {% if isDraftFeeSubmittable(fee) %}
-          <a href="/admin/v2/dashboard?action=submit&feeCode={{ fee.code }}&version={{ displayedFeeVersion.version }}"
-             class="button">
-            Submit
-          </a>
-        {% endif %}
-      </td>
 
-      <td><a href="/admin/v2/dashboard?action=delete&feeCode={{ fee.code }}&version={{ displayedFeeVersion.version }}"
-             class="delete-button">Delete</a></td>
       <td class="font-xxsmall center-text">
         {% if hasApprovedVersion(fee.fee_versions) %}
           {{ fee.code }}
@@ -101,7 +88,19 @@
       {% else %}
       <td/>
       {% endif %}
+
+      <td>
+        <p>
+            {% if isDraftFeeSubmittable(fee) %}
+              <a href="/admin/v2/dashboard?action=submit&feeCode={{ fee.code }}&version={{ displayedFeeVersion.version }}"  class="custom-button">Submit</a>
+            {% endif %}
+        </p>
+        <p>
+            <a href="/admin/v2/dashboard?action=delete&feeCode={{ fee.code }}&version={{ displayedFeeVersion.version }}" class="custom-delete-button">Delete</a>
+        </p>
+      </td>
     </tr>
+
     {% endfor %}
     </tbody>
   </table>
@@ -119,8 +118,6 @@
   <table>
     <thead>
     <tr>
-      <th class="bold-xxsmall center-text"></th>
-      <th class="bold-xxsmall center-text"></th>
       <th class="bold-xxsmall center-text">Code</th>
       <th class="bold-xxsmall center-text">Description</th>
       <th class="bold-xxsmall center-text">Type</th>
@@ -136,8 +133,7 @@
       <th class="bold-xxsmall center-text">Version</th>
       <th class="bold-xxsmall center-text">Valid From</th>
       <th class="bold-xxsmall center-text">Valid To</th>
-      <th/>
-      <th/>
+      <th class="bold-xxsmall center-text">Actions</th>
     </tr>
     </thead>
     <tbody>
@@ -148,10 +144,7 @@
         {% set displayedFeeVersion = fee.fee_versions[0] %}
       {% endif %}
     <tr>
-      <td><a href="/admin/v2/dashboard?action=approve&feeCode={{ fee.code }}&version={{ displayedFeeVersion.version }}"
-             class="button">Approve</a></td>
-      <td><a href="/admin/v2/dashboard?action=reject&feeCode={{ fee.code }}&version={{ displayedFeeVersion.version }}"
-             class="delete-button">Reject</a></td>
+
       <td class="font-xxsmall center-text">{{ fee.code }}</td>
       <td class="font-xxsmall center-text">{{ displayedFeeVersion.description }}</td>
       <td class="font-xxsmall center-text">{{ fee.fee_type }}</td>
@@ -192,8 +185,13 @@
       <td/>
       {% endif %}
 
-
-
+     <td>
+      <p>
+        <a href="/admin/v2/dashboard?action=approve&feeCode={{ fee.code }}&version={{ displayedFeeVersion.version }}" class="custom-button">Approve</a>
+      </p>
+      <p>
+        <a href="/admin/v2/dashboard?action=reject&feeCode={{ fee.code }}&version={{ displayedFeeVersion.version }}" class="custom-delete-button">Reject</a>
+      </p>
     </tr>
     {% endfor %}
     </tbody>
