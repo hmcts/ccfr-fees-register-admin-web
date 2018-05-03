@@ -286,6 +286,7 @@ export class FeesClient {
   }
 
   private static invokePatch (url: string, user): Promise<boolean> {
+    console.log('User request for : ', url)
     return request
       .patch({
         uri: `${url}`,
