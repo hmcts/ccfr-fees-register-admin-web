@@ -17,7 +17,8 @@ class Renderer {
     ] ).then ( ( fees: Fee2Dto[][] ) => {
       res.render ( Paths.dashboard.associatedView, {
         draftFees: fees[ 0 ],
-        pendingApprovalFees: fees[ 1 ]
+        pendingApprovalFees: fees[ 1 ],
+        roles: res.locals.user.userInfo
       } )
     } )
 

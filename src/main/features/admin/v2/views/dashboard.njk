@@ -7,7 +7,7 @@
 
 <div class="column-full">
 
-  <h4 class="heading-small">Draft Fees</h4>
+  <h3 class="heading-medium">Draft Fees</h3>
 
   {% if (draftFees | length) > 0 %}
 
@@ -20,7 +20,7 @@
       <th class="bold-xxsmall center">Range from</th>
       <th class="bold-xxsmall center-text">Range to</th>
       <th class="bold-xxsmall center-text">Amount Type</th>
-      <th class="bold-xxsmall center-text">Amount / %</th>
+      <th class="bold-xxsmall center-text">Amount</th>
       <th class="bold-xxsmall center-text">Jurisdiction1</th>
       <th class="bold-xxsmall center-text">Jurisdiction2</th>
       <th class="bold-xxsmall center-text">Service</th>
@@ -29,7 +29,7 @@
       <th class="bold-xxsmall center-text">Version</th>
       <th class="bold-xxsmall center-text">Valid From</th>
       <th class="bold-xxsmall center-text">Valid To</th>
-      <th class="bold-xxsmall center-text">Actions</th>
+      <th class="heading-medium center-text">Actions</th>
     </tr>
     </thead>
     <tbody>
@@ -92,11 +92,15 @@
       <td>
         <p>
             {% if isDraftFeeSubmittable(fee) %}
-              <a href="/admin/v2/dashboard?action=submit&feeCode={{ fee.code }}&version={{ displayedFeeVersion.version }}"  class="custom-button">Submit</a>
+              <a href="/admin/v2/dashboard?action=submit&feeCode={{ fee.code }}&version={{ displayedFeeVersion.version }}"  class="custom-button">
+                Submit
+              </a>
             {% endif %}
-        </p>
-        <p>
-            <a href="/admin/v2/dashboard?action=delete&feeCode={{ fee.code }}&version={{ displayedFeeVersion.version }}" class="custom-delete-button">Delete</a>
+            </p>
+            <p>
+            <a href="/admin/v2/dashboard?action=delete&feeCode={{ fee.code }}&version={{ displayedFeeVersion.version }}" class="custom-delete-button">
+              Delete&nbsp;
+            </a>
         </p>
       </td>
     </tr>
@@ -111,7 +115,7 @@
 
   <p></p>
 
-  <h4 class="heading-small">Fees pending approval</h4>
+  <h3 class="heading-medium">Fees pending approval</h3>
 
   {% if (pendingApprovalFees | length) > 0 %}
 
@@ -124,16 +128,18 @@
       <th class="bold-xxsmall center-text">Range from</th>
       <th class="bold-xxsmall center-text">Range to</th>
       <th class="bold-xxsmall center-text">Amount Type</th>
-      <th class="bold-xxsmall center-text">Amount / %</th>
-      <th class="bold-xxsmall center-text">Jurisdiction 1</th>
-      <th class="bold-xxsmall center-text">Jurisdiction 2</th>
+      <th class="bold-xxsmall center-text">Amount</th>
+      <th class="bold-xxsmall center-text">Jurisdiction1</th>
+      <th class="bold-xxsmall center-text">Jurisdiction2</th>
       <th class="bold-xxsmall center-text">Service</th>
       <th class="bold-xxsmall center-text">Event</th>
       <th class="bold-xxsmall center-text">Channel</th>
       <th class="bold-xxsmall center-text">Version</th>
       <th class="bold-xxsmall center-text">Valid From</th>
       <th class="bold-xxsmall center-text">Valid To</th>
-      <th class="bold-xxsmall center-text">Actions</th>
+      {% if 'freg-approver' in roles %}
+        <th class="heading-medium center-text">Actions</th>
+      {% endif %}
     </tr>
     </thead>
     <tbody>
@@ -185,20 +191,23 @@
       <td/>
       {% endif %}
 
-     <td>
-      <p>
-        <a href="/admin/v2/dashboard?action=approve&feeCode={{ fee.code }}&version={{ displayedFeeVersion.version }}" class="custom-button">Approve</a>
-      </p>
-      <p>
-        <a href="/admin/v2/dashboard?action=reject&feeCode={{ fee.code }}&version={{ displayedFeeVersion.version }}" class="custom-delete-button">Reject</a>
-      </p>
+       <td>
+        {% if 'freg-approver' in roles %}
+          <p>
+            <a href="/admin/v2/dashboard?action=approve&feeCode={{ fee.code }}&version={{ displayedFeeVersion.version }}" class="custom-button">Approve</a>
+          </p>
+          <p>
+            <a href="/admin/v2/dashboard?action=reject&feeCode={{ fee.code }}&version={{ displayedFeeVersion.version }}" class="custom-delete-button">Reject&nbsp;&nbsp;&nbsp;&nbsp;</a>
+          </p>
+        {% endif %}
+      </td>
     </tr>
     {% endfor %}
     </tbody>
   </table>
 
   {% else %}
-  <p>No fees pending approval</p>
+  <p>No fees in pending approval</p>
   {% endif %}
 
   <p><a href="/admin/welcome/" class="link-back">{{ t("Back to welcome page") }}</a></p>
