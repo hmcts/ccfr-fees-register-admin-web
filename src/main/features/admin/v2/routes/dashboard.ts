@@ -21,7 +21,6 @@ class Renderer {
         roles: res.locals.user.userInfo
       } )
     } )
-
   }
 
   static executeAction ( user: AuthOptions, action: string, feeCode: string, version: number ): Promise<Boolean> {
