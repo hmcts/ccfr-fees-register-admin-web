@@ -161,7 +161,8 @@ function protectImpl(req, res, next, self) {
 
       res.locals.user = {
         userInfo: response.body.roles,
-        bearerToken: securityCookie
+        bearerToken: securityCookie,
+        allInfo: response.body
       };
       req.roles = response.body.roles;
       req.bearerToken = securityCookie;
