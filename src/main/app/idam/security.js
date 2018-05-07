@@ -177,7 +177,10 @@ Security.prototype.protect = function (role) {
     return function (req, res, next) {
       res.locals.user = {
         userInfo: ['freg'],
-        bearerToken: 'spoof_bearer_token'
+        bearerToken: 'spoof_bearer_token',
+        allInfo: {
+          roles: []
+        }
       }
       next()
     };
