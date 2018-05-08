@@ -195,4 +195,4 @@ export class AllReferenceDataDto {
   applicantTypes: ApplicantTypeDto[]
 }
 
-export type FeeVersionStatus = 'draft' | 'pending_approval' | 'approved'
+export type FeeVersionStatus = 'draft' | 'pending_approval' | 'approved' | 'rejected'
