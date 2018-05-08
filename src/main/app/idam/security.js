@@ -161,7 +161,8 @@ function protectImpl(req, res, next, self) {
 
       res.locals.user = {
         userInfo: response.body.roles,
-        bearerToken: securityCookie
+        bearerToken: securityCookie,
+        allInfo: response.body
       };
       req.roles = response.body.roles;
       req.bearerToken = securityCookie;
@@ -176,7 +177,10 @@ Security.prototype.protect = function (role) {
     return function (req, res, next) {
       res.locals.user = {
         userInfo: ['freg'],
-        bearerToken: 'spoof_bearer_token'
+        bearerToken: 'spoof_bearer_token',
+        allInfo: {
+          roles: []
+        }
       }
       next()
     };
