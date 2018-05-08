@@ -47,7 +47,7 @@
 
 
 .custom-button {
-  background-color: green;
+  background-color: #00823b;
   position: relative;
   display: -moz-inline-stack;
   display: inline-block;
@@ -63,14 +63,13 @@
   -moz-box-shadow: 0 2px 0 #003618;
   box-shadow: 0 2px 0 #003618;
   font-size: 1em;
-  line-height: 0.50;
+  line-height: 1.25;
   text-decoration: none;
   -webkit-font-smoothing: antialiased;
   cursor: pointer;
-  color: floralwhite;
+  color: #fff;
   -webkit-box-sizing: border-box;
   -moz-box-sizing: border-box;
-  text-transform: none;
   box-sizing: border-box;
   vertical-align: top;
 }
