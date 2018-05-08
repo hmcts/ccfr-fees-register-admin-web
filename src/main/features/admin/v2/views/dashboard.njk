@@ -92,13 +92,13 @@
       <td>
         <p>
             {% if isDraftFeeSubmittable(fee) %}
-              <a href="/admin/v2/dashboard?action=submit&feeCode={{ fee.code }}&version={{ displayedFeeVersion.version }}"  class="custom-button">
+              <a href="/admin/v2/dashboard?action=submit&feeCode={{ fee.code }}&version={{ displayedFeeVersion.version }}"  class="button">
                 Submit
               </a>
             {% endif %}
             </p>
             <p>
-            <a href="/admin/v2/dashboard?action=delete&feeCode={{ fee.code }}&version={{ displayedFeeVersion.version }}" class="custom-delete-button">
+            <a href="/admin/v2/dashboard?action=delete&feeCode={{ fee.code }}&version={{ displayedFeeVersion.version }}" class="button">
               Delete&nbsp;
             </a>
         </p>
@@ -194,10 +194,10 @@
        <td>
         {% if 'freg-approver' in roles %}
           <p>
-            <a href="/admin/v2/dashboard?action=approve&feeCode={{ fee.code }}&version={{ displayedFeeVersion.version }}" class="custom-button">Approve</a>
+            <a href="/admin/v2/dashboard?action=approve&feeCode={{ fee.code }}&version={{ displayedFeeVersion.version }}" class="button">Approve</a>
           </p>
           <p>
-            <a href="/admin/v2/dashboard?action=reject&feeCode={{ fee.code }}&version={{ displayedFeeVersion.version }}" class="custom-delete-button">Reject&nbsp;&nbsp;&nbsp;&nbsp;</a>
+            <a href="/admin/v2/dashboard?action=reject&feeCode={{ fee.code }}&version={{ displayedFeeVersion.version }}" class="button">Reject&nbsp;&nbsp;&nbsp;&nbsp;</a>
           </p>
         {% endif %}
       </td>
