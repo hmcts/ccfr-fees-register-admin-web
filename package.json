@@ -18,8 +18,8 @@
     "prepush": "yarn test && yarn test:routes"
   },
   "dependencies": {
-    "@hmcts/nodejs-healthcheck": "^1.4.1",
-    "@hmcts/nodejs-logging": "^1.2.2",
+    "@hmcts/nodejs-healthcheck": "^1.4.3",
+    "@hmcts/nodejs-logging": "^3.0.0",
     "@types/config": "^0.0.32",
     "@types/express": "^4.0.35",
     "@types/http-status-codes": "^1.0.29",
