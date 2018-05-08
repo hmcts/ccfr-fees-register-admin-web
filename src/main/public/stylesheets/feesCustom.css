@@ -47,7 +47,7 @@
 
 
 .custom-button {
-  background-color: #00823b;
+  background-color: green;
   position: relative;
   display: -moz-inline-stack;
   display: inline-block;
@@ -67,7 +67,7 @@
   text-decoration: none;
   -webkit-font-smoothing: antialiased;
   cursor: pointer;
-  color: white;
+  color: ghostwhite;
   -webkit-box-sizing: border-box;
   -moz-box-sizing: border-box;
   text-transform: none;
@@ -76,7 +76,7 @@
 }
 
 .custom-delete-button {
-  background-color: #e00;
+  background-color: red;
   position: relative;
   display: -moz-inline-stack;
   display: inline-block;
@@ -96,7 +96,7 @@
   text-decoration: none;
   -webkit-font-smoothing: antialiased;
   cursor: pointer;
-  color: white;
+  color: ghostwhite;
   text-transform: none;
   -webkit-box-sizing: border-box;
   -moz-box-sizing: border-box;
