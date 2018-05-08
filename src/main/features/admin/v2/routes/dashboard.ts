@@ -10,15 +10,18 @@ import { AuthOptions } from 'request'
 class Renderer {
 
   static render ( res: express.Response ) {
-
     Promise.all ( [
-      FeesClient.searchFees ( 'draft', null ) /* TODO: Pass this user as author for draft fees */,
-      FeesClient.searchFees ( 'pending_approval', null )
+      FeesClient.searchFees('draft', null, null, null),
+      FeesClient.searchFees('pending_approval', null, null, null),
+      res.locals.user.allInfo.roles.indexOf('freg-approver') !== -1 ?
+        FeesClient.searchFeesApprovedBy('approved', res.locals.user.allInfo.id, false, false) :
+        FeesClient.searchFees('approved', res.locals.user.allInfo.id, false, false)
     ] ).then ( ( fees: Fee2Dto[][] ) => {
       res.render ( Paths.dashboard.associatedView, {
         draftFees: fees[ 0 ],
         pendingApprovalFees: fees[ 1 ],
-        roles: res.locals.user.userInfo
+        roles: res.locals.user.userInfo,
+        approvedFees: fees[2]
       } )
     } )
   }
