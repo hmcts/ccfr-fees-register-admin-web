@@ -1,13 +1,13 @@
 {
   "idam": {
     "authentication-web": {
-      "url": "https://localhost:8000"
+      "url": "https://idam-test.dev.ccidam.reform.hmcts.net"
     },
     "login": {
-      "url": "https://localhost:8000/login"
+      "url": "https://idam-test.dev.ccidam.reform.hmcts.net/login"
     },
     "api": {
-      "url": "http://localhost:8001"
+      "url": "https://idam-test.dev.ccidam.reform.hmcts.net"
     }
   },
   "session": {
