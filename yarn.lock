@@ -34,9 +34,9 @@
   version "3.5.2"
   resolved "https://artifactory.reform.hmcts.net:443/artifactory/api/npm/npm/@types/chai/-/chai-3.5.2.tgz#c11cd2817d3a401b7ba0f5a420f35c56139b1c1e"
 
-"@types/config@^0.0.32":
-  version "0.0.32"
-  resolved "https://artifactory.reform.hmcts.net:443/artifactory/api/npm/npm/@types/config/-/config-0.0.32.tgz#c106055802d78e234e28374adc4dad460d098558"
+"@types/config@^0.0.34":
+  version "0.0.34"
+  resolved "https://artifactory.reform.hmcts.net:443/artifactory/api/npm/npm/@types/config/-/config-0.0.34.tgz#123f91bdb5afdd702294b9de9ca04d9ea11137b0"
 
 "@types/express-serve-static-core@*":
   version "4.0.53"
@@ -94,19 +94,23 @@
   version "2.2.43"
   resolved "https://artifactory.reform.hmcts.net:443/artifactory/api/npm/npm/@types/mocha/-/mocha-2.2.43.tgz#03c54589c43ad048cbcbfd63999b55d0424eec27"
 
-"@types/nock@^8.2.1":
-  version "8.2.1"
-  resolved "https://artifactory.reform.hmcts.net:443/artifactory/api/npm/npm/@types/nock/-/nock-8.2.1.tgz#1fbe5bdecb943c109a778553fa4d2401cb9394b4"
+"@types/nock@^9.1.0":
+  version "9.1.3"
+  resolved "https://artifactory.reform.hmcts.net:443/artifactory/api/npm/npm/@types/nock/-/nock-9.1.3.tgz#1d445679375b9e25afd449dc56585f81729454e8"
   dependencies:
     "@types/node" "*"
 
-"@types/node@*", "@types/node@^7.0.4":
+"@types/node@*":
   version "7.0.43"
   resolved "https://artifactory.reform.hmcts.net:443/artifactory/api/npm/npm/@types/node/-/node-7.0.43.tgz#a187e08495a075f200ca946079c914e1a5fe962c"
 
-"@types/nunjucks@^0.0.32":
-  version "0.0.32"
-  resolved "https://artifactory.reform.hmcts.net:443/artifactory/api/npm/npm/@types/nunjucks/-/nunjucks-0.0.32.tgz#654a6c56153b5bdd5cb5146424cfae5c8b757afa"
+"@types/node@^9.3.0":
+  version "9.6.14"
+  resolved "https://artifactory.reform.hmcts.net:443/artifactory/api/npm/npm/@types/node/-/node-9.6.14.tgz#79b5167f822d5fb0fb2b5c92ca150391ae0f2542"
+
+"@types/nunjucks@^3.0.0":
+  version "3.0.0"
+  resolved "https://artifactory.reform.hmcts.net:443/artifactory/api/npm/npm/@types/nunjucks/-/nunjucks-3.0.0.tgz#9393e33128d12c834b4bc8db6bbfd18ebce474f0"
 
 "@types/request-promise-native@^1.0.2":
   version "1.0.7"

@@ -1,5 +1,7 @@
+import { Logger } from '@hmcts/nodejs-logging'
+
 export class ApiLogger {
-  constructor (public logger = require('@hmcts/nodejs-logging').getLogger('apiLogger.js')) {
+  constructor (public logger = Logger.getLogger('apiLogger.js')) {
     this.logger = logger
   }
 
