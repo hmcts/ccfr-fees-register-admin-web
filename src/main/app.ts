@@ -4,10 +4,10 @@ import * as path from 'path'
 import * as favicon from 'serve-favicon'
 import * as cookieParser from 'cookie-parser'
 import * as bodyParser from 'body-parser'
-import * as logging from '@hmcts/nodejs-logging'
 import * as featureToggles from 'feature-toggles'
 import * as isUndefined from 'is-undefined'
 import { NotFoundError } from './errors'
+import { Logger } from '@hmcts/nodejs-logging'
 import { AccessLogger } from 'logging/accessLogger'
 import { ErrorLogger } from 'logging/errorLogger'
 import * as IDAM from 'idam/security'
@@ -15,12 +15,13 @@ import { RouterFinder } from 'common/router/routerFinder'
 import { Helmet, Config as HelmetConfig } from 'modules/helmet'
 import I18Next from 'modules/i18n'
 import Nunjucks from 'modules/nunjucks'
-
 import { Feature as AdminFeature } from 'admin/index'
 
 export const app: express.Express = express()
 
-logging.config({
+const logger = Logger.getLogger('app')
+
+logger.info({
   microservice: 'fees-register-admin-web',
   team: 'cc',
   environment: process.env.NODE_ENV

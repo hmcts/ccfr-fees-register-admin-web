@@ -7,145 +7,149 @@
 
 <div class="column-full">
 
-  {% if user.allInfo.roles.indexOf('freg-editor') != -1 %}
-    <h4 class="heading-small">My draft Fees</h4>
+  <h3 class="heading-medium">Draft Fees</h3>
 
-    {% if (draftFees | length) > 0 %}
-
-    <table>
-      <thead>
-      <tr>
-        <th class="bold-xxsmall center"></th>
-        <th class="bold-xxsmall center-text"></th>
-        <th class="bold-xxsmall center-text">Code</th>
-        <th class="bold-xxsmall center-text">Description</th>
-        <th class="bold-xxsmall center-text">Type</th>
-        <th class="bold-xxsmall center-text">Range from</th>
-        <th class="bold-xxsmall center-text">Range to</th>
-        <th class="bold-xxsmall center-text">Amount Type</th>
-        <th class="bold-xxsmall center-text">Amount / %</th>
-        <th class="bold-xxsmall center-text">Jurisdiction 1</th>
-        <th class="bold-xxsmall center-text">Jurisdiction 2</th>
-        <th class="bold-xxsmall center-text">Service</th>
-        <th class="bold-xxsmall center-text">Event</th>
-        <th class="bold-xxsmall center-text">Channel</th>
-        <th class="bold-xxsmall center-text">Version</th>
-        <th class="bold-xxsmall center-text">Valid From</th>
-        <th class="bold-xxsmall center-text">Valid To</th>
-        <th/>
-        <th/>
-      </tr>
-      </thead>
-      <tbody>
-      {% for fee in draftFees %}
-      <tr>
-        {% if fee.current_version != null %}
-          {% set displayedFeeVersion = fee.current_version %}
-        {% else %}
-          {% set displayedFeeVersion = fee.fee_versions[0] %}
-        {% endif %}
-        <td>
-          {% if isDraftFeeSubmittable(fee) %}
-            <a href="/admin/v2/dashboard?action=submit&feeCode={{ fee.code }}&version={{ displayedFeeVersion.version }}"
-               class="button">
-              Submit
-            </a>
-          {% endif %}
-        </td>
-
-        <td><a href="/admin/v2/dashboard?action=delete&feeCode={{ fee.code }}&version={{ displayedFeeVersion.version }}"
-               class="delete-button">Delete</a></td>
-        <td class="font-xxsmall center-text">
-          {% if hasApprovedVersion(fee.fee_versions) %}
-            {{ fee.code }}
-          {% else %}
-            <a title="Edit fee" href="/admin/v2/fees/create?action=edit&feeCode={{ fee.code }}">
-              {{ fee.code }}
-            </a>
-          {% endif %}
-        </td>
-        <td class="font-xxsmall center-text">{{ displayedFeeVersion.description }}</td>
-        <td class="font-xxsmall center-text">{{ fee.fee_type }}</td>
-        {% if fee.min_range %}
-        <td class="font-xxsmall center-text">£{{ fee.min_range }}</td>
-        {% else %}
-          <td class="font-xxsmall center-text">n/a</td>
-        {% endif %}
-        {% if fee.max_range %}
-        <td class="font-xxsmall center-text">£{{ fee.max_range }}</td>
-        {% else %}
-          <td class="font-xxsmall center-text">n/a</td>
-        {% endif %}
-        {% if displayedFeeVersion.flat_amount %}
-        <td class="font-xxsmall center-text">Flat</td>
-        <td class="font-xxsmall center-text">£{{ displayedFeeVersion.flat_amount.amount }}</td>
-        {% elif displayedFeeVersion.volume_amount %}
-        <td class="font-xxsmall center-text">Volume</td>
-        <td class="font-xxsmall center-text">£{{ displayedFeeVersion.volume_amount.amount }}</td>
-        {% else %}
-        <td class="font-xxsmall center-text">Percentage</td>
-        <td class="font-xxsmall center-text">{{ displayedFeeVersion.percentage_amount.percentage }}%</td>
-        {% endif %}
-        <td class="font-xxsmall center-text">{{ fee.jurisdiction1.name }}</td>
-        <td class="font-xxsmall center-text">{{ fee.jurisdiction2.name }}</td>
-        <td class="font-xxsmall center-text">{{ fee.service_type.name }}</td>
-        <td class="font-xxsmall center-text">{{ fee.event_type.name }}</td>
-        <td class="font-xxsmall center-text">{{ fee.channel_type.name }}</td>
-        <td class="font-xxsmall center-text">{{ displayedFeeVersion.version }}</td>
-        {% if displayedFeeVersion.valid_from %}
-        <td class="font-xxsmall center-text">{{ displayedFeeVersion.valid_from | date}}</td>
-        {% else %}
-        <td/>
-        {% endif %}
-        {% if displayedFeeVersion.valid_to %}
-        <td class="font-xxsmall center-text">{{ displayedFeeVersion.valid_to | date }}</td>
-        {% else %}
-        <td/>
-        {% endif %}
-      </tr>
-      {% endfor %}
-      </tbody>
-    </table>
-
-    {% else %}
-    <p>No draft fees</p>
-    {% endif %}
-  {% endif %}
-
-  <p></p>
-
-  {% if user.allInfo.roles.indexOf('freg-editor') != -1 %}
-  <h4 class="heading-small">My fees pending approval</h4>
-  {% else %}
-  <h4 class="heading-small">Fees pending approval</h4>
-  {% endif %}
-
-  {% if (pendingApprovalFees | length) > 0 %}
+  {% if (draftFees | length) > 0 %}
 
   <table>
     <thead>
     <tr>
-      {% if user.allInfo.roles.indexOf('freg-approver') != -1 %}
-        <th class="bold-xxsmall center-text"></th>
-        <th class="bold-xxsmall center-text"></th>
-      {% endif %}
       <th class="bold-xxsmall center-text">Code</th>
       <th class="bold-xxsmall center-text">Description</th>
       <th class="bold-xxsmall center-text">Type</th>
-      <th class="bold-xxsmall center-text">Range from</th>
+      <th class="bold-xxsmall center">Range from</th>
       <th class="bold-xxsmall center-text">Range to</th>
       <th class="bold-xxsmall center-text">Amount Type</th>
-      <th class="bold-xxsmall center-text">Amount / %</th>
-      <th class="bold-xxsmall center-text">Jurisdiction 1</th>
-      <th class="bold-xxsmall center-text">Jurisdiction 2</th>
+      <th class="bold-xxsmall center-text">Amount</th>
+      <th class="bold-xxsmall center-text">Jurisdiction1</th>
+      <th class="bold-xxsmall center-text">Jurisdiction2</th>
       <th class="bold-xxsmall center-text">Service</th>
       <th class="bold-xxsmall center-text">Event</th>
       <th class="bold-xxsmall center-text">Channel</th>
       <th class="bold-xxsmall center-text">Version</th>
       <th class="bold-xxsmall center-text">Valid From</th>
       <th class="bold-xxsmall center-text">Valid To</th>
-      <th/>
-      <th/>
+      <th class="heading-medium center-text">Actions</th>
+    </tr>
+    </thead>
+    <tbody>
+    {% for fee in draftFees %}
+    <tr>
+      {% if fee.current_version != null %}
+        {% set displayedFeeVersion = fee.current_version %}
+      {% else %}
+        {% set displayedFeeVersion = fee.fee_versions[0] %}
+      {% endif %}
+
+      <td class="font-xxsmall center-text">
+        {% if hasApprovedVersion(fee.fee_versions) %}
+          {{ fee.code }}
+        {% else %}
+
+          {% if 'freg-editor' in roles %}
+            <a title="Edit fee" href="/admin/v2/fees/create?action=edit&feeCode={{ fee.code }}">
+              {{ fee.code }}
+            </a>
+          {% else %}
+              {{ fee.code }}
+          {% endif %}
+
+        {% endif %}
+      </td>
+      <td class="font-xxsmall center-text">{{ displayedFeeVersion.description }}</td>
+      <td class="font-xxsmall center-text">{{ fee.fee_type }}</td>
+      {% if fee.min_range %}
+      <td class="font-xxsmall center-text">£{{ fee.min_range }}</td>
+      {% else %}
+        <td class="font-xxsmall center-text">n/a</td>
+      {% endif %}
+      {% if fee.max_range %}
+      <td class="font-xxsmall center-text">£{{ fee.max_range }}</td>
+      {% else %}
+        <td class="font-xxsmall center-text">n/a</td>
+      {% endif %}
+      {% if displayedFeeVersion.flat_amount %}
+      <td class="font-xxsmall center-text">Flat</td>
+      <td class="font-xxsmall center-text">£{{ displayedFeeVersion.flat_amount.amount }}</td>
+      {% elif displayedFeeVersion.volume_amount %}
+      <td class="font-xxsmall center-text">Volume</td>
+      <td class="font-xxsmall center-text">£{{ displayedFeeVersion.volume_amount.amount }}</td>
+      {% else %}
+      <td class="font-xxsmall center-text">Percentage</td>
+      <td class="font-xxsmall center-text">{{ displayedFeeVersion.percentage_amount.percentage }}%</td>
+      {% endif %}
+      <td class="font-xxsmall center-text">{{ fee.jurisdiction1.name }}</td>
+      <td class="font-xxsmall center-text">{{ fee.jurisdiction2.name }}</td>
+      <td class="font-xxsmall center-text">{{ fee.service_type.name }}</td>
+      <td class="font-xxsmall center-text">{{ fee.event_type.name }}</td>
+      <td class="font-xxsmall center-text">{{ fee.channel_type.name }}</td>
+      <td class="font-xxsmall center-text">{{ displayedFeeVersion.version }}</td>
+      {% if displayedFeeVersion.valid_from %}
+      <td class="font-xxsmall center-text">{{ displayedFeeVersion.valid_from | date}}</td>
+      {% else %}
+      <td/>
+      {% endif %}
+      {% if displayedFeeVersion.valid_to %}
+      <td class="font-xxsmall center-text">{{ displayedFeeVersion.valid_to | date }}</td>
+      {% else %}
+      <td/>
+      {% endif %}
+
+      <td>
+        <p>
+            {% if isDraftFeeSubmittable(fee) %}
+
+              {% if 'freg-editor' in roles %}
+                 <a href="/admin/v2/dashboard?action=submit&feeCode={{ fee.code }}&version={{ displayedFeeVersion.version }}"  class="button">
+                  Submit
+                 </a>
+              {% endif %}
+
+            {% endif %}
+            </p>
+            <p>
+            <a href="/admin/v2/dashboard?action=delete&feeCode={{ fee.code }}&version={{ displayedFeeVersion.version }}" class="button">
+              Delete&nbsp;
+            </a>
+        </p>
+      </td>
+    </tr>
+
+    {% endfor %}
+    </tbody>
+  </table>
+
+  {% else %}
+  <p>No fees in draft</p>
+  {% endif %}
+
+  <p></p>
+
+  <h3 class="heading-medium">Fees pending approval</h3>
+
+  {% if (pendingApprovalFees | length) > 0 %}
+
+  <table>
+    <thead>
+    <tr>
+      <th class="bold-xxsmall center-text">Code</th>
+      <th class="bold-xxsmall center-text">Description</th>
+      <th class="bold-xxsmall center-text">Type</th>
+      <th class="bold-xxsmall center-text">Range from</th>
+      <th class="bold-xxsmall center-text">Range to</th>
+      <th class="bold-xxsmall center-text">Amount Type</th>
+      <th class="bold-xxsmall center-text">Amount</th>
+      <th class="bold-xxsmall center-text">Jurisdiction1</th>
+      <th class="bold-xxsmall center-text">Jurisdiction2</th>
+      <th class="bold-xxsmall center-text">Service</th>
+      <th class="bold-xxsmall center-text">Event</th>
+      <th class="bold-xxsmall center-text">Channel</th>
+      <th class="bold-xxsmall center-text">Version</th>
+      <th class="bold-xxsmall center-text">Valid From</th>
+      <th class="bold-xxsmall center-text">Valid To</th>
+      {% if 'freg-approver' in roles %}
+        <th class="heading-medium center-text">Actions</th>
+      {% endif %}
     </tr>
     </thead>
     <tbody>
@@ -156,12 +160,7 @@
         {% set displayedFeeVersion = fee.fee_versions[0] %}
       {% endif %}
     <tr>
-      {% if user.allInfo.roles.indexOf('freg-approver') != -1 %}
-      <td><a href="/admin/v2/dashboard?action=approve&feeCode={{ fee.code }}&version={{ displayedFeeVersion.version }}"
-             class="button">Approve</a></td>
-      <td><a href="/admin/v2/dashboard?action=reject&feeCode={{ fee.code }}&version={{ displayedFeeVersion.version }}"
-             class="delete-button">Reject</a></td>
-      {% endif %}
+
       <td class="font-xxsmall center-text">{{ fee.code }}</td>
       <td class="font-xxsmall center-text">{{ displayedFeeVersion.description }}</td>
       <td class="font-xxsmall center-text">{{ fee.fee_type }}</td>
@@ -202,104 +201,29 @@
       <td/>
       {% endif %}
 
+       <td>
 
+        {% if 'freg-approver' in roles %}
+          <p>
+            <a href="/admin/v2/dashboard?action=approve&feeCode={{ fee.code }}&version={{ displayedFeeVersion.version }}" class="button">Approve</a>
+          </p>
+          <p>
+            <a href="/admin/v2/dashboard?action=reject&feeCode={{ fee.code }}&version={{ displayedFeeVersion.version }}" class="button">Reject&nbsp;&nbsp;&nbsp;&nbsp;</a>
+          </p>
+        {% endif %}
 
+      </td>
     </tr>
     {% endfor %}
+
     </tbody>
   </table>
 
   {% else %}
-  <p>No fees pending approval</p>
-  {% endif %}
-
-  <p></p>
-
-  {% if user.allInfo.roles.indexOf('freg-editor') != -1 %}
-    <h4 class="heading-small">My approved fees</h4>
-  {% else %}
-    <h4 class="heading-small">Fees approved by me</h4>
-  {% endif %}
-
-  {% if (approvedFees | length) > 0 %}
-  <table>
-    <thead>
-    <tr>
-      <th class="bold-xxsmall center-text">Code</th>
-      <th class="bold-xxsmall center-text">Description</th>
-      <th class="bold-xxsmall center-text">Type</th>
-      <th class="bold-xxsmall center-text">Range from</th>
-      <th class="bold-xxsmall center-text">Range to</th>
-      <th class="bold-xxsmall center-text">Amount Type</th>
-      <th class="bold-xxsmall center-text">Amount / %</th>
-      <th class="bold-xxsmall center-text">Jurisdiction 1</th>
-      <th class="bold-xxsmall center-text">Jurisdiction 2</th>
-      <th class="bold-xxsmall center-text">Service</th>
-      <th class="bold-xxsmall center-text">Event</th>
-      <th class="bold-xxsmall center-text">Channel</th>
-      <th class="bold-xxsmall center-text">Version</th>
-      <th class="bold-xxsmall center-text">Valid From</th>
-      <th class="bold-xxsmall center-text">Valid To</th>
-      <th/>
-      <th/>
-    </tr>
-    </thead>
-    <tbody>
-    {% for fee in approvedFees %}
-      {% if fee.current_version != null %}
-        {% set displayedFeeVersion = fee.current_version %}
-      {% else %}
-        {% set displayedFeeVersion = fee.fee_versions[0] %}
-      {% endif %}
-      <tr>
-        <td class="font-xxsmall center-text">{{ fee.code }}</td>
-        <td class="font-xxsmall center-text">{{ displayedFeeVersion.description }}</td>
-        <td class="font-xxsmall center-text">{{ fee.fee_type }}</td>
-        {% if fee.min_range %}
-          <td class="font-xxsmall center-text">£{{ fee.min_range }}</td>
-        {% else %}
-          <td class="font-xxsmall center-text">n/a</td>
-        {% endif %}
-        {% if fee.max_range %}
-          <td class="font-xxsmall center-text">£{{ fee.max_range }}</td>
-        {% else %}
-          <td class="font-xxsmall center-text">n/a</td>
-        {% endif %}
-        {% if displayedFeeVersion.flat_amount %}
-          <td class="font-xxsmall center-text">Flat</td>
-          <td class="font-xxsmall center-text">£{{ displayedFeeVersion.flat_amount.amount }}</td>
-          {% elif displayedFeeVersion.volume_amount %}
-          <td class="font-xxsmall center-text">Volume</td>
-          <td class="font-xxsmall center-text">£{{ displayedFeeVersion.volume_amount.amount }}</td>
-        {% else %}
-          <td class="font-xxsmall center-text">Percentage</td>
-          <td class="font-xxsmall center-text">{{ displayedFeeVersion.percentage_amount.percentage }}%</td>
-        {% endif %}
-        <td class="font-xxsmall center-text">{{ fee.jurisdiction1.name }}</td>
-        <td class="font-xxsmall center-text">{{ fee.jurisdiction2.name }}</td>
-        <td class="font-xxsmall center-text">{{ fee.service_type.name }}</td>
-        <td class="font-xxsmall center-text">{{ fee.event_type.name }}</td>
-        <td class="font-xxsmall center-text">{{ fee.channel_type.name }}</td>
-        <td class="font-xxsmall center-text">{{ displayedFeeVersion.version }}</td>
-        {% if displayedFeeVersion.valid_from %}
-          <td class="font-xxsmall center-text">{{ displayedFeeVersion.valid_from | date }}</td>
-        {% else %}
-          <td/>
-        {% endif %}
-        {% if displayedFeeVersion.valid_to %}
-          <td class="font-xxsmall center-text">{{ displayedFeeVersion.valid_to | date }}</td>
-        {% else %}
-          <td/>
-        {% endif %}
-      </tr>
-    {% endfor %}
-    </tbody>
-  </table>
-  {% else %}
-  <p>No approved fees</p>
+  <p>No fees in pending approval</p>
   {% endif %}
 
   <p><a href="/admin/welcome/" class="link-back">{{ t("Back to welcome page") }}</a></p>
 </div>
 
-  {% endblock %}
+{% endblock %}
