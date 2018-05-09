@@ -45,9 +45,15 @@
         {% if hasApprovedVersion(fee.fee_versions) %}
           {{ fee.code }}
         {% else %}
-          <a title="Edit fee" href="/admin/v2/fees/create?action=edit&feeCode={{ fee.code }}">
-            {{ fee.code }}
-          </a>
+
+          {% if 'freg-editor' in roles %}
+            <a title="Edit fee" href="/admin/v2/fees/create?action=edit&feeCode={{ fee.code }}">
+              {{ fee.code }}
+            </a>
+          {% else %}
+              {{ fee.code }}
+          {% endif %}
+
         {% endif %}
       </td>
       <td class="font-xxsmall center-text">{{ displayedFeeVersion.description }}</td>
@@ -92,9 +98,13 @@
       <td>
         <p>
             {% if isDraftFeeSubmittable(fee) %}
-              <a href="/admin/v2/dashboard?action=submit&feeCode={{ fee.code }}&version={{ displayedFeeVersion.version }}"  class="button">
-                Submit
-              </a>
+
+              {% if 'freg-editor' in roles %}
+                 <a href="/admin/v2/dashboard?action=submit&feeCode={{ fee.code }}&version={{ displayedFeeVersion.version }}"  class="button">
+                  Submit
+                 </a>
+              {% endif %}
+
             {% endif %}
             </p>
             <p>
