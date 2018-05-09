@@ -45,6 +45,7 @@ $delete-button-color-hover: #a60000;
 
 .delete-button {
   background-color: $delete-button-color;
+
   &:hover {
     background-color: $delete-button-color-hover;
   }
