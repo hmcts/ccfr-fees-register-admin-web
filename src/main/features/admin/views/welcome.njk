@@ -14,11 +14,11 @@
     <ul class="list list-bullet">
 
       {% if user.allInfo.roles.indexOf('freg-editor') != -1 %}
-      <li><a href="/admin/v2/fees/create">{{ t("Add a new fee") }}</a></li>
+        <li><a href="/admin/v2/fees/create">{{ t("Add a new fee") }}</a></li>
+        <li><a href="/admin/v2/upload">{{ t("Upload fees") }}</a></li>
       {% endif %}
       <li><a href="/admin/v2/all-fees">{{ t("View all fees") }}</a></li>
       <li><a href="/admin/v2/dashboard">{{ t("My open actions") }}</a></li>
-      <li><a href="/admin/v2/upload">{{ t("Upload fees") }}</a></li>
 
     </ul>
   </div>

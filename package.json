@@ -3,7 +3,7 @@
   "version": "2.0.1",
   "private": true,
   "engines": {
-    "node": ">=7.8.0"
+    "node": ">=8.9.4"
   },
   "scripts": {
     "start": "./node_modules/.bin/ts-node -r tsconfig-paths/register src/main/server.ts",
@@ -18,9 +18,9 @@
     "prepush": "yarn test && yarn test:routes"
   },
   "dependencies": {
-    "@hmcts/nodejs-healthcheck": "^1.4.1",
-    "@hmcts/nodejs-logging": "^1.2.2",
-    "@types/config": "^0.0.32",
+    "@hmcts/nodejs-healthcheck": "^1.4.5",
+    "@hmcts/nodejs-logging": "^3.0.0",
+    "@types/config": "^0.0.34",
     "@types/express": "^4.0.35",
     "@types/http-status-codes": "^1.0.29",
     "@types/i18next": "^2.3.35",
@@ -28,9 +28,9 @@
     "@types/i18next-sprintf-postprocessor": "^0.0.28",
     "@types/left-pad": "^1.1.1",
     "@types/lodash": "^4.14.52",
-    "@types/nock": "^8.2.1",
-    "@types/node": "^7.0.4",
-    "@types/nunjucks": "^0.0.32",
+    "@types/nock": "^9.1.0",
+    "@types/node": "^9.3.0",
+    "@types/nunjucks": "^3.0.0",
     "@types/request-promise-native": "^1.0.2",
     "@types/shortid": "^0.0.28",
     "HTML_CodeSniffer": "https://github.com/squizlabs/HTML_CodeSniffer/archive/2.0.7.tar.gz",
@@ -40,8 +40,10 @@
     "cli": "^1.0.1",
     "config": "^1.24.0",
     "cookie-parser": "^1.3.3",
+    "csv-string": "^3.0.3",
     "es6-promisify": "^5.0.0",
     "express": "^4.13.3",
+    "fast-csv": "^2.4.1",
     "feature-toggles": "^1.4.0",
     "govuk-elements-sass": "^3.0.2",
     "govuk_template_jinja": "0.23.0",
@@ -58,6 +60,7 @@
     "mime": "^1.3.4",
     "moment": "^2.18.1",
     "morgan": "^1.6.1",
+    "multer": "^1.3.0",
     "nock": "^9.0.13",
     "nunjucks": "^3.0.0",
     "nunjucks-date-filter": "^0.1.1",
@@ -74,9 +77,7 @@
     "typescript": "2.x",
     "uuid": "^3.0.1",
     "uuid-validate": "^0.0.2",
-    "multer": "^1.3.0",
-    "csv-string": "^3.0.3",
-    "fast-csv": "^2.4.1"
+    "yarn": "^1.6.0"
   },
   "devDependencies": {
     "@types/chai": "^3.4.34",

@@ -11,14 +11,6 @@
   <div class="column-third">
     <label class="bold">Type:</label> {{ feeDto.fee_type }}
   </div>
-  <div class="column-third">
-    <label class="bold">Actions:</label>
-    <nav role="navigation" aria-labelledby="subsection-title">
-      <ul class="font-xsmall">
-        <li><a href="/admin/v2/fees/version/create/{{ feeDto.code }}">Create a new version</a></li>
-      </ul>
-    </nav>
-  </div>
 </div>
 <hr width=100%>
 
@@ -176,7 +168,11 @@
 
 <div class="gird-row">
   <div class="column-third">
-    <a href="/admin/v2/fees/version/create/{{ feeDto.code }}" class="link">{{ t("Create a new fee version") }}</a>
+    <ul class="list list-bullet">
+      <li>
+        <a href="/admin/v2/fees/version/create/{{ feeDto.code }}" class="link">{{ t("Create a new fee version") }}</a>
+      </li>
+    </ul>
   </div>
 </div>
 
