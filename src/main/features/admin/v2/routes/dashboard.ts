@@ -20,10 +20,10 @@ class Renderer {
       res.render ( Paths.dashboard.associatedView, {
         draftFees: fees[ 0 ],
         pendingApprovalFees: fees[ 1 ],
-        roles: res.locals.user.userInfo,
         approvedFees: fees[2]
       } )
     } )
+
   }
 
   static executeAction ( user: AuthOptions, action: string, feeCode: string, version: number ): Promise<Boolean> {
