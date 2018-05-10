@@ -7,8 +7,12 @@
 
 <div class="column-full">
 
-  {% if user.allInfo.roles.indexOf('freg-editor') != -1 %}
-    <h4 class="heading-small">My draft Fees</h4>
+  {% if isEditor(user.allInfo.roles) or isAdmin(user.allInfo.roles) %}
+    {% if isAdmin(user.allInfo.roles) %}
+      <h4 class="heading-small">All draft Fees</h4>
+    {% else %}
+      <h4 class="heading-small">My draft Fees</h4>
+    {% endif %}
 
     {% if (draftFees | length) > 0 %}
 
@@ -114,10 +118,12 @@
 
   <p></p>
 
-  {% if user.allInfo.roles.indexOf('freg-editor') != -1 %}
-  <h4 class="heading-small">My fees pending approval</h4>
+  {% if isAdmin(user.allInfo.roles) %}
+    <h4 class="heading-small">All fees pending approval</h4>
+  {% elseif isEditor(user.allInfo.roles) %}
+    <h4 class="heading-small">My fees pending approval</h4>
   {% else %}
-  <h4 class="heading-small">Fees pending approval</h4>
+    <h4 class="heading-small">Fees pending approval</h4>
   {% endif %}
 
   {% if (pendingApprovalFees | length) > 0 %}
@@ -125,7 +131,7 @@
   <table>
     <thead>
     <tr>
-      {% if user.allInfo.roles.indexOf('freg-approver') != -1 %}
+      {% if isApprover(user.allInfo.roles) or isAdmin(user.allInfo.roles) %}
         <th class="bold-xxsmall center-text"></th>
         <th class="bold-xxsmall center-text"></th>
       {% endif %}
@@ -156,7 +162,7 @@
         {% set displayedFeeVersion = fee.fee_versions[0] %}
       {% endif %}
     <tr>
-      {% if user.allInfo.roles.indexOf('freg-approver') != -1 %}
+      {% if isApprover(user.allInfo.roles) or isAdmin(user.allInfo.roles) %}
       <td><a href="/admin/v2/dashboard?action=approve&feeCode={{ fee.code }}&version={{ displayedFeeVersion.version }}"
              class="button">Approve</a></td>
       <td><a href="/admin/v2/dashboard?action=reject&feeCode={{ fee.code }}&version={{ displayedFeeVersion.version }}"
@@ -215,7 +221,9 @@
 
   <p></p>
 
-  {% if user.allInfo.roles.indexOf('freg-editor') != -1 %}
+  {% if isAdmin(user.allInfo.roles) %}
+    <h4 class="heading-small">All approved fees</h4>
+  {% elseif isEditor(user.allInfo.roles) %}
     <h4 class="heading-small">My approved fees</h4>
   {% else %}
     <h4 class="heading-small">Fees approved by me</h4>
