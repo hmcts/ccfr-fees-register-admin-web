@@ -186,47 +186,16 @@ export class FeesClient {
       .catch(FeesClientError)
   }
 
-  static searchFeesApprovedBy ( versionStatus: String, approver: String, isActive: Boolean, isExpired: Boolean): Promise<Array<model.Fee2Dto>> {
-
-    let uri: string = `${feesUrl}/fees-register/fees?feeVersionStatus=${versionStatus}`
-
-    if (approver) {
-      uri = uri + `&approvedBy=${approver}`
-    }
-
-    if (isActive != null) {
-      uri = uri + `&isActive=${isActive}`
-    }
-
-    if (isExpired != null) {
-      uri = uri + `&isExpired=${isExpired}`
-    }
-
-    return request
-      .get(uri)
-      .then(response => {
-
-        /* Hack dates */
-
-        if (response.validFrom) {
-          response.validFrom = new Date(response.validFrom)
-        }
-
-        if (response.validTo) {
-          response.validTo = new Date(response.validTo)
-        }
-
-        return response as Array<model.Fee2Dto>
-      }).catch(FeesClientErrorMapper)
-
-  }
-
-  static searchFees ( versionStatus: String, author: String, isActive: Boolean, isExpired: Boolean): Promise<Array<model.Fee2Dto>> {
+  static searchFees ( versionStatus: String, author: String, approvedBy: String, isActive: Boolean, isExpired: Boolean): Promise<Array<model.Fee2Dto>> {
 
     let uri: string = `${feesUrl}/fees-register/fees?feeVersionStatus=${versionStatus}`
 
     if (author) {
       uri = uri + `&author=${author}`
+    }
+
+    if (approvedBy) {
+      uri = uri + `&approvedBy=${approvedBy}`
     }
 
     if (isActive != null) {
