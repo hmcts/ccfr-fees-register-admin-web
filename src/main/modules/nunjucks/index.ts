@@ -51,6 +51,15 @@ export default class Nunjucks {
         return false
       }
     })
+    nunjucksEnv.addGlobal('isEditor', (roles: Array<any>): boolean => {
+      return roles.indexOf('freg-editor') !== -1
+    })
+    nunjucksEnv.addGlobal('isAdmin', (roles: Array<any>): boolean => {
+      return roles.indexOf('freg-admin') !== -1
+    })
+    nunjucksEnv.addGlobal('isApprover', (roles: Array<any>): boolean => {
+      return roles.indexOf('freg-approver') !== -1
+    })
     nunjucksEnv.addGlobal('isDraftFeeSubmittable', (fee: Fee2Dto): boolean => {
       if (fee != null && (fee.current_version || fee.fee_versions) ) {
         let testVersion: FeeVersionDto = fee.current_version ? fee.current_version : fee.fee_versions[0]
