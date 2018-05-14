@@ -38,7 +38,7 @@
           </thead>
           <tbody>
               {% for fee in fees %}
-                {% for version in fee.fee_versions %}
+                {% set version = fee.current_version %}
                   {% if version.status === 'approved' %}
                 <tr>
                   <td class="font-xxsmall">
@@ -87,7 +87,6 @@
                   <td class="font-xxsmall">{{ version.natural_account_code }}</td>
                 </tr>
                   {% endif %}
-                {% endfor %}
               {% endfor %}
           </tbody>
     </table>
