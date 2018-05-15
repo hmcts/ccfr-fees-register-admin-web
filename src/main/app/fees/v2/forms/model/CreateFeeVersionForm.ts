@@ -9,11 +9,6 @@ import {
 } from 'fees/v2/model/fees-register-api-contract'
 
 export class CreateFeeVersionForm {
-  @MaxLength ( 10, { message: ValidationErrors.MEMO_LINE_TOO_LONG } )
-  @IsDefined ( { message: ValidationErrors.VERSION_REQUIRED } )
-  @IsNotBlank ( { message: ValidationErrors.VERSION_REQUIRED } )
-  version?: number
-
   @IsDefined ( { message: ValidationErrors.TYPE_REQUIRED } )
   @IsNotBlank ( { message: ValidationErrors.TYPE_REQUIRED } )
   amountType?: string
@@ -92,7 +87,7 @@ export class CreateFeeVersionForm {
   private fillCommon ( dto: FeeVersionDto ): FeeVersionDto {
 
     dto = new FeeVersionDto()
-    dto.version = this.version
+    dto.version = null
     dto.status = 'draft'
     dto.direction = this.direction
     dto.memo_line = this.memoLine
