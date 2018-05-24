@@ -4912,6 +4912,10 @@ sntp@2.x.x:
   dependencies:
     hoek "4.x.x"
 
+sonar-scanner@^3.0.3:
+  version "3.1.0"
+  resolved "https://artifactory.reform.hmcts.net:443/artifactory/api/npm/npm/sonar-scanner/-/sonar-scanner-3.1.0.tgz#51c1c1101f54b98abc5d8565209b1d9232979343"
+
 source-map-support@^0.4.0:
   version "0.4.18"
   resolved "https://artifactory.reform.hmcts.net:443/artifactory/api/npm/npm/source-map-support/-/source-map-support-0.4.18.tgz#0286a6de8be42641338594e97ccea75f0a2c585f"

@@ -1,0 +1,13 @@
+#!groovy
+
+@Library("Infrastructure")
+
+def product = "fees-register"
+def component = "frontend"
+
+withPipeline("nodejs", product, component) {
+  after('checkout') {
+    echo 'ccfr-fees-register-admin-web checked out'
+  }
+  enableSlackNotifications('#cc-payments-tech')
+}
