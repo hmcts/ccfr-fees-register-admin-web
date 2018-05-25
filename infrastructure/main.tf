@@ -13,10 +13,10 @@ module "fees-register-frontend" {
   location = "${var.location}"
   env      = "${var.env}"
   ilbIp    = "${var.ilbIp}"
-  is_frontend = "${var.env}"
   subscription = "${var.subscription}"
+  is_frontend  = true
   additional_host_name = "${var.external_host_name}"
-  https_only = "true"
+  https_only = "true"  
 
   app_settings = {
     IDAM_API_URL = "${var.idam_api_url}"
