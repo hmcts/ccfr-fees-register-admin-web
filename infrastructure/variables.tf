@@ -26,11 +26,11 @@ variable "node_environment" {
 }
 
 variable "idam_api_url" {
-  default = "http://betaDevBccidamAppLB.reform.hmcts.net"
+  default = "http://betaDevAccidamAppLB.reform.hmcts.net"
 }
 
 variable "authentication_web_url" {
-  default = "https://idam-test.dev.ccidam.reform.hmcts.net"
+  default = "https://idam.dev.ccidam.reform.hmcts.net"
 }
 
 variable "vault_section" {

@@ -9,5 +9,8 @@ withPipeline("nodejs", product, component) {
   after('checkout') {
     echo 'ccfr-fees-register-admin-web checked out'
   }
-  enableSlackNotifications('#cc-payments-tech')
+  after('build') {
+    sh 'yarn setup'
+  }
+  enableSlackNotifications('#cc-payments-tech') 
 }
