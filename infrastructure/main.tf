@@ -20,7 +20,7 @@ module "fees-register-frontend" {
 
   app_settings = {
     IDAM_API_URL = "${var.idam_api_url}"
-    IDAM_LOGIN_WEB_URL = "${var.authentication_web_url}"
+    IDAM_LOGIN_WEB_URL = "${var.authentication_web_url}/login"
     IDAM_AUTHENTICATION_WEB_URL = "${var.authentication_web_url}"
     FEES_URL = "http://fees-register-api-${var.env}.service.${data.terraform_remote_state.core_apps_compute.ase_name[0]}.internal"
 
