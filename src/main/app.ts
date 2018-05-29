@@ -1,7 +1,6 @@
 import * as express from 'express'
 import * as config from 'config'
 import * as path from 'path'
-import * as healthcheck from '@hmcts/nodejs-healthcheck'
 import * as favicon from 'serve-favicon'
 import * as cookieParser from 'cookie-parser'
 import * as bodyParser from 'body-parser'
@@ -49,10 +48,6 @@ new Nunjucks(developmentMode, i18next)
   .enableFor(app)
 new Helmet(config.get<HelmetConfig>('security'), developmentMode)
   .enableFor(app)
-
-app.get('/health', healthcheck.configure({
-  checks: {}
-}))
 
 app.enable('trust proxy')
 app.use(favicon(path.join(__dirname, '/public/img/favicon.ico')))
