@@ -18,8 +18,7 @@ function renderHealthPage (config, req: express.Request, res: express.Response) 
         outputs.status(allOk),
         results)
 
-      res.render(Paths.healthInfoPage.associatedView, {output: output})
-
+      res.send(output)
     })
 }
 function basicHealthCheck (serviceName) {
