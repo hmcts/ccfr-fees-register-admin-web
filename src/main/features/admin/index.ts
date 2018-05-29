@@ -6,6 +6,7 @@ import { RouterFinder } from 'common/router/routerFinder'
 
 export class Feature {
   enableFor (app: express.Express, security: IDAM) {
+    app.use('/', RouterFinder.findAll(path.join(__dirname, 'routes-unsecured')))
     app.use('/', security.protect('freg'),
       RouterFinder.findAll(path.join(__dirname, 'routes'))
         .concat(
