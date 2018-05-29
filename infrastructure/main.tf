@@ -13,8 +13,8 @@ module "fees-register-frontend" {
   location = "${var.location}"
   env      = "${var.env}"
   ilbIp    = "${var.ilbIp}"
-  is_frontend = "${var.env}"
   subscription = "${var.subscription}"
+  is_frontend  = true
   additional_host_name = "${var.external_host_name}"
   https_only = "true"
 
