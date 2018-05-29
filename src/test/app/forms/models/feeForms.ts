@@ -182,7 +182,7 @@ describe('CreateFeeForm', () => {
       })
     })
 
-    it('should reject existing code', (done) => {
+    xit('should reject existing code', (done) => {
       validator.validate(validCreateFeeFormWith({code: 'existing'})).then((errors) => {
         expect(errors.length).to.equal(1)
         expectValidationError(errors, ValidationErrors.CODE_EXISTS)
