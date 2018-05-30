@@ -19,6 +19,10 @@ module "fees-register-frontend" {
   https_only = "true"
 
   app_settings = {
+    REFORM_TEAM = "${var.product}"
+    REFORM_SERVICE_NAME = "${var.microservice}"
+    REFORM_ENVIRONMENT = "${var.env}"
+
     IDAM_API_URL = "${var.idam_api_url}"
     IDAM_LOGIN_WEB_URL = "${var.authentication_web_url}/login"
     IDAM_AUTHENTICATION_WEB_URL = "${var.authentication_web_url}"
