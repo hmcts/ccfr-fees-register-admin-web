@@ -6,20 +6,25 @@ import * as config from 'config'
 import * as healthcheck from '@hmcts/nodejs-healthcheck'
 import { CompositeCheck } from '@hmcts/nodejs-healthcheck/healthcheck/checks'
 import * as outputs from '@hmcts/nodejs-healthcheck/healthcheck/outputs'
+import { getBuildInfo } from '@hmcts/nodejs-healthcheck/healthcheck/routes'
 
 function renderHealthPage (config, req: express.Request, res: express.Response) {
   const check = new CompositeCheck(config.checks)
-  Promise
-    .resolve(check.call(req, res))
-    .then((results) => {
-      const allOk = Object.values(results)
-        .every(result => result.status === outputs.UP)
-      const output = Object.assign(
-        outputs.status(allOk),
-        results)
+  getBuildInfo().then((buildInfo) => {
+    return buildInfo
+  }).then((buildInfo) => {
+    Promise
+      .resolve(check.call(req, res))
+      .then((results) => {
+        const allOk = Object.values(results)
+          .every(result => result.status === outputs.UP)
+        const output = Object.assign(
+          outputs.status(allOk),
+          results)
 
-      res.send(output)
-    })
+        res.send({...output, buildInfo})
+      })
+  })
 }
 function basicHealthCheck (serviceName) {
   return healthcheck.web(url(serviceName))
