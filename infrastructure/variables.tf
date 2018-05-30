@@ -8,6 +8,11 @@ variable "location" {
   default = "UK South"
 }
 
+variable "microservice" {
+  type = "string"
+  default = "fees-register-admin-web"
+}
+
 variable "env" {}
 
 variable "subscription" {}
