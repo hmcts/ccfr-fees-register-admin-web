@@ -34,7 +34,7 @@ variable "authentication_web_url" {
 }
 
 variable "vault_section" {
-  default = "test"
+  default = "dev"
 }
 
 variable "external_host_name" {
