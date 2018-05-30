@@ -43,6 +43,6 @@ variable "vault_section" {
 }
 
 variable "external_host_name" {
-  default = "fees-register-frontend.nonprod.platform.hmcts.net"
+  default = "fees-register-saat.platform.hmcts.net"
 }
 
