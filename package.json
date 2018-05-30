@@ -116,5 +116,23 @@
     "tslint": "^5.1.0",
     "tslint-config-standard": "^5.0.2",
     "sonar-scanner": "^3.0.3"
+  },
+  "nyc": {
+    "extension": [
+      ".ts"
+    ],
+    "include": [
+      "src/main"
+    ],
+    "exclude": [
+      "**/*.d.ts",
+      "src/main/public"
+    ],
+    "reporter": [
+      "lcov",
+      "text-summary"
+    ],
+    "report-dir": "coverage-report",
+    "all": true
   }
 }

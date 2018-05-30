@@ -18,6 +18,8 @@ node-rpm-packaging/
 mochawesome-report/
 npm-debug.log.*
 
+coverage-report
+.scannerwork
 package-lock.json
 .project
 .settings/
