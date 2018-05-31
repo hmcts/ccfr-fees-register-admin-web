@@ -1,1 +1,1 @@
-external_host_name ="fees-register-aat.platform.hmcts.net"
+external_host_name ="fees-register.nonprod.platform.hmcts.net"
