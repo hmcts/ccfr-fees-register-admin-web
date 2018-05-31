@@ -35,5 +35,7 @@ module "fees-register-frontend" {
     // Application vars
     FEES_CLIENT_ID = "fees_admin_frontend"
     FEES_CLIENT_SECRET = "${data.vault_generic_secret.client_secret.data["value"]}"
+    
+    DUMMY_ENTRY = "fake_key_to_trigger_build"    
   }
 }
