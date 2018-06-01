@@ -7,7 +7,7 @@ describe('Nunjucks', () => {
 
   describe('globals', () => {
     it('getLastFeeVersion should get latest approved fee version', async () => {
-      let getLastFeeVersion: (Fee2Dto) => FeeVersionDto = nunjucksEnv.getGlobal('getLastFeeVersion')
+      let getLastFeeVersion: (Fee2Dto) => FeeVersionDto = (nunjucksEnv as any).getGlobal('getLastFeeVersion')
       let fee: Fee2Dto = new Fee2Dto()
       let fv1: FeeVersionDto = new FeeVersionDto()
       let fv2: FeeVersionDto = new FeeVersionDto()
