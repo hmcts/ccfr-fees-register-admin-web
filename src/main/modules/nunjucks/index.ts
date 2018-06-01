@@ -61,7 +61,7 @@ export default class Nunjucks {
       return roles.indexOf('freg-approver') !== -1
     })
     nunjucksEnv.addGlobal('isDraftFeeSubmittable', (fee: Fee2Dto): boolean => {
-      if (fee != null && (fee.current_version || fee.fee_versions) ) {
+      if (fee != null && (fee.current_version || fee.fee_versions)) {
         let testVersion: FeeVersionDto = fee.current_version ? fee.current_version : fee.fee_versions[0]
         if (testVersion.natural_account_code.length === 0 ||
           testVersion.memo_line.length === 0 ||
@@ -74,5 +74,20 @@ export default class Nunjucks {
       }
       return false
     })
+    nunjucksEnv.addGlobal('getLastFeeVersion', (fee: Fee2Dto): FeeVersionDto => {
+      let currentVersionNumber: number = -1
+      let result: FeeVersionDto = fee.current_version
+      if (fee.fee_versions != null) {
+        fee.fee_versions.forEach((fv) => {
+          if (fv.version > currentVersionNumber && fv.status === 'approved') {
+            currentVersionNumber = fv.version
+            result = fv
+          }
+        })
+      }
+      return result
+    })
+
+    return nunjucksEnv
   }
 }
