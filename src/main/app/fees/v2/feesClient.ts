@@ -186,15 +186,19 @@ export class FeesClient {
       .catch(FeesClientError)
   }
 
-  static searchFees ( versionStatus: String, author: String, approvedBy: String, isActive: Boolean, isExpired: Boolean): Promise<Array<model.Fee2Dto>> {
+  static searchFees ( versionStatus: string, author?: string, approvedBy?: string, isActive?: boolean, isExpired?: boolean, isDraft?: boolean): Promise<Array<model.Fee2Dto>> {
 
-    let uri: string = `${feesUrl}/fees-register/fees?feeVersionStatus=${versionStatus}`
+    let uri: string = `${feesUrl}/fees-register/fees?`
 
-    if (author) {
+    if (versionStatus != null) {
+      uri = uri + `&feeVersionStatus=${versionStatus}`
+    }
+
+    if (author != null) {
       uri = uri + `&author=${author}`
     }
 
-    if (approvedBy) {
+    if (approvedBy != null) {
       uri = uri + `&approvedBy=${approvedBy}`
     }
 
@@ -204,6 +208,10 @@ export class FeesClient {
 
     if (isExpired != null) {
       uri = uri + `&isExpired=${isExpired}`
+    }
+
+    if (isDraft != null) {
+      uri = uri + `&isDraft=${isDraft}`
     }
 
     return request

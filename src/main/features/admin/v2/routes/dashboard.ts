@@ -28,8 +28,8 @@ class Renderer {
     }
 
     Promise.all([
-      FeesClient.searchFees('draft', draftAuthor, draftApprovedBy, null, null),
-      FeesClient.searchFees('pending_approval', pendingAuthor, pendingApprovedBy, null, null),
+      FeesClient.searchFees('draft', draftAuthor, draftApprovedBy),
+      FeesClient.searchFees('pending_approval', pendingAuthor, pendingApprovedBy),
       FeesClient.searchFees('approved', approvedAuthor, approvedApprovedBy, isActive, isExpired)
     ]).then((fees: Fee2Dto[][]) => {
       res.render(Paths.dashboard.associatedView, {
