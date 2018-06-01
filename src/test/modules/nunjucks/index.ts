@@ -6,7 +6,7 @@ import { Fee2Dto, FeeVersionDto } from 'fees/v2/model/fees-register-api-contract
 describe('Nunjucks', () => {
 
   describe('globals', () => {
-    it.only('getLastFeeVersion should get latest approved fee version', async () => {
+    it('getLastFeeVersion should get latest approved fee version', async () => {
       let getLastFeeVersion: (Fee2Dto) => FeeVersionDto = nunjucksEnv.getGlobal('getLastFeeVersion')
       let fee: Fee2Dto = new Fee2Dto()
       let fv1: FeeVersionDto = new FeeVersionDto()
