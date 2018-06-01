@@ -76,14 +76,18 @@ export default class Nunjucks {
     })
     nunjucksEnv.addGlobal('getLastFeeVersion', (fee: Fee2Dto): FeeVersionDto => {
       let currentVersionNumber: number = -1
-      let result: FeeVersionDto = null
-      fee.fee_versions.forEach((fv) => {
-        if (fv.version > currentVersionNumber && fv.status === 'approved') {
-          currentVersionNumber = fv.version
-          result = fv
-        }
-      })
+      let result: FeeVersionDto = fee.current_version
+      if (fee.fee_versions != null) {
+        fee.fee_versions.forEach((fv) => {
+          if (fv.version > currentVersionNumber && fv.status === 'approved') {
+            currentVersionNumber = fv.version
+            result = fv
+          }
+        })
+      }
       return result
     })
+
+    return nunjucksEnv
   }
 }
