@@ -46,3 +46,7 @@ variable "external_host_name" {
   default = "fees-register-saat.platform.hmcts.net"
 }
 
+variable "capacity" {
+  default = "1"
+}
+
