@@ -5,9 +5,9 @@ import * as fastCsv from 'fast-csv'
 
 import { Paths } from 'admin/paths'
 import { CsvFeeDto } from 'fees/v2/model/csv-contract'
-import { CreateFixedFeeDto } from 'fees/v2/model/fees-register-api-contract'
+import { CreateFixedFee } from 'fees/v2/forms/model/CreateFixedFee'
 import { FeesClient } from 'fees/v2/feesClient'
-import { CreateBulkFixedFee } from 'fees/v2/forms/model/CreateBulkFixedFee'
+import { CreateRangedFee } from 'fees/v2/forms/model/CreateRangedFee'
 
 const upload = multer ( { inMemory: true } ).single ( 'csvdata' )
 
@@ -66,25 +66,28 @@ export default express.Router ()
     }
   } )
 
-  .post ( Paths.createBulkFeesPage.uri, ( req: express.Request, res: express.Response ) => {
-    const csvFees: Object[] = JSON.parse ( req.body.csvFees )
-    const fixedFees = []
+  .post ( Paths.createBulkFeesPage.uri, async ( req: express.Request, res: express.Response ) => {
+    const csvFees: Object[] = JSON.parse(req.body.csvFees)
 
-    csvFees.forEach ( ( csvFee: CsvFeeDto ) => {
-      const fixedFee = new CreateBulkFixedFee ()
-      fixedFees.push ( fixedFee.createFixedFeeDto ( csvFee ) )
-    } )
-
-    FeesClient.createBulkFixedFee ( res.locals.user, fixedFees as CreateFixedFeeDto[] )
-      .then ( () => res.render ( Paths.createBulkFeesPage.associatedView, {
-        msg: 'Successfully saved the csv fixed fees.',
-        success: true
-      } ) )
-      .catch (
-        ( err: Error ) => {
-          res.render ( Paths.createBulkFeesPage.associatedView, { errCause: err.message, bulkFeeError: true } )
+    for (let i = 0; i < csvFees.length; i++) {
+      const csvFee: any = csvFees[i]
+      try {
+        if (csvFee.feeType === 'fixed') {
+          const fixedFee = new CreateFixedFee()
+          await FeesClient.createFixedFee(res.locals.user, fixedFee.createFixedFeeDto(csvFee))
+        } else if (csvFee.feeType === 'ranged') {
+          const rangedFee = new CreateRangedFee()
+          await FeesClient.createRangedFee(res.locals.user, rangedFee.createRangedFeeDto(csvFee))
         }
-      )
+      } catch (err) {
+        return res.render(Paths.createBulkFeesPage.associatedView, {errCause: err.message, bulkFeeError: true})
+      }
+    }
+
+    return res.render(Paths.createBulkFeesPage.associatedView, {
+      msg: 'Successfully saved the csv fees.',
+      success: true
+    })
   } )
 
   .post ( Paths.csvToJsonPage.uri, ( req: express.Request, res: express.Response ) => {
