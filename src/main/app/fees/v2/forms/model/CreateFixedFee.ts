@@ -3,7 +3,7 @@ import {
   FeeVersionStatus, FlatAmountDto
 } from 'fees/v2/model/fees-register-api-contract'
 
-export class CreateBulkFixedFee {
+export class CreateFixedFee {
 
   code?: string
 
