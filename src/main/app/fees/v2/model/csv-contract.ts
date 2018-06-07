@@ -6,8 +6,8 @@ export class CsvFeeDto {
   feeStatus: string
   validFrom: string
   validTo: string
-  minRange: string
-  maxRange: string
+  rangeFrom: string
+  rangeTo: string
   statutoryInstrument: string
   applicantType: string
   jurisdiction1: string

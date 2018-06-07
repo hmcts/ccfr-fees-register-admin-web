@@ -5,9 +5,8 @@ import * as fastCsv from 'fast-csv'
 
 import { Paths } from 'admin/paths'
 import { CsvFeeDto } from 'fees/v2/model/csv-contract'
-import { CreateFixedFee } from 'fees/v2/forms/model/CreateFixedFee'
+import { CreateFeeFromCsv } from 'fees/v2/forms/model/CreateFeeFromCsv'
 import { FeesClient } from 'fees/v2/feesClient'
-import { CreateRangedFee } from 'fees/v2/forms/model/CreateRangedFee'
 
 const upload = multer ( { inMemory: true } ).single ( 'csvdata' )
 
@@ -73,10 +72,10 @@ export default express.Router ()
       const csvFee: any = csvFees[i]
       try {
         if (csvFee.feeType === 'fixed') {
-          const fixedFee = new CreateFixedFee()
+          const fixedFee = new CreateFeeFromCsv()
           await FeesClient.createFixedFee(res.locals.user, fixedFee.createFixedFeeDto(csvFee))
         } else if (csvFee.feeType === 'ranged') {
-          const rangedFee = new CreateRangedFee()
+          const rangedFee = new CreateFeeFromCsv()
           await FeesClient.createRangedFee(res.locals.user, rangedFee.createRangedFeeDto(csvFee))
         }
       } catch (err) {

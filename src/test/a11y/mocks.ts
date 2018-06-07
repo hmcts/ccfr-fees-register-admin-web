@@ -6,7 +6,7 @@ import Fee from 'app/fees/fee'
 import RangeGroup from 'fees/rangeGroup'
 import {
   AllReferenceDataDto,
-  ChannelType, CreateFixedFeeDto, CreateRangedFeeDto, DirectionType, EventType, Fee2Dto, FeeVersionDto, Jurisdiction1,
+  ChannelType, FeeDto , DirectionType, EventType, Fee2Dto, FeeVersionDto, Jurisdiction1,
   ServiceType
 } from 'fees/v2/model/fees-register-api-contract'
 
@@ -105,11 +105,11 @@ function mockFetchFeesPendingApproval () {
 }
 
 function mockFixedFee () {
-  return new CreateFixedFeeDto()
+  return new FeeDto()
 }
 
 function mockRangedFee () {
-  return new CreateRangedFeeDto()
+  return new FeeDto()
 }
 
 function mockFeeVersionDto () {
