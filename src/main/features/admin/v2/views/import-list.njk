@@ -8,11 +8,7 @@
 
    <div class="custom-grid-row">
       <div class="column-quarter">
-      {% if (env === 'production') %}
-       <form action="bulkfixedfees" method="post">
-      {% else %}
-       <form action="tojson" method="post">
-      {% endif %}
+       <form action="bulkfeesupload" method="post">
         <table class="column-quarter">
           <thead>
             <tr>
@@ -23,6 +19,8 @@
               <th class="bold-xxsmall">Status</th>
               <th class="bold-xxsmall">Valid from</th>
               <th class="bold-xxsmall">Valid to</th>
+              <th class="bold-xxsmall">Range from</th>
+              <th class="bold-xxsmall">Range to</th>
               <th class="bold-xxsmall">Statutory instrument(SI)</th>
               <th class="bold-xxsmall">Applicant type</th>
               <th class="bold-xxsmall">Jurisdiction1</th>
@@ -49,6 +47,8 @@
                 <td class="font-xxsmall">{{ csvFeeDto.feeStatus }}</td>
                 <td class="font-xxsmall">{{ csvFeeDto.validFrom }}</td>
                 <td class="font-xxsmall">{{ csvFeeDto.validTo }}</td>
+                <td class="font-xxsmall">{{ csvFeeDto.rangeFrom }}</td>
+                <td class="font-xxsmall">{{ csvFeeDto.rangeTo }}</td>
                 <td class="font-xxsmall">{{ csvFeeDto.statutoryInstrument }}</td>
                 <td class="font-xxsmall">{{ csvFeeDto.applicantType }}</td>
                 <td class="font-xxsmall">{{ csvFeeDto.jurisdiction1 }}</td>
@@ -70,11 +70,7 @@
 
          <p>
           <input type="hidden" name="csvFees" value="{{ resObj }}"/>
-          {% if (env === 'production') %}
             {{ submitButton(t('Save')) }}
-          {% else %}
-            {{ submitButton(t('To Json')) }}
-          {% endif %}
          </p>
         </form>
         <p>
