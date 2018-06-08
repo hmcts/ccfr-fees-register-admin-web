@@ -2,7 +2,7 @@ import { FixedFeeDto, FeeVersionDto,
   FeeVersionStatus, FlatAmountDto, RangedFeeDto, PercentageAmountDto
 } from 'fees/v2/model/fees-register-api-contract'
 
-export class CreateFeeFromCsv {
+export class FeeMapper {
 
   code?: string
 
@@ -31,7 +31,7 @@ export class CreateFeeFromCsv {
   statutoryInstrument?: string
   siRefId?: string
 
-  createFeeVersionDto (dto): FeeVersionDto {
+  toFeeVersionDto (dto): FeeVersionDto {
     let flatAmount = new FlatAmountDto()
     let percentageAmount = new PercentageAmountDto()
     if (dto.amountType === 'flat') {
@@ -62,40 +62,40 @@ export class CreateFeeFromCsv {
 
   }
 
-  createFixedFeeDto (dto): FixedFeeDto {
+  toFixedFeeDto (dto): FixedFeeDto {
 
-    const createFixedFeeDto = new FixedFeeDto()
-    createFixedFeeDto.code = dto.feeCode
-    createFixedFeeDto.version = this.createFeeVersionDto(dto)
-    createFixedFeeDto.jurisdiction1 = dto.jurisdiction1
-    createFixedFeeDto.jurisdiction2 = dto.jurisdiction2
-    createFixedFeeDto.service = dto.service
-    createFixedFeeDto.channel = dto.channel
-    createFixedFeeDto.event = dto.event
-    createFixedFeeDto.fee_type = dto.feeType
-    createFixedFeeDto.applicant_type = dto.applicant_type
-    createFixedFeeDto.unspecified_claim_amount = false
+    const fixedFeeDto = new FixedFeeDto()
+    fixedFeeDto.code = dto.feeCode
+    fixedFeeDto.version = this.toFeeVersionDto(dto)
+    fixedFeeDto.jurisdiction1 = dto.jurisdiction1
+    fixedFeeDto.jurisdiction2 = dto.jurisdiction2
+    fixedFeeDto.service = dto.service
+    fixedFeeDto.channel = dto.channel
+    fixedFeeDto.event = dto.event
+    fixedFeeDto.fee_type = dto.feeType
+    fixedFeeDto.applicant_type = dto.applicant_type
+    fixedFeeDto.unspecified_claim_amount = false
 
-    return createFixedFeeDto
+    return fixedFeeDto
   }
 
-  createRangedFeeDto (dto): RangedFeeDto {
+  toRangedFeeDto (dto): RangedFeeDto {
 
-    const createRangedFeeDto = new RangedFeeDto()
-    createRangedFeeDto.code = dto.feeCode
-    createRangedFeeDto.version = this.createFeeVersionDto(dto)
-    createRangedFeeDto.jurisdiction1 = dto.jurisdiction1
-    createRangedFeeDto.jurisdiction2 = dto.jurisdiction2
-    createRangedFeeDto.service = dto.service
-    createRangedFeeDto.channel = dto.channel
-    createRangedFeeDto.event = dto.event
-    createRangedFeeDto.applicant_type = dto.applicant_type
-    createRangedFeeDto.fee_type = dto.feeType
-    createRangedFeeDto.unspecified_claim_amount = false
-    createRangedFeeDto.min_range = Number(dto.rangeFrom)
-    createRangedFeeDto.max_range = Number(dto.rangeTo)
+    const rangedFeeDto = new RangedFeeDto()
+    rangedFeeDto.code = dto.feeCode
+    rangedFeeDto.version = this.toFeeVersionDto(dto)
+    rangedFeeDto.jurisdiction1 = dto.jurisdiction1
+    rangedFeeDto.jurisdiction2 = dto.jurisdiction2
+    rangedFeeDto.service = dto.service
+    rangedFeeDto.channel = dto.channel
+    rangedFeeDto.event = dto.event
+    rangedFeeDto.applicant_type = dto.applicant_type
+    rangedFeeDto.fee_type = dto.feeType
+    rangedFeeDto.unspecified_claim_amount = false
+    rangedFeeDto.min_range = Number(dto.rangeFrom)
+    rangedFeeDto.max_range = Number(dto.rangeTo)
 
-    return createRangedFeeDto
+    return rangedFeeDto
   }
 
 }

@@ -5,7 +5,7 @@ import * as fastCsv from 'fast-csv'
 
 import { Paths } from 'admin/paths'
 import { CsvFeeDto } from 'fees/v2/model/csv-contract'
-import { CreateFeeFromCsv } from 'fees/v2/forms/model/CreateFeeFromCsv'
+import { FeeMapper } from 'fees/v2/model/fee-mapper'
 import { FeesClient } from 'fees/v2/feesClient'
 
 const upload = multer ( { inMemory: true } ).single ( 'csvdata' )
@@ -70,13 +70,12 @@ export default express.Router ()
 
     for (let i = 0; i < csvFees.length; i++) {
       const csvFee: any = csvFees[i]
+      const feeMapper = new FeeMapper()
       try {
         if (csvFee.feeType === 'fixed') {
-          const fixedFee = new CreateFeeFromCsv()
-          await FeesClient.createFixedFee(res.locals.user, fixedFee.createFixedFeeDto(csvFee))
+          await FeesClient.createFixedFee(res.locals.user, feeMapper.toFixedFeeDto(csvFee))
         } else if (csvFee.feeType === 'ranged') {
-          const rangedFee = new CreateFeeFromCsv()
-          await FeesClient.createRangedFee(res.locals.user, rangedFee.createRangedFeeDto(csvFee))
+          await FeesClient.createRangedFee(res.locals.user, feeMapper.toRangedFeeDto(csvFee))
         }
       } catch (err) {
         return res.render(Paths.createBulkFeesPage.associatedView, {errCause: err.message, bulkFeeError: true})
