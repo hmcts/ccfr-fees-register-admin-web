@@ -12,11 +12,20 @@ export function retrieveCsvFee () {
     .reply(HttpStatus.OK, { 'csvFees' : csvJSONStr})
 }
 
-export function createBulkFixedFee () {
+export function createFixedFee () {
   mock(`${serviceBaseURL}`)
-    .post(new RegExp(`/bulk-fixed-fees`))
+    .post(new RegExp(`/fixed-fees`))
     .reply(HttpStatus.CREATED, [{
       msg: 'Successfully saved the csv fixed fees.',
+      success: true
+    }])
+}
+
+export function createRangedFee () {
+  mock(`${serviceBaseURL}`)
+    .post(new RegExp(`/ranged-fees`))
+    .reply(HttpStatus.CREATED, [{
+      msg: 'Successfully saved the csv ranged fees.',
       success: true
     }])
 }
