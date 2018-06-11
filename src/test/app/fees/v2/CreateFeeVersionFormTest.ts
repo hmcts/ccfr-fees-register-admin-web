@@ -35,52 +35,52 @@ let feeVersionPercentage = {
 
 describe ( 'CreateFeeVersionForm', () => {
 
-    describe ( 'toDto', () => {
+  describe ( 'toDto', () => {
 
-      it ( 'should convert a form with flat amount to dto', () => {
+    it ( 'should convert a form with flat amount to dto', () => {
 
-        let feeVersionForm = CreateFeeVersionForm.fromObject ( feeVersion )
+      let feeVersionForm = CreateFeeVersionForm.fromObject ( feeVersion )
 
-        let dto = feeVersionForm.toDto ()
+      let dto = feeVersionForm.toDto ()
 
-        expect ( dto.flat_amount.amount ).to.equal ( feeVersionForm.amount )
-
-      } )
-
-      it ( 'should convert a form with volume amount to dto', () => {
-
-        let feeVersionForm = CreateFeeVersionForm.fromObject ( feeVersionVolume )
-
-        let dto = feeVersionForm.toDto ()
-
-        expect ( dto.volume_amount.amount ).to.equal ( feeVersionForm.amount )
-
-      } )
-
-      it ( 'should convert a form with percentage amount to dto', () => {
-
-        let feeVersionForm = CreateFeeVersionForm.fromObject ( feeVersionPercentage )
-
-        let dto = feeVersionForm.toDto ()
-
-        expect ( dto.percentage_amount.percentage ).to.equal ( feeVersionForm.percentage )
-
-      } )
+      expect ( dto.flat_amount.amount ).to.equal ( feeVersionForm.amount )
 
     } )
 
-    describe ( 'fromObject', () => {
+    it ( 'should convert a form with volume amount to dto', () => {
 
-      it ( 'should convert any to form', () => {
+      let feeVersionForm = CreateFeeVersionForm.fromObject ( feeVersionVolume )
 
-        let feeVersionForm = CreateFeeVersionForm.fromObject ( feeVersion )
+      let dto = feeVersionForm.toDto ()
 
-        expect ( feeVersionForm.amount ).to.equal ( feeVersion.amount )
-        expect ( feeVersionForm.amountType ).to.equal ( feeVersion.amountType )
-        expect ( feeVersionForm.description ).to.equal ( feeVersion.description )
-
-      } )
+      expect ( dto.volume_amount.amount ).to.equal ( feeVersionForm.amount )
 
     } )
-  }
+
+    it ( 'should convert a form with percentage amount to dto', () => {
+
+      let feeVersionForm = CreateFeeVersionForm.fromObject ( feeVersionPercentage )
+
+      let dto = feeVersionForm.toDto ()
+
+      expect ( dto.percentage_amount.percentage ).to.equal ( feeVersionForm.percentage )
+
+    } )
+
+  } )
+
+  describe ( 'fromObject', () => {
+
+    it ( 'should convert any to form', () => {
+
+      let feeVersionForm = CreateFeeVersionForm.fromObject ( feeVersion )
+
+      expect ( feeVersionForm.amount ).to.equal ( feeVersion.amount )
+      expect ( feeVersionForm.amountType ).to.equal ( feeVersion.amountType )
+      expect ( feeVersionForm.description ).to.equal ( feeVersion.description )
+
+    } )
+
+  } )
+}
 )
