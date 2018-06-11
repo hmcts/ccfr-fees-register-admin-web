@@ -21,7 +21,7 @@
     "test:codecov-upload": "codecov -f ./coverage-report/lcov.info",
     "test:smoke": "echo 'TODO - test:smoke not implemented yet'",
     "test:functional": "echo 'TODO - test:functional not implemented yet'",
-    "sonar-scan": "sonar-scanner -Dsonar.projectKey='fees-regsiter-admin-web' -Dsonar.projectName='Fees-Register-Admin-Web' -Dsonar.sources=src/main -Dsonar.tests=src/test -Dsonar.exclusions=src/main/public/** -Dsonar.typescript.lcov.reportPaths=coverage-report/lcov.info",
+    "sonar-scan": "sonar-scanner -Dsonar.projectKey='fees-regsiter-admin-web' -Dsonar.projectName='Fees-Register-Admin-Web' -Dsonar.sources=src/main -Dsonar.tests=src/test -Dsonar.exclusions=src/main/public/**,src/main/modules/**,src/main/app/idam/security.js, -Dsonar.typescript.lcov.reportPaths=coverage-report/lcov.info",
     "precommit": "yarn lint",
     "prepush": "yarn test && yarn test:routes"
   },
