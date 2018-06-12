@@ -7,7 +7,7 @@ const moment = require('moment')
 
 import { ValidationErrors } from 'fees/v2/forms/model/ValidationErrors'
 import {
-  CreateFeeDto, CreateFixedFeeDto, CreateRangedFeeDto,
+  FeeDto, FixedFeeDto, RangedFeeDto,
   FeeVersionDto, FlatAmountDto, PercentageAmountDto, VolumeAmountDto
 } from 'fees/v2/model/fees-register-api-contract'
 
@@ -197,20 +197,20 @@ export class CreateFeeForm {
     return form
   }
 
-  toDto (): CreateFeeDto {
+  toDto (): FeeDto {
 
     if (this.type === 'ranged') {
-      const dto = new CreateRangedFeeDto()
+      const dto = new RangedFeeDto()
       dto.max_range = this.toRange
       dto.min_range = this.fromRange
       dto.range_unit = this.rangeUnit
 
       return this.fillCommon(dto)
     }
-    return this.fillCommon(new CreateFixedFeeDto())
+    return this.fillCommon(new FixedFeeDto())
   }
 
-  private fillCommon (dto: CreateFeeDto): CreateFeeDto {
+  private fillCommon (dto: FeeDto): FeeDto {
 
     dto.code = this.code !== '' ? this.code : null
 

@@ -14,21 +14,29 @@ module "fees-register-frontend" {
   env      = "${var.env}"
   ilbIp    = "${var.ilbIp}"
   subscription = "${var.subscription}"
-  is_frontend  = true
-  additional_host_name = "${var.external_host_name}"
+  is_frontend = "${var.env != "preview" ? 1: 0}"
+  additional_host_name = "${var.env != "preview" ? var.external_host_name : "null"}"
   https_only = "true"
-
+  capacity = "${var.capacity}"
+  
   app_settings = {
+    // Logging vars
     REFORM_TEAM = "${var.product}"
     REFORM_SERVICE_NAME = "${var.microservice}"
     REFORM_ENVIRONMENT = "${var.env}"
 
-    IDAM_API_URL = "${var.idam_api_url}"
-    IDAM_LOGIN_WEB_URL = "${var.authentication_web_url}/login"
+    // IDAM 
+    IDAM_API_URL = "${var.idam_api_url}"    
     IDAM_AUTHENTICATION_WEB_URL = "${var.authentication_web_url}"
+    IDAM_LOGIN_WEB_URL = "${var.authentication_web_url}/login"
+    
+    // Fees API    
     FEES_URL = "http://fees-register-api-${var.env}.service.${data.terraform_remote_state.core_apps_compute.ase_name[0]}.internal"
-
+    
+    // Application vars
     FEES_CLIENT_ID = "fees_admin_frontend"
     FEES_CLIENT_SECRET = "${data.vault_generic_secret.client_secret.data["value"]}"
+    
+    FAKE_ENTRY = "No Value"
   }
 }

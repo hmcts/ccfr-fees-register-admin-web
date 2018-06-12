@@ -44,7 +44,7 @@ const developmentMode = env === 'development'
 
 const i18next = I18Next.enableFor(app)
 
-new Nunjucks(developmentMode, i18next)
+export const nunjucksEnv = new Nunjucks(developmentMode, i18next)
   .enableFor(app)
 new Helmet(config.get<HelmetConfig>('security'), developmentMode)
   .enableFor(app)
