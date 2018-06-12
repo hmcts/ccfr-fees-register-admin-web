@@ -17,7 +17,7 @@ let rangedPercentageFeeCsv = {
   amountType : '%',
   feeType : 'ranged',
   rangeFrom : 1,
-  rangeTo : 100,
+  rangeTo : 100
 }
 describe ( 'fee-mapper', () => {
 
