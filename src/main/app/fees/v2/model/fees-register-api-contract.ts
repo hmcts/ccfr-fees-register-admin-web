@@ -54,6 +54,7 @@ export class FeeVersionDto {
   status: FeeVersionStatus
   flat_amount: FlatAmountDto
   percentage_amount: PercentageAmountDto
+  amount_type: string
   volume_amount: VolumeAmountDto
   author: string /* READ ONLY */
   approvedBy: string /* READ ONLY */
@@ -108,7 +109,7 @@ export class VolumeAmountDto {
   amount: number
 }
 
-export class CreateFeeDto {
+export class FeeDto {
   code: string
   version: FeeVersionDto
   jurisdiction1: string
@@ -116,14 +117,15 @@ export class CreateFeeDto {
   service: string
   channel: string
   event: string
+  fee_type:string
   applicant_type: string
   unspecified_claim_amount: boolean
 }
 
-export class CreateFixedFeeDto extends CreateFeeDto {
+export class FixedFeeDto extends FeeDto {
 }
 
-export class CreateRangedFeeDto extends CreateFeeDto {
+export class RangedFeeDto extends FeeDto {
   min_range: number
   max_range: number
   range_unit: string

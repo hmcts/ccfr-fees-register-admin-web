@@ -6,7 +6,7 @@ import { FeesClient } from 'app/fees/v2/feesClient'
 
 import { CreateFeeForm } from 'fees/v2/forms/model/CreateFeeForm'
 import { FormValidator } from 'app/forms/validation/formValidator'
-import { CreateFixedFeeDto, CreateRangedFeeDto } from 'fees/v2/model/fees-register-api-contract'
+import { FixedFeeDto, RangedFeeDto } from 'fees/v2/model/fees-register-api-contract'
 
 class Renderer {
   static renderPage (form: Form<CreateFeeForm>, res: express.Response, isEdit?: boolean) {
@@ -45,7 +45,7 @@ export default express.Router()
           if (form.model.edit) {
             FeesClient.deleteFee(res.locals.user, form.model.code).then(
               () => {
-                FeesClient.createFixedFee(res.locals.user, form.model.toDto() as CreateFixedFeeDto).then(
+                FeesClient.createFixedFee(res.locals.user, form.model.toDto() as FixedFeeDto).then(
                   () => res.render('admin/v2/views/confirm-edit-fee', {
                     feeCode: form.model.code
                   })
@@ -58,7 +58,7 @@ export default express.Router()
               }
             )
           } else {
-            FeesClient.createFixedFee(res.locals.user, form.model.toDto() as CreateFixedFeeDto).then(
+            FeesClient.createFixedFee(res.locals.user, form.model.toDto() as FixedFeeDto).then(
               () => res.render('admin/v2/views/confirm-create-fee')
             ).catch(
               (e: Error) => {
@@ -72,7 +72,7 @@ export default express.Router()
           if (form.model.edit) {
             FeesClient.deleteFee(res.locals.user, form.model.code).then(
               () => {
-                FeesClient.createRangedFee(res.locals.user, form.model.toDto() as CreateRangedFeeDto).then(
+                FeesClient.createRangedFee(res.locals.user, form.model.toDto() as RangedFeeDto).then(
                   () => res.render('admin/v2/views/confirm-edit-fee', {
                     feeCode: form.model.code
                   })
@@ -85,7 +85,7 @@ export default express.Router()
               }
             )
           } else {
-            FeesClient.createRangedFee(res.locals.user, form.model.toDto() as CreateRangedFeeDto).then(
+            FeesClient.createRangedFee(res.locals.user, form.model.toDto() as RangedFeeDto).then(
               () => res.render('admin/v2/views/confirm-create-fee')
             ).catch(
               (e: Error) => {

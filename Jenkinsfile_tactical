@@ -21,7 +21,11 @@ timestamps {
           deleteDir()
           checkout scm
         }
-
+        stage('Vars Checkout') {
+          dir('ansible-management') {
+          git url: "https://github.com/hmcts/ansible-management.git", branch: "master", credentialsId: "jenkins-public-github-api-token"
+          }
+       }
         stage('Setup') {
           sh '''
             yarn install

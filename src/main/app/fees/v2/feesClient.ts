@@ -4,7 +4,7 @@ import request from 'client/request'
 import * as model from 'app/fees/v2/model/fees-register-api-contract'
 import { StatusCodeError } from 'request-promise-native/errors'
 import {
-  AllReferenceDataDto, CreateFixedFeeDto, Fee2Dto, FeeVersionDto
+  AllReferenceDataDto, FixedFeeDto, Fee2Dto, FeeVersionDto, RangedFeeDto
 } from 'fees/v2/model/fees-register-api-contract'
 
 const feesUrl = config.get('fees.url')
@@ -75,23 +75,7 @@ export class FeesClient {
       .catch(FeesClientErrorMapper)
   }
 
-  static createBulkFixedFee (user, dtos: CreateFixedFeeDto[]): Promise<boolean> {
-
-    return request
-      .post({
-        uri: `${feesUrl}/fees-register/bulk-fixed-fees/`,
-        json: true,
-        headers: {
-          Authorization: `Bearer ${user.bearerToken}`
-        },
-        body: dtos
-      })
-      .then(() => true)
-      .catch(FeesClientErrorMapper)
-
-  }
-
-  static createFixedFee (user, dto: CreateFixedFeeDto): Promise<boolean> {
+  static createFixedFee (user, dto: FixedFeeDto): Promise<boolean> {
 
     return request
       .post({
@@ -107,7 +91,7 @@ export class FeesClient {
 
   }
 
-  static updateFixedFee (user, dto: CreateFixedFeeDto): Promise<boolean> {
+  static updateFixedFee (user, dto: FixedFeeDto): Promise<boolean> {
     return request
       .put({
         uri: `${feesUrl}/fees-register/fixed-fees/${dto.code}`,
@@ -121,7 +105,7 @@ export class FeesClient {
       .catch(FeesClientErrorMapper)
   }
 
-  static createRangedFee (user, dto: CreateFixedFeeDto): Promise<boolean> {
+  static createRangedFee (user, dto: RangedFeeDto): Promise<boolean> {
 
     return request
       .post({
@@ -137,7 +121,7 @@ export class FeesClient {
 
   }
 
-  static updateRangedFee (user, dto: CreateFixedFeeDto): Promise<boolean> {
+  static updateRangedFee (user, dto: RangedFeeDto): Promise<boolean> {
     return request
       .put({
         uri: `${feesUrl}/fees-register/ranged-fees/${dto.code}`,
@@ -186,15 +170,19 @@ export class FeesClient {
       .catch(FeesClientError)
   }
 
-  static searchFees ( versionStatus: String, author: String, approvedBy: String, isActive: Boolean, isExpired: Boolean): Promise<Array<model.Fee2Dto>> {
+  static searchFees ( versionStatus: string, author?: string, approvedBy?: string, isActive?: boolean, isExpired?: boolean, isDraft?: boolean): Promise<Array<model.Fee2Dto>> {
 
-    let uri: string = `${feesUrl}/fees-register/fees?feeVersionStatus=${versionStatus}`
+    let uri: string = `${feesUrl}/fees-register/fees?`
 
-    if (author) {
+    if (versionStatus != null) {
+      uri = uri + `&feeVersionStatus=${versionStatus}`
+    }
+
+    if (author != null) {
       uri = uri + `&author=${author}`
     }
 
-    if (approvedBy) {
+    if (approvedBy != null) {
       uri = uri + `&approvedBy=${approvedBy}`
     }
 
@@ -204,6 +192,10 @@ export class FeesClient {
 
     if (isExpired != null) {
       uri = uri + `&isExpired=${isExpired}`
+    }
+
+    if (isDraft != null) {
+      uri = uri + `&isDraft=${isDraft}`
     }
 
     return request

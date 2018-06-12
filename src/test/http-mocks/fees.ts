@@ -9,7 +9,11 @@ function validFeeWithCode (code: string, description?: string) {
     'code': code,
     'type': 'fixed',
     'description': description || `Description for ${code}`,
-    'amount': 109000
+    'amount': 109000,
+    'fee_versions': [{
+      'version': 1,
+      'status': 'approved'
+    }]
   }
 }
 
@@ -146,7 +150,7 @@ export function resolveGetFee () {
 
 export function resolveGetFees () {
   mock(`${serviceBaseURL}/fees-register`)
-    .get(new RegExp(`/fees`))
+    .get(new RegExp(`/fees.*`))
     .reply(HttpStatus.OK, [
       validFeeWithCode('X0001', 'Civil Court fees - Hearing fees - Claim Amount - 0.01 upto 300 GBP'),
       validFeeWithCode('X0002', 'Civil Court fees - Hearing fees - Claim Amount - 0.01 upto 300 GBP')
