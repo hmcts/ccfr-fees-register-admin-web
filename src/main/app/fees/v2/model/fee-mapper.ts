@@ -4,33 +4,6 @@ import { FixedFeeDto, FeeVersionDto,
 
 export class FeeMapper {
 
-  code?: string
-
-  // Flat amount
-  amount?: number
-  // Fee version
-  version?: number
-  validFrom?: Date
-  validTo?: Date
-  rangeFrom?: number
-  rangeTo?: number
-  description?: string
-  status?: FeeVersionStatus
-  applicantType?: string
-  channel?: string
-  direction?: string
-  event?: string
-  jurisdiction1?: string
-  jurisdiction2?: string
-  service?: string
-  memoLine?: string
-  feeOrderName?: string
-  naturalAccountCode?: string
-  feeType?: string
-  unspecifiedAmount?: boolean
-  statutoryInstrument?: string
-  siRefId?: string
-
   toFeeVersionDto (dto): FeeVersionDto {
     let flatAmount = new FlatAmountDto()
     let percentageAmount = new PercentageAmountDto()
