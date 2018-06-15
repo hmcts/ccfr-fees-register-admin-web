@@ -1,37 +1,11 @@
 import { FixedFeeDto, FeeVersionDto,
   FeeVersionStatus, FlatAmountDto, RangedFeeDto, PercentageAmountDto
 } from 'fees/v2/model/fees-register-api-contract'
+import { CsvFeeDto } from 'fees/v2/model/csv-contract'
 
 export class FeeMapper {
 
-  code?: string
-
-  // Flat amount
-  amount?: number
-  // Fee version
-  version?: number
-  validFrom?: Date
-  validTo?: Date
-  rangeFrom?: number
-  rangeTo?: number
-  description?: string
-  status?: FeeVersionStatus
-  applicantType?: string
-  channel?: string
-  direction?: string
-  event?: string
-  jurisdiction1?: string
-  jurisdiction2?: string
-  service?: string
-  memoLine?: string
-  feeOrderName?: string
-  naturalAccountCode?: string
-  feeType?: string
-  unspecifiedAmount?: boolean
-  statutoryInstrument?: string
-  siRefId?: string
-
-  toFeeVersionDto (dto): FeeVersionDto {
+  toFeeVersionDto (dto: CsvFeeDto): FeeVersionDto {
     let flatAmount = new FlatAmountDto()
     let percentageAmount = new PercentageAmountDto()
     if (dto.amountType === 'flat') {
@@ -62,7 +36,7 @@ export class FeeMapper {
 
   }
 
-  toFixedFeeDto (dto): FixedFeeDto {
+  toFixedFeeDto (dto: CsvFeeDto): FixedFeeDto {
 
     const fixedFeeDto = new FixedFeeDto()
     fixedFeeDto.code = dto.feeCode
@@ -73,13 +47,13 @@ export class FeeMapper {
     fixedFeeDto.channel = dto.channel
     fixedFeeDto.event = dto.event
     fixedFeeDto.fee_type = dto.feeType
-    fixedFeeDto.applicant_type = dto.applicant_type
+    fixedFeeDto.applicant_type = dto.applicantType
     fixedFeeDto.unspecified_claim_amount = false
 
     return fixedFeeDto
   }
 
-  toRangedFeeDto (dto): RangedFeeDto {
+  toRangedFeeDto (dto: CsvFeeDto): RangedFeeDto {
 
     const rangedFeeDto = new RangedFeeDto()
     rangedFeeDto.code = dto.feeCode
@@ -89,7 +63,7 @@ export class FeeMapper {
     rangedFeeDto.service = dto.service
     rangedFeeDto.channel = dto.channel
     rangedFeeDto.event = dto.event
-    rangedFeeDto.applicant_type = dto.applicant_type
+    rangedFeeDto.applicant_type = dto.applicantType
     rangedFeeDto.fee_type = dto.feeType
     rangedFeeDto.unspecified_claim_amount = false
     rangedFeeDto.min_range = Number(dto.rangeFrom)
