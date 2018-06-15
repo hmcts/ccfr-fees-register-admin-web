@@ -15,5 +15,8 @@
   },
   "fees": {
     "url": "http://localhost:8080"
+  },
+  "appInsights": {
+    "instrumentationKey": "some-key"
   }
 }
