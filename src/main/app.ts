@@ -16,6 +16,7 @@ import { Helmet, Config as HelmetConfig } from 'modules/helmet'
 import I18Next from 'modules/i18n'
 import Nunjucks from 'modules/nunjucks'
 import { Feature as AdminFeature } from 'admin/index'
+import { CsrfProtection } from 'modules/csrf'
 
 export const app: express.Express = express()
 
@@ -57,6 +58,10 @@ app.use(bodyParser.urlencoded({ limit: '20mb',
 }))
 app.use(cookieParser())
 app.use(express.static(path.join(__dirname, 'public')))
+
+if (env !== 'development') {
+  new CsrfProtection().enableFor(app)
+}
 
 if (!config.has('security.clientId') || !config.has('security.clientSecret')) {
   console.error('Client id or client secret not found.')
