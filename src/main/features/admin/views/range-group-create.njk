@@ -1,4 +1,4 @@
-{% from "includes/macros/form.njk" import errorSummary, textArea, textInput, radioGroup, submitButton %}
+{% from "includes/macros/form.njk" import csrfProtection, errorSummary, textArea, textInput, radioGroup, submitButton %}
 {% extends "layout.njk" %}
 
 {% set title = t('Create Range Group | ' + serviceName) %}
@@ -9,6 +9,7 @@
   <div class="grid-row">
     <div class="column-full">
       <form method="post" action="create">
+        {{ csrfProtection(csrfToken) }}
         {{ textInput(t('Code'), 'code', form) }}
         {{ submitButton(t('Next')) }}
       </form>

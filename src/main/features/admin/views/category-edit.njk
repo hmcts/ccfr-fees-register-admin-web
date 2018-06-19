@@ -1,4 +1,4 @@
-{% from "includes/macros/form.njk" import errorSummary, textArea, textInputInline, selectInline, submitButton %}
+{% from "includes/macros/form.njk" import csrfProtection, errorSummary, textArea, textInputInline, selectInline, submitButton %}
 {% extends "layout.njk" %}
 
 {% set title = t('Category | ' + serviceName) %}
@@ -9,6 +9,7 @@
   <div class="grid-row">
     <div class="column-full">
       <form method="post" action="/admin/categories/edit/{{ form.model.code }}">
+        {{ csrfProtection(csrfToken) }}
         <input type="hidden" name="code" value="{{ form.model.code }}"/>
         {{ textArea(t('Description'), 'description', form) }}
 
