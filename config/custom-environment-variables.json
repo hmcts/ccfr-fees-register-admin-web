@@ -19,5 +19,8 @@
 	},
 	"fees": {
 		"url": "FEES_URL"
-	}
+	},
+  "appInsights": {
+    "instrumentationKey": "APPINSIGHTS_INSTRUMENTATIONKEY"
+  }
 }
