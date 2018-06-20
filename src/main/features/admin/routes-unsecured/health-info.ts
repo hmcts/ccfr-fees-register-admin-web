@@ -17,7 +17,14 @@ function renderHealthPage (config, req: express.Request, res: express.Response) 
       .resolve(check.call(req, res))
       .then((results) => {
         const allOk = Object.values(results)
-          .every(result => result.status === outputs.UP)
+          .every(result => {
+
+            if (! result['status']) {
+              result['status'] = outputs.DOWN
+            }
+
+            return result['status'] === outputs.UP
+          })
         const output = Object.assign(
           outputs.status(allOk),
           results)
