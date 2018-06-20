@@ -1,4 +1,4 @@
-{% from "includes/macros/form.njk" import errorSummary, textArea, textInput, radioGroup, submitButton, selectInline, selectReferenceData %}
+{% from "includes/macros/form.njk" import csrfProtection, errorSummary, textArea, textInput, radioGroup, submitButton, selectInline, selectReferenceData %}
   {% extends "layout.njk" %}
 
   {% set title = t('Create Fee Version | ' + serviceName) %}
@@ -9,6 +9,7 @@
 <div class="grid-row">
   <div class="column-full">
     <form method="post" action="">
+      {{ csrfProtection(csrfToken) }}
       <table id="create-fee-form-table">
         <tr>
           <td>{{ textInput(t('Memo Line*'), 'memoLine', form) }}</td>

@@ -1,4 +1,4 @@
-{% from "includes/macros/form.njk" import submitButton %}
+{% from "includes/macros/form.njk" import csrfProtection, submitButton %}
 {% extends "layout.njk" %}
 
 {% set title = t('CSV import view | ' + serviceName + ' V2') %}
@@ -9,6 +9,7 @@
    <div class="custom-grid-row">
       <div class="column-quarter">
        <form action="bulkfeesupload" method="post">
+        {{ csrfProtection(csrfToken) }}
         <table class="column-quarter">
           <thead>
             <tr>
