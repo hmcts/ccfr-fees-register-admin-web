@@ -1,6 +1,6 @@
 {% set currentPage = 'create-edit-fee' %}
 
-{% from "includes/macros/form.njk" import errorSummary, textArea, textInput, radioGroup, submitButton, selectInline, selectReferenceData %}
+{% from "includes/macros/form.njk" import csrfProtection, errorSummary, textArea, textInput, radioGroup, submitButton, selectInline, selectReferenceData %}
   {% extends "layout.njk" %}
 
     {% if edit %}
@@ -17,6 +17,7 @@
 <div class="grid-row">
   <div class="column-full">
     <form method="post" action="create">
+      {{ csrfProtection(csrfToken) }}
       <table id="create-fee-form-table">
         <tr>
           {% if edit %}
