@@ -20,6 +20,12 @@ let rangedFee = {
 
   code : 'X0001',
 
+  natural_account_code : 'xxx',
+
+  fee_order_name : 'xxx',
+
+  description : 'a lonely fee',
+
   applicant_type: {
     name: 'xxx'
   },
@@ -35,6 +41,10 @@ let rangedFee = {
   service_type: {
     name: 'xxx'
   },
+
+  direction: 'indirection',
+
+  range_unit : 'fishes',
 
   jurisdiction1: {
     name: 'xxx'
@@ -64,9 +74,17 @@ let fixedFee = {
 
   code : 'X0001',
 
+  natural_account_code : 'xxx',
+
+  fee_order_name : 'xxx',
+
+  description : 'a lonely fee',
+
   applicant_type: {
     name: 'xxx'
   },
+
+  direction: 'indirection',
 
   channel_type: {
     name: 'xxx'

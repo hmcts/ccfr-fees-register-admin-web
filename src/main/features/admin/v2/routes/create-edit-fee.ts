@@ -38,6 +38,8 @@ export default express.Router()
     const form: Form<CreateFeeForm> = req.body
 
     if (form.hasErrors()) {
+      console.log(form.backendErrors)
+      console.log(form.validationErrors)
       Renderer.renderPage(form, res, form.model.edit)
     } else {
       switch (form.model.type) {
