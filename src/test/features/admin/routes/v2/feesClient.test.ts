@@ -32,4 +32,15 @@ describe('Fees client', () => {
     })
   })
 
+  describe('on DELETE fee', () => {
+    it('should return OK', async () => {
+      feesServiceMock.resolveDeleteFee()
+
+      let user = { bearerToken : 'xxx'}
+
+      expect(FeesClient.deleteFee(user,'X0001')).to.not.equal(null)
+
+    })
+  })
+
 })
