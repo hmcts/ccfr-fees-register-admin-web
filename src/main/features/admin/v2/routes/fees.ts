@@ -10,7 +10,7 @@ export default express.Router()
   .get(Paths.feeViewPagev2.uri, (req: express.Request, res: express.Response) => {
 
     FeesClient
-      .retrieveFeeByCode(req.params.feeCode)
+      .getFee(req.params.feeCode)
       .then((feeDto: Fee2Dto) => {
         res.render(Paths.feeViewPagev2.associatedView, {feeDto: feeDto})
       })

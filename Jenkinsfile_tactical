@@ -59,22 +59,17 @@ timestamps {
         }
 
         stage('Test a11y') {
-          try {
             sh "yarn test:a11y"
-          } finally {
-            archiveArtifacts 'mochawesome-report/a11y.html'
-          }
         }
-
-        def feesAdminWebDockerVersion
-
-        stage('Build Docker') {
-          feesAdminWebDockerVersion = dockerImage imageName: 'fees-register/fees-admin-web'
-        }
-
-
 
         onMaster {
+
+          def feesAdminWebDockerVersion
+
+          stage('Build Docker') {
+            feesAdminWebDockerVersion = dockerImage imageName: 'fees-register/fees-admin-web'
+          }
+
           def rpmVersion
 
           stage('Publish RPM') {

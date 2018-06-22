@@ -4,7 +4,7 @@ import request from 'client/request'
 import Category from 'app/fees/category'
 import Range from 'app/fees/range'
 import Fee from 'app/fees/fee'
-import User from 'app/idam/old/user'
+import User from 'app/idam/user'
 import RangeGroup from 'fees/rangeGroup'
 import { StatusCodeError } from 'request-promise-native/errors'
 

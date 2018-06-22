@@ -142,13 +142,13 @@ export class FeesClient {
 
   }
 
-  static getFee (feeCode: string): Promise<model.Fee2Dto> {
+  static getFee (feeCode: string): Promise<Fee2Dto> {
     let uri: string = `${feesUrl}/fees-register/fees/${feeCode}`
 
     return request
       .get(uri)
       .then(response => {
-        return response as model.Fee2Dto
+        return response as Fee2Dto
       })
       .catch(FeesClientErrorMapper)
   }
@@ -156,18 +156,6 @@ export class FeesClient {
   static checkFeeVersionExists ( code: string, version: number): Promise<boolean> {
     return request.head( `${feesUrl}/fees/${code}/versions/${version}` )
       .then( () => false ).catch( () => true )
-  }
-
-  static retrieveFeeByCode ( code: string): Promise<model.Fee2Dto> {
-
-    let uri: string = `${feesUrl}/fees-register/fees/${code}`
-
-    return request
-      .get( uri )
-      .then( response => {
-        return response as Fee2Dto
-      })
-      .catch(FeesClientError)
   }
 
   static searchFees ( versionStatus: string, author?: string, approvedBy?: string, isActive?: boolean, isExpired?: boolean, isDraft?: boolean): Promise<Array<model.Fee2Dto>> {

@@ -1,0 +1,9 @@
+src/main/app/idam/security.js
+src/main/server.ts
+src/main/routes/health.ts
+src/main/app/logging/errorLogger.ts
+src/main/errors.ts
+src/main/modules/nunjucks/index.ts
+src/main/modules/helmet/modules/httpPublicKeyPinning.ts
+src/main/modules/helmet/modules/referredPolicy.ts
+src/main/modules/**
