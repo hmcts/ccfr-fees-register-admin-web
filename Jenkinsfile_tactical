@@ -59,11 +59,7 @@ timestamps {
         }
 
         stage('Test a11y') {
-          try {
             sh "yarn test:a11y"
-          } finally {
-            archiveArtifacts 'mochawesome-report/a11y.html'
-          }
         }
 
         onMaster {
