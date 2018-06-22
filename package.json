@@ -21,7 +21,7 @@
     "test:codecov-upload": "codecov -f ./coverage-report/lcov.info",
     "test:smoke": "echo 'TODO - test:smoke not implemented yet'",
     "test:functional": "echo 'TODO - test:functional not implemented yet'",
-    "sonar-scan": "sonar-scanner",
+    "sonar-scan": "sonar-scanner -Dsonar.projectKey='fees-register-admin-web' -Dsonar.projectName='Fees-Register-Admin-Web' -Dsonar.sources=src/main -Dsonar.tests=src/test -Dsonar.exclusions=src/main/public/**,src/main/modules/**,src/main/app/idam/security.js -Dsonar.typescript.lcov.reportPaths=coverage-report/lcov.info",
     "precommit": "yarn lint",
     "prepush": "yarn test && yarn test:routes"
   },
@@ -38,7 +38,7 @@
     "@types/left-pad": "^1.1.1",
     "@types/lodash": "^4.14.52",
     "@types/nock": "^9.1.0",
-    "@types/node": "^9.3.0",
+    "@types/node": "^9.6.0",
     "@types/nunjucks": "^3.0.0",
     "@types/request-promise-native": "^1.0.2",
     "@types/shortid": "^0.0.28",

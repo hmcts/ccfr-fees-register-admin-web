@@ -10,11 +10,35 @@ function validFeeWithCode (code: string, description?: string) {
     'type': 'fixed',
     'description': description || `Description for ${code}`,
     'amount': 109000,
+    'applicant_type' : {
+      name: 'xxx'
+    },
+    'service_type' : {
+      name: 'xxx'
+    },
+    'channel_type' : {
+      name: 'xxx'
+    },
+    'event_type' : {
+      name: 'xxx'
+    },
+    'jurisdiction1' : {
+      name: 'xxx'
+    },
+    'jurisdiction2' : {
+      name: 'xxx'
+    },
     'fee_versions': [{
       'version': 1,
       'status': 'approved'
     }]
   }
+}
+
+export function resolveDeleteFee () {
+  mock(`${serviceBaseURL}/fees-register`)
+    .delete(new RegExp(`/fees/.*`))
+    .reply(HttpStatus.OK)
 }
 
 export function resolveGetCategories () {
@@ -60,6 +84,12 @@ export function resolveGetCategories () {
         ]
       }
     ])
+}
+
+export function resolveGetReferenceData () {
+  mock(`${serviceBaseURL}/fees-register`)
+    .get(new RegExp(`/referenceData`))
+    .reply(HttpStatus.OK, {})
 }
 
 export function resolveGetCategory () {
@@ -142,6 +172,18 @@ export function resolvePutRangeGroup () {
     })
 }
 
+export function resolveCreateFixedFee () {
+  mock(`${serviceBaseURL}/fees-register`)
+    .post(new RegExp(`/fixed-fees`))
+    .reply(HttpStatus.OK)
+}
+
+export function resolveCreateRangedFee () {
+  mock(`${serviceBaseURL}/fees-register`)
+    .post(new RegExp(`/ranged-fees`))
+    .reply(HttpStatus.OK)
+}
+
 export function resolveGetFee () {
   mock(`${serviceBaseURL}/fees-register`)
     .get(new RegExp(`/fees/X0001`))
@@ -150,6 +192,7 @@ export function resolveGetFee () {
 
 export function resolveGetFees () {
   mock(`${serviceBaseURL}/fees-register`)
+    .persist()
     .get(new RegExp(`/fees.*`))
     .reply(HttpStatus.OK, [
       validFeeWithCode('X0001', 'Civil Court fees - Hearing fees - Claim Amount - 0.01 upto 300 GBP'),
