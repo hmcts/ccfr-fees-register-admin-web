@@ -157,6 +157,29 @@ export function resolveGetFees () {
     ])
 }
 
+export function resolveGetPendingFees () {
+  mock(`${serviceBaseURL}/fees-register`)
+    .get(new RegExp(`/fees?&feeVersionStatus=draft`))
+    .reply(HttpStatus.OK, [
+      validFeeWithCode('X0021', 'Pending Civil Court fees - Hearing fees - Claim Amount - 0.01 upto 300 GBP'),
+      validFeeWithCode('X0022', 'Pending Civil Court fees - Hearing fees - Claim Amount - 0.01 upto 300 GBP')
+    ])
+    .get(new RegExp(`/fees?&feeVersionStatus=pending_approval`))
+    .reply(HttpStatus.OK, [
+      validFeeWithCode('X0021', 'Pending Civil Court fees - Hearing fees - Claim Amount - 0.01 upto 300 GBP'),
+      validFeeWithCode('X0022', 'Pending Civil Court fees - Hearing fees - Claim Amount - 0.01 upto 300 GBP')
+    ])
+}
+
+export function resolveGetDraftFees () {
+  mock(`${serviceBaseURL}/fees-register`)
+    .get(new RegExp(`/fees?&feeVersionStatus=draft`))
+    .reply(HttpStatus.OK, [
+      validFeeWithCode('X0021', 'Pending Civil Court fees - Hearing fees - Claim Amount - 0.01 upto 300 GBP'),
+      validFeeWithCode('X0022', 'Pending Civil Court fees - Hearing fees - Claim Amount - 0.01 upto 300 GBP')
+    ])
+}
+
 export function resolvePutFee () {
   mock(`${serviceBaseURL}/fees-register/`)
     .put(new RegExp(`/fees/X0001`))
