@@ -17,6 +17,12 @@ function validFeeWithCode (code: string, description?: string) {
   }
 }
 
+export function resolveDeleteFee () {
+  mock(`${serviceBaseURL}/fees-register`)
+    .delete(new RegExp(`/fees/.*`))
+    .reply(HttpStatus.OK)
+}
+
 export function resolveGetCategories () {
   mock(`${serviceBaseURL}/fees-register`)
     .get(new RegExp(`/categories`))
