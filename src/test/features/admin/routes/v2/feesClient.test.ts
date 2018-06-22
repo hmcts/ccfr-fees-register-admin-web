@@ -10,8 +10,7 @@ describe('Fees client', () => {
   describe('on GET draft fees', () => {
     it('should return the data when the server replies', async () => {
       feesServiceMock.resolveGetFees()
-
-      expect(FeesClient.searchFees('draft', null, null, null, null)).to.not.equal(null)
+      expect(FeesClient.searchFees('draft', 'author', 'approver', null, null)).to.not.equal(null)
 
     })
   })
@@ -19,10 +18,16 @@ describe('Fees client', () => {
   describe('on GET pending fees', () => {
     it('should return the data when the server replies', async () => {
       feesServiceMock.resolveGetFees()
+      expect(FeesClient.searchFees('pending_approval', 'author', 'approver')).to.not.equal(null)
 
-      console.log(FeesClient.searchFees('pending_approval', null, null))
+    })
+  })
 
-      expect(FeesClient.searchFees('pending_approval', null, null)).to.not.equal(null)
+  describe('on GET fee', () => {
+    it('should return the data of the fee', async () => {
+      feesServiceMock.resolveGetFee()
+
+      expect(FeesClient.getFee('X0001')).to.not.equal(null)
 
     })
   })
