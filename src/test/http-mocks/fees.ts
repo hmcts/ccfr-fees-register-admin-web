@@ -10,6 +10,24 @@ function validFeeWithCode (code: string, description?: string) {
     'type': 'fixed',
     'description': description || `Description for ${code}`,
     'amount': 109000,
+    'applicant_type' : {
+      name: 'xxx'
+    },
+    'service_type' : {
+      name: 'xxx'
+    },
+    'channel_type' : {
+      name: 'xxx'
+    },
+    'event_type' : {
+      name: 'xxx'
+    },
+    'jurisdiction1' : {
+      name: 'xxx'
+    },
+    'jurisdiction2' : {
+      name: 'xxx'
+    },
     'fee_versions': [{
       'version': 1,
       'status': 'approved'
@@ -66,6 +84,12 @@ export function resolveGetCategories () {
         ]
       }
     ])
+}
+
+export function resolveGetReferenceData () {
+  mock(`${serviceBaseURL}/fees-register`)
+    .get(new RegExp(`/referenceData`))
+    .reply(HttpStatus.OK, {})
 }
 
 export function resolveGetCategory () {
@@ -146,6 +170,18 @@ export function resolvePutRangeGroup () {
       'description': 'Range Group Put Description',
       'ranges': []
     })
+}
+
+export function resolveCreateFixedFee () {
+  mock(`${serviceBaseURL}/fees-register`)
+    .post(new RegExp(`/fixed-fees`))
+    .reply(HttpStatus.OK)
+}
+
+export function resolveCreateRangedFee () {
+  mock(`${serviceBaseURL}/fees-register`)
+    .post(new RegExp(`/ranged-fees`))
+    .reply(HttpStatus.OK)
 }
 
 export function resolveGetFee () {
