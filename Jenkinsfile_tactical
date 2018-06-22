@@ -66,15 +66,14 @@ timestamps {
           }
         }
 
-        def feesAdminWebDockerVersion
-
-        stage('Build Docker') {
-          feesAdminWebDockerVersion = dockerImage imageName: 'fees-register/fees-admin-web'
-        }
-
-
-
         onMaster {
+
+          def feesAdminWebDockerVersion
+
+          stage('Build Docker') {
+            feesAdminWebDockerVersion = dockerImage imageName: 'fees-register/fees-admin-web'
+          }
+
           def rpmVersion
 
           stage('Publish RPM') {
