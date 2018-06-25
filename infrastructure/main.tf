@@ -35,8 +35,6 @@ module "fees-register-frontend" {
     
     // Application vars
     FEES_CLIENT_ID = "fees_admin_frontend"
-    FEES_CLIENT_SECRET = "${data.vault_generic_secret.client_secret.data["value"]}"
-    
-    FAKE_ENTRY = "No Value"
+    FEES_CLIENT_SECRET = "${data.vault_generic_secret.client_secret.data["value"]}"    
   }
 }
