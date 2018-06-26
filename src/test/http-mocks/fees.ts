@@ -205,3 +205,9 @@ export function resolvePutFee () {
     .put(new RegExp(`/fees/X0001`))
     .reply(HttpStatus.OK, validFeeWithCode('X0001', 'Updated Description'))
 }
+
+export function resolveApprove (code: string, version: number, action: string) {
+  mock(`${serviceBaseURL}`)
+    .patch(new RegExp(`/fees/${code}/versions/${version}/${action}`))
+    .reply(HttpStatus.OK)
+}
