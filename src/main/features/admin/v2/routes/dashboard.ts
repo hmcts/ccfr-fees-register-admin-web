@@ -57,12 +57,10 @@ class Renderer {
 
 export default express.Router()
   .get(Paths.dashboard.uri, (req: express.Request, res: express.Response) => {
-
-    if (req.query.action) {
-      Renderer.executeAction(res.locals.user, req.query.action, req.query.feeCode, req.query.version)
-        .then(() => Renderer.render(res))
-        .catch(() => Renderer.render(res))
-    } else {
-      Renderer.render(res)
-    }
+    Renderer.render(res)
+  })
+  .post(Paths.dashboard.uri, (req: express.Request, res: express.Response) => {
+    Renderer.executeAction(res.locals.user, req.body.action, req.body.feeCode, req.body.version)
+      .then(() => Renderer.render(res))
+      .catch(() => Renderer.render(res))
   })
