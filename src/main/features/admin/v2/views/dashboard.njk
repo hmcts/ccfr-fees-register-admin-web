@@ -1,4 +1,5 @@
-{% extends "layout.njk" %}
+{% from "includes/macros/form.njk" import csrfProtection, submitButton %}
+  {% extends "layout.njk" %}
 
   {% set title = t('Dashboard | ' + serviceName) %}
   {% set heading = 'Dashboard' %}
@@ -50,15 +51,25 @@
         {% endif %}
         <td>
           {% if isDraftFeeSubmittable(fee) %}
-            <a href="/admin/v2/dashboard?action=submit&feeCode={{ fee.code }}&version={{ displayedFeeVersion.version }}"
-               class="button">
-              Submit
-            </a>
+            <form method="post" action="">
+              {{ csrfProtection(csrfToken) }}
+              <input type="hidden" name="feeCode" value="{{ fee.code }}"/>
+              <input type="hidden" name="version" value="{{ displayedFeeVersion.version }}"/>
+              <input type="hidden" name="action" value="submit"/>
+              <input type="submit" class="button" value="Submit">
+            </form>
           {% endif %}
         </td>
 
-        <td><a href="/admin/v2/dashboard?action=delete&feeCode={{ fee.code }}&version={{ displayedFeeVersion.version }}"
-               class="button delete-button">Delete</a></td>
+        <td>
+          <form method="post" action="fees/delete">
+            {{ csrfProtection(csrfToken) }}
+            <input type="hidden" name="feeCode" value="{{ fee.code }}"/>
+            <input type="hidden" name="version" value="{{ displayedFeeVersion.version }}"/>
+            <input type="hidden" name="action" value="delete"/>
+            <input type="submit" class="button delete-button" value="Delete">
+           </form>
+        </td>
         <td class="font-xxsmall center-text">
           {% if hasApprovedVersion(fee.fee_versions) %}
             {{ fee.code }}
@@ -163,10 +174,24 @@
       {% endif %}
     <tr>
       {% if isApprover(user.allInfo.roles) or isAdmin(user.allInfo.roles) %}
-      <td><a href="/admin/v2/dashboard?action=approve&feeCode={{ fee.code }}&version={{ displayedFeeVersion.version }}"
-             class="button">Approve</a></td>
-      <td><a href="/admin/v2/dashboard?action=reject&feeCode={{ fee.code }}&version={{ displayedFeeVersion.version }}"
-             class="button delete-button">Reject</a></td>
+      <td>
+        <form method="post" action="fees/approve">
+          {{ csrfProtection(csrfToken) }}
+          <input type="hidden" name="feeCode" value="{{ fee.code }}"/>
+          <input type="hidden" name="version" value="{{ displayedFeeVersion.version }}"/>
+           <input type="hidden" name="action" value="approve"/>
+          <input type="submit" class="button" value="Approve">
+        </form>
+      </td>
+      <td>
+        <form method="post" action="fees/reject">
+          {{ csrfProtection(csrfToken) }}
+          <input type="hidden" name="feeCode" value="{{ fee.code }}"/>
+          <input type="hidden" name="version" value="{{ displayedFeeVersion.version }}"/>
+           <input type="hidden" name="action" value="reject"/>
+          <input type="submit" class="button delete-button" value="Reject">
+        </form>
+      </td>
       {% endif %}
       <td class="font-xxsmall center-text">{{ fee.code }}</td>
       <td class="font-xxsmall center-text">{{ displayedFeeVersion.description }}</td>
