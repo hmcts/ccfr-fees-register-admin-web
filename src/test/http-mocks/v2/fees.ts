@@ -21,6 +21,33 @@ export function createFixedFee () {
     }])
 }
 
+export function createBandedFee () {
+  mock(`${serviceBaseURL}`)
+    .post(new RegExp(`/banded-fees`))
+    .reply(HttpStatus.CREATED, [{
+      msg: 'Successfully saved the csv fixed fees.',
+      success: true
+    }])
+}
+
+export function createRateableFee () {
+  mock(`${serviceBaseURL}`)
+    .post(new RegExp(`/rateable-fees`))
+    .reply(HttpStatus.CREATED, [{
+      msg: 'Successfully saved the csv fixed fees.',
+      success: true
+    }])
+}
+
+export function createRelationalFee () {
+  mock(`${serviceBaseURL}`)
+    .post(new RegExp(`/relational-fees`))
+    .reply(HttpStatus.CREATED, [{
+      msg: 'Successfully saved the csv fixed fees.',
+      success: true
+    }])
+}
+
 export function createRangedFee () {
   mock(`${serviceBaseURL}`)
     .post(new RegExp(`/ranged-fees`))
