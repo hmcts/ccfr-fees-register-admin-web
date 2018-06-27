@@ -4,7 +4,7 @@ import request from 'client/request'
 import * as model from 'app/fees/v2/model/fees-register-api-contract'
 import { StatusCodeError } from 'request-promise-native/errors'
 import {
-  AllReferenceDataDto, FixedFeeDto, Fee2Dto, FeeVersionDto, RangedFeeDto
+  AllReferenceDataDto, FixedFeeDto, Fee2Dto, FeeVersionDto, RangedFeeDto, RateableFeeDto, RelationalFeeDto, BandedFeeDto
 } from 'fees/v2/model/fees-register-api-contract'
 
 const feesUrl = config.get('fees.url')
@@ -133,6 +133,54 @@ export class FeesClient {
       })
       .then(() => true)
       .catch(FeesClientErrorMapper)
+  }
+
+  static createBandedFee (user, dto: BandedFeeDto): Promise<boolean> {
+
+    return request
+      .post({
+        uri: `${feesUrl}/fees-register/banded-fees/`,
+        json: true,
+        headers: {
+          Authorization: `Bearer ${user.bearerToken}`
+        },
+        body: dto
+      })
+      .then(() => true)
+      .catch(FeesClientErrorMapper)
+
+  }
+
+  static createRateableFee (user, dto: RateableFeeDto): Promise<boolean> {
+
+    return request
+      .post({
+        uri: `${feesUrl}/fees-register/rateable-fees/`,
+        json: true,
+        headers: {
+          Authorization: `Bearer ${user.bearerToken}`
+        },
+        body: dto
+      })
+      .then(() => true)
+      .catch(FeesClientErrorMapper)
+
+  }
+
+  static createRelationalFee (user, dto: RelationalFeeDto): Promise<boolean> {
+
+    return request
+      .post({
+        uri: `${feesUrl}/fees-register/relational-fees/`,
+        json: true,
+        headers: {
+          Authorization: `Bearer ${user.bearerToken}`
+        },
+        body: dto
+      })
+      .then(() => true)
+      .catch(FeesClientErrorMapper)
+
   }
 
   static checkFeeExists (code: string): Promise<boolean> {

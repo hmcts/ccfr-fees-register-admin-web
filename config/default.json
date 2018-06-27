@@ -18,5 +18,9 @@
   },
   "appInsights": {
     "instrumentationKey": "some-key"
+  },
+  "security": {
+    "clientId": "fees_admin_frontend",
+    "clientSecret": "SOLQXLCNYAMF37LZ"
   }
 }

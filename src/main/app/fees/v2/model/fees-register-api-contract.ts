@@ -125,6 +125,19 @@ export class FeeDto {
 export class FixedFeeDto extends FeeDto {
 }
 
+export class BandedFeeDto extends FixedFeeDto {
+
+}
+
+export class RelationalFeeDto extends FixedFeeDto {
+
+}
+
+export class RateableFeeDto extends FixedFeeDto {
+
+}
+
+
 export class RangedFeeDto extends FeeDto {
   min_range: number
   max_range: number
