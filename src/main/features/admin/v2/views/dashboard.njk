@@ -62,7 +62,7 @@
         </td>
 
         <td>
-          <form method="post" action="fees/delete">
+          <form method="post" action="">
             {{ csrfProtection(csrfToken) }}
             <input type="hidden" name="feeCode" value="{{ fee.code }}"/>
             <input type="hidden" name="version" value="{{ displayedFeeVersion.version }}"/>
@@ -175,20 +175,20 @@
     <tr>
       {% if isApprover(user.allInfo.roles) or isAdmin(user.allInfo.roles) %}
       <td>
-        <form method="post" action="fees/approve">
+        <form method="post" action="">
           {{ csrfProtection(csrfToken) }}
           <input type="hidden" name="feeCode" value="{{ fee.code }}"/>
           <input type="hidden" name="version" value="{{ displayedFeeVersion.version }}"/>
-           <input type="hidden" name="action" value="approve"/>
+          <input type="hidden" name="action" value="approve"/>
           <input type="submit" class="button" value="Approve">
         </form>
       </td>
       <td>
-        <form method="post" action="fees/reject">
+        <form method="post" action="">
           {{ csrfProtection(csrfToken) }}
           <input type="hidden" name="feeCode" value="{{ fee.code }}"/>
           <input type="hidden" name="version" value="{{ displayedFeeVersion.version }}"/>
-           <input type="hidden" name="action" value="reject"/>
+          <input type="hidden" name="action" value="reject"/>
           <input type="submit" class="button delete-button" value="Reject">
         </form>
       </td>
