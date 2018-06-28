@@ -25,6 +25,12 @@ export class CsvUploadService {
             await FeesClient.createFixedFee(res.locals.user, feeMapper.toFixedFeeDto(csvFee))
           } else if (csvFee.feeType === 'ranged') {
             await FeesClient.createRangedFee(res.locals.user, feeMapper.toRangedFeeDto(csvFee))
+          } else if (csvFee.feeType === 'banded') {
+            await FeesClient.createBandedFee(res.locals.user, feeMapper.toFixedFeeDto(csvFee))
+          } else if (csvFee.feeType === 'rateable') {
+            await FeesClient.createRateableFee(res.locals.user, feeMapper.toFixedFeeDto(csvFee))
+          } else if (csvFee.feeType === 'relational') {
+            await FeesClient.createRelationalFee(res.locals.user, feeMapper.toFixedFeeDto(csvFee))
           }
         } catch (err) {
           reject({ success: false, message: err.message })
