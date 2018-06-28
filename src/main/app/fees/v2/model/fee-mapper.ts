@@ -1,5 +1,6 @@
-import { FixedFeeDto, FeeVersionDto,
-  FeeVersionStatus, FlatAmountDto, RangedFeeDto, PercentageAmountDto
+import {
+  FixedFeeDto, FeeVersionDto,
+  FeeVersionStatus, FlatAmountDto, RangedFeeDto, PercentageAmountDto, VolumeAmountDto
 } from 'fees/v2/model/fees-register-api-contract'
 import { CsvFeeDto } from 'fees/v2/model/csv-contract'
 
@@ -8,12 +9,19 @@ export class FeeMapper {
   toFeeVersionDto (dto: CsvFeeDto): FeeVersionDto {
     let flatAmount = new FlatAmountDto()
     let percentageAmount = new PercentageAmountDto()
+    let volumeAmount = new VolumeAmountDto()
     if (dto.amountType === 'flat') {
       flatAmount.amount = Number(dto.feeAmount)
       percentageAmount = null
+      volumeAmount = null
     } else if (dto.amountType === '%' || dto.amountType === 'percentage') {
       percentageAmount.percentage = Number(dto.feeAmount)
       flatAmount = null
+      volumeAmount = null
+    } else if (dto.amountType === 'volume') {
+      volumeAmount.amount = Number(dto.feeAmount)
+      flatAmount = null
+      percentageAmount = null
     }
 
     const feeVersionDto = new FeeVersionDto()
@@ -24,6 +32,7 @@ export class FeeMapper {
     feeVersionDto.status = dto.feeStatus as FeeVersionStatus
     feeVersionDto.flat_amount = flatAmount
     feeVersionDto.percentage_amount = percentageAmount
+    feeVersionDto.volume_amount = volumeAmount
     feeVersionDto.amount_type = dto.amountType
     feeVersionDto.direction = dto.direction
     feeVersionDto.memo_line = dto.memoLine

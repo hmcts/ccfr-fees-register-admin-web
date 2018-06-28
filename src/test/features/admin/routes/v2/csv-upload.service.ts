@@ -9,6 +9,9 @@ let mockedCsvUploadService
 let mockedCsvFee: CsvFeeDto
 let csvFeeFixed: CsvFeeDto
 let csvFeeRanged: CsvFeeDto
+let csvFeeBanded: CsvFeeDto
+let csvFeeRateable: CsvFeeDto
+let csvFeeRelational: CsvFeeDto
 
 describe('CSV Upload Class Test', () => {
 // Getting instance from mock
@@ -19,6 +22,12 @@ describe('CSV Upload Class Test', () => {
 
     csvFeeFixed = instance(mockedCsvFee)
     csvFeeFixed.feeType = 'fixed'
+    csvFeeBanded = instance(mockedCsvFee)
+    csvFeeBanded.feeType = 'banded'
+    csvFeeRelational = instance(mockedCsvFee)
+    csvFeeRelational.feeType = 'relational'
+    csvFeeRateable = instance(mockedCsvFee)
+    csvFeeRateable.feeType = 'rateable'
     csvFeeRanged = instance(mockedCsvFee)
     csvFeeRanged.feeType = 'ranged'
     csvUploadService = instance(mockedCsvUploadService)
@@ -35,7 +44,35 @@ describe('CSV Upload Class Test', () => {
   })
 
   it('should return true', async () => {
-    const fees: CsvFeeDto[] = [csvFeeFixed, csvFeeRanged]
+    const fees: CsvFeeDto[] = [csvFeeFixed]
+    const mockExpressResponse = require('node-mocks-http/lib/express/mock-express').response
+    mockExpressResponse.locals = { user: idamUser }
+    csvUploadService.importFees(fees, mockExpressResponse)
+    verify(mockedCsvUploadService.importFees(fees,mockExpressResponse)).called()
+  })
+  it('should return true', async () => {
+    const fees: CsvFeeDto[] = [csvFeeRanged]
+    const mockExpressResponse = require('node-mocks-http/lib/express/mock-express').response
+    mockExpressResponse.locals = { user: idamUser }
+    csvUploadService.importFees(fees, mockExpressResponse)
+    verify(mockedCsvUploadService.importFees(fees,mockExpressResponse)).called()
+  })
+  it('should return true', async () => {
+    const fees: CsvFeeDto[] = [csvFeeBanded]
+    const mockExpressResponse = require('node-mocks-http/lib/express/mock-express').response
+    mockExpressResponse.locals = { user: idamUser }
+    csvUploadService.importFees(fees, mockExpressResponse)
+    verify(mockedCsvUploadService.importFees(fees,mockExpressResponse)).called()
+  })
+  it('should return true', async () => {
+    const fees: CsvFeeDto[] = [csvFeeRateable]
+    const mockExpressResponse = require('node-mocks-http/lib/express/mock-express').response
+    mockExpressResponse.locals = { user: idamUser }
+    csvUploadService.importFees(fees, mockExpressResponse)
+    verify(mockedCsvUploadService.importFees(fees,mockExpressResponse)).called()
+  })
+  it('should return true', async () => {
+    const fees: CsvFeeDto[] = [csvFeeRelational]
     const mockExpressResponse = require('node-mocks-http/lib/express/mock-express').response
     mockExpressResponse.locals = { user: idamUser }
     csvUploadService.importFees(fees, mockExpressResponse)
