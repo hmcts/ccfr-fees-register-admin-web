@@ -10,7 +10,7 @@
 
       <div class="column-full">
         <div id="upload-form" class="form-group">
-        <form method="post" action="upload?_csrf={{_csrfToken}}" enctype="multipart/form-data">
+        <form method="post" action="upload?_csrf={{csrfToken}}" enctype="multipart/form-data">
            {% if UPLOAD_ERR %}
            <div class="error-summary" role="group" aria-labelledby="failure-error-summary-heading" tabindex="-1">
             <h2 class="heading-medium error-summary-heading" id="failure-error-summary-heading">
