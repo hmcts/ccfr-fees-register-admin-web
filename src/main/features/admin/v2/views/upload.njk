@@ -1,4 +1,4 @@
-{% from "includes/macros/form.njk" import csrfProtection, submitButton %}
+{% from "includes/macros/form.njk" import submitButton %}
 {% extends "layout.njk" %}
 
 {% set title = t('CSV upload | ' + serviceName + ' V2') %}
@@ -10,9 +10,7 @@
 
       <div class="column-full">
         <div id="upload-form" class="form-group">
-        <form method="post" action="upload" enctype="multipart/form-data">
-          {{ csrfProtection(csrfToken) }}
-
+        <form method="post" action="upload?_csrf={{csrfToken}}" enctype="multipart/form-data">
            {% if UPLOAD_ERR %}
            <div class="error-summary" role="group" aria-labelledby="failure-error-summary-heading" tabindex="-1">
             <h2 class="heading-medium error-summary-heading" id="failure-error-summary-heading">
