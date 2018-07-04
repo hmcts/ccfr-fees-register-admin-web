@@ -46,6 +46,11 @@ variable "external_host_name" {
   default = "fees-register-saat.platform.hmcts.net"
 }
 
+variable "appinsights_instrumentation_key" {
+  description = "Instrumentation key of the App Insights instance this webapp should use. Module will create own App Insights resource if this is not provided"
+  default = ""
+}
+
 variable "capacity" {
   default = "1"
 }

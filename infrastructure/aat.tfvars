@@ -1,4 +1,5 @@
 capacity = "2"
+vault_section = "dev"
 idam_api_url = "http://betaDevAccidamAppLB.reform.hmcts.net"
 authentication_web_url = "https://idam.dev.ccidam.reform.hmcts.net"
 external_host_name ="fees-register.aat.platform.hmcts.net"
