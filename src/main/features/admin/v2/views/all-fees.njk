@@ -30,7 +30,7 @@
               <th class="bold-xxsmall">Version</th>
               <th class="bold-xxsmall">Valid From</th>
               <th class="bold-xxsmall">Valid To</th>
-
+              <th class="bold-xxsmall">Status</th>
               <th class="bold-xxsmall">Statutory Instrument</th>
               <th class="bold-xxsmall">SI Ref ID</th>
               <th class="bold-xxsmall">Fee Order Name</th>
@@ -82,6 +82,7 @@
                   {% else %}
                     <td/>
                   {% endif %}
+                  <td class="font-xxsmall">{{ version.status }}</td>
                   <td class="font-xxsmall">{{ version.statutory_instrument }}</td>
                   <td class="font-xxsmall">{{ version.si_ref_id }}</td>
                   <td class="font-xxsmall">{{ version.fee_order_name }}</td>
