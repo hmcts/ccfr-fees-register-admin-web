@@ -1,4 +1,7 @@
 language: node_js
+addons:
+  apt:
+    update: true
 cache: yarn
 script:
   - yarn --version
