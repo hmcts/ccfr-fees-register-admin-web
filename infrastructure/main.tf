@@ -3,6 +3,13 @@ provider "vault" {
   address = "https://vault.reform.hmcts.net:6200"
 }
 
+locals {
+  aseName = "${data.terraform_remote_state.core_apps_compute.ase_name[0]}"
+
+  local_env = "${(var.env == "preview" || var.env == "spreview") ? (var.env == "preview" ) ? "aat" : "saat" : var.env}"
+  local_ase = "${(var.env == "preview" || var.env == "spreview") ? (var.env == "preview" ) ? "core-compute-aat" : "core-compute-saat" : local.aseName}"
+}
+
 data "vault_generic_secret" "client_secret" {
   path = "secret/${var.vault_section}/ccidam/service-auth-provider/api/microservice-keys/freg"
 }
@@ -32,7 +39,7 @@ module "fees-register-frontend" {
     IDAM_LOGIN_WEB_URL = "${var.authentication_web_url}/login"
 
     // Fees API
-    FEES_URL = "http://fees-register-api-${var.env}.service.${data.terraform_remote_state.core_apps_compute.ase_name[0]}.internal"
+    FEES_URL = "http://fees-register-api-${local.local_env}.service.${local.local_ase}.internal"
 
     // Application vars
     FEES_CLIENT_ID = "fees_admin_frontend"
