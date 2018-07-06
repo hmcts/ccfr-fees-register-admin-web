@@ -26,6 +26,7 @@ module "fees-register-frontend" {
   additional_host_name = "${var.env != "preview" ? var.external_host_name : "null"}"
   https_only = "true"
   capacity = "${var.capacity}"
+  common_tags     = "${var.common_tags}"
 
   app_settings = {
     // Logging vars
