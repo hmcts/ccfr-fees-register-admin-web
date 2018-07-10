@@ -37,19 +37,6 @@ timestamps {
           sh "yarn run lint"
         }
 
-        stage('Node security check') {
-          try {
-            sh "yarn test:nsp 2> nsp-report.txt"
-          } catch (ignore) {
-            sh "cat nsp-report.txt"
-            archiveArtifacts 'nsp-report.txt'
-            error "Node security check failed see the report for the errors"
-          }
-          sh "rm nsp-report.txt"
-        }
-
-
-
         stage('Test routes') {
           try {
             sh "yarn test:routes"
