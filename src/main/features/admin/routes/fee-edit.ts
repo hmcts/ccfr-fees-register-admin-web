@@ -18,7 +18,7 @@ export default express.Router()
   .get(Paths.feeCreatePage.uri, (req: express.Request, res: express.Response) => {
 
     if (featureToggles.isFeatureEnabled('edit')) {
-      res.render(Paths.feeCreatePage.associatedView, {form: new Form(new CreateFeeForm())})
+      res.render(Paths.feeCreatePage.associatedView, { form: new Form(new CreateFeeForm()) })
     } else {
       res.render(Paths.notFoundPage.associatedView)
     }
@@ -29,10 +29,10 @@ export default express.Router()
       const form: Form<CreateFeeForm> = req.body
 
       if (form.hasErrors()) {
-        res.render(Paths.feeCreatePage.associatedView, {form: form})
+        res.render(Paths.feeCreatePage.associatedView, { form: form })
       } else {
         let editFeeForm = new EditFeeForm(form.model.code, form.model.type)
-        res.render(Paths.feeEditPage.associatedView, {form: new Form(editFeeForm), returnUri: Paths.feeListPage.uri})
+        res.render(Paths.feeEditPage.associatedView, { form: new Form(editFeeForm), returnUri: Paths.feeListPage.uri })
       }
     } else {
       res.render(Paths.notFoundPage.associatedView)
@@ -59,7 +59,7 @@ export default express.Router()
       const returnUri = ensureSafeReturnUri(req.query.returnUri)
 
       if (form.hasErrors()) {
-        res.render(Paths.feeEditPage.associatedView, {form: form, returnUri: returnUri})
+        res.render(Paths.feeEditPage.associatedView, { form: form, returnUri: returnUri })
       } else {
         FeesClient
           .updateFee(res.locals.user, form.model.toFee())

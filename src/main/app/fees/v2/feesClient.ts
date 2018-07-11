@@ -50,19 +50,19 @@ export class FeesClient {
       .catch(FeesClientErrorMapper)
   }
 
-  static createFeeVersion ( user, feeCode: string, dto: FeeVersionDto): Promise<boolean> {
+  static createFeeVersion (user, feeCode: string, dto: FeeVersionDto): Promise<boolean> {
     return request
-        .post({
-          uri: `${feesUrl}/fees/${feeCode}/versions`,
-          headers: {
-            Authorization: `Bearer ${user.bearerToken}`
-          },
-          body: dto
-        }).then( () => true )
-        .catch( FeesClientErrorMapper )
+      .post({
+        uri: `${feesUrl}/fees/${feeCode}/versions`,
+        headers: {
+          Authorization: `Bearer ${user.bearerToken}`
+        },
+        body: dto
+      }).then(() => true)
+      .catch(FeesClientErrorMapper)
   }
 
-  static deleteFeeVersion ( user, feeCode: string, version: number ): Promise<boolean> {
+  static deleteFeeVersion (user, feeCode: string, version: number): Promise<boolean> {
 
     return request
       .delete({
@@ -201,12 +201,12 @@ export class FeesClient {
       .catch(FeesClientErrorMapper)
   }
 
-  static checkFeeVersionExists ( code: string, version: number): Promise<boolean> {
-    return request.head( `${feesUrl}/fees/${code}/versions/${version}` )
-      .then( () => false ).catch( () => true )
+  static checkFeeVersionExists (code: string, version: number): Promise<boolean> {
+    return request.head(`${feesUrl}/fees/${code}/versions/${version}`)
+      .then(() => false).catch(() => true)
   }
 
-  static searchFees ( versionStatus: string, author?: string, approvedBy?: string, isActive?: boolean, isExpired?: boolean, isDraft?: boolean): Promise<Array<model.Fee2Dto>> {
+  static searchFees (versionStatus: string, author?: string, approvedBy?: string, isActive?: boolean, isExpired?: boolean, isDraft?: boolean): Promise<Array<model.Fee2Dto>> {
 
     let uri: string = `${feesUrl}/fees-register/fees?`
 

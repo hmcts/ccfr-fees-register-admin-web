@@ -1,34 +1,34 @@
 {% from "includes/macros/form.njk" import submitButton %}
-{% extends "layout.njk" %}
+  {% extends "layout.njk" %}
 
-{% set title = t('CSV upload | ' + serviceName + ' V2') %}
-{% set heading = t('CSV upload') %}
+  {% set title = t('CSV upload | ' + serviceName + ' V2') %}
+  {% set heading = t('CSV upload') %}
 
-{% block content %}
+  {% block content %}
 
-    <div class="grid-row">
+<div class="grid-row">
 
-      <div class="column-full">
-        <div id="upload-form" class="form-group">
-        <form method="post" action="upload?_csrf={{csrfToken}}" enctype="multipart/form-data">
-           {% if UPLOAD_ERR %}
-           <div class="error-summary" role="group" aria-labelledby="failure-error-summary-heading" tabindex="-1">
-            <h2 class="heading-medium error-summary-heading" id="failure-error-summary-heading">
-              {{ UPLOAD_ERR_MSG }}
-            </h2>
-           </div>
-           {% endif %}
-
-           <label for="csvdata">
-            <input type="file" name="csvdata" accept="text/csv"/>
-           </label>
-            <p>
-              {{ submitButton(t('Next')) }}
-            </p>
-        </form>
+  <div class="column-full">
+    <div id="upload-form" class="form-group">
+      <form method="post" action="upload?_csrf={{csrfToken}}" enctype="multipart/form-data">
+        {% if UPLOAD_ERR %}
+        <div class="error-summary" role="group" aria-labelledby="failure-error-summary-heading" tabindex="-1">
+          <h2 class="heading-medium error-summary-heading" id="failure-error-summary-heading">
+            {{ UPLOAD_ERR_MSG }}
+          </h2>
         </div>
-        <a href="/admin/welcome" class="link-back">{{ t('Cancel') }}</a>
-      </div>
-    </div>
+        {% endif %}
 
-{% endblock %}
+        <label for="csvdata">
+          <input type="file" name="csvdata" accept="text/csv"/>
+        </label>
+        <p>
+          {{ submitButton(t('Next')) }}
+        </p>
+      </form>
+    </div>
+    <a href="/admin/welcome" class="link-back">{{ t('Cancel') }}</a>
+  </div>
+</div>
+
+  {% endblock %}

@@ -12,7 +12,7 @@ export class CsvUploadService {
    * @returns {Promise<any>}
    */
   importFees (fees: CsvFeeDto[], res: express.Response) {
-    return new Promise( async (resolve, reject) => {
+    return new Promise(async (resolve, reject) => {
 
       // loop through all fees
       for (let i = 0; i < fees.length; i++) {

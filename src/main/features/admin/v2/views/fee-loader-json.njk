@@ -1,22 +1,22 @@
 {% from "includes/macros/form.njk" import submitButton %}
-{% extends "layout.njk" %}
+  {% extends "layout.njk" %}
 
-{% set title = t('Fee loader json | ' + serviceName + ' V2') %}
-{% set heading = t('Fee loader json') %}
+  {% set title = t('Fee loader json | ' + serviceName + ' V2') %}
+  {% set heading = t('Fee loader json') %}
 
-{% block content %}
+  {% block content %}
 
-    <div class="grid-row">
-      <div class="column-full">
+<div class="grid-row">
+  <div class="column-full">
 
-        <div id="upload-form" class="font-xxsmall">
-          {{ jsonData }}
-        </div>
-
-        <p>
-          <a href="/admin/welcome" class="link-back">{{ t('Cancel') }}</a>
-        </p>
-      </div>
+    <div id="upload-form" class="font-xxsmall">
+      {{ jsonData }}
     </div>
 
-{% endblock %}
+    <p>
+      <a href="/admin/welcome" class="link-back">{{ t('Cancel') }}</a>
+    </p>
+  </div>
+</div>
+
+  {% endblock %}

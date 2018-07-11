@@ -47,20 +47,20 @@ export class FeesClient {
 
   static updateCategory (user: User, category: Category): Promise<Category> {
     return request
-          .put({
-            uri: `${feesUrl}/categories/${category.code}`,
-            json: true,
-            headers: {
-              Authorization: `Bearer ${user.bearerToken}`
-            },
-            body: {
-              description: category.description,
-              rangeGroupCode: category.rangeGroup.code,
-              feeCodes: category.fees.map(fee => fee.code)
-            }
-          })
-          .then(FeesClient.toCategory)
-          .catch(FeesClientErrorMapper)
+      .put({
+        uri: `${feesUrl}/categories/${category.code}`,
+        json: true,
+        headers: {
+          Authorization: `Bearer ${user.bearerToken}`
+        },
+        body: {
+          description: category.description,
+          rangeGroupCode: category.rangeGroup.code,
+          feeCodes: category.fees.map(fee => fee.code)
+        }
+      })
+      .then(FeesClient.toCategory)
+      .catch(FeesClientErrorMapper)
   }
 
   static retrieveRangeGroups (): Promise<Array<RangeGroup>> {

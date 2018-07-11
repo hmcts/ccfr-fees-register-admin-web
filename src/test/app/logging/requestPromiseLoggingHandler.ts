@@ -13,19 +13,29 @@ describe('RequestLoggingHandler', () => {
 
   /* tslint:disable:no-empty allow empty for mocking */
   let requestPromise = {
-    get: (options) => { },
-    post: (options) => { },
-    put: (options) => { },
-    del: (options) => { },
-    delete: (options) => { },
-    patch: (options) => { },
-    head: (options) => { },
-    another: (options) => { }
+    get: (options) => {
+    },
+    post: (options) => {
+    },
+    put: (options) => {
+    },
+    del: (options) => {
+    },
+    delete: (options) => {
+    },
+    patch: (options) => {
+    },
+    head: (options) => {
+    },
+    another: (options) => {
+    }
   }
 
   let apiLogger = {
-    logRequest: (requestData) => { },
-    logResponse: (responseData) => { }
+    logRequest: (requestData) => {
+    },
+    logResponse: (responseData) => {
+    }
   }
   /* tslint:enable:no-empty */
 

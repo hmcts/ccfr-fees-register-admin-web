@@ -8,7 +8,7 @@ import { FormValidator } from 'app/forms/validation/formValidator'
 chai.use(spies)
 
 class Person {
-  @IsDefined({message: 'Name is required'})
+  @IsDefined({ message: 'Name is required' })
   name?: string
 
   constructor (name?: string) {
@@ -30,7 +30,7 @@ describe('FormValidator', () => {
   }
 
   it('should deserialize request body to class instance using default mapper', (done) => {
-    req.body = {name: 'John Smith'}
+    req.body = { name: 'John Smith' }
 
     FormValidator.requestHandler(Person)(req, res, next).then(() => {
       chai.expect(req.body.model).to.be.instanceof(Person)
@@ -40,7 +40,7 @@ describe('FormValidator', () => {
   })
 
   it('should deserialize request body to class instance using custom mapper', (done) => {
-    req.body = {name: 'John Smith'}
+    req.body = { name: 'John Smith' }
 
     FormValidator.requestHandler(Person, Person.fromObject)(req, res, next).then(() => {
       chai.expect(req.body.model).to.be.instanceof(Person)
@@ -61,7 +61,7 @@ describe('FormValidator', () => {
   })
 
   it('should not validate deserialized object when action is whitelisted', () => {
-    req.body = {action: {reload: 'Reload page'}}
+    req.body = { action: { reload: 'Reload page' } }
 
     FormValidator.requestHandler(Person, null, ['reload'])(req, res, next)
     chai.expect(req.body.validationErrors.length).to.be.equal(0)

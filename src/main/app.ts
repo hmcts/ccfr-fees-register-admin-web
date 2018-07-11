@@ -29,12 +29,13 @@ logger.info({
 })
 
 import * as dateFilter from 'nunjucks-date-filter'
+
 dateFilter.setDefaultFormat('DD-MM-YYYY')
 
 // Feature toggle to supress/disable edit features, defaultToggle for making the existing middleware test to pass
 let defaultToggle = isUndefined(process.env.NODE_ENV) ? true : false
 
-const toggles = {edit: process.env.FEATURE_TOGGLE || defaultToggle }
+const toggles = { edit: process.env.FEATURE_TOGGLE || defaultToggle }
 featureToggles.load(toggles)
 app.use(featureToggles.middleware)
 
@@ -52,8 +53,9 @@ new Helmet(config.get<HelmetConfig>('security'), developmentMode)
 
 app.enable('trust proxy')
 app.use(favicon(path.join(__dirname, '/public/img/favicon.ico')))
-app.use(bodyParser.json({limit: '20mb'}))
-app.use(bodyParser.urlencoded({ limit: '20mb',
+app.use(bodyParser.json({ limit: '20mb' }))
+app.use(bodyParser.urlencoded({
+  limit: '20mb',
   extended: true
 }))
 app.use(cookieParser())
@@ -72,8 +74,8 @@ if (!config.has('security.clientId') || !config.has('security.clientSecret')) {
 }
 
 const security = new IDAM({
-  clientId : config.get<String>('security.clientId'),
-  clientSecret : config.get<String>('security.clientSecret'),
+  clientId: config.get<String>('security.clientId'),
+  clientSecret: config.get<String>('security.clientSecret'),
   loginUrl: config.get<String>('idam.login.url'),
   apiUrl: config.get<String>('idam.api.url'),
   redirectUri: '/oauth2/callback'
