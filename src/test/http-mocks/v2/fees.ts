@@ -4,12 +4,33 @@ import * as HttpStatus from 'http-status-codes'
 
 const serviceBaseURL: string = config.get<string>('fees.url')
 
-const csvJSONStr = JSON.stringify([{'feeCode': 'X0033','feeDescription': 'xxxRecovery of Land - High Court','feeAmount': '480','feeVersion': '1','feeStatus': 'approved','validFrom': 'xxx','validTo': 'xxx','statutoryInstrument': '2014 No','jurisdiction1': 'civil','jurisdiction2': 'high court','service': 'civil money claims','event': 'issue','channel': 'default','direction': 'enhanced','feeType': 'fixed','amountType': 'flat','feeOrderName': 'XXX','naturalAccountCode': 'XXX','memoLine': 'XXX','siRefId': 'XXX'}])
+const csvJSONStr = JSON.stringify([{
+  'feeCode': 'X0033',
+  'feeDescription': 'xxxRecovery of Land - High Court',
+  'feeAmount': '480',
+  'feeVersion': '1',
+  'feeStatus': 'approved',
+  'validFrom': 'xxx',
+  'validTo': 'xxx',
+  'statutoryInstrument': '2014 No',
+  'jurisdiction1': 'civil',
+  'jurisdiction2': 'high court',
+  'service': 'civil money claims',
+  'event': 'issue',
+  'channel': 'default',
+  'direction': 'enhanced',
+  'feeType': 'fixed',
+  'amountType': 'flat',
+  'feeOrderName': 'XXX',
+  'naturalAccountCode': 'XXX',
+  'memoLine': 'XXX',
+  'siRefId': 'XXX'
+}])
 
 export function retrieveCsvFee () {
   mock(`/admin/v2`)
     .post(new RegExp(`/upload`))
-    .reply(HttpStatus.OK, { 'csvFees' : csvJSONStr})
+    .reply(HttpStatus.OK, { 'csvFees': csvJSONStr })
 }
 
 export function createFixedFee () {

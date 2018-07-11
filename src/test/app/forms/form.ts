@@ -4,7 +4,7 @@ import { Converter, Form, FormValidationError } from 'app/forms/form'
 
 import { expectPropertyValidationError } from './models/validationUtils'
 
-function newValidationError (property: string, constraints: {[type: string]: string}, childern?: ValidationError[]): ValidationError {
+function newValidationError (property: string, constraints: { [type: string]: string }, childern?: ValidationError[]): ValidationError {
   const instance: ValidationError = new ValidationError()
   instance.property = property
   instance.constraints = constraints

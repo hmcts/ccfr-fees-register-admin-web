@@ -4,7 +4,8 @@
   font-weight: 300;
   text-transform: none;
   font-size: 13px;
-  line-height: 1.14286; }
+  line-height: 1.14286;
+}
 
 /* Large table header columns */
 .bold-xxsmall {
@@ -12,8 +13,8 @@
   font-weight: 600;
   text-transform: none;
   font-size: 14px;
-  line-height: 1.14286; }
-
+  line-height: 1.14286;
+}
 
 .success-summary {
   border: 6px solid #0e64b1;
@@ -44,7 +45,6 @@
   margin-top: 0.46875em;
   margin-bottom: 0.9375em;
 }
-
 
 .custom-button {
   background-color: #00823b;

@@ -1,39 +1,39 @@
 {% extends "layout.njk" %}
 
-{% set title = t('Range Groups | ' + serviceName) %}
-{% set heading = t('Range Groups') %}
+  {% set title = t('Range Groups | ' + serviceName) %}
+  {% set heading = t('Range Groups') %}
 
-{% block content %}
+  {% block content %}
 
-  <div class="column-full">
-    <table>
-      <thead>
-      <tr>
-        <th scope="col">Code</th>
-        <th scope="col">Description</th>
-        <th class="numeric" scope="col">Range count</th>
-      </tr>
-      </thead>
-      <tbody>
-      {% for rangeGroup in rangeGroups %}
-        <tr>
-          {% if (isFeatureEnabled('edit')) %}
-            <td><a href="/admin/range-groups/edit/{{ rangeGroup.code }}">{{ rangeGroup.code }}</a></td>
-          {% else %}
-           <td>{{ rangeGroup.code }}</td>
-          {% endif %}
-          <td>{{ rangeGroup.description }}</td>
-          <td class="numeric"><a href="/admin/ranges-group/{{ rangeGroup.code }}">{{ rangeGroup.ranges.length }}</a></td>
-        </tr>
-      {% endfor %}
-      </tbody>
-    </table>
+<div class="column-full">
+  <table>
+    <thead>
+    <tr>
+      <th scope="col">Code</th>
+      <th scope="col">Description</th>
+      <th class="numeric" scope="col">Range count</th>
+    </tr>
+    </thead>
+    <tbody>
+    {% for rangeGroup in rangeGroups %}
+    <tr>
+      {% if (isFeatureEnabled('edit')) %}
+      <td><a href="/admin/range-groups/edit/{{ rangeGroup.code }}">{{ rangeGroup.code }}</a></td>
+      {% else %}
+      <td>{{ rangeGroup.code }}</td>
+      {% endif %}
+      <td>{{ rangeGroup.description }}</td>
+      <td class="numeric"><a href="/admin/ranges-group/{{ rangeGroup.code }}">{{ rangeGroup.ranges.length }}</a></td>
+    </tr>
+    {% endfor %}
+    </tbody>
+  </table>
 
-    {% if (isFeatureEnabled('edit')) %}
-      <p><a href="/admin/range-groups/create" class="button" role="button">{{ t("Create new range group") }}</a></p>
-    {% endif %}
+  {% if (isFeatureEnabled('edit')) %}
+  <p><a href="/admin/range-groups/create" class="button" role="button">{{ t("Create new range group") }}</a></p>
+  {% endif %}
 
-    <p><a href="/admin/welcome/" class="link-back">{{ t("Back to welcome page") }}</a></p>
-  </div>
+  <p><a href="/admin/welcome/" class="link-back">{{ t("Back to welcome page") }}</a></p>
+</div>
 
-{% endblock %}
+  {% endblock %}

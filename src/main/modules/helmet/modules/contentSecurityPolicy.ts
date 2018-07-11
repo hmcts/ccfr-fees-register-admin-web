@@ -6,7 +6,8 @@ const self = '\'self\''
 
 export class ContentSecurityPolicy {
 
-  constructor (public developmentMode: boolean) {}
+  constructor (public developmentMode: boolean) {
+  }
 
   enableFor (app: express.Express) {
     const scriptSrc = [self]

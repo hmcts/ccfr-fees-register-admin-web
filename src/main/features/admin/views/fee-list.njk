@@ -1,41 +1,41 @@
 {% from "includes/macros/fee-amount.njk" import feeAmount %}
-{% extends "layout.njk" %}
+  {% extends "layout.njk" %}
 
-{% set title = t('Fees | ' + serviceName) %}
-{% set heading = t('Fees') %}
+  {% set title = t('Fees | ' + serviceName) %}
+  {% set heading = t('Fees') %}
 
-{% block content %}
+  {% block content %}
 
 <div class="column-full">
   <h3 class="heading-medium">Fees</h3>
   <table>
     <thead>
-      <tr>
-        <th scope="col">{{ t('Code') }}</th>
-        <th scope="col">{{ t('Description') }}</th>
-        <th scope="col">{{ t('Amount') }}</th>
-      </tr>
+    <tr>
+      <th scope="col">{{ t('Code') }}</th>
+      <th scope="col">{{ t('Description') }}</th>
+      <th scope="col">{{ t('Amount') }}</th>
+    </tr>
     </thead>
     <tbody>
-      {% for fee in fees | sort(attribute='code') %}
-        <tr>
-          {% if (isFeatureEnabled('edit')) %}
-            <td><a href="/admin/fees/edit/{{ fee.code }}">{{ fee.code }}</a></td>
-          {% else %}
-            <td>{{ fee.code }}</td>
-          {% endif %}
-          <td>{{ fee.description }}</td>
-          <td>{{ feeAmount(fee) }}</td>
-        </tr>
-      {% endfor %}
+    {% for fee in fees | sort(attribute='code') %}
+    <tr>
+      {% if (isFeatureEnabled('edit')) %}
+      <td><a href="/admin/fees/edit/{{ fee.code }}">{{ fee.code }}</a></td>
+      {% else %}
+      <td>{{ fee.code }}</td>
+      {% endif %}
+      <td>{{ fee.description }}</td>
+      <td>{{ feeAmount(fee) }}</td>
+    </tr>
+    {% endfor %}
     </tbody>
   </table>
 
   {% if (isFeatureEnabled('edit')) %}
-    <p><a href="/admin/fees/create" class="button" role="button">{{ t("Create new fee") }}</a></p>
+  <p><a href="/admin/fees/create" class="button" role="button">{{ t("Create new fee") }}</a></p>
   {% endif %}
 
   <p><a href="/admin/welcome/" class="link-back">{{ t("Back to welcome page") }}</a></p>
 </div>
 
-{% endblock %}
+  {% endblock %}

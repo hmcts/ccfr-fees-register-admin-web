@@ -15,7 +15,7 @@ function renderEditPage (form: Form<EditRangeGroupForm>, res: express.Response) 
     .then(fees => {
       res.render(Paths.rangeGroupEditPage.associatedView, {
         form: form,
-        feeOptions: fees.map(fee => ({value: fee.code, label: fee.code + ': ' + fee.description}))
+        feeOptions: fees.map(fee => ({ value: fee.code, label: fee.code + ': ' + fee.description }))
       })
     })
 }
@@ -36,7 +36,7 @@ function actionHandler (req: express.Request, res: express.Response, next: expre
 export default express.Router()
   .get(Paths.rangeGroupCreatePage.uri, (req: express.Request, res: express.Response) => {
     if (featureToggles.isFeatureEnabled('edit')) {
-      res.render(Paths.rangeGroupCreatePage.associatedView, {form: new Form(new CreateRangeGroupForm())})
+      res.render(Paths.rangeGroupCreatePage.associatedView, { form: new Form(new CreateRangeGroupForm()) })
     } else {
       res.render(Paths.notFoundPage.associatedView)
     }
@@ -46,7 +46,7 @@ export default express.Router()
       const form: Form<CreateRangeGroupForm> = req.body
 
       if (form.hasErrors()) {
-        res.render(Paths.rangeGroupCreatePage.associatedView, {form: form})
+        res.render(Paths.rangeGroupCreatePage.associatedView, { form: form })
       } else {
         let editFeeForm = new EditRangeGroupForm(form.model.code, '', [])
         renderEditPage(new Form(editFeeForm), res)

@@ -18,13 +18,13 @@ let version = 1
 
 let rangedFee = {
 
-  code : 'X0001',
+  code: 'X0001',
 
-  natural_account_code : 'xxx',
+  natural_account_code: 'xxx',
 
-  fee_order_name : 'xxx',
+  fee_order_name: 'xxx',
 
-  description : 'a lonely fee',
+  description: 'a lonely fee',
 
   applicant_type: {
     name: 'xxx'
@@ -44,7 +44,7 @@ let rangedFee = {
 
   direction: 'indirection',
 
-  range_unit : 'fishes',
+  range_unit: 'fishes',
 
   jurisdiction1: {
     name: 'xxx'
@@ -72,13 +72,13 @@ let rangedFee = {
 
 let fixedFee = {
 
-  code : 'X0001',
+  code: 'X0001',
 
-  natural_account_code : 'xxx',
+  natural_account_code: 'xxx',
 
-  fee_order_name : 'xxx',
+  fee_order_name: 'xxx',
 
-  description : 'a lonely fee',
+  description: 'a lonely fee',
 
   applicant_type: {
     name: 'xxx'
@@ -120,83 +120,83 @@ let fixedFee = {
 }
 
 describe('Create/Edit Fee page', () => {
-  beforeEach ( () => {
-    mock.cleanAll ()
-  } )
+  beforeEach(() => {
+    mock.cleanAll()
+  })
 
-  describe ( 'on GET', () => {
-    it ( 'should render the create fee page', async () => {
+  describe('on GET', () => {
+    it('should render the create fee page', async () => {
 
-      feesServiceMock.resolveGetReferenceData ()
+      feesServiceMock.resolveGetReferenceData()
 
-      await request ( app )
-        .get ( AdminPaths.feeCreatePageV2.uri )
-        .set ( 'Cookie', `${cookieName}=JWT` )
-        .expect ( res => expect ( res.statusCode ).to.be.equal ( 200 ) )
-    } )
+      await request(app)
+        .get(AdminPaths.feeCreatePageV2.uri)
+        .set('Cookie', `${cookieName}=JWT`)
+        .expect(res => expect(res.statusCode).to.be.equal(200))
+    })
 
-    it ( 'should render the create fee page in edit mode', async () => {
+    it('should render the create fee page in edit mode', async () => {
 
-      feesServiceMock.resolveGetFee ()
+      feesServiceMock.resolveGetFee()
 
-      feesServiceMock.resolveGetReferenceData ()
+      feesServiceMock.resolveGetReferenceData()
 
-      await request ( app )
-        .get ( AdminPaths.feeCreatePageV2.uri + '?action=edit&feeCode=X0001' )
-        .set ( 'Cookie', `${cookieName}=JWT` )
-        .expect ( res => expect ( res.statusCode ).to.be.equal ( 200 ) )
-    } )
+      await request(app)
+        .get(AdminPaths.feeCreatePageV2.uri + '?action=edit&feeCode=X0001')
+        .set('Cookie', `${cookieName}=JWT`)
+        .expect(res => expect(res.statusCode).to.be.equal(200))
+    })
 
-  } )
+  })
 
-  describe ( 'on POST', () => {
-    it ( 'should create a ranged fee', async () => {
+  describe('on POST', () => {
+    it('should create a ranged fee', async () => {
 
-      feesServiceMock.resolveCreateRangedFee ()
-      feesServiceMock.resolveGetReferenceData ()
+      feesServiceMock.resolveCreateRangedFee()
+      feesServiceMock.resolveGetReferenceData()
 
-      await request ( app )
-        .post ( AdminPaths.feeCreatePageV2.uri )
-        .send ( CreateFeeForm.fromGivenVersion ( rangedFee, version, false ) )
-        .set ( 'Cookie', `${cookieName}=JWT` )
+      await request(app)
+        .post(AdminPaths.feeCreatePageV2.uri)
+        .send(CreateFeeForm.fromGivenVersion(rangedFee, version, false))
+        .set('Cookie', `${cookieName}=JWT`)
 
     })
 
-    it ( 'should edit a ranged fee', async () => {
+    it('should edit a ranged fee', async () => {
 
-      feesServiceMock.resolveDeleteFee ()
-      feesServiceMock.resolveCreateRangedFee ()
-      feesServiceMock.resolveGetReferenceData ()
+      feesServiceMock.resolveDeleteFee()
+      feesServiceMock.resolveCreateRangedFee()
+      feesServiceMock.resolveGetReferenceData()
 
-      await request ( app )
-        .post ( AdminPaths.feeCreatePageV2.uri )
-        .send ( CreateFeeForm.fromGivenVersion ( rangedFee, version, true ) )
-        .set ( 'Cookie', `${cookieName}=JWT` )
-
-    })
-
-    it ( 'should create a fixed fee', async () => {
-
-      feesServiceMock.resolveCreateFixedFee ()
-      feesServiceMock.resolveGetReferenceData ()
-
-      await request ( app )
-        .post ( AdminPaths.feeCreatePageV2.uri )
-        .send ( CreateFeeForm.fromGivenVersion ( fixedFee, version, false ) )
-        .set ( 'Cookie', `${cookieName}=JWT` )
+      await request(app)
+        .post(AdminPaths.feeCreatePageV2.uri)
+        .send(CreateFeeForm.fromGivenVersion(rangedFee, version, true))
+        .set('Cookie', `${cookieName}=JWT`)
 
     })
 
-    it ( 'should edit a fixed fee', async () => {
+    it('should create a fixed fee', async () => {
 
-      feesServiceMock.resolveDeleteFee ()
-      feesServiceMock.resolveCreateFixedFee ()
-      feesServiceMock.resolveGetReferenceData ()
+      feesServiceMock.resolveCreateFixedFee()
+      feesServiceMock.resolveGetReferenceData()
 
-      await request ( app )
-        .post ( AdminPaths.feeCreatePageV2.uri )
-        .send ( CreateFeeForm.fromGivenVersion ( fixedFee, version, true ) )
-        .set ( 'Cookie', `${cookieName}=JWT` )
+      await request(app)
+        .post(AdminPaths.feeCreatePageV2.uri)
+        .send(CreateFeeForm.fromGivenVersion(fixedFee, version, false))
+        .set('Cookie', `${cookieName}=JWT`)
+
+    })
+
+    it('should edit a fixed fee', async () => {
+
+      feesServiceMock.resolveDeleteFee()
+      feesServiceMock.resolveCreateFixedFee()
+      feesServiceMock.resolveGetReferenceData()
+
+      await request(app)
+        .post(AdminPaths.feeCreatePageV2.uri)
+        .send(CreateFeeForm.fromGivenVersion(fixedFee, version, true))
+        .set('Cookie', `${cookieName}=JWT`)
 
     })
 

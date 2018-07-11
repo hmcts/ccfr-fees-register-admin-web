@@ -36,7 +36,7 @@ describe('Dashboard page', () => {
       await request(app)
         .post(AdminPaths.dashboard.uri)
         .send({
-          'feeCode' : 'FEE002','version' : 1, 'action' : 'submit'
+          'feeCode': 'FEE002', 'version': 1, 'action': 'submit'
         })
         .set('Cookie', `${cookieName}=JWT`)
         .expect(res => expect(res.statusCode).to.be.equal(200))
@@ -48,7 +48,7 @@ describe('Dashboard page', () => {
       await request(app)
         .post(AdminPaths.dashboard.uri)
         .send({
-          'feeCode' : 'FEE002','version' : 1, 'action' : 'delete'
+          'feeCode': 'FEE002', 'version': 1, 'action': 'delete'
         })
         .set('Cookie', `${cookieName}=JWT`)
         .expect(res => expect(res.statusCode).to.be.equal(200))
@@ -60,7 +60,7 @@ describe('Dashboard page', () => {
       await request(app)
         .post(AdminPaths.dashboard.uri)
         .send({
-          'feeCode' : 'FEE002','version' : 1, 'action' : 'approve'
+          'feeCode': 'FEE002', 'version': 1, 'action': 'approve'
         })
         .set('Cookie', `${cookieName}=JWT`)
         .expect(res => expect(res.statusCode).to.be.equal(200))

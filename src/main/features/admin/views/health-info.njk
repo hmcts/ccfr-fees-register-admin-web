@@ -1,36 +1,35 @@
-
 {% from "includes/macros/form.njk" import errorSummary, textArea, textInput, radioGroup, submitButton %}
-{% extends "layout.njk" %}
+  {% extends "layout.njk" %}
 
-{% set title = t('Application status | ' + serviceName) %}
-{% set heading = t('Application status') %}
+  {% set title = t('Application status | ' + serviceName) %}
+  {% set heading = t('Application status') %}
 
-{% block content %}
+  {% block content %}
 
 <div class="column-full">
-    <table>
-      <thead>
-        <tr>
-          <th scope="col">Application</th>
-          <th scope="col">Status</th>
-        </tr>
-      </thead>
-      <tbody>
-          <tr>
-            <td scope="col">Fees-register-api</td>
-            <td scope="col">{{output.fees.status}}</td>
-          </tr>
-          <tr>
-              <td scope="col">Idam-api</td>
-              <td scope="col">{{output.idamapi.status}}</td>
-          </tr>
-          <tr>
-               <td scope="col">Idam-aunthentication-web</td>
-               <td scope="col">{{output.idamauthenticationweb.status}}</td>
-          </tr
+  <table>
+    <thead>
+    <tr>
+      <th scope="col">Application</th>
+      <th scope="col">Status</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr>
+      <td scope="col">Fees-register-api</td>
+      <td scope="col">{{output.fees.status}}</td>
+    </tr>
+    <tr>
+      <td scope="col">Idam-api</td>
+      <td scope="col">{{output.idamapi.status}}</td>
+    </tr>
+    <tr>
+      <td scope="col">Idam-aunthentication-web</td>
+      <td scope="col">{{output.idamauthenticationweb.status}}</td>
+    </tr
 
-      </tbody>
-    </table>
+    </tbody>
+  </table>
 </div>
 
-{% endblock %}
+  {% endblock %}

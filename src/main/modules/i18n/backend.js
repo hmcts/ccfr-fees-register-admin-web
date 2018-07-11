@@ -5,17 +5,17 @@ const {readFile} = require('fs')
 const converter = require('i18next-conv')
 
 /**
-  A gettext backend for i18next framework
+ A gettext backend for i18next framework
  */
 class Backend {
 
-  static defaultsOptions () {
+  static defaultsOptions() {
     return {
       loadPath: '/locales/{{lng}}/{{ns}}.po'
     }
   }
 
-  constructor (services, options = {}) {
+  constructor(services, options = {}) {
     this.init(services, options)
   }
 
@@ -25,7 +25,7 @@ class Backend {
    * @param options - backend options
    * @param coreOptions - i18next options
    */
-  init (services, options = {}, coreOptions = {}) {
+  init(services, options = {}, coreOptions = {}) {
     this.services = services
     this.options = Object.assign({}, Backend.defaultsOptions(), options)
     this.coreOptions = coreOptions
@@ -37,17 +37,20 @@ class Backend {
    * @param namespace - namespace to be used
    * @param callback - standard Node.js callback function (err, data)
    */
-  read (language, namespace, callback) {
+  read(language, namespace, callback) {
     const translationFile = this.options.loadPath.replace(/{{lng}}/, language).replace(/{{ns}}/, namespace)
 
-    readFile(translationFile, (err, data) => {
-      if (err) return callback(err, null)
+    readFile(translationFile, (err, data) = > {
+      if(err) return callback(err, null)
 
       converter
-        .gettextToI18next(language, data)
-        .then(translation => callback(null, JSON.parse(translation)))
-        .catch(err => callback(err, null))
-    })
+      .gettextToI18next(language, data)
+      .then(translation = > callback(null, JSON.parse(translation))
+  )
+  .
+    catch(err = > callback(err, null)
+  )
+  })
   }
 }
 

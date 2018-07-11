@@ -1,11 +1,11 @@
 {% extends "layout.njk" %}
 
-{% set title = t('Welcome | ' + serviceName) %}
-{% set heading = t('Welcome') %}
+  {% set title = t('Welcome | ' + serviceName) %}
+  {% set heading = t('Welcome') %}
 
-{% from "includes/macros/form.njk" import submitButton %}
+  {% from "includes/macros/form.njk" import submitButton %}
 
-{% block content %}
+  {% block content %}
 
 <div class="grid-row">
 
@@ -14,8 +14,8 @@
     <ul class="list list-bullet">
 
       {% if isEditor(user.allInfo.roles) or isAdmin(user.allInfo.roles) %}
-        <li><a href="/admin/v2/fees/create">{{ t("Add a new fee") }}</a></li>
-        <li><a href="/admin/v2/upload">{{ t("Upload fees") }}</a></li>
+      <li><a href="/admin/v2/fees/create">{{ t("Add a new fee") }}</a></li>
+      <li><a href="/admin/v2/upload">{{ t("Upload fees") }}</a></li>
       {% endif %}
       <li><a href="/admin/v2/all-fees">{{ t("View all fees") }}</a></li>
       <li><a href="/admin/v2/dashboard">{{ t("My open actions") }}</a></li>
@@ -36,25 +36,23 @@
     </ul>
   </div>
 
-    <!-- div class="column-full">
-        <h4 class="heading-small">Legacy Register: Choose an action</h4>
-        <ul class="list list-bullet">
-          {% if (isFeatureEnabled('edit')) %}
-            <li><a href="/admin/categories" style="font-size: 1.5em">{{ t("Edit categories") }}</a></li>
-            <li><a href="/admin/range-groups">{{ t("Edit range groups") }}</a></li>
-            <li><a href="/admin/fees">{{ t("Edit fees") }}</a></li>
-          {% else %}
-            <li><a href="/admin/categories" style="font-size: 1.5em">{{ t("Categories") }}</a></li>
-            <li><a href="/admin/range-groups">{{ t("Range groups") }}</a></li>
-            <li><a href="/admin/fees">{{ t("Fees") }}</a></li>
-          {% endif %}
-            <li><a href="/admin/all-fees">{{ t("All fees") }}</a></li>
-        </ul>
-    </div-->
+  <!-- div class="column-full">
+      <h4 class="heading-small">Legacy Register: Choose an action</h4>
+      <ul class="list list-bullet">
+        {% if (isFeatureEnabled('edit')) %}
+          <li><a href="/admin/categories" style="font-size: 1.5em">{{ t("Edit categories") }}</a></li>
+          <li><a href="/admin/range-groups">{{ t("Edit range groups") }}</a></li>
+          <li><a href="/admin/fees">{{ t("Edit fees") }}</a></li>
+        {% else %}
+          <li><a href="/admin/categories" style="font-size: 1.5em">{{ t("Categories") }}</a></li>
+          <li><a href="/admin/range-groups">{{ t("Range groups") }}</a></li>
+          <li><a href="/admin/fees">{{ t("Fees") }}</a></li>
+        {% endif %}
+          <li><a href="/admin/all-fees">{{ t("All fees") }}</a></li>
+      </ul>
+  </div-->
 
 </div>
 
 
-
-
-{% endblock %}
+  {% endblock %}
