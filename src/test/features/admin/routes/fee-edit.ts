@@ -27,7 +27,7 @@ describe('Fee edit page', () => {
       await request(app)
         .get(AdminPaths.feeEditPage.uri.replace(':feeCode', 'X0001'))
         .set('Cookie', `${cookieName}=JWT`)
-        .expect(res => expect(res).to.be.successful.withText('X0001', 'Civil Court fees - Hearing fees - Claim Amount - 0.01 upto 300 GBP'))
+        .expect(res => (expect(res).to.be as any).successful.withText('X0001', 'Civil Court fees - Hearing fees - Claim Amount - 0.01 upto 300 GBP'))
     })
   })
 
@@ -44,7 +44,7 @@ describe('Fee edit page', () => {
           'description': '',
           'amount': 2500
         })
-        .expect(res => expect(res).to.be.successful.withText('Enter description'))
+        .expect(res => (expect(res).to.be as any).successful.withText('Enter description'))
     })
 
     it('should update fee and redirect to fees list page', async () => {
@@ -60,7 +60,7 @@ describe('Fee edit page', () => {
           'description': 'Updated Description',
           'amount': 2500
         })
-        .expect(res => expect(res).to.be.redirect.toLocation(AdminPaths.feeListPage.uri))
+        .expect(res => (expect(res).to.be as any).redirect.toLocation(AdminPaths.feeListPage.uri))
     })
   })
 })

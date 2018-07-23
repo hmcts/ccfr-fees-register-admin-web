@@ -27,7 +27,7 @@ describe('Csv fees upload', () => {
       await request(app)
         .get(AdminPaths.csvUploadPage.uri)
         .set('Cookie', `${cookieName}=JWT`)
-        .expect(res => expect(res).to.be.successful.withText('CSV upload'))
+        .expect(res => (expect(res).to.be as any).successful.withText('CSV upload'))
     })
   })
 
@@ -39,7 +39,7 @@ describe('Csv fees upload', () => {
         .post(AdminPaths.csvImportFeePage.uri)
         .set('Cookie', `${cookieName}=JWT`)
         .attach('csvdata', path.join(__dirname, 'feeimport.csv'))
-        .expect(res => expect(res).to.be.successful.withText('X0033', 'xxxRecovery of Land - High Court'))
+        .expect(res => (expect(res).to.be as any).successful.withText('X0033', 'xxxRecovery of Land - High Court'))
     })
   })
 
@@ -96,7 +96,7 @@ describe('Csv fees upload', () => {
             'siRefId': 'XXX'
           }])
         })
-        .expect(res => expect(res).to.be.successful.withText('Create csv fees confirmation'))
+        .expect(res => (expect(res).to.be as any).successful.withText('Create csv fees confirmation'))
     })
   })
 
@@ -153,7 +153,8 @@ describe('Csv fees upload', () => {
             'siRefId': 'XXX'
           }])
         })
-        .expect(res => expect(res).to.be.successful.withText('Create csv fees confirmation'))
+        .expect(res => (expect(res).to.be as any).successful.withText('Create csv fees confirmation')
+        )
     })
   })
 
@@ -210,7 +211,8 @@ describe('Csv fees upload', () => {
             'siRefId': 'XXX'
           }])
         })
-        .expect(res => expect(res).to.be.successful.withText('Create csv fees confirmation'))
+        .expect(res => (expect(res).to.be as any).successful.withText('Create csv fees confirmation')
+        )
     })
   })
 
@@ -267,7 +269,8 @@ describe('Csv fees upload', () => {
             'siRefId': 'XXX'
           }])
         })
-        .expect(res => expect(res).to.be.successful.withText('Create csv fees confirmation'))
+        .expect(res => (expect(res).to.be as any).successful.withText('Create csv fees confirmation')
+        )
     })
   })
 
@@ -328,7 +331,8 @@ describe('Csv fees upload', () => {
             'siRefId': 'XXX'
           }])
         })
-        .expect(res => expect(res).to.be.successful.withText('Create csv fees confirmation'))
+        .expect(res => (expect(res).to.be as any).successful.withText('Create csv fees confirmation')
+        )
     })
   })
 
@@ -385,7 +389,8 @@ describe('Csv fees upload', () => {
             'siRefId': 'XXX'
           }])
         })
-        .expect(res => expect(res).to.be.successful.withText('Fee loader json'))
+        .expect(res => (expect(res).to.be as any).successful.withText('Fee loader json')
+        )
     })
   })
 })

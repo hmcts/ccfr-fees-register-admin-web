@@ -27,7 +27,7 @@ describe('Categories list page', () => {
       await request(app)
         .get(AdminPaths.categoryListPage.uri)
         .set('Cookie', `${cookieName}=JWT`)
-        .expect(res => expect(res).to.be.successful.withText('online-fees', 'hearing-fees', '<td class="numeric">2</td>'))
+        .expect(res => (expect(res).to.be as any).successful.withText('online-fees', 'hearing-fees', '<td class="numeric">2</td>'))
     })
   })
 })

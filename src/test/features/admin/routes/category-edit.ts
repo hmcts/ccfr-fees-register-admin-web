@@ -29,7 +29,7 @@ describe('Category edit page', () => {
       await request(app)
         .get(AdminPaths.categoryEditPage.uri.replace(':categoryCode', '2'))
         .set('Cookie', `${cookieName}=JWT`)
-        .expect(res => expect(res).to.be.successful.withText('hearing-fees', 'Civil Court fees - Hearing fees - Claim Amount - 0.01 upto 300 GBP'))
+        .expect(res => (expect(res).to.be as any).successful.withText('hearing-fees', 'Civil Court fees - Hearing fees - Claim Amount - 0.01 upto 300 GBP'))
     })
   })
 })

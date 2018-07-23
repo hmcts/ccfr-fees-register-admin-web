@@ -1,8 +1,8 @@
-'use strict'
+'use strict';
 
-const {readFile} = require('fs')
+const {readFile} = require('fs');
 
-const converter = require('i18next-conv')
+const converter = require('i18next-conv');
 
 /**
  A gettext backend for i18next framework
@@ -38,19 +38,24 @@ class Backend {
    * @param callback - standard Node.js callback function (err, data)
    */
   read(language, namespace, callback) {
+
     const translationFile = this.options.loadPath.replace(/{{lng}}/, language).replace(/{{ns}}/, namespace)
 
-    readFile(translationFile, (err, data) = > {
-      if(err) return callback(err, null)
+    readFile(translationFile, function (err, data) {
+
+      if (err) return callback(err, null);
 
       converter
-      .gettextToI18next(language, data)
-      .then(translation = > callback(null, JSON.parse(translation))
-  )
-  .
-    catch(err = > callback(err, null)
-  )
-  })
+        .gettextToI18next(language, data)
+        .then(
+          function (translation) {
+            callback(null, JSON.parse(translation));
+          }
+        ).catch(function (err) {
+          callback(err, null);
+        }
+      )
+    })
   }
 }
 
