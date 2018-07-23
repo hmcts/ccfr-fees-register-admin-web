@@ -28,7 +28,7 @@ describe('Range group edit page', () => {
       await request(app)
         .get(AdminPaths.rangeGroupEditPage.uri.replace(':rangeGroupCode', 'range-group-code'))
         .set('Cookie', `${cookieName}=JWT`)
-        .expect(res => expect(res).to.be.successful.withText('range-group-code', 'Range Group Edit Description'))
+        .expect(res => (expect(res).to.be as any).successful.withText('range-group-code', 'Range Group Edit Description'))
     })
   })
 })

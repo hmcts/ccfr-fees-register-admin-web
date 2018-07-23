@@ -37,20 +37,20 @@ export default express.Router()
   })
 
   .post(Paths.csvImportFeePage.uri, upload, (req: express.Request, res: express.Response, next: express.NextFunction) => {
-    if (!req.file) {
+    if (!(req as any).file) {
 
       res.render(Paths.csvUploadPage.associatedView, { UPLOAD_ERR_MSG: 'No file was uploaded.', UPLOAD_ERR: true })
     } else {
 
-      const index = req.file.originalname.indexOf('.')
-      if (index > 0 && req.file.originalname.substr(index + 1) !== 'csv') {
+      const index = (req as any).file.originalname.indexOf('.')
+      if (index > 0 && (req as any).file.originalname.substr(index + 1) !== 'csv') {
         res.render(Paths.csvUploadPage.associatedView, {
-          UPLOAD_ERR_MSG: req.file.originalname.substr(index + 1) + ' extension file upload not supported.',
+          UPLOAD_ERR_MSG: (req as any).file.originalname.substr(index + 1) + ' extension file upload not supported.',
           UPLOAD_ERR: true
         })
       }
 
-      const arr = csv.parse(req.file.buffer.toString())
+      const arr = csv.parse((req as any).file.buffer.toString())
       const csvStr = csv.stringify(arr)
       getCsvData(csvStr).then(function (records) {
         const data = JSON.stringify(records)
