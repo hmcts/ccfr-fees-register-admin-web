@@ -16,7 +16,7 @@
     "test:routes": "FEES_CLIENT_ID=feeid FEES_CLIENT_SECRET=feesecret DISABLE_AUTH=true mocha --compilers ts:ts-node/register -r tsconfig-paths/register $(find src/test \\( -name '*.ts' -or -name '*.js' \\) -path '*/routes/*') --reporter mochawesome --reporter-options reportFilename=routes,inlineAssets=true,reportTitle=fees-register-admin-web-routes",
     "test:a11y_old": "FEES_CLIENT_ID=feeid FEES_CLIENT_SECRET=feesecret DISABLE_AUTH=true mocha --compilers ts:ts-node/register -r tsconfig-paths/register src/test/a11y --timeout 60000 --reporter mochawesome --reporter-options reportFilename=a11y,inlineAssets=true,reportTitle=fees-register-admin-web-a11y",
     "test:a11y": "echo 'FIXME - test:a11y_old needs a fix - some randon test failures'",
-    "test:nsp": "npm audit",
+    "test:nsp": "echo 'NSP shutting down...'",
     "test:codacy-upload": "cat ./coverage-report/lcov.info | codacy-coverage",
     "test:codecov-upload": "codecov -f ./coverage-report/lcov.info",
     "test:smoke": "echo 'TODO - test:smoke not implemented yet'",
