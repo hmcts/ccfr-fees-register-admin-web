@@ -1,4 +1,4 @@
-'use strict';
+"use strict";
 
 const {readFile} = require('fs');
 
@@ -39,11 +39,13 @@ class Backend {
    */
   read(language, namespace, callback) {
 
-    const translationFile = this.options.loadPath.replace(/{{lng}}/, language).replace(/{{ns}}/, namespace)
+    const translationFile = this.options.loadPath.replace(/{{lng}}/, language).replace(/{{ns}}/, namespace);
 
     readFile(translationFile, function (err, data) {
 
-      if (err) return callback(err, null);
+      if (err) {
+        return callback(err, null);
+      }
 
       converter
         .gettextToI18next(language, data)
@@ -51,7 +53,8 @@ class Backend {
           function (translation) {
             callback(null, JSON.parse(translation));
           }
-        ).catch(function (err) {
+        ).catch(
+        function (err) {
           callback(err, null);
         }
       )
@@ -59,6 +62,6 @@ class Backend {
   }
 }
 
-Backend.type = 'backend'
+Backend.type = 'backend';
 
-module.exports = Backend
+module.exports = Backend;
