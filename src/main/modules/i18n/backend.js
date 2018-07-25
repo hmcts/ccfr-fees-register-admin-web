@@ -57,11 +57,11 @@ class Backend {
         function (err) {
           callback(err, null);
         }
-      )
+      );
     })
   }
 }
 
-Backend.type = 'backend';
+Backend.type = "backend";
 
 module.exports = Backend;
