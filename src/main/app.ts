@@ -17,6 +17,7 @@ import I18Next from 'modules/i18n'
 import Nunjucks from 'modules/nunjucks'
 import { Feature as AdminFeature } from 'admin/index'
 import { CsrfProtection } from 'modules/csrf'
+import * as dateFilter from 'nunjucks-date-filter'
 
 export const app: express.Express = express()
 
@@ -27,8 +28,6 @@ logger.info({
   team: 'cc',
   environment: process.env.NODE_ENV
 })
-
-import * as dateFilter from 'nunjucks-date-filter'
 
 dateFilter.setDefaultFormat('DD-MM-YYYY')
 
