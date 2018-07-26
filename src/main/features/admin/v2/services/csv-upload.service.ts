@@ -21,15 +21,15 @@ export class CsvUploadService {
 
         // try and upload, if not catch and return "reject"
         try {
-          if (csvFee.feeType === 'fixed') {
+          if (csvFee.feeType.toLowerCase() === 'fixed') {
             await FeesClient.createFixedFee(res.locals.user, feeMapper.toFixedFeeDto(csvFee))
-          } else if (csvFee.feeType === 'ranged') {
+          } else if (csvFee.feeType.toLowerCase() === 'ranged') {
             await FeesClient.createRangedFee(res.locals.user, feeMapper.toRangedFeeDto(csvFee))
-          } else if (csvFee.feeType === 'banded') {
+          } else if (csvFee.feeType.toLowerCase() === 'banded') {
             await FeesClient.createBandedFee(res.locals.user, feeMapper.toFixedFeeDto(csvFee))
-          } else if (csvFee.feeType === 'rateable') {
+          } else if (csvFee.feeType.toLowerCase() === 'rateable') {
             await FeesClient.createRateableFee(res.locals.user, feeMapper.toFixedFeeDto(csvFee))
-          } else if (csvFee.feeType === 'relational') {
+          } else if (csvFee.feeType.toLowerCase() === 'relational') {
             await FeesClient.createRelationalFee(res.locals.user, feeMapper.toFixedFeeDto(csvFee))
           }
         } catch (err) {
