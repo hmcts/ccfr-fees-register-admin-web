@@ -15,7 +15,8 @@ export interface Config {
  */
 export class Helmet {
 
-  constructor (public config: Config, public developmentMode: boolean) {}
+  constructor (public config: Config, public developmentMode: boolean) {
+  }
 
   enableFor (app: express.Express) {
     app.use(helmet())

@@ -1,27 +1,27 @@
 {% block content %}{% endblock %}
-{% extends "govukTemplate.njk" %}
+  {% extends "govukTemplate.njk" %}
 
-{% block head %}
+  {% block head %}
   {% include "includes/head.njk" %}
   {% include "feesCustomHead.njk" %}
-{% endblock %}
+  {% endblock %}
 
-{% block cookie_message %}
-  <p>{{ cookieText | safe }}</p>
-{% endblock %}
+  {% block cookie_message %}
+<p>{{ cookieText | safe }}</p>
+  {% endblock %}
 
-{% block proposition_header %}
+  {% block proposition_header %}
   {% include "includes/propositional_navigation.njk" %}
-{% endblock %}
+  {% endblock %}
 
-{% block header_class %}
+  {% block header_class %}
   with-proposition
-{% endblock %}
+  {% endblock %}
 
-{% block footer_support_links %}
+  {% block footer_support_links %}
   {% include "includes/support-links.njk" %}
-{% endblock %}
+  {% endblock %}
 
-{% block body_end %}
+  {% block body_end %}
   {% include "includes/scripts.njk" %}
-{% endblock %}
+  {% endblock %}

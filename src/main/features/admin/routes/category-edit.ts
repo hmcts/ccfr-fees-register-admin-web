@@ -19,7 +19,7 @@ function renderEditPage (form: Form<EditCategoryForm>, res: express.Response) {
       rangeGroups.unshift(new RangeGroup('', '       ', null))
       res.render(Paths.categoryEditPage.associatedView, {
         form: form,
-        feeOptions: fees.map(fee => ({value: fee.code, label: fee.code + ': ' + fee.description})),
+        feeOptions: fees.map(fee => ({ value: fee.code, label: fee.code + ': ' + fee.description })),
         rangeOptions: rangeGroups.map(rangeGroup => ({
           value: rangeGroup.code,
           label: rangeGroup.code + '' + rangeGroup.description
@@ -44,13 +44,13 @@ function actionHandler (req: express.Request, res: express.Response, next: expre
 
 export default express.Router()
   .get(Paths.categoryCreatePage.uri, (req: express.Request, res: express.Response) => {
-    res.render(Paths.categoryCreatePage.associatedView, {form: new Form(new CreateCategoryForm())})
+    res.render(Paths.categoryCreatePage.associatedView, { form: new Form(new CreateCategoryForm()) })
   })
   .post(Paths.categoryCreatePage.uri, FormValidator.requestHandler(CreateCategoryForm, CreateCategoryForm.fromObject), (req: express.Request, res: express.Response) => {
     const form: Form<CreateCategoryForm> = req.body
 
     if (form.hasErrors()) {
-      res.render(Paths.categoryCreatePage.associatedView, {form: form})
+      res.render(Paths.categoryCreatePage.associatedView, { form: form })
     } else {
       let editCategoryForm = new EditCategoryForm(form.model.code, '', undefined, [])
       renderEditPage(new Form(editCategoryForm), res)

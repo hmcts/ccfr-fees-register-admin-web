@@ -1,21 +1,21 @@
 {% from "includes/macros/form.njk" import csrfProtection, errorSummary, textArea, textInput, radioGroup, submitButton %}
-{% extends "layout.njk" %}
+  {% extends "layout.njk" %}
 
-{% set title = t('Create Range Group | ' + serviceName) %}
-{% set heading = t('Create Range Group') %}
+  {% set title = t('Create Range Group | ' + serviceName) %}
+  {% set heading = t('Create Range Group') %}
 
-{% block content %}
+  {% block content %}
 
-  <div class="grid-row">
-    <div class="column-full">
-      <form method="post" action="create">
-        {{ csrfProtection(csrfToken) }}
-        {{ textInput(t('Code'), 'code', form) }}
-        {{ submitButton(t('Next')) }}
-      </form>
+<div class="grid-row">
+  <div class="column-full">
+    <form method="post" action="create">
+      {{ csrfProtection(csrfToken) }}
+      {{ textInput(t('Code'), 'code', form) }}
+      {{ submitButton(t('Next')) }}
+    </form>
 
-      <a href="/admin/range-groups" class="link-back">{{ t('Cancel') }}</a>
-    </div>
+    <a href="/admin/range-groups" class="link-back">{{ t('Cancel') }}</a>
   </div>
+</div>
 
-{% endblock %}
+  {% endblock %}

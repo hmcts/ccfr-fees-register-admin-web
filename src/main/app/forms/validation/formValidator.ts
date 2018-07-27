@@ -3,7 +3,7 @@ import { Validator } from 'class-validator'
 
 import { Form } from 'app/forms/form'
 
-type Constructor<T> = { new(): T }
+type Constructor<T> = { new (): T }
 type Mapper<T> = (value: any) => T
 
 export class FormValidator {

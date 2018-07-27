@@ -15,17 +15,11 @@ export default class User {
   bearerToken: string
 
   constructor (id: number,
-
                email: string,
-
                forename: string,
-
                surname: string,
-
                roles: string[],
-
                group: string,
-
                bearerToken: string) {
 
     this.id = id

@@ -6,7 +6,7 @@ import Fee from 'app/fees/fee'
 import RangeGroup from 'fees/rangeGroup'
 import {
   AllReferenceDataDto,
-  ChannelType, FeeDto , DirectionType, EventType, Fee2Dto, FeeVersionDto, Jurisdiction1,
+  ChannelType, FeeDto, DirectionType, EventType, Fee2Dto, FeeVersionDto, Jurisdiction1,
   ServiceType
 } from 'fees/v2/model/fees-register-api-contract'
 
@@ -125,7 +125,7 @@ function mockRetrieveFeeByCode () {
 }
 
 function mockUser () {
-  return {id: 123, roles: ['admin', 'admin']}
+  return { id: 123, roles: ['admin', 'admin'] }
 }
 
 function mockAllReferenceData () {

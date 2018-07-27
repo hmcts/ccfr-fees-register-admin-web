@@ -16,6 +16,6 @@ HTMLCS.process(STANDARD, document.body, function () {
       "<h1 class='heading-medium'>" + errors.length + ' accessibility violations found</h1>' +
       '</div>'
 
-    HTMLCSAuditor.run(STANDARD, null, { includeCss: false })
+    HTMLCSAuditor.run(STANDARD, null, {includeCss: false})
   }
 })

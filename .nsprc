@@ -1,12 +1,9 @@
 {
   "exceptions": [
-    // Only vulnerability here is if you $.get an untrusted url
-    // https://github.com/jquery/jquery/issues/2432#issuecomment-235579713
-    // Can't upgrade jquery unfortunately because the only fixed version is >3
-    // and >3 doesn't support IE 8
     "https://nodesecurity.io/advisories/328",
-    // Depend on  @hmcts/nodejs-logging@1.4.2 > log4js@2.3.12 to be updated to use more recent versions of timespan and debug
     "https://nodesecurity.io/advisories/534",
-    "https://nodesecurity.io/advisories/533"
+    "https://nodesecurity.io/advisories/533",
+    "https://nodesecurity.io/advisories/566",
+    "https://nodesecurity.io/advisories/577"
   ]
 }

@@ -19,7 +19,7 @@ function renderHealthPage (config, req: express.Request, res: express.Response) 
         const allOk = Object.values(results)
           .every(result => {
 
-            if (! result['status']) {
+            if (!result['status']) {
               result['status'] = outputs.DOWN
             }
 
@@ -29,10 +29,11 @@ function renderHealthPage (config, req: express.Request, res: express.Response) 
           outputs.status(allOk),
           results)
 
-        res.send({...output, buildInfo})
+        res.send({ ...output, buildInfo })
       })
   })
 }
+
 function basicHealthCheck (serviceName) {
   return healthcheck.web(url(serviceName))
 }
@@ -48,13 +49,13 @@ function url (serviceName: string): string {
 }
 
 export default express.Router()
-    .get(Paths.healthInfoPage.uri, (req: express.Request, res: express.Response) => {
+  .get(Paths.healthInfoPage.uri, (req: express.Request, res: express.Response) => {
 
-      renderHealthPage({
-        checks: {
-          'fees': basicHealthCheck('fees'),
-          'idamapi': basicHealthCheck('idam.api'),
-          'idamauthenticationweb': basicHealthCheck('idam.authentication-web')
-        }
-      }, req, res)
-    })
+    renderHealthPage({
+      checks: {
+        'fees': basicHealthCheck('fees'),
+        'idamapi': basicHealthCheck('idam.api'),
+        'idamauthenticationweb': basicHealthCheck('idam.authentication-web')
+      }
+    }, req, res)
+  })

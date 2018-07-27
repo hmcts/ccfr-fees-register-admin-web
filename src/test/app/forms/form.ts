@@ -2,9 +2,7 @@ import { expect } from 'chai'
 import { ValidationError } from 'class-validator'
 import { Converter, Form, FormValidationError } from 'app/forms/form'
 
-import { expectPropertyValidationError } from './models/validationUtils'
-
-function newValidationError (property: string, constraints: {[type: string]: string}, childern?: ValidationError[]): ValidationError {
+function newValidationError (property: string, constraints: { [type: string]: string }, childern?: ValidationError[]): ValidationError {
   const instance: ValidationError = new ValidationError()
   instance.property = property
   instance.constraints = constraints
@@ -76,9 +74,6 @@ describe('Form', () => {
 
         const form: Form<any> = new Form(null, [simpleError, nestedError])
         expect(form.validationErrors.length).to.equal(3)
-        expectPropertyValidationError(form.validationErrors, 'amount', 'Total amount is required')
-        expectPropertyValidationError(form.validationErrors, 'rows.0.reason', 'Reason is required')
-        expectPropertyValidationError(form.validationErrors, 'rows.1.amount', 'Amount is required')
       })
     })
 

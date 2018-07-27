@@ -7,38 +7,57 @@ const expect = chai.expect
 import { RequestLoggingHandler } from 'logging/requestPromiseLoggingHandler'
 
 describe('RequestLoggingHandler', () => {
-  let handler
-  let proxy
+
   let options
 
   /* tslint:disable:no-empty allow empty for mocking */
   let requestPromise = {
-    get: (options) => { },
-    post: (options) => { },
-    put: (options) => { },
-    del: (options) => { },
-    delete: (options) => { },
-    patch: (options) => { },
-    head: (options) => { },
-    another: (options) => { }
+    get: (options) => {
+    },
+    post: (options) => {
+    },
+    put: (options) => {
+    },
+    del: (options) => {
+    },
+    delete: (options) => {
+    },
+    patch: (options) => {
+    },
+    head: (options) => {
+    },
+    another: (options) => {
+    }
   }
 
-  let apiLogger = {
-    logRequest: (requestData) => { },
-    logResponse: (responseData) => { }
-  }
   /* tslint:enable:no-empty */
 
   beforeEach(() => {
     options = {}
-    handler = new RequestLoggingHandler(requestPromise, apiLogger)
-    proxy = new Proxy(requestPromise, handler)
   })
 
   describe('request-promise http calls proxy', () => {
     let logRequestCall
 
+    let apiLogger
+
+    let handler
+
+    let proxy
+
     beforeEach(() => {
+
+      /* tslint:disable:no-empty allow empty for mocking */
+      apiLogger = {
+        logRequest: (requestData) => {
+        },
+        logResponse: (responseData) => {
+        }
+      }
+
+      handler = new RequestLoggingHandler(requestPromise, apiLogger)
+      proxy = new Proxy(requestPromise, handler)
+
       logRequestCall = chai.spy.on(apiLogger, 'logRequest')
     })
 
@@ -95,8 +114,23 @@ describe('RequestLoggingHandler', () => {
   describe('handleLogging', () => {
     let originalCallback
 
+    let apiLogger
+
+    let handler
+
     beforeEach(() => {
       originalCallback = chai.spy()
+
+      /* tslint:disable:no-empty allow empty for mocking */
+      apiLogger = {
+        logRequest: (requestData) => {
+        },
+        logResponse: (responseData) => {
+        }
+      }
+
+      handler = new RequestLoggingHandler(requestPromise, apiLogger)
+
     })
 
     it('should assign a callback to the options object', () => {

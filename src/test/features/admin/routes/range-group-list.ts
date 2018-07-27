@@ -27,7 +27,7 @@ describe('Range groups list page', () => {
       await request(app)
         .get(AdminPaths.rangeGroupListPage.uri)
         .set('Cookie', `${cookieName}=JWT`)
-        .expect(res => expect(res).to.be.successful.withText('range-group-code', 'Range Group Description'))
+        .expect(res => (expect(res).to.be as any).successful.withText('range-group-code', 'Range Group Description'))
     })
   })
 
@@ -44,7 +44,7 @@ describe('Range groups list page', () => {
           description: '',
           ranges: []
         })
-        .expect(res => expect(res).to.be.successful.withText('Enter description'))
+        .expect(res => (expect(res).to.be as any).successful.withText('Enter description'))
     })
 
     it('should update range-group and redirect to fees list page', async () => {
@@ -60,7 +60,7 @@ describe('Range groups list page', () => {
           description: 'description',
           ranges: []
         })
-        .expect(res => expect(res).to.be.redirect.toLocation(AdminPaths.rangeGroupListPage.uri))
+        .expect(res => (expect(res).to.be as any).redirect.toLocation(AdminPaths.rangeGroupListPage.uri))
     })
   })
 })

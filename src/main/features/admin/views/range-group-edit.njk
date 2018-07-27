@@ -1,51 +1,51 @@
 {% from "includes/macros/form.njk" import csrfProtection, errorSummary, textArea, textInputInline, selectInline, submitButton %}
-{% extends "layout.njk" %}
+  {% extends "layout.njk" %}
 
-{% set title = t('Range Group | ' + serviceName) %}
-{% set heading = t('Range Group ') + form.model.code %}
+  {% set title = t('Range Group | ' + serviceName) %}
+  {% set heading = t('Range Group ') + form.model.code %}
 
-{% block content %}
+  {% block content %}
 
-  <div class="grid-row">
-    <div class="column-full">
-      <form method="post" action="/admin/range-groups/edit/{{ form.model.code }}">
-        {{ csrfProtection(csrfToken) }}
-        <input type="hidden" name="code" value="{{ form.model.code }}"/>
-        {{ textArea(t('Description'), 'description', form) }}
+<div class="grid-row">
+  <div class="column-full">
+    <form method="post" action="/admin/range-groups/edit/{{ form.model.code }}">
+      {{ csrfProtection(csrfToken) }}
+      <input type="hidden" name="code" value="{{ form.model.code }}"/>
+      {{ textArea(t('Description'), 'description', form) }}
 
-        <h3 class="heading-medium">Ranges</h3>
-        <table>
-          <thead>
-          <tr>
-            <th scope="col">{{ t('From') }}</th>
-            <th scope="col">{{ t('To') }}</th>
-            <th scope="col">{{ t('Fee') }}</th>
-          </tr>
-          </thead>
-          <tbody>
-          {% for range in form.model.ranges %}
-            <tr class="ranges-row">
-              <td class="from">{{ textInputInline('ranges['+loop.index0+'][from]', form) }}</td>
-              <td class="to">{{ textInputInline('ranges['+loop.index0+'][to]', form) }}</td>
-              <td class="fee-code">{{ selectInline('ranges['+loop.index0+'][feeCode]', feeOptions, form) }}</td>
-            </tr>
-          {% endfor %}
-          </tbody>
-        </table>
+      <h3 class="heading-medium">Ranges</h3>
+      <table>
+        <thead>
+        <tr>
+          <th scope="col">{{ t('From') }}</th>
+          <th scope="col">{{ t('To') }}</th>
+          <th scope="col">{{ t('Fee') }}</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for range in form.model.ranges %}
+        <tr class="ranges-row">
+          <td class="from">{{ textInputInline('ranges['+loop.index0+'][from]', form) }}</td>
+          <td class="to">{{ textInputInline('ranges['+loop.index0+'][to]', form) }}</td>
+          <td class="fee-code">{{ selectInline('ranges['+loop.index0+'][feeCode]', feeOptions, form) }}</td>
+        </tr>
+        {% endfor %}
+        </tbody>
+      </table>
 
-        <p>
-          <input type="submit" class="link-button" name="action[addRow]" value="{{ t('+ Add another range') }}">
-          <input type="submit" class="link-button" name="action[deleteRow]" value="{{ t('- Delete last range') }}">
-        </p>
+      <p>
+        <input type="submit" class="link-button" name="action[addRow]" value="{{ t('+ Add another range') }}">
+        <input type="submit" class="link-button" name="action[deleteRow]" value="{{ t('- Delete last range') }}">
+      </p>
 
-        <p>
-          {{ submitButton(t('Save')) }}
-        </p>
-      </form>
+      <p>
+        {{ submitButton(t('Save')) }}
+      </p>
+    </form>
 
-      <p><a href="/admin/range-groups/" class="link-back">{{ t("Back to range group list") }}</a></p>
-    </div>
+    <p><a href="/admin/range-groups/" class="link-back">{{ t("Back to range group list") }}</a></p>
   </div>
+</div>
 
 
-{% endblock %}
+  {% endblock %}

@@ -1,45 +1,46 @@
-'use strict'
+"use strict";
 /* global describe, it, beforeEach */
 
-const path = require('path')
+const path = require('path');
 
-const chai = require('chai')
-const expect = chai.expect
+const chai = require('chai');
+const expect = chai.expect;
 
-const spies = require('chai-spies')
+const spies = require('chai-spies');
 
-chai.use(spies)
+chai.use(spies);
 
-const Backend = require('../../../main/modules/i18n/backend')
+const Backend = require('../../../main/modules/i18n/backend');
 
-describe('A gettext backend for i18next', () => {
-  let backend
+describe("A gettext backend for i18next", function () {
+  let backend;
 
-  beforeEach(() => {
-    backend = new Backend()
-  })
+  beforeEach(function () {
+      backend = new Backend()
+    }
+  );
 
-  it('should read all translations from PO file', (done) => {
+  it("should read all translations from PO file", function (done) {
     backend.init(null, {
       loadPath: path.join(__dirname, 'fixtures/translation.po')
-    })
+    });
 
-    backend.read('cy', 'translation', (err, translation) => {
-      expect(err).to.be.null
-      expect(translation).to.contain.all.keys({ 'Good morning': 'Bore da' })
+    backend.read("cy", "translation", function (err, translation) {
+      expect(err).to.be.null;
+      expect(translation).to.contain.all.keys({"Good morning": "Bore da"});
       done()
     })
-  })
+  });
 
-  it('should fail with an error when file does not exist', (done) => {
+  it("should fail with an error when file does not exist", function (done) {
     backend.init(null, {
       loadPath: '/tmp/non-existing-file'
-    })
+    });
 
-    backend.read('cy', 'translation', (err, translation) => {
-      expect(err).to.be.an('error')
-      expect(translation).to.be.null
+    backend.read('cy', 'translation', function (err, translation) {
+      expect(err).to.be.an("error");
+      expect(translation).to.be.null;
       done()
     })
   })
-})
+});

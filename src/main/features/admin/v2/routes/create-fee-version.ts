@@ -6,7 +6,6 @@ import { FeesClient } from 'app/fees/v2/feesClient'
 
 import { CreateFeeVersionForm } from 'fees/v2/forms/model/CreateFeeVersionForm'
 import { FormValidator } from 'app/forms/validation/formValidator'
-import { FeeVersionDto } from 'fees/v2/model/fees-register-api-contract'
 
 class Renderer {
   static renderPage (form: Form<CreateFeeVersionForm>, res: express.Response) {
@@ -30,11 +29,11 @@ export default express.Router()
     const form: Form<CreateFeeVersionForm> = req.body
 
     FeesClient
-        .createFeeVersion(res.locals.user, req.params.feeCode, form.model.toDto() as FeeVersionDto)
-        .then( () => res.render('admin/v2/views/confirm-create-fee-version'))
-        .catch(
-          (e: Error) => {
-            form.backendErrors.push(e.message)
-            Renderer.renderPage(form, res)
-          })
+      .createFeeVersion(res.locals.user, req.params.feeCode, form.model.toDto())
+      .then(() => res.render('admin/v2/views/confirm-create-fee-version'))
+      .catch(
+        (e: Error) => {
+          form.backendErrors.push(e.message)
+          Renderer.renderPage(form, res)
+        })
   })
