@@ -17,7 +17,6 @@ import I18Next from 'modules/i18n'
 import Nunjucks from 'modules/nunjucks'
 import { Feature as AdminFeature } from 'admin/index'
 import { CsrfProtection } from 'modules/csrf'
-import * as dateFilter from 'nunjucks-date-filter'
 
 export const app: express.Express = express()
 
@@ -29,10 +28,12 @@ logger.info({
   environment: process.env.NODE_ENV
 })
 
+import * as dateFilter from 'nunjucks-date-filter'
+
 dateFilter.setDefaultFormat('DD-MM-YYYY')
 
 // Feature toggle to supress/disable edit features, defaultToggle for making the existing middleware test to pass
-let defaultToggle = isUndefined(process.env.NODE_ENV) ? true : false
+let defaultToggle = !!isUndefined(process.env.NODE_ENV)
 
 const toggles = { edit: process.env.FEATURE_TOGGLE || defaultToggle }
 featureToggles.load(toggles)
