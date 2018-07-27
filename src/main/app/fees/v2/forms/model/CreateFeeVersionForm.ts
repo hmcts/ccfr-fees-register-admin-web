@@ -9,42 +9,42 @@ import {
 } from 'fees/v2/model/fees-register-api-contract'
 
 export class CreateFeeVersionForm {
-  @IsDefined ( { message: ValidationErrors.TYPE_REQUIRED } )
-  @IsNotBlank ( { message: ValidationErrors.TYPE_REQUIRED } )
+  @IsDefined({ message: ValidationErrors.TYPE_REQUIRED })
+  @IsNotBlank({ message: ValidationErrors.TYPE_REQUIRED })
   amountType?: string
 
-  @IsDefined ( { message: ValidationErrors.DESCRIPTION_REQUIRED } )
-  @IsNotBlank ( { message: ValidationErrors.DESCRIPTION_REQUIRED } )
-  @MaxLength ( 2000, { message: ValidationErrors.DESCRIPTION_TOO_LONG } )
+  @IsDefined({ message: ValidationErrors.DESCRIPTION_REQUIRED })
+  @IsNotBlank({ message: ValidationErrors.DESCRIPTION_REQUIRED })
+  @MaxLength(2000, { message: ValidationErrors.DESCRIPTION_TOO_LONG })
   description?: string
 
-  @MaxLength ( 2000, { message: ValidationErrors.MEMO_LINE_TOO_LONG } )
-  @IsDefined ( { message: ValidationErrors.MEMO_LINE_REQUIRED } )
-  @IsNotBlank ( { message: ValidationErrors.MEMO_LINE_REQUIRED } )
+  @MaxLength(2000, { message: ValidationErrors.MEMO_LINE_TOO_LONG })
+  @IsDefined({ message: ValidationErrors.MEMO_LINE_REQUIRED })
+  @IsNotBlank({ message: ValidationErrors.MEMO_LINE_REQUIRED })
   memoLine?: string
 
-  @ValidateIf ( o => o.amountType === 'flat' )
-  @Min ( 0, { message: ValidationErrors.AMOUNT_NOT_NEGATIVE } )
-  @Max ( 9999999.99, { message: ValidationErrors.AMOUNT_TOO_BIG } )
-  @Fractions ( 0, 2, { message: ValidationErrors.AMOUNT_INVALID_DECIMALS } )
+  @ValidateIf(o => o.amountType === 'flat')
+  @Min(0, { message: ValidationErrors.AMOUNT_NOT_NEGATIVE })
+  @Max(9999999.99, { message: ValidationErrors.AMOUNT_TOO_BIG })
+  @Fractions(0, 2, { message: ValidationErrors.AMOUNT_INVALID_DECIMALS })
   amount?: number
 
-  @ValidateIf ( o => o.amountType === 'percentage' )
-  @Min ( 0.01, { message: ValidationErrors.PERCENTAGE_GREATER_THAN_0 } )
-  @Max ( 100, { message: ValidationErrors.PERCENTAGE_LOWER_THAN_100 } )
-  @Fractions ( 0, 2, { message: ValidationErrors.PERCENTAGE_INVALID_DECIMALS } )
+  @ValidateIf(o => o.amountType === 'percentage')
+  @Min(0.01, { message: ValidationErrors.PERCENTAGE_GREATER_THAN_0 })
+  @Max(100, { message: ValidationErrors.PERCENTAGE_LOWER_THAN_100 })
+  @Fractions(0, 2, { message: ValidationErrors.PERCENTAGE_INVALID_DECIMALS })
   percentage?: number
 
-  @IsDefined ( { message: ValidationErrors.DIRECTION_REQUIRED } )
-  @IsNotBlank ( { message: ValidationErrors.DIRECTION_REQUIRED } )
+  @IsDefined({ message: ValidationErrors.DIRECTION_REQUIRED })
+  @IsNotBlank({ message: ValidationErrors.DIRECTION_REQUIRED })
   direction?: string
 
-  @IsDefined ( { message: ValidationErrors.NAC_REQUIRED } )
-  @IsNotBlank ( { message: ValidationErrors.NAC_REQUIRED } )
+  @IsDefined({ message: ValidationErrors.NAC_REQUIRED })
+  @IsNotBlank({ message: ValidationErrors.NAC_REQUIRED })
   naturalAccountCode?: string
 
-  @IsDefined ( { message: ValidationErrors.FROM_DATE_REQUIRED } )
-  @IsNotBlank ( { message: ValidationErrors.FROM_DATE_REQUIRED } )
+  @IsDefined({ message: ValidationErrors.FROM_DATE_REQUIRED })
+  @IsNotBlank({ message: ValidationErrors.FROM_DATE_REQUIRED })
   fromDate?: Date
 
   toDate?: Date
@@ -53,8 +53,8 @@ export class CreateFeeVersionForm {
 
   siRefId?: string
 
-  @IsDefined ( { message: ValidationErrors.FEE_ORDER_NAME_REQUIRED } )
-  @IsNotBlank ( { message: ValidationErrors.FEE_ORDER_NAME_REQUIRED } )
+  @IsDefined({ message: ValidationErrors.FEE_ORDER_NAME_REQUIRED })
+  @IsNotBlank({ message: ValidationErrors.FEE_ORDER_NAME_REQUIRED })
   feeOrderName?: string
 
   constructor () {
@@ -64,9 +64,9 @@ export class CreateFeeVersionForm {
     this.direction = ''
   }
 
-  static fromObject ( value?: any ): CreateFeeVersionForm {
+  static fromObject (value?: any): CreateFeeVersionForm {
 
-    if ( !value ) {
+    if (!value) {
       return new CreateFeeVersionForm()
     }
 
@@ -84,7 +84,7 @@ export class CreateFeeVersionForm {
     return this.fillCommon(new FeeVersionDto())
   }
 
-  private fillCommon ( dto: FeeVersionDto ): FeeVersionDto {
+  private fillCommon (dto: FeeVersionDto): FeeVersionDto {
 
     dto = new FeeVersionDto()
     dto.version = null
@@ -109,15 +109,15 @@ export class CreateFeeVersionForm {
     switch (this.amountType) {
 
       case 'flat' :
-        dto.flat_amount = new FlatAmountDto ()
+        dto.flat_amount = new FlatAmountDto()
         dto.flat_amount.amount = this.amount
         break
       case 'percentage' :
-        dto.percentage_amount = new PercentageAmountDto ()
+        dto.percentage_amount = new PercentageAmountDto()
         dto.percentage_amount.percentage = this.percentage
         break
       case 'volume' :
-        dto.volume_amount = new VolumeAmountDto ()
+        dto.volume_amount = new VolumeAmountDto()
         dto.volume_amount.amount = this.amount
         break
     }

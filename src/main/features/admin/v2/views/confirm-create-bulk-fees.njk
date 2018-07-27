@@ -1,19 +1,19 @@
 {% extends "layout.njk" %}
 
-{% set title = t('Create csv fee confirmation | '  + serviceName + ' V2') %}
-{% set heading = t('Create csv fees confirmation') %}
+  {% set title = t('Create csv fee confirmation | '  + serviceName + ' V2') %}
+  {% set heading = t('Create csv fees confirmation') %}
 
-{% block content %}
+  {% block content %}
 
 <div class="grid-row">
   <div class="column-full">
 
     {% if bulkFeeError %}
-      <div class="error-summary" role="group" aria-labelledby="failure-error-summary-heading" tabindex="-1">
-        <h2 class="heading-medium error-summary-heading" id="failure-error-summary-heading">
+    <div class="error-summary" role="group" aria-labelledby="failure-error-summary-heading" tabindex="-1">
+      <h2 class="heading-medium error-summary-heading" id="failure-error-summary-heading">
         {{ errCause }}
-        </h2>
-      </div>
+      </h2>
+    </div>
     {% elif success %}
     <div class="success-summary" role="group" aria-labelledby="failure-error-summary-heading" tabindex="1">
       <h2 class="heading-medium error-summary-heading">
@@ -29,4 +29,4 @@
 
 </div>
 
-{% endblock %}
+  {% endblock %}

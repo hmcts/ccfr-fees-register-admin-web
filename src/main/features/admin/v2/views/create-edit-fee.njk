@@ -1,16 +1,16 @@
 {% set currentPage = 'create-edit-fee' %}
 
-{% from "includes/macros/form.njk" import csrfProtection, errorSummary, textArea, textInput, radioGroup, submitButton, selectInline, selectReferenceData %}
+  {% from "includes/macros/form.njk" import csrfProtection, errorSummary, textArea, textInput, radioGroup, submitButton, selectInline, selectReferenceData %}
   {% extends "layout.njk" %}
 
-    {% if edit %}
-      {% set thisPageHeading =  'Edit Fee' %}
-    {% else %}
-      {% set thisPageHeading = 'Create Fee' %}
-    {% endif %}
+  {% if edit %}
+  {% set thisPageHeading =  'Edit Fee' %}
+  {% else %}
+  {% set thisPageHeading = 'Create Fee' %}
+  {% endif %}
 
-    {% set title = t(thisPageHeading + ' | ' + serviceName) %}
-    {% set heading = t(thisPageHeading) %}
+  {% set title = t(thisPageHeading + ' | ' + serviceName) %}
+  {% set heading = t(thisPageHeading) %}
 
   {% block content %}
 
@@ -43,20 +43,21 @@
           <td>
             {% set fromDateError = form.errorFor('fromDate') %}
             <div class="form-group {% if fromDateError %} form-group-error {% endif %}">
-            <label class="form-label-bold" for="fromDate" id="fromDate[label]">From Date*</label>
-            <input type="date" id="fromDate" class="form-control {% if fromDateError %} form-control-error {% endif %}"
-                   name="fromDate"
-                   value="{{ form.valueFor('fromDate') }}"/>
+              <label class="form-label-bold" for="fromDate" id="fromDate[label]">From Date*</label>
+              <input type="date" id="fromDate"
+                     class="form-control {% if fromDateError %} form-control-error {% endif %}"
+                     name="fromDate"
+                     value="{{ form.valueFor('fromDate') }}"/>
             </div>
           </td>
 
           <td>
             <div class="form-group">
-            <label class="form-label-bold" for="toDate" id="toDate[label]">To Date</label>
-            <input type="date" class="form-control"
-                   id="toDate"
-                   name="toDate"
-                   value="{{ form.valueFor('toDate') }}"/>
+              <label class="form-label-bold" for="toDate" id="toDate[label]">To Date</label>
+              <input type="date" class="form-control"
+                     id="toDate"
+                     name="toDate"
+                     value="{{ form.valueFor('toDate') }}"/>
             </div>
           </td>
         </tr>
@@ -77,7 +78,8 @@
           </td>
 
           <td>
-            {{ selectReferenceData ('rangeUnit', referenceData.rangeUnits, form, 'Range Units*', disabled = not isRanged)
+            {{ selectReferenceData ('rangeUnit', referenceData.rangeUnits, form, 'Range Units*', disabled = not
+            isRanged)
             }}
           </td>
 
@@ -104,7 +106,7 @@
 
         <tr>
           <td colspan="2">
-              {{ selectReferenceData ('applicantType', referenceData.applicantTypes, form, 'Applicant type*') }}
+            {{ selectReferenceData ('applicantType', referenceData.applicantTypes, form, 'Applicant type*') }}
           </td>
         </tr>
 

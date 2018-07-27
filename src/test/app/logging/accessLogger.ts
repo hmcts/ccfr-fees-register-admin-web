@@ -7,13 +7,6 @@ const expect = chai.expect
 import { AccessLogger } from 'logging/accessLogger'
 
 describe('AccessLogger', () => {
-  let accessLogger
-  let req
-  let res
-  let errorCall
-  let warnCall
-  let debugCall
-  let traceCall
 
   /* tslint:disable:no-empty allow empty for mocking */
   let logger = {
@@ -22,15 +15,20 @@ describe('AccessLogger', () => {
     warn: (str) => {
     }
   }
+
+  let accessLogger
+  let req
+  let res
+  let errorCall = chai.spy.on(logger, 'error')
+  let warnCall = chai.spy.on(logger, 'warn')
+  let debugCall = chai.spy.on(logger, 'debug')
+  let traceCall = chai.spy.on(logger, 'trace')
+
   /* tslint:enable:no-empty */
 
   beforeEach(() => {
     req = {}
     res = {}
-    errorCall = chai.spy.on(logger, 'error')
-    warnCall = chai.spy.on(logger, 'warn')
-    debugCall = chai.spy.on(logger, 'debug')
-    traceCall = chai.spy.on(logger, 'trace')
     accessLogger = new AccessLogger(logger)
   })
 

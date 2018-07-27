@@ -56,8 +56,10 @@ export class FeeVersionDto {
   percentage_amount: PercentageAmountDto
   amount_type: string
   volume_amount: VolumeAmountDto
-  author: string /* READ ONLY */
-  approvedBy: string /* READ ONLY */
+  author: string
+  /* READ ONLY */
+  approvedBy: string
+  /* READ ONLY */
   memo_line: string
   fee_order_name: string
   natural_account_code: string
@@ -65,11 +67,11 @@ export class FeeVersionDto {
   si_ref_id: string
   direction: string
 
-  public getValidFrom() {
+  public getValidFrom () {
     return new Date(this.valid_from).toDateString
   }
 
-  public getValidTo() {
+  public getValidTo () {
     return new Date(this.valid_to).toDateString
   }
 
@@ -117,7 +119,7 @@ export class FeeDto {
   service: string
   channel: string
   event: string
-  fee_type:string
+  fee_type: string
   applicant_type: string
   unspecified_claim_amount: boolean
 }

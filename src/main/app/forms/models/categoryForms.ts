@@ -19,15 +19,15 @@ export class ValidationErrors {
 }
 
 export class EditCategoryForm {
-  @IsDefined({message: ValidationErrors.CODE_REQUIRED})
-  @IsNotBlank({message: ValidationErrors.CODE_REQUIRED})
-  @MaxLength(50, {message: ValidationErrors.CODE_TOO_LONG})
-  @Matches(/[A-Za-z0-9_-]/, {message: ValidationErrors.CODE_INVALID_CHARACTERS})
+  @IsDefined({ message: ValidationErrors.CODE_REQUIRED })
+  @IsNotBlank({ message: ValidationErrors.CODE_REQUIRED })
+  @MaxLength(50, { message: ValidationErrors.CODE_TOO_LONG })
+  @Matches(/[A-Za-z0-9_-]/, { message: ValidationErrors.CODE_INVALID_CHARACTERS })
   code?: string
 
-  @IsDefined({message: ValidationErrors.DESCRIPTION_REQUIRED})
-  @IsNotBlank({message: ValidationErrors.DESCRIPTION_REQUIRED})
-  @MaxLength(2000, {message: ValidationErrors.DESCRIPTION_TOO_LONG})
+  @IsDefined({ message: ValidationErrors.DESCRIPTION_REQUIRED })
+  @IsNotBlank({ message: ValidationErrors.DESCRIPTION_REQUIRED })
+  @MaxLength(2000, { message: ValidationErrors.DESCRIPTION_TOO_LONG })
   description?: string
 
   rangeGroupCode?: string
@@ -78,11 +78,11 @@ export class EditCategoryForm {
 }
 
 export class CreateCategoryForm {
-  @IsDefined({message: ValidationErrors.CODE_REQUIRED})
-  @IsNotBlank({message: ValidationErrors.CODE_REQUIRED})
-  @MaxLength(50, {message: ValidationErrors.CODE_TOO_LONG})
-  @Matches(/[A-Za-z0-9_-]+/, {message: ValidationErrors.CODE_INVALID_CHARACTERS})
-  @IsUnique((value) => FeesClient.checkCategoryExists(value).then((exists) => !exists), {message: ValidationErrors.CODE_EXISTS})
+  @IsDefined({ message: ValidationErrors.CODE_REQUIRED })
+  @IsNotBlank({ message: ValidationErrors.CODE_REQUIRED })
+  @MaxLength(50, { message: ValidationErrors.CODE_TOO_LONG })
+  @Matches(/[A-Za-z0-9_-]+/, { message: ValidationErrors.CODE_INVALID_CHARACTERS })
+  @IsUnique((value) => FeesClient.checkCategoryExists(value).then((exists) => !exists), { message: ValidationErrors.CODE_EXISTS })
   code?: string
 
   constructor (code?: string) {

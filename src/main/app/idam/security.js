@@ -173,7 +173,7 @@ function protectImpl(req, res, next, self) {
 }
 
 Security.prototype.protect = function (role) {
-  if(process.env.DISABLE_AUTH === 'true'){
+  if (process.env.DISABLE_AUTH === 'true') {
     return function (req, res, next) {
       res.locals.user = {
         userInfo: ['freg'],

@@ -48,34 +48,34 @@ describe('CSV Upload Class Test', () => {
     const mockExpressResponse = require('node-mocks-http/lib/express/mock-express').response
     mockExpressResponse.locals = { user: idamUser }
     csvUploadService.importFees(fees, mockExpressResponse)
-    verify(mockedCsvUploadService.importFees(fees,mockExpressResponse)).called()
+    verify(mockedCsvUploadService.importFees(fees, mockExpressResponse)).called()
   })
   it('should return true', async () => {
     const fees: CsvFeeDto[] = [csvFeeRanged]
     const mockExpressResponse = require('node-mocks-http/lib/express/mock-express').response
     mockExpressResponse.locals = { user: idamUser }
     csvUploadService.importFees(fees, mockExpressResponse)
-    verify(mockedCsvUploadService.importFees(fees,mockExpressResponse)).called()
+    verify(mockedCsvUploadService.importFees(fees, mockExpressResponse)).called()
   })
   it('should return true', async () => {
     const fees: CsvFeeDto[] = [csvFeeBanded]
     const mockExpressResponse = require('node-mocks-http/lib/express/mock-express').response
     mockExpressResponse.locals = { user: idamUser }
     csvUploadService.importFees(fees, mockExpressResponse)
-    verify(mockedCsvUploadService.importFees(fees,mockExpressResponse)).called()
+    verify(mockedCsvUploadService.importFees(fees, mockExpressResponse)).called()
   })
   it('should return true', async () => {
     const fees: CsvFeeDto[] = [csvFeeRateable]
     const mockExpressResponse = require('node-mocks-http/lib/express/mock-express').response
     mockExpressResponse.locals = { user: idamUser }
     csvUploadService.importFees(fees, mockExpressResponse)
-    verify(mockedCsvUploadService.importFees(fees,mockExpressResponse)).called()
+    verify(mockedCsvUploadService.importFees(fees, mockExpressResponse)).called()
   })
   it('should return true', async () => {
     const fees: CsvFeeDto[] = [csvFeeRelational]
     const mockExpressResponse = require('node-mocks-http/lib/express/mock-express').response
     mockExpressResponse.locals = { user: idamUser }
     csvUploadService.importFees(fees, mockExpressResponse)
-    verify(mockedCsvUploadService.importFees(fees,mockExpressResponse)).called()
+    verify(mockedCsvUploadService.importFees(fees, mockExpressResponse)).called()
   })
 })

@@ -1,4 +1,8 @@
 {
+  "security": {
+    "clientId": "FEES_CLIENT_ID",
+    "clientSecret": "FEES_CLIENT_SECRET"
+  },
   "idam": {
     "authentication-web": {
       "url": "https://idam.dev.ccidam.reform.hmcts.net"

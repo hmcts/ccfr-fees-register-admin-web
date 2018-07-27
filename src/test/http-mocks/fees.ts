@@ -10,22 +10,22 @@ function validFeeWithCode (code: string, description?: string) {
     'type': 'fixed',
     'description': description || `Description for ${code}`,
     'amount': 109000,
-    'applicant_type' : {
+    'applicant_type': {
       name: 'xxx'
     },
-    'service_type' : {
+    'service_type': {
       name: 'xxx'
     },
-    'channel_type' : {
+    'channel_type': {
       name: 'xxx'
     },
-    'event_type' : {
+    'event_type': {
       name: 'xxx'
     },
-    'jurisdiction1' : {
+    'jurisdiction1': {
       name: 'xxx'
     },
-    'jurisdiction2' : {
+    'jurisdiction2': {
       name: 'xxx'
     },
     'fee_versions': [{
