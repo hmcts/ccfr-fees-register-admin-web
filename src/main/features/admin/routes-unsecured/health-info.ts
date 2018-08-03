@@ -8,6 +8,9 @@ import { CompositeCheck } from '@hmcts/nodejs-healthcheck/healthcheck/checks'
 import * as outputs from '@hmcts/nodejs-healthcheck/healthcheck/outputs'
 import { getBuildInfo } from '@hmcts/nodejs-healthcheck/healthcheck/routes'
 
+// ignore self signed certs
+process.env.NODE_TLS_REJECT_UNAUTHORIZED = '0'
+
 function renderHealthPage (config, req: express.Request, res: express.Response) {
   const check = new CompositeCheck(config.checks)
   getBuildInfo().then((buildInfo) => {
