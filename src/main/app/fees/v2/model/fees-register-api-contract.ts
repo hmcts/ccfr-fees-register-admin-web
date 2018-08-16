@@ -119,6 +119,7 @@ export class FeeDto {
   service: string
   channel: string
   event: string
+  keyword: string
   fee_type: string
   applicant_type: string
   unspecified_claim_amount: boolean
