@@ -72,7 +72,8 @@ describe('Csv fees upload', () => {
             'feeOrderName': 'XXX',
             'naturalAccountCode': 'XXX',
             'memoLine': 'XXX',
-            'siRefId': 'XXX'
+            'siRefId': 'XXX',
+            'keyword': 'testKeyword1'
           }, {
             'feeCode': 'X0034',
             'feeDescription': 'xxxRecovery of Land - County Court',
@@ -305,7 +306,8 @@ describe('Csv fees upload', () => {
             'feeOrderName': 'XXX',
             'naturalAccountCode': 'XXX',
             'memoLine': 'XXX',
-            'siRefId': 'XXX'
+            'siRefId': 'XXX',
+            'keyword': 'testKeyword1'
           }, {
             'feeCode': 'X0034',
             'feeDescription': 'xxxRecovery of Land - County Court',
@@ -328,7 +330,8 @@ describe('Csv fees upload', () => {
             'feeOrderName': 'XXX',
             'naturalAccountCode': 'XXX',
             'memoLine': 'XXX',
-            'siRefId': 'XXX'
+            'siRefId': 'XXX',
+            'keyword': 'testKeyword2'
           }])
         })
         .expect(res => (expect(res).to.be as any).successful.withText('Create csv fees confirmation')
@@ -365,7 +368,8 @@ describe('Csv fees upload', () => {
             'feeOrderName': 'XXX',
             'naturalAccountCode': 'XXX',
             'memoLine': 'XXX',
-            'siRefId': 'XXX'
+            'siRefId': 'XXX',
+            'keyword': 'testKeyword1'
           }, {
             'feeCode': 'X0034',
             'feeDescription': 'xxxRecovery of Land - County Court',
