@@ -5,12 +5,23 @@
 def product = "fees-register"
 def component = "frontend"
 
+String notificationsChannel = '#cc-payments-tech'
+
 withPipeline("nodejs", product, component) {
-  after('checkout') {
-    echo 'ccfr-fees-register-admin-web checked out'
+  afterCheckout {
+    onMaster {
+      try {
+        sh """
+          git fetch origin demo:demo
+          git push --force origin HEAD:demo
+        """
+      } catch (err) {
+        notifyBuildEvent channel: notificationsChannel, color: 'warning', message: 'Failed to update demo branch'
+      }
+    }
   }
   after('build') {
     sh 'yarn setup'
   }
-  enableSlackNotifications('#cc-payments-tech') 
+  enableSlackNotifications(notificationsChannel)
 }
