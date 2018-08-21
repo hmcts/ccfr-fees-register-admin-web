@@ -34,6 +34,7 @@
       <th class="bold-xxsmall center-text">Service</th>
       <th class="bold-xxsmall center-text">Event</th>
       <th class="bold-xxsmall center-text">Channel</th>
+      <th class="bold-xxsmall center-text">Keyword</th>
       <th class="bold-xxsmall center-text">Version</th>
       <th class="bold-xxsmall center-text">Valid From</th>
       <th class="bold-xxsmall center-text">Valid To</th>
@@ -106,6 +107,7 @@
       <td class="font-xxsmall center-text">{{ fee.service_type.name }}</td>
       <td class="font-xxsmall center-text">{{ fee.event_type.name }}</td>
       <td class="font-xxsmall center-text">{{ fee.channel_type.name }}</td>
+      <td class="font-xxsmall center-text">{{ fee.keyword }}</td>
       <td class="font-xxsmall center-text">{{ displayedFeeVersion.version }}</td>
       {% if displayedFeeVersion.valid_from %}
       <td class="font-xxsmall center-text">{{ displayedFeeVersion.valid_from | date}}</td>
@@ -158,6 +160,7 @@
       <th class="bold-xxsmall center-text">Service</th>
       <th class="bold-xxsmall center-text">Event</th>
       <th class="bold-xxsmall center-text">Channel</th>
+      <th class="bold-xxsmall center-text">Keyword</th>
       <th class="bold-xxsmall center-text">Version</th>
       <th class="bold-xxsmall center-text">Valid From</th>
       <th class="bold-xxsmall center-text">Valid To</th>
@@ -221,6 +224,7 @@
       <td class="font-xxsmall center-text">{{ fee.service_type.name }}</td>
       <td class="font-xxsmall center-text">{{ fee.event_type.name }}</td>
       <td class="font-xxsmall center-text">{{ fee.channel_type.name }}</td>
+      <td class="font-xxsmall center-text">{{ fee.keyword }}</td>
       <td class="font-xxsmall center-text">{{ displayedFeeVersion.version }}</td>
       {% if displayedFeeVersion.valid_from %}
       <td class="font-xxsmall center-text">{{ displayedFeeVersion.valid_from | date }}</td>
@@ -269,6 +273,7 @@
       <th class="bold-xxsmall center-text">Service</th>
       <th class="bold-xxsmall center-text">Event</th>
       <th class="bold-xxsmall center-text">Channel</th>
+      <th class="bold-xxsmall center-text">Keyword</th>
       <th class="bold-xxsmall center-text">Version</th>
       <th class="bold-xxsmall center-text">Valid From</th>
       <th class="bold-xxsmall center-text">Valid To</th>
@@ -312,6 +317,7 @@
       <td class="font-xxsmall center-text">{{ fee.service_type.name }}</td>
       <td class="font-xxsmall center-text">{{ fee.event_type.name }}</td>
       <td class="font-xxsmall center-text">{{ fee.channel_type.name }}</td>
+      <td class="font-xxsmall center-text">{{ fee.keyword }}</td>
       <td class="font-xxsmall center-text">{{ displayedFeeVersion.version }}</td>
       {% if displayedFeeVersion.valid_from %}
       <td class="font-xxsmall center-text">{{ displayedFeeVersion.valid_from | date }}</td>
