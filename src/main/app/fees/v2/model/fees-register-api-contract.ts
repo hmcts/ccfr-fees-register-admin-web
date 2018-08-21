@@ -31,6 +31,7 @@ export class Fee2Dto {
   jurisdiction1: Jurisdiction1
   jurisdiction2: Jurisdiction2
   service_type: ServiceType
+  keyword: string
   applicant_type: ApplicantType
   fee_versions: FeeVersionDto[]
   current_version: FeeVersionDto
@@ -119,6 +120,7 @@ export class FeeDto {
   service: string
   channel: string
   event: string
+  keyword: string
   fee_type: string
   applicant_type: string
   unspecified_claim_amount: boolean
