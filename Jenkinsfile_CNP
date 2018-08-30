@@ -7,10 +7,11 @@ def component = "frontend"
 
 withPipeline("nodejs", product, component) {
   after('checkout') {
+    sh "yarn cache clean"
     echo 'ccfr-fees-register-admin-web checked out'
   }
   after('build') {
     sh 'yarn setup'
   }
-  enableSlackNotifications('#cc-payments-tech') 
+  enableSlackNotifications('#cc-payments-tech')
 }
