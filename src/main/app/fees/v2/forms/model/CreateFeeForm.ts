@@ -106,8 +106,8 @@ export class CreateFeeForm {
   @IsDefined({ message: ValidationErrors.FEE_ORDER_NAME_REQUIRED })
   feeOrderName?: string
 
-  @IsOptional({ message: ValidationErrors.ALPHA_NUMERIC_WITH_HYPHEN })
-  @Matches(/[^a-zA-Z0-9.\-]/, {
+  @IsOptional()
+  @Matches(/^([a-zA-Z0-9-]*)$/, {
     message: ValidationErrors.ALPHA_NUMERIC_WITH_HYPHEN
   })
   keyword?: string
@@ -127,6 +127,7 @@ export class CreateFeeForm {
     this.rangeUnit = ''
     this.applicantType = ''
     this.edit = false
+    this.keyword = null
   }
 
   static fromGivenVersion (fee: any, version: any, isEdit: boolean): CreateFeeForm {
@@ -226,7 +227,7 @@ export class CreateFeeForm {
     dto.jurisdiction1 = this.jurisdiction1
     dto.jurisdiction2 = this.jurisdiction2
     dto.event = this.event
-    dto.keyword = this.keyword
+    dto.keyword = this.keyword !== '' ? this.keyword : null
     dto.applicant_type = this.applicantType
 
     dto.version = new FeeVersionDto()
