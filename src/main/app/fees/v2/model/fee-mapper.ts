@@ -58,6 +58,7 @@ export class FeeMapper {
     fixedFeeDto.fee_type = dto.feeType
     fixedFeeDto.applicant_type = dto.applicantType
     fixedFeeDto.unspecified_claim_amount = false
+    fixedFeeDto.keyword = dto.keyword
 
     return fixedFeeDto
   }
@@ -77,6 +78,7 @@ export class FeeMapper {
     rangedFeeDto.unspecified_claim_amount = false
     rangedFeeDto.min_range = Number(dto.rangeFrom)
     rangedFeeDto.max_range = Number(dto.rangeTo)
+    rangedFeeDto.keyword = dto.keyword
 
     return rangedFeeDto
   }

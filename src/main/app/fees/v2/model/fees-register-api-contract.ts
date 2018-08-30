@@ -122,6 +122,7 @@ export class FeeDto {
   fee_type: string
   applicant_type: string
   unspecified_claim_amount: boolean
+  keyword: string
 }
 
 export class FixedFeeDto extends FeeDto {

@@ -26,7 +26,8 @@ let fixedFlatFeeCsv = {
   memoLine: 'xxx',
   feeOrderName: 'xxx',
   siRefId: 'xxx',
-  feeType: 'fixed'
+  feeType: 'fixed',
+  keyword: 'keyword'
 }
 
 let rangedPercentageFeeCsv = {
@@ -52,7 +53,8 @@ let rangedPercentageFeeCsv = {
   amountType: '%',
   feeType: 'ranged',
   rangeFrom: '1',
-  rangeTo: '100'
+  rangeTo: '100',
+  keyword: 'keyword'
 }
 
 let bandedVolumeFeeCsv = {
@@ -78,7 +80,8 @@ let bandedVolumeFeeCsv = {
   memoLine: 'xxx',
   feeOrderName: 'xxx',
   siRefId: 'xxx',
-  feeType: 'banded'
+  feeType: 'banded',
+  keyword: 'keyword'
 }
 let rateableFlatFeeCsv = {
   feeVersion: '1',
@@ -103,7 +106,8 @@ let rateableFlatFeeCsv = {
   memoLine: 'xxx',
   feeOrderName: 'xxx',
   siRefId: 'xxx',
-  feeType: 'rateable'
+  feeType: 'rateable',
+  keyword: 'keyword'
 }
 let relationalFlatFeeCsv = {
   feeVersion: '1',
@@ -128,7 +132,8 @@ let relationalFlatFeeCsv = {
   memoLine: 'xxx',
   feeOrderName: 'xxx',
   siRefId: 'xxx',
-  feeType: 'relational'
+  feeType: 'relational',
+  keyword: 'keyword'
 }
 
 describe('fee-mapper', () => {
