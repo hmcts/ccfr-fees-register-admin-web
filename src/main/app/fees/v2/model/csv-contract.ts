@@ -22,4 +22,5 @@ export class CsvFeeDto {
   naturalAccountCode: string
   memoLine: string
   siRefId: string
+  keyword: string
 }
