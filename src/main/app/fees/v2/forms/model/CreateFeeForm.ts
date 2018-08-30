@@ -1,4 +1,4 @@
-import { IsDefined, Max, MaxLength, Min, ValidateIf } from 'class-validator'
+import { IsDefined, Max, MaxLength, Min, ValidateIf, IsOptional, Matches } from 'class-validator'
 
 import { IsNotBlank } from 'app/forms/validation/validators/isBlank'
 import { Fractions } from 'app/forms/validation/validators/fractions'
@@ -106,6 +106,12 @@ export class CreateFeeForm {
   @IsDefined({ message: ValidationErrors.FEE_ORDER_NAME_REQUIRED })
   feeOrderName?: string
 
+  @IsOptional({ message: ValidationErrors.ALPHA_NUMERIC_WITH_HYPHEN })
+  @Matches(/[^a-zA-Z0-9.\-]/, {
+    message: ValidationErrors.ALPHA_NUMERIC_WITH_HYPHEN
+  })
+  keyword?: string
+
   constructor () {
     this.code = null
     this.type = 'fixed'
@@ -151,6 +157,7 @@ export class CreateFeeForm {
     form.memoLine = (form as any).memo_line
     form.naturalAccountCode = (form as any).natural_account_code
     form.siRefId = (form as any).si_ref_id
+    form.keyword = (form as any).keyword
     form.feeOrderName = (form as any).fee_order_name
     form.statutoryInstrument = (form as any).statutory_instrument
     form.fromRange = (form as any).min_range
@@ -219,6 +226,7 @@ export class CreateFeeForm {
     dto.jurisdiction1 = this.jurisdiction1
     dto.jurisdiction2 = this.jurisdiction2
     dto.event = this.event
+    dto.keyword = this.keyword
     dto.applicant_type = this.applicantType
 
     dto.version = new FeeVersionDto()
