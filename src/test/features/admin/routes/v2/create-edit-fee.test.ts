@@ -54,6 +54,8 @@ let rangedFee = {
     name: 'xxx'
   },
 
+  keyword: 'rangedKeyword',
+
   fee_type: 'ranged',
 
   min_range: 1,
@@ -105,6 +107,8 @@ let fixedFee = {
   jurisdiction2: {
     name: 'xxx'
   },
+
+  keyword: 'testKeyword',
 
   fee_type: 'fixed',
 
