@@ -5,7 +5,7 @@ import { expect } from 'chai'
 import { Validator } from 'class-validator'
 import './feesClientMocks'
 import { expectValidationError } from './validationUtils'
-import { CreateFeeForm, EditFeeForm, ValidationErrors } from 'app/forms/models/feeForms'
+import { EditFeeForm, ValidationErrors } from 'app/forms/models/feeForms'
 import * as _ from 'lodash'
 
 import Fee from 'app/fees/fee'
@@ -162,32 +162,6 @@ describe('EditFeeForm', () => {
     it('should convert float point correctly', () => {
       let feeForm = new EditFeeForm('code', 'type', 'description', 0.57, 222)
       expect(feeForm.toFee()).deep.equal(new Fee('code', 'type', 'description', 57, 222))
-    })
-  })
-})
-
-describe('CreateFeeForm', () => {
-  function validCreateFeeFormWith (otherFields: any) {
-    const validFee = { code: 'any', type: 'fixed' }
-    return CreateFeeForm.fromObject(_.merge(validFee, otherFields))
-  }
-
-  describe('code uniqueness validation', () => {
-    const validator: Validator = new Validator()
-
-    it('should allow non existing code', (done) => {
-      validator.validate(validCreateFeeFormWith({ code: 'non-existing' })).then((errors) => {
-        expect(errors.length).to.equal(0)
-        done()
-      })
-    })
-
-    xit('should reject existing code', (done) => {
-      validator.validate(validCreateFeeFormWith({ code: 'existing' })).then((errors) => {
-        expect(errors.length).to.equal(1)
-        expectValidationError(errors, ValidationErrors.CODE_EXISTS)
-        done()
-      })
     })
   })
 })

@@ -31,6 +31,7 @@ export class Fee2Dto {
   jurisdiction1: Jurisdiction1
   jurisdiction2: Jurisdiction2
   service_type: ServiceType
+  keyword: string
   applicant_type: ApplicantType
   fee_versions: FeeVersionDto[]
   current_version: FeeVersionDto
