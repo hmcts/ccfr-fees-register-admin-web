@@ -101,6 +101,7 @@ function getValidateKeywordUrl() {
   return url;
 }
 
+/* eslint-disable */
 function onKeywordChanged() {
 
   const service = document.getElementById("service").value;
@@ -160,8 +161,8 @@ function onKeywordChanged() {
 
     }, 250
   );
-
 }
+/* eslint-enable */
 
 document.addEventListener("DOMContentLoaded", function () {
   document.getElementById("keyword")
