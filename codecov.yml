@@ -4,11 +4,13 @@ codecov:
 
 coverage:
   precision: 2
+  threshold: 4
+  base: pr
   round: down
   range: "70...100"
 
   status:
-    project: yes
+    project: no
     patch: no
     changes: no
 
