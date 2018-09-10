@@ -1,5 +1,5 @@
 vault_section = "prod"
 capacity = "2"
-idam_api_url = "https://prod-idamapi.reform.hmcts.net:3511"
+idam_api_url = "https://idam-api.platform.hmcts.net"
 authentication_web_url = "https://www.idam.reform.hmcts.net"
 external_host_name ="www.fees-register.platform.hmcts.net"
