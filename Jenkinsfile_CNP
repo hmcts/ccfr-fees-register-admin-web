@@ -13,5 +13,11 @@ withPipeline("nodejs", product, component) {
   after('build') {
     sh 'yarn setup'
   }
+
+}
+
+withPipeline("nodejs", product, component) {
+  enableDockerBuild()
+  enableDeployToAKS()
   enableSlackNotifications('#cc-payments-tech')
 }
