@@ -2,17 +2,7 @@
 
 let keywordClass;
 
-function enableRangedFees() {
-  document.getElementById("rangeUnit").removeAttribute("disabled");
-  document.getElementById("fromRange").removeAttribute("disabled");
-  document.getElementById("toRange").removeAttribute("disabled");
-}
-
-function disabledRangedFees() {
-  document.getElementById("rangeUnit").setAttribute("disabled", "disabled");
-  document.getElementById("fromRange").setAttribute("disabled", "disabled");
-  document.getElementById("toRange").setAttribute("disabled", "disabled");
-}
+let type = 'fixed';
 
 function formatDecimals(event) {
 
@@ -21,16 +11,7 @@ function formatDecimals(event) {
   if (event.target.value.endsWith(".00")) {
     event.target.value = parseInt(event.target.value);
   }
-
 }
-
-document.addEventListener("DOMContentLoaded", function () {
-  document.getElementById("typefixed").addEventListener("click", disabledRangedFees);
-  document.getElementById("typeranged").addEventListener("click", enableRangedFees);
-  document.getElementById("amount").onchange = formatDecimals;
-  document.getElementById("fromRange").onchange = formatDecimals;
-  document.getElementById("toRange").onchange = formatDecimals;
-});
 
 function enableFlatOrVolumeAmount() {
   document.getElementById("amount").removeAttribute("disabled");
@@ -90,12 +71,14 @@ function getValidateKeywordUrl() {
 
   const rangeTo = document.getElementById("toRange").value;
 
-  if (rangeFrom) {
-    url += `&rangeFrom=${rangeFrom}`;
-  }
+  if (type === 'ranged') {
+    if (rangeFrom) {
+      url += `&rangeFrom=${rangeFrom}`;
+    }
 
-  if (rangeTo) {
-    url += `&rangeTo=${rangeTo}`;
+    if (rangeTo) {
+      url += `&rangeTo=${rangeTo}`;
+    }
   }
 
   return url;
@@ -162,9 +145,40 @@ function onKeywordChanged() {
     }, 250
   );
 }
+
 /* eslint-enable */
 
+function enableRangedFees() {
+  document.getElementById("rangeUnit").removeAttribute("disabled");
+  document.getElementById("fromRange").removeAttribute("disabled");
+  document.getElementById("toRange").removeAttribute("disabled");
+
+  type = 'ranged';
+
+  onKeywordChanged();
+}
+
+function disabledRangedFees() {
+  document.getElementById("rangeUnit").setAttribute("disabled", "disabled");
+  document.getElementById("fromRange").setAttribute("disabled", "disabled");
+  document.getElementById("toRange").setAttribute("disabled", "disabled");
+
+  type = 'fixed';
+
+  onKeywordChanged();
+}
+
 document.addEventListener("DOMContentLoaded", function () {
+
+  document.getElementById("typefixed")
+    .addEventListener("click", disabledRangedFees);
+  document.getElementById("typeranged")
+    .addEventListener("click", enableRangedFees);
+
+  document.getElementById("amount").onchange = formatDecimals;
+  document.getElementById("fromRange").onchange = formatDecimals;
+  document.getElementById("toRange").onchange = formatDecimals;
+
   document.getElementById("keyword")
     .addEventListener("keydown", onKeywordChanged);
   document.getElementById("keyword")
@@ -190,4 +204,3 @@ document.addEventListener("DOMContentLoaded", function () {
   keywordClass = document.getElementById("keyword").className;
 
 });
-
