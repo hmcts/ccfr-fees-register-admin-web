@@ -2,7 +2,7 @@
 
 let keywordClass;
 
-let type = 'fixed';
+let type = "fixed";
 
 function formatDecimals(event) {
 
@@ -71,7 +71,7 @@ function getValidateKeywordUrl() {
 
   const rangeTo = document.getElementById("toRange").value;
 
-  if (type === 'ranged') {
+  if (type === "ranged") {
     if (rangeFrom) {
       url += `&rangeFrom=${rangeFrom}`;
     }
@@ -153,7 +153,7 @@ function enableRangedFees() {
   document.getElementById("fromRange").removeAttribute("disabled");
   document.getElementById("toRange").removeAttribute("disabled");
 
-  type = 'ranged';
+  type = "ranged";
 
   onKeywordChanged();
 }
@@ -163,7 +163,7 @@ function disabledRangedFees() {
   document.getElementById("fromRange").setAttribute("disabled", "disabled");
   document.getElementById("toRange").setAttribute("disabled", "disabled");
 
-  type = 'fixed';
+  type = "fixed";
 
   onKeywordChanged();
 }
