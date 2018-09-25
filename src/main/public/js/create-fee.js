@@ -182,6 +182,11 @@ document.addEventListener("DOMContentLoaded", function () {
   document.getElementById("event")
     .addEventListener("change", onKeywordChanged);
 
+  document.getElementById("fromRange")
+    .addEventListener("input", onKeywordChanged);
+  document.getElementById("toRange")
+    .addEventListener("input", onKeywordChanged);
+
   keywordClass = document.getElementById("keyword").className;
 
 });
