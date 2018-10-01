@@ -23,11 +23,17 @@ function formatDecimals(event) {
 }
 
 document.addEventListener('DOMContentLoaded', function () {
-  document.getElementById('typefixed').addEventListener('click', disabledRangedFees);
-  document.getElementById('typeranged').addEventListener('click', enableRangedFees);
-  document.getElementById('amount').onchange = formatDecimals;
-  document.getElementById('fromRange').onchange = formatDecimals;
-  document.getElementById('toRange').onchange = formatDecimals;
+  if(document.getElementById('typefixed') && document.getElementById('typeranged')) {
+    document.getElementById('typefixed').addEventListener('click', disabledRangedFees);
+    document.getElementById('typeranged').addEventListener('click', enableRangedFees);
+  }
+  if(document.getElementById('amount')) {
+    document.getElementById('amount').onchange = formatDecimals;
+  }
+  if(document.getElementById('fromRange') && document.getElementById('toRange')) {
+    document.getElementById('fromRange').onchange = formatDecimals;
+    document.getElementById('toRange').onchange = formatDecimals;
+  }
 });
 
 function enableFlatOrVolumeAmount() {
