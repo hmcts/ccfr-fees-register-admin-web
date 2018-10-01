@@ -147,12 +147,16 @@
             {{ selectReferenceData ('direction', referenceData.directionTypes, form, 'Direction*') }}
           </td>
         </tr>
-        <tr>
+        <tr rowspan="2">
             <td colspan="2">
-              {{ textInput(t('Keyword'), 'keyword', form) }}
+              <p>{{ textInput(t('Keyword'), 'keyword', form) }}</p>
+              <p id="keyword-error" hidden="true">
+              <span class="form-group-error form-label-bold">
+                Keyword already in use
+              </span>
+              </p>
             </td>
         </tr>
-
         <tr>
 
           <td> {{ textInput(t('Fee Order Name'), 'feeOrderName', form) }}</td>
