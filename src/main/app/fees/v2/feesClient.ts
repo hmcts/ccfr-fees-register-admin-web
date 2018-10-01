@@ -201,6 +201,28 @@ export class FeesClient {
       .catch(FeesClientErrorMapper)
   }
 
+  static prevalidate (user, event: string, service: string, channel: string, jurisdiction1: string, jurisdiction2: string, keyword: string, rangeFrom: string, rangeTo: string): Promise<boolean> {
+
+    let url: string = `${feesUrl}/fees-register/fees/prevalidate?event=${event}&channel=${channel}&service=${service}&jurisdiction1=${jurisdiction1}&jurisdiction2=${jurisdiction2}&keyword=${keyword}`
+
+    if (rangeFrom) {
+      url += `&rangeFrom=${rangeFrom}`
+    }
+
+    if (rangeTo) {
+      url += `&rangeTo=${rangeTo}`
+    }
+
+    return request.get({
+
+      headers: {
+        Authorization: `Bearer ${user.bearerToken}`
+      },
+      uri: encodeURI(url)
+    })
+      .then(() => true).catch(() => false)
+  }
+
   static checkFeeVersionExists (code: string, version: number): Promise<boolean> {
     return request.head(`${feesUrl}/fees/${code}/versions/${version}`)
       .then(() => false).catch(() => true)
