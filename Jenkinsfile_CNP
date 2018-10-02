@@ -17,6 +17,8 @@ withPipeline("nodejs", product, component) {
 }
 
 withPipeline("nodejs", product, component) {
+  setVaultName('fees-shared')
+  loadVaultSecrets(secrets)
   enableDockerBuild()
   enableDeployToAKS()
   enableSlackNotifications('#cc-payments-tech')
