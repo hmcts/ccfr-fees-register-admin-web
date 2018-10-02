@@ -1,0 +1,53 @@
+version: '2.1'
+
+services:
+  fees-register-admin-web:
+    build:
+      args:
+      - http_proxy
+      - https_proxy
+      - no_proxy
+    image: hmcts.azurecr.io/hmcts/fees-register-admin-web
+    container_name: fees-register-admin-web
+    environment:
+      - FEES_CLIENT_ID=fees_admin_frontend
+      - FEES_CLIENT_SECRET=EGNH7CZ6WUPL72FC
+      - FEES_URL=http://fees-api:8080
+      - IDAM_API_URL=https://preprod-idamapi.reform.hmcts.net:3511
+      - IDAM_AUTHENTICATION_WEB_URL=https://idam.preprod.ccidam.reform.hmcts.net
+      - IDAM_LOGIN_WEB_URL=https://idam.preprod.ccidam.reform.hmcts.net/login
+      - REFORM_ENVIRONMENT=aat
+      - REFORM_SERVICE_NAME=fees-register-admin-web
+      - REFORM_TEAM=fees-register
+  fees-api:
+    build:
+      args:
+        - http_proxy
+        - https_proxy
+        - no_proxy
+    image: hmcts.azurecr.io/hmcts/fees-register-api
+    container_name: fees-api
+    environment:
+      - SPRING_DATASOURCE_URL=jdbc:postgresql://fees-database:5432/fees_register
+      - SPRING_DATASOURCE_USERNAME=fees_register
+      - SPRING_DATASOURCE_PASSWORD=fees_register
+      - AUTH_IDAM_CLIENT_BASEURL=https://idam-test.dev.ccidam.reform.hmcts.net
+    ports:
+     - 8182:8080
+    depends_on:
+      - fees-database
+
+  fees-database:
+    container_name: fees-database
+    image: postgres:11-alpine
+    environment:
+      - POSTGRES_USER=fees_register
+      - POSTGRES_PASSWORD=fees_register
+      - POSTGRES_DB=fees_register
+    ports:
+      - 5182:5432
+    volumes:
+      - fees-database-data:/var/lib/postgresql/data
+
+volumes:
+  fees-database-data:
