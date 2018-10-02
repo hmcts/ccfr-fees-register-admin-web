@@ -43,4 +43,17 @@ describe('Fees client', () => {
     })
   })
 
+  describe('on PREVALIDATE fee', () => {
+    it('should return OK', async () => {
+      feesServiceMock.resolvePrevalidate()
+
+      let user = { bearerToken: 'xxx' }
+
+      expect(FeesClient.prevalidate(user, 'x','x','x','x','x','x','x','x')).to.not.equal(null)
+
+      expect(FeesClient.prevalidate(user, 'x','x','x','x','x','x',null,null)).to.not.equal(null)
+
+    })
+  })
+
 })

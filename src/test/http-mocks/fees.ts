@@ -211,3 +211,9 @@ export function resolveApprove (code: string, version: number, action: string) {
     .patch(new RegExp(`/fees/${code}/versions/${version}/${action}`))
     .reply(HttpStatus.OK)
 }
+
+export function resolvePrevalidate () {
+  mock(`${serviceBaseURL}/fees-register`)
+    .get(new RegExp(`/fees/prevalidate`))
+    .reply(HttpStatus.OK)
+}
