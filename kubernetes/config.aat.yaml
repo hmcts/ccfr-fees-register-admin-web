@@ -4,10 +4,12 @@ metadata:
   name: ${SERVICE_NAME}-config
   namespace: ${NAMESPACE}
 data:
-  ENABLE_FEE_LOADER: "false"
-  IDAM_CLIENT_BASE_URL: "https://preprod-idamapi.reform.hmcts.net:3511"
-  REFORM_SERVICE_NAME: "fees-register-api"
-  REFORM_TEAM: "cc"
-  RECIPE_BACKEND_URL: "http://fees-register-app-aat.service.core-compute-aat.internal"
-  REFORM_ENVIRONMENT: "aat"
-  SPRING_LIQUIBASE_ENABLED: "true"
+  FEES_CLIENT_ID : "fees_admin_frontend"
+  FEES_CLIENT_SECRET : "EGNH7CZ6WUPL72FC"
+  FEES_URL : "http://fees-register-api-aat.service.core-compute-aat.internal"
+  IDAM_API_URL : "https://preprod-idamapi.reform.hmcts.net:3511"
+  IDAM_AUTHENTICATION_WEB_URL : "https://idam.preprod.ccidam.reform.hmcts.net"
+  IDAM_LOGIN_WEB_URL : "https://idam.preprod.ccidam.reform.hmcts.net/login"
+  REFORM_ENVIRONMENT : "aat"
+  REFORM_SERVICE_NAME : "fees-register-admin-web"
+  REFORM_TEAM : "fees-register"
