@@ -3,6 +3,7 @@ version: '2.1'
 services:
   fees-register-admin-web:
     build:
+      context: .
       args:
       - http_proxy
       - https_proxy
@@ -21,6 +22,7 @@ services:
       - REFORM_TEAM=fees-register
   fees-api:
     build:
+      context: .
       args:
         - http_proxy
         - https_proxy
