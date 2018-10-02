@@ -1,5 +1,10 @@
 #!groovy
 
+properties(
+  [[$class: 'GithubProjectProperty', projectUrlStr: 'https://github.com/hmcts/ccfr-fees-register-admin-web.git'],
+   pipelineTriggers([[$class: 'GitHubPushTrigger']])]
+)
+
 @Library("Infrastructure")
 
 def product = "fees-register"
