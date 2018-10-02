@@ -110,9 +110,7 @@ function onKeywordChanged() {
     return;
   }
 
-  setTimeout(
-    () => {
-
+  setTimeout(() => {
       const newKeyword = document.getElementById("keyword").value;
 
       if (!newKeyword || newKeyword === "" || keyword !== newKeyword) {
@@ -170,37 +168,54 @@ function disabledRangedFees() {
 
 document.addEventListener("DOMContentLoaded", function () {
 
+  if (document.getElementById("typefixed") && document.getElementById("typeranged")) {
   document.getElementById("typefixed")
     .addEventListener("click", disabledRangedFees);
   document.getElementById("typeranged")
     .addEventListener("click", enableRangedFees);
+  }
 
-  document.getElementById("amount").onchange = formatDecimals;
-  document.getElementById("fromRange").onchange = formatDecimals;
-  document.getElementById("toRange").onchange = formatDecimals;
+  if (document.getElementById("amount")) {
+    document.getElementById("amount").onchange = formatDecimals;
+  }
+  if(document.getElementById("fromRange") && document.getElementById("toRange")) {
+    document.getElementById("fromRange").onchange = formatDecimals;
+    document.getElementById("toRange").onchange = formatDecimals;
+  }
 
-  document.getElementById("keyword")
-    .addEventListener("keydown", onKeywordChanged);
-  document.getElementById("keyword")
-    .addEventListener("input", onKeywordChanged);
-  document.getElementById("keyword")
-    .addEventListener("change", onKeywordChanged);
-  document.getElementById("service")
-    .addEventListener("change", onKeywordChanged);
-  document.getElementById("jurisdiction1")
-    .addEventListener("change", onKeywordChanged);
-  document.getElementById("jurisdiction2")
-    .addEventListener("change", onKeywordChanged);
-  document.getElementById("channel")
-    .addEventListener("change", onKeywordChanged);
-  document.getElementById("event")
-    .addEventListener("change", onKeywordChanged);
+  if (document.getElementById('keyword')) {
+    document.getElementById('keyword').addEventListener('keydown', onKeywordChanged)
+  }
+  if (document.getElementById('keyword')) {
+    document.getElementById('keyword').addEventListener('input', onKeywordChanged)
+  }
+  if (document.getElementById('keyword')) {
+    document.getElementById('keyword').addEventListener('change', onKeywordChanged)
+  }
+  if (document.getElementById('service')) {
+    document.getElementById('service').addEventListener('change', onKeywordChanged)
+  }
+  if (document.getElementById('jurisdiction1')) {
+    document.getElementById('jurisdiction1').addEventListener('change', onKeywordChanged)
+  }
+  if (document.getElementById('jurisdiction2')) {
+    document.getElementById('jurisdiction2').addEventListener('change', onKeywordChanged)
+  }
+  if (document.getElementById('channel')) {
+    document.getElementById('channel').addEventListener('change', onKeywordChanged)
+  }
+  if (document.getElementById('event')) {
+    document.getElementById('event').addEventListener('change', onKeywordChanged)
+  }
 
-  document.getElementById("fromRange")
-    .addEventListener("input", onKeywordChanged);
-  document.getElementById("toRange")
-    .addEventListener("input", onKeywordChanged);
+  if (document.getElementById('fromRange')) {
+    document.getElementById('fromRange').addEventListener('input', onKeywordChanged)
+  }
+  if (document.getElementById('toRange')) {
+    document.getElementById('toRange').addEventListener('input', onKeywordChanged)
+  }
 
-  keywordClass = document.getElementById("keyword").className;
-
+  if (document.getElementById('keyword')) {
+    keywordClass = document.getElementById('keyword').className
+  }
 });
