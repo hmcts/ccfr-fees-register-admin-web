@@ -5,7 +5,6 @@ metadata:
   namespace: ${NAMESPACE}
 data:
   FEES_CLIENT_ID : "fees_admin_frontend"
-  FEES_CLIENT_SECRET : "EGNH7CZ6WUPL72FC"
   FEES_URL : "http://fees-register-api-aat.service.core-compute-aat.internal"
   IDAM_API_URL : "https://preprod-idamapi.reform.hmcts.net:3511"
   IDAM_AUTHENTICATION_WEB_URL : "https://idam.preprod.ccidam.reform.hmcts.net"
