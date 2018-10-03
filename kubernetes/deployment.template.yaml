@@ -19,16 +19,18 @@ spec:
         env:
           - name : FEES_CLIENT_SECRET
             value: '${FEES_CLIENT_SECRET}'
+          - name: NODE_ENV
+            value: 'production'
         envFrom:
         - configMapRef:
             name: ${SERVICE_NAME}-config
         resources:
           requests:
             memory: "512Mi"
-            cpu: "750m"
+            cpu: "0.5"
           limits:
-            memory: "1024Mi"
-            cpu: "2500m"
+            memory: "768Mi"
+            cpu: "1"
         # This is the port your process is listening on in the container
         ports:
         - containerPort: 3000
