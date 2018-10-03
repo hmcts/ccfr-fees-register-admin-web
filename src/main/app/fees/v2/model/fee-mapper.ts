@@ -10,15 +10,15 @@ export class FeeMapper {
     let flatAmount = new FlatAmountDto()
     let percentageAmount = new PercentageAmountDto()
     let volumeAmount = new VolumeAmountDto()
-    if (dto.amountType === 'flat') {
+    if (dto.amountType.toLowerCase() === 'flat') {
       flatAmount.amount = Number(dto.feeAmount)
       percentageAmount = null
       volumeAmount = null
-    } else if (dto.amountType === '%' || dto.amountType === 'percentage') {
+    } else if (dto.amountType === '%' || dto.amountType.toLowerCase() === 'percentage') {
       percentageAmount.percentage = Number(dto.feeAmount)
       flatAmount = null
       volumeAmount = null
-    } else if (dto.amountType === 'volume') {
+    } else if (dto.amountType.toLowerCase() === 'volume') {
       volumeAmount.amount = Number(dto.feeAmount)
       flatAmount = null
       percentageAmount = null
