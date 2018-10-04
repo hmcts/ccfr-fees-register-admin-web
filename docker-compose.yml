@@ -12,7 +12,7 @@ services:
     container_name: fees-register-admin-web
     environment:
       - FEES_CLIENT_ID=fees_admin_frontend
-      - FEES_CLIENT_SECRET=***REMOVED***
+      - FEES_CLIENT_SECRET=FIND_ME_ON_VAULT_OR_AZURE
       - FEES_URL=http://fees-api:8080
       - IDAM_API_URL=https://preprod-idamapi.reform.hmcts.net:3511
       - IDAM_AUTHENTICATION_WEB_URL=https://idam.preprod.ccidam.reform.hmcts.net
