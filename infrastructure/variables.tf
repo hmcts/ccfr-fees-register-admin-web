@@ -59,3 +59,8 @@ variable "common_tags" {
   type = "map"
 }
 
+variable "core_product" {
+  type    = "string"
+  default = "fees"
+}
+
