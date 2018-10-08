@@ -61,6 +61,6 @@ variable "common_tags" {
 
 variable "core_product" {
   type    = "string"
-  default = "fees"
+  default = "ccpay"
 }
 
