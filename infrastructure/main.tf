@@ -9,12 +9,11 @@ locals {
   vaultName = "${(var.env == "preview" || var.env == "spreview") ? local.previewVaultName : local.nonPreviewVaultName}"
 
   asp_name = "${var.env == "prod" ? "fees-register-frontend-prod" : "${var.core_product}-${var.env}"}"
-  asp_rg = "${var.env == "prod" ? "fees-register-frontend-prod" : "${var.core_product}-${var.env}"}"
 }
 
 data "azurerm_key_vault" "fees_key_vault" {
   name = "${local.vaultName}"
-  resource_group_name = "${var.core_product}-${local.local_env}"
+  resource_group_name = "fees-${local.local_env}"
 }
 
 data "azurerm_key_vault_secret" "freg_idam_client_secret" {
@@ -36,7 +35,7 @@ module "fees-register-frontend" {
   capacity = "${var.capacity}"
   common_tags     = "${var.common_tags}"
   asp_name = "${local.asp_name}"
-  asp_rg = "${local.asp_rg}"
+  asp_rg = "${local.asp_name}"
 
   app_settings = {
     // Logging vars
