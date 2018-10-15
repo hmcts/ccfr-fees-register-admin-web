@@ -1,11 +1,35 @@
 #!groovy
 
+properties(
+  [[$class: 'GithubProjectProperty', projectUrlStr: 'https://github.com/hmcts/ccfr-fees-register-admin-web.git'],
+   pipelineTriggers([[$class: 'GitHubPushTrigger']])]
+)
+
 @Library("Infrastructure")
 
 def product = "fees-register"
 def component = "frontend"
 
+List<LinkedHashMap<String, Object>> secrets = [
+    secret('freg-idam-client-secret', 'FEES_CLIENT_SECRET')
+]
+static LinkedHashMap<String, Object> secret(String secretName, String envVar) {
+  [ $class: 'AzureKeyVaultSecret',
+    secretType: 'Secret',
+    name: secretName,
+    version: '',
+    envVariable: envVar
+  ]
+}
+
 withPipeline("nodejs", product, component) {
+
+  setVaultName('fees-shared')
+  loadVaultSecrets(secrets)
+  enableDockerBuild()
+  enableDeployToAKS()
+  enableSlackNotifications('#cc-payments-tech')
+
   after('checkout') {
     sh "yarn cache clean"
     echo 'ccfr-fees-register-admin-web checked out'
@@ -13,5 +37,5 @@ withPipeline("nodejs", product, component) {
   after('build') {
     sh 'yarn setup'
   }
-  enableSlackNotifications('#cc-payments-tech')
+
 }
