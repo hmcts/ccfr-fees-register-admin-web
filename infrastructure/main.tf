@@ -54,7 +54,6 @@ module "fees-register-frontend" {
     // Application vars
     FEES_CLIENT_ID = "fees_admin_frontend"
     FEES_CLIENT_SECRET = "${data.azurerm_key_vault_secret.freg_idam_client_secret.value}"
-    
-    WEBSITE_NODE_DEFAULT_VERSION = "8.11.1"
+
   }
 }
