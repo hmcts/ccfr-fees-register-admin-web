@@ -24,7 +24,7 @@ static LinkedHashMap<String, Object> secret(String secretName, String envVar) {
 
 withPipeline("nodejs", product, component) {
 
-  setVaultName('fees-shared')
+  setVaultName('ccpay')
   loadVaultSecrets(secrets)
   enableDockerBuild()
   enableDeployToAKS()
