@@ -161,6 +161,7 @@
 <hr width=100%>
   {% endfor %}
 
+{% if isEditor(user.allInfo.roles) %}
 <div class="gird-row">
 <div class="column">
   <h2 class="heading-medium">
@@ -178,9 +179,10 @@
   </ul>
 </div>
 </div>
-
-
 <hr width=100%>
+{% endif %}
+
+
 <div class="grid-row">
 <div class="column">
   <p><a href="/admin/v2/all-fees" class="link-back">{{ t("View all fees") }}</a></p>
