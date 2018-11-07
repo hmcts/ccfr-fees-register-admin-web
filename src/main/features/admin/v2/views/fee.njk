@@ -161,7 +161,7 @@
 <hr width=100%>
   {% endfor %}
 
-{% if isEditor(user.allInfo.roles) %}
+{% if isEditor(user.allInfo.roles) or isAdmin(user.allInfo.roles) %}
 <div class="gird-row">
 <div class="column">
   <h2 class="heading-medium">
