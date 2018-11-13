@@ -6,17 +6,17 @@ import { FeesClient } from 'app/fees/v2/feesClient'
 
 import { CreateFeeVersionForm } from 'fees/v2/forms/model/CreateFeeVersionForm'
 import { FormValidator } from 'app/forms/validation/formValidator'
-import { Fee2Dto } from 'fees/v2/model/fees-register-api-contract'
+import { Fee2Dto, FeeVersionDto } from 'fees/v2/model/fees-register-api-contract'
 
 class Renderer {
-  static renderPage (form: Form<CreateFeeVersionForm>, res: express.Response, feeDto: Fee2Dto) {
+  static renderPage (form: Form<CreateFeeVersionForm>, res: express.Response, feeVersionDto: FeeVersionDto) {
     FeesClient.retrieveReferenceData().then(
       data => {
         res.render(Paths.createFeeVersionPageV2.associatedView,
           {
             form: form,
             referenceData: data,
-            feeVersionDto: feeDto.current_version
+            feeVersionDto: feeVersionDto
           })
       }
     )
@@ -28,7 +28,15 @@ export default express.Router()
     FeesClient
       .getFee(req.params.feeCode)
       .then((feeDto: Fee2Dto) => {
-        Renderer.renderPage(new Form(CreateFeeVersionForm.fromObject(feeDto.current_version)), res, feeDto)
+        if (req.query.action === 'edit') {
+          feeDto.fee_versions.filter((v: FeeVersionDto) => {
+            if (v.status === 'draft' && req.query.version as number === v.version) {
+              Renderer.renderPage(new Form(CreateFeeVersionForm.fromObject(v)), res, v)
+            }
+          })
+        } else {
+          Renderer.renderPage(new Form(CreateFeeVersionForm.fromObject(feeDto.current_version)), res, feeDto.current_version)
+        }
       })
   })
   .post(Paths.createFeeVersionPageV2.uri, FormValidator.requestHandler(CreateFeeVersionForm, CreateFeeVersionForm.fromObject), (req: express.Request, res: express.Response) => {
