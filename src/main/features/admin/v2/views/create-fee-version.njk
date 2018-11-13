@@ -82,12 +82,12 @@
       {% else %}
       <tr>
         <td>
-          {{ radioGroup(form = form, name = 'amountType', disabled = false, label = t('Amount Type'), options = [
+          {{ radioGroup(form = form, name = 'amountType', label = t('Amount Type'), options = [
           { label: t('Volume'), value: 'volume' }
           ]) }}
         </td>
 
-        <td>{{ textInput(t('Amount (£)*'), 'amount', form, disabled = isPercentage) }}</td>
+        <td>{{ textInput(t('Amount (£)*'), 'amount', form) }}</td>
       </tr>
       {% endif %}
 
