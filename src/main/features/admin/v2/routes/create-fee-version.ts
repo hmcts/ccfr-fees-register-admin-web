@@ -8,13 +8,14 @@ import { CreateFeeVersionForm } from 'fees/v2/forms/model/CreateFeeVersionForm'
 import { FormValidator } from 'app/forms/validation/formValidator'
 
 class Renderer {
-  static renderPage (form: Form<CreateFeeVersionForm>, res: express.Response) {
+  static renderPage (form: Form<CreateFeeVersionForm>, res: express.Response, type: string) {
     FeesClient.retrieveReferenceData().then(
       data => {
         res.render(Paths.createFeeVersionPageV2.associatedView,
           {
             form: form,
-            referenceData: data
+            referenceData: data,
+            type: type
           })
       }
     )
@@ -23,7 +24,7 @@ class Renderer {
 
 export default express.Router()
   .get(Paths.createFeeVersionPageV2.uri, (req: express.Request, res: express.Response) => {
-    Renderer.renderPage(new Form(new CreateFeeVersionForm()), res)
+    Renderer.renderPage(new Form(new CreateFeeVersionForm()), res, req.query.type)
   })
   .post(Paths.createFeeVersionPageV2.uri, FormValidator.requestHandler(CreateFeeVersionForm, CreateFeeVersionForm.fromObject), (req: express.Request, res: express.Response) => {
     const form: Form<CreateFeeVersionForm> = req.body
@@ -34,6 +35,6 @@ export default express.Router()
       .catch(
         (e: Error) => {
           form.backendErrors.push(e.message)
-          Renderer.renderPage(form, res)
+          Renderer.renderPage(form, res, req.query.type)
         })
   })
