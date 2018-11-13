@@ -54,7 +54,7 @@
 
       {% set isPercentage = form.valueFor('amountType') == 'percentage' %}
 
-      {% if type === 'flat' %}
+      {% if feeVersionDto.flat_amount.amount %}
       <tr>
         <td>
           {{ radioGroup(form = form, name = 'amountType', label = t('Amount Type'), options = [
@@ -66,7 +66,7 @@
 
       </tr>
 
-      {% elif type === 'percentage' %}
+      {% elif feeVersionDto.percentage_amount.percentage %}
       <tr>
         <td rowspan="2">
           {{ radioGroup(form = form, name = 'amountType', label = t('Amount Type'), options = [
