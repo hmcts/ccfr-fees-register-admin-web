@@ -73,7 +73,9 @@
       </td>
       <td class="font-xxsmall center-text">
         {% if hasApprovedVersion(fee.fee_versions) %}
-        {{ fee.code }}
+          <a title="Edit version" href="/admin/v2/fees/version/create/{{ fee.code }}?action=edit&version={{ displayedFeeVersion.version }}">
+            {{ fee.code }}
+          </a>
         {% else %}
         <a title="Edit fee" href="/admin/v2/fees/create?action=edit&feeCode={{ fee.code }}">
           {{ fee.code }}
