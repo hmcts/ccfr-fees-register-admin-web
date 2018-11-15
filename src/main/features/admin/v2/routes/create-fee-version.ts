@@ -30,7 +30,7 @@ export default express.Router()
       .then((feeDto: Fee2Dto) => {
         if (req.query.action === 'edit') {
           feeDto.fee_versions.filter((v: FeeVersionDto) => {
-            if (v.status === 'draft' && req.query.version as number === v.version) {
+            if (v.status === 'draft' && req.query.version === v.version.toString()) {
               Renderer.renderPage(new Form(CreateFeeVersionForm.fromObject(v)), res, v)
             }
           })
