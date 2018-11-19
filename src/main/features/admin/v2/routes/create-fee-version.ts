@@ -42,12 +42,23 @@ export default express.Router()
   .post(Paths.createFeeVersionPageV2.uri, FormValidator.requestHandler(CreateFeeVersionForm, CreateFeeVersionForm.fromObject), (req: express.Request, res: express.Response) => {
     const form: Form<CreateFeeVersionForm> = req.body
 
-    FeesClient
-      .createFeeVersion(res.locals.user, req.params.feeCode, form.model.toDto())
-      .then(() => res.render('admin/v2/views/confirm-create-fee-version'))
-      .catch(
-        (e: Error) => {
-          form.backendErrors.push(e.message)
-          Renderer.renderPage(form, res, req.query.type)
-        })
+    if (req.query.action === 'edit') {
+      FeesClient
+        .updateFeeVersion(res.locals.user, req.params.feeCode, req.query.version, form.model.toDto())
+        .then(() => res.render('admin/v2/views/confirm-edit-fee-version'))
+        .catch(
+          (e: Error) => {
+            form.backendErrors.push(e.message)
+            Renderer.renderPage(form, res, req.query.type)
+          })
+    } else {
+      FeesClient
+        .createFeeVersion(res.locals.user, req.params.feeCode, form.model.toDto())
+        .then(() => res.render('admin/v2/views/confirm-create-fee-version'))
+        .catch(
+          (e: Error) => {
+            form.backendErrors.push(e.message)
+            Renderer.renderPage(form, res, req.query.type)
+          })
+    }
   })
