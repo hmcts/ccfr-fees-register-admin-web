@@ -55,7 +55,7 @@ export class FeeMapper {
     fixedFeeDto.service = dto.service
     fixedFeeDto.channel = dto.channel
     fixedFeeDto.event = dto.event
-    fixedFeeDto.keyword = dto.keyword
+    fixedFeeDto.keyword = dto.keyword !== '' ? dto.keyword : null
     fixedFeeDto.fee_type = dto.feeType
     fixedFeeDto.applicant_type = dto.applicantType
     fixedFeeDto.unspecified_claim_amount = false
@@ -73,7 +73,7 @@ export class FeeMapper {
     rangedFeeDto.service = dto.service
     rangedFeeDto.channel = dto.channel
     rangedFeeDto.event = dto.event
-    rangedFeeDto.keyword = dto.keyword
+    rangedFeeDto.keyword = dto.keyword !== '' ? dto.keyword : null
     rangedFeeDto.applicant_type = dto.applicantType
     rangedFeeDto.fee_type = dto.feeType
     rangedFeeDto.unspecified_claim_amount = false
