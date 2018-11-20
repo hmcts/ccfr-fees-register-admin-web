@@ -29,11 +29,10 @@ export default express.Router()
       .getFee(req.params.feeCode)
       .then((feeDto: Fee2Dto) => {
         if (req.query.action === 'edit') {
-          feeDto.fee_versions.filter((v: FeeVersionDto) => {
-            if (v.status === 'draft' && req.query.version === v.version.toString()) {
-              return Renderer.renderPage(new Form(CreateFeeVersionForm.fromObject(v)), res, v)
-            }
-          })
+          const v = feeDto.fee_versions.find((v: FeeVersionDto) => v.status === 'draft' && req.query.version === v.version.toString())
+          if (v) {
+            return Renderer.renderPage(new Form(CreateFeeVersionForm.fromObject(v)), res, v)
+          }
         } else {
           Renderer.renderPage(new Form(CreateFeeVersionForm.fromObject(feeDto.current_version)), res, feeDto.current_version)
         }
