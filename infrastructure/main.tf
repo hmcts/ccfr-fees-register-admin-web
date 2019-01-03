@@ -57,3 +57,6 @@ module "fees-register-frontend" {
 
   }
 }
+provider "azurerm" {
+  version = "1.19.0"
+}
