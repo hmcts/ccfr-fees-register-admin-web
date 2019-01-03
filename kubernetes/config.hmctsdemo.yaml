@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: ${SERVICE_NAME}-config
+  namespace: ${NAMESPACE}
+data:
+  FEES_CLIENT_ID : "fees_admin_frontend"
+  FEES_URL : "http://fees-register-api-aat.service.core-compute-aat.internal"
+  IDAM_API_URL : "http://betaDemoAccidamAppLB.reform.hmcts.net:4503"
+  IDAM_AUTHENTICATION_WEB_URL : "https://idam-demo.dev.ccidam.reform.hmcts.net"
+  IDAM_LOGIN_WEB_URL : "https://idam-demo.dev.ccidam.reform.hmcts.net/login"
+  REFORM_ENVIRONMENT : "hmctsdemo"
+  REFORM_SERVICE_NAME : "fees-register-admin-web"
+  REFORM_TEAM : "fees-register"
+  EXTERNAL_HOST_NAME : "fees-register.hmctsdemo.platform.hmcts.net"
