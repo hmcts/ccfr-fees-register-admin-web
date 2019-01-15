@@ -54,22 +54,43 @@
 
       {% set isPercentage = form.valueFor('amountType') == 'percentage' %}
 
+      {% if feeVersionDto.flat_amount.amount %}
+      <tr>
+        <td>
+          {{ radioGroup(form = form, name = 'amountType', label = t('Amount Type'), options = [
+          { label: t('Flat'), value: 'flat' }
+          ]) }}
+        </td>
+
+        <td>{{ textInput(t('Amount (£)*'), 'amount', form) }}</td>
+
+      </tr>
+
+      {% elif feeVersionDto.percentage_amount.percentage %}
       <tr>
         <td rowspan="2">
-          {{ radioGroup(form = form, name = 'amountType', disabled = false, label = t('Amount Type'), options = [
-          { label: t('Flat'), value: 'flat' },
-          { label: t('Percentage'), value: 'percentage' },
+          {{ radioGroup(form = form, name = 'amountType', label = t('Amount Type'), options = [
+          { label: t('Percentage'), value: 'percentage' }
+          ]) }}
+        </td>
+      </tr>
+
+      <tr>
+        <td>{{ textInput(t('Percentage (%)*'), 'percentage', form) }}</td>
+      </tr>
+
+      {% else %}
+      <tr>
+        <td>
+          {{ radioGroup(form = form, name = 'amountType', label = t('Amount Type'), options = [
           { label: t('Volume'), value: 'volume' }
           ]) }}
         </td>
 
-        <td>{{ textInput(t('Amount (£)*'), 'amount', form, disabled = isPercentage) }}</td>
-
+        <td>{{ textInput(t('Amount (£)*'), 'amount', form) }}</td>
       </tr>
+      {% endif %}
 
-      <tr>
-        <td>{{ textInput(t('Percentage (%)*'), 'percentage', form, disabled = not isPercentage) }}</td>
-      </tr>
 
       <tr>
         <td colspan="2">
