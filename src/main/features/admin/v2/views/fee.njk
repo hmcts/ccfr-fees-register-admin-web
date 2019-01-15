@@ -161,6 +161,7 @@
 <hr width=100%>
   {% endfor %}
 
+{% if isEditor(user.allInfo.roles) %}
 <div class="gird-row">
 <div class="column">
   <h2 class="heading-medium">
@@ -173,14 +174,22 @@
 <div class="column-third">
   <ul class="list list-bullet">
     <li>
-      <a href="/admin/v2/fees/version/create/{{ feeDto.code }}" class="link">{{ t("Create a new fee version") }}</a>
+      {% if feeDto.current_version.flat_amount.amount %}
+        {% set type = 'flat' %}
+      {% elif feeDto.current_version.percentage_amount.percentage %}
+        {% set type = 'percentage' %}
+      {% elif feeDto.current_version.volume_amount.volume %}
+        {% set type = 'volume' %}
+      {% endif %}
+      <a href="/admin/v2/fees/version/create/{{ feeDto.code }}?type={{ type }}" class="link">{{ t("Create a new fee version") }}</a>
     </li>
   </ul>
 </div>
 </div>
-
-
 <hr width=100%>
+{% endif %}
+
+
 <div class="grid-row">
 <div class="column">
   <p><a href="/admin/v2/all-fees" class="link-back">{{ t("View all fees") }}</a></p>
