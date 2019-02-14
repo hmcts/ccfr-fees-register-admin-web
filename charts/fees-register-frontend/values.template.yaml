@@ -1,7 +1,7 @@
 fees-register-api:
   releaseNameOverride: ${SERVICE_NAME}-fees-register-api
   java:
-    image: hmcts/fees-register-api
+    image: hmcts.azurecr.io/hmcts/fees-register-api
     releaseNameOverride: ${SERVICE_NAME}-fees-register-api
     environment:
       SPRING_DATASOURCE_URL: jdbc:postgresql://${SERVICE_NAME}-fees-register-db:5432/fees_register
