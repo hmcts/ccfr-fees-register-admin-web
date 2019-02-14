@@ -1,6 +1,7 @@
 fees-register-api:
   releaseNameOverride: ${SERVICE_NAME}-fees-register-api
   java:
+    image: hmcts.azurecr.io/hmcts/fees-register-api:latest
     releaseNameOverride: ${SERVICE_NAME}-fees-register-api
     applicationPort: 8580
     environment:
