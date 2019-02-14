@@ -4,9 +4,12 @@ fees-register-api:
     releaseNameOverride: ${SERVICE_NAME}-fees-register-api
     applicationPort: 8580
     environment:
+      SPRING_DATASOURCE_URL: jdbc:postgresql://${SERVICE_NAME}-fees-register-db:5432/fees_register
       IDAM_CLIENT_BASE_URL: https://preprod-idamapi.reform.hmcts.net:3511
   postgresql:
-    postgresqlDatabase: fees_register
+    postgresqlDatabase: hmcts
+    postgresqlUsername: hmcts
+    postgresqlPassword: hmcts
 
 nodejs:
   image: ${IMAGE_NAME}
