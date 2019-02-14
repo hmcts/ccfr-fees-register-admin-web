@@ -8,8 +8,6 @@ fees-register-api:
       IDAM_CLIENT_BASE_URL: https://preprod-idamapi.reform.hmcts.net:3511
   postgresql:
     postgresqlDatabase: hmcts
-    postgresqlUsername: hmcts
-    postgresqlPassword: hmcts
 
 nodejs:
   image: ${IMAGE_NAME}
@@ -24,9 +22,7 @@ nodejs:
     REFORM_SERVICE_NAME: fees-register-frontend
     REFORM_ENVIRONMENT: preview
     NODE_ENV: production
-
     FEES_URL: http://${SERVICE_NAME}-fees-register-api:8580
-
     FEES_CLIENT_ID: fees_admin_frontend
     FEES_CLIENT_SECRET: ${FEES_CLIENT_SECRET}
     IDAM_API_URL: https://preprod-idamapi.reform.hmcts.net:3511
