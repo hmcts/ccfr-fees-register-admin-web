@@ -1,0 +1,30 @@
+fees-register-api:
+  releaseNameOverride: ${SERVICE_NAME}-fees-register-api
+  java:
+    releaseNameOverride: ${SERVICE_NAME}-fees-register-api
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:postgresql://${SERVICE_NAME}-fees-register-db:5432/fees_register
+      IDAM_CLIENT_BASE_URL: https://preprod-idamapi.reform.hmcts.net:3511
+  postgresql:
+
+nodejs:
+  image: ${IMAGE_NAME}
+  ingressHost: ${SERVICE_FQDN}
+  applicationPort: 3000
+  memoryRequests: 64Mi
+  cpuRequests: 0.2
+  memoryLimits: 512Mi
+  cpuLimits: 1
+  environment:
+    REFORM_TEAM: ccpay
+    REFORM_SERVICE_NAME: fees-register-frontend
+    REFORM_ENVIRONMENT: preview
+    NODE_ENV: production
+
+    FEES_URL: http://${SERVICE_NAME}-fees-register-api:8080
+
+    IDAM_API_URL: https://preprod-idamapi.reform.hmcts.net:3511
+    IDAM_AUTHENTICATION_WEB_URL: https://idam.preprod.ccidam.reform.hmcts.net
+    IDAM_LOGIN_WEB_URL: https://idam.preprod.ccidam.reform.hmcts.net/login
+    FEES_CLIENT_SECRET: ${FEES_CLIENT_SECRET}
+    FEES_CLIENT_ID: fees_admin_frontend
