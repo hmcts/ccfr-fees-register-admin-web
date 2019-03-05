@@ -1,0 +1,23 @@
+{% from "includes/macros/form.njk" import errorSummary, textArea, textInput, radioGroup, submitButton, selectInline, selectReferenceData %}
+  {% extends "layout.njk" %}
+
+  {% set title = t('Fee Version Created | ' + serviceName) %}
+  {% set heading = t('Fee Version Created') %}
+
+  {% block content %}
+
+<div class="grid-row">
+  <div class="column-full">
+    Fee version has been updated successfully.
+  </div>
+  <div class="column-full">
+
+  </div>
+
+  <div class="column-full">
+    <a href="/admin/welcome" class="link-back">{{ t('Return to welcome page') }}</a>
+  </div>
+
+</div>
+
+  {% endblock %}

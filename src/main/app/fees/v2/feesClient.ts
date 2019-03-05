@@ -62,6 +62,18 @@ export class FeesClient {
       .catch(FeesClientErrorMapper)
   }
 
+  static updateFeeVersion (user, feeCode: string, feeVersion: number, dto: FeeVersionDto): Promise<boolean> {
+    return request
+      .put({
+        uri: `${feesUrl}/fees/${feeCode}/versions/${feeVersion}`,
+        headers: {
+          Authorization: `Bearer ${user.bearerToken}`
+        },
+        body: dto
+      }).then(() => true)
+      .catch(FeesClientErrorMapper)
+  }
+
   static deleteFeeVersion (user, feeCode: string, version: number): Promise<boolean> {
 
     return request
