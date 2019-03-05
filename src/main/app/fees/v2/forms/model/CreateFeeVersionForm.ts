@@ -3,6 +3,8 @@ import { IsDefined, Max, MaxLength, Min, ValidateIf } from 'class-validator'
 import { IsNotBlank } from 'app/forms/validation/validators/isBlank'
 import { Fractions } from 'app/forms/validation/validators/fractions'
 
+const moment = require('moment')
+
 import { ValidationErrors } from 'fees/v2/forms/model/ValidationErrors'
 import {
   FeeVersionDto, FlatAmountDto, PercentageAmountDto, VolumeAmountDto
@@ -75,6 +77,40 @@ export class CreateFeeVersionForm {
 
     if (form.amount) {
       form.amount = +form.amount
+    }
+
+    if (value.flat_amount) {
+      form.amount = value.flat_amount.amount
+      form.amountType = 'flat'
+    }
+    if (value.volume_amount) {
+      form.amount = value.volume_amount.amount
+      form.amountType = 'volume'
+    }
+    if (value.percentage_amount) {
+      form.percentage = value.percentage_amount.percentage
+      form.amountType = 'percentage'
+    }
+    if (value.memo_line) {
+      form.memoLine = value.memo_line
+    }
+    if (value.natural_account_code) {
+      form.naturalAccountCode = value.natural_account_code
+    }
+    if (value.fee_order_name) {
+      form.feeOrderName = value.fee_order_name
+    }
+    if (value.statutory_instrument) {
+      form.statutoryInstrument = value.statutory_instrument
+    }
+    if (value.si_ref_id) {
+      form.siRefId = value.si_ref_id
+    }
+    if (value.valid_from) {
+      form.fromDate = moment(value.valid_from).format('YYYY-MM-DD')
+    }
+    if (value.valid_to) {
+      form.toDate = moment(value.valid_to).format('YYYY-MM-DD')
     }
 
     return form
