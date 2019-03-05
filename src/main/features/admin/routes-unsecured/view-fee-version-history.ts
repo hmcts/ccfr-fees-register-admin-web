@@ -11,8 +11,8 @@ export default express.Router()
       .getFee(req.params.feeCode)
       .then((feeDto: Fee2Dto) => {
         res.locals.user = {
-          allInfo: {roles: []}
+          allInfo: { roles: [] }
         }
-        res.render(Paths.feeViewPagev2.associatedView, {feeDto: feeDto})
+        res.render(Paths.feeViewPagev2.associatedView, { feeDto: feeDto })
       })
   })
