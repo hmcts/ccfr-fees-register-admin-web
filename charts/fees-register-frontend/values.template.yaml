@@ -21,10 +21,10 @@ nodejs:
     REFORM_ENVIRONMENT: preview
     NODE_ENV: production
 
-    FEES_URL: http://${SERVICE_NAME}-fees-register-api:8080
+    FEES_URL: http://${SERVICE_NAME}-fees-register-api
 
     IDAM_API_URL: https://preprod-idamapi.reform.hmcts.net:3511
     IDAM_AUTHENTICATION_WEB_URL: https://idam.preprod.ccidam.reform.hmcts.net
     IDAM_LOGIN_WEB_URL: https://idam.preprod.ccidam.reform.hmcts.net/login
-    FEES_CLIENT_SECRET: ${FEES_CLIENT_SECRET}
     FEES_CLIENT_ID: fees_admin_frontend
+    FEES_CLIENT_SECRET: ${FEES_CLIENT_SECRET}
