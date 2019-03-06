@@ -7,6 +7,7 @@ import '../../../routes/expectations'
 import { Paths as AdminPaths } from 'admin/paths'
 
 import { app } from '../../../../main/app'
+import * as feesServiceMock from '../../../http-mocks/fees'
 
 describe('Unsecured view-fees page', () => {
   beforeEach(() => {
@@ -15,6 +16,8 @@ describe('Unsecured view-fees page', () => {
 
   describe('on GET', () => {
     it('should respond with all-fees pointing at view-fee-version-history', async () => {
+      feesServiceMock.resolveGetFees()
+
       await request(app)
         .get(AdminPaths.unsecuredViewFees.uri)
         .expect(res => {
