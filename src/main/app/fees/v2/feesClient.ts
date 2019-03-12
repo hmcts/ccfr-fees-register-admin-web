@@ -240,7 +240,7 @@ export class FeesClient {
       .then(() => false).catch(() => true)
   }
 
-  static searchFees (versionStatus: string, author?: string, approvedBy?: string, isActive?: boolean, isExpired?: boolean, isDraft?: boolean): Promise<Array<model.Fee2Dto>> {
+  static searchFees (versionStatus: string, author?: string, approvedBy?: string, isActive?: boolean, isExpired?: boolean, isDraft?: boolean, isDiscontinued?: boolean): Promise<Array<model.Fee2Dto>> {
 
     let uri: string = `${feesUrl}/fees-register/fees?`
 
@@ -266,6 +266,10 @@ export class FeesClient {
 
     if (isDraft != null) {
       uri = uri + `&isDraft=${isDraft}`
+    }
+
+    if (isDiscontinued != null) {
+      uri = uri + `&isDiscontinued=${isDiscontinued}`
     }
 
     return request
