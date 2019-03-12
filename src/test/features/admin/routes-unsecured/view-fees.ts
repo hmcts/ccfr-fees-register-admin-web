@@ -21,7 +21,7 @@ describe('Unsecured view-fees page', () => {
       await request(app)
         .get(AdminPaths.unsecuredViewFees.uri)
         .expect(res => {
-          expect(res.text).to.include('view-fee-version-history')
+          expect(res.text).to.include('/fees/X0001')
         })
     })
   })
