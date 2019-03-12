@@ -47,7 +47,7 @@
       {% if user %}
         <a href="/admin/v2/fees/{{fee.code}}">{{ fee.code }}</a>
       {% else  %}
-        <a href="/view-fee-version-history/{{fee.code}}">{{ fee.code }}</a>
+        <a href="/fees/{{fee.code}}">{{ fee.code }}</a>
       {% endif %}
       </td>
       <td class="font-xxsmall">{{ version.description }}</td>
