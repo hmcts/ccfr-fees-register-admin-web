@@ -44,7 +44,11 @@
     {% if version.status === 'approved' %}
     <tr>
       <td class="font-xxsmall">
+      {% if user %}
         <a href="/admin/v2/fees/{{fee.code}}">{{ fee.code }}</a>
+      {% else  %}
+        <a href="/fees/{{fee.code}}">{{ fee.code }}</a>
+      {% endif %}
       </td>
       <td class="font-xxsmall">{{ version.description }}</td>
       {% if fee.min_range %}
