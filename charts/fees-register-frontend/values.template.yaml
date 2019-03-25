@@ -16,6 +16,11 @@ nodejs:
   cpuRequests: 0.2
   memoryLimits: 512Mi
   cpuLimits: 1
+  keyVaults:
+      ccpay:
+        resourceGroup: ccpay
+        secrets:
+          - freg-idam-client-secret
   environment:
     REFORM_TEAM: ccpay
     REFORM_SERVICE_NAME: fees-register-frontend
@@ -28,4 +33,3 @@ nodejs:
     IDAM_AUTHENTICATION_WEB_URL: https://idam.preprod.ccidam.reform.hmcts.net
     IDAM_LOGIN_WEB_URL: https://idam.preprod.ccidam.reform.hmcts.net/login
     FEES_CLIENT_ID: fees_admin_frontend
-    FEES_CLIENT_SECRET: ${FEES_CLIENT_SECRET}
