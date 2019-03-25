@@ -17,10 +17,10 @@ nodejs:
   memoryLimits: 512Mi
   cpuLimits: 1
   keyVaults:
-      ccpay:
-        resourceGroup: ccpay
-        secrets:
-          - freg-idam-client-secret
+    "ccpay":
+      resourceGroup: ccpay
+      secrets:
+        - freg-idam-client-secret
   environment:
     REFORM_TEAM: ccpay
     REFORM_SERVICE_NAME: fees-register-frontend
