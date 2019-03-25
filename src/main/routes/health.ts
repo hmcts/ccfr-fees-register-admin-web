@@ -2,14 +2,17 @@ import * as express from 'express'
 import * as config from 'config'
 import * as healthcheck from '@hmcts/nodejs-healthcheck'
 
-export default express.Router()
-  .get('/health', healthcheck.configure({
-    checks: {
-      'fees': basicHealthCheck('fees'),
-      'idam-api': basicHealthCheck('idam.api'),
-      'idam-login': basicHealthCheck('idam.login')
-    }
-  }))
+let healthCheckRouter = express.Router()
+let healthCheckConfig = {
+  checks: {
+    'fees': basicHealthCheck('fees'),
+    'idam-api': basicHealthCheck('idam.api'),
+    'idam-login': basicHealthCheck('idam.login')
+  }
+}
+
+export default express.Router().use(healthCheckRouter)
+healthcheck.addTo(healthCheckRouter, healthCheckConfig)
 
 function basicHealthCheck (serviceName) {
   return healthcheck.web(url(serviceName))
