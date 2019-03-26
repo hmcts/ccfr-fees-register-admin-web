@@ -1,6 +1,5 @@
 nodejs:
   environment:
-    FEES_CLIENT_SECRET: ${FEES_CLIENT_SECRET}
     IDAM_API_URL: https://preprod-idamapi.reform.hmcts.net:3511
     IDAM_AUTHENTICATION_WEB_URL: https://idam.preprod.ccidam.reform.hmcts.net
     IDAM_LOGIN_WEB_URL: https://idam.preprod.ccidam.reform.hmcts.net/login
