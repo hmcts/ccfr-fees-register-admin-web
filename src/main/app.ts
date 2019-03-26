@@ -1,5 +1,7 @@
 import * as express from 'express'
 import * as config from 'config'
+import * as propertiesVolume from '@hmcts/properties-volume'
+propertiesVolume.addTo(config)
 import * as path from 'path'
 import * as favicon from 'serve-favicon'
 import * as cookieParser from 'cookie-parser'
@@ -65,7 +67,7 @@ if (env !== 'development') {
   new CsrfProtection().enableFor(app)
 }
 
-if (!config.has('security.clientId') || !config.has('security.clientSecret')) {
+if (!config.has('security.clientId') || !config.has('secrets.ccpay.freg-idam-client-secret')) {
   console.error('Client id or client secret not found.')
   console.error('If this is a dev environment, please set FEES_CLIENT_ID and FEES_CLIENT_SECRET environment variable')
   console.error('Ask a dev on the team for the id and secret')
@@ -75,7 +77,7 @@ if (!config.has('security.clientId') || !config.has('security.clientSecret')) {
 
 const security = new IDAM({
   clientId: config.get<String>('security.clientId'),
-  clientSecret: config.get<String>('security.clientSecret'),
+  clientSecret: config.get<String>('secrets.ccpay.freg-idam-client-secret'),
   loginUrl: config.get<String>('idam.login.url'),
   apiUrl: config.get<String>('idam.api.url'),
   redirectUri: '/oauth2/callback'
