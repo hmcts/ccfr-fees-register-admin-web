@@ -29,7 +29,7 @@ nodejs:
 
     FEES_URL: http://${SERVICE_NAME}-fees-register-api
 
-    IDAM_API_URL: https://preprod-idamapi.reform.hmcts.net:3511
-    IDAM_AUTHENTICATION_WEB_URL: https://idam.preprod.ccidam.reform.hmcts.net
-    IDAM_LOGIN_WEB_URL: https://idam.preprod.ccidam.reform.hmcts.net/login
+    IDAM_API_URL: https://idam-api.aat.platform.hmcts.net
+    IDAM_AUTHENTICATION_WEB_URL: https://idam-web-public.aat.platform.hmcts.net
+    IDAM_LOGIN_WEB_URL: https://idam-web-public.aat.platform.hmcts.net/login
     FEES_CLIENT_ID: fees_admin_frontend
