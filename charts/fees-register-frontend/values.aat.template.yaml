@@ -7,7 +7,3 @@ nodejs:
     
 tags:
   - idam-pr
-idam-pr:
-  service:
-    name: fees-register-admin
-    redirect_uri: https://${SERVICE_FQDN}/callback # this is the application callback URL where IDAM will send back the authentication code. SERVICE_FQDN is injected by Jenkins.
