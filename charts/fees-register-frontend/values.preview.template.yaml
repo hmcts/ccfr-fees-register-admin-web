@@ -12,4 +12,4 @@ tags:
 idam-pr:
   service:
     name: fees-register-admin
-    redirect_uri: https://${SERVICE_FQDN}/callback
+    redirect_uri: https://${SERVICE_FQDN}/oauth2/callback
