@@ -5,3 +5,7 @@ version: 0.0.1
 maintainers:
   - name: HMCTS Fees & Payments Dev Team
     email: ccpay@hmcts.net
+idam-pr:
+  service:
+    name: fees-register-admin
+    redirect_uri: https://${SERVICE_FQDN}/receiver # this is the application callback URL where IDAM will send back the authentication code. SERVICE_FQDN is injected by Jenkins.
