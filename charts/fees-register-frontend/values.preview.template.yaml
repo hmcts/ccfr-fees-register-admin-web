@@ -1,3 +1,7 @@
+idam-pr:
+  service:
+    name: fees-register-admin
+    redirect_uri: https://${SERVICE_FQDN}/oauth2/callback
 nodejs:
   # Don't modify below here
   image: ${IMAGE_NAME}
@@ -8,7 +12,3 @@ nodejs:
     IDAM_LOGIN_WEB_URL: https://idam-web-public.aat.platform.hmcts.net/login
 tags:
   idam-pr: true
-idam-pr:
-  service:
-    name: fees-register-admin
-    redirect_uri: https://${SERVICE_FQDN}/oauth2/callback
