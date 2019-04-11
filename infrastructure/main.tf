@@ -21,6 +21,11 @@ data "azurerm_key_vault_secret" "freg_idam_client_secret" {
   vault_uri = "${data.azurerm_key_vault.fees_key_vault.vault_uri}"
 }
 
+data "azurerm_key_vault_secret" "appinsights_instrumentation_key" {
+  name = "AppInsightsInstrumentationKey"
+  vault_uri = "${data.azurerm_key_vault.fees_key_vault.vault_uri}"
+}
+
 module "fees-register-frontend" {
   source   = "git@github.com:hmcts/moj-module-webapp?ref=master"
   product  = "${var.product}-frontend"
@@ -29,7 +34,7 @@ module "fees-register-frontend" {
   ilbIp    = "${var.ilbIp}"
   subscription = "${var.subscription}"
   is_frontend = "${var.env != "preview" ? 1: 0}"
-  appinsights_instrumentation_key = "${var.appinsights_instrumentation_key}"
+  appinsights_instrumentation_key = "${data.azurerm_key_vault_secret.appinsights_instrumentation_key.value}"
   additional_host_name = "${var.env != "preview" ? var.external_host_name : "null"}"
   https_only = "true"
   capacity = "${var.capacity}"
