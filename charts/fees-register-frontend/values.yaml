@@ -4,8 +4,7 @@ fees-register-api:
     releaseNameOverride: "{{ .Release.Name }}-fees-register-api"
     environment:
       SPRING_DATASOURCE_URL: "jdbc:postgresql://{{ .Release.Name }}-fees-register-db:5432/fees_register"
-      IDAM_CLIENT_BASE_URL: https://idam-api.aat.platform.hmcts.net
-  postgresql:
+      IDAM_CLIENT_BASE_URL: https://idam-api.aat.platform.hmcts.net  
 
 nodejs:
   image: 'https://hmcts.azurecr.io/hmcts/fees-register-admin-web:latest'
