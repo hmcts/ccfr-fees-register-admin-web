@@ -21,6 +21,7 @@
     "url": "http://localhost:8080"
   },
   "appInsights": {
-    "instrumentationKey": "some-key"
+    "instrumentationKey": "some-key",
+    "roleName": "fees-register-admin"
   }
 }
