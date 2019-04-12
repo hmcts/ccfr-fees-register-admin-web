@@ -5,9 +5,7 @@ import * as healthcheck from '@hmcts/nodejs-healthcheck'
 let healthCheckRouter = express.Router()
 let healthCheckConfig = {
   checks: {
-    'fees': basicHealthCheck('fees'),
-    'idam-api': basicHealthCheck('idam.api'),
-    'idam-login': basicHealthCheck('idam.login')
+    'fees': basicHealthCheck('fees')
   }
 }
 
