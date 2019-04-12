@@ -7,7 +7,6 @@ version: 0.0.5
 maintainers:
   - name: HMCTS Fees & Payments Dev Team
     email: ccpay@hmcts.net
-
 idam-pr:
   service:
     name: fees-register-admin # this is the label (name) of the service as configured in IDAM. If unsure, see below.
