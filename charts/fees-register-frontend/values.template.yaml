@@ -2,29 +2,35 @@ fees-register-api:
   releaseNameOverride: ${SERVICE_NAME}-fees-register-api
   java:
     releaseNameOverride: ${SERVICE_NAME}-fees-register-api
+    image: hmcts.azurecr.io/hmcts/fees-register-api
     environment:
       SPRING_DATASOURCE_URL: jdbc:postgresql://${SERVICE_NAME}-fees-register-db:5432/fees_register
-      IDAM_CLIENT_BASE_URL: https://preprod-idamapi.reform.hmcts.net:3511
+      IDAM_CLIENT_BASE_URL: https://idam-api.aat.platform.hmcts.net
   postgresql:
 
 nodejs:
   image: ${IMAGE_NAME}
   ingressHost: ${SERVICE_FQDN}
-  applicationPort: 3000
-  memoryRequests: 64Mi
-  cpuRequests: 0.2
-  memoryLimits: 512Mi
-  cpuLimits: 1
+  keyVaults:
+    "ccpay":
+      resourceGroup: ccpay
+      secrets:
+        - freg-idam-client-secret
   environment:
     REFORM_TEAM: ccpay
     REFORM_SERVICE_NAME: fees-register-frontend
     REFORM_ENVIRONMENT: preview
     NODE_ENV: production
 
-    FEES_URL: http://${SERVICE_NAME}-fees-register-api:8080
+    FEES_URL: http://${SERVICE_NAME}-fees-register-api
 
-    IDAM_API_URL: https://preprod-idamapi.reform.hmcts.net:3511
-    IDAM_AUTHENTICATION_WEB_URL: https://idam.preprod.ccidam.reform.hmcts.net
-    IDAM_LOGIN_WEB_URL: https://idam.preprod.ccidam.reform.hmcts.net/login
-    FEES_CLIENT_SECRET: ${FEES_CLIENT_SECRET}
+    IDAM_API_URL: https://idam-api.aat.platform.hmcts.net
+    IDAM_AUTHENTICATION_WEB_URL: https://idam-web-public.aat.platform.hmcts.net
+    IDAM_LOGIN_WEB_URL: https://idam-web-public.aat.platform.hmcts.net/login
     FEES_CLIENT_ID: fees_admin_frontend
+tags:
+  - idam-pr
+idam-pr:
+  service:
+    name: fees-register-admin # this is the label (name) of the service as configured in IDAM. If unsure, see below.
+    redirect_uri: https://${SERVICE_FQDN}/oauth2/callback # this is the application callback URL where IDAM will send back the authentication code. SERVICE_FQDN is injected by Jenkins.
