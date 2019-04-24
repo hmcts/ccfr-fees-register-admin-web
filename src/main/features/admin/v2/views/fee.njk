@@ -192,7 +192,11 @@
 
 <div class="grid-row">
 <div class="column">
+{% if user %}
+  <p><a href="/fees" class="link-back">{{ t("View all fees") }}</a></p>
+  {% else  %}
   <p><a href="/admin/v2/all-fees" class="link-back">{{ t("View all fees") }}</a></p>
+{% endif %}
 </div>
 </div>
   {% endblock %}
