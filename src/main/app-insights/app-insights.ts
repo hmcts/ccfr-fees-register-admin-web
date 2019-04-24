@@ -6,6 +6,7 @@ export class AppInsights {
     appInsights.setup(config.get<string>('appInsights.instrumentationKey'))
       .setAutoDependencyCorrelation(true)
       .setAutoCollectConsole(true, true)
-      .start()
+    appInsights.defaultClient.context.tags[appInsights.defaultClient.context.keys.cloudRole] = config.get<string>('appInsights.roleName')
+    appInsights.start()
   }
 }
