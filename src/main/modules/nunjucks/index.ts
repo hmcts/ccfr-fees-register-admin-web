@@ -87,6 +87,16 @@ export default class Nunjucks {
       }
       return result
     })
+    nunjucksEnv.addGlobal('isDraftVersionExists', (fee: Fee2Dto): boolean => {
+      let isExists = false
+      fee.fee_versions.filter((v) => {
+        if (v.status === 'draft') {
+          isExists = true
+          return
+        }
+      })
+      return isExists
+    })
 
     return nunjucksEnv
   }

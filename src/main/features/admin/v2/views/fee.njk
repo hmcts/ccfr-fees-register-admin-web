@@ -161,42 +161,40 @@
 <hr width=100%>
   {% endfor %}
 
-{% if isEditor(user.allInfo.roles) %}
-<div class="gird-row">
-<div class="column">
-  <h2 class="heading-medium">
-    <label class="bold">Actions</label>
-  </h2>
-</div>
-</div>
+{% if not isDraftVersionExists(feeDto) %}
+  {% if isEditor(user.allInfo.roles) %}
+  <div class="gird-row">
+  <div class="column">
+    <h2 class="heading-medium">
+      <label class="bold">Actions</label>
+    </h2>
+  </div>
+  </div>
 
-<div class="gird-row">
-<div class="column-third">
-  <ul class="list list-bullet">
-    <li>
-      {% if feeDto.current_version.flat_amount.amount %}
-        {% set type = 'flat' %}
-      {% elif feeDto.current_version.percentage_amount.percentage %}
-        {% set type = 'percentage' %}
-      {% elif feeDto.current_version.volume_amount.volume %}
-        {% set type = 'volume' %}
-      {% endif %}
-      <a href="/admin/v2/fees/version/create/{{ feeDto.code }}?type={{ type }}" class="link">{{ t("Create a new fee version") }}</a>
-    </li>
-  </ul>
-</div>
-</div>
-<hr width=100%>
+  <div class="gird-row">
+  <div class="column-third">
+    <ul class="list list-bullet">
+      <li>
+        {% if feeDto.current_version.flat_amount.amount %}
+          {% set type = 'flat' %}
+        {% elif feeDto.current_version.percentage_amount.percentage %}
+          {% set type = 'percentage' %}
+        {% elif feeDto.current_version.volume_amount.volume %}
+          {% set type = 'volume' %}
+        {% endif %}
+        <a href="/admin/v2/fees/version/create/{{ feeDto.code }}?type={{ type }}" class="link">{{ t("Create a new fee version") }}</a>
+      </li>
+    </ul>
+  </div>
+  </div>
+  <hr width=100%>
+  {% endif %}
 {% endif %}
 
 
 <div class="grid-row">
 <div class="column">
-{% if user %}
-  <p><a href="/fees" class="link-back">{{ t("View all fees") }}</a></p>
-  {% else  %}
   <p><a href="/admin/v2/all-fees" class="link-back">{{ t("View all fees") }}</a></p>
-{% endif %}
 </div>
 </div>
   {% endblock %}
