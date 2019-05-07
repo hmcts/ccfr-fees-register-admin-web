@@ -7,6 +7,7 @@ import '../../../routes/expectations'
 import { Paths as AdminPaths } from 'admin/paths'
 
 import { app } from '../../../../main/app'
+import { anyString } from 'ts-mockito'
 
 describe('Health page', () => {
   beforeEach(() => {
@@ -15,14 +16,13 @@ describe('Health page', () => {
 
   describe('on GET', () => {
     it('should respond with JSON data', async () => {
-      await request(app)
+      const result = await request(app)
         .get(AdminPaths.healthInfoPage.uri)
         .expect(res => {
           expect(res.body).to.haveOwnProperty('fees')
-          expect(res.body).to.haveOwnProperty('idamapi')
-          expect(res.body).to.haveOwnProperty('idamauthenticationweb')
           expect(res.body).to.haveOwnProperty('buildInfo')
         })
+      expect(result).to.contains(anyString())
     })
   })
 })
