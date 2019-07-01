@@ -7,6 +7,7 @@ import '../../../routes/expectations'
 import { Paths as AdminPaths } from 'admin/paths'
 
 import { app } from '../../../../main/app'
+import isDone = mock.isDone
 
 describe('Health page', () => {
   beforeEach(() => {
@@ -19,10 +20,9 @@ describe('Health page', () => {
         .get(AdminPaths.healthInfoPage.uri)
         .expect(res => {
           expect(res.body).to.haveOwnProperty('fees')
-          expect(res.body).to.haveOwnProperty('idamapi')
-          expect(res.body).to.haveOwnProperty('idamauthenticationweb')
           expect(res.body).to.haveOwnProperty('buildInfo')
         })
+      isDone()
     })
   })
 })
