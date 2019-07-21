@@ -123,7 +123,7 @@
     "sinon-express-mock": "^2.0.4",
     "sonar-scanner": "^3.0.3",
     "supertest": "^3.0.0",
-    "ts-mockito": "^2.3.0",
+    "ts-mockito": "^2.4.0",
     "tslint": "^5.1.0",
     "tslint-config-standard": "^8.0.0"
   },
