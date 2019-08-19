@@ -35,7 +35,7 @@
     "@types/http-status-codes": "^1.0.29",
     "@types/i18next": "^8.4.4",
     "@types/i18next-express-middleware": "^0.0.33",
-    "@types/i18next-sprintf-postprocessor": "^0.0.29",
+    "@types/i18next-sprintf-postprocessor": "^0.2.0",
     "@types/left-pad": "^1.1.1",
     "@types/lodash": "^4.14.52",
     "@types/nock": "^9.1.0",
