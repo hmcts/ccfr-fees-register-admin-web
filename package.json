@@ -33,7 +33,7 @@
     "@types/csurf": "^1.9.33",
     "@types/express": "^4.0.35",
     "@types/http-status-codes": "^1.0.29",
-    "@types/i18next": "^8.4.4",
+    "@types/i18next": "^13.0.0",
     "@types/i18next-express-middleware": "^0.0.33",
     "@types/i18next-sprintf-postprocessor": "^0.0.29",
     "@types/left-pad": "^1.1.1",
