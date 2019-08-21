@@ -27,7 +27,7 @@
   },
   "dependencies": {
     "@hmcts/nodejs-healthcheck": "^1.5.1",
-    "@hmcts/nodejs-logging": "^3.0.0",
+    "@hmcts/nodejs-logging": "3.0.0",
     "@hmcts/properties-volume": "0.0.9",
     "@types/config": "^0.0.34",
     "@types/csurf": "^1.9.33",
