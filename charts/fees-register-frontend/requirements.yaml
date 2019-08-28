@@ -3,7 +3,7 @@ dependencies:
     version: ~0.0.4
     repository: '@hmctspublic'
   - name: nodejs
-    version: 1.0.0
+    version: ~1.0.0
     repository: '@hmctspublic'
   - name: idam-pr
     version: ~1.0.0
