@@ -1,8 +1,10 @@
 nodejs:
+    image: ${IMAGE_NAME}
+    ingressHost: ${SERVICE_FQDN}
   environment:
     IDAM_API_URL: https://idam-api.aat.platform.hmcts.net
     IDAM_AUTHENTICATION_WEB_URL: https://idam-web-public.aat.platform.hmcts.net
-    IDAM_LOGIN_WEB_URL: https://idam-web-public.aat.platform.hmcts.net/login   
+    IDAM_LOGIN_WEB_URL: https://idam-web-public.aat.platform.hmcts.net/login
 tags:
   - idam-pr
 idam-pr:

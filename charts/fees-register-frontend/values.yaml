@@ -2,7 +2,7 @@ fees-register-api:
   releaseNameOverride: ${SERVICE_NAME}-fees-register-api
   java:
     releaseNameOverride: ${SERVICE_NAME}-fees-register-api
-    image: hmcts.azurecr.io/hmcts/fees-register-api
+    image: 'hmcts.azurecr.io/hmcts/fees-register-api:latest'
     environment:
       SPRING_DATASOURCE_URL: jdbc:postgresql://${SERVICE_NAME}-fees-register-db:5432/fees_register
       IDAM_CLIENT_BASE_URL: https://idam-api.aat.platform.hmcts.net
