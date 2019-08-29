@@ -16,7 +16,7 @@ fees-register-api:
   releaseNameOverride: ${SERVICE_NAME}-fees-register-api
   java:
     releaseNameOverride: ${SERVICE_NAME}-fees-register-api
-    image: 'https://hmctspublic.azurecr.io/payment/api:latest'
+    image: 'hmctspublic.azurecr.io/fees-register/api:latest'
     ingressHost: ${SERVICE_FQDN}
     environment:
       SPRING_DATASOURCE_URL: jdbc:postgresql://${SERVICE_NAME}-fees-register-db:5432/fees_register
