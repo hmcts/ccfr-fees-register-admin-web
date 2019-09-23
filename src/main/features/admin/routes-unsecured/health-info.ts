@@ -23,7 +23,7 @@ let healthCheckRouter = express.Router()
 let healthCheckConfig = {
   checks: {
     'fees': basicHealthCheck('fees'),
-    'idamapi': basicHealthCheck('idam.api'),
+    'idamapi': basicHealthCheck('idam.api')
     //'idamauthenticationweb': basicHealthCheck('idam.authentication-web')
   }
 }
