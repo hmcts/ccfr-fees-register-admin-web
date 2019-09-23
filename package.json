@@ -37,7 +37,7 @@
     "@types/i18next-express-middleware": "^0.0.33",
     "@types/i18next-sprintf-postprocessor": "^0.0.29",
     "@types/left-pad": "^1.1.1",
-    "@types/lodash": "^4.14.52",
+    "@types/lodash": "^4.14.139",
     "@types/nock": "^9.1.0",
     "@types/node": "^10.5.2",
     "@types/nunjucks": "^3.0.0",
