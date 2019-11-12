@@ -97,7 +97,7 @@
     "yarn": "^1.6.0"
   },
   "devDependencies": {
-    "@types/chai": "^4.1.4",
+    "@types/chai": "^4.2.5",
     "@types/chai-as-promised": "^7.1.0",
     "@types/chai-spies": "^1.0.0",
     "@types/mocha": "*",
