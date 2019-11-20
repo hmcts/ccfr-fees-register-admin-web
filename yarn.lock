@@ -870,9 +870,10 @@ buffer-from@^1.0.0, buffer-from@^1.1.0:
   version "1.1.0"
   resolved "https://registry.yarnpkg.com/buffer-from/-/buffer-from-1.1.0.tgz#87fcaa3a298358e0ade6e442cfce840740d1ad04"
 
-build-url@^1.0.9:
-  version "1.1.2"
-  resolved "https://registry.yarnpkg.com/build-url/-/build-url-1.1.2.tgz#ae0103f6c16a626d122ff06b508455d476c92825"
+build-url@^2.0.0:
+  version "2.0.0"
+  resolved "https://registry.yarnpkg.com/build-url/-/build-url-2.0.0.tgz#7bdd4045e51caa96c1586990e4ca514937598fc2"
+  integrity sha512-LYvvOlDc9jT07wFXTQTKoQLYaXIJriVl/DgatTsSzY963+ip1O7M6G/jWBrlKKJ1L7HGD3oK+WykmOvbcSYXlQ==
 
 builtin-modules@^1.0.0, builtin-modules@^1.1.1:
   version "1.1.1"
