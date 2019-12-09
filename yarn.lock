@@ -1427,9 +1427,10 @@ csurf@^1.9.0:
     csrf "~3.0.3"
     http-errors "~1.5.0"
 
-csv-string@^3.0.3:
-  version "3.1.3"
-  resolved "https://registry.yarnpkg.com/csv-string/-/csv-string-3.1.3.tgz#acdee7bcf8e45e1400aa55d585b725db0985558d"
+csv-string@^3.1.7:
+  version "3.1.7"
+  resolved "https://registry.yarnpkg.com/csv-string/-/csv-string-3.1.7.tgz#0a04994e22d0f971eb8d0b6020a88da0ccb9e207"
+  integrity sha512-36J9ILEVYQ/z7BbnPMW2MqfxA6TF84Xye4hcSTH/dXin5Uuh2ouSqBk5A//75Y+Bv3z7APjK0BINNmxVN1mXpA==
 
 currently-unhandled@^0.4.1:
   version "0.4.1"
