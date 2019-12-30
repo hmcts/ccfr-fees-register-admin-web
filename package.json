@@ -119,7 +119,7 @@
     "nyc": "^13.0.0",
     "pa11y": "^5.0.4",
     "sass-lint": "^1.10.2",
-    "sinon": "^6.1.3",
+    "sinon": "^8.0.2",
     "sinon-express-mock": "^2.0.4",
     "sonar-scanner": "^3.0.3",
     "supertest": "^3.0.0",
