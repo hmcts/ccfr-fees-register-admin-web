@@ -111,7 +111,7 @@
     "gulp-nodemon": "^2.2.1",
     "gulp-plumber": "^1.2.0",
     "gulp-sass": "^4.0.1",
-    "husky": "^1.0.0",
+    "husky": "^4.0.2",
     "mocha": "^5.2.0",
     "mochawesome": "^3.0.2",
     "mock-require": "^3.0.2",
