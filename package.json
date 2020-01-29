@@ -100,7 +100,7 @@
     "@types/chai": "^4.1.4",
     "@types/chai-as-promised": "^7.1.0",
     "@types/chai-spies": "^1.0.0",
-    "@types/mocha": "*",
+    "@types/mocha": ">=7.0.0",
     "@types/supertest": "*",
     "chai": "^4.1.2",
     "chai-as-promised": "^7.1.1",
