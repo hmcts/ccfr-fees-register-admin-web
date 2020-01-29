@@ -1,16 +1,4 @@
-fees-register-api:
-  releaseNameOverride: fees-register-admin-web-fees-register-api
-  java:
-    releaseNameOverride: fees-register-admin-web-fees-register-api
-    image: hmcts.azurecr.io/hmcts/fees-register-api
-    environment:
-      SPRING_DATASOURCE_URL: jdbc:postgresql://fees-register-admin-web-fees-register-db:5432/fees_register
-      IDAM_CLIENT_BASE_URL: https://idam-api.aat.platform.hmcts.net
-  postgresql:
-
 nodejs:
-  image: ${IMAGE_NAME}
-  ingressHost: ${SERVICE_FQDN}
   keyVaults:
     "ccpay":
       resourceGroup: ccpay
@@ -22,11 +10,11 @@ nodejs:
     REFORM_ENVIRONMENT: preview
     NODE_ENV: production
 
-    FEES_URL: http://fees-register-admin-web-fees-register-api
+    FEES_URL: http://fees-register-api-{{ .Values.global.environment }}.service.core-compute-{{ .Values.global.environment }}.internal
 
-    IDAM_API_URL: https://idam-api.aat.platform.hmcts.net
-    IDAM_AUTHENTICATION_WEB_URL: https://idam-web-public.aat.platform.hmcts.net
-    IDAM_LOGIN_WEB_URL: https://idam-web-public.aat.platform.hmcts.net/login
+    IDAM_API_URL: https://idam-api.{{ .Values.global.environment }}.platform.hmcts.net
+    IDAM_AUTHENTICATION_WEB_URL: https://idam-web-public.{{ .Values.global.environment }}.platform.hmcts.net
+    IDAM_LOGIN_WEB_URL: https://idam-web-public.{{ .Values.global.environment }}.platform.hmcts.net/login
     FEES_CLIENT_ID: fees_admin_frontend
 tags:
   - idam-pr
