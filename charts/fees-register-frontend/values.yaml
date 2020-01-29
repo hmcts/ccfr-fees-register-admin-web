@@ -1,10 +1,10 @@
 fees-register-api:
-  releaseNameOverride: ${SERVICE_NAME}-fees-register-api
+  releaseNameOverride: fees-register-admin-web-fees-register-api
   java:
-    releaseNameOverride: ${SERVICE_NAME}-fees-register-api
+    releaseNameOverride: fees-register-admin-web-fees-register-api
     image: hmcts.azurecr.io/hmcts/fees-register-api
     environment:
-      SPRING_DATASOURCE_URL: jdbc:postgresql://${SERVICE_NAME}-fees-register-db:5432/fees_register
+      SPRING_DATASOURCE_URL: jdbc:postgresql://fees-register-admin-web-fees-register-db:5432/fees_register
       IDAM_CLIENT_BASE_URL: https://idam-api.aat.platform.hmcts.net
   postgresql:
 
@@ -22,7 +22,7 @@ nodejs:
     REFORM_ENVIRONMENT: preview
     NODE_ENV: production
 
-    FEES_URL: http://${SERVICE_NAME}-fees-register-api
+    FEES_URL: http://fees-register-admin-web-fees-register-api
 
     IDAM_API_URL: https://idam-api.aat.platform.hmcts.net
     IDAM_AUTHENTICATION_WEB_URL: https://idam-web-public.aat.platform.hmcts.net
