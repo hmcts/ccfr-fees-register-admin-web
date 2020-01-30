@@ -1,0 +1,10 @@
+nodejs:
+  image: ${IMAGE_NAME}
+  ingressHost: ${SERVICE_FQDN}
+  environment:
+    IDAM_API_URL: https://idam-api.aat.platform.hmcts.net
+    IDAM_AUTHENTICATION_WEB_URL: https://idam-web-public.aat.platform.hmcts.net
+    IDAM_LOGIN_WEB_URL: https://idam-web-public.aat.platform.hmcts.net/login
+    SPRING_CLOUD_PROPERTIESVOLUME_ENABLED: false
+    FEES_CLIENT_SECRET: EGNH7CZ6WUPL72FC
+
