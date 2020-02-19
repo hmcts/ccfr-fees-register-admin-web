@@ -57,7 +57,7 @@
     "csv-string": "^3.0.3",
     "es6-promisify": "^6.0.0",
     "express": "^4.13.3",
-    "fast-csv": "^2.4.1",
+    "fast-csv": "^4.1.1",
     "feature-toggles": "^1.4.0",
     "govuk-elements-sass": "^3.0.2",
     "govuk_template_jinja": "0.24.0",
