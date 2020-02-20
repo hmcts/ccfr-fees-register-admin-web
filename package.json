@@ -2,8 +2,7 @@
   "name": "fees-register-admin-web",
   "version": "2.0.1",
   "private": true,
-  "engines": "12.16.1"
-  },
+  "engines": "12.16.1",
   "scripts": {
     "start": "node server.js",
     "start:angular-dev": "ng serve --proxy-config proxy.conf.json",
