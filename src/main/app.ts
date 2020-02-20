@@ -5,7 +5,6 @@ propertiesVolume.addTo(config)
 import * as path from 'path'
 import * as favicon from 'serve-favicon'
 import * as cookieParser from 'cookie-parser'
-import * as bodyParser from 'body-parser'
 import * as featureToggles from 'feature-toggles'
 import * as isUndefined from 'is-undefined'
 import { NotFoundError } from './errors'
@@ -23,6 +22,7 @@ import { CsrfProtection } from 'modules/csrf'
 export const app: express.Express = express()
 
 const logger = Logger.getLogger('app')
+const bodyParser = require('body-parser')
 
 logger.info({
   microservice: 'fees-register-admin-web',
