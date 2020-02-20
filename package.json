@@ -2,9 +2,7 @@
   "name": "fees-register-admin-web",
   "version": "2.0.1",
   "private": true,
-  "engines": {
-    "node": ">=8.11.1"
-  }
+  "engines": "12.16.1"
   },
   "scripts": {
     "start": "node server.js",
