@@ -1,4 +1,3 @@
-import { expect } from 'chai'
 import * as config from 'config'
 import * as request from 'supertest'
 import * as mock from 'nock'
@@ -136,7 +135,7 @@ describe('Create/Edit Fee page', () => {
       await request(app)
         .get(AdminPaths.feeCreatePageV2.uri)
         .set('Cookie', `${cookieName}=JWT`)
-        .expect(res => expect(res.statusCode).to.be.equal(200))
+        .expect(200)
     })
 
     it('should render the create fee page in edit mode', async () => {
@@ -148,7 +147,7 @@ describe('Create/Edit Fee page', () => {
       await request(app)
         .get(AdminPaths.feeCreatePageV2.uri + '?action=edit&feeCode=X0001')
         .set('Cookie', `${cookieName}=JWT`)
-        .expect(res => expect(res.statusCode).to.be.equal(200))
+        .expect(200)
     })
 
   })
