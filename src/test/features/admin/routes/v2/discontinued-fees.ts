@@ -1,4 +1,3 @@
-import { expect } from 'chai'
 import * as config from 'config'
 import * as request from 'supertest'
 import * as mock from 'nock'
@@ -27,7 +26,7 @@ describe('All discontinued fees list page', () => {
       await request(app)
         .get(AdminPaths.discontinuedFeesPageV2.uri)
         .set('Cookie', `${cookieName}=JWT`)
-        .expect(res => expect(res.statusCode).to.be.equal(200))
+        .expect(200)
     })
   })
 })
