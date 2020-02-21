@@ -11,8 +11,7 @@ import * as feesServiceMock from '../../../../http-mocks/fees'
 import * as idamServiceMock from '../../../../http-mocks/idam'
 
 const cookieName: string = config.get<string>('session.cookieName')
-const request = require('supertest');
-
+const request = require('supertest')
 
 describe('All fees list page', () => {
   beforeEach(() => {
