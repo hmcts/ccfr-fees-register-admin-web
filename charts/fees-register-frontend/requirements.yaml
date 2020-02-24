@@ -1,12 +1,8 @@
 dependencies:
-  - name: fees-register-api
-    version: ~0.0.4
-    repository: '@hmctspublic'
   - name: nodejs
     version: 1.8.0
     repository: '@hmctspublic'
   - name: idam-pr
     version: ~2.2.3
     repository: '@hmctspublic'
-    tags:
-    - idam-pr
+
