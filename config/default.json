@@ -5,7 +5,7 @@
   },
   "idam": {
     "authentication-web": {
-      "url": "https://idam.dev.ccidam.reform.hmcts.net"
+      "url": "https://idam.dev.ccidam.reform.hmcts.net/o/authorize"
     },
     "login": {
       "url": "https://idam.dev.ccidam.reform.hmcts.net/login"
