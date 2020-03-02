@@ -26,7 +26,7 @@
     "prepush": "yarn test && yarn test:routes"
   },
   "dependencies": {
-    "@hmcts/nodejs-healthcheck": "^1.5.1",
+    "@hmcts/nodejs-healthcheck": "^1.6.0",
     "@hmcts/nodejs-logging": "^3.0.0",
     "@hmcts/properties-volume": "0.0.9",
     "@types/config": "^0.0.34",
