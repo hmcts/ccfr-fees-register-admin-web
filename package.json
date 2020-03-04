@@ -108,7 +108,7 @@
     "debug": "^3.1.0",
     "gulp-replace": "^1.0.0",
     "gulp-livereload": "^4.0.1",
-    "gulp-nodemon": "^2.2.1",
+    "gulp-nodemon": "^2.5.0",
     "gulp-plumber": "^1.2.0",
     "gulp-sass": "^4.0.1",
     "husky": "^1.0.0",
