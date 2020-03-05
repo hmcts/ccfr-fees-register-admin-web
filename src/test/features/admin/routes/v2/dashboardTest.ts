@@ -1,4 +1,3 @@
-import { expect } from 'chai'
 import * as config from 'config'
 import * as request from 'supertest'
 import * as mock from 'nock'
@@ -25,7 +24,7 @@ describe('Dashboard page', () => {
       await request(app)
         .get(AdminPaths.dashboard.uri)
         .set('Cookie', `${cookieName}=JWT`)
-        .expect(res => expect(res.statusCode).to.be.equal(200))
+        .expect(200)
     })
   })
 
@@ -39,7 +38,7 @@ describe('Dashboard page', () => {
           'feeCode': 'FEE002', 'version': 1, 'action': 'submit'
         })
         .set('Cookie', `${cookieName}=JWT`)
-        .expect(res => expect(res.statusCode).to.be.equal(200))
+        .expect(200)
     })
 
     it('should delete fee version', async () => {
@@ -51,7 +50,7 @@ describe('Dashboard page', () => {
           'feeCode': 'FEE002', 'version': 1, 'action': 'delete'
         })
         .set('Cookie', `${cookieName}=JWT`)
-        .expect(res => expect(res.statusCode).to.be.equal(200))
+        .expect(200)
     })
 
     it('should approve fee version', async () => {
@@ -63,7 +62,7 @@ describe('Dashboard page', () => {
           'feeCode': 'FEE002', 'version': 1, 'action': 'approve'
         })
         .set('Cookie', `${cookieName}=JWT`)
-        .expect(res => expect(res.statusCode).to.be.equal(200))
+        .expect(200)
     })
   })
 })
