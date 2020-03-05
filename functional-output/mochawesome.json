@@ -1,0 +1,197 @@
+{
+  "stats": {
+    "suites": 1,
+    "tests": 1,
+    "passes": 1,
+    "pending": 0,
+    "failures": 0,
+    "start": "2020-03-05T01:19:33.648Z",
+    "end": "2020-03-05T01:20:19.023Z",
+    "duration": 45375,
+    "testsRegistered": 1,
+    "passPercent": 100,
+    "pendingPercent": 0,
+    "other": 0,
+    "hasOther": false,
+    "skipped": 0,
+    "hasSkipped": false
+  },
+  "results": [
+    {
+      "uuid": "3c5d13c5-c2b4-4090-b8e0-1e03f44c8907",
+      "title": "",
+      "fullFile": "",
+      "file": "",
+      "beforeHooks": [],
+      "afterHooks": [],
+      "tests": [],
+      "suites": [
+        {
+          "uuid": "a51a5aae-e9ec-45a8-99b3-67d67d12d819",
+          "title": "CC FeesRegister Admin Acceptance Tests",
+          "fullFile": "/Users/krishnakishorenuthalapati/feesadminfunctionaltests/ccfr-fees-register-admin-web/acceptance-tests/test/end-to-end/tests/CCFeesRegister_EditorScreenValidation_test.js",
+          "file": "/acceptance-tests/test/end-to-end/tests/CCFeesRegister_EditorScreenValidation_test.js",
+          "beforeHooks": [
+            {
+              "title": "\"before all\" hook: codeceptjs.beforeSuite",
+              "fullTitle": "CC FeesRegister Admin Acceptance Tests \"before all\" hook: codeceptjs.beforeSuite",
+              "timedOut": false,
+              "duration": 1607,
+              "state": null,
+              "speed": null,
+              "pass": false,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "scenario.suiteSetup(suite)",
+              "err": {},
+              "uuid": "6e9519bf-eae1-453a-8fec-276dc76eed46",
+              "parentUUID": "a51a5aae-e9ec-45a8-99b3-67d67d12d819",
+              "isHook": true,
+              "skipped": false
+            },
+            {
+              "title": "\"before all\" hook: BeforeSuite",
+              "fullTitle": "CC FeesRegister Admin Acceptance Tests \"before all\" hook: BeforeSuite",
+              "timedOut": false,
+              "duration": 7164,
+              "state": null,
+              "speed": null,
+              "pass": false,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "I.amOnPage('/');\nI.wait(CCFRATConstants.twoSecondWaitTime);\nI.resizeWindow(CCFRATConstants.windowsSizeX, CCFRATConstants.windowsSizeY);",
+              "err": {},
+              "uuid": "3e03a205-9b99-4793-8432-021152b7f350",
+              "parentUUID": "a51a5aae-e9ec-45a8-99b3-67d67d12d819",
+              "isHook": true,
+              "skipped": false
+            },
+            {
+              "title": "\"before each\" hook: codeceptjs.before",
+              "fullTitle": "CC FeesRegister Admin Acceptance Tests \"before each\" hook: codeceptjs.before",
+              "timedOut": false,
+              "duration": 0,
+              "state": null,
+              "speed": null,
+              "pass": false,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "scenario.setup(suite)",
+              "err": {},
+              "uuid": "f4ef10a8-2eab-4352-9088-23586af6d8cf",
+              "parentUUID": "a51a5aae-e9ec-45a8-99b3-67d67d12d819",
+              "isHook": true,
+              "skipped": false
+            }
+          ],
+          "afterHooks": [
+            {
+              "title": "\"after all\" hook: codeceptjs.afterSuite",
+              "fullTitle": "CC FeesRegister Admin Acceptance Tests \"after all\" hook: codeceptjs.afterSuite",
+              "timedOut": false,
+              "duration": 0,
+              "state": null,
+              "speed": null,
+              "pass": false,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "scenario.suiteTeardown(suite)",
+              "err": {},
+              "uuid": "9babc406-83b1-4ab4-94bc-2310287ee8b1",
+              "parentUUID": "a51a5aae-e9ec-45a8-99b3-67d67d12d819",
+              "isHook": true,
+              "skipped": false
+            },
+            {
+              "title": "\"after each\" hook: finalize codeceptjs",
+              "fullTitle": "CC FeesRegister Admin Acceptance Tests \"after each\" hook: finalize codeceptjs",
+              "timedOut": false,
+              "duration": 0,
+              "state": null,
+              "speed": null,
+              "pass": false,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "scenario.teardown(suite)",
+              "err": {},
+              "uuid": "277da6bf-8aa0-4816-b8a3-17e55c7295fd",
+              "parentUUID": "a51a5aae-e9ec-45a8-99b3-67d67d12d819",
+              "isHook": true,
+              "skipped": false
+            }
+          ],
+          "tests": [
+            {
+              "title": "FeesRegister Admin Console Editor Screen Validation",
+              "fullTitle": "CC FeesRegister Admin Acceptance Tests: FeesRegister Admin Console Editor Screen Validation",
+              "timedOut": false,
+              "duration": 36598,
+              "state": "passed",
+              "speed": "slow",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "I.login('frpreprodsidameditor@mailnesia.com', 'LevelAt12');\nI.wait(CCFRATConstants.tenSecondWaitTime);\nI.waitForText('Welcome', CCFRATConstants.tenSecondWaitTime);\nI.see('Choose an action');\nI.see('Reference Data');\nI.see('Add a new fee');\nI.see('Upload fees');\nI.see('View all fees');\nI.see('View all discontinued fees');\nI.see('My open actions');\nI.see('Applicants');\nI.see('Jurisdictions 1');\nI.see('Jurisdictions 2');\nI.see('Services');\nI.see('Channels');\nI.see('Events');\nI.see('Directions');\nI.Logout();",
+              "err": {},
+              "uuid": "aeaae2cc-bd56-472d-a7d1-71ab389d54ee",
+              "parentUUID": "a51a5aae-e9ec-45a8-99b3-67d67d12d819",
+              "isHook": false,
+              "skipped": false
+            }
+          ],
+          "suites": [],
+          "passes": [
+            "aeaae2cc-bd56-472d-a7d1-71ab389d54ee"
+          ],
+          "failures": [],
+          "pending": [],
+          "skipped": [],
+          "duration": 36598,
+          "root": false,
+          "rootEmpty": false,
+          "_timeout": 0
+        }
+      ],
+      "passes": [],
+      "failures": [],
+      "pending": [],
+      "skipped": [],
+      "duration": 0,
+      "root": true,
+      "rootEmpty": true,
+      "_timeout": 0
+    }
+  ],
+  "meta": {
+    "mocha": {
+      "version": "5.2.0"
+    },
+    "mochawesome": {
+      "options": {
+        "quiet": false,
+        "reportFilename": "mochawesome",
+        "saveHtml": true,
+        "saveJson": true,
+        "consoleReporter": "spec",
+        "useInlineDiffs": false
+      },
+      "version": "4.1.0"
+    },
+    "marge": {
+      "options": {
+        "mochaFile": "functional-output/result.xml",
+        "reportDir": "functional-output",
+        "takePassedScreenshot": false,
+        "clearOldScreenshots": true,
+        "shortScrFileNames": false
+      },
+      "version": "4.1.0"
+    }
+  }
+}
