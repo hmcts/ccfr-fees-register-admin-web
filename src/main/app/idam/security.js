@@ -23,8 +23,9 @@ function Security(options) {
 function addOAuth2Parameters(url, state, self, req) {
 
   url.query.response_type = "code";
-  url.query.state = state;
+  //url.query.state = state;
   url.query.client_id = self.opts.clientId;
+  url.query.scope = 'openid';
   url.query.redirect_uri = req.protocol + "://" + req.get('host') + self.opts.redirectUri;
 
 }
@@ -74,7 +75,7 @@ function authorize(roles, res, next, self) {
 
 function getTokenFromCode(self, req) {
 
-  var url = URL.parse(self.opts.apiUrl + "/oauth2/token", true);
+  var url = URL.parse(self.opts.apiUrl + "/o/token", true);
 
   return request.post(url.format())
     .auth(self.opts.clientId, self.opts.clientSecret)
