@@ -35,7 +35,7 @@ function login(req, res, roles, self) {
   const originalUrl = req.protocol + '://' + req.get('host') + req.originalUrl;
   var state = generateState();
 
-  storeRedirectCookie(req, res, originalUrl, state);
+  storeRedirectCookie(req, res, originalUrl, 'login');
 
   var url;
 
@@ -259,7 +259,7 @@ Security.prototype.protectWithUplift = function (role, roleToUplift) {
         const originalUrl = req.protocol + '://' + req.get('host') + req.originalUrl;
 
         var state = generateState();
-        storeRedirectCookie(req, res, originalUrl, state);
+        storeRedirectCookie(req, res, originalUrl, 'final');
 
         var url = URL.parse(self.opts.loginUrl + "/uplift", true);
         addOAuth2Parameters(url, state, self, req);
