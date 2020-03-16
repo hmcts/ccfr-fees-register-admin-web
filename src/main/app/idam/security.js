@@ -31,7 +31,7 @@ function addOAuth2Parameters(url, state, self, req) {
 }
 
 function login(req, res, roles, self) {
-
+  storeTestCookie(req.originalUrl, res)
   const originalUrl = req.protocol + '://' + req.get('host') + req.originalUrl;
   var state = generateState();
 
@@ -103,6 +103,7 @@ function storeCookie(req, res, token) {
     res.cookie(SECURITY_COOKIE, req.authToken, {httpOnly: true});
   }
 }
+
 
 function handleCookie(req) {
 
@@ -285,6 +286,16 @@ function storeRedirectCookie(req, res, continue_url, state) {
     res.cookie(REDIRECT_COOKIE, JSON.stringify(cookieValue), {secure: true, httpOnly: true});
   } else {
     res.cookie(REDIRECT_COOKIE, JSON.stringify(cookieValue), {httpOnly: true});
+  }
+}
+
+function storeTestCookie(req, res) {
+
+
+  if (req.protocol === "https") { /* SECURE */
+    res.cookie('TEST', req, {secure: true, httpOnly: true});
+  } else {
+    res.cookie('TEST', req, {httpOnly: true});
   }
 }
 
