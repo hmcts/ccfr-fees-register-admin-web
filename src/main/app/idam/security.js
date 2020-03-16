@@ -31,7 +31,7 @@ function addOAuth2Parameters(url, state, self, req) {
 }
 
 function login(req, res, roles, self) {
-  storeTestCookie(req.originalUrl, res)
+  storeTestCookie(req, res)
   const originalUrl = req.protocol + '://' + req.get('host') + req.originalUrl;
   var state = generateState();
 
