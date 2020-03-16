@@ -13,7 +13,7 @@ nodejs:
     FEES_URL: http://fees-register-api-{{ .Values.global.environment }}.service.core-compute-{{ .Values.global.environment }}.internal
 
     IDAM_API_URL: https://idam-api.{{ .Values.global.environment }}.platform.hmcts.net
-    IDAM_AUTHENTICATION_WEB_URL: https://idam-web-public.{{ .Values.global.environment }}.platform.hmcts.net
+    IDAM_AUTHENTICATION_WEB_URL: https://idam-web-public.{{ .Values.global.environment }}.platform.hmcts.net/o/authorize
     IDAM_LOGIN_WEB_URL: https://idam-web-public.{{ .Values.global.environment }}.platform.hmcts.net/login
     FEES_CLIENT_ID: fees_admin_frontend
 tags:

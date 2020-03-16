@@ -25,6 +25,7 @@ function addOAuth2Parameters(url, state, self, req) {
   url.query.response_type = "code";
   url.query.state = state;
   url.query.client_id = self.opts.clientId;
+  url.query.scope = 'openid profile roles';
   url.query.redirect_uri = req.protocol + "://" + req.get('host') + self.opts.redirectUri;
 
 }
@@ -74,20 +75,21 @@ function authorize(roles, res, next, self) {
 
 function getTokenFromCode(self, req) {
 
-  var url = URL.parse(self.opts.apiUrl + "/oauth2/token", true);
+  var url = URL.parse(self.opts.apiUrl + "/o/token", true);
 
   return request.post(url.format())
-    .auth(self.opts.clientId, self.opts.clientSecret)
     .set('Accept', 'application/json')
     .set('Content-Type', 'application/x-www-form-urlencoded')
     .type('form')
+    .send({ client_id: self.opts.clientId })
+    .send({ client_secret: self.opts.clientSecret })
     .send({"grant_type": 'authorization_code'})
     .send({"code": req.query.code})
     .send({"redirect_uri": req.protocol + "://" + req.get('host') + self.opts.redirectUri});
 }
 
 function getUserDetails(self, securityCookie) {
-  return request.get(self.opts.apiUrl + "/details")
+  return request.get(self.opts.apiUrl + "/o/userinfo")
     .set('Accept', 'application/json')
     .set('Authorization', "Bearer " + securityCookie);
 }
