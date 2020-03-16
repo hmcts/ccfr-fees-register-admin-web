@@ -8,7 +8,7 @@ const UUID = require("uuid/v4");
 const SECURITY_COOKIE = '__auth-token';
 const REDIRECT_COOKIE = '__redirect';
 
-const ACCESS_TOKEN_OAUTH2 = 'access_token';
+//const ACCESS_TOKEN_OAUTH2 = 'access_token';
 
 function Security(options) {
   this.opts = options || {};
@@ -333,7 +333,7 @@ Security.prototype.OAuth2CallbackEndpoint = function () {
       }
 
       /* We store it in a session cookie */
-      storeCookie(req, res, response.body[ACCESS_TOKEN_OAUTH2]);
+      storeCookie(req, res, response.body);
 
       /* We delete redirect cookie */
       res.clearCookie(REDIRECT_COOKIE);
