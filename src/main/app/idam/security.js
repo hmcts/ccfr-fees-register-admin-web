@@ -8,7 +8,7 @@ const UUID = require("uuid/v4");
 const SECURITY_COOKIE = '__auth-token';
 const REDIRECT_COOKIE = '__redirect';
 
-//const ACCESS_TOKEN_OAUTH2 = 'access_token';
+const ACCESS_TOKEN_OAUTH2 = 'access_token';
 
 function Security(options) {
   this.opts = options || {};
@@ -25,17 +25,16 @@ function addOAuth2Parameters(url, state, self, req) {
   url.query.response_type = "code";
   url.query.state = state;
   url.query.client_id = self.opts.clientId;
-  url.query.scope = 'openid profile roles';
+  //url.query.scope = 'openid profile roles';
   url.query.redirect_uri = req.protocol + "://" + req.get('host') + self.opts.redirectUri;
 
 }
 
 function login(req, res, roles, self) {
-  storeTestCookie(req, res)
   const originalUrl = req.protocol + '://' + req.get('host') + req.originalUrl;
   var state = generateState();
 
-  storeRedirectCookie(req, res, originalUrl, 'login');
+  storeRedirectCookie(req, res, originalUrl, state);
 
   var url;
 
@@ -75,21 +74,20 @@ function authorize(roles, res, next, self) {
 
 function getTokenFromCode(self, req) {
 
-  var url = URL.parse(self.opts.apiUrl + "/o/token", true);
+  var url = URL.parse(self.opts.apiUrl + "/oauth2/token", true);
 
   return request.post(url.format())
+    .auth(self.opts.clientId, self.opts.clientSecret)
     .set('Accept', 'application/json')
     .set('Content-Type', 'application/x-www-form-urlencoded')
     .type('form')
-    .send({ client_id: self.opts.clientId })
-    .send({ client_secret: self.opts.clientSecret })
     .send({"grant_type": 'authorization_code'})
     .send({"code": req.query.code})
     .send({"redirect_uri": req.protocol + "://" + req.get('host') + self.opts.redirectUri});
 }
 
 function getUserDetails(self, securityCookie) {
-  return request.get(self.opts.apiUrl + "/o/userinfo")
+  return request.get(self.opts.apiUrl + "/details")
     .set('Accept', 'application/json')
     .set('Authorization', "Bearer " + securityCookie);
 }
@@ -260,7 +258,7 @@ Security.prototype.protectWithUplift = function (role, roleToUplift) {
         const originalUrl = req.protocol + '://' + req.get('host') + req.originalUrl;
 
         var state = generateState();
-        storeRedirectCookie(req, res, originalUrl, 'final');
+        storeRedirectCookie(req, res, originalUrl, state);
 
         var url = URL.parse(self.opts.loginUrl + "/uplift", true);
         addOAuth2Parameters(url, state, self, req);
@@ -286,16 +284,6 @@ function storeRedirectCookie(req, res, continue_url, state) {
     res.cookie(REDIRECT_COOKIE, JSON.stringify(cookieValue), {secure: true, httpOnly: true});
   } else {
     res.cookie(REDIRECT_COOKIE, JSON.stringify(cookieValue), {httpOnly: true});
-  }
-}
-
-function storeTestCookie(req, res) {
-
-
-  if (req.protocol === "https") { /* SECURE */
-    res.cookie('TEST', req, {secure: true, httpOnly: true});
-  } else {
-    res.cookie('TEST', req, {httpOnly: true});
   }
 }
 
@@ -344,7 +332,7 @@ Security.prototype.OAuth2CallbackEndpoint = function () {
       }
 
       /* We store it in a session cookie */
-      storeCookie(req, res, response.body);
+      storeCookie(req, res, response.body[ACCESS_TOKEN_OAUTH2]);
 
       /* We delete redirect cookie */
       res.clearCookie(REDIRECT_COOKIE);
