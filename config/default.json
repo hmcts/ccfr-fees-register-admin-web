@@ -8,7 +8,7 @@
       "url": "https://idam.dev.ccidam.reform.hmcts.net"
     },
     "login": {
-      "url": "https://idam.dev.ccidam.reform.hmcts.net/login"
+      "url": "https://idam.dev.ccidam.reform.hmcts.net/o/authorize"
     },
     "api": {
       "url": "https://idam.dev.ccidam.reform.hmcts.net"

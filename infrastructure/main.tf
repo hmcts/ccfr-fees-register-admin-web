@@ -51,7 +51,7 @@ module "fees-register-frontend" {
     // IDAM
     IDAM_API_URL = "${var.idam_api_url}"
     IDAM_AUTHENTICATION_WEB_URL = "${var.authentication_web_url}"
-    IDAM_LOGIN_WEB_URL = "${var.authentication_web_url}/login"
+    IDAM_LOGIN_WEB_URL = "${var.authentication_web_url}/o/authorize"
 
     // Fees API
     FEES_URL = "http://fees-register-api-${local.local_env}.service.${local.local_ase}.internal"
