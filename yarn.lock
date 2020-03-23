@@ -1945,10 +1945,10 @@ csurf@^1.9.0:
     csrf "3.1.0"
     http-errors "~1.7.3"
 
-csv-string@^3.0.3:
-  version "3.1.7"
-  resolved "https://registry.yarnpkg.com/csv-string/-/csv-string-3.1.7.tgz#0a04994e22d0f971eb8d0b6020a88da0ccb9e207"
-  integrity sha512-36J9ILEVYQ/z7BbnPMW2MqfxA6TF84Xye4hcSTH/dXin5Uuh2ouSqBk5A//75Y+Bv3z7APjK0BINNmxVN1mXpA==
+csv-string@^3.2.0:
+  version "3.2.0"
+  resolved "https://registry.yarnpkg.com/csv-string/-/csv-string-3.2.0.tgz#d034b62dfcd10b95ff7e584401d15355805673bd"
+  integrity sha512-JN3iAuFJ+r7+CwF6UtP3U8ryorRkQp8NT+9VufeiRV+Xyv+Q8HPPBHGm4LAq7YihTQYmUnIeYy5CPQ8Y2GhMkg==
 
 cucumber-expressions@^6.6.2:
   version "6.6.2"
