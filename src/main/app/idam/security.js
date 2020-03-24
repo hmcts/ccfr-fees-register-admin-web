@@ -6,9 +6,10 @@ const URL = require("url");
 const UUID = require("uuid/v4");
 
 const SECURITY_COOKIE = '__auth-token';
-const REDIRECT_COOKIE = '__redirect';
-
 const ACCESS_TOKEN_OAUTH2 = 'access_token';
+const SECURITY_COOKIE_ID = '__id-token';
+const ID_TOKEN_OAUTH2 = 'id_token';
+const REDIRECT_COOKIE = '__redirect';
 
 function Security(options) {
   this.opts = options || {};
@@ -94,13 +95,20 @@ function getUserDetails(self, securityCookie) {
     .set('Authorization', "Bearer " + securityCookie);
 }
 
-function storeCookie(req, res, token) {
+function invalidatesUserToken(self, securityCookie) {
+  return request
+    .get(self.opts.apiUrl + "/o/endSession")
+    .query({ id_token_hint: securityCookie })
+    .set('Accept', 'application/json');
+}
+
+function storeCookie(req, res, token, cookieName) {
   req.authToken = token;
 
   if (req.protocol === "https") { /* SECURE */
-    res.cookie(SECURITY_COOKIE, req.authToken, {secure: true, httpOnly: true});
+    res.cookie(cookieName, req.authToken, {secure: true, httpOnly: true});
   } else {
-    res.cookie(SECURITY_COOKIE, req.authToken, {httpOnly: true});
+    res.cookie(cookieName, req.authToken, {httpOnly: true});
   }
 }
 
@@ -117,21 +125,25 @@ function handleCookie(req) {
 Security.prototype.logout = function () {
   const self = {opts: this.opts};
 
-// eslint-disable-next-line no-unused-vars
-  return function (req, res, next) {
+  return function (req, res) {
 
-    var token = req.cookies[SECURITY_COOKIE];
+    const token = req.cookies[SECURITY_COOKIE_ID];
+    invalidatesUserToken(self, token).end( err => {
+      if (err) {
+        Logger.getLogger('FEE REGISTER: security.js').error(err);
+      }
 
-    res.clearCookie(SECURITY_COOKIE);
-    res.clearCookie(REDIRECT_COOKIE);
+      res.clearCookie(SECURITY_COOKIE);
+      res.clearCookie(SECURITY_COOKIE_ID);
+      res.clearCookie(REDIRECT_COOKIE);
 
-    if (token) {
-      res.redirect(self.opts.loginUrl + "/logout?jwt=" + token);
-    } else {
-      res.redirect(self.opts.loginUrl + "/logout");
-    }
+      if (token) {
+        res.redirect(`${self.opts.webUrl}/login/logout?jwt=${token}`);
+      } else {
+        res.redirect(`${self.opts.webUrl}/login/logout`);
+      }
+    });
   }
-
 };
 
 function protectImpl(req, res, next, self) {
@@ -333,7 +345,8 @@ Security.prototype.OAuth2CallbackEndpoint = function () {
       }
 
       /* We store it in a session cookie */
-      storeCookie(req, res, response.body[ACCESS_TOKEN_OAUTH2]);
+      storeCookie(req, res, response.body[ACCESS_TOKEN_OAUTH2], SECURITY_COOKIE);
+      storeCookie(req, res, response.body[ID_TOKEN_OAUTH2], SECURITY_COOKIE_ID);
 
       /* We delete redirect cookie */
       res.clearCookie(REDIRECT_COOKIE);

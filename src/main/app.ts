@@ -80,6 +80,7 @@ const security = new IDAM({
   clientSecret: config.get<String>('secrets.ccpay.freg-idam-client-secret'),
   loginUrl: config.get<String>('idam.login.url'),
   apiUrl: config.get<String>('idam.api.url'),
+  webUrl: config.get<String>('idam.authentication-web.url'),
   redirectUri: '/oauth2/callback'
 })
 
