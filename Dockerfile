@@ -1,21 +1,23 @@
-FROM node:8.12.0-slim
+FROM hmctspublic.azurecr.io/base/node:12-alpine as base
 
-RUN mkdir -p /usr/src/app
-WORKDIR /usr/src/app
+ENV WORKDIR /opt/app
+WORKDIR ${WORKDIR}
 
-COPY package.json yarn.lock /usr/src/app/
+COPY --chown=hmcts:hmcts package.json yarn.lock  server.js gulpfile.js tsconfig.json ./
+RUN yarn install --production  \
+    && yarn cache clean
 
-RUN ls -ltra
-RUN yarn install
+# ---- Build image ----
+FROM base as build
+COPY --chown=hmcts:hmcts . ./
+RUN yarn install && yarn setup
 
-COPY src/main /usr/src/app/src/main
-COPY config /usr/src/app/config
-COPY types /usr/src/app/types
+# ---- Runtime image ----
+FROM base as runtime
 
-COPY server.js gulpfile.js tsconfig.json /usr/src/app/
-RUN yarn setup
-
-HEALTHCHECK --interval=10s --timeout=10s --retries=10 CMD http_proxy= curl -k --silent --fail https://localhost:3000/health
+COPY --chown=hmcts:hmcts --from=build ${WORKDIR}/src/main src/main/
+COPY --chown=hmcts:hmcts --from=build ${WORKDIR}/config config/
+COPY --chown=hmcts:hmcts --from=build ${WORKDIR}/types types/
 
 EXPOSE 3000
 CMD [ "yarn", "start" ]
