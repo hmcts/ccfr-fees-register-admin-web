@@ -3,7 +3,8 @@ nodejs:
   ingressHost: ${SERVICE_FQDN}
   keyVaults:
     ccpay:
-      secrets: []
+      secrets:
+        - freg-idam-client-secret
 idam-pr:
   enabled: true
   redirect_uris:

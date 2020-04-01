@@ -12,6 +12,5 @@ export function setup (config: IConfig): void {
   propertiesVolume.addTo(config)
   if (has(config,'secrets.ccpay')) {
     setSecret(config, 'secrets.ccpay.AppInsightsInstrumentationKey', 'appInsights.instrumentationKey')
-    setSecret(config, 'secrets.ccpay.freg-idam-client-secret', 'security.clientId')
   }
 }
