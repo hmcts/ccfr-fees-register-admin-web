@@ -19,7 +19,5 @@ COPY --chown=hmcts:hmcts --from=build ${WORKDIR}/src/main src/main/
 COPY --chown=hmcts:hmcts --from=build ${WORKDIR}/config config/
 COPY --chown=hmcts:hmcts --from=build ${WORKDIR}/types types/
 
-RUN ls -ltrh
-
 EXPOSE 3000
 CMD [ "yarn", "start" ]
