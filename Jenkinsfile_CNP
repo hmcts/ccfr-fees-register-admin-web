@@ -12,8 +12,6 @@ def component = "frontend"
 
 withPipeline("nodejs", product, component) {
 
-  //setVaultName('ccpay')
-  //enableDockerBuild()
   installCharts()
   enableSlackNotifications('#cc-payments-tech')
 

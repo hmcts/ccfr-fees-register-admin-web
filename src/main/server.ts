@@ -1,5 +1,8 @@
 #!/usr/bin/env node
+import * as config from 'config';
 
+import * as secrets from 'modules/secrets';
+secrets.setup(config);
 import { app } from './app'
 import * as fs from 'fs'
 import * as path from 'path'
