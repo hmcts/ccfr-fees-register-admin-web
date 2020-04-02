@@ -1,6 +1,10 @@
 nodejs:
   image: ${IMAGE_NAME}
   ingressHost: ${SERVICE_FQDN}
+  keyVaults:
+    ccpay:
+      secrets:
+        - freg-idam-client-secret
 idam-pr:
   enabled: true
   redirect_uris:
