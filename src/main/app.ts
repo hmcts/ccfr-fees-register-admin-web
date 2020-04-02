@@ -1,7 +1,5 @@
 import * as express from 'express'
 import * as config from 'config'
-import * as propertiesVolume from '@hmcts/properties-volume'
-propertiesVolume.addTo(config)
 import * as path from 'path'
 import * as favicon from 'serve-favicon'
 import * as cookieParser from 'cookie-parser'
