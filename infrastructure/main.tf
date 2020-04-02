@@ -1,3 +1,7 @@
+provider "azurerm" {
+  version = "1.44.0"
+}
+
 locals {
   aseName = "${data.terraform_remote_state.core_apps_compute.ase_name[0]}"
 
@@ -18,12 +22,12 @@ data "azurerm_key_vault" "fees_key_vault" {
 
 data "azurerm_key_vault_secret" "freg_idam_client_secret" {
   name = "freg-idam-client-secret"
-  vault_uri = "${data.azurerm_key_vault.fees_key_vault.vault_uri}"
+  key_vault_id = "${data.azurerm_key_vault.fees_key_vault.id}"
 }
 
 data "azurerm_key_vault_secret" "appinsights_instrumentation_key" {
   name = "AppInsightsInstrumentationKey"
-  vault_uri = "${data.azurerm_key_vault.fees_key_vault.vault_uri}"
+  key_vault_id = "${data.azurerm_key_vault.fees_key_vault.id}"
 }
 
 module "fees-register-frontend" {

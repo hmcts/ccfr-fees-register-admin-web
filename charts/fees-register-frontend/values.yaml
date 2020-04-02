@@ -6,9 +6,10 @@ nodejs:
   readinessDelay: 30
   livenessDelay: 30
   keyVaults:
-    "ccpay":
+    ccpay:
       secrets:
         - freg-idam-client-secret
+        - AppInsightsInstrumentationKey
   environment:
     NODE_ENV: production
     FEES_URL: http://fees-register-api-{{ .Values.global.environment }}.service.core-compute-{{ .Values.global.environment }}.internal
