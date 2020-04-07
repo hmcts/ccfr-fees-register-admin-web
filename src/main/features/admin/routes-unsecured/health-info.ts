@@ -2,7 +2,6 @@ import * as express from 'express'
 import * as config from 'config'
 import * as healthcheck from '@hmcts/nodejs-healthcheck'
 
-
 function basicHealthCheck (serviceName) {
   return healthcheck.web(url(serviceName))
 }
