@@ -16,6 +16,7 @@ withPipeline("nodejs", product, component) {
   enableSlackNotifications('#cc-payments-tech')
   enableAksStagingDeployment()
   disableLegacyDeploymentOnAAT()
+  
   after('checkout') {
     sh "yarn cache clean"
     echo 'ccfr-fees-register-admin-web checked out'
