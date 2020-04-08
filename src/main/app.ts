@@ -60,9 +60,9 @@ app.use(bodyParser.urlencoded({
 }))
 
 app.use((req, res, next) => {
-  res.setHeader('Cache-Control', 'no-cache, max-age=0, must-revalidate, no-store');
-  next();
-});
+  res.setHeader('Cache-Control', 'no-cache, max-age=0, must-revalidate, no-store')
+  next()
+})
 
 app.use(cookieParser())
 app.use(express.static(path.join(__dirname, 'public')))
