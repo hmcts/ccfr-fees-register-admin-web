@@ -1,5 +1,0 @@
-vault_section = "prod"
-capacity = "2"
-idam_api_url = "https://idam-api.platform.hmcts.net"
-authentication_web_url = "https://hmcts-access.service.gov.uk"
-external_host_name ="www.fees-register.platform.hmcts.net"
