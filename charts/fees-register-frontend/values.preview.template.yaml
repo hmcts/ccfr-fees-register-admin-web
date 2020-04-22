@@ -1,8 +1,12 @@
 nodejs:
   image: ${IMAGE_NAME}
   ingressHost: ${SERVICE_FQDN}
-  environment:
-    IDAM_API_URL: https://idam-api.aat.platform.hmcts.net
-    IDAM_AUTHENTICATION_WEB_URL: https://idam-web-public.aat.platform.hmcts.net
-    IDAM_LOGIN_WEB_URL: https://idam-web-public.aat.platform.hmcts.net/o/authorize
-    SPRING_CLOUD_PROPERTIESVOLUME_ENABLED: false
+  keyVaults:
+    ccpay:
+      secrets:
+        - freg-idam-client-secret
+idam-pr:
+  enabled: true
+  redirect_uris:
+    fees-register-admin:
+      - https://${SERVICE_FQDN}/oauth2/callback

@@ -1,7 +1,5 @@
 import * as express from 'express'
 import * as config from 'config'
-import * as propertiesVolume from '@hmcts/properties-volume'
-propertiesVolume.addTo(config)
 import * as path from 'path'
 import * as favicon from 'serve-favicon'
 import * as cookieParser from 'cookie-parser'
@@ -60,6 +58,12 @@ app.use(bodyParser.urlencoded({
   limit: '20mb',
   extended: true
 }))
+
+app.use((req, res, next) => {
+  res.setHeader('Cache-Control', 'no-cache, max-age=0, must-revalidate, no-store')
+  next()
+})
+
 app.use(cookieParser())
 app.use(express.static(path.join(__dirname, 'public')))
 

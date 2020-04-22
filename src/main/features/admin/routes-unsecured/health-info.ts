@@ -2,9 +2,6 @@ import * as express from 'express'
 import * as config from 'config'
 import * as healthcheck from '@hmcts/nodejs-healthcheck'
 
-// ignore self signed certs
-process.env.NODE_TLS_REJECT_UNAUTHORIZED = '0'
-
 function basicHealthCheck (serviceName) {
   return healthcheck.web(url(serviceName))
 }

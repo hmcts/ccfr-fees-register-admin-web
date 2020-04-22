@@ -1,24 +1,21 @@
 nodejs:
+  ingressHost: fees-register.{{ .Values.global.environment }}.platform.hmcts.net
+  aadIdentityName: ccpay
+  memoryLimits: 1024Mi
+  cpuLimits: 1000m
+  readinessDelay: 30
+  livenessDelay: 30
   keyVaults:
-    "ccpay":
-      resourceGroup: ccpay
+    ccpay:
       secrets:
         - freg-idam-client-secret
+        - AppInsightsInstrumentationKey
   environment:
-    REFORM_TEAM: ccpay
-    REFORM_SERVICE_NAME: fees-register-frontend
-    REFORM_ENVIRONMENT: preview
     NODE_ENV: production
-
     FEES_URL: http://fees-register-api-{{ .Values.global.environment }}.service.core-compute-{{ .Values.global.environment }}.internal
-
     IDAM_API_URL: https://idam-api.{{ .Values.global.environment }}.platform.hmcts.net
     IDAM_AUTHENTICATION_WEB_URL: https://idam-web-public.{{ .Values.global.environment }}.platform.hmcts.net
     IDAM_LOGIN_WEB_URL: https://idam-web-public.{{ .Values.global.environment }}.platform.hmcts.net/o/authorize
     FEES_CLIENT_ID: fees_admin_frontend
-tags:
-  - idam-pr
 idam-pr:
-  service:
-    name: fees-register-admin # this is the label (name) of the service as configured in IDAM. If unsure, see below.
-    redirect_uri: https://${SERVICE_FQDN}/oauth2/callback # this is the application callback URL where IDAM will send back the authentication code. SERVICE_FQDN is injected by Jenkins.
+  enabled: false
