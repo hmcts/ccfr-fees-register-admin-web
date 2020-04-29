@@ -111,5 +111,5 @@ export class Form<Model> {
         }
       })
     )
-  }  
+  }
 }
