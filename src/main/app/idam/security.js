@@ -79,7 +79,6 @@ function getTokenFromCode(self, req) {
   var url = URL.parse(self.opts.apiUrl + "/o/token", true);
 
   return request.post(url.format())
-    .auth(self.opts.clientId, self.opts.clientSecret)
     .set('Accept', 'application/json')
     .set('Content-Type', 'application/x-www-form-urlencoded')
     .type('form')
