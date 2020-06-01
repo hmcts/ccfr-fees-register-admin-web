@@ -649,15 +649,15 @@ append-transform@^1.0.0:
   dependencies:
     default-require-extensions "^2.0.0"
 
-applicationinsights@^1.0.2:
-  version "1.7.2"
-  resolved "https://registry.yarnpkg.com/applicationinsights/-/applicationinsights-1.7.2.tgz#c41f2485cc52589828783ed54f170c142e176c53"
-  integrity sha512-AtofsH08vrGTMDwXVK6+1wITd8ou9gksFV95JLZo7lVL0wX7/W1qeAZ13DK/6P3VJVsSMJ0sjdVNn98C4XxGvw==
+applicationinsights@^1.7.6:
+  version "1.7.6"
+  resolved "https://registry.yarnpkg.com/applicationinsights/-/applicationinsights-1.7.6.tgz#ee6b7dc3801769c2be1fb3f24af0b5480273dd3c"
+  integrity sha512-D+vAdBu9ohT18DQjtqu7QlXByrvSvDhf03JZ+7VUcaeZfwHXqMuXZENfq629nmjt24Ly7wQlQY9wHReWO2FqPA==
   dependencies:
     cls-hooked "^4.2.2"
     continuation-local-storage "^3.2.1"
     diagnostic-channel "0.2.0"
-    diagnostic-channel-publishers "^0.3.3"
+    diagnostic-channel-publishers "^0.3.4"
 
 aproba@^1.0.3:
   version "1.2.0"
@@ -2122,10 +2122,10 @@ detect-file@^1.0.0:
   resolved "https://registry.yarnpkg.com/detect-file/-/detect-file-1.0.0.tgz#f0d66d03672a825cb1b73bdb3fe62310c8e552b7"
   integrity sha1-8NZtA2cqglyxtzvbP+YjEMjlUrc=
 
-diagnostic-channel-publishers@^0.3.3:
-  version "0.3.3"
-  resolved "https://registry.yarnpkg.com/diagnostic-channel-publishers/-/diagnostic-channel-publishers-0.3.3.tgz#376b7798f4fa90f37eb4f94d2caca611b0e9c330"
-  integrity sha512-qIocRYU5TrGUkBlDDxaziAK1+squ8Yf2Ls4HldL3xxb/jzmWO2Enux7CvevNKYmF2kDXZ9HiRqwjPsjk8L+i2Q==
+diagnostic-channel-publishers@^0.3.4:
+  version "0.3.4"
+  resolved "https://registry.yarnpkg.com/diagnostic-channel-publishers/-/diagnostic-channel-publishers-0.3.4.tgz#d862a5156090093e0d12f6e59e8d3b119efa9563"
+  integrity sha512-SZ1zMfFiEabf4Qx0Og9V1gMsRoqz3O+5ENkVcNOfI+SMJ3QhQsdEoKX99r0zvreagXot2parPxmrwwUM/ja8ug==
 
 diagnostic-channel@0.2.0:
   version "0.2.0"
