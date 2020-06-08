@@ -12,11 +12,10 @@ def component = "frontend"
 
 withPipeline("nodejs", product, component) {
 
-  installCharts()
+  //installCharts()
   enableSlackNotifications('#cc-payments-tech')
   enableAksStagingDeployment()
-  disableLegacyDeploymentOnAAT()
-  
+  disableLegacyDeployment()
   after('checkout') {
     sh "yarn cache clean"
     echo 'ccfr-fees-register-admin-web checked out'

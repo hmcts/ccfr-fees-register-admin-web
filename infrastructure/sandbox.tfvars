@@ -1,5 +1,0 @@
-name = "fees-register-frontend-test"
-product = "fees-register"
-env = "sandbox"
-subscription = "sandbox"
-external_host_name ="fees-register-sandbox.platform.hmcts.net"
