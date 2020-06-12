@@ -10,14 +10,10 @@ BeforeSuite(I => {
   I.resizeWindow(CCFRATConstants.windowsSizeX, CCFRATConstants.windowsSizeY);
 });
 
-Scenario('FeesRegister Admin Console Editor Screen Validation', I => {
-  I.login('functionaltesteditor@hmcts.net', 'LevelAt12');
+Scenario('FeesRegister Admin Console Approver Screen Validation', I => {
+  I.login('functionaltestapprover@hmcts.net', 'LevelAt12');
   I.wait(CCFRATConstants.tenSecondWaitTime);
   I.waitForText('Welcome', CCFRATConstants.tenSecondWaitTime);
-  I.see('Choose an action');
-  I.see('Reference Data');
-  I.see('Add a new fee');
-  I.see('Upload fees');
   I.see('View all fees');
   I.see('View all discontinued fees');
   I.see('My open actions');
@@ -28,17 +24,16 @@ Scenario('FeesRegister Admin Console Editor Screen Validation', I => {
   I.see('Channels');
   I.see('Events');
   I.see('Directions');
-  I.Logout("editor");
-});
+  I.Logout("approver");
+})
 
-Scenario('FeesRegister Add New Fee and Submit for Approval', I => {
+Scenario('FeesRegister Verify New fee for Approval', I => {
   const feeKeyword = "SN" + faker.random.number(RANDOM_NUMBER);
   const submitBtnVisibilityChk = true;
 
   I.login('functionaltesteditor@hmcts.net', 'LevelAt12');
   I.wait(CCFRATConstants.twoSecondWaitTime);
   I.waitForText('Welcome', CCFRATConstants.tenSecondWaitTime);
-  I.see('Choose an action');
   I.see('Add a new fee');
   I.addNewFee(feeKeyword);
   I.waitForText('Fee Created', CCFRATConstants.twoSecondWaitTime);
@@ -50,4 +45,14 @@ Scenario('FeesRegister Add New Fee and Submit for Approval', I => {
   I.submitForApproval(feeKeyword, submitBtnVisibilityChk);
 
   I.Logout("editor");
+
+  I.login('functionaltestapprover@hmcts.net', 'LevelAt12');
+  I.wait(CCFRATConstants.twoSecondWaitTime);
+  I.waitForText('Welcome', CCFRATConstants.tenSecondWaitTime);
+  I.verifyFeesSentForApproval(feeKeyword);
+
+  I.Logout("approver");
+
 });
+
+
