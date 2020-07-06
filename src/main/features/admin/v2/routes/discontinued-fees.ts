@@ -11,9 +11,9 @@ export default express.Router()
     FeesClient
       .searchFees(null, null, null, false, null, false)
       .then((fees: Array<Fee2Dto>) => {
-        console.log(`Raws => ${fees}`);
-        fees.sort((a: Fee2Dto, b: Fee2Dto): number => -a.code.localeCompare(b.code));
-        console.log(`Updated => ${fees}`);
+        console.log(`Raws => ${fees}`)
+        fees.sort((a: Fee2Dto, b: Fee2Dto): number => -a.code.localeCompare(b.code))
+        console.log(`Updated => ${fees}`)
         res.render(Paths.discontinuedFeesPageV2.associatedView, {
           fees: fees
         })
