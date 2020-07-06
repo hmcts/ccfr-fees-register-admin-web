@@ -267,7 +267,7 @@ export class FeesClient {
     if (isDraft != null) {
       uri = uri + `&isDraft=${isDraft}`
     }
-
+    console.log('Url = > ' + uri)
     return request
       .get(uri)
       .then(response => {
@@ -281,7 +281,7 @@ export class FeesClient {
         if (response.validTo) {
           response.validTo = new Date(response.validTo)
         }
-
+        console.log('response = > ' + response)
         return response as Array<model.Fee2Dto>
       }).catch(FeesClientErrorMapper)
 
