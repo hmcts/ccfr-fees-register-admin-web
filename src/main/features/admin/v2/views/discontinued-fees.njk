@@ -40,13 +40,12 @@
     </thead>
     <tbody>
     {% for fee in fees %}
-    {% set version = getLastFeeVersion(fee) %}
-    {% if version.status === 'approved' %}
+    {% if fee.current_version.status === 'approved' %}
     <tr>
       <td class="font-xxsmall">
         <a href="/admin/v2/fees/{{fee.code}}">{{ fee.code }}</a>
       </td>
-      <td class="font-xxsmall">{{ version.description }}</td>
+      <td class="font-xxsmall">{{ fee.current_version.description }}</td>
       {% if fee.min_range %}
       <td class="font-xxsmall">{{ fee.min_range }}</td>
       {% else %}
@@ -59,18 +58,18 @@
       {% endif %}
       <td class="font-xxsmall">{{ fee.range_unit }}</td>
       <td class="font-xxsmall">{{ fee.fee_type }}</td>
-      {% if version.flat_amount %}
+      {% if fee.current_version.flat_amount %}
       <td class="font-xxsmall">Flat</td>
-      <td class="font-xxsmall">£{{ version.flat_amount.amount }}</td>
+      <td class="font-xxsmall">£{{ fee.current_version.flat_amount.amount }}</td>
       <td/>
-      {% elif version.volume_amount %}
+      {% elif fee.current_version.volume_amount %}
       <td class="font-xxsmall">Volume</td>
-      <td class="font-xxsmall">£{{ version.volume_amount.amount }}</td>
+      <td class="font-xxsmall">£{{ fee.current_version.volume_amount.amount }}</td>
       <td/>
       {% else %}
       <td class="font-xxsmall">Percentage</td>
       <td/>
-      <td class="font-xxsmall">{{ version.percentage_amount.percentage }}%</td>
+      <td class="font-xxsmall">{{ fee.current_version.percentage_amount.percentage }}%</td>
       {% endif %}
       <td class="font-xxsmall">{{ fee.jurisdiction1.name }}</td>
       <td class="font-xxsmall">{{ fee.jurisdiction2.name }}</td>
@@ -79,24 +78,24 @@
       <td class="font-xxsmall">{{ fee.channel_type.name }}</td>
       <td class="font-xxsmall">{{ fee.keyword }}</td>
       <td class="font-xxsmall">{{ fee.applicant_type.name }}</td>
-      <td class="font-xxsmall">{{ version.direction }}</td>
-      <td class="font-xxsmall">{{ version.memo_line }}</td>
-      <td class="font-xxsmall">{{ version.version }}</td>
-      {% if version.valid_from %}
-      <td class="font-xxsmall">{{ version.valid_from | date }}</td>
+      <td class="font-xxsmall">{{ fee.current_version.direction }}</td>
+      <td class="font-xxsmall">{{ fee.current_version.memo_line }}</td>
+      <td class="font-xxsmall">{{ fee.current_version.version }}</td>
+      {% if fee.current_version.valid_from %}
+      <td class="font-xxsmall">{{ fee.current_version.valid_from | date }}</td>
       {% else %}
       <td/>
       {% endif %}
-      {% if version.valid_to %}
-      <td class="font-xxsmall">{{ version.valid_to | date }}</td>
+      {% if fee.current_version.valid_to %}
+      <td class="font-xxsmall">{{ fee.current_version.valid_to | date }}</td>
       {% else %}
       <td/>
       {% endif %}
-      <td class="font-xxsmall">{{ version.status }}</td>
-      <td class="font-xxsmall">{{ version.statutory_instrument }}</td>
-      <td class="font-xxsmall">{{ version.si_ref_id }}</td>
-      <td class="font-xxsmall">{{ version.fee_order_name }}</td>
-      <td class="font-xxsmall">{{ version.natural_account_code }}</td>
+      <td class="font-xxsmall">{{ fee.current_version.status }}</td>
+      <td class="font-xxsmall">{{ fee.current_version.statutory_instrument }}</td>
+      <td class="font-xxsmall">{{ fee.current_version.si_ref_id }}</td>
+      <td class="font-xxsmall">{{ fee.current_version.fee_order_name }}</td>
+      <td class="font-xxsmall">{{ fee.current_version.natural_account_code }}</td>
     </tr>
     {% endif %}
     {% endfor %}
@@ -104,5 +103,5 @@
   </table>
   <p><a href="#" class="link-back">Back to top</a></p>
 </div>
-kkkkumar
+
   {% endblock %}
