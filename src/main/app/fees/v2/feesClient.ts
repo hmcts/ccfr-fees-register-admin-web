@@ -267,7 +267,6 @@ export class FeesClient {
     if (isDraft != null) {
       uri = uri + `&isDraft=${isDraft}`
     }
-    localStorage.setItem('url', uri)
     return request
       .get(uri)
       .then(response => {
@@ -281,7 +280,6 @@ export class FeesClient {
         if (response.validTo) {
           response.validTo = new Date(response.validTo)
         }
-        localStorage.setItem('response', response)
         return response as Array<model.Fee2Dto>
       }).catch(FeesClientErrorMapper)
 
