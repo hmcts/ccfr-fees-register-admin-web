@@ -3448,7 +3448,7 @@ gonzales-pe-sl@^4.2.3:
   resolved "https://registry.yarnpkg.com/gonzales-pe-sl/-/gonzales-pe-sl-4.2.3.tgz#6a868bc380645f141feeb042c6f97fcc71b59fe6"
   integrity sha1-aoaLw4BkXxQf7rBCxvl/zHG1n+Y=
   dependencies:
-    minimist "1.1.x"
+    minimist "1.2.5"
 
 got@^9.6.0:
   version "9.6.0"
