@@ -41,9 +41,8 @@ Scenario('FeesRegister Add New Fee and Submit for Approval', I => {
   I.see('Choose an action');
   I.see('Add a new fee');
   I.addNewFee(feeKeyword);
-  I.wait(10);
- // I.waitForText('Fee Created', CCFRATConstants.twoSecondWaitTime);
- // I.see('Fee has been created successfully.');
+  I.waitForText('Fee Created', CCFRATConstants.twoSecondWaitTime);
+  I.see('Fee has been created successfully.');
 
   I.click('Return to welcome page');
   I.wait(CCFRATConstants.twoSecondWaitTime);
