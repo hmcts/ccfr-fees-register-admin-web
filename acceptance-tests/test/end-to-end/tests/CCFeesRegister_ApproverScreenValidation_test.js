@@ -36,9 +36,8 @@ Scenario('FeesRegister Verify New fee for Approval', I => {
   I.waitForText('Welcome', CCFRATConstants.tenSecondWaitTime);
   I.see('Add a new fee');
   I.addNewFee(feeKeyword);
- // I.waitForText('Fee Created', CCFRATConstants.tenSecondWaitTime);
- // I.see('Fee has been created successfully.');
-  I.wait(10);
+  I.waitForText('Fee Created', CCFRATConstants.tenSecondWaitTime);
+  I.see('Fee has been created successfully.');
   I.click('Return to welcome page');
   I.wait(CCFRATConstants.twoSecondWaitTime);
   I.waitForText('Welcome', CCFRATConstants.tenSecondWaitTime);
