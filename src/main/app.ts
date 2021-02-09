@@ -16,7 +16,7 @@ import I18Next from 'modules/i18n'
 import Nunjucks from 'modules/nunjucks'
 import { Feature as AdminFeature } from 'admin/index'
 import { CsrfProtection } from 'modules/csrf'
-const HttpStatus = require('http-status-codes');
+const HttpStatus = require('http-status-codes')
 
 export const app: express.Express = express()
 
