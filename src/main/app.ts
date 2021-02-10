@@ -89,6 +89,7 @@ const security = new IDAM({
 })
 
 app.use('/oauth2/callback', security.OAuth2CallbackEndpoint())
+app.use('/health/liveness', (req, res) => res.status(HttpStatus.OK).json({ status: 'UP' }))
 app.use('/health/readiness', (req, res) => res.status(HttpStatus.OK).json({ status: 'UP' }))
 app.use('/logout', security.logout())
 new AdminFeature().enableFor(app, security)
