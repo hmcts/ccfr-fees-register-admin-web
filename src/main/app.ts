@@ -16,7 +16,6 @@ import I18Next from 'modules/i18n'
 import Nunjucks from 'modules/nunjucks'
 import { Feature as AdminFeature } from 'admin/index'
 import { CsrfProtection } from 'modules/csrf'
-const HttpStatus = require('http-status-codes')
 
 export const app: express.Express = express()
 
@@ -89,8 +88,6 @@ const security = new IDAM({
 })
 
 app.use('/oauth2/callback', security.OAuth2CallbackEndpoint())
-app.use('/health/liveness', (req, res) => res.status(HttpStatus.OK).json({ status: 'UP' }))
-app.use('/health/readiness', (req, res) => res.status(HttpStatus.OK).json({ status: 'UP' }))
 app.use('/logout', security.logout())
 new AdminFeature().enableFor(app, security)
 
