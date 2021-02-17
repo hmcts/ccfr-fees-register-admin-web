@@ -13,7 +13,7 @@ function getCsvData (arr) {
   return new Promise(function (resolve, reject) {
     const records = []
 
-    fastCsv.fromString(arr, { headers: true })
+    fastCsv.parseString(arr, { headers: true })
       .on('data', function (data) {
         records.push(data)
       })
