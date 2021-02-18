@@ -1,6 +1,10 @@
 nodejs:
   ingressHost: fees-register.{{ .Values.global.environment }}.platform.hmcts.net
   aadIdentityName: ccpay
+  devmemoryRequests: 1024Mi
+  devcpuRequests: 1000m
+  devmemoryLimits: 1024Mi
+  devcpuLimits: 1000m
   memoryLimits: 1024Mi
   cpuLimits: 1000m
   memoryRequests: 1024Mi
