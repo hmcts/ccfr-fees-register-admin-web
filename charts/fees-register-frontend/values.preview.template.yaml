@@ -1,6 +1,12 @@
 nodejs:
   image: ${IMAGE_NAME}
   ingressHost: ${SERVICE_FQDN}
+  devmemoryRequests: 1024Mi
+  devcpuRequests: 1000m
+  devmemoryLimits: 1024Mi
+  devcpuLimits: 1000m
+  memoryLimits: 1024Mi
+  cpuLimits: 1000m
   keyVaults:
     ccpay:
       secrets:
