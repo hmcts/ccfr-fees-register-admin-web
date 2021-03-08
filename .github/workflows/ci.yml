@@ -1,0 +1,44 @@
+# This workflow will have a CI flow for fees-register-admin-web(angular) project
+name: ccfr-admin-web - CI
+on:
+  push:
+    branches: [ master ]
+  pull_request:
+    branches: [ master ]
+
+env:
+  CI: true
+  NODE_OPTIONS: --max-old-space-size=4096
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: use node.js 12.20.0
+        uses: actions/setup-node@v1
+        with:
+          node-version: 12.20.0
+          registry-url: https://registry.npmjs.org/
+      - name: yarn install packages
+        run: yarn --frozen-lockfile
+      - name: Install codecov globally
+        run: npm install -g codecov
+      - name: Yarn check integrity
+        run: yarn check --integrity
+      - name: Yarn setup
+        run: yarn setup
+      - name: Yarn lint
+        run: yarn lint
+      - name: Yarn Test
+        run: yarn test
+      - name: Yarn test routes
+        run: yarn test:routes
+      - name: Yarn test ally
+        run: yarn test:ally
+      - name: Yarn coverage unit
+        run: yarn test:coverage-unit
+      - name: Yarn test codacy-upload
+        run: yarn test:codacy-upload
+      - name: Publish codecov
+        run: codecov
