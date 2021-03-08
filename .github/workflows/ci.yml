@@ -38,7 +38,7 @@ jobs:
       - name: Yarn test routes
         run: yarn test:routes
       - name: Yarn test ally
-        run: yarn test:ally
+        run: yarn test:a11y
       - name: Yarn coverage unit
         run: yarn test:coverage-unit
       - name: Yarn test codacy-upload
