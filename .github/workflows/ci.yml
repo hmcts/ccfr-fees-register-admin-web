@@ -25,9 +25,10 @@ jobs:
       - name: Install codecov globally
         run: npm install -g codecov
       - name: yarn version
-        run: yarn -v
+        run: yarn --version
       - name: Yarn check integrity
         run: yarn check --integrity
+        continue-on-error: true
       - name: Yarn setup
         run: yarn setup
       - name: Yarn lint
