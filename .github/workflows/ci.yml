@@ -40,8 +40,8 @@ jobs:
       - name: Yarn test ally
         run: yarn test:a11y
       - name: Yarn coverage unit
-        run: yarn test:coverage-unit
-      - name: Yarn test codacy-upload
-        uses: codacy/codacy-coverage-reporter-action@master
+        run: yarn test:coverage-unit    
+      - name: Upload coverage to Codecov
+        uses: codecov/codecov-action@v1
         with:
-          project-token: ${{ secrets.CODACY_PROJECT_TOKEN }}
+          token: ${{ secrets.CODECOV_TOKEN }}
