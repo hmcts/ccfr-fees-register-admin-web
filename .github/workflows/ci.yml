@@ -20,6 +20,8 @@ jobs:
         with:
           node-version: 12.20.0
           registry-url: https://registry.npmjs.org/
+      - name: Yarn install
+        run: yarn --frozen-lockfile
       - name: Install codecov globally
         run: npm install -g codecov
       - name: yarn version
