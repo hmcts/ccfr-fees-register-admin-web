@@ -21,7 +21,7 @@ jobs:
           node-version: 12.20.0
           registry-url: https://registry.npmjs.org/
       - name: Yarn install
-        run: yarn --frozen-lockfile
+        run: yarn dependency-setup-with-yarn-lock
       - name: Install codecov globally
         run: npm install -g codecov
       - name: yarn version
@@ -42,6 +42,6 @@ jobs:
       - name: Yarn coverage unit
         run: yarn test:coverage-unit
       - name: Yarn test codacy-upload
-        run: yarn test:codacy-upload
-      - name: Publish codecov
-        run: codecov
+        uses: codacy/codacy-coverage-reporter-action@master
+        with:
+          project-token: ${{ secrets.CODACY_PROJECT_TOKEN }}
