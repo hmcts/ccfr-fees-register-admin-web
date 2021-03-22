@@ -155,5 +155,11 @@
     ],
     "report-dir": "coverage-report",
     "all": true
+  },
+  "resolutions": {
+    "**/**/node-fetch": "^2.6.1",
+    "**/**/minimist": "^0.2.1",
+    "**/**/**/**/minimist": "^0.2.1",
+    "**/**/**/yargs-parser": "^18.1.2"
   }
 }
