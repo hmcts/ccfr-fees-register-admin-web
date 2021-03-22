@@ -17,11 +17,16 @@ def component = "frontend"
 withNightlyPipeline("nodejs", product, component) {
   env.TEST_URL = params.URL_TO_TEST
   enableFullFunctionalTest()
+  enableSecurityScan()
   after('checkout') {
     sh "yarn cache clean"
     echo 'ccfr-fees-register-admin-web checked out'
   }
   after('build') {
+    sh 'mkdir -p functional-output'
     sh 'yarn setup'
+  }
+  after('securityScan') {
+    steps.archiveArtifacts allowEmptyArchive: true, artifacts: 'functional-output/**/*'
   }
 }
