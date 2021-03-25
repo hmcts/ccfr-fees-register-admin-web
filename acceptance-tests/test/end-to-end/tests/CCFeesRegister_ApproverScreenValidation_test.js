@@ -28,7 +28,7 @@ Scenario('FeesRegister Admin Console Approver Screen Validation', I => {
 })
 
 Scenario('FeesRegister Verify New fee for Approval', I => {
-  const feeKeyword = "SN" + faker.random.number(RANDOM_NUMBER);
+  const feeKeyword = "SN" + new Date().valueOf().toString();
   const submitBtnVisibilityChk = true;
 
   I.login('functionaltesteditor@hmcts.net', 'LevelAt12');
