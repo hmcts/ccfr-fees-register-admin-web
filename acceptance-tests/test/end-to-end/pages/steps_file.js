@@ -77,7 +77,7 @@ module.exports = () => actor({
    this.see('My open action');
    this.click('My open action');
    this.see(feeKeyword);
-   this.click(`//*[contains(text(),${feeKeyword})]/..//input[@type="submit" and @value = "Submit"]`)
+   this.click(`//*[contains(text(),"${feeKeyword}")]/..//input[@type="submit" and @value = "Submit"]`)
    this.wait(CCPBConstants.fiveSecondWaitTime)
    // this.click('Submit');
    // this.dontSee('Submit');
