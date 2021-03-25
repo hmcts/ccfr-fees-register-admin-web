@@ -12,6 +12,9 @@ module.exports = () => actor({
   // done
   login(email, password) {
     this.amOnPage('/');
+    this.wait(CCPBConstants.twoSecondWaitTime);
+    this.resizeWindow(CCPBConstants.windowsSizeX, CCPBConstants.windowsSizeY);
+    this.wait(CCPBConstants.twoSecondWaitTime);
     this.retry(CCPBConstants.retryCountForStep).waitForElement('#username', CCPBConstants.thirtySecondWaitTime);
     this.fillField('Email address', email);
     this.fillField('Password', password);
@@ -75,6 +78,7 @@ module.exports = () => actor({
    this.click('My open action');
    this.see(feeKeyword);
    this.click(`//*[contains(text(),${feeKeyword})]/..//input[@type="submit" and @value = "Submit"]`)
+   this.wait(CCPBConstants.fiveSecondWaitTime)
    // this.click('Submit');
    // this.dontSee('Submit');
   },
