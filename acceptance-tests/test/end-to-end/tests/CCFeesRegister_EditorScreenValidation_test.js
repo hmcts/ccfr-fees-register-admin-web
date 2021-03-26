@@ -32,7 +32,7 @@ Scenario('FeesRegister Admin Console Editor Screen Validation', I => {
 });
 
 Scenario('FeesRegister Add New Fee and Submit for Approval', I => {
-  const feeKeyword = "SN" + faker.random.number(RANDOM_NUMBER);
+  const feeKeyword = "SN" + new Date().valueOf().toString();
   const submitBtnVisibilityChk = true;
 
   I.login('functionaltesteditor@hmcts.net', 'LevelAt12');
