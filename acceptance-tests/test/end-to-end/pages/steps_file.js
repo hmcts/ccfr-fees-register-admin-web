@@ -70,7 +70,7 @@ module.exports = () => actor({
     this.fillField({ css: '#statutoryInstrument'}, feeKeyword);
     this.fillField({ css: '#siRefId'}, feeKeyword);
     this.click('Save draft');
-    this.wait(10);
+    this.wait(CCPBConstants.tenSecondWaitTime);
   },
 
   submitForApproval(feeKeyword) {
