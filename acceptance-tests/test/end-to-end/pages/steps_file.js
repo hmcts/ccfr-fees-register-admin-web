@@ -39,7 +39,7 @@ module.exports = () => actor({
       .padStart(stringFillSize, '0');
     const year = date.getFullYear()
       .toString();
-    return `${day}${month}${year}`;
+    return `${day}/${month}/${year}`;
   },
 
   addNewFee(feeKeyword) {
