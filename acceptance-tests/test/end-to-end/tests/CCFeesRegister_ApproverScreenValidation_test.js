@@ -28,7 +28,7 @@ Scenario('FeesRegister Admin Console Approver Screen Validation', I => {
 })
 
 Scenario('FeesRegister Verify New fee for Approval', I => {
-  const feeKeyword = "SN" + faker.random.number(RANDOM_NUMBER);
+  const feeKeyword = "SN" + new Date().valueOf().toString();
   const submitBtnVisibilityChk = true;
 
   I.login('functionaltesteditor@hmcts.net', 'LevelAt12');
@@ -36,7 +36,7 @@ Scenario('FeesRegister Verify New fee for Approval', I => {
   I.waitForText('Welcome', CCFRATConstants.tenSecondWaitTime);
   I.see('Add a new fee');
   I.addNewFee(feeKeyword);
-  I.waitForText('Fee Created', CCFRATConstants.tenSecondWaitTime);
+  // I.waitForText('Fee Created', CCFRATConstants.tenSecondWaitTime);
   I.see('Fee has been created successfully.');
   I.click('Return to welcome page');
   I.wait(CCFRATConstants.twoSecondWaitTime);
