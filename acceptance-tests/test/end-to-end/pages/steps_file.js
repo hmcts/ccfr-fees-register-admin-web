@@ -12,6 +12,9 @@ module.exports = () => actor({
   // done
   login(email, password) {
     this.amOnPage('/');
+    this.wait(CCPBConstants.twoSecondWaitTime);
+    this.resizeWindow(CCPBConstants.windowsSizeX, CCPBConstants.windowsSizeY);
+    this.wait(CCPBConstants.twoSecondWaitTime);
     this.retry(CCPBConstants.retryCountForStep).waitForElement('#username', CCPBConstants.thirtySecondWaitTime);
     this.fillField('Email address', email);
     this.fillField('Password', password);
@@ -26,6 +29,18 @@ module.exports = () => actor({
     this.click(signoutLabel);
     this.wait(CCPBConstants.fiveSecondWaitTime);
   },
+
+  // getDateInDDMMYYYY(date = new Date()) {
+  //   const stringFillSize = 2;
+  //   const day = date.getDate()
+  //     .toString()
+  //     .padStart(stringFillSize, '0');
+  //   const month = (date.getMonth() + 1).toString()
+  //     .padStart(stringFillSize, '0');
+  //   const year = date.getFullYear()
+  //     .toString();
+  //   return `${day}/${month}/${year}`;
+  // },
 
   addNewFee(feeKeyword) {
 
@@ -55,15 +70,17 @@ module.exports = () => actor({
     this.fillField({ css: '#statutoryInstrument'}, feeKeyword);
     this.fillField({ css: '#siRefId'}, feeKeyword);
     this.click('Save draft');
-    this.wait(10);
+    this.wait(CCPBConstants.tenSecondWaitTime);
   },
 
   submitForApproval(feeKeyword) {
    this.see('My open action');
    this.click('My open action');
    this.see(feeKeyword);
-   this.click('Submit');
-   this.dontSee('Submit');
+   this.click(`//*[contains(text(),"${feeKeyword}")]/..//input[@type="submit" and @value = "Submit"]`)
+   this.wait(CCPBConstants.fiveSecondWaitTime)
+   // this.click('Submit');
+   // this.dontSee('Submit');
   },
 
   verifyFeesSentForApproval(feeKeyword) {
