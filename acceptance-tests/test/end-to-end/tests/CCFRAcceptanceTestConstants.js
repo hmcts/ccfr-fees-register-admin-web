@@ -6,7 +6,6 @@ module.exports = {
   tenSecondWaitTime: 30,
   thirtySecondWaitTime: 40,
   retryCountForStep: 4,
-  windowsSizeX: 1600,
-  windowsSizeY: 1200
+  retryScenario: 3
 
 };
