@@ -48,15 +48,15 @@ module.exports = () => actor({
     const naturalAccountCode = faker.random.number(RANDOM_NUMBER);
 
     const fromDate = new Date();
-    const toDate = new Date();
-    toDate.setMonth(toDate.getMonth() + 3);
+    // const toDate = new Date();
+    // toDate.setMonth(toDate.getMonth() + 3);
 
     this.click('Add a new fee');
     this.fillField({ css: '#memoLine'}, memoLineNumber);
     this.fillField({ css: '#naturalAccountCode'}, '232425');
     this.fillField({ css: '#description'}, feeKeyword);
     this.fillField({ css: '#fromDate'}, fromDate.toLocaleDateString('en-GB'));
-    this.fillField({ css: '#toDate'}, toDate.toLocaleDateString('en-GB'));
+    // this.fillField({ css: '#toDate'}, toDate.toLocaleDateString('en-GB'));
     this.fillField({ css: '#amount'}, 120.00);
     this.selectOption({ css: '#applicantType' }, 'all');
     this.selectOption({ css: '#jurisdiction1' }, 'family');
