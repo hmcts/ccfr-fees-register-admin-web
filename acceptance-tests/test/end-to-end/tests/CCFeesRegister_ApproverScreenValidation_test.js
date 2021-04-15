@@ -42,15 +42,20 @@ Scenario('FeesRegister Verify New fee for Approval', I => {
   I.wait(CCFRATConstants.twoSecondWaitTime);
   I.waitForText('Welcome', CCFRATConstants.tenSecondWaitTime);
   I.submitForApproval(feeKeyword, submitBtnVisibilityChk);
-
   I.Logout("editor");
 
   I.login('functionaltestapprover@hmcts.net', 'LevelAt12');
   I.wait(CCFRATConstants.twoSecondWaitTime);
   I.waitForText('Welcome', CCFRATConstants.tenSecondWaitTime);
   I.verifyFeesSentForApproval(feeKeyword);
-
+  I.rejectFeesSentForApproval(feeKeyword);
   I.Logout("approver");
+
+  I.login('functionaltesteditor@hmcts.net', 'LevelAt12');
+  I.wait(CCFRATConstants.twoSecondWaitTime);
+  I.waitForText('Welcome', CCFRATConstants.tenSecondWaitTime);
+  I.deleteFees(feeKeyword);
+  I.Logout("editor");
 
 });
 
