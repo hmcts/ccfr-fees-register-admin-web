@@ -47,7 +47,7 @@ Scenario('FeesRegister Add New Fee and Submit for Approval', I => {
   I.click('Return to welcome page');
   I.wait(CCFRATConstants.twoSecondWaitTime);
   I.waitForText('Welcome', CCFRATConstants.tenSecondWaitTime);
-  I.submitForApproval(feeKeyword, submitBtnVisibilityChk);
+  I.deleteFees(feeKeyword);
 
   I.Logout("editor");
 });
