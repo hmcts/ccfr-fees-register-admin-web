@@ -79,13 +79,26 @@ module.exports = () => actor({
    this.see(feeKeyword);
    this.click(`//*[contains(text(),"${feeKeyword}")]/..//input[@type="submit" and @value = "Submit"]`)
    this.wait(CCPBConstants.fiveSecondWaitTime)
-   // this.click('Submit');
-   // this.dontSee('Submit');
+
+  },
+
+  deleteFees(feeKeyword) {
+    this.see('My open action');
+    this.click('My open action');
+    this.see(feeKeyword);
+    this.click(`//*[contains(text(),"${feeKeyword}")]/..//input[@type="submit" and @value = "Delete"]`)
+    this.wait(CCPBConstants.fiveSecondWaitTime)
   },
 
   verifyFeesSentForApproval(feeKeyword) {
     this.see('My open action');
     this.click('My open action');
     this.see(feeKeyword);
+  },
+
+  rejectFeesSentForApproval(feeKeyword) {
+    this.see(feeKeyword);
+    this.click(`//*[contains(text(),"${feeKeyword}")]/..//input[@type="submit" and @value = "Reject"]`)
+    this.wait(CCPBConstants.fiveSecondWaitTime)
   }
 });
