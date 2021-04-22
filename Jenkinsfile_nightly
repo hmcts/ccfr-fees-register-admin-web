@@ -12,7 +12,7 @@ properties([
 
 def product = "fees-register"
 def component = "frontend"
-def yarnBuilder = new uk.gov.hmcts.contino.YarnBuilder(this)
+
 
 
 withNightlyPipeline("nodejs", product, component) {
