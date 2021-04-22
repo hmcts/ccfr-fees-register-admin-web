@@ -10,7 +10,7 @@ Feature('CC FeesRegister Admin Acceptance Tests').retry(CCFRATConstants.retrySce
 //   I.resizeWindow(CCFRATConstants.windowsSizeX, CCFRATConstants.windowsSizeY);
 // });
 
-Scenario('FeesRegister Admin Console Editor Screen Validation', I => {
+Scenario('FeesRegister Admin Console Editor Screen Validation @crossbrowser @pipeline @nighlty', I => {
   I.login('functionaltesteditor@hmcts.net', 'LevelAt12');
   I.wait(CCFRATConstants.tenSecondWaitTime);
   I.waitForText('Welcome', CCFRATConstants.tenSecondWaitTime);
@@ -31,7 +31,7 @@ Scenario('FeesRegister Admin Console Editor Screen Validation', I => {
   I.Logout("editor");
 });
 
-Scenario('FeesRegister Add New Fee and Submit for Approval', I => {
+Scenario('FeesRegister Add New Fee and Submit for Approval @pipeline @nighlty', I => {
   const feeKeyword = "SN" + new Date().valueOf().toString();
   const submitBtnVisibilityChk = true;
 

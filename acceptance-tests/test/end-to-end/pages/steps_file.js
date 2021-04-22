@@ -4,6 +4,8 @@ const CCPBConstants = require('../tests/CCFRAcceptanceTestConstants');
 // const faker = require('faker');
 const faker = require('faker');
 
+const testConfig = require('config');
+
 const RANDOM_NUMBER = 99999;
 
 const CCDNumber = faker.random.number(RANDOM_NUMBER);
@@ -13,8 +15,10 @@ module.exports = () => actor({
   login(email, password) {
     this.amOnPage('/');
     this.wait(CCPBConstants.twoSecondWaitTime);
-    this.resizeWindow(CCPBConstants.windowsSizeX, CCPBConstants.windowsSizeY);
-    this.wait(CCPBConstants.twoSecondWaitTime);
+    if (testConfig.e2e.testForCrossbrowser !== 'true') {
+      this.resizeWindow(CCPBConstants.windowsSizeX, CCPBConstants.windowsSizeY);
+      this.wait(CCPBConstants.twoSecondWaitTime);
+    }
     this.retry(CCPBConstants.retryCountForStep).waitForElement('#username', CCPBConstants.thirtySecondWaitTime);
     this.fillField('Email address', email);
     this.fillField('Password', password);

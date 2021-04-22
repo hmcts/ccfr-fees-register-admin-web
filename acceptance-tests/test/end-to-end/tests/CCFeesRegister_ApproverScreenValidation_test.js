@@ -4,13 +4,13 @@ const RANDOM_NUMBER = 9999;
 
 Feature('CC FeesRegister Admin Acceptance Tests').retry(CCFRATConstants.retryScenario);
 
-BeforeSuite(I => {
+// BeforeSuite(I => {
   // I.amOnPage('/');
   // I.wait(CCFRATConstants.twoSecondWaitTime);
   // I.resizeWindow(CCFRATConstants.windowsSizeX, CCFRATConstants.windowsSizeY);
-});
+// });
 
-Scenario('FeesRegister Admin Console Approver Screen Validation', I => {
+Scenario('FeesRegister Admin Console Approver Screen Validation @crossbrowser @pipeline @nighlty', I => {
   I.login('functionaltestapprover@hmcts.net', 'LevelAt12');
   I.wait(CCFRATConstants.tenSecondWaitTime);
   I.waitForText('Welcome', CCFRATConstants.tenSecondWaitTime);
@@ -27,7 +27,7 @@ Scenario('FeesRegister Admin Console Approver Screen Validation', I => {
   I.Logout("approver");
 })
 
-Scenario('FeesRegister Verify New fee for Approval', I => {
+Scenario('FeesRegister Verify New fee for Approval @pipeline @nighlty', I => {
   const feeKeyword = "SN" + new Date().valueOf().toString();
   const submitBtnVisibilityChk = true;
 

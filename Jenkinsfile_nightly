@@ -12,16 +12,22 @@ properties([
 
 def product = "fees-register"
 def component = "frontend"
+def yarnBuilder = new uk.gov.hmcts.contino.YarnBuilder(this)
 
 
 withNightlyPipeline("nodejs", product, component) {
   env.TEST_URL = params.URL_TO_TEST
   enableFullFunctionalTest()
+  enableCrossBrowserTest()
   after('checkout') {
     sh "yarn cache clean"
     echo 'ccfr-fees-register-admin-web checked out'
   }
   after('build') {
     sh 'yarn setup'
+  }
+
+  after('crossBrowserTest') {
+    steps.archiveArtifacts allowEmptyArchive: true, artifacts: 'functional-output/**/*'
   }
 }

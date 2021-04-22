@@ -25,7 +25,8 @@
   "e2e": {
     "frontendUrl": "E2E_FRONTEND_URL",
     "waitForTimeoutValue": "E2E_WAIT_FOR_TIMEOUT_VALUE",
-    "waitForActionValue": "E2E_WAIT_FOR_ACTION_VALUE"
+    "waitForActionValue": "E2E_WAIT_FOR_ACTION_VALUE",
+    "testForCrossbrowser": "E2E_TEST_FOR_CROSS_BROWSER"
   },
   "secrets": {
     "ccpay": {
