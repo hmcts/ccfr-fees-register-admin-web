@@ -24,6 +24,7 @@ withNightlyPipeline("nodejs", product, component) {
     echo 'ccfr-fees-register-admin-web checked out'
   }
   after('build') {
+    sh 'chmod +x bin/run-crossbrowser-tests.sh'
     sh 'yarn setup'
   }
 
