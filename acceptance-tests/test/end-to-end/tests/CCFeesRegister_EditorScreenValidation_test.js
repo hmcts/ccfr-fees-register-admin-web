@@ -31,7 +31,7 @@ Scenario('FeesRegister Admin Console Editor Screen Validation @crossbrowser @pip
   I.Logout("editor");
 });
 
-Scenario('FeesRegister Add New Fee and Submit for Approval @pipeline @nighlty', I => {
+Scenario('FeesRegister Add New Fee and Submit for Approval @crossbrowser @pipeline @nighlty', I => {
   const feeKeyword = "SN" + new Date().valueOf().toString();
   const submitBtnVisibilityChk = true;
 

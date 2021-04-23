@@ -16,5 +16,4 @@ export E2E_TEST_FOR_CROSS_BROWSER='true'
 EXIT_STATUS=0
 yarn test:crossbrowser-e2e || EXIT_STATUS=$?
 echo EXIT_STATUS: $EXIT_STATUS
-sleep 30
 exit $EXIT_STATUS

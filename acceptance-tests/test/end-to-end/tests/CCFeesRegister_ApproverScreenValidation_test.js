@@ -27,7 +27,7 @@ Scenario('FeesRegister Admin Console Approver Screen Validation @crossbrowser @p
   I.Logout("approver");
 })
 
-Scenario('FeesRegister Verify New fee for Approval @pipeline @nighlty', I => {
+Scenario('FeesRegister Verify New fee for Approval @crossbrowser @pipeline @nighlty', I => {
   const feeKeyword = "SN" + new Date().valueOf().toString();
   const submitBtnVisibilityChk = true;
 
