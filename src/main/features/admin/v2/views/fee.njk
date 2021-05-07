@@ -142,10 +142,10 @@
 </div>
 <div class="column-third">
   <label class="bold">Amount:</label>
-  {% if feeDto.current_version.flat_amount.amount %}
-  {{ feeDto.current_version.flat_amount.amount }}
-  {% elif feeDto.current_version.percentage_amount.percentage %}
-  {{ feeDto.current_version.percentage_amount.percentage }}
+  {% if version.flat_amount.amount %}
+  {{ version.flat_amount.amount }}
+  {% elif version.percentage_amount.percentage %}
+  {{ version.percentage_amount.percentage }}
   {% endif %}
 </div>
 <div class="column-two-thirds">
