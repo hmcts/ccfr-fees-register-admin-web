@@ -47,6 +47,12 @@
 </div>
   {% endmacro %}
 
+    {% macro nextButton(label, className) %}
+<div class="form-group">
+<input id="submit" type="submit" class="{{ t(className) | default(t('button')) }}" value="{{ t(label) | default(t('Continue')) }}">
+</div>
+  {% endmacro %}
+
   {% macro yesNoRadio(label, name, form) %}
   {{ radioGroup(
   label,
