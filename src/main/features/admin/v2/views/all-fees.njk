@@ -1,41 +1,61 @@
 {% extends "layout.njk" %}
+  {% from "includes/macros/form.njk" import nextButton%}
 
   {% set title = t('Fees | ' + serviceName) %}
-  {% set heading = t('Fees')  %}
-  {% set xLargeTable = t('custom') %}
   {% block content %}
-
-<div class="custom-grid-row">
-  <p><a href="/admin/welcome/" class="link-back">{{ t("Back to welcome page") }}</a></p>
-  <table>
+<ul class="govuk-tabs__list govuk-!-margin-top-7">
+<li class="govuk-tabs__list-item govuk-tabs__list-item--selected">
+    <a class="govuk-tabs__tab govuk-tabs__tab--selected" href="./all-fees">
+        {{ t("Live fees") }}
+    </a>
+</li>
+<li class="govuk-tabs__list-item">
+    <a class="govuk-tabs__tab" href="/all-approvedbutnotlive" style="text-decoration: underline;">
+      {{ t("Approved but not live fees") }}
+    </a>
+</li>
+<li class="govuk-tabs__list-item">
+    <a class="govuk-tabs__tab" href="/all-discontinued" style="text-decoration: underline;">
+         {{ t("Discontinued fees") }}
+    </a>
+</li>
+</ul>
+<div class="title-with-secondary">
+  <h1 class="govuk-heading-xl govuk-!-margin-bottom-6 govuk-!-margin-top-7">{{t("Live fees")}}</h1>
+  <div class="title-with-secondary" style="flex-grow: 1;"></div>
+  <p class="govuk-!-margin-top-9 govuk-!-margin-bottom-0">Updated: 12 February 2021 </p>
+</div>
+<a href="./fees/create">{{nextButton(t("Create a new fee"), t("govuk-button2 black-text"))}}</a>
+<div class="fee-register-table-size">
+  <table class="custom-table-body">
     <thead>
     <tr>
-      <th class="bold-xxsmall">Code</th>
-      <th class="bold-xxsmall">Description</th>
-      <th class="bold-xxsmall">Range from</th>
-      <th class="bold-xxsmall">Range to</th>
-      <th class="bold-xxsmall">Unit</th>
-      <th class="bold-xxsmall">Fee type</th>
-      <th class="bold-xxsmall">Amount Type</th>
-      <th class="bold-xxsmall">Amount</th>
-      <th class="bold-xxsmall">%</th>
-      <th class="bold-xxsmall">Jurisdiction1</th>
-      <th class="bold-xxsmall">Jurisdiction2</th>
-      <th class="bold-xxsmall">Service</th>
-      <th class="bold-xxsmall">Event</th>
-      <th class="bold-xxsmall">Channel</th>
-      <th class="bold-xxsmall">Keyword</th>
-      <th class="bold-xxsmall">Applicant Type</th>
-      <th class="bold-xxsmall">Direction</th>
-      <th class="bold-xxsmall">Memo</th>
-      <th class="bold-xxsmall">Version</th>
-      <th class="bold-xxsmall">Valid From</th>
-      <th class="bold-xxsmall">Valid To</th>
-      <th class="bold-xxsmall">Status</th>
-      <th class="bold-xxsmall">Statutory Instrument</th>
-      <th class="bold-xxsmall">SI Ref ID</th>
-      <th class="bold-xxsmall">Fee Order Name</th>
-      <th class="bold-xxsmall">Natural Account Code</th>
+      <th class="govuk-table__header">Code</th>
+      <th class="govuk-table__header">Description</th>
+      <th class="govuk-table__header">Amount</th>
+      <th class="govuk-table__header">Statutory Instrument</th>
+      <th class="govuk-table__header">SI Ref ID</th>
+      <th class="govuk-table__header">Fee Order Name</th>
+      <th class="govuk-table__header">Service</th>
+      <th class="govuk-table__header">Jurisdiction1</th>
+      <th class="govuk-table__header">Jurisdiction2</th>
+      <th class="govuk-table__header">Event</th>
+      <th class="govuk-table__header">Range from</th>
+      <th class="govuk-table__header">Range to</th>
+      <th class="govuk-table__header">Unit</th>
+      <th class="govuk-table__header">Fee type</th>
+      <th class="govuk-table__header">Amount Type</th>
+      <th class="govuk-table__header">%</th>
+      <th class="govuk-table__header">Channel</th>
+      <th class="govuk-table__header">Keyword</th>
+      <th class="govuk-table__header">Applicant Type</th>
+      <th class="govuk-table__header">Version</th>
+      <th class="govuk-table__header">Direction</th>
+      <th class="govuk-table__header">Valid From</th>
+      <th class="govuk-table__header">Valid To</th>
+      <th class="govuk-table__header">Status</th>
+      <th class="govuk-table__header">Memo</th>
+      <th class="govuk-table__header">Natural Account Code</th>
     </tr>
     </thead>
     <tbody>
@@ -43,70 +63,79 @@
     {% set version = getLastFeeVersion(fee) %}
     {% if version.status === 'approved' %}
     <tr>
-      <td class="font-xxsmall">
+      <td >
       {% if user %}
         <a href="/admin/v2/fees/{{fee.code}}">{{ fee.code }}</a>
       {% else  %}
         <a href="/fees/{{fee.code}}">{{ fee.code }}</a>
       {% endif %}
       </td>
-      <td class="font-xxsmall">{{ version.description }}</td>
+      <td style="width:205px;">{{ version.description }}</td>
+
+      {% if version.flat_amount %}
+      <td >£{{ version.flat_amount.amount }}</td>
+      {% elif version.volume_amount %}
+      <td >£{{ version.volume_amount.amount }}</td>
+      {% else %}
+      <td >{{ version.percentage_amount.percentage }}%</td>
+      {% endif %}
+      <td >{{ version.statutory_instrument }}</td>
+      <td >{{ version.si_ref_id }}</td>
+      <td style="width:205px;">{{ version.fee_order_name }}</td>
+      <td >{{ fee.service_type.name }}</td>
+      <td >{{ fee.jurisdiction1.name }}</td>
+      <td >{{ fee.jurisdiction2.name }}</td>
+      <td >{{ fee.event_type.name }}</td>
+
       {% if fee.min_range %}
-      <td class="font-xxsmall">{{ fee.min_range }}</td>
+      <td >{{ fee.min_range }}</td>
       {% else %}
       <td/>
       {% endif %}
       {% if fee.max_range %}
-      <td class="font-xxsmall">{{ fee.max_range }}</td>
+      <td >{{ fee.max_range }}</td>
       {% else %}
       <td/>
       {% endif %}
-      <td class="font-xxsmall">{{ fee.range_unit }}</td>
-      <td class="font-xxsmall">{{ fee.fee_type }}</td>
+
+      <td >{{ fee.range_unit }}</td>
+      <td >{{ fee.fee_type }}</td>
       {% if version.flat_amount %}
-      <td class="font-xxsmall">Flat</td>
-      <td class="font-xxsmall">£{{ version.flat_amount.amount }}</td>
+      <td >Flat</td>
       <td/>
       {% elif version.volume_amount %}
-      <td class="font-xxsmall">Volume</td>
-      <td class="font-xxsmall">£{{ version.volume_amount.amount }}</td>
+      <td >Volume</td>
       <td/>
       {% else %}
-      <td class="font-xxsmall">Percentage</td>
       <td/>
-      <td class="font-xxsmall">{{ version.percentage_amount.percentage }}%</td>
+      <td >Percentage</td>
       {% endif %}
-      <td class="font-xxsmall">{{ fee.jurisdiction1.name }}</td>
-      <td class="font-xxsmall">{{ fee.jurisdiction2.name }}</td>
-      <td class="font-xxsmall">{{ fee.service_type.name }}</td>
-      <td class="font-xxsmall">{{ fee.event_type.name }}</td>
-      <td class="font-xxsmall">{{ fee.channel_type.name }}</td>
-      <td class="font-xxsmall">{{ fee.keyword }}</td>
-      <td class="font-xxsmall">{{ fee.applicant_type.name }}</td>
-      <td class="font-xxsmall">{{ version.direction }}</td>
-      <td class="font-xxsmall">{{ version.memo_line }}</td>
-      <td class="font-xxsmall">{{ version.version }}</td>
+
+      <td >{{ fee.channel_type.name }}</td>
+      <td >{{ fee.keyword }}</td>
+      <td >{{ fee.applicant_type.name }}</td>
+      <td >{{ version.version }}</td>
+
+      <td >{{ version.direction }}</td>
       {% if version.valid_from %}
-      <td class="font-xxsmall">{{ version.valid_from | date }}</td>
+        <td >{{ version.valid_from | date }}</td>
       {% else %}
-      <td/>
+        <td/>
       {% endif %}
       {% if version.valid_to %}
-      <td class="font-xxsmall">{{ version.valid_to | date }}</td>
+        <td >{{ version.valid_to | date }}</td>
       {% else %}
-      <td/>
+        <td/>
       {% endif %}
-      <td class="font-xxsmall">{{ version.status }}</td>
-      <td class="font-xxsmall">{{ version.statutory_instrument }}</td>
-      <td class="font-xxsmall">{{ version.si_ref_id }}</td>
-      <td class="font-xxsmall">{{ version.fee_order_name }}</td>
-      <td class="font-xxsmall">{{ version.natural_account_code }}</td>
+      <td >{{ version.status }}</td>
+      <td style="width:205px;">{{ version.memo_line }}</td>
+      <td >{{ version.natural_account_code }}</td>
     </tr>
     {% endif %}
     {% endfor %}
     </tbody>
   </table>
-  <p><a href="#" class="link-back">Back to top</a></p>
 </div>
+
 
   {% endblock %}
