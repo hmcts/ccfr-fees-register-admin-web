@@ -70,7 +70,7 @@
         <a href="/fees/{{fee.code}}">{{ fee.code }}</a>
       {% endif %}
       </td>
-      <td style="width:205px;">{{ version.description }}</td>
+      <td class="table-colxl">{{ version.description }}</td>
 
       {% if version.flat_amount %}
       <td >£{{ version.flat_amount.amount }}</td>
@@ -81,7 +81,7 @@
       {% endif %}
       <td >{{ version.statutory_instrument }}</td>
       <td >{{ version.si_ref_id }}</td>
-      <td style="width:205px;">{{ version.fee_order_name }}</td>
+      <td class="table-colxl">{{ version.fee_order_name }}</td>
       <td >{{ fee.service_type.name }}</td>
       <td >{{ fee.jurisdiction1.name }}</td>
       <td >{{ fee.jurisdiction2.name }}</td>
@@ -116,7 +116,7 @@
       <td >{{ fee.applicant_type.name }}</td>
       <td >{{ version.version }}</td>
 
-      <td >{{ version.direction }}</td>
+      <td class="table-colxl">{{ version.direction }}</td>
       {% if version.valid_from %}
         <td >{{ version.valid_from | date }}</td>
       {% else %}
@@ -128,7 +128,7 @@
         <td/>
       {% endif %}
       <td >{{ version.status }}</td>
-      <td style="width:205px;">{{ version.memo_line }}</td>
+      <td class="table-colxl">{{ version.memo_line }}</td>
       <td >{{ version.natural_account_code }}</td>
     </tr>
     {% endif %}
