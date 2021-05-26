@@ -60,7 +60,7 @@
     </thead>
     <tbody>
     {% for fee in fees %}
-    {% set version = getLastFeeVersion(fee) %}
+    {% set version = getLiveFeeVersion(fee) %}
     {% if version.status === 'approved' %}
     <tr>
       <td >
