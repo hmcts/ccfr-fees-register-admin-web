@@ -4,7 +4,7 @@ import * as HttpStatus from 'http-status-codes'
 
 const serviceBaseURL: string = config.get<string>('fees.url')
 
-function validFeeWithCode (code: string, description?: string, validFrom?:any) {
+function validFeeWithCode (code: string, description?: string, validFrom?: any) {
   return {
     'code': code,
     'type': 'fixed',
@@ -32,7 +32,7 @@ function validFeeWithCode (code: string, description?: string, validFrom?:any) {
     'fee_versions': [{
       'version': 1,
       'status': 'approved',
-      'valid_from': validFrom,
+      'valid_from': validFrom
     }]
   }
 }
