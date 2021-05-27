@@ -94,11 +94,11 @@ export default class Nunjucks {
       let todayDate: Date = new Date()
       if (fee.fee_versions != null) {
         fee.fee_versions.forEach((fv) => {
-          if (fv.version > currentVersionNumber 
-            && fv.status === 'approved' 
+          if (fv.version > currentVersionNumber
+            && fv.status === 'approved'
             && new Date(fv.valid_from) <= todayDate
             && ((fv.valid_to !== undefined && new Date(fv.valid_to) >= todayDate)
-            || fv.valid_to === undefined) ) {
+            || fv.valid_to === undefined)) {
             currentVersionNumber = fv.version
             result = fv
           }
