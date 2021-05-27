@@ -107,17 +107,16 @@ export default class Nunjucks {
       return result
     })
     nunjucksEnv.addGlobal('getApprovedNotLiveFeeVersion', (fee: Fee2Dto): FeeVersionDto => {
-      let result: FeeVersionDto = fee.current_version
       let todayDate: Date = new Date()
       if (fee.fee_versions != null) {
+        let result: FeeVersionDto
         fee.fee_versions.forEach((fv) => {
           if (fv.status === 'approved' && new Date(fv.valid_from) > todayDate) {
             result = fv
           }
         })
-      } else if (result.status === 'approved'
-      && new Date(result.valid_from) > todayDate) {
         return result
+
       }
     })
 
