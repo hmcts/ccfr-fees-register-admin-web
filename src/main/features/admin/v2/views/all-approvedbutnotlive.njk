@@ -28,31 +28,31 @@
     <thead>
     <tr>
       <th class="govuk-table__header">Code</th>
-      <th class="govuk-table__header">Description</th>
+      <th class="govuk-table__header table-colxl">Description</th>
       <th class="govuk-table__header">Amount</th>
       <th class="govuk-table__header">Statutory Instrument</th>
       <th class="govuk-table__header">SI Ref ID</th>
-      <th class="govuk-table__header">Fee Order Name</th>
+      <th class="govuk-table__header table-colxl">Fee Order Name</th>
       <th class="govuk-table__header">Service</th>
       <th class="govuk-table__header">Jurisdiction1</th>
       <th class="govuk-table__header">Jurisdiction2</th>
       <th class="govuk-table__header">Event</th>
-      <th class="govuk-table__header">Range from</th>
-      <th class="govuk-table__header">Range to</th>
+      <th class="govuk-table__header table-colsl">Range from</th>
+      <th class="govuk-table__header table-colsl">Range to</th>
       <th class="govuk-table__header">Unit</th>
-      <th class="govuk-table__header">Fee type</th>
-      <th class="govuk-table__header">Amount Type</th>
+      <th class="govuk-table__header table-colsl">Fee type</th>
+      <th class="govuk-table__header table-colsl">Amount Type</th>
       <th class="govuk-table__header">%</th>
       <th class="govuk-table__header">Channel</th>
       <th class="govuk-table__header">Keyword</th>
-      <th class="govuk-table__header">Applicant Type</th>
+      <th class="govuk-table__header table-colsl">Applicant Type</th>
       <th class="govuk-table__header">Version</th>
-      <th class="govuk-table__header">Direction</th>
-      <th class="govuk-table__header">Valid From</th>
-      <th class="govuk-table__header">Valid To</th>
+      <th class="govuk-table__header table-colxl">Direction</th>
+      <th class="govuk-table__header table-colsl">Valid From</th>
+      <th class="govuk-table__header table-colsl">Valid To</th>
       <th class="govuk-table__header">Status</th>
-      <th class="govuk-table__header">Memo</th>
-      <th class="govuk-table__header">Natural Account Code</th>
+      <th class="govuk-table__header table-colxl">Memo</th>
+      <th class="govuk-table__header table-colxl">Natural Account Code</th>
     </tr>
     </thead>
     <tbody>
@@ -67,7 +67,7 @@
         <a href="/fees/{{fee.code}}">{{ fee.code }}</a>
       {% endif %}
       </td>
-      <td class="table-colxl">{{ version.description }}</td>
+      <td>{{ version.description }}</td>
 
       {% if version.flat_amount %}
       <td >£{{ version.flat_amount.amount }}</td>
@@ -78,7 +78,7 @@
       {% endif %}
       <td >{{ version.statutory_instrument }}</td>
       <td >{{ version.si_ref_id }}</td>
-      <td class="table-colxl">{{ version.fee_order_name }}</td>
+      <td>{{ version.fee_order_name }}</td>
       <td >{{ fee.service_type.name }}</td>
       <td >{{ fee.jurisdiction1.name }}</td>
       <td >{{ fee.jurisdiction2.name }}</td>
@@ -113,7 +113,7 @@
       <td >{{ fee.applicant_type.name }}</td>
       <td >{{ version.version }}</td>
 
-      <td class="table-colxl">{{ version.direction }}</td>
+      <td>{{ version.direction }}</td>
       {% if version.valid_from %}
         <td >{{ version.valid_from | date }}</td>
       {% else %}
@@ -125,7 +125,7 @@
         <td/>
       {% endif %}
       <td >{{ version.status }}</td>
-      <td class="table-colxl">{{ version.memo_line }}</td>
+      <td>{{ version.memo_line }}</td>
       <td >{{ version.natural_account_code }}</td>
     </tr>
     {% endif %}
