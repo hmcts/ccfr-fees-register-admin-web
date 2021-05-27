@@ -115,8 +115,10 @@ export default class Nunjucks {
             result = fv
           }
         })
+      } else if (result.status === 'approved'
+      && new Date(result.valid_from) > todayDate) {
+        return result
       }
-      return result
     })
 
     nunjucksEnv.addGlobal('isDraftVersionExists', (fee: Fee2Dto): boolean => {
