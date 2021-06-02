@@ -4,12 +4,6 @@ const RANDOM_NUMBER = 9999;
 
 Feature('CC FeesRegister Admin Acceptance Tests').retry(CCFRATConstants.retryScenario);
 
-// BeforeSuite(I => {
-//   I.amOnPage('/');
-//   I.wait(CCFRATConstants.twoSecondWaitTime);
-//   I.resizeWindow(CCFRATConstants.windowsSizeX, CCFRATConstants.windowsSizeY);
-// });
-
 Scenario('FeesRegister Admin Console Editor Screen For Live Fees', I => {
   I.login('functionaltesteditor@hmcts.net', 'LevelAt12');
   I.wait(CCFRATConstants.tenSecondWaitTime);
