@@ -14,26 +14,19 @@ exports.config = {
       url: CONF.e2e.frontendUrl,
       waitForTimeout,
       waitForAction,
-      // waitForNavigation: 'networkidle0',
       waitForNavigation: 'domcontentloaded',
       show: false,
-      restart: true,
-      keepCookies: false,
-      keepBrowserState: true,
-      networkIdleTimeout: 5000,
-      waitUntil: 'networkidle',
-      timeout: 3000000,
+      headless: true,
+      ignoreHTTPSErrors: true,
       chrome: {
         ignoreHTTPSErrors: true,
         args: [
           '--no-sandbox',
-          // '--proxy-server=proxyout.reform.hmcts.net:8080',
-          // '--proxy-bypass-list=*beta*LB.reform.hmcts.net',
           '--start-maximized'
         ]
       }
     },
-    Mochawesome: { uniqueScreenshotNames: 'true' }
+    Mochawesome: { uniqueScreenshotNames: 'true' },
   },
   include: { I: './test/end-to-end/pages/steps_file.js' },
   mocha: {
