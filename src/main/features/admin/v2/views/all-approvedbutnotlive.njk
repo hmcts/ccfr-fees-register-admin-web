@@ -30,7 +30,7 @@
       <th class="govuk-table__header table-colsl">Code</th>
       <th class="govuk-table__header table-colxl">Description</th>
       <th class="govuk-table__header table-colsl">Amount</th>
-      <th class="govuk-table__header table-colxl">Statutory Instrument</th>
+      <th class="govuk-table__header table-colml">Statutory Instrument</th>
       <th class="govuk-table__header table-colsl">SI Ref ID</th>
       <th class="govuk-table__header table-colxl">Fee Order Name</th>
       <th class="govuk-table__header table-colsl">Service</th>
@@ -41,18 +41,18 @@
       <th class="govuk-table__header table-colsl">Range to</th>
       <th class="govuk-table__header table-colsl">Unit</th>
       <th class="govuk-table__header table-colml">Fee type</th>
-      <th class="govuk-table__header table-colml">Amount Type</th>
-      <th class="govuk-table__header">%</th>
+      <th class="govuk-table__header table-colml">Amount type</th>
+      <th class="govuk-table__header table-colsl">%</th>
       <th class="govuk-table__header table-colsl">Channel</th>
       <th class="govuk-table__header table-colsl">Keyword</th>
-      <th class="govuk-table__header table-colml">Applicant Type</th>
+      <th class="govuk-table__header table-colsl">Applicant type</th>
       <th class="govuk-table__header table-colsl">Version</th>
       <th class="govuk-table__header table-colxl">Direction</th>
-      <th class="govuk-table__header table-colsl">Valid From</th>
-      <th class="govuk-table__header table-colsl">Valid To</th>
+      <th class="govuk-table__header table-colsl">Valid from</th>
+      <th class="govuk-table__header table-colsl">Valid to</th>
       <th class="govuk-table__header table-colsl">Status</th>
       <th class="govuk-table__header table-colxl">Memo</th>
-      <th class="govuk-table__header table-colxl">Natural Account Code</th>
+      <th class="govuk-table__header table-colsl">Natural Account Code</th>
     </tr>
     </thead>
     <tbody>
@@ -70,9 +70,9 @@
       <td>{{ version.description }}</td>
 
       {% if version.flat_amount %}
-      <td >£{{ version.flat_amount.amount }}</td>
+      <td >£{{ version.flat_amount.amount.toFixed(2).toString()}}</td>
       {% elif version.volume_amount %}
-      <td >£{{ version.volume_amount.amount }}</td>
+      <td >£{{ version.volume_amount.amount.toFixed(2).toString()}}</td>
       {% else %}
       <td >{{ version.percentage_amount.percentage }}%</td>
       {% endif %}
@@ -115,12 +115,12 @@
 
       <td>{{ version.direction }}</td>
       {% if version.valid_from %}
-        <td >{{ version.valid_from | date }}</td>
+        <td >{{ version.valid_from | date("DD MMMM YYYY") }}</td>
       {% else %}
         <td/>
       {% endif %}
       {% if version.valid_to %}
-        <td >{{ version.valid_to | date }}</td>
+        <td >{{ version.valid_to | date("DD MMMM YYYY") }}</td>
       {% else %}
         <td/>
       {% endif %}
