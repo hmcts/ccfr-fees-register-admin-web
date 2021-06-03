@@ -9,9 +9,7 @@ Scenario('FeesRegister Admin Console Editor Screen For Live Fees', I => {
   I.login('functionaltesteditor@hmcts.net', 'LevelAt12');
   I.wait(CCFRATConstants.tenSecondWaitTime);
   // to-do based on updates and future stories
-  Logger.info('Verifying the Live Fees ');
   I.verifyLiveFees();
-  Logger.info('Live Fees page Verified');
   I.Logout("editor");
 });
 
