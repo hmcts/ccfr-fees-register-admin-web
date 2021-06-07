@@ -25,7 +25,7 @@ describe('pending fees list page', () => {
       await request(app)
         .get('/')
         .set('Cookie', `${cookieName}=JWT`)
-        .expect(res => (expect(res).to.be as any).successful.withText('redirect','/admin/V2/all-fees'))
+        .expect(res => (expect(res).to.be as any).redirect.toLocation('/admin/V2/all-fees'))
     })
   })
 })
