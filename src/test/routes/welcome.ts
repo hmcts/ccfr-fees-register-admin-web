@@ -3,7 +3,7 @@ import * as config from 'config'
 import * as request from 'supertest'
 import * as mock from 'nock'
 
-import '../../routes/expectations'
+import '../routes/expectations'
 
 import { app } from '../../main/app'
 
