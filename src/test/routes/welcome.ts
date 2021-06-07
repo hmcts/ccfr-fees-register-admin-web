@@ -20,12 +20,21 @@ describe('pending fees list page', () => {
   describe('on GET', () => {
     it('should render all fees when fees-register returns data', async () => {
       feesServiceMock.resolveGetCategories()
-      idamServiceMock.resolveRetrieveUserFor(1, 'admin', 'admin')
+      idamServiceMock.resolveRetrieveUserFor(3, 'approver', 'approver')
 
       await request(app)
         .get('/')
         .set('Cookie', `${cookieName}=JWT`)
         .expect(res => (expect(res).to.be as any).redirect.toLocation('/admin/V2/all-fees'))
+    })
+    it('should render all fees when fees-register returns data', async () => {
+      feesServiceMock.resolveGetCategories()
+      idamServiceMock.resolveRetrieveUserFor(1, 'admin', 'admin')
+
+      await request(app)
+         .get('/')
+         .set('Cookie', `${cookieName}=JWT`)
+         .expect(res => (expect(res).to.be as any).redirect.toLocation('/admin/V2/all-fees'))
     })
   })
 })
