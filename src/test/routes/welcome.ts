@@ -12,7 +12,7 @@ import * as idamServiceMock from '../http-mocks/idam'
 
 const cookieName: string = config.get<string>('session.cookieName')
 
-describe('All fees list page', () => {
+describe('pending fees list page', () => {
   beforeEach(() => {
     mock.cleanAll()
   })
