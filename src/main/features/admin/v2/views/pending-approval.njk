@@ -21,6 +21,7 @@
     </thead>
     <tbody>
     {% for fee in fees %}
+
     {% if fee.current_version != null %}
     {% set displayedFeeVersion = fee.current_version %}
     {% else %}
@@ -31,8 +32,8 @@
       <td>{{ displayedFeeVersion.version }}</td>
       <td >{{ fee.service_type.name }}</td>
       <td >{{ displayedFeeVersion.description }}</td>
-      <td >{{ displayedFeeVersion.valid_from | date }}</td>
-      <td>View</td>
+      <td >{{ displayedFeeVersion.valid_from | date("DD MMMM YYYY") }}</td>
+      <td><a href="/admin/v2/fees/{{fee.code}}">View</a></td>
     </tr>
     {% endfor %}
     </tbody>
