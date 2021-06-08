@@ -67,6 +67,7 @@
     "express": "^4.13.3",
     "fast-csv": "^4.3.6",
     "feature-toggles": "^1.4.0",
+    "glob-parent": "^5.1.2",
     "govuk-elements-sass": "^3.0.2",
     "govuk_template_jinja": "0.25.0",
     "gulp": "4.0.2",
