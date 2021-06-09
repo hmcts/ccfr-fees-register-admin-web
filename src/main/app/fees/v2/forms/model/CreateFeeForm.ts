@@ -72,6 +72,10 @@ export class CreateFeeForm {
   @IsNotBlank({ message: ValidationErrors.DIRECTION_REQUIRED })
   direction?: string
 
+  @IsDefined({ message: ValidationErrors.REASON_FOR_UPDATE_REQUIRED })
+  @IsNotBlank({ message: ValidationErrors.REASON_FOR_UPDATE_REQUIRED })
+  reasonForUpdate?: string
+
   @IsDefined({ message: ValidationErrors.APPLICATION_TYPE_REQUIRED })
   @IsNotBlank({ message: ValidationErrors.APPLICATION_TYPE_REQUIRED })
   applicantType?: string
@@ -122,6 +126,7 @@ export class CreateFeeForm {
     this.event = ''
     this.channel = ''
     this.direction = ''
+    this.reasonForUpdate = ''
     this.jurisdiction1 = ''
     this.jurisdiction2 = ''
     this.rangeUnit = ''
@@ -156,6 +161,7 @@ export class CreateFeeForm {
     form.jurisdiction1 = (form as any).jurisdiction1.name
     form.jurisdiction2 = (form as any).jurisdiction2.name
     form.memoLine = (form as any).memo_line
+    form.reasonForUpdate = (form as any).reason_for_update
     form.naturalAccountCode = (form as any).natural_account_code
     form.siRefId = (form as any).si_ref_id
     form.keyword = (form as any).keyword
@@ -236,6 +242,7 @@ export class CreateFeeForm {
 
     dto.version.natural_account_code = this.naturalAccountCode
     dto.version.statutory_instrument = this.statutoryInstrument
+    dto.version.reason_for_update = this.reasonForUpdate
     dto.version.si_ref_id = this.siRefId
     dto.version.fee_order_name = this.feeOrderName
     dto.version.description = this.description
