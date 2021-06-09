@@ -29,6 +29,7 @@
             <input type="hidden" name="code" id="code" value="{{ form.valueFor('code') }}">
           </td>
           {% endif %}
+          <td>{{ textInput(t('Reason For Update*'), 'reasonForUpdate', form) }}</td>
           <td>{{ textInput(t('Memo Line'), 'memoLine', form) }}</td>
           <td>{{ textInput(t('Natural Account Code'), 'naturalAccountCode', form) }}</td>
         </tr>
