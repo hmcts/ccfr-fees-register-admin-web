@@ -59,22 +59,23 @@
     </thead>
     <tbody>
     {% for fee in fees %}
-    {% if fee.current_version.status === 'approved' %}
+    {% set version = getDiscontinuedFeeVersion(fee) %}
+    {% if version.status === 'approved' %}
     <tr>
       <td >
         <a href="/admin/v2/fees/{{fee.code}}">{{ fee.code }}</a>
       </td>
-      <td >{{ fee.current_version.description }}</td>
-      {% if fee.current_version.flat_amount %}
-      <td >£{{ fee.current_version.flat_amount.amount }}</td>
-      {% elif fee.current_version.volume_amount %}
-      <td >£{{ fee.current_version.volume_amount.amount }}</td>
+      <td >{{ version.description }}</td>
+      {% if version.flat_amount %}
+      <td >£{{ version.flat_amount.amount }}</td>
+      {% elif version.volume_amount %}
+      <td >£{{ version.volume_amount.amount }}</td>
       {% else %}
-      <td >{{ fee.current_version.percentage_amount.percentage }}%</td>
+      <td >{{ version.percentage_amount.percentage }}%</td>
       {% endif %}
-      <td >{{ fee.current_version.statutory_instrument }}</td>
-      <td >{{ fee.current_version.si_ref_id }}</td>
-      <td >{{ fee.current_version.fee_order_name }}</td>
+      <td >{{ version.statutory_instrument }}</td>
+      <td >{{ version.si_ref_id }}</td>
+      <td >{{ version.fee_order_name }}</td>
       <td >{{ fee.service_type.name }}</td>
       <td >{{ fee.jurisdiction1.name }}</td>
       <td >{{ fee.jurisdiction2.name }}</td>
@@ -104,21 +105,21 @@
       <td >{{ fee.channel_type.name }}</td>
       <td >{{ fee.keyword }}</td>
       <td >{{ fee.applicant_type.name }}</td>
-      <td >{{ fee.current_version.version }}</td>
-      <td >{{ fee.current_version.direction }}</td>
-       {% if fee.current_version.valid_from %}
-      <td >{{ fee.current_version.valid_from | date("DD MMMM YYYY") }}</td>
+      <td >{{ version.version }}</td>
+      <td >{{ version.direction }}</td>
+       {% if version.valid_from %}
+      <td >{{ version.valid_from | date("DD MMMM YYYY") }}</td>
       {% else %}
       <td/>
       {% endif %}
-      {% if fee.current_version.valid_to %}
-      <td >{{ fee.current_version.valid_to | date("DD MMMM YYYY") }}</td>
+      {% if version.valid_to %}
+      <td >{{ version.valid_to | date("DD MMMM YYYY") }}</td>
       {% else %}
       <td/>
       {% endif %}
-      <td >{{ fee.current_version.status }}</td>
-      <td >{{ fee.current_version.memo_line }}</td>
-      <td >{{ fee.current_version.natural_account_code }}</td>
+      <td >{{ version.status }}</td>
+      <td >{{ version.memo_line }}</td>
+      <td >{{ version.natural_account_code }}</td>
     </tr>
     {% endif %}
     {% endfor %}
