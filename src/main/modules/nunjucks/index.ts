@@ -128,7 +128,7 @@ export default class Nunjucks {
         result = fcv
       }
 
-      return result;
+      return result
     })
 
     nunjucksEnv.addGlobal('isDraftVersionExists', (fee: Fee2Dto): boolean => {
