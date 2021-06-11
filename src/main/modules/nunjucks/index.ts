@@ -125,8 +125,10 @@ export default class Nunjucks {
       const fcv = fee.current_version
       let result: FeeVersionDto
       if (fcv != null && fcv.status === 'approved' && new Date(fcv.valid_from) < todayDate) {
-        return result = fcv
+        result = fcv
       }
+
+      return result;
     })
 
     nunjucksEnv.addGlobal('isDraftVersionExists', (fee: Fee2Dto): boolean => {
