@@ -122,15 +122,10 @@ export default class Nunjucks {
 
     nunjucksEnv.addGlobal('getDiscontinuedFeeVersion', (fee: Fee2Dto): FeeVersionDto => {
       let todayDate: Date = new Date()
-      if (fee.fee_versions != null) {
-        let result: FeeVersionDto
-        fee.fee_versions.forEach((fv) => {
-          if (fv.status === 'approved' && new Date(fv.valid_from) < todayDate) {
-            result = fv
-          }
-        })
-        return result
-
+      const fcv = fee.current_version
+      let result: FeeVersionDto
+      if (fcv != null && fcv.status === 'approved' && new Date(fcv.valid_from) < todayDate) {
+        return result = fcv
       }
     })
 
