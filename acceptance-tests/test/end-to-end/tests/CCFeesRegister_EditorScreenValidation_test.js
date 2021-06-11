@@ -25,6 +25,25 @@ Scenario('FeesRegister Admin Console Editor Screen For Approved but not live fee
   I.Logout("editor");
 });
 
+Scenario('FeesRegister Admin Console Editor Screen For Discontinued fees', I => {
+  I.login('functionaltesteditor@hmcts.net', 'LevelAt12');
+  I.wait(CCFRATConstants.tenSecondWaitTime);
+  I.waitForText('Discontinued fees', CCFRATConstants.tenSecondWaitTime);
+  I.click('Discontinued fees');
+  I.waitForText('Code', CCFRATConstants.tenSecondWaitTime);
+  I.waitForText('Description', CCFRATConstants.tenSecondWaitTime);
+  I.waitForText('Jurisdiction2', CCFRATConstants.tenSecondWaitTime);
+  I.waitForText('Valid to', CCFRATConstants.tenSecondWaitTime);
+  // to-do based on updates and future stories
+  //Check one of the existing fee, once full implementation done we can add our own code
+  I.waitForText('FEE0565', CCFRATConstants.tenSecondWaitTime);
+  I.see('Version1');
+  I.see('Version2');
+  I.click('FEE0565');
+  I.waitForText('Fee details', CCFRATConstants.tenSecondWaitTime);
+  I.Logout("editor");
+});
+
 Scenario('FeesRegister Add New Fee and Submit for Approval', I => {
   const feeKeyword = "SN" + new Date().valueOf().toString();
   const submitBtnVisibilityChk = true;
