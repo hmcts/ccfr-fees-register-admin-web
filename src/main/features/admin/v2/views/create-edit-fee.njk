@@ -45,36 +45,44 @@ selectReferenceData %}
         {{ textInput(t('SI REF ID'), 'siRefId', form, style="width:150px;") }}
 
         {{ textArea(t('Fee Order Name'), 'feeOrderName', form, rows=2) }}
-
-        <div class="form-group ">
-          <label class="form-label-bold">Service*</label>
-          {% set count = 1 %}
+         <label class="form-label-bold">Service*</label>
+        <div id='serviceParent'>
           {% for serviceName in referenceData.serviceTypes %}
-            {# <div class = "multiple-choice"> #}
-            {% if form.valueFor('service') == serviceName.name %}
+          <div id="serviceChild" class = "form-group">
+            <div class = "multiple-choice">
+              {% if form.valueFor('service') == serviceName.name %}
               <input type="radio" id="serviceName.name" name="service" value="{{serviceName.name}}" checked="checked">
               {%else%}
               <input type="radio" id="serviceName.name" name="service" value="{{serviceName.name}}">
               {%endif%}
               <label style="fload:left;">{{serviceName.name}}</label>
-              {% set count = count + 1 %}
-              {% if count == 4 %}
-                <br>
-                {% set count = 1 %}
-                {% endif%}
-
-                {# </div> #}
-              {% endfor %}
-            </div>
+            </div> 
+          </div>
+          {% endfor %}
+        </div>
 
             {{ selectReferenceData ('jurisdiction1', referenceData.jurisdictions1, form, 'Jurisdiction 1*') }}
 
             {{ selectReferenceData ('jurisdiction2', referenceData.jurisdictions2, form, 'Jurisdiction 2*') }}
-
+          <div id="fee-type">
             {{ radioGroup(form = form, checked=false, name = 'type', label = t('Fee Type'), options = [
-            { label: t('Fixed'), value: 'fixed' },
-            { label: t('Ranged'), value: 'ranged' }
+            { label: t('Fixed'), value: 'fixed', onclick: "disableRangedFees"},
+            { label: t('Ranged'), value: 'ranged', onclick: "enableRangedFees"}
             ]) }}
+          </div>
+            <div id="ranged-container">
+            <div id="RangesUnit">
+
+             {{ radioGroup(form = form, checked=false, name = 'units', label = t('Ranged units'), options = [
+            { label: t('Pounds (£)'), value: 'pound'},
+            { label: t('Volume'), value: 'volume'}
+            ]) }}
+            </div>
+            <div id="RangedUnitValue">
+            <p>{{ textInput(t('From'), 'amtFrom', form) }}</p>
+            <p>{{ textInput(t('Up to (optional)'), 'amtUpTo', form) }}</p>
+            </div>
+            </div>
 
             {{ radioGroup(form = form, name = 'amountType', disabled = false, label = t('Amount Type'), options = [
             { label: t('Flat'), value: 'flat' },
