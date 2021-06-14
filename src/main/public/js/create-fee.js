@@ -146,21 +146,15 @@ function onKeywordChanged() {
 
 /* eslint-enable */
 
-function enableRangedFees() {
-  document.getElementById("rangeUnit").removeAttribute("disabled");
-  document.getElementById("fromRange").removeAttribute("disabled");
-  document.getElementById("toRange").removeAttribute("disabled");
-
+function displayRangeFeesSection() {
+  document.getElementById("ranged-container").style.display="block";
   type = "ranged";
 
   onKeywordChanged();
 }
 
-function disabledRangedFees() {
-  document.getElementById("rangeUnit").setAttribute("disabled", "disabled");
-  document.getElementById("fromRange").setAttribute("disabled", "disabled");
-  document.getElementById("toRange").setAttribute("disabled", "disabled");
-
+function hideRangeFeesSection() {
+  document.getElementById("ranged-container").style.display="none";
   type = "fixed";
 
   onKeywordChanged();
@@ -170,9 +164,9 @@ document.addEventListener("DOMContentLoaded", function () {
 
   if (document.getElementById("typefixed") && document.getElementById("typeranged")) {
   document.getElementById("typefixed")
-    .addEventListener("click", disabledRangedFees);
+    .addEventListener("click", hideRangeFeesSection);
   document.getElementById("typeranged")
-    .addEventListener("click", enableRangedFees);
+    .addEventListener("click", displayRangeFeesSection);
   }
 
   if (document.getElementById("amount")) {
