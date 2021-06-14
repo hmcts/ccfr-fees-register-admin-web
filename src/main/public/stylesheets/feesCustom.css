@@ -102,3 +102,23 @@
   box-sizing: border-box;
   vertical-align: top;
 }
+#serviceParent {
+  display: flex;
+  flex-wrap: wrap;
+}
+#serviceChild {
+  flex: 1 0 33%;
+}
+#ranged-container {
+  display: none;
+  position: relative;
+  border-left: 3px solid #ccc;
+  padding-left: 64px;
+  margin-left: 20px;
+}
+#fee-type > .form-group {
+  margin-bottom: 15px;
+}
+#RangedUnitValue {
+  width: 25%;
+}
