@@ -160,7 +160,7 @@
 </div>
 <hr width=100%>
   {% endfor %}
-
+<p><a href="/admin/v2/reject-fee-reason/{{ feeDto.code }}">Reject fee</a></p>
 {% if not isDraftVersionExists(feeDto) %}
   {% if isEditor(user.allInfo.roles) %}
   <div class="gird-row">

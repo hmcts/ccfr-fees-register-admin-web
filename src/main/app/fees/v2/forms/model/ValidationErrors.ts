@@ -14,6 +14,9 @@ export class ValidationErrors {
   static readonly MEMO_LINE_REQUIRED: string = 'Enter memo line'
   static readonly MEMO_LINE_TOO_LONG: string = 'Enter a memo line no longer than $constraint1 characters'
 
+  static readonly REASON_FOR_REJECTION_TOO_LONG: string = 'Enter a reason for rejection no longer than 1000 characters'
+
+
   static readonly TYPE_REQUIRED: string = 'Enter type'
 
   static readonly NAC_REQUIRED: string = 'Enter natural account code'
@@ -29,6 +32,9 @@ export class ValidationErrors {
   static readonly FEE_ORDER_NAME_REQUIRED: string = 'Enter Fee Order Name'
 
   static readonly ALPHA_NUMERIC_WITH_HYPHEN: string = 'Keyword should not have special characters except hyphen'
+
+  static readonly ALPHA_NUMERIC: string = 'Reason for rejection should not have special characters'
+
 
   static readonly AMOUNT_REQUIRED: string = 'Enter amount'
   static readonly AMOUNT_NOT_NEGATIVE: string = 'Enter amount equal or greater than zero'
