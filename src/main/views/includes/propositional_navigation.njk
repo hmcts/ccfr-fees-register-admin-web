@@ -3,14 +3,14 @@
     <a href="#proposition-links" class="js-header-toggle menu">Menu</a>
     <nav id="proposition-menu">
       <span id="proposition-name">{% if serviceName %} {{ t(serviceName) }} {% endif %}</span>
-      <ul id="proposition-links">
+      {# <ul id="proposition-links">
         {% if isLoggedIn %}
         <li><a href="/logout">{{ t('Sign out') }} ({{ user.allInfo.forename }} {{ user.allInfo.surname }}) </a></li>
         {% endif %}
-      </ul>
-      <ul id="proposition-links">
+      </ul> #}
+      {# <ul id="proposition-links">
         <a href="/reference-data">{{ t('Reference Data') }} </a>
-      </ul>
+      </ul> #}
     </nav>
   </div>
 </div>
