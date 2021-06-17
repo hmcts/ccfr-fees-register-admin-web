@@ -14,6 +14,35 @@ import {
 export class CreateFeeForm {
   code?: string
 
+  @IsDefined({ message: ValidationErrors.REASON_FOR_UPDATE_REQUIRED })
+  @IsNotBlank({ message: ValidationErrors.REASON_FOR_UPDATE_REQUIRED })
+  reasonForUpdate?: string
+
+  @IsDefined({ message: ValidationErrors.DESCRIPTION_REQUIRED })
+  @IsNotBlank({ message: ValidationErrors.DESCRIPTION_REQUIRED })
+  @MaxLength(2000, { message: ValidationErrors.DESCRIPTION_TOO_LONG })
+  description?: string
+
+  statutoryInstrument?: string
+
+  siRefId?: string
+
+
+  @IsDefined({ message: ValidationErrors.FEE_ORDER_NAME_REQUIRED })
+  feeOrderName?: string
+
+  @IsDefined({ message: ValidationErrors.SERVICE_REQUIRED })
+  @IsNotBlank({ message: ValidationErrors.SERVICE_REQUIRED })
+  service?: string
+
+  @IsDefined({ message: ValidationErrors.JURISDICTION1_REQUIRED })
+  @IsNotBlank({ message: ValidationErrors.JURISDICTION1_REQUIRED })
+  jurisdiction1?: string
+
+  @IsDefined({ message: ValidationErrors.JURISDICTION2_REQUIRED })
+  @IsNotBlank({ message: ValidationErrors.JURISDICTION2_REQUIRED })
+  jurisdiction2?: string
+
   @IsDefined({ message: ValidationErrors.TYPE_REQUIRED })
   @IsNotBlank({ message: ValidationErrors.TYPE_REQUIRED })
   type?: string
@@ -22,20 +51,45 @@ export class CreateFeeForm {
   @IsNotBlank({ message: ValidationErrors.TYPE_REQUIRED })
   amountType?: string
 
-  @IsDefined({ message: ValidationErrors.DESCRIPTION_REQUIRED })
-  @IsNotBlank({ message: ValidationErrors.DESCRIPTION_REQUIRED })
-  @MaxLength(2000, { message: ValidationErrors.DESCRIPTION_TOO_LONG })
-  description?: string
+  @IsDefined({ message: ValidationErrors.EVENT_REQUIRED })
+  @IsNotBlank({ message: ValidationErrors.EVENT_REQUIRED })
+  event?: string
+
+  @IsDefined({ message: ValidationErrors.CHANNEL_REQUIRED })
+  @IsNotBlank({ message: ValidationErrors.CHANNEL_REQUIRED })
+  channel?: string
+
+  @IsOptional()
+  @Matches(/^([a-zA-Z0-9-]*)$/, {
+    message: ValidationErrors.ALPHA_NUMERIC_WITH_HYPHEN
+  })
+  keyword?: string
+
+  @IsDefined({ message: ValidationErrors.APPLICATION_TYPE_REQUIRED })
+  @IsNotBlank({ message: ValidationErrors.APPLICATION_TYPE_REQUIRED })
+  applicantType?: string
+
+
+  @IsDefined({ message: ValidationErrors.DIRECTION_REQUIRED })
+  @IsNotBlank({ message: ValidationErrors.DIRECTION_REQUIRED })
+  direction?: string
 
   @MaxLength(2000, { message: ValidationErrors.MEMO_LINE_TOO_LONG })
   @IsDefined({ message: ValidationErrors.MEMO_LINE_REQUIRED })
   memoLine?: string
 
-  @ValidateIf(o => o.amountType === 'flat')
-  @Min(0, { message: ValidationErrors.AMOUNT_NOT_NEGATIVE })
-  @Max(9999999.99, { message: ValidationErrors.AMOUNT_TOO_BIG })
-  @Fractions(0, 2, { message: ValidationErrors.AMOUNT_INVALID_DECIMALS })
-  amount?: number
+  @IsDefined({ message: ValidationErrors.FROM_DATE_REQUIRED })
+  @IsNotBlank({ message: ValidationErrors.FROM_DATE_REQUIRED })
+  fromDate?: Date
+
+  toDate?: Date
+
+  @IsDefined({ message: ValidationErrors.NAC_REQUIRED })
+  naturalAccountCode?: string
+
+
+
+
 
   @ValidateIf(o => o.type === 'ranged')
   @Min(0, { message: ValidationErrors.AMOUNT_NOT_NEGATIVE })
@@ -54,67 +108,25 @@ export class CreateFeeForm {
   @IsNotBlank({ message: ValidationErrors.RANGE_UNIT_REQUIRED })
   rangeUnit?: string
 
+  @ValidateIf(o => o.amountType === 'flat')
+  @Min(0, { message: ValidationErrors.AMOUNT_NOT_NEGATIVE })
+  @Max(9999999.99, { message: ValidationErrors.AMOUNT_TOO_BIG })
+  @Fractions(0, 2, { message: ValidationErrors.AMOUNT_INVALID_DECIMALS })
+  amount?: number
+
   @ValidateIf(o => o.amountType === 'percentage')
   @Min(0.01, { message: ValidationErrors.PERCENTAGE_GREATER_THAN_0 })
   @Max(100, { message: ValidationErrors.PERCENTAGE_LOWER_THAN_100 })
   @Fractions(0, 2, { message: ValidationErrors.PERCENTAGE_INVALID_DECIMALS })
   percentage?: number
 
-  @IsDefined({ message: ValidationErrors.CHANNEL_REQUIRED })
-  @IsNotBlank({ message: ValidationErrors.CHANNEL_REQUIRED })
-  channel?: string
-
-  @IsDefined({ message: ValidationErrors.EVENT_REQUIRED })
-  @IsNotBlank({ message: ValidationErrors.EVENT_REQUIRED })
-  event?: string
-
-  @IsDefined({ message: ValidationErrors.DIRECTION_REQUIRED })
-  @IsNotBlank({ message: ValidationErrors.DIRECTION_REQUIRED })
-  direction?: string
-
-  @IsDefined({ message: ValidationErrors.REASON_FOR_UPDATE_REQUIRED })
-  @IsNotBlank({ message: ValidationErrors.REASON_FOR_UPDATE_REQUIRED })
-  reasonForUpdate?: string
-
-  @IsDefined({ message: ValidationErrors.APPLICATION_TYPE_REQUIRED })
-  @IsNotBlank({ message: ValidationErrors.APPLICATION_TYPE_REQUIRED })
-  applicantType?: string
-
-  @IsDefined({ message: ValidationErrors.SERVICE_REQUIRED })
-  @IsNotBlank({ message: ValidationErrors.SERVICE_REQUIRED })
-  service?: string
-
-  @IsDefined({ message: ValidationErrors.JURISDICTION1_REQUIRED })
-  @IsNotBlank({ message: ValidationErrors.JURISDICTION1_REQUIRED })
-  jurisdiction1?: string
-
-  @IsDefined({ message: ValidationErrors.JURISDICTION2_REQUIRED })
-  @IsNotBlank({ message: ValidationErrors.JURISDICTION2_REQUIRED })
-  jurisdiction2?: string
-
-  @IsDefined({ message: ValidationErrors.NAC_REQUIRED })
-  naturalAccountCode?: string
-
-  @IsDefined({ message: ValidationErrors.FROM_DATE_REQUIRED })
-  @IsNotBlank({ message: ValidationErrors.FROM_DATE_REQUIRED })
-  fromDate?: Date
-
-  toDate?: Date
+  @ValidateIf(o => o.amountType === 'volume')
+  @Min(0, { message: ValidationErrors.AMOUNT_NOT_NEGATIVE })
+  @Max(9999999.99, { message: ValidationErrors.AMOUNT_TOO_BIG })
+  @Fractions(0, 2, { message: ValidationErrors.AMOUNT_INVALID_DECIMALS })
+  volumeAmount?: number
 
   edit: boolean
-
-  statutoryInstrument?: string
-
-  siRefId?: string
-
-  @IsDefined({ message: ValidationErrors.FEE_ORDER_NAME_REQUIRED })
-  feeOrderName?: string
-
-  @IsOptional()
-  @Matches(/^([a-zA-Z0-9-]*)$/, {
-    message: ValidationErrors.ALPHA_NUMERIC_WITH_HYPHEN
-  })
-  keyword?: string
 
   constructor () {
     this.code = null
@@ -190,6 +202,10 @@ export class CreateFeeForm {
 
     if (form.amount) {
       form.amount = +form.amount
+    }
+    
+    if (form.volumeAmount) {
+      form.amount = +form.volumeAmount
     }
 
     if (form.fromRange) {

@@ -109,11 +109,14 @@
 #serviceChild {
   flex: 1 0 33%;
 }
-#ranged-container {
+#ranged-container,
+#flatAmount,
+#percentageAmount,
+#volumeAmount {
   display: none;
   position: relative;
   border-left: 3px solid #ccc;
-  padding-left: 64px;
+  padding-left: 50px;
   margin-left: 20px;
 }
 #fee-type > .form-group {
@@ -121,4 +124,49 @@
 }
 #RangedUnitValue {
   width: 25%;
+}
+#serviceChild.form-group,
+#verticalRadio.form-group {
+  margin-bottom: 10px;
+}
+.govuk-form-group {
+  margin-bottom: 30px;
+}
+.govuk-fieldset {
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+.date-field--width {
+  width: 35%;
+}
+.small-box {
+  width: 10%;
+}
+.mid-box {
+  width: 20%;
+}
+
+.input-icon {
+  position: relative;
+}
+
+.input-icon > i {
+  position: absolute;
+  display: block;
+  transform: translate(0, -50%);
+  top: 50%;
+  pointer-events: none;
+  width: 25px;
+  text-align: center;
+	font-style: normal;
+  font-weight: bold;
+}
+
+.input-icon > input {
+  padding-left: 25px;
+	padding-right: 0;
+}
+.disply-section {
+  display: block !important;
 }
