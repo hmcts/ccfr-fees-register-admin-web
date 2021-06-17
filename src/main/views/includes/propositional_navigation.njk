@@ -8,17 +8,9 @@
         <li><a href="/logout">{{ t('Sign out') }} ({{ user.allInfo.forename }} {{ user.allInfo.surname }}) </a></li>
         {% endif %}
       </ul>
-      {% block left %}
-      <ul id="proposition-links">
-      <a href="/all-fees">{{ t('Fees') }} </a>
-          <a href="/draft-fees">{{ t('Your Drafts') }} </a>
-          </ul>
-{% endblock %}
-      {% block right %}
       <ul id="proposition-links">
         <a href="/reference-data">{{ t('Reference Data') }} </a>
       </ul>
-      {% endblock %}
     </nav>
   </div>
 </div>
