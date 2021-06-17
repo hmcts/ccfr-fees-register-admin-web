@@ -13,32 +13,6 @@ function formatDecimals(event) {
   }
 }
 
-function enableFlatOrVolumeAmount() {
-  document.getElementById("amount").removeAttribute("disabled");
-  document.getElementById("percentage").setAttribute("disabled", "disabled");
-}
-
-function enablePercentageAmount() {
-  document.getElementById("percentage").removeAttribute("disabled");
-  document.getElementById("amount").setAttribute("disabled", "disabled");
-}
-
-document.addEventListener("DOMContentLoaded", function () {
-  document.getElementById("amountTypepercentage")
-    .addEventListener("click", enablePercentageAmount);
-});
-
-document.addEventListener("DOMContentLoaded", function () {
-  document.getElementById("amountTypeflat")
-    .addEventListener("click", enableFlatOrVolumeAmount);
-});
-
-document.addEventListener("DOMContentLoaded", function () {
-  document.getElementById("amountTypevolume")
-    .addEventListener("click", enableFlatOrVolumeAmount);
-});
-
-
 function showKeywordError() {
   document.getElementById("keyword-error").hidden = false;
   document.getElementById("keyword").className = keywordClass + "form-control-error";
@@ -160,6 +134,36 @@ function hideRangeFeesSection() {
   onKeywordChanged();
 }
 
+function showFlatAmountSection() {
+  document.getElementById("flatAmount").style.display="block";
+  document.getElementById("percentageAmount").style.display="none";
+  document.getElementById("percentageAmount").classList.remove("disply-section")
+  document.getElementById("volumeAmount").style.display="none";
+  document.getElementById("volumeAmount").classList.remove("disply-section")
+
+  onKeywordChanged();
+}
+
+function showPercentageSection() {
+  document.getElementById("volumeAmount").style.display="none";
+  document.getElementById("volumeAmount").classList.remove("disply-section")
+  document.getElementById("flatAmount").style.display="none";
+  document.getElementById("flatAmount").classList.remove("disply-section")
+  document.getElementById("percentageAmount").style.display="block";
+
+  onKeywordChanged();
+}
+
+function showVolumeAmountSection() {
+  document.getElementById("volumeAmount").style.display="block";
+  document.getElementById("percentageAmount").style.display="none";
+  document.getElementById("percentageAmount").classList.remove("disply-section")
+  document.getElementById("flatAmount").style.display="none";
+  document.getElementById("flatAmount").classList.remove("disply-section")
+
+  onKeywordChanged();
+}
+
 document.addEventListener("DOMContentLoaded", function () {
 
   if (document.getElementById("typefixed") && document.getElementById("typeranged")) {
@@ -168,6 +172,15 @@ document.addEventListener("DOMContentLoaded", function () {
   document.getElementById("typeranged")
     .addEventListener("click", displayRangeFeesSection);
   }
+
+  if (document.getElementById("flat") && document.getElementById("percentage") && document.getElementById("volume")) {
+    document.getElementById("flat")
+      .addEventListener("click", showFlatAmountSection);
+    document.getElementById("percentage")
+      .addEventListener("click", showPercentageSection);
+      document.getElementById("volume")
+      .addEventListener("click", showVolumeAmountSection);
+    }
 
   if (document.getElementById("amount")) {
     document.getElementById("amount").onchange = formatDecimals;
