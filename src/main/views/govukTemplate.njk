@@ -74,10 +74,6 @@
     <div class="header-global">
       <div class="header-logo">
         <a href="{{ homepage_url|default('https://www.gov.uk') }}" class="content">{{ t('Fee Register') }} </a>
-        <ul id="proposition-links">
-          <a href="../../all-fees">{{ t('Fees') }} </a>
-          <a href="../../draft-fees">{{ t('Your Drafts') }} </a>
-        </ul>
       </div>
       {% block inside_header %}{% endblock %}
     </div>
