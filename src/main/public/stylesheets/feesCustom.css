@@ -107,10 +107,12 @@
   font-family: "nta", Arial, sans-serif;
   float: left;
   font-size: 24px;
+  color: ghostwhite;
 }
 
 .custom-draft-all-fees {
   font-family: "nta", Arial, sans-serif;
   float: left;
-  font-size: 24px;
+  font-size: 16px;
+  color: ghostwhite;
 }
