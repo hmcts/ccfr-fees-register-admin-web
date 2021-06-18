@@ -73,10 +73,10 @@
   <div class="header-wrapper">
     <div class="header-global">
       <div class="header-proposition">
-        <a href="{{ homepage_url|default('https://www.gov.uk') }}" class="content" id="custom-delete-button">{{ t('Fee Register') }} </a>
-      <ul id="draft-all-fees-links">
-        <a href="/all-fees" float="left">{{ t('Fees') }} </a>
-        <a href="/draft-fees" float="left">{{ t('Your Drafts') }} </a>
+        <a href="{{ homepage_url|default('https://www.gov.uk') }}" class="custom-header-title">{{ t('Fee Register') }} </a>
+      <ul id="draft-all-fees" class="custom-draft-all-fees">
+        <a href="/all-fees">{{ t('Fees') }} </a>
+        <a href="/draft-fees">{{ t('Your Drafts') }} </a>
       </ul>
       </div>
       {% block inside_header %}{% endblock %}
