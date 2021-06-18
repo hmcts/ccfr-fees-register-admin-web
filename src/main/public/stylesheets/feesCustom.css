@@ -110,6 +110,7 @@
   font-weight: 600;
   position: relative;
   padding-bottom: 2.5%;
+  text-transform: none;
 }
 
 .custom-draft-all-fees {
@@ -118,6 +119,7 @@
   color: ghostwhite;
   font-weight: 600;
   position: relative;
+  text-transform: none;
 }
 
 .custom-reference-data {
@@ -127,9 +129,11 @@
   color: ghostwhite;
   font-weight: 600;
   position: relative;
+  text-transform: none;
 }
 
 .custom-header-ul {
   margin-top: 0.46875em;
   margin-bottom: 0.9375em;
+  position: relative;
 }
