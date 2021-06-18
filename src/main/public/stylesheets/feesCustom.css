@@ -106,7 +106,6 @@
 .custom-header-title {
   font-family: "nta", Arial, sans-serif;
   font-size: 24px;
-  color: white;
   font-weight: 600;
   position: relative;
   text-transform: none;
@@ -115,7 +114,6 @@
 .custom-draft-all-fees {
   font-family: "nta", Arial, sans-serif;
   font-size: 16px;
-  color: white;
   font-weight: 600;
   position: relative;
   text-transform: none;
@@ -125,7 +123,6 @@
   font-family: "nta", Arial, sans-serif;
   float: right;
   font-size: 16px;
-  color: white;
   font-weight: 600;
   position: relative;
   text-transform: none;
@@ -141,7 +138,7 @@
   font-family: "nta", Arial, sans-serif;
   float: right;
   font-size: 16px;
-  color: white;
   position: relative;
   text-transform: none;
+  display: inline;
 }
