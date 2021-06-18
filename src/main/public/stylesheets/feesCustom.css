@@ -142,3 +142,11 @@
   text-transform: none;
   display: inline;
 }
+
+.a {
+  color: white;
+}
+
+.a:hover {
+  text-decoration: underline;
+}
