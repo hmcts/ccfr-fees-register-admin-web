@@ -105,16 +105,15 @@
 
 .custom-header-title {
   font-family: "nta", Arial, sans-serif;
-  float: left;
   font-size: 24px;
   color: ghostwhite;
   font-weight: 600;
   position: relative;
+  padding-bottom: 2.5%;
 }
 
 .custom-draft-all-fees {
   font-family: "nta", Arial, sans-serif;
-  float: left;
   font-size: 16px;
   color: ghostwhite;
   font-weight: 600;
