@@ -108,11 +108,21 @@
   float: left;
   font-size: 24px;
   color: ghostwhite;
+  font-weight: 600;
 }
 
-.custom-draft-all-fees {
+.custom-draft-all-fees a{
   font-family: "nta", Arial, sans-serif;
   float: left;
   font-size: 16px;
   color: ghostwhite;
+  font-weight: 600;
+}
+
+.custom-reference-data a{
+  font-family: "nta", Arial, sans-serif;
+  float: right;
+  font-size: 16px;
+  color: ghostwhite;
+  font-weight: 600;
 }
