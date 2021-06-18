@@ -3,9 +3,9 @@
     <a href="#proposition-links" class="js-header-toggle menu">Menu</a>
     <nav id="proposition-menu">
       <span id="proposition-name">{% if serviceName %} {{ t(serviceName) }} {% endif %}</span>
-      <ul id="proposition-links" class="custom-reference-data">
+      <ul id="proposition-links" class="custom-logout">
         {% if isLoggedIn %}
-        <a> {{ user.allInfo.forename }} {{ user.allInfo.surname }} </a>
+        <p> {{ user.allInfo.forename }} {{ user.allInfo.surname }} </p>
         <a href="/logout">{{ t('Sign out') }}</a>
         {% endif %}
       </ul>
