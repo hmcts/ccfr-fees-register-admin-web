@@ -74,9 +74,9 @@
     <div class="header-global">
       <div class="header-proposition">
         <a href="{{ homepage_url|default('https://www.gov.uk') }}" class="custom-header-title">{{ t('Fee Register') }} </a>
-      <ul id="draft-all-fees">
-        <a href="/all-fees" class="custom-draft-all-fees">{{ t('Fees') }} </a>
-        <a href="/draft-fees" class="custom-draft-all-fees">{{ t('Your Drafts') }} </a>
+      <ul id="draft-all-fees" class="custom-header-ul">
+        <a href="/all-fees" class="custom-draft-all-fees" style="color: ghostwhite">{{ t('Fees') }} </a>
+        <a href="/draft-fees" class="custom-draft-all-fees" style="color: ghostwhite">{{ t('Your Drafts') }} </a>
       </ul>
       </div>
       {% block inside_header %}{% endblock %}

@@ -129,3 +129,8 @@
   font-weight: 600;
   position: relative;
 }
+
+.custom-header-ul {
+  margin-top: 0.46875em;
+  margin-bottom: 0.9375em;
+}
