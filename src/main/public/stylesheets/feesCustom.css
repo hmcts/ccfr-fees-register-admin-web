@@ -109,6 +109,7 @@
   font-size: 24px;
   color: ghostwhite;
   font-weight: 600;
+  position: relative;
 }
 
 .custom-draft-all-fees {
@@ -117,6 +118,7 @@
   font-size: 16px;
   color: ghostwhite;
   font-weight: 600;
+  position: relative;
 }
 
 .custom-reference-data {
@@ -125,4 +127,5 @@
   font-size: 16px;
   color: ghostwhite;
   font-weight: 600;
+  position: relative;
 }
