@@ -5,8 +5,8 @@
       <span id="proposition-name">{% if serviceName %} {{ t(serviceName) }} {% endif %}</span>
       <ul class="custom-logout">
         {% if isLoggedIn %}
-        <p> {{ user.allInfo.forename }} {{ user.allInfo.surname }} </p>
-        <a href="/logout">{{ t('Sign out') }}</a>
+        <a> {{ user.allInfo.forename }} {{ user.allInfo.surname }}
+        <a href="/logout">{{ t('Sign out') }}</a></p>
         {% endif %}
       </ul>
       <ul id="reference-data" class="custom-header-ul">
