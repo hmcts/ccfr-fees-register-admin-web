@@ -162,6 +162,6 @@
   padding-bottom: 8px;
 }
 
-.header a:link {
+a.header:link {
   color: white; }
 
