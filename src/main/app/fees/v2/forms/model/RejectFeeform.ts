@@ -3,6 +3,8 @@ import { ValidationErrors } from 'fees/v2/forms/model/ValidationErrors'
 import { ReasonDto } from 'app/fees/v2/model/fees-register-api-contract'
 
 export class RejectFeeForm {
+    code?: string
+
     @IsOptional()
     @MaxLength(1000, { message: ValidationErrors.REASON_FOR_REJECTION_TOO_LONG })
     @Matches(/^([a-zA-Z0-9]*)$/, {
@@ -11,6 +13,7 @@ export class RejectFeeForm {
     reasonForReject?: string
 
     constructor() {
+        this.code = null
         this.reasonForReject = ''
     }
 
