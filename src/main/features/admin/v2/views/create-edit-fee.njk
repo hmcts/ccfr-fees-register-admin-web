@@ -22,7 +22,7 @@ selectReferenceData %}
 {% block content %}
   <div class="grid-row">
     <div class="column-full">
-      <form method="post" action="create">
+      <form method="post" id="createForm" action="create">
         {{ csrfProtection(csrfToken) }}
         {% if edit %}
           <div class="form-group">
@@ -41,17 +41,21 @@ selectReferenceData %}
         {{ textInput(t('SI REF ID'), 'siRefId', form, style="width:150px;") }}
 
         {{ textArea(t('Fee Order Name'), 'feeOrderName', form, rows=2) }}
-        <div class="govuk-form-group">
+        {% set serviceError = form.errorFor('service') %}
+        <div class="govuk-form-group {{ 'form-group-error' if serviceError}}">
           <fieldset class="govuk-fieldset">
             <label class="form-label-bold">Service</label>
+            {% if serviceError %}
+              <span class="error-message"> {{serviceError}} </span>
+            {% endif %}
             <div id='serviceParent'>
               {% for serviceName in referenceData.serviceTypes %}
                 <div id="serviceChild" class = "form-group">
                   <div class = "multiple-choice">
                     {% if form.valueFor('service') == serviceName.name %}
-                      <input type="radio" id="serviceName.name" name="service" value="{{serviceName.name}}" checked="checked">
+                      <input type="radio" id="{{serviceName.name}}" name="service" value="{{serviceName.name}}" checked="checked">
                     {%else%}
-                      <input type="radio" id="serviceName.name" name="service" value="{{serviceName.name}}">
+                      <input type="radio" id="{{serviceName.name}}" name="service" value="{{serviceName.name}}">
                     {%endif%}
                     <label style="fload:left;">{{serviceName.name}}</label>
                   </div> 
@@ -60,16 +64,20 @@ selectReferenceData %}
             </div>
           </fieldset>
       </div>
-      <div class="govuk-form-group">
+      {% set jurisdictionOneError = form.errorFor('jurisdiction1') %}
+      <div class="govuk-form-group {{ 'form-group-error' if jurisdictionOneError}}">
         <fieldset class="govuk-fieldset">
           <label class="form-label-bold">Jurisdiction 1</label>
+            {% if jurisdictionOneError %}
+              <span class="error-message"> {{jurisdictionOneError}} </span>
+            {% endif %}
           {% for jurisdiction1 in referenceData.jurisdictions1 %}
             <div id="verticalRadio" class = "form-group">
                 <div class = "multiple-choice">
                 {% if form.valueFor('jurisdiction1') == jurisdiction1.name %}
-                  <input type="radio" id="jurisdiction1.name" name="jurisdiction1" value="{{jurisdiction1.name}}" checked="checked">
+                  <input type="radio" id="{{jurisdiction1.name}}" name="jurisdiction1" value="{{jurisdiction1.name}}" checked="checked">
                 {%else%}
-                  <input type="radio" id="jurisdiction1.name" name="jurisdiction1" value="{{jurisdiction1.name}}">
+                  <input type="radio" id="{{jurisdiction1.name}}" name="jurisdiction1" value="{{jurisdiction1.name}}">
                 {%endif%}
                 <label style="fload:left;">{{jurisdiction1.name}}</label>
               </div> 
@@ -77,17 +85,21 @@ selectReferenceData %}
           {% endfor %}
         </fieldset>
       </div>
-      <div class="govuk-form-group">
+      {% set jurisdictionTwoError = form.errorFor('jurisdiction2') %}
+      <div class="govuk-form-group {{ 'form-group-error' if jurisdictionTwoError}}">
         <fieldset class="govuk-fieldset">
           <label class="form-label-bold">Jurisdiction 2</label>
+            {% if jurisdictionTwoError %}
+              <span class="error-message"> {{jurisdictionTwoError}} </span>
+            {% endif %}
           <div id='serviceParent'>
             {% for jurisdiction2 in referenceData.jurisdictions2 %}
               <div id="serviceChild" class = "form-group">
                 <div class = "multiple-choice">
                   {% if form.valueFor('jurisdiction2') == jurisdiction2.name %}
-                    <input type="radio" id="jurisdiction2.name" name="jurisdiction2" value="{{jurisdiction2.name}}" checked="checked">
+                    <input type="radio" id="{{jurisdiction2.name}}" name="jurisdiction2" value="{{jurisdiction2.name}}" checked="checked">
                   {%else%}
-                    <input type="radio" id="jurisdiction2.name" name="jurisdiction2" value="{{jurisdiction2.name}}">
+                    <input type="radio" id="{{jurisdiction2.name}}" name="jurisdiction2" value="{{jurisdiction2.name}}">
                   {%endif%}
                   <label style="fload:left;">{{jurisdiction2.name}}</label>
                 </div> 
@@ -96,6 +108,10 @@ selectReferenceData %}
           </div>
         </fieldset>
       </div>
+      {% set rangeUnitError = form.errorFor('rangeUnit') %}
+      {% set fromRangeError = form.errorFor('fromRange') %}
+      {% set toRangeError = form.errorFor('toRange') %}
+
       <div class="govuk-form-group">
         <fieldset class="govuk-fieldset">
           <div id="fee-type">
@@ -104,7 +120,7 @@ selectReferenceData %}
               { label: t('Ranged'), value: 'ranged', onclick: "enableRangedFees"}
             ]) }}
           </div>
-          <div id="ranged-container">
+          <div id="ranged-container" class="{{ 'disply-section' if form.valueFor('type') == 'ranged'}}">
             <div id="RangesUnit">
               {{ radioGroup(form = form, checked=false, name = 'rangeUnit', label = t('Ranged units'), options = [
                 { label: t('Pounds (£)'), value: 'pound'},
@@ -119,24 +135,30 @@ selectReferenceData %}
         </fieldset>
       </div>
 
+      {% set amounError = form.errorFor('amount') %}
+      {% set percentageError = form.errorFor('percentage') %}
+      {% set volumeAmountError = form.errorFor('volAmount') %}
       <div class="govuk-form-group">
         <fieldset class="govuk-fieldset">
           <label class="form-label-bold">Amount Type</label>
             <div id="verticalRadio" class = "form-group">
               <div class = "multiple-choice">
-                {% if form.valueFor('amounType') == 'flat' %}
-                  <input type="radio" id="flat" name="amounType" value="flat" checked="checked" onclick="showFlatAmountSection()">
+                {% if form.valueFor('amountType') == 'flat' %}
+                  <input type="radio" id="flat" name="amountType" value="flat" checked="checked" onclick="showFlatAmountSection()">
                 {%else%}
-                  <input type="radio" id="flat" name="amounType" value="flat" onclick="showFlatAmountSection()">
+                  <input type="radio" id="flat" name="amountType" value="flat" onclick="showFlatAmountSection()">
                 {%endif%}
                 <label style="fload:left;">Flat</label>
               </div> 
             </div>
-              <div id="flatAmount" class="mid-box {{ 'disply-section' if form.valueFor('amounType') == 'flat'}}" >
+              <div id="flatAmount" class="mid-box {{ 'disply-section' if form.valueFor('amountType') == 'flat'}}" >
                 <label class="form-label-bold">Amount</label>
+                {% if amounError %}
+                  <span class="error-message"> {{amounError}} </span>
+                {% endif %}
                 <div class = "form-group">
                   <div class="input-icon">
-                    <input type="text" name="amount" id="amount" class="form-control  ">
+                    <input type="text" name="amount" id="amount" value="{{form.valueFor('amount')}}" class="form-control {{ 'form-control-error' if amounError}}">
                     <i>£</i>
                   </div>
                 </div>
@@ -144,49 +166,63 @@ selectReferenceData %}
 
             <div id="verticalRadio" class = "form-group">
               <div class = "multiple-choice">
-                {% if form.valueFor('amounType') == 'percentage' %}
-                  <input type="radio" id="percentage" name="amounType" value="percentage" checked="checked" onclick="showPercentageSection()">
+                {% if form.valueFor('amountType') == 'percentage' %}
+                  <input type="radio" id="percentage" name="amountType" value="percentage" checked="checked" onclick="showPercentageSection()">
                 {%else%}
-                  <input type="radio" id="percentage" name="amounType" value="percentage" onclick="showPercentageSection()">
+                  <input type="radio" id="percentage" name="amountType" value="percentage" onclick="showPercentageSection()">
                 {%endif%}
                 <label style="fload:left;">Percentage</label>
               </div> 
             </div>
-           <div id="percentageAmount" class="small-box {{ 'disply-section' if form.valueFor('amounType') == 'percentage'}}">
-           {{ textInput('', 'percentage', form) }}
+           <div id="percentageAmount" class="small-box {{ 'disply-section' if form.valueFor('amountType') == 'percentage'}}">
+                {% if percentageError %}
+                  <span class="error-message"> {{percentageError}} </span>
+                {% endif %}
+                <div class = "form-group">
+                  <div class="input-icon">
+                    <input type="text" name="percentage" id="percentage" value="{{form.valueFor('percentage')}}" class="form-control {{ 'form-control-error' if percentageError}}">
+                  </div>
+                </div>
             </div>
             <div id="verticalRadio" class = "form-group">
               <div class = "multiple-choice">
-                {% if form.valueFor('amounType') == 'volume' %}
-                  <input type="radio" id="volume" name="amounType" value="volume" checked="checked" onclick="showVolumeAmountSection()">
+                {% if form.valueFor('amountType') == 'volume' %}
+                  <input type="radio" id="volume" name="amountType" value="volume" checked="checked" onclick="showVolumeAmountSection()">
                 {%else%}
-                  <input type="radio" id="volume" name="amounType" value="volume" onclick="showVolumeAmountSection()">
+                  <input type="radio" id="volume" name="amountType" value="volume" onclick="showVolumeAmountSection()">
                 {%endif%}
                 <label style="fload:left;">Volume</label>
               </div> 
             </div>
-            <div id="volumeAmount" class="mid-box {{ 'disply-section' if form.valueFor('amounType') == 'volume'}}" >
+            <div id="volumeAmount" class="mid-box {{ 'disply-section' if form.valueFor('amountType') == 'volume'}}" >
                <label class="form-label-bold">Amount</label>
+                {% if volumeAmountError %}
+                  <span class="error-message"> {{volumeAmountError}} </span>
+                {% endif %}
                 <div class = "form-group">
                   <div class="input-icon">
-                    <input type="text" name="volumeAmount" id="volumeAmount" class="form-control">
+                    <input type="text" name="volAmount" id="volAmount" value="{{form.valueFor('volAmount')}}" class="form-control {{ 'form-control-error' if volumeAmountError}}">
                     <i>£</i>
                   </div>
                 </div>
             </div>
         </fieldset>
       </div>
-      <div class="govuk-form-group">
+      {% set eventError = form.errorFor('event') %}
+      <div class="govuk-form-group {{ 'form-group-error' if eventError}}">
         <fieldset class="govuk-fieldset">
           <label class="form-label-bold">Event</label>
+          {% if eventError %}
+            <span class="error-message"> {{eventError}} </span>
+          {% endif %}
           <div id='serviceParent'>
             {% for event in referenceData.eventTypes %}
               <div id="serviceChild" class = "form-group">
                 <div class = "multiple-choice">
                   {% if form.valueFor('event') == event.name %}
-                    <input type="radio" id="event.name" name="event" value="{{event.name}}" checked="checked">
+                    <input type="radio" id="{{event.name}}" name="event" value="{{event.name}}" checked="checked">
                   {%else%}
-                    <input type="radio" id="event.name" name="event" value="{{event.name}}">
+                    <input type="radio" id="{{event.name}}" name="event" value="{{event.name}}">
                   {%endif%}
                   <label style="fload:left;">{{event.name}}</label>
                 </div> 
@@ -195,16 +231,20 @@ selectReferenceData %}
           </div>
         </fieldset>
       </div>
-      <div class="govuk-form-group">
+      {% set channelError = form.errorFor('channel') %}
+      <div class="govuk-form-group {{ 'form-group-error' if channelError}}">
         <fieldset class="govuk-fieldset">
           <label class="form-label-bold">Channel</label>
+          {% if channelError %}
+            <span class="error-message"> {{channelError}} </span>
+          {% endif %}
           {% for  channel in referenceData.channelTypes %}
             <div id="verticalRadio" class = "form-group">
               <div class = "multiple-choice">
                 {% if form.valueFor('channel') == channel.name %}
-                  <input type="radio" id="channel.name" name="channel" value="{{channel.name}}" checked="checked">
+                  <input type="radio" id="{{channel.name}}" name="channel" value="{{channel.name}}" checked="checked">
                 {%else%}
-                  <input type="radio" id="channel.name" name="channel" value="{{channel.name}}">
+                  <input type="radio" id="{{channel.name}}" name="channel" value="{{channel.name}}">
                 {%endif%}
                 <label style="fload:left;">{{channel.name}}</label>
               </div> 
@@ -219,16 +259,20 @@ selectReferenceData %}
             Keyword already in use
           </span>
         </p>
-      <div class="govuk-form-group">
+      {% set applicantTypeError = form.errorFor('applicantType') %}
+      <div class="govuk-form-group {{ 'form-group-error' if applicantTypeError}}">
         <fieldset class="govuk-fieldset">
           <label class="form-label-bold">Applicant</label>
+          {% if applicantTypeError %}
+            <span class="error-message"> {{applicantTypeError}} </span>
+          {% endif %}
           {% for applicant in referenceData.applicantTypes %}
             <div id="verticalRadio" class = "form-group">
               <div class = "multiple-choice">
                 {% if form.valueFor('applicantType') == applicant.name %}
-                  <input type="radio" id="applicant.name" name="applicantType" value="{{applicant.name}}" checked="checked">
+                  <input type="radio" id="{{applicant.name}}" name="applicantType" value="{{applicant.name}}" checked="checked">
                 {%else%}
-                  <input type="radio" id="applicant.name" name="applicantType" value="{{applicant.name}}">
+                  <input type="radio" id="{{applicant.name}}" name="applicantType" value="{{applicant.name}}">
                 {%endif%}
                 <label style="fload:left;">{{applicant.name}}</label>
               </div> 
@@ -236,17 +280,21 @@ selectReferenceData %}
           {% endfor %}
         </fieldset>
       </div>
-      <div class="govuk-form-group">
+      {% set directionError = form.errorFor('direction') %}
+      <div class="govuk-form-group {{ 'form-group-error' if directionError}}">
         <fieldset class="govuk-fieldset">
           <label class="form-label-bold">Direction</label>
+          {% if directionError %}
+            <span class="error-message"> {{directionError}} </span>
+          {% endif %}
           <div id='serviceParent'>
             {% for direction in referenceData.directionTypes %}
             <div id="serviceChild" class = "form-group">
               <div class = "multiple-choice">
                 {% if form.valueFor('direction') == direction.name %}
-                  <input type="radio" id="direction.name" name="direction" value="{{direction.name}}" checked="checked">
+                  <input type="radio" id="{{direction.name}}" name="direction" value="{{direction.name}}" checked="checked">
                 {%else%}
-                  <input type="radio" id="direction.name" name="direction" value="{{direction.name}}">
+                  <input type="radio" id="{{direction.name}}" name="direction" value="{{direction.name}}">
                 {%endif%}
                 <label style="fload:left;">{{direction.name}}</label>
               </div> 
