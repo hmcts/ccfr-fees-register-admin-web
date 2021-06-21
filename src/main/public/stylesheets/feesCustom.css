@@ -143,7 +143,6 @@
   font-size: 18px;
   position: relative;
   text-transform: none;
-  bottom: 40px;
 }
 
 .username-log {
@@ -164,3 +163,22 @@
 
 a.header:link {
   color: white; }
+
+.custom-proposition-name {
+  font-family: "nta", Arial, sans-serif;
+    font-weight: 400;
+    text-transform: none;
+    font-size: 18px;
+    line-height: 1.2;
+    font-weight: bold;
+    color: white;
+    text-decoration: none;
+    position: relative;
+    left: 40%;
+}
+
+.custom-proposition-menu {
+  position: relative;
+  bottom: 63px;
+  margin-top: 5px;
+}
