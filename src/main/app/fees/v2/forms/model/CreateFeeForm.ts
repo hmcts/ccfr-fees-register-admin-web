@@ -10,25 +10,27 @@ import {
 const moment = require('moment')
 const serviceMsg = { message: ValidationErrors.SERVICE_REQUIRED }
 const jurisdictionOneMsg = { message: ValidationErrors.JURISDICTION1_REQUIRED }
-
 const typeMsg = { message: ValidationErrors.TYPE_REQUIRED }
 const jurisdictionTwoMsg = { message: ValidationErrors.JURISDICTION2_REQUIRED }
 const eventMsg = { message: ValidationErrors.EVENT_REQUIRED }
 const chennalMsg = { message: ValidationErrors.CHANNEL_REQUIRED }
-
 const applicationTypeMsg = { message: ValidationErrors.APPLICATION_TYPE_REQUIRED }
 const directionMsg = { message: ValidationErrors.DIRECTION_REQUIRED }
 const fromDateMsg = { message: ValidationErrors.FROM_DATE_REQUIRED }
-
+const reasonForUpdateMsg = { message: ValidationErrors.REASON_FOR_UPDATE_REQUIRED }
+const descriptionMsg = { message: ValidationErrors.DESCRIPTION_REQUIRED }
+const amountNotNegMsg = { message: ValidationErrors.AMOUNT_NOT_NEGATIVE }
+const amountTooBigMsg = { message: ValidationErrors.AMOUNT_TOO_BIG }
+const amountInvalidMsg = { message: ValidationErrors.AMOUNT_INVALID_DECIMALS }
 export class CreateFeeForm {
   code?: string
 
-  @IsDefined({ message: ValidationErrors.REASON_FOR_UPDATE_REQUIRED })
-  @IsNotBlank({ message: ValidationErrors.REASON_FOR_UPDATE_REQUIRED })
+  @IsDefined(reasonForUpdateMsg)
+  @IsNotBlank(reasonForUpdateMsg)
   reasonForUpdate?: string
 
-  @IsDefined({ message: ValidationErrors.DESCRIPTION_REQUIRED })
-  @IsNotBlank({ message: ValidationErrors.DESCRIPTION_REQUIRED })
+  @IsDefined(descriptionMsg)
+  @IsNotBlank(descriptionMsg)
   @MaxLength(2000, { message: ValidationErrors.DESCRIPTION_TOO_LONG })
   description?: string
 
@@ -95,15 +97,15 @@ export class CreateFeeForm {
   naturalAccountCode?: string
 
   @ValidateIf(o => o.type === 'ranged')
-  @Min(0, { message: ValidationErrors.AMOUNT_NOT_NEGATIVE })
-  @Max(9999999.99, { message: ValidationErrors.AMOUNT_TOO_BIG })
-  @Fractions(0, 2, { message: ValidationErrors.AMOUNT_INVALID_DECIMALS })
+  @Min(0, amountNotNegMsg)
+  @Max(9999999.99, amountTooBigMsg)
+  @Fractions(0, 2, amountInvalidMsg)
   fromRange?: number
 
   @ValidateIf(o => o.type === 'ranged' && o.toRange)
-  @Min(0, { message: ValidationErrors.AMOUNT_NOT_NEGATIVE })
-  @Max(9999999.99, { message: ValidationErrors.AMOUNT_TOO_BIG })
-  @Fractions(0, 2, { message: ValidationErrors.AMOUNT_INVALID_DECIMALS })
+  @Min(0, amountNotNegMsg)
+  @Max(9999999.99, amountTooBigMsg)
+  @Fractions(0, 2, amountInvalidMsg)
   toRange?: number
 
   @ValidateIf(o => o.type === 'ranged')
@@ -112,9 +114,9 @@ export class CreateFeeForm {
   rangeUnit?: string
 
   @ValidateIf(o => o.amountType === 'flat')
-  @Min(0, { message: ValidationErrors.AMOUNT_NOT_NEGATIVE })
-  @Max(9999999.99, { message: ValidationErrors.AMOUNT_TOO_BIG })
-  @Fractions(0, 2, { message: ValidationErrors.AMOUNT_INVALID_DECIMALS })
+  @Min(0, amountNotNegMsg)
+  @Max(9999999.99, amountTooBigMsg)
+  @Fractions(0, 2, amountInvalidMsg)
   amount?: number
 
   @ValidateIf(o => o.amountType === 'percentage')
@@ -124,9 +126,9 @@ export class CreateFeeForm {
   percentage?: number
 
   @ValidateIf(o => o.amountType === 'volume')
-  @Min(0, { message: ValidationErrors.AMOUNT_NOT_NEGATIVE })
-  @Max(9999999.99, { message: ValidationErrors.AMOUNT_TOO_BIG })
-  @Fractions(0, 2, { message: ValidationErrors.AMOUNT_INVALID_DECIMALS })
+  @Min(0, amountNotNegMsg)
+  @Max(9999999.99, amountTooBigMsg)
+  @Fractions(0, 2, amountInvalidMsg)
   volAmount?: number
 
   edit: boolean
