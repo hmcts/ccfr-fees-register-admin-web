@@ -113,16 +113,18 @@
 
 .custom-draft-all-fees {
   font-family: "nta", Arial, sans-serif;
-  font-size: 16px;
+  font-size: 20px;
   font-weight: 600;
   position: relative;
   text-transform: none;
+  top: 28px;
+  margin-right: 15px;
 }
 
 .custom-reference-data {
   font-family: "nta", Arial, sans-serif;
   float: right;
-  font-size: 16px;
+  font-size: 20px;
   font-weight: 600;
   position: relative;
   text-transform: none;
@@ -131,16 +133,24 @@
 
 .custom-header-ul {
   margin-top: 0.46875em;
-  margin-bottom: 0.9375em;
   position: relative;
 }
 
 .custom-logout {
   font-family: "nta", Arial, sans-serif;
   float: right;
-  font-size: 16px;
+  font-size: 20px;
   position: relative;
   text-transform: none;
+  bottom: 40px;
+}
+
+.username-log {
+  color: white;
+  float: left;
+  margin-right: 10px;
+  position: relative;
+  bottom: 4px;
 }
 
 a:link {

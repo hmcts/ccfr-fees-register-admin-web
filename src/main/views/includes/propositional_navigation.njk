@@ -5,7 +5,7 @@
       <span id="proposition-name">{% if serviceName %} {{ t(serviceName) }} {% endif %}</span>
       <ul class="custom-logout">
         {% if isLoggedIn %}
-        <p style="color: white;float: left;margin-right: 10px;position: relative;bottom: 4px;"> editor editor</p>
+        <p class="username-log"> editor editor</p>
         <a href="/logout">{{ t('Sign out') }}</a>
         {% endif %}
       </ul>
