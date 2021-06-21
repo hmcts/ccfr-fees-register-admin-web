@@ -140,6 +140,12 @@
 .date-field--width {
   width: 35%;
 }
+#siRefId {
+  width: 25%
+}
+#statutoryInstrument {
+  width: 40%
+}
 .small-box {
   width: 10%;
 }
