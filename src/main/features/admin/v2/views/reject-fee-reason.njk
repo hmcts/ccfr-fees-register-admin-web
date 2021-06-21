@@ -12,7 +12,7 @@ selectReferenceData %}
 {% set heading = t('Why are you rejecting this draft fee?') %}
 {% block content %}
 
-    <form method="post" action="#">
+    <form method="post">
         {{ csrfProtection(csrfToken) }}
         {{ textArea(t('Reason For Reject'), 'reasonForReject', form) }}
         {{ submitButton(t('Submit')) }}

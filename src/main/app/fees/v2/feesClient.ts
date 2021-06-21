@@ -35,7 +35,7 @@ export class FeesClient {
   }
 
   static reasonForRejectFee (user, feeCode: string, version: number, dto: model.ReasonDto): Promise<boolean> {
-    return FeesClient.invokePatch(`${feesUrl}/fees/${feeCode}/versions/${version}/reject`, user)
+    return FeesClient.invokePatchDto(`${feesUrl}/fees/${feeCode}/versions/${version}/reject`, user, dto)
   }
 
   static submitForReview (user, feeCode: string, version: number): Promise<boolean> {
@@ -371,6 +371,20 @@ export class FeesClient {
         headers: {
           Authorization: `Bearer ${user.bearerToken}`
         }
+      })
+      .then(() => true)
+      .catch(FeesClientErrorMapper)
+  }
+
+  private static invokePatchDto (url: string, user, dto: model.ReasonDto): Promise<boolean> {
+    return request
+      .patch({
+        uri: `${url}`,
+        json: true,
+        headers: {
+          Authorization: `Bearer ${user.bearerToken}`
+        },
+        body: dto
       })
       .then(() => true)
       .catch(FeesClientErrorMapper)

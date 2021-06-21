@@ -29,19 +29,20 @@ export default express.Router()
 
     .post(Paths.feeRejectReason.uri, FormValidator.requestHandler(RejectFeeForm, RejectFeeForm.fromObject), (req: express.Request, res: express.Response) => {
         const form: Form<RejectFeeForm> = req.body
-        
+
         if (form.hasErrors()) {
             Renderer.renderPage(form, res)
-        }else {
+        } else {
             FeesClient.reasonForRejectFee(res.locals.user, req.url.split("/")[4], Number(req.url.split("/")[5]), form.model.toDto() as ReasonDto).then(
-              () => res.render('/admin/v2/reject-fee-reason/reject/')
+                () =>
+                    res.render('admin/v2/views/fee-rejected-confirmation', {
+                        feeCode: form.model.code
+                    })
             ).catch(
-              (e: Error) => {
-                form.backendErrors.push(e.message)
-                Renderer.renderPage(form, res)
-              }
+                (e: Error) => {
+                    form.backendErrors.push(e.message)
+                    Renderer.renderPage(form, res)
+                }
             )
-          }
+        }
     })
-
-    
