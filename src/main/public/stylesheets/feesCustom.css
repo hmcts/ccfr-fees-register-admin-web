@@ -102,3 +102,65 @@
   box-sizing: border-box;
   vertical-align: top;
 }
+
+.custom-header-title {
+  font-family: "nta", Arial, sans-serif;
+  font-size: 24px;
+  font-weight: 600;
+  position: relative;
+  text-transform: none;
+  top: 10px;
+}
+
+.custom-draft-all-fees {
+  font-family: "nta", Arial, sans-serif;
+  font-size: 18px;
+  font-weight: 600;
+  position: relative;
+  text-transform: none;
+  top: 18px;
+  margin-right: 15px;
+}
+
+.custom-reference-data {
+  font-family: "nta", Arial, sans-serif;
+  float: right;
+  font-size: 18px;
+  font-weight: 600;
+  position: relative;
+  text-transform: none;
+  margin-left: 75%;
+}
+
+.custom-header-ul {
+  margin-top: 0.46875em;
+  position: relative;
+}
+
+.custom-logout {
+  font-family: "nta", Arial, sans-serif;
+  float: right;
+  font-size: 18px;
+  position: relative;
+  text-transform: none;
+  bottom: 40px;
+}
+
+.username-log {
+  color: white;
+  float: left;
+  margin-right: 10px;
+  position: relative;
+  bottom: 4px;
+}
+
+.header {
+  background-color: #0b0c0c;
+  max-width: 990px;
+  margin: 0 auto;
+  padding-top: 8px;
+  padding-bottom: 8px;
+}
+
+a.header:link {
+  color: white; }
