@@ -70,10 +70,10 @@
 
 
 <header role="banner" id="global-header" class="{% block header_class %}{% endblock %}">
-  <div class="header-wrapper">
+  <div class="header">
     <div class="header-global">
       <div class="header-proposition">
-        <a href="{{ homepage_url|default('https://www.gov.uk') }}" class="custom-header-title" style="color:white;">{{ t('Fee Register') }} </a>
+        <a href="{{ homepage_url|default('https://www.gov.uk') }}" class="custom-header-title">{{ t('Fee Register') }} </a>
       <ul class="custom-header-ul">
         <a href="/all-fees" class="custom-draft-all-fees">{{ t('Fees') }} </a>
         <a href="/draft-fees" class="custom-draft-all-fees">{{ t('Your Drafts') }} </a>
