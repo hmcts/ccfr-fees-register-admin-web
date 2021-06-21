@@ -34,6 +34,10 @@ export class FeesClient {
     return FeesClient.invokePatch(`${feesUrl}/fees/${feeCode}/versions/${version}/reject`, user)
   }
 
+  static reasonForRejectFee (user, feeCode: string, version: number, dto: model.ReasonDto): Promise<boolean> {
+    return FeesClient.invokePatch(`${feesUrl}/fees/${feeCode}/versions/${version}/reject`, user)
+  }
+
   static submitForReview (user, feeCode: string, version: number): Promise<boolean> {
     return FeesClient.invokePatch(`${feesUrl}/fees/${feeCode}/versions/${version}/submit-for-review`, user)
   }
