@@ -110,9 +110,13 @@
   position: relative;
   text-transform: none;
   top: 10px;
+  color: white;
 }
 
 a.custom-header-title:link {
+  color: white; }
+
+a.custom-header-title:visited {
   color: white; }
 
 .custom-draft-all-fees {
@@ -128,6 +132,9 @@ a.custom-header-title:link {
 a.custom-draft-all-fees:link {
   color: white; }
 
+a.custom-draft-all-fees:visited {
+  color: white; }
+
 .custom-reference-data {
   font-family: "nta", Arial, sans-serif;
   float: right;
@@ -139,6 +146,9 @@ a.custom-draft-all-fees:link {
 }
 
 a.custom-reference-data:link {
+  color: white; }
+
+a.custom-reference-data:visited {
   color: white; }
 
 .custom-header-ul {
@@ -154,7 +164,10 @@ a.custom-reference-data:link {
   text-transform: none;
 }
 
-a.custom-.custom-logout {
+a.custom-logout:link {
+  color: white; }
+
+a.custom-logout:visited {
   color: white; }
 
 .username-log {
@@ -167,35 +180,46 @@ a.custom-.custom-logout {
 a.username-log:link {
   color: white; }
 
+a.username-log:visited {
+  color: white; }
+
 .header {
   background-color: #0b0c0c;
   max-width: 990px;
   margin: 0 auto;
   padding-top: 8px;
   padding-bottom: 8px;
+  color: white;
 }
 
 .custom-proposition-name {
   font-family: "nta", Arial, sans-serif;
     font-weight: 400;
     text-transform: none;
-    font-size: 18px;
+    font-size: 24px;
     line-height: 1.2;
     font-weight: bold;
     text-decoration: none;
     position: relative;
-    left: 40%;
+    left: 36%;
 }
-
-a.custom-proposition-name:link {
-  color: white; }
 
 .custom-proposition-menu {
   position: relative;
   bottom: 63px;
   margin-top: 5px;
-  font-size: 24px;
 }
 
-a.custom-proposition-menu:link {
+.custom-signout-link {
+  font-family: "nta", Arial, sans-serif;
+    float: right;
+    font-size: 18px;
+    position: relative;
+    text-transform: none;
+}
+
+a.custom-signout-link:link {
+  color: white; }
+
+a.custom-signout-link:visited {
   color: white; }
