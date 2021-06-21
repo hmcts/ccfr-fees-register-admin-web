@@ -1,15 +1,24 @@
 import { IsDefined, Max, MaxLength, Min, ValidateIf, IsOptional, Matches } from 'class-validator'
-
 import { IsNotBlank } from 'app/forms/validation/validators/isBlank'
 import { Fractions } from 'app/forms/validation/validators/fractions'
-
-const moment = require('moment')
-
 import { ValidationErrors } from 'fees/v2/forms/model/ValidationErrors'
 import {
   FeeDto, FixedFeeDto, RangedFeeDto,
   FeeVersionDto, FlatAmountDto, PercentageAmountDto, VolumeAmountDto
 } from 'fees/v2/model/fees-register-api-contract'
+
+const moment = require('moment')
+const serviceMsg = { message: ValidationErrors.SERVICE_REQUIRED }
+const jurisdictionOneMsg = { message: ValidationErrors.JURISDICTION1_REQUIRED }
+
+const typeMsg = { message: ValidationErrors.TYPE_REQUIRED }
+const jurisdictionTwoMsg = { message: ValidationErrors.JURISDICTION2_REQUIRED }
+const eventMsg = { message: ValidationErrors.EVENT_REQUIRED }
+const chennalMsg = { message: ValidationErrors.CHANNEL_REQUIRED }
+
+const applicationTypeMsg = { message: ValidationErrors.APPLICATION_TYPE_REQUIRED }
+const directionMsg = { message: ValidationErrors.DIRECTION_REQUIRED }
+const fromDateMsg = { message: ValidationErrors.FROM_DATE_REQUIRED }
 
 export class CreateFeeForm {
   code?: string
@@ -30,32 +39,32 @@ export class CreateFeeForm {
   @IsDefined({ message: ValidationErrors.FEE_ORDER_NAME_REQUIRED })
   feeOrderName?: string
 
-  @IsDefined({ message: ValidationErrors.SERVICE_REQUIRED })
-  @IsNotBlank({ message: ValidationErrors.SERVICE_REQUIRED })
+  @IsDefined(serviceMsg)
+  @IsNotBlank(serviceMsg)
   service?: string
 
-  @IsDefined({ message: ValidationErrors.JURISDICTION1_REQUIRED })
-  @IsNotBlank({ message: ValidationErrors.JURISDICTION1_REQUIRED })
+  @IsDefined(jurisdictionOneMsg)
+  @IsNotBlank(jurisdictionOneMsg)
   jurisdiction1?: string
 
-  @IsDefined({ message: ValidationErrors.JURISDICTION2_REQUIRED })
-  @IsNotBlank({ message: ValidationErrors.JURISDICTION2_REQUIRED })
+  @IsDefined(jurisdictionTwoMsg)
+  @IsNotBlank(jurisdictionTwoMsg)
   jurisdiction2?: string
 
-  @IsDefined({ message: ValidationErrors.TYPE_REQUIRED })
-  @IsNotBlank({ message: ValidationErrors.TYPE_REQUIRED })
+  @IsDefined(typeMsg)
+  @IsNotBlank(typeMsg)
   type?: string
 
-  @IsDefined({ message: ValidationErrors.TYPE_REQUIRED })
-  @IsNotBlank({ message: ValidationErrors.TYPE_REQUIRED })
+  @IsDefined(typeMsg)
+  @IsNotBlank(typeMsg)
   amountType?: string
 
-  @IsDefined({ message: ValidationErrors.EVENT_REQUIRED })
-  @IsNotBlank({ message: ValidationErrors.EVENT_REQUIRED })
+  @IsDefined(eventMsg)
+  @IsNotBlank(eventMsg)
   event?: string
 
-  @IsDefined({ message: ValidationErrors.CHANNEL_REQUIRED })
-  @IsNotBlank({ message: ValidationErrors.CHANNEL_REQUIRED })
+  @IsDefined(chennalMsg)
+  @IsNotBlank(chennalMsg)
   channel?: string
 
   @IsOptional()
@@ -64,20 +73,20 @@ export class CreateFeeForm {
   })
   keyword?: string
 
-  @IsDefined({ message: ValidationErrors.APPLICATION_TYPE_REQUIRED })
-  @IsNotBlank({ message: ValidationErrors.APPLICATION_TYPE_REQUIRED })
+  @IsDefined(applicationTypeMsg)
+  @IsNotBlank(applicationTypeMsg)
   applicantType?: string
 
-  @IsDefined({ message: ValidationErrors.DIRECTION_REQUIRED })
-  @IsNotBlank({ message: ValidationErrors.DIRECTION_REQUIRED })
+  @IsDefined(directionMsg)
+  @IsNotBlank(directionMsg)
   direction?: string
 
   @MaxLength(2000, { message: ValidationErrors.MEMO_LINE_TOO_LONG })
   @IsDefined({ message: ValidationErrors.MEMO_LINE_REQUIRED })
   memoLine?: string
 
-  @IsDefined({ message: ValidationErrors.FROM_DATE_REQUIRED })
-  @IsNotBlank({ message: ValidationErrors.FROM_DATE_REQUIRED })
+  @IsDefined(fromDateMsg)
+  @IsNotBlank(fromDateMsg)
   fromDate?: Date
 
   toDate?: Date
