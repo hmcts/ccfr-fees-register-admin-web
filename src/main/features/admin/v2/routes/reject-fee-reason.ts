@@ -4,9 +4,11 @@ import { Paths } from 'admin/paths'
 
 import { Form } from 'app/forms/form'
 
+import { FeesClient } from 'app/fees/v2/feesClient'
 
 import { FormValidator } from 'app/forms/validation/formValidator'
 import { RejectFeeForm } from 'app/fees/v2/forms/model/RejectFeeform'
+import { ReasonDto } from 'app/fees/v2/model/fees-register-api-contract'
 
 
 class Renderer {
@@ -30,5 +32,16 @@ export default express.Router()
         
         if (form.hasErrors()) {
             Renderer.renderPage(form, res)
-        }
+        }else {
+            FeesClient.reasonForRejectFee(res.locals.user, req.url.split("/")[4], Number(req.url.split("/")[5]), form.model.toDto() as ReasonDto).then(
+              () => res.render('/admin/v2/reject-fee-reason/reject/')
+            ).catch(
+              (e: Error) => {
+                form.backendErrors.push(e.message)
+                Renderer.renderPage(form, res)
+              }
+            )
+          }
     })
+
+    
