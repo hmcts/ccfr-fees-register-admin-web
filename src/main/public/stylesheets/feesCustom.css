@@ -170,3 +170,6 @@
 .disply-section {
   display: block !important;
 }
+#createForm span.error-message {
+  width: 300px;
+}

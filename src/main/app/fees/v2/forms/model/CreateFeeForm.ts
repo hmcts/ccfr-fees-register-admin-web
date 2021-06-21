@@ -27,7 +27,6 @@ export class CreateFeeForm {
 
   siRefId?: string
 
-
   @IsDefined({ message: ValidationErrors.FEE_ORDER_NAME_REQUIRED })
   feeOrderName?: string
 
@@ -69,7 +68,6 @@ export class CreateFeeForm {
   @IsNotBlank({ message: ValidationErrors.APPLICATION_TYPE_REQUIRED })
   applicantType?: string
 
-
   @IsDefined({ message: ValidationErrors.DIRECTION_REQUIRED })
   @IsNotBlank({ message: ValidationErrors.DIRECTION_REQUIRED })
   direction?: string
@@ -86,10 +84,6 @@ export class CreateFeeForm {
 
   @IsDefined({ message: ValidationErrors.NAC_REQUIRED })
   naturalAccountCode?: string
-
-
-
-
 
   @ValidateIf(o => o.type === 'ranged')
   @Min(0, { message: ValidationErrors.AMOUNT_NOT_NEGATIVE })
@@ -124,7 +118,7 @@ export class CreateFeeForm {
   @Min(0, { message: ValidationErrors.AMOUNT_NOT_NEGATIVE })
   @Max(9999999.99, { message: ValidationErrors.AMOUNT_TOO_BIG })
   @Fractions(0, 2, { message: ValidationErrors.AMOUNT_INVALID_DECIMALS })
-  volumeAmount?: number
+  volAmount?: number
 
   edit: boolean
 
@@ -203,9 +197,9 @@ export class CreateFeeForm {
     if (form.amount) {
       form.amount = +form.amount
     }
-    
-    if (form.volumeAmount) {
-      form.amount = +form.volumeAmount
+
+    if (form.volAmount) {
+      form.amount = +form.volAmount
     }
 
     if (form.fromRange) {

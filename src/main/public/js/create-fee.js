@@ -129,6 +129,7 @@ function displayRangeFeesSection() {
 
 function hideRangeFeesSection() {
   document.getElementById("ranged-container").style.display="none";
+  document.getElementById("ranged-container").classList.remove("disply-section")
   type = "fixed";
 
   onKeywordChanged();
