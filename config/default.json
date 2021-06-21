@@ -5,20 +5,20 @@
   },
   "idam": {
     "authentication-web": {
-      "url": "http://localhost:9002"
+      "url": "https://idam.dev.ccidam.reform.hmcts.net"
     },
     "login": {
-      "url": "http://localhost:9002/login"
+      "url": "https://idam.dev.ccidam.reform.hmcts.net/login"
     },
     "api": {
-      "url": "http://localhost:5000"
+      "url": "https://idam.dev.ccidam.reform.hmcts.net"
     }
   },
   "session": {
     "cookieName": "SESSION_ID"
   },
   "fees": {
-    "url": "http://localhost:8081"
+    "url": "http://localhost:8080"
   },
   "e2e": {
     "frontendUrl": "https://localhost:4200/",
