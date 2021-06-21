@@ -112,6 +112,9 @@
   top: 10px;
 }
 
+a.custom-header-title:link {
+  color: white; }
+
 .custom-draft-all-fees {
   font-family: "nta", Arial, sans-serif;
   font-size: 18px;
@@ -122,6 +125,9 @@
   margin-right: 15px;
 }
 
+a.custom-draft-all-fees:link {
+  color: white; }
+
 .custom-reference-data {
   font-family: "nta", Arial, sans-serif;
   float: right;
@@ -131,6 +137,9 @@
   text-transform: none;
   margin-left: 75%;
 }
+
+a.custom-reference-data:link {
+  color: white; }
 
 .custom-header-ul {
   margin-top: 0.46875em;
@@ -145,13 +154,18 @@
   text-transform: none;
 }
 
+a.custom-.custom-logout {
+  color: white; }
+
 .username-log {
-  color: white;
   float: left;
   margin-right: 10px;
   position: relative;
   bottom: 4px;
 }
+
+a.username-log:link {
+  color: white; }
 
 .header {
   background-color: #0b0c0c;
@@ -161,9 +175,6 @@
   padding-bottom: 8px;
 }
 
-a.header:link {
-  color: white; }
-
 .custom-proposition-name {
   font-family: "nta", Arial, sans-serif;
     font-weight: 400;
@@ -171,14 +182,20 @@ a.header:link {
     font-size: 18px;
     line-height: 1.2;
     font-weight: bold;
-    color: white;
     text-decoration: none;
     position: relative;
     left: 40%;
 }
 
+a.custom-proposition-name:link {
+  color: white; }
+
 .custom-proposition-menu {
   position: relative;
   bottom: 63px;
   margin-top: 5px;
+  font-size: 24px;
 }
+
+a.custom-proposition-menu:link {
+  color: white; }
