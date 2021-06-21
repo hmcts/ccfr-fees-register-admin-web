@@ -1,8 +1,8 @@
 <div class="header-proposition">
   <div class="content">
     <a href="#proposition-links" class="js-header-toggle menu">Menu</a>
-    <nav id="proposition-menu">
-      <span id="proposition-name">{% if serviceName %} {{ t(serviceName) }} {% endif %}</span>
+    <nav class="custom-proposition-menu">
+      <span class="custom-proposition-name">{% if serviceName %} {{ t(serviceName) }} {% endif %}</span>
       <ul class="custom-logout">
         {% if isLoggedIn %}
         <p class="username-log"> editor editor</p>
