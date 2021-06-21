@@ -114,10 +114,12 @@
 }
 
 a.custom-header-title:link {
-  color: white; }
+  color: white; 
+  text-decoration: none;}
 
 a.custom-header-title:visited {
-  color: white; }
+  color: white; 
+  text-decoration: none;}
 
 .custom-draft-all-fees {
   font-family: "nta", Arial, sans-serif;
