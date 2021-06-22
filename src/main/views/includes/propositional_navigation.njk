@@ -5,7 +5,7 @@
       <ul class="custom-logout">
         {% if isLoggedIn %}
         <div *ngIf="user">
-        <p class="username-log">{{user.forename}} {{user.surname}}</p>
+        <p class="username-log">{{forename}} {{surname}}</p>
         <a href="/logout" class="custom-signout-link">{{ t('Sign out') }}</a>
         {% endif %}
         </div>
