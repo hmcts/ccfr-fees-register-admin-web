@@ -121,7 +121,7 @@ a.custom-header-title:visited {
   color: white; 
   text-decoration: none;}
 
-a:hover {
+a.custom-header-title:hover {
   text-decoration: underline;}
 
 .custom-draft-all-fees {
