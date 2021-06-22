@@ -182,10 +182,7 @@ a.custom-logout:visited {
   bottom: 4px;
 }
 
-a.username-log:link {
-  color: white; }
-
-a.username-log:visited {
+p.username-log {
   color: white; }
 
 .header {
