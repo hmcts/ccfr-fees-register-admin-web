@@ -4,11 +4,11 @@
     <nav class="custom-proposition-menu">
       <ul class="custom-logout">
         {% if isLoggedIn %}
-        <p class="username-log"> editor editor</p>
+        <p class="username-log">{{user.forename}} {{user.surname}}</p>
         <a href="/logout" class="custom-signout-link">{{ t('Sign out') }}</a>
         {% endif %}
       </ul>
-      <a href="/reference-data" class="custom-reference-data">{{ t('Reference Data') }} </a>
+      <a href="/v2/reference-data" class="custom-reference-data">{{ t('Reference Data') }} </a>
     </nav>
   </div>
 </div>
