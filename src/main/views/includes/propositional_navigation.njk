@@ -4,7 +4,7 @@
     <nav class="custom-proposition-menu">
       <ul class="custom-logout">
         {% if isLoggedIn %}
-        <p class="username-log"> editor editor</p>
+        <p class="username-log">{{user.forename}} {{user.surname}}</p>
         <a href="/logout" class="custom-signout-link">{{ t('Sign out') }}</a>
         {% endif %}
       </ul>
