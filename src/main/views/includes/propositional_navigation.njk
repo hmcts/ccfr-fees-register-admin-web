@@ -4,8 +4,8 @@
     <nav class="custom-proposition-menu">
       <ul class="custom-logout">
         {% if isLoggedIn %}
-        <div *ngIf="user">
-        <p class="username-log">{{forename}}</p>
+        <div class="user.ts">
+        <p class="username-log">{{user.forename}} {{user.surname}}</p>
         <a href="/logout" class="custom-signout-link">{{ t('Sign out') }}</a>
         {% endif %}
         </div>
