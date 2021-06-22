@@ -121,6 +121,9 @@ a.custom-header-title:visited {
   color: white; 
   text-decoration: none;}
 
+a:hover {
+  text-decoration: underline;}
+
 .custom-draft-all-fees {
   font-family: "nta", Arial, sans-serif;
   font-size: 18px;
@@ -190,6 +193,7 @@ a.username-log:visited {
   max-width: 990px;
   margin: 0 auto;
   color: white;
+  height: 100px;
 }
 
 .custom-proposition-name {
