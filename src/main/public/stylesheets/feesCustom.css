@@ -424,7 +424,12 @@ p.username-log {
     position: relative;
     left: 36%;
 }
-
+.header-global {
+  padding-left: 15px;
+}
+h1.margin-bottom-0 {
+  margin-bottom: 0;
+}
 .custom-proposition-menu {
   position: relative;
   bottom: 63px;
@@ -444,3 +449,17 @@ a.custom-signout-link:link {
 
 a.custom-signout-link:visited {
   color: white; }
+.govuk-grid-column-full {
+    position: relative;
+    width: 100%;
+    float: left;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    padding: 0 15px;
+    bottom: 50px;
+  }
+
+  .govuk-grid-row {
+    margin-right: -15px;
+    margin-left: -15px;
+}
