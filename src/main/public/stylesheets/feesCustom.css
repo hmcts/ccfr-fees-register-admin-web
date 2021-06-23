@@ -103,7 +103,6 @@
   vertical-align: top;
 }
 
-
 .govuk-tabs__list {
   list-style: none;
   margin: 0;
@@ -324,3 +323,124 @@ a.btn {
   padding: 15px;
   color: white;
 }
+.custom-header-title {
+  font-family: "nta", Arial, sans-serif;
+  font-size: 24px;
+  font-weight: 600;
+  position: relative;
+  text-transform: none;
+  top: 10px;
+  color: white;
+}
+
+a.custom-header-title:link {
+  color: white; 
+  text-decoration: none;}
+
+a.custom-header-title:visited {
+  color: white; 
+  text-decoration: none;}
+
+a.custom-header-title:hover {
+  text-decoration: underline;}
+
+.custom-draft-all-fees {
+  font-family: "nta", Arial, sans-serif;
+  font-size: 18px;
+  font-weight: 600;
+  position: relative;
+  text-transform: none;
+  top: 18px;
+  margin-right: 15px;
+}
+
+a.custom-draft-all-fees:link {
+  color: white; }
+
+a.custom-draft-all-fees:visited {
+  color: white; }
+
+.custom-reference-data {
+  font-family: "nta", Arial, sans-serif;
+  float: right;
+  font-size: 18px;
+  font-weight: 600;
+  position: relative;
+  text-transform: none;
+  margin-left: 75%;
+}
+
+a.custom-reference-data:link {
+  color: white; }
+
+a.custom-reference-data:visited {
+  color: white; }
+
+.custom-header-ul {
+  margin-top: 0.46875em;
+  position: relative;
+}
+
+.custom-logout {
+  font-family: "nta", Arial, sans-serif;
+  float: right;
+  font-size: 18px;
+  position: relative;
+  text-transform: none;
+}
+
+a.custom-logout:link {
+  color: white; }
+
+a.custom-logout:visited {
+  color: white; }
+
+.username-log {
+  float: left;
+  margin-right: 10px;
+  position: relative;
+  bottom: 4px;
+}
+
+p.username-log {
+  color: white; }
+
+.header {
+  background-color: #0b0c0c;
+  max-width: 990px;
+  margin: 0 auto;
+  color: white;
+  height: 100px;
+}
+
+.custom-proposition-name {
+  font-family: "nta", Arial, sans-serif;
+    font-weight: 400;
+    text-transform: none;
+    font-size: 24px;
+    line-height: 1.2;
+    font-weight: bold;
+    text-decoration: none;
+    position: relative;
+    left: 36%;
+}
+
+.custom-proposition-menu {
+  position: relative;
+  bottom: 63px;
+  margin-top: 5px;
+}
+
+.custom-signout-link {
+  font-family: "nta", Arial, sans-serif;
+    float: right;
+    font-size: 18px;
+    position: relative;
+    text-transform: none;
+}
+
+a.custom-signout-link:link {
+  color: white; }
+
+a.custom-signout-link:visited {
+  color: white; }
