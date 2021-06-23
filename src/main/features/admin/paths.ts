@@ -41,7 +41,6 @@ export class Paths {
   static readonly feeCreatePageV2 = new RoutablePath('/admin/v2/fees/create', 'admin/v2/views/create-edit-fee')
   static readonly feeDetailsViewPagev2 = new RoutablePath('/admin/v2/fee-details', 'admin/v2/views/fee-details')
 
-  static readonly feeRejectReason = new RoutablePath('/admin/v2/reject-fee-reason/:feeCode/:feeVersion', 'admin/v2/views/reject-fee-reason')
   static readonly createFeeVersionPageV2 = new RoutablePath('/admin/v2/fees/version/create/:feeCode', 'admin/v2/views/create-fee-version')
   static readonly dashboard = new RoutablePath('/admin/v2/dashboard', 'admin/v2/views/dashboard')
 
