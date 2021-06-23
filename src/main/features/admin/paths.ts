@@ -37,7 +37,7 @@ export class Paths {
   static readonly allFeesPageV2 = new RoutablePath('/admin/v2/all-fees', 'admin/v2/views/all-fees')
   static readonly allApprovedbutnotlivePageV2 = new RoutablePath('/admin/v2/all-approvedbutnotlive', 'admin/v2/views/all-approvedbutnotlive')
   static readonly pendingApprovalPageV2 = new RoutablePath('/admin/v2/pending-approval', 'admin/v2/views/pending-approval')
-  static readonly discontinuedFeesPageV2 = new RoutablePath('/admin/v2/discontinued-fees', 'admin/v2/views/discontinued-fees')
+  static readonly discontinuedFeesPageV2 = new RoutablePath('/admin/v2/all-discontinued', 'admin/v2/views/all-discontinued')
   static readonly feeCreatePageV2 = new RoutablePath('/admin/v2/fees/create', 'admin/v2/views/create-edit-fee')
   static readonly feeDetailsViewPagev2 = new RoutablePath('/admin/v2/fee-details', 'admin/v2/views/fee-details')
 

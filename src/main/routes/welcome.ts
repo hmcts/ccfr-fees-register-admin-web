@@ -8,4 +8,6 @@ export default express.Router()
     } else {
       res.redirect('/admin/V2/all-fees')
     }
+    // res.redirect('/admin/V2/all-fees')
+
   })
