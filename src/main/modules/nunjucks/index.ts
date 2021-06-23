@@ -120,6 +120,17 @@ export default class Nunjucks {
       }
     })
 
+    nunjucksEnv.addGlobal('getDiscontinuedFeeVersion', (fee: Fee2Dto): FeeVersionDto => {
+      let todayDate: Date = new Date()
+      const fcv = fee.current_version
+      let result: FeeVersionDto
+      if (fcv != null && fcv.status === 'approved' && new Date(fcv.valid_from) < todayDate) {
+        result = fcv
+      }
+
+      return result
+    })
+
     nunjucksEnv.addGlobal('isDraftVersionExists', (fee: Fee2Dto): boolean => {
       let isExists = false
       fee.fee_versions.filter((v) => {
