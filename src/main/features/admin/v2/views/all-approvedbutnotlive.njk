@@ -62,7 +62,7 @@
     <tr>
       <td >
       {% if user %}
-        <a href="/admin/v2/fees/{{fee.code}}">{{ fee.code }}</a>
+        <a href="/admin/V2/fee-details?feeCode={{ fee.code }}&pageType=notlivefee">{{ fee.code }}</a>
       {% else  %}
         <a href="/fees/{{fee.code}}">{{ fee.code }}</a>
       {% endif %}
