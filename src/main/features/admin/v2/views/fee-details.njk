@@ -33,7 +33,11 @@
     <label class="bold">Code</label> 
   </dt>
   <dd class="govuk-check-your-answers__answer">
-    {{ feeDto.code }}
+    {% if feeDto.code %}
+      {{feeDto.code}}
+    {% else %}
+      &nbsp;
+    {% endif %}
   </dd>
 </div>
 
@@ -43,7 +47,11 @@
     <label class="bold">SI Ref ID</label> 
   </dt>
   <dd class="govuk-check-your-answers__answer">
-    {{ feeDto.current_version.si_ref_id}}
+    {% if feeDto.current_version.si_ref_id %}
+      {{feeDto.current_version.si_ref_id}}
+    {% else %}
+      &nbsp;
+    {% endif %}
   </dd>
 </div>
 
@@ -53,7 +61,11 @@
     <label class="bold">Service</label> 
   </dt>
   <dd class="govuk-check-your-answers__answer">
-    {{ feeDto.service_type.name}}
+    {% if feeDto.service_type.name %}
+      {{feeDto.service_type.name}}
+    {% else %}
+      &nbsp;
+    {% endif %}
   </dd>
 </div>
 
@@ -63,7 +75,11 @@
     <label class="bold">Event</label> 
   </dt>
   <dd class="govuk-check-your-answers__answer">
-    {{ feeDto.event_type.name}}
+    {% if feeDto.event_type.name %}
+      {{feeDto.event_type.name}}
+    {% else %}
+      &nbsp;
+    {% endif %}
   </dd>
 </div>
 
@@ -73,7 +89,11 @@
     <label class="bold">Description</label> 
   </dt>
   <dd class="govuk-check-your-answers__answer">
-    {{ feeDto.current_version.direction}}
+    {% if feeDto.current_version.direction %}
+      {{feeDto.current_version.direction}}
+    {% else %}
+      &nbsp;
+    {% endif %}
   </dd>
 </div>
 
@@ -83,7 +103,11 @@
     <label class="bold">Statutory Instrument</label> 
   </dt>
   <dd class="govuk-check-your-answers__answer">
-    {{ feeDto.current_version.statutory_instrument}}
+    {% if feeDto.current_version.statutory_instrument %}
+      {{feeDto.current_version.statutory_instrument}}
+    {% else %}
+      &nbsp;
+    {% endif %}
   </dd>
 </div>
 
@@ -92,17 +116,24 @@
     <label class="bold">Fee Order Name</label> 
   </dt>
   <dd class="govuk-check-your-answers__answer">
-    {{ feeDto.current_version.fee_order_name}}
+    {% if feeDto.current_version.fee_order_name %}
+      {{feeDto.current_version.fee_order_name}}
+    {% else %}
+      &nbsp;
+    {% endif %}
   </dd>
 </div>
-
 
 <div class="govuk-check-your-answers__contents">
   <dt class="govuk-check-your-answers__question">
     <label class="bold">Jurisdiction 1</label> 
   </dt>
   <dd class="govuk-check-your-answers__answer">
-    {{ feeDto.jurisdiction1.name}}
+    {% if feeDto.jurisdiction1.name %}
+      {{feeDto.jurisdiction1.name}}
+    {% else %}
+      &nbsp;
+    {% endif %}
   </dd>
 </div>
 
@@ -112,7 +143,11 @@
     <label class="bold">Jurisdiction 2</label> 
   </dt>
   <dd class="govuk-check-your-answers__answer">
-    {{ feeDto.jurisdiction2.name}}
+    {% if feeDto.jurisdiction2.name %}
+      {{feeDto.jurisdiction2.name}}
+    {% else %}
+      &nbsp;
+    {% endif %}
   </dd>
 </div>
 
@@ -122,7 +157,11 @@
     <label class="bold">Fee type</label> 
   </dt>
   <dd class="govuk-check-your-answers__answer">
-    {{ feeDto.fee_type}}
+    {% if feeDto.fee_type %}
+      {{feeDto.fee_type}}
+    {% else %}
+      &nbsp;
+    {% endif %}
   </dd>
 </div>
 
@@ -227,7 +266,11 @@
     <label class="bold">Version</label> 
   </dt>
   <dd class="govuk-check-your-answers__answer">
-{{feeDto.current_version.version}}
+    {% if feeDto.current_version.version %}
+      {{feeDto.current_version.version}}
+    {% else %}
+      &nbsp;
+    {% endif %}
   </dd>
 </div>
 
@@ -251,7 +294,11 @@
     <label class="bold">Natural account code</label> 
   </dt>
   <dd class="govuk-check-your-answers__answer">
-{{feeDto.current_version.natural_account_code}}
+    {% if feeDto.current_version.natural_account_code %}
+      {{feeDto.current_version.natural_account_code}}
+    {% else %}
+      &nbsp;
+    {% endif %}
   </dd>
 </div>
 
@@ -261,7 +308,11 @@
     <label class="bold">Memo</label> 
   </dt>
   <dd class="govuk-check-your-answers__answer">
-{{feeDto.current_version.memo_line}}
+    {% if feeDto.current_version.memo_line %}
+      {{feeDto.current_version.memo_line}}
+    {% else %}
+      &nbsp;
+    {% endif %}
   </dd>
 </div>
 
@@ -270,7 +321,11 @@
     <label class="bold">Direction</label> 
   </dt>
   <dd class="govuk-check-your-answers__answer">
-{{feeDto.current_version.direction}}
+    {% if feeDto.current_version.direction %}
+      {{feeDto.current_version.direction}}
+    {% else %}
+      &nbsp;
+    {% endif %}
   </dd>
 </div>
 
@@ -279,7 +334,11 @@
     <label class="bold">Applicant type</label> 
   </dt>
   <dd class="govuk-check-your-answers__answer">
-{{feeDto.applicant_type.name}}
+    {% if feeDto.applicant_type.name %}
+      {{feeDto.applicant_type.name}}
+    {% else %}
+      &nbsp;
+    {% endif %}
   </dd>
 </div>
 
@@ -288,7 +347,11 @@
     <label class="bold">Keyword</label> 
   </dt>
   <dd class="govuk-check-your-answers__answer">
-{{feeDto.keyword}}
+    {% if feeDto.keyword %}
+      {{feeDto.keyword}}
+    {% else %}
+      &nbsp;
+    {% endif %}
   </dd>
 </div>
 
@@ -297,7 +360,11 @@
     <label class="bold">Channel</label> 
   </dt>
   <dd class="govuk-check-your-answers__answer">
-{{feeDto.channel_type.name}}
+ {% if feeDto.channel_type.name %}
+      {{feeDto.channel_type.name}}
+    {% else %}
+      &nbsp;
+    {% endif %}
   </div>
 </dd>
 
@@ -306,35 +373,33 @@
     <label class="bold">Status</label> 
   </dt>
   <dd class="govuk-check-your-answers__answer">
-{{feeDto.current_version.status}}
+    {% if feeDto.current_version.status %}
+      {{feeDto.current_version.status}}
+    {% else %}
+      &nbsp;
+    {% endif %}
   </dd>
 </div>
-
-<div class="govuk-check-your-answers__contents">
-  <dt class="govuk-check-your-answers__question">
-    <label class="bold">Editor</label> 
-  </dt>
-  <dd class="govuk-check-your-answers__answer">
-  {% if isEditor(user.allInfo.roles) %}
-    {{user.allInfo.forename}} {{user.allInfo.surname}}
-  {% else %}
-  &nbsp;
-  {% endif %}
-  </dd>
-</div>
-
-<div class="govuk-check-your-answers__contents">
-  <dt class="govuk-check-your-answers__question">
-    <label class="bold">Approver</label> 
-  </dt>
-  <dd class="govuk-check-your-answers__answer">
-  {% if isApprover(user.allInfo.roles) %}
-  {{user.allInfo.forename}} {{user.allInfo.surname}}
-  {% else %}
-  &nbsp;
-  {% endif %}
-  </dd>
-</div>
+{% if isEditor(user.allInfo.roles) %}
+  <div class="govuk-check-your-answers__contents">
+    <dt class="govuk-check-your-answers__question">
+      <label class="bold">Editor</label> 
+    </dt>
+    <dd class="govuk-check-your-answers__answer">
+      {{user.allInfo.forename}} {{user.allInfo.surname}}
+    </dd>
+  </div>
+{% endif %}
+{% if isApprover(user.allInfo.roles) %}
+  <div class="govuk-check-your-answers__contents">
+    <dt class="govuk-check-your-answers__question">
+     <label class="bold">Approver</label> 
+    </dt>
+    <dd class="govuk-check-your-answers__answer">
+      {{user.allInfo.forename}} {{user.allInfo.surname}}
+    </dd>
+  </div>
+{% endif %}
 </dl>
 
   {% if not isDraftVersionExists(feeDto) %}
