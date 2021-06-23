@@ -64,7 +64,6 @@
     {% if version.status === 'approved' %}
     <tr>
       <td >
-      {{ fee.code }}{{user}}
       {% if user %}
         <a href="/admin/V2/fee-details?feeCode={{ fee.code }}&pageType=livefee">{{ fee.code }}</a>
       {% else  %}
