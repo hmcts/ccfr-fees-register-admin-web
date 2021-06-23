@@ -57,7 +57,7 @@ selectReferenceData %}
                     {%else%}
                       <input type="radio" id="{{serviceName.name}}" name="service" value="{{serviceName.name}}">
                     {%endif%}
-                    <label style="fload:left;">{{serviceName.name}}</label>
+                    <label class="label-float">{{serviceName.name}}</label>
                   </div> 
                 </div>
               {% endfor %}
@@ -79,7 +79,7 @@ selectReferenceData %}
                 {%else%}
                   <input type="radio" id="{{jurisdiction1.name}}" name="jurisdiction1" value="{{jurisdiction1.name}}">
                 {%endif%}
-                <label style="fload:left;">{{jurisdiction1.name}}</label>
+                <label class="label-float">{{jurisdiction1.name}}</label>
               </div> 
             </div>
           {% endfor %}
@@ -101,7 +101,7 @@ selectReferenceData %}
                   {%else%}
                     <input type="radio" id="{{jurisdiction2.name}}" name="jurisdiction2" value="{{jurisdiction2.name}}">
                   {%endif%}
-                  <label style="fload:left;">{{jurisdiction2.name}}</label>
+                  <label class="label-float">{{jurisdiction2.name}}</label>
                 </div> 
               </div>
             {% endfor %}
@@ -123,8 +123,8 @@ selectReferenceData %}
           <div id="ranged-container" class="{{ 'disply-section' if form.valueFor('type') == 'ranged'}}">
             <div id="RangesUnit">
               {{ radioGroup(form = form, checked=false, name = 'rangeUnit', label = t('Ranged units'), options = [
-                { label: t('Pounds (£)'), value: 'pound'},
-                { label: t('Volume'), value: 'volume'}
+                { label: t('Pounds (£)'), value: 'GBP'},
+                { label: t('Volume'), value: 'Volume'}
               ]) }}
             </div>
             <div id="RangedUnitValue">
@@ -144,11 +144,11 @@ selectReferenceData %}
             <div id="verticalRadio" class = "form-group">
               <div class = "multiple-choice">
                 {% if form.valueFor('amountType') == 'flat' %}
-                  <input type="radio" id="flat" name="amountType" value="flat" checked="checked" onclick="showFlatAmountSection()">
+                  <input type="radio" id="flat" name="amountType" value="flat" checked="checked" >
                 {%else%}
-                  <input type="radio" id="flat" name="amountType" value="flat" onclick="showFlatAmountSection()">
+                  <input type="radio" id="flat" name="amountType" value="flat" >
                 {%endif%}
-                <label style="fload:left;">Flat</label>
+                <label class="label-float">Flat</label>
               </div> 
             </div>
               <div id="flatAmount" class="mid-box {{ 'disply-section' if form.valueFor('amountType') == 'flat'}}" >
@@ -167,11 +167,11 @@ selectReferenceData %}
             <div id="verticalRadio" class = "form-group">
               <div class = "multiple-choice">
                 {% if form.valueFor('amountType') == 'percentage' %}
-                  <input type="radio" id="percentage" name="amountType" value="percentage" checked="checked" onclick="showPercentageSection()">
+                  <input type="radio" id="percentage" name="amountType" value="percentage" checked="checked" >
                 {%else%}
-                  <input type="radio" id="percentage" name="amountType" value="percentage" onclick="showPercentageSection()">
+                  <input type="radio" id="percentage" name="amountType" value="percentage">
                 {%endif%}
-                <label style="fload:left;">Percentage</label>
+                <label class="label-float">Percentage</label>
               </div> 
             </div>
            <div id="percentageAmount" class="small-box {{ 'disply-section' if form.valueFor('amountType') == 'percentage'}}">
@@ -187,11 +187,11 @@ selectReferenceData %}
             <div id="verticalRadio" class = "form-group">
               <div class = "multiple-choice">
                 {% if form.valueFor('amountType') == 'volume' %}
-                  <input type="radio" id="volume" name="amountType" value="volume" checked="checked" onclick="showVolumeAmountSection()">
+                  <input type="radio" id="volume" name="amountType" value="volume" checked="checked">
                 {%else%}
-                  <input type="radio" id="volume" name="amountType" value="volume" onclick="showVolumeAmountSection()">
+                  <input type="radio" id="volume" name="amountType" value="volume">
                 {%endif%}
-                <label style="fload:left;">Volume</label>
+                <label class="label-float">Volume</label>
               </div> 
             </div>
             <div id="volumeAmount" class="mid-box {{ 'disply-section' if form.valueFor('amountType') == 'volume'}}" >
@@ -224,7 +224,7 @@ selectReferenceData %}
                   {%else%}
                     <input type="radio" id="{{event.name}}" name="event" value="{{event.name}}">
                   {%endif%}
-                  <label style="fload:left;">{{event.name}}</label>
+                  <label class="label-float">{{event.name}}</label>
                 </div> 
               </div>
             {% endfor %}
@@ -246,7 +246,7 @@ selectReferenceData %}
                 {%else%}
                   <input type="radio" id="{{channel.name}}" name="channel" value="{{channel.name}}">
                 {%endif%}
-                <label style="fload:left;">{{channel.name}}</label>
+                <label class="label-float">{{channel.name}}</label>
               </div> 
             </div>
           {% endfor %}
@@ -274,7 +274,7 @@ selectReferenceData %}
                 {%else%}
                   <input type="radio" id="{{applicant.name}}" name="applicantType" value="{{applicant.name}}">
                 {%endif%}
-                <label style="fload:left;">{{applicant.name}}</label>
+                <label class="label-float">{{applicant.name}}</label>
               </div> 
             </div>
           {% endfor %}
@@ -296,7 +296,7 @@ selectReferenceData %}
                 {%else%}
                   <input type="radio" id="{{direction.name}}" name="direction" value="{{direction.name}}">
                 {%endif%}
-                <label style="fload:left;">{{direction.name}}</label>
+                <label class="label-float">{{direction.name}}</label>
               </div> 
             </div>
             {% endfor %}

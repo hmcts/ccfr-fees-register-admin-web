@@ -179,3 +179,6 @@
 #createForm span.error-message {
   width: 300px;
 }
+.label-float {
+  float: left;
+}
