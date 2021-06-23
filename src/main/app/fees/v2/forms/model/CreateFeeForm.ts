@@ -211,7 +211,7 @@ export class CreateFeeForm {
 
     if (form.volAmount) {
       form.amount = +form.volAmount
-      form.volAmount = +form.volAmount 
+      form.volAmount = +form.volAmount
     }
 
     if (form.fromRange) {
