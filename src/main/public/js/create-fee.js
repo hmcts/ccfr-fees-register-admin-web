@@ -27,15 +27,15 @@ function hideKeywordError() {
 
 function getValidateKeywordUrl() {
 
-  const service = document.getElementById("service").value;
+  const service = document.querySelector('input[name="service"]:checked').value;
 
-  const jurisdiction1 = document.getElementById("jurisdiction1").value;
+  const jurisdiction1 = document.querySelector('input[name="jurisdiction1"]:checked').value;
 
-  const jurisdiction2 = document.getElementById("jurisdiction2").value;
+  const jurisdiction2 = document.querySelector('input[name="jurisdiction2"]:checked').value;
 
-  const channel = document.getElementById("channel").value;
+  const channel = document.querySelector('input[name="channel"]:checked').value;
 
-  const event = document.getElementById("event").value;
+  const event = document.querySelector('input[name="event"]:checked').value;
 
   const keyword = document.getElementById("keyword").value;
 
@@ -61,15 +61,15 @@ function getValidateKeywordUrl() {
 /* eslint-disable */
 function onKeywordChanged() {
 
-  const service = document.getElementById("service").value;
+  const service = document.querySelector('input[name="service"]:checked').value;
 
-  const jurisdiction1 = document.getElementById("jurisdiction1").value;
+  const jurisdiction1 = document.querySelector('input[name="jurisdiction1"]:checked').value;
 
-  const jurisdiction2 = document.getElementById("jurisdiction2").value;
+  const jurisdiction2 = document.querySelector('input[name="jurisdiction2"]:checked').value;
 
-  const channel = document.getElementById("channel").value;
+  const channel = document.querySelector('input[name="channel"]:checked').value;
 
-  const event = document.getElementById("event").value;
+  const event = document.querySelector('input[name="event"]:checked').value;
 
   const keyword = document.getElementById("keyword").value;
 
