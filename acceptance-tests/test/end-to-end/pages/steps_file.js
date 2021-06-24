@@ -40,7 +40,6 @@ module.exports = () => actor({
   },
 
   addNewFee(feeKeyword) {
-    console.log('date is '+ this.getFormattedDate());
     const memoLineNumber = faker.random.number(RANDOM_NUMBER);
     const naturalAccountCode = faker.random.number(RANDOM_NUMBER);
 
