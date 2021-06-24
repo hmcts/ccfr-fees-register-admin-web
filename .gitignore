@@ -12,6 +12,7 @@ node_modules/
 
 src/main/public/img/lib/*
 src/main/public/js/lib/**/*.js
+
 src/main/public/stylesheets/lib/*
 
 node-rpm-packaging/
@@ -23,3 +24,4 @@ coverage-report
 package-lock.json
 .project
 .settings/
+functional-output

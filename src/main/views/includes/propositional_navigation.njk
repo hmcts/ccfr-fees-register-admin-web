@@ -5,8 +5,7 @@
       <ul class="custom-logout">
         {% if isLoggedIn %}
         <div class="user.ts">
-        {% for user in users %}
-        <p class="username-log">{{ user.forename }} {{ user.surname }}</p>
+        <p class="username-log">{{ user.allInfo.forename }} {{ user.allInfo.surname }}</p>
         <a href="/logout" class="custom-signout-link">{{ t('Sign out') }}</a>
         {% endif %}
         </div>
