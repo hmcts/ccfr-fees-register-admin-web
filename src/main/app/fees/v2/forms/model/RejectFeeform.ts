@@ -3,46 +3,45 @@ import { ValidationErrors } from 'fees/v2/forms/model/ValidationErrors'
 import { ReasonDto } from 'app/fees/v2/model/fees-register-api-contract'
 
 export class RejectFeeForm {
-	code?: string
+  code?: string
 
-	@IsOptional()
-	@MaxLength(1000, { message: ValidationErrors.REASON_FOR_REJECTION_TOO_LONG })
-	@Matches(/^([a-zA-Z0-9]*)$/, {
-		message: ValidationErrors.ALPHA_NUMERIC
-	})
+  @IsOptional()
+  @MaxLength(1000, { message: ValidationErrors.REASON_FOR_REJECTION_TOO_LONG })
+  @Matches(/^([a-zA-Z0-9]*)$/, {
+    message: ValidationErrors.ALPHA_NUMERIC
+  })
 	reasonForReject?: string
 
-	constructor() {
-		this.code = null
-		this.reasonForReject = ''
-	}
+  constructor () {
+    this.code = null
+    this.reasonForReject = ''
+  }
 
-	static fromObject(value?: any): RejectFeeForm {
+  static fromObject (value?: any): RejectFeeForm {
 
-		if (!value) {
-			return new RejectFeeForm()
-		}
+    if (!value) {
+      return new RejectFeeForm()
+    }
 
-		const form: RejectFeeForm = new RejectFeeForm()
-		Object.keys(value).forEach(key => form[key] = value[key])
+    const form: RejectFeeForm = new RejectFeeForm()
+    Object.keys(value).forEach(key => form[key] = value[key])
+    return form
 
+  }
 
-		return form
-	}
+  toDto (): ReasonDto {
 
-	toDto(): ReasonDto {
+    const dto = new ReasonDto()
+    dto.reasonForReject = this.reasonForReject
 
-		const dto = new ReasonDto()
-		dto.reasonForReject = this.reasonForReject
+    return this.fillCommon(dto)
 
-		return this.fillCommon(dto)
+  }
 
-	}
+  private fillCommon (dto: ReasonDto): ReasonDto {
 
-	private fillCommon(dto: ReasonDto): ReasonDto {
+    dto.reasonForReject = this.reasonForReject
 
-		dto.reasonForReject = this.reasonForReject
-
-		return dto;
-	}
+    return dto
+  }
 }
