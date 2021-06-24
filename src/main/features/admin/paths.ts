@@ -35,9 +35,12 @@ export class Paths {
   static readonly applicantListPage = new RoutablePath('/admin/v2/applicants', 'admin/v2/views/applicant-list')
 
   static readonly allFeesPageV2 = new RoutablePath('/admin/v2/all-fees', 'admin/v2/views/all-fees')
-  static readonly discontinuedFeesPageV2 = new RoutablePath('/admin/v2/discontinued-fees', 'admin/v2/views/discontinued-fees')
+  static readonly allApprovedbutnotlivePageV2 = new RoutablePath('/admin/v2/all-approvedbutnotlive', 'admin/v2/views/all-approvedbutnotlive')
+  static readonly pendingApprovalPageV2 = new RoutablePath('/admin/v2/pending-approval', 'admin/v2/views/pending-approval')
+  static readonly discontinuedFeesPageV2 = new RoutablePath('/admin/v2/all-discontinued', 'admin/v2/views/all-discontinued')
   static readonly feeCreatePageV2 = new RoutablePath('/admin/v2/fees/create', 'admin/v2/views/create-edit-fee')
-  static readonly feeViewPagev2 = new RoutablePath('/admin/v2/fees/:feeCode', 'admin/v2/views/fee')
+  static readonly feeDetailsViewPagev2 = new RoutablePath('/admin/v2/fee-details', 'admin/v2/views/fee-details')
+
   static readonly createFeeVersionPageV2 = new RoutablePath('/admin/v2/fees/version/create/:feeCode', 'admin/v2/views/create-fee-version')
   static readonly dashboard = new RoutablePath('/admin/v2/dashboard', 'admin/v2/views/dashboard')
 
