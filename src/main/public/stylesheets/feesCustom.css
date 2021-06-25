@@ -494,3 +494,8 @@ text-align: left;
 .whitespace-inherit {
   white-space: inherit !important;
 }
+
+.heading {
+  font-size: 2em;
+  font-weight: 600;
+}
