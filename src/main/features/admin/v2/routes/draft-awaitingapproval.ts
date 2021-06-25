@@ -10,8 +10,8 @@ let draftAuthor = null
 export default express.Router()
   .get(Paths.myDraftAwaitingApprovalV2.uri, (req: express.Request, res: express.Response) => {
     if (res.locals.user.allInfo.roles.indexOf('freg-editor') !== -1) {
-        draftAuthor = res.locals.user.allInfo.id
-     }
+      draftAuthor = res.locals.user.allInfo.id
+    }
     FeesClient
       .searchFees('pending_approval', draftAuthor, null, null, null, null)
       .then((fees: Array<Fee2Dto>) => {
