@@ -1,4 +1,9 @@
 {% extends "layout.njk" %}
+{% set title = t('Reference data | ' + serviceName + ' V2') %}
+  {% set heading = t('Reference data') %}
+
+  {% block content %}
+
 <h1 class="heading-xlarge margin-bottom-0"> Reference Data </h1>
  <div class="column-full">
     <ul class="list list-bullet">
@@ -47,3 +52,5 @@
   </table>
     </ul>
   </div>
+
+   {% endblock %}
