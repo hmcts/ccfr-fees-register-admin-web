@@ -23,9 +23,9 @@
 <div class="govuk-tabs__panel" id="past-day">
  
  <div class="title-with-secondary">
-  <h1 class="govuk-heading-xl">{{t("Rejected by approver")}}</h1>
+  <h1 class="heading">{{t("Rejected by approver")}}</h1>
 </div>
-
+{% if (fees | length) > 0 %}
      <table class="govuk-table">
          <thead class="govuk-table__head font-16">
             <tr class="govuk-table__row">
@@ -74,6 +74,8 @@
         {% endfor %}            
          </tbody>
     </table>
-                
+ {% else %}
+  <p>No rejected fees.</p>
+  {% endif %}           
 </div>
   {% endblock %}
