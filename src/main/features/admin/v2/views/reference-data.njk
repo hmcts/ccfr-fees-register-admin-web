@@ -24,6 +24,13 @@
       <li><a href="/admin/v2/events">{{ t("Events") }}</a></li>
       <li><a href="/admin/v2/directions">{{ t("Directions") }}</a></li>
       <div class="column-full">
+  
+  <ul>
+  {% for event in events %}
+  <li>{{ event.name }}</li>
+  {% endfor %}
+  </ul
+  
   <table>
     <thead>
     <tr>
