@@ -23,5 +23,20 @@
       <li><a href="/admin/v2/channels">{{ t("Channels") }}</a></li>
       <li><a href="/admin/v2/events">{{ t("Events") }}</a></li>
       <li><a href="/admin/v2/directions">{{ t("Directions") }}</a></li>
+      <div class="column-full">
+  <table>
+    <thead>
+    <tr>
+      <th scope="col">Name</th>
+    </tr>
+    </thead>
+    <tbody>
+    {% for direction in directions %}
+    <tr>
+      <td>{{ direction.name }}</td>
+    </tr>
+    {% endfor %}
+    </tbody>
+  </table>
     </ul>
   </div>
