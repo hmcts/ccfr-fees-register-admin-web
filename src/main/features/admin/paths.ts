@@ -3,6 +3,7 @@ import { RoutablePath } from 'common/router/routablePath'
 export class Paths {
   static readonly loginReceiver = new RoutablePath('/admin/receiver', 'n/a')
   static readonly welcomePage = new RoutablePath('/admin/welcome', 'admin/views/welcome')
+  static readonly referenceDataPage = new RoutablePath('/admin/reference-data', 'admin/views/reference-data')
 
   static readonly categoryListPage = new RoutablePath('/admin/categories', 'admin/views/category-list')
   static readonly categoryCreatePage = new RoutablePath('/admin/categories/create', 'admin/views/category-create')
