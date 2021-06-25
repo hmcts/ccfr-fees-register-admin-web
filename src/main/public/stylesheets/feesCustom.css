@@ -205,8 +205,8 @@
   color: black;
 }
 
-.govuk-\!-margin-top-7 {
-  margin-top: 40px !important;
+.govuk-\!-margin-top-8 {
+  margin-top: 53px !important;
 }
 .govuk-\!-margin-bottom-6 {
   margin-bottom: 30px !important;
@@ -463,4 +463,34 @@ a.custom-signout-link:visited {
   .govuk-grid-row {
     margin-right: -15px;
     margin-left: -15px;
+}
+
+.govuk-tabs__panel {
+    padding-top: 30px;
+    padding-right: 20px;
+    padding-bottom: 10px;
+    padding-left: 20px;
+    border: 1px solid #bfc1c3;
+    border-top: 0;
+}
+
+.padding10 {
+  padding-right:10px;
+}
+
+.padding20 {
+  padding-right:20px;
+  text-align: right;
+}
+
+table tr td:last-child {
+  text-align: left;
+}
+
+.alignleft {
+text-align: left;
+}
+
+.whitespace-inherit {
+  white-space: inherit !important;
 }
