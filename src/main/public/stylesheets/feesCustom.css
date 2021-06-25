@@ -46,6 +46,17 @@
   margin-bottom: 0.9375em;
 }
 
+.custom-heading-large {
+  margin: 0 -250px;
+  font-family: "nta", Arial, sans-serif;
+  font-weight: 700;
+  text-transform: none;
+  font-size: 24px;
+  line-height: 1.09375;
+  margin-top: 0.46875em;
+  margin-bottom: 0.9375em;
+}
+
 .custom-button {
   background-color: #00823b;
   position: relative;
