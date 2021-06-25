@@ -7,7 +7,7 @@ import { Form } from 'app/forms/form'
 import { FeesClient } from 'app/fees/v2/feesClient'
 
 import { FormValidator } from 'app/forms/validation/formValidator'
-import { RejectFeeForm } from 'app/fees/v2/forms/model/RejectFeeform'
+import { RejectFeeForm } from 'app/fees/v2/forms/model/RejectFeeForm'
 import { ReasonDto } from 'app/fees/v2/model/fees-register-api-contract'
 
 class Renderer {
