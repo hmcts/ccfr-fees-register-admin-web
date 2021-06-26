@@ -44,52 +44,109 @@
 
 <h1 class="heading-xlarge margin-bottom-0"> Reference Data </h1>
  <div class="column-full">
-    <ul class="list list-bullet">
-      <li><a href="/admin/v2/applicants">{{ t("Applicants") }}</a></li>
+    <details class="govuk-details" role="group" open="">
+      <summary class="govuk-details__summary" role="button" aria-controls="details-content-9cefd7ee-6e10-4b10-bef6-1c953c3381ae" aria-expanded="true">
+        <span class="govuk-details__summary-text">
+          Applicants
+        </span>
+      </summary>
+        <div class="govuk-details__text" id="details-content-9cefd7ee-6e10-4b10-bef6-1c953c3381ae" aria-hidden="false">
+          <ul class="list list-bullet">
+            {% for applicant in applicants %}
+              <li>{{ applicant.name }}</li>
+            {% endfor %}
+          </ul>
+        </div>
+      </details>
 
       <details class="govuk-details" role="group" open="">
-        <summary class="govuk-details__summary" role="button" aria-controls="details-content-9cefd7ee-6e10-4b10-bef6-1c953c3381ae" aria-expanded="true">
-            <span class="govuk-details__summary-text">
-                Applicants
-            </span>
-        </summary>
+      <summary class="govuk-details__summary" role="button" aria-controls="details-content-9cefd7ee-6e10-4b10-bef6-1c953c3381ae" aria-expanded="true">
+        <span class="govuk-details__summary-text">
+          Jurisdictions 1
+        </span>
+      </summary>
         <div class="govuk-details__text" id="details-content-9cefd7ee-6e10-4b10-bef6-1c953c3381ae" aria-hidden="false">
-          {% for direction in directions %}
-            <li>{{ direction.name }}</li>
-          {% endfor %}
+          <ul class="list list-bullet">
+            {% for jurisdiction in jurisdictions %}
+              <li>{{ jurisdiction.name }}</li>
+            {% endfor %}
+          </ul>
         </div>
-        </details>
+      </details>
 
-      <li><a href="/admin/v2/jurisdictions1">{{ t("Jurisdictions 1") }}</a></li>
-      <li><a href="/admin/v2/jurisdictions2">{{ t("Jurisdictions 2") }}</a></li>
-      <li><a href="/admin/v2/services">{{ t("Services") }}</a></li>
-      <li><a href="/admin/v2/channels">{{ t("Channels") }}</a></li>
-      <li><a href="/admin/v2/events">{{ t("Events") }}</a></li>
-      <li><a href="/admin/v2/directions">{{ t("Directions") }}</a></li>
-      <div class="column-full">
-  
-  <ul>
-  {% for event in events %}
-  <li>{{ event.name }}</li>
-  {% endfor %}
-  </ul>
-  
-  <table>
-    <thead>
-    <tr>
-      <th scope="col">Name</th>
-    </tr>
-    </thead>
-    <tbody>
-    {% for direction in directions %}
-    <tr>
-      <td>{{ direction.name }}</td>
-    </tr>
-    {% endfor %}
-    </tbody>
-  </table>
-    </ul>
-  </div>
+      <details class="govuk-details" role="group" open="">
+      <summary class="govuk-details__summary" role="button" aria-controls="details-content-9cefd7ee-6e10-4b10-bef6-1c953c3381ae" aria-expanded="true">
+        <span class="govuk-details__summary-text">
+          Jurisdictions 2
+        </span>
+      </summary>
+        <div class="govuk-details__text" id="details-content-9cefd7ee-6e10-4b10-bef6-1c953c3381ae" aria-hidden="false">
+          <ul class="list list-bullet">
+            {% for jurisdiction in jurisdictions %}
+              <li>{{ jurisdiction.name }}</li>
+            {% endfor %}
+          </ul>
+        </div>
+      </details>
 
+      <details class="govuk-details" role="group" open="">
+      <summary class="govuk-details__summary" role="button" aria-controls="details-content-9cefd7ee-6e10-4b10-bef6-1c953c3381ae" aria-expanded="true">
+        <span class="govuk-details__summary-text">
+          Services
+        </span>
+      </summary>
+        <div class="govuk-details__text" id="details-content-9cefd7ee-6e10-4b10-bef6-1c953c3381ae" aria-hidden="false">
+          <ul class="list list-bullet">
+            {% for service in services %}
+              <li>{{ service.name }}</li>
+            {% endfor %}
+          </ul>
+        </div>
+      </details>
+
+      <details class="govuk-details" role="group" open="">
+      <summary class="govuk-details__summary" role="button" aria-controls="details-content-9cefd7ee-6e10-4b10-bef6-1c953c3381ae" aria-expanded="true">
+        <span class="govuk-details__summary-text">
+          Channels
+        </span>
+      </summary>
+        <div class="govuk-details__text" id="details-content-9cefd7ee-6e10-4b10-bef6-1c953c3381ae" aria-hidden="false">
+          <ul class="list list-bullet">
+            {% for channel in channels %}
+              <li>{{ channel.name }}</li>
+            {% endfor %}
+          </ul>
+        </div>
+      </details>
+
+      <details class="govuk-details" role="group" open="">
+      <summary class="govuk-details__summary" role="button" aria-controls="details-content-9cefd7ee-6e10-4b10-bef6-1c953c3381ae" aria-expanded="true">
+        <span class="govuk-details__summary-text">
+          Events
+        </span>
+      </summary>
+        <div class="govuk-details__text" id="details-content-9cefd7ee-6e10-4b10-bef6-1c953c3381ae" aria-hidden="false">
+          <ul class="list list-bullet">
+            {% for event in events %}
+              <li>{{ event.name }}</li>
+            {% endfor %}
+          </ul>
+        </div>
+      </details>
+
+      <details class="govuk-details" role="group" open="">
+      <summary class="govuk-details__summary" role="button" aria-controls="details-content-9cefd7ee-6e10-4b10-bef6-1c953c3381ae" aria-expanded="true">
+        <span class="govuk-details__summary-text">
+          Directions
+        </span>
+      </summary>
+        <div class="govuk-details__text" id="details-content-9cefd7ee-6e10-4b10-bef6-1c953c3381ae" aria-hidden="false">
+          <ul class="list list-bullet">
+            {% for direction in directions %}
+              <li>{{ direction.name }}</li>
+            {% endfor %}
+          </ul>
+        </div>
+      </details>
 
   {% endblock %}
