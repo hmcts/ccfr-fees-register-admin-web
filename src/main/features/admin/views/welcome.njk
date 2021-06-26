@@ -54,9 +54,9 @@
             </span>
         </summary>
         <div class="govuk-details__text" id="details-content-9cefd7ee-6e10-4b10-bef6-1c953c3381ae" aria-hidden="false">
-            <li>personal</li>
-            <li>all</li>
-            <li>professional</li>
+          {% for direction in directions %}
+            <li>{{ direction.name }}</li>
+          {% endfor %}
         </div>
         </details>
 
