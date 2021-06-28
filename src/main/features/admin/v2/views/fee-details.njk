@@ -3,13 +3,7 @@
   {% set title = t('Fee | ' + serviceName) %}
   
   {% block content %}
-  {% if versionNo %}
-    {% set version = getSelectedVersion(feeDto, versionNo) %}
- {{version.statutory_instrument}}
-  {{version.si_ref_id}}
 
-    {{version.Memo}}
-  {% endif %}
 <div class="govuk-grid-row">
   <div class="govuk-grid-column-full">
     <nav class="hmcts-sub-navigation" aria-label="Sub navigation">
@@ -33,7 +27,14 @@
       </h1>
   </div>
 </div>
+  {% if versionNo %}
+  {{feeDto.fee_versions.version}}
+    {% set version = getSelectedVersion(feeDto, versionNo) %}
+ {{version.statutory_instrument}}
+  {{version.si_ref_id}}
 
+    {{version.Memo}}
+  {% endif %}
 <dl class="govuk-check-your-answers govuk-check-your-answers--short">
 <div class="govuk-check-your-answers__contents">
   <dt class="govuk-check-your-answers__question">
