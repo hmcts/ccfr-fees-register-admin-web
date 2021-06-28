@@ -32,7 +32,16 @@
     {{feeDto.fee_versions.version}}
     {% set version = getSelectedVersion(feeDto, versionNo) %}
   {% if version %}
-    hi
+    {{version.version}}
+    {{version.description}}
+    {{version.status}}
+    {{version.memo_line}}
+    {{version.fee_order_name}}
+    {{version.natural_account_code}}
+    {{version.statutory_instrument}}
+    {{version.si_ref_id}}
+    {{version.direction}}
+
   {% else %}
     bye
   {% endif %}
