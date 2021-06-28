@@ -28,7 +28,6 @@
   </div>
 </div>
 {% if versionNo %}
-{{versionNo}}
     {{feeDto.fee_versions.version}}
     {% set version = getSelectedVersion(feeDto, versionNo) %}
   {% if version %}
@@ -40,7 +39,7 @@
     {{version.natural_account_code}}
     {{version.statutory_instrument}}
     {{version.si_ref_id}}
-    {{version.direction}}
+    {{version.vno}}
 
   {% else %}
     bye
