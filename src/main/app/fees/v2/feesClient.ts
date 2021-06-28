@@ -34,6 +34,10 @@ export class FeesClient {
     return FeesClient.invokePatch(`${feesUrl}/fees/${feeCode}/versions/${version}/reject`, user)
   }
 
+  static reasonForRejectFee (user, feeCode: string, version: number, dto: model.ReasonDto): Promise<boolean> {
+    return FeesClient.invokePatchDto(`${feesUrl}/fees/${feeCode}/versions/${version}/reject`, user, dto)
+  }
+
   static submitForReview (user, feeCode: string, version: number): Promise<boolean> {
     return FeesClient.invokePatch(`${feesUrl}/fees/${feeCode}/versions/${version}/submit-for-review`, user)
   }
@@ -367,6 +371,20 @@ export class FeesClient {
         headers: {
           Authorization: `Bearer ${user.bearerToken}`
         }
+      })
+      .then(() => true)
+      .catch(FeesClientErrorMapper)
+  }
+
+  private static invokePatchDto (url: string, user, dto: model.ReasonDto): Promise<boolean> {
+    return request
+      .patch({
+        uri: `${url}`,
+        json: true,
+        headers: {
+          Authorization: `Bearer ${user.bearerToken}`
+        },
+        body: dto
       })
       .then(() => true)
       .catch(FeesClientErrorMapper)
