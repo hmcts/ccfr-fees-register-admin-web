@@ -464,3 +464,7 @@ a.custom-signout-link:visited {
     margin-right: -15px;
     margin-left: -15px;
 }
+
+.govuk-details {
+  margin-bottom: 30px;
+}
