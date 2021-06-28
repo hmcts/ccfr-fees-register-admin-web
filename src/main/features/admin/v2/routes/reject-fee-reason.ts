@@ -35,7 +35,7 @@ export default express.Router()
 		  FeesClient.reasonForRejectFee(res.locals.user, req.url.split('/')[4], Number(req.url.split('/')[5]), form.model.toDto() as ReasonDto).then(
 				() =>
 				  res.render('admin/v2/views/fee-rejected-confirmation', {
-				  feeCode: form.model.code
+				  feeCode: req.url.split('/')[4]
 			  })
 		  ).catch(
 			  (e: Error) => {
