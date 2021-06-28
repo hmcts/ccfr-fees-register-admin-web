@@ -67,7 +67,6 @@ export class FeeVersionDto {
   statutory_instrument: string
   si_ref_id: string
   direction: string
-  vno: number
 
   public getValidFrom () {
     return new Date(this.valid_from).toDateString
