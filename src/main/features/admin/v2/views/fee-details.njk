@@ -27,14 +27,12 @@
       </h1>
   </div>
 </div>
-  {% if versionNo %}
-  {{feeDto.fee_versions.version}}
+{{versionNo}}
+    {{feeDto.fee_versions.version}}
     {% set version = getSelectedVersion(feeDto, versionNo) %}
- {{version.statutory_instrument}}
-  {{version.si_ref_id}}
-
+    {{version.statutory_instrument}}
+    {{version.si_ref_id}}
     {{version.Memo}}
-  {% endif %}
 <dl class="govuk-check-your-answers govuk-check-your-answers--short">
 <div class="govuk-check-your-answers__contents">
   <dt class="govuk-check-your-answers__question">
