@@ -2,32 +2,18 @@ import * as express from 'express'
 
 import { Paths } from 'admin/paths'
 
-// import { FeesClient } from 'app/fees/v2/feesClient'
-// import { ApplicantTypeDto } from 'fees/v2/model/fees-register-api-contract'
-// import { ServiceTypeDto } from 'fees/v2/model/fees-register-api-contract'
+import { FeesClient } from 'app/fees/v2/feesClient'
+// import { AllReferenceDataDto } from 'fees/v2/model/fees-register-api-contract'
 
 export default express.Router()
 .get(Paths.referenceDataPage.uri, (req: express.Request, res: express.Response) => {
-  res.render(Paths.referenceDataPage.associatedView, { roles: res.locals.user.userInfo })
+
+  FeesClient
+      .retrieveReferenceData()
+    //   .then((references: <AllReferenceDataDto>) => {
+
+        // res.render(Paths.referenceDataPage.associatedView, {
+        //   reference: references
+        // })
 })
-// .get(Paths.applicantListPage.uri, (req: express.Request, res: express.Response) => {
-
-//     FeesClient
-//       .retrieveApplicants()
-//       .then((applicants: Array<ApplicantTypeDto>) => {
-//         res.render(Paths.applicantListPage.associatedView, {
-//           applicants: applicants
-//         })
-//       })
-//   })
-//   .get(Paths.serviceListPage.uri, (req: express.Request, res: express.Response) => {
-
-//     FeesClient
-//       .retrieveServices()
-//       .then((services: Array<ServiceTypeDto>) => {
-
-//         res.render(Paths.serviceListPage.associatedView, {
-//           services: services
-//         })
-//       })
-//   })
+    // }
