@@ -59,7 +59,7 @@
         </div>
       </details>
 
-      <details class="govuk-details" role="group" open="false">
+      <details class="govuk-details" role="group">
       <summary role="button" aria-expanded="true">
         <span>
           Jurisdictions 1
@@ -74,14 +74,14 @@
         </div>
       </details>
 
-      <details class="govuk-details" role="group" open="false">
+      <details class="govuk-details" role="group">
       <summary role="button" aria-expanded="true">
         <span>
           Jurisdictions 2
         </span>
       </summary>
         <div class="govuk-details__text" aria-hidden="false">
-          <ul class="list list-bullet">
+          <ul>
             {% for jurisdiction in jurisdictions %}
               <li>{{ jurisdiction.name }}</li>
             {% endfor %}
@@ -89,13 +89,13 @@
         </div>
       </details>
 
-      <details class="govuk-details" role="group" open="false">
+      <details class="govuk-details" role="group">
       <summary role="button" aria-expanded="true">
         <span>
           Services
         </span>
       </summary>
-        <div class="govuk-details__text" aria-hidden="false">
+        <div aria-hidden="false">
           <ul>
             {% for service in services %}
               <li>{{ service.name }}</li>
@@ -104,7 +104,7 @@
         </div>
       </details>
 
-      <details class="govuk-details" role="group" open="false">
+      <details class="govuk-details" role="group">
       <summary role="button" aria-expanded="true">
         <span>
           Channels
@@ -119,7 +119,7 @@
         </div>
       </details>
 
-      <details class="govuk-details" open="false">
+      <details class="govuk-details" role="group">
       <summary role="button" aria-expanded="true">
         <span>
           Events
@@ -134,7 +134,7 @@
         </div>
       </details>
 
-      <details class="govuk-details" role="group" open="false">
+      <details class="govuk-details" role="group">
       <summary role="button" aria-expanded="true">
         <span>
           Directions
