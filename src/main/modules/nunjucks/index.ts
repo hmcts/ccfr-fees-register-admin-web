@@ -139,6 +139,7 @@ export default class Nunjucks {
             result = fv
           }
         })
+        console.log(fee.fee_versions)
         return result
       }
     })
