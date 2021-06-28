@@ -139,7 +139,7 @@ export default class Nunjucks {
             result = fv
           }
         })
-        return result.vno = vno;
+        return result.vno = vno
       }
     })
 
