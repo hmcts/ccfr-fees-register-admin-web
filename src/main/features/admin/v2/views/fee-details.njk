@@ -3,6 +3,10 @@
   {% set title = t('Fee | ' + serviceName) %}
   
   {% block content %}
+  {% if versionNo %}
+    {% set version = getSelectedVersion(feeDto, versionNo) %}
+  {% endif %}
+
 <div class="govuk-grid-row">
   <div class="govuk-grid-column-full">
     <nav class="hmcts-sub-navigation" aria-label="Sub navigation">
@@ -47,8 +51,10 @@
     <label class="bold">SI Ref ID</label> 
   </dt>
   <dd class="govuk-check-your-answers__answer">
-    {% if feeDto.current_version.si_ref_id %}
+    {% if feeDto.current_version.si_ref_id && pageType==='livefee'%}
       {{feeDto.current_version.si_ref_id}}
+    {% elif version && (pageType==='disconfee' || pageType==='notlivefee')%}
+      {{version.si_ref_id}}
     {% else %}
       &nbsp;
     {% endif %}
@@ -89,8 +95,10 @@
     <label class="bold">Description</label> 
   </dt>
   <dd class="govuk-check-your-answers__answer">
-    {% if feeDto.current_version.direction %}
+    {% if feeDto.current_version.direction && pageType==='livefee' %}
       {{feeDto.current_version.direction}}
+   {% elif version && (pageType==='disconfee' || pageType==='notlivefee')%}
+      {{version.direction}}
     {% else %}
       &nbsp;
     {% endif %}
@@ -103,8 +111,10 @@
     <label class="bold">Statutory Instrument</label> 
   </dt>
   <dd class="govuk-check-your-answers__answer">
-    {% if feeDto.current_version.statutory_instrument %}
+    {% if feeDto.current_version.statutory_instrument && pageType==='livefee' %}
       {{feeDto.current_version.statutory_instrument}}
+   {% elif version && (pageType==='disconfee' || pageType==='notlivefee')%}
+      {{version.statutory_instrument}}
     {% else %}
       &nbsp;
     {% endif %}
@@ -116,8 +126,10 @@
     <label class="bold">Fee Order Name</label> 
   </dt>
   <dd class="govuk-check-your-answers__answer">
-    {% if feeDto.current_version.fee_order_name %}
+    {% if feeDto.current_version.fee_order_name && pageType==='livefee' %}
       {{feeDto.current_version.fee_order_name}}
+   {% elif version && (pageType==='disconfee' || pageType==='notlivefee')%}
+      {{version.fee_order_name}}
     {% else %}
       &nbsp;
     {% endif %}
@@ -171,15 +183,30 @@
     <label class="bold">Amount type</label> 
   </dt>
   <dd class="govuk-check-your-answers__answer">
-  {% if feeDto.current_version.flat_amount.amount %}
-    Flat
-  {% elif feeDto.current_version.percentage_amount.percentage %}
-    percentage
-  {% elif feeDto.current_version.volume_amount.amount %}
-    Volume
-  {% else %}
-    &nbsp;
-  {% endif %}
+    {% if pageType==='livefee'%}
+      {% if feeDto.current_version.flat_amount.amount %}
+        Flat
+      {% elif feeDto.current_version.percentage_amount.percentage %}
+        percentage
+      {% elif feeDto.current_version.volume_amount.amount %}
+        Volume
+      {% else %}
+        &nbsp;
+      {% endif %}
+    {% elif version && (pageType==='disconfee' || pageType==='notlivefee')%}
+      {% if version.flat_amount.amount %}
+        Flat
+      {% elif version.percentage_amount.percentage %}
+        percentage
+      {% elif version.volume_amount.amount %}
+        Volume
+      {% else %}
+        &nbsp;
+      {% endif %}
+    {% else %}
+      &nbsp;
+    {% endif %}
+
   </dd>
 </div>
 
@@ -188,10 +215,22 @@
     <label class="bold">Amount</label> 
   </dt>
   <dd class="govuk-check-your-answers__answer">
-  {% if feeDto.current_version.flat_amount.amount %}
-    {{feeDto.current_version.flat_amount.amount}}
-  {% elif feeDto.current_version.volume_amount.amount %}
-    {{feeDto.current_version.flat_amount.amount}}
+  {% if pageType ==='livefee'%}
+    {% if feeDto.current_version.flat_amount.amount %}
+      {{feeDto.current_version.flat_amount.amount}}
+    {% elif feeDto.current_version.volume_amount.amount %}
+      {{feeDto.current_version.flat_amount.amount}}
+    {% else %}
+      &nbsp;
+    {% endif %}
+  {% elif version && (pageType==='disconfee' || pageType==='notlivefee')%}
+    {% if version.flat_amount.amount %}
+      {{version.flat_amount.amount}}
+    {% elif version.volume_amount.amount %}
+      {{version.flat_amount.amount}}
+    {% else %}
+      &nbsp;
+    {% endif %}
   {% else %}
     &nbsp;
   {% endif %}
@@ -204,15 +243,17 @@
     <label class="bold">Percentage</label> 
   </dt>
   <dd class="govuk-check-your-answers__answer">
-  {% if feeDto.current_version.percentage_amount.percentage %}
-    {{feeDto.current_version.percentage_amount.percentage}}
-  {% else %}
-    &nbsp;
-  {% endif %}
+    {% if feeDto.current_version.percentage_amount.percentage && pageType==='livefee' %}
+      {{feeDto.current_version.percentage_amount.percentage}}
+    {% elif version && (pageType==='disconfee' || pageType==='notlivefee')%}
+      {{version.percentage_amount.percentage}}
+    {% else %}
+      &nbsp;
+    {% endif %}
   </dd>
 </div>
  {% if feeDto.fee_type == 'ranged' %}
-
+  
 <div class="govuk-check-your-answers__contents">
   <dt class="govuk-check-your-answers__question">
     <label class="bold">Range from</label> 
@@ -240,7 +281,7 @@
   </dd>
 </div>
 {% endif %}
- {% if feeDto.current_version.valid_from %}
+ {% if feeDto.current_version.valid_from && pageType==='livefee' %}
 <div class="govuk-check-your-answers__contents">
   <dt class="govuk-check-your-answers__question">
     <label class="bold">Valid from</label> 
@@ -250,7 +291,26 @@
   </dd>
 </div>
 {% endif %}
-{% if feeDto.current_version.valid_to %}
+{% if version && (pageType==='disconfee' || pageType==='notlivefee')%}
+<div class="govuk-check-your-answers__contents">
+  <dt class="govuk-check-your-answers__question">
+    <label class="bold">Valid from</label> 
+  </dt>
+  <dd class="govuk-check-your-answers__answer">
+    {{version.valid_from}}
+  </dd>
+</div>
+<div class="govuk-check-your-answers__contents">
+  <dt class="govuk-check-your-answers__question">
+    <label class="bold">Valid to</label> 
+  </dt>
+  <dd class="govuk-check-your-answers__answer">
+    {{version.valid_to}}
+  </dd>
+</div>
+{% endif %}
+
+{% if feeDto.current_version.valid_to && pageType==='livefee' %}
 <div class="govuk-check-your-answers__contents">
   <dt class="govuk-check-your-answers__question">
     <label class="bold">Valid to</label> 
@@ -266,8 +326,10 @@
     <label class="bold">Version</label> 
   </dt>
   <dd class="govuk-check-your-answers__answer">
-    {% if feeDto.current_version.version %}
+    {% if feeDto.current_version.version && pageType==='livefee' %}
       {{feeDto.current_version.version}}
+    {% elif version && (pageType==='disconfee' || pageType==='notlivefee')%}
+      {{version.version}}
     {% else %}
       &nbsp;
     {% endif %}
@@ -294,10 +356,12 @@
     <label class="bold">Natural account code</label> 
   </dt>
   <dd class="govuk-check-your-answers__answer">
-    {% if feeDto.current_version.natural_account_code %}
+    {% if feeDto.current_version.natural_account_code && pageType==='livefee' %}
       {{feeDto.current_version.natural_account_code}}
+    {% elif version && (pageType==='disconfee' || pageType==='notlivefee')%}
+      {{version.natural_account_code}}
     {% else %}
-      &nbsp;
+          &nbsp;
     {% endif %}
   </dd>
 </div>
@@ -308,10 +372,12 @@
     <label class="bold">Memo</label> 
   </dt>
   <dd class="govuk-check-your-answers__answer">
-    {% if feeDto.current_version.memo_line %}
+    {% if feeDto.current_version.memo_line && pageType==='livefee' %}
       {{feeDto.current_version.memo_line}}
+    {% elif version && (pageType==='disconfee' || pageType==='notlivefee')%}
+      {{version.memo_line}}
     {% else %}
-      &nbsp;
+          &nbsp;
     {% endif %}
   </dd>
 </div>
@@ -321,8 +387,10 @@
     <label class="bold">Direction</label> 
   </dt>
   <dd class="govuk-check-your-answers__answer">
-    {% if feeDto.current_version.direction %}
+    {% if feeDto.current_version.direction && pageType==='livefee' %}
       {{feeDto.current_version.direction}}
+    {% elif version && (pageType==='disconfee' || pageType==='notlivefee')%}
+      {{version.direction}}
     {% else %}
       &nbsp;
     {% endif %}
@@ -373,10 +441,12 @@
     <label class="bold">Status</label> 
   </dt>
   <dd class="govuk-check-your-answers__answer">
-    {% if feeDto.current_version.status %}
+    {% if feeDto.current_version.status && pageType==='livefee' %}
       {{feeDto.current_version.status}}
+    {% elif version && (pageType==='disconfee' || pageType==='notlivefee')%}
+      {{version.status}}
     {% else %}
-      &nbsp;
+          &nbsp;
     {% endif %}
   </dd>
 </div>

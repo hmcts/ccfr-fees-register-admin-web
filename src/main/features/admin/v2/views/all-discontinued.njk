@@ -63,7 +63,7 @@
     {% if version.status === 'approved' %}
     <tr>
       <td >
-        <a href="/admin/V2/fee-details?feeCode={{ fee.code }}&pageType=disconfee">{{ fee.code }}</a>
+        <a href="/admin/V2/fee-details?feeCode={{ fee.code }}&pageType=disconfee&vno={{ version.version }} ">{{ fee.code }}</a>
       </td>
       <td >{{ version.description }}</td>
       {% if version.flat_amount %}
