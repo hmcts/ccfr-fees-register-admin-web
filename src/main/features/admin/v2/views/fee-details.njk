@@ -29,7 +29,7 @@
 </div>
 {% if versionNo %}
   {% for feeVersion in feeDto.fee_versions %}
-    {% if feeVersion.status === '' && feeVersion.version === versionNo  %}
+    {% if feeVersion.status === 'approved' && feeVersion.version === versionNo  %}
         {% set version = feeVersion %}
     {% endif %}
   {% endfor %}
