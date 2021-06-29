@@ -137,7 +137,7 @@ export default class Nunjucks {
 
         fee.fee_versions.forEach((fv) => {
           let s = fv.version
-          if (fv.description === 'approved' && s === vno) {
+          if (fv.status === 'approved' && s === vno) {
             result = fv
           }
         })
