@@ -27,24 +27,7 @@
       </h1>
   </div>
 </div>
-{% if versionNo %}
-  {% for feeVersion in feeDto.fee_versions %}
-    {% if feeVersion.status == 'approved' %}
-        {% set version = feeVersion %}
-    {% endif %}
-  {% endfor %}
-  {% if version %}
-    {{version.version}}
-    {{version.description}}
-    {{version.status}}
-    {{version.memo_line}}
-    {{version.fee_order_name}}
-    {{version.natural_account_code}}
-    {{version.statutory_instrument}}
-  {% else %}
-    bye
-  {% endif %}
- {% endif %}
+{{versionNo}}
 <dl class="govuk-check-your-answers govuk-check-your-answers--short">
 <div class="govuk-check-your-answers__contents">
   <dt class="govuk-check-your-answers__question">
