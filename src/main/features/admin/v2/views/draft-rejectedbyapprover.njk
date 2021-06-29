@@ -41,8 +41,9 @@
           <tbody>
            {% for fee in fees %}
            {% set version = getLiveFeeVersion(fee) %}  
+            {% if version.approvedBy |length %}
            <tr>
-                <td data-label="Code" class="padding10 whitespace-inherit">{{ fee.code }}</td>
+                <td data-label="Code" class="padding10 whitespace-inherit">{{ fee.code }} </td>
                 {% if version.flat_amount %}
                 <td class="padding20 whitespace-inherit" >£{{ version.flat_amount.amount.toFixed(2).toString()}}</td>
                 {% elif version.volume_amount %}
@@ -71,6 +72,7 @@
                 {% endif %}
                 </td>
             </tr>
+            {% endif %}     
         {% endfor %}            
          </tbody>
     </table>
