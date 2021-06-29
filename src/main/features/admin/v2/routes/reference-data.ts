@@ -11,7 +11,7 @@ export default express.Router()
     res.render(Paths.referenceDataPage.associatedView, {
         referenceData: data,
         applicants: data.applicantTypes,
-        jurisdictions1: data.jurisdictions1,
+        jurisdictions: data.jurisdictions1,
         jurisdictions2: data.jurisdictions2,
         services: data.serviceTypes,
         channels: data.channelTypes,
