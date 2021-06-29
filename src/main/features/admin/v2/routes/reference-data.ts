@@ -18,7 +18,7 @@ export default express.Router()
         applicants: applicants
       })
     })
-}
+})
 // .get(Paths.applicantListPage.uri, (req: express.Request, res: express.Response) => {
 
 //     FeesClient
