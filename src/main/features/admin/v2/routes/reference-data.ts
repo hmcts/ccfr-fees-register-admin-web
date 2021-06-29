@@ -15,7 +15,7 @@ export default express.Router()
         roles: res.locals.user.userInfo,
         applicants: applicants
       })
-    })
+    }),
   FeesClient
     .retrieveServices()
     .then((services: Array<ServiceTypeDto>) => {
