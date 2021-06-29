@@ -136,7 +136,7 @@ export default class Nunjucks {
         let result: FeeVersionDto = fee.fee_versions.find((fv) => {
           return fv.version === vno
         })
-      return result
+        return result
       }
     })
 
