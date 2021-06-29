@@ -47,6 +47,18 @@ const supportedBrowsers = {
         capturePerformance: true
       }
     }
+  },
+  safari: {
+    safari_mac_latest: {
+      browserName: 'safari',
+      platformName: LATEST_MAC,
+      browserVersion: 'latest',
+      'sauce:options': {
+        name: 'FeeAndPay: MAC_SAFARI_LATEST',
+        extendedDebugging: true,
+        capturePerformance: true
+      }
+    }
   }
 };
 
