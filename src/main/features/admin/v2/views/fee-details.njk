@@ -28,8 +28,11 @@
   </div>
 </div>
 {% if versionNo %}
-    {{feeDto.fee_versions.version}}
-    {% set version = getSelectedVersion(feeDto, versionNo) %}
+  {% for feeVersion in feeDto.fee_versions %}
+    {% if feeVersion.status === '' && feeVersion.version === versionNo  %}
+        {% set version = feeVersion %}
+    {% endif %}
+  {% endfor %}
   {% if version %}
     {{version.version}}
     {{version.description}}
