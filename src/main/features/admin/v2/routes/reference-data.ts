@@ -9,17 +9,16 @@ import { ApplicantTypeDto } from 'fees/v2/model/fees-register-api-contract'
 export default express.Router()
 .get(Paths.referenceDataPage.uri, (req: express.Request, res: express.Response) => {
 
-    FeesClient
-        .retrieveApplicants()
-        .then((applicants: Array<ApplicantTypeDto>) => {
+  FeesClient
+    .retrieveApplicants()
+    .then((applicants: Array<ApplicantTypeDto>) => {
 
-  res.render(Paths.referenceDataPage.associatedView, { 
-      roles: res.locals.user.userInfo,
-      applicants: applicants
-
-
-})
-})
+      res.render(Paths.referenceDataPage.associatedView, {
+        roles: res.locals.user.userInfo,
+        applicants: applicants
+      })
+    })
+}
 // .get(Paths.applicantListPage.uri, (req: express.Request, res: express.Response) => {
 
 //     FeesClient
