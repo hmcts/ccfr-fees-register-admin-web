@@ -467,12 +467,14 @@ a.custom-signout-link:visited {
 
 .govuk-details {
   margin-bottom: 30px;
+  
 }
 
 .govuk-details-text {
   padding: 15px;
   padding-left: 20px;
   border-left: 5px solid #bfc1c3;
+  text-decoration: underline;
 }
 
 .reference-ul {
