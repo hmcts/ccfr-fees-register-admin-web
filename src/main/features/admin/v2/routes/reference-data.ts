@@ -3,8 +3,7 @@ import * as express from 'express'
 import { Paths } from 'admin/paths'
 
 import { FeesClient } from 'app/fees/v2/feesClient'
-import { ApplicantTypeDto } from 'fees/v2/model/fees-register-api-contract'
-// import { ServiceTypeDto } from 'fees/v2/model/fees-register-api-contract'
+import { ApplicantTypeDto, ServiceTypeDto } from 'fees/v2/model/fees-register-api-contract'
 
 export default express.Router()
 .get(Paths.referenceDataPage.uri, (req: express.Request, res: express.Response) => {
@@ -12,10 +11,17 @@ export default express.Router()
   FeesClient
     .retrieveApplicants()
     .then((applicants: Array<ApplicantTypeDto>) => {
-
       res.render(Paths.referenceDataPage.associatedView, {
         roles: res.locals.user.userInfo,
         applicants: applicants
+      })
+    })
+  FeesClient
+    .retrieveServices()
+    .then((services: Array<ServiceTypeDto>) => {
+      res.render(Paths.referenceDataPage.associatedView, {
+        roles: res.locals.user.userInfo,
+        services: services
       })
     })
 })
