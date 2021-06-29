@@ -3,8 +3,7 @@ import * as express from 'express'
 import { Paths } from 'admin/paths'
 
 import { FeesClient } from 'app/fees/v2/feesClient'
-import applicantList from './applicant-list'
-// import { AllReferenceDataDto, ApplicantTypeDto } from 'app/fees/v2/model/fees-register-api-contract'
+import { ApplicantTypeDto } from 'app/fees/v2/model/fees-register-api-contract'
 // import { ServiceTypeDto } from 'fees/v2/model/fees-register-api-contract'
 
 export default express.Router()
@@ -14,7 +13,8 @@ export default express.Router()
         res.render(Paths.referenceDataPage.associatedView,
             {
               referenceData: data,
-              applicantTypes: applicantList,
+              applicants: ApplicantTypeDto,
+    
             })
           })
 })
