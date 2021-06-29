@@ -12,7 +12,7 @@ const defaultSauceOptions = {
   tunnelIdentifier: process.env.TUNNEL_IDENTIFIER || 'reformtunnel',
   acceptSslCerts: true,
   windowSize: '1600x900',
-  tags: ['FeeAndPay']
+  tags: ['FeesRegisterAdminWeb']
 };
 
 function merge(intoObject, fromObject) {
