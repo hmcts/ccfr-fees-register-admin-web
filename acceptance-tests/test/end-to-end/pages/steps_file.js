@@ -3,11 +3,9 @@ const CCPBConstants = require('../tests/CCFRAcceptanceTestConstants');
 // in this file you can append custom step methods to 'I' object
 // const faker = require('faker');
 const faker = require('faker');
-
 const RANDOM_NUMBER = 99999;
-
+const {verifyLiveFeesHeaders} = require('./live_fees');
 const CCDNumber = faker.random.number(RANDOM_NUMBER);
-
 module.exports = () => actor({
   // done
   login(email, password) {
@@ -21,7 +19,6 @@ module.exports = () => actor({
     this.waitForElement({ css: '[type="submit"]' }, CCPBConstants.thirtySecondWaitTime);
     this.click({ css: '[type="submit"]' });
   },
-
   Logout(role) {
     const signoutLabel = "Sign out (test " + role + ")";
     this.moveCursorTo('#proposition-links > li > a');
@@ -29,7 +26,6 @@ module.exports = () => actor({
     this.click(signoutLabel);
     this.wait(CCPBConstants.fiveSecondWaitTime);
   },
-
   // getDateInDDMMYYYY(date = new Date()) {
   //   const stringFillSize = 2;
   //   const day = date.getDate()
@@ -41,16 +37,12 @@ module.exports = () => actor({
   //     .toString();
   //   return `${day}/${month}/${year}`;
   // },
-
   addNewFee(feeKeyword) {
-
     const memoLineNumber = faker.random.number(RANDOM_NUMBER);
     const naturalAccountCode = faker.random.number(RANDOM_NUMBER);
-
     const fromDate = new Date();
     // const toDate = new Date();
     // toDate.setMonth(toDate.getMonth() + 3);
-
     this.click('Add a new fee');
     this.fillField({ css: '#memoLine'}, memoLineNumber);
     this.fillField({ css: '#naturalAccountCode'}, '232425');
@@ -72,16 +64,13 @@ module.exports = () => actor({
     this.click('Save draft');
     this.wait(CCPBConstants.tenSecondWaitTime);
   },
-
   submitForApproval(feeKeyword) {
    this.see('My open action');
    this.click('My open action');
    this.see(feeKeyword);
    this.click(`//*[contains(text(),"${feeKeyword}")]/..//input[@type="submit" and @value = "Submit"]`)
    this.wait(CCPBConstants.fiveSecondWaitTime)
-
   },
-
   deleteFees(feeKeyword) {
     this.see('My open action');
     this.click('My open action');
@@ -89,16 +78,17 @@ module.exports = () => actor({
     this.click(`//*[contains(text(),"${feeKeyword}")]/..//input[@type="submit" and @value = "Delete"]`)
     this.wait(CCPBConstants.fiveSecondWaitTime)
   },
-
   verifyFeesSentForApproval(feeKeyword) {
     this.see('My open action');
     this.click('My open action');
     this.see(feeKeyword);
   },
-
   rejectFeesSentForApproval(feeKeyword) {
     this.see(feeKeyword);
     this.click(`//*[contains(text(),"${feeKeyword}")]/..//input[@type="submit" and @value = "Reject"]`)
     this.wait(CCPBConstants.fiveSecondWaitTime)
+  },
+  verifyLiveFees() {
+    verifyLiveFeesHeaders
   }
 });
