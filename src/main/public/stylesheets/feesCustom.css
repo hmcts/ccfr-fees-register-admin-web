@@ -474,10 +474,19 @@ a.custom-signout-link:visited {
   padding: 15px;
   padding-left: 20px;
   border-left: 5px solid #bfc1c3;
-  text-decoration: underline;
 }
 
 .reference-ul {
   list-style: disc;
   margin-left: 15px;
+}
+
+.govuk-details-summary {
+  display: inline-block;
+  color: #005ea5;
+  cursor: pointer;
+  position: relative;
+  margin-bottom: 0.26316em;
+  padding-left: 25px;
+  text-decoration: underline;
 }
