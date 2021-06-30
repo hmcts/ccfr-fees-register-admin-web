@@ -3,7 +3,6 @@ import { RoutablePath } from 'common/router/routablePath'
 export class Paths {
   static readonly loginReceiver = new RoutablePath('/admin/receiver', 'n/a')
   static readonly welcomePage = new RoutablePath('/admin/welcome', 'admin/views/welcome')
-  static readonly referenceDataPage = new RoutablePath('/admin/reference-data', 'admin/views/reference-data')
 
   static readonly categoryListPage = new RoutablePath('/admin/categories', 'admin/views/category-list')
   static readonly categoryCreatePage = new RoutablePath('/admin/categories/create', 'admin/views/category-create')
@@ -34,6 +33,7 @@ export class Paths {
   static readonly jurisdiction2ListPage = new RoutablePath('/admin/v2/jurisdictions2', 'admin/v2/views/jurisdiction2-list')
   static readonly eventListPage = new RoutablePath('/admin/v2/events', 'admin/v2/views/event-list')
   static readonly applicantListPage = new RoutablePath('/admin/v2/applicants', 'admin/v2/views/applicant-list')
+  static readonly referenceDataPage = new RoutablePath('/admin/v2/reference-data', 'admin/v2/views/reference-data')
 
   static readonly allFeesPageV2 = new RoutablePath('/admin/v2/all-fees', 'admin/v2/views/all-fees')
   static readonly allApprovedbutnotlivePageV2 = new RoutablePath('/admin/v2/all-approvedbutnotlive', 'admin/v2/views/all-approvedbutnotlive')
