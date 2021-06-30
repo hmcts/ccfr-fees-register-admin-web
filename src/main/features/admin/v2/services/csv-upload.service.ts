@@ -19,6 +19,14 @@ export class CsvUploadService {
         const csvFee: CsvFeeDto = fees[i]
         const feeMapper = new FeeMapper()
 
+        if (csvFee.validFrom.length !== 0 && !csvFee.validFrom.endsWith('UTC')) {
+          csvFee.validFrom += ' UTC'
+        }
+
+        if (csvFee.validTo.length !== 0 && !csvFee.validTo.endsWith('UTC')) {
+          csvFee.validTo += ' UTC'
+        }
+
         // try and upload, if not catch and return "reject"
         try {
           if (csvFee.feeType.toLowerCase() === 'fixed') {
