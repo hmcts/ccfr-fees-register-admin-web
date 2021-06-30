@@ -17,11 +17,17 @@ def component = "frontend"
 withNightlyPipeline("nodejs", product, component) {
   env.TEST_URL = params.URL_TO_TEST
   enableFullFunctionalTest()
+  enableCrossBrowserTest()
   after('checkout') {
     sh "yarn cache clean"
     echo 'ccfr-fees-register-admin-web checked out'
   }
   after('build') {
     sh 'yarn setup'
+    sh 'chmod +x bin/run-crossbrowser-tests.sh'
+  }
+
+  after('crossBrowserTest') {
+    steps.archiveArtifacts allowEmptyArchive: true, artifacts: 'functional-output/**/*'
   }
 }
