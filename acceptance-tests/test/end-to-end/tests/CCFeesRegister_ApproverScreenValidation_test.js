@@ -10,7 +10,7 @@ BeforeSuite(I => {
   // I.resizeWindow(CCFRATConstants.windowsSizeX, CCFRATConstants.windowsSizeY);
 });
 
-Scenario('FeesRegister Admin Console Approver Screen Validation', I => {
+Scenario('FeesRegister Admin Console Approver Screen Validation @crossbrowser', I => {
   I.login('functionaltestapprover@hmcts.net', 'LevelAt12');
   I.wait(CCFRATConstants.tenSecondWaitTime);
   I.waitForText('Welcome', CCFRATConstants.tenSecondWaitTime);
