@@ -27,7 +27,6 @@
       </h1>
   </div>
 </div>
-{{versionNo}}
 <dl class="govuk-check-your-answers govuk-check-your-answers--short">
 <div class="govuk-check-your-answers__contents">
   <dt class="govuk-check-your-answers__question">
@@ -403,19 +402,5 @@
 {% endif %}
 </dl>
 
-  {% if not isDraftVersionExists(feeDto) %}
-    {% if isEditor(user.allInfo.roles) %}
 
-      {% if feeDto.current_version.flat_amount.amount %}
-      {% set type = 'flat' %}
-      {% elif feeDto.current_version.percentage_amount.percentage %}
-      {% set type = 'percentage' %}
-      {% elif feeDto.current_version.volume_amount.volume %}
-      {% set type = 'volume' %}
-      {% endif %}
-      <a href="/admin/v2/fees/version/create/{{ feeDto.code }}?type={{ type }}" class="custom-button btn">
-        Edit fee
-      </a>
-    {% endif %}
-  {% endif %}
   {% endblock %}
