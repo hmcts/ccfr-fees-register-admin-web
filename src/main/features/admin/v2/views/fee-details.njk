@@ -1,0 +1,435 @@
+{% extends "layout.njk" %}
+
+  {% set title = t('Fee | ' + serviceName) %}
+  
+  {% block content %}
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-full">
+    <nav class="hmcts-sub-navigation" aria-label="Sub navigation">
+      <div class="jui-width-container">
+        <ul class="hmcts-sub-navigation__list">
+          <li class="hmcts-sub-navigation__item">
+            <a class="hmcts-sub-navigation__link" aria-current="page" href="/admin/V2/fee-details?feeCode={{ feeDto.code }}&pageType={{ pageType }}">
+              Fee details
+            </a>
+          </li>
+          <li class="hmcts-sub-navigation__item">
+            <a class="hmcts-sub-navigation__link" href="#">
+              Fee versions
+            </a>
+          </li>
+        </ul>
+      </div>
+    </nav>
+    <h1 class="heading-xlarge margin-bottom-0">
+            {{t('Fee details')}}
+      </h1>
+  </div>
+</div>
+<h2 class="heading-large margin-bottom-0"> Updated Details </h2>
+<dl class="govuk-check-your-answers govuk-check-your-answers--short">
+<div class="govuk-check-your-answers__contents">
+  <dt class="govuk-check-your-answers__question">
+    <label class="bold">Reason for fee update</label> 
+  </dt>
+  <dd class="govuk-check-your-answers__answer">
+{% if feeDto.reason %}
+  {{feeDto.reason}}
+{% else %}
+  &nbsp;
+{% endif %}
+  </dd>
+</div>
+  </dd>
+</div>
+<div class="govuk-check-your-answers__contents">
+  <dt class="govuk-check-your-answers__question">
+    <label class="bold">Version</label> 
+  </dt>
+  <dd class="govuk-check-your-answers__answer">
+    {% if feeDto.current_version.version %}
+      {{feeDto.current_version.version}}
+    {% else %}
+      &nbsp;
+    {% endif %}
+  </dd>
+</div>
+
+<div class="govuk-check-your-answers__contents">
+  <dt class="govuk-check-your-answers__question">
+    <label class="bold">Amount</label> 
+  </dt>
+  <dd class="govuk-check-your-answers__answer">
+  {% if feeDto.current_version.flat_amount.amount %}
+    {{feeDto.current_version.flat_amount.amount}}
+  {% elif feeDto.current_version.volume_amount.amount %}
+    {{feeDto.current_version.flat_amount.amount}}
+  {% else %}
+    &nbsp;
+  {% endif %}
+  </dd>
+</div>
+
+<details class="govuk-details" role="group">
+  <summary class="govuk-details-summary" role="button" aria-expanded="false">
+              <span class="govuk-details__summary-text">
+                Version 2
+              </span>
+           </summary>
+
+</details>
+
+<details class="govuk-details" role="group">
+<summary class="govuk-details-summary" role="button" aria-controls="details-content-21814321-2e71-46d4-b8f2-64edc46d40fe" aria-expanded="true">
+              <span class="govuk-details__summary-text">
+                Version 1
+              </span>
+            </summary>
+</details>
+
+<dl class="govuk-check-your-answers govuk-check-your-answers--short">
+<div class="govuk-check-your-answers__contents">
+  <dt class="govuk-check-your-answers__question">
+    <label class="bold">SI Ref ID</label> 
+  </dt>
+  <dd class="govuk-check-your-answers__answer">
+    {% if feeDto.current_version.si_ref_id %}
+      {{feeDto.current_version.si_ref_id}}
+    {% else %}
+      &nbsp;
+    {% endif %}
+  </dd>
+</div>
+
+<div class="govuk-check-your-answers__contents">
+  <dt class="govuk-check-your-answers__question">
+    <label class="bold">Statutory Instrument</label> 
+  </dt>
+  <dd class="govuk-check-your-answers__answer">
+    {% if feeDto.current_version.statutory_instrument %}
+      {{feeDto.current_version.statutory_instrument}}
+    {% else %}
+      &nbsp;
+    {% endif %}
+  </dd>
+</div>
+
+<div class="govuk-check-your-answers__contents">
+  <dt class="govuk-check-your-answers__question">
+    <label class="bold">Fee Order Name</label> 
+  </dt>
+  <dd class="govuk-check-your-answers__answer">
+    {% if feeDto.current_version.fee_order_name %}
+      {{feeDto.current_version.fee_order_name}}
+    {% else %}
+      &nbsp;
+    {% endif %}
+  </dd>
+</div>
+
+<div class="govuk-check-your-answers__contents">
+  <dt class="govuk-check-your-answers__question">
+    <label class="bold">Valid From	</label> 
+  </dt>
+  <dd class="govuk-check-your-answers__answer">
+    {% if feeDto.code %}
+      {{feeDto.code}}
+    {% else %}
+      &nbsp;
+    {% endif %}
+  </dd>
+</div>
+
+<div class="govuk-check-your-answers__contents">
+  <dt class="govuk-check-your-answers__question">
+    <label class="bold">Status</label> 
+  </dt>
+  <dd class="govuk-check-your-answers__answer">
+    {% if feeDto.current_version.status %}
+      {{feeDto.current_version.status}}
+    {% else %}
+      &nbsp;
+    {% endif %}
+  </dd>
+</div>
+
+{% if isEditor(user.allInfo.roles) %}
+  <div class="govuk-check-your-answers__contents">
+    <dt class="govuk-check-your-answers__question">
+      <label class="bold">Editor</label> 
+    </dt>
+    <dd class="govuk-check-your-answers__answer">
+      {{user.allInfo.forename}} {{user.allInfo.surname}}
+    </dd>
+  </div>
+{% endif %}
+{% if isApprover(user.allInfo.roles) %}
+  <div class="govuk-check-your-answers__contents">
+    <dt class="govuk-check-your-answers__question">
+     <label class="bold">Approver</label> 
+    </dt>
+    <dd class="govuk-check-your-answers__answer">
+      {{user.allInfo.forename}} {{user.allInfo.surname}}
+    </dd>
+  </div>
+{% endif %}
+</dl>
+
+<h2 class="heading-large margin-bottom-0"> Existing Details </h2>
+
+<div class="govuk-check-your-answers__contents">
+  <dt class="govuk-check-your-answers__question">
+    <label class="bold">Service</label> 
+  </dt>
+  <dd class="govuk-check-your-answers__answer">
+    {% if feeDto.service_type.name %}
+      {{feeDto.service_type.name}}
+    {% else %}
+      &nbsp;
+    {% endif %}
+  </dd>
+</div>
+
+<div class="govuk-check-your-answers__contents">
+  <dt class="govuk-check-your-answers__question">
+    <label class="bold">Event</label> 
+  </dt>
+  <dd class="govuk-check-your-answers__answer">
+    {% if feeDto.event_type.name %}
+      {{feeDto.event_type.name}}
+    {% else %}
+      &nbsp;
+    {% endif %}
+  </dd>
+</div>
+
+<div class="govuk-check-your-answers__contents">
+  <dt class="govuk-check-your-answers__question">
+    <label class="bold">Description</label> 
+  </dt>
+  <dd class="govuk-check-your-answers__answer">
+    {% if feeDto.current_version.direction %}
+      {{feeDto.current_version.direction}}
+    {% else %}
+      &nbsp;
+    {% endif %}
+  </dd>
+</div>
+
+<div class="govuk-check-your-answers__contents">
+  <dt class="govuk-check-your-answers__question">
+    <label class="bold">Jurisdiction 1</label> 
+  </dt>
+  <dd class="govuk-check-your-answers__answer">
+    {% if feeDto.jurisdiction1.name %}
+      {{feeDto.jurisdiction1.name}}
+    {% else %}
+      &nbsp;
+    {% endif %}
+  </dd>
+</div>
+
+
+<div class="govuk-check-your-answers__contents">
+  <dt class="govuk-check-your-answers__question">
+    <label class="bold">Jurisdiction 2</label> 
+  </dt>
+  <dd class="govuk-check-your-answers__answer">
+    {% if feeDto.jurisdiction2.name %}
+      {{feeDto.jurisdiction2.name}}
+    {% else %}
+      &nbsp;
+    {% endif %}
+  </dd>
+</div>
+
+
+<div class="govuk-check-your-answers__contents">
+  <dt class="govuk-check-your-answers__question">
+    <label class="bold">Fee type</label> 
+  </dt>
+  <dd class="govuk-check-your-answers__answer">
+    {% if feeDto.fee_type %}
+      {{feeDto.fee_type}}
+    {% else %}
+      &nbsp;
+    {% endif %}
+  </dd>
+</div>
+
+
+<div class="govuk-check-your-answers__contents">
+  <dt class="govuk-check-your-answers__question">
+    <label class="bold">Amount type</label> 
+  </dt>
+  <dd class="govuk-check-your-answers__answer">
+  {% if feeDto.current_version.flat_amount.amount %}
+    Flat
+  {% elif feeDto.current_version.percentage_amount.percentage %}
+    percentage
+  {% elif feeDto.current_version.volume_amount.amount %}
+    Volume
+  {% else %}
+    &nbsp;
+  {% endif %}
+  </dd>
+</div>
+
+<div class="govuk-check-your-answers__contents">
+  <dt class="govuk-check-your-answers__question">
+    <label class="bold">Percentage</label> 
+  </dt>
+  <dd class="govuk-check-your-answers__answer">
+  {% if feeDto.current_version.percentage_amount.percentage %}
+    {{feeDto.current_version.percentage_amount.percentage}}
+  {% else %}
+    &nbsp;
+  {% endif %}
+  </dd>
+</div>
+ {% if feeDto.fee_type == 'ranged' %}
+
+<div class="govuk-check-your-answers__contents">
+  <dt class="govuk-check-your-answers__question">
+    <label class="bold">Range from</label> 
+  </dt>
+  <dd class="govuk-check-your-answers__answer">
+{{feeDto.min_range}}
+  </dd>
+</div>
+
+<div class="govuk-check-your-answers__contents">
+  <dt class="govuk-check-your-answers__question">
+    <label class="bold">Range to</label> 
+  </dt>
+  <dd class="govuk-check-your-answers__answer">
+{{feeDto.max_range}}
+  </dd>
+</div>
+
+<div class="govuk-check-your-answers__contents">
+  <dt class="govuk-check-your-answers__question">
+    <label class="bold">Range units</label> 
+  </dt>
+  <dd class="govuk-check-your-answers__answer">
+{{feeDto.range_unit}}
+  </dd>
+</div>
+{% endif %}
+ {% if feeDto.current_version.valid_from %}
+<div class="govuk-check-your-answers__contents">
+  <dt class="govuk-check-your-answers__question">
+    <label class="bold">Valid from</label> 
+  </dt>
+  <dd class="govuk-check-your-answers__answer">
+    {{feeDto.current_version.valid_from}}
+  </dd>
+</div>
+{% endif %}
+{% if feeDto.current_version.valid_to %}
+<div class="govuk-check-your-answers__contents">
+  <dt class="govuk-check-your-answers__question">
+    <label class="bold">Valid to</label> 
+  </dt>
+  <dd class="govuk-check-your-answers__answer">
+{{feeDto.current_version.valid_to}}
+  </dd>
+</div>
+{% endif %}
+
+<div class="govuk-check-your-answers__contents">
+  <dt class="govuk-check-your-answers__question">
+    <label class="bold">Natural account code</label> 
+  </dt>
+  <dd class="govuk-check-your-answers__answer">
+    {% if feeDto.current_version.natural_account_code %}
+      {{feeDto.current_version.natural_account_code}}
+    {% else %}
+      &nbsp;
+    {% endif %}
+  </dd>
+</div>
+
+
+<div class="govuk-check-your-answers__contents">
+  <dt class="govuk-check-your-answers__question">
+    <label class="bold">Memo</label> 
+  </dt>
+  <dd class="govuk-check-your-answers__answer">
+    {% if feeDto.current_version.memo_line %}
+      {{feeDto.current_version.memo_line}}
+    {% else %}
+      &nbsp;
+    {% endif %}
+  </dd>
+</div>
+
+<div class="govuk-check-your-answers__contents">
+  <dt class="govuk-check-your-answers__question">
+    <label class="bold">Direction</label> 
+  </dt>
+  <dd class="govuk-check-your-answers__answer">
+    {% if feeDto.current_version.direction %}
+      {{feeDto.current_version.direction}}
+    {% else %}
+      &nbsp;
+    {% endif %}
+  </dd>
+</div>
+
+<div class="govuk-check-your-answers__contents">
+  <dt class="govuk-check-your-answers__question">
+    <label class="bold">Applicant type</label> 
+  </dt>
+  <dd class="govuk-check-your-answers__answer">
+    {% if feeDto.applicant_type.name %}
+      {{feeDto.applicant_type.name}}
+    {% else %}
+      &nbsp;
+    {% endif %}
+  </dd>
+</div>
+
+<div class="govuk-check-your-answers__contents">
+  <dt class="govuk-check-your-answers__question">
+    <label class="bold">Keyword</label> 
+  </dt>
+  <dd class="govuk-check-your-answers__answer">
+    {% if feeDto.keyword %}
+      {{feeDto.keyword}}
+    {% else %}
+      &nbsp;
+    {% endif %}
+  </dd>
+</div>
+
+<div class="govuk-check-your-answers__contents">
+  <dt class="govuk-check-your-answers__question">
+    <label class="bold">Channel</label> 
+  </dt>
+  <dd class="govuk-check-your-answers__answer">
+ {% if feeDto.channel_type.name %}
+      {{feeDto.channel_type.name}}
+    {% else %}
+      &nbsp;
+    {% endif %}
+  </div>
+</dd>
+</dl>
+
+  {% if not isDraftVersionExists(feeDto) %}
+    {% if isEditor(user.allInfo.roles) %}
+
+      {% if feeDto.current_version.flat_amount.amount %}
+      {% set type = 'flat' %}
+      {% elif feeDto.current_version.percentage_amount.percentage %}
+      {% set type = 'percentage' %}
+      {% elif feeDto.current_version.volume_amount.volume %}
+      {% set type = 'volume' %}
+      {% endif %}
+      <a href="/admin/v2/fees/version/create/{{ feeDto.code }}?type={{ type }}" class="custom-button btn">
+        Edit fee
+      </a>
+    {% endif %}
+  {% endif %}
+  {% endblock %}
