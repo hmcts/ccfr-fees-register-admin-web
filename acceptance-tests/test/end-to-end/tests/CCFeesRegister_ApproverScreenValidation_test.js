@@ -4,7 +4,13 @@ const RANDOM_NUMBER = 9999;
 
 Feature('CC FeesRegister Admin Acceptance Tests').retry(CCFRATConstants.retryScenario);
 
-Scenario('FeesRegister Admin Console Approver Header Validation', I => {
+BeforeSuite(I => {
+  // I.amOnPage('/');
+  // I.wait(CCFRATConstants.twoSecondWaitTime);
+  // I.resizeWindow(CCFRATConstants.windowsSizeX, CCFRATConstants.windowsSizeY);
+});
+
+Scenario('FeesRegister Admin Console Approver Screen Validation @crossbrowser', I => {
   I.login('functionaltestapprover@hmcts.net', 'LevelAt12');
   I.wait(CCFRATConstants.tenSecondWaitTime);
   I.see("Fees");
