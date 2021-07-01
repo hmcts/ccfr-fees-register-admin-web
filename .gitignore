@@ -23,4 +23,6 @@ coverage-report
 package-lock.json
 .project
 .settings/
-config/default.json
+functional-output/
+mochawesome-report/
+acceptance-tests/output
