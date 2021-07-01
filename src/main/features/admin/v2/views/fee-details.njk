@@ -27,6 +27,10 @@
       </h1>
   </div>
 </div>
+    {{versionNo}}
+    {% set displayedFeeVersion = getSelectedVersion(feeDto, versionNo) %}
+    {{displayedFeeVersion.version}}
+
 <dl class="govuk-check-your-answers govuk-check-your-answers--short">
 <div class="govuk-check-your-answers__contents">
   <dt class="govuk-check-your-answers__question">
