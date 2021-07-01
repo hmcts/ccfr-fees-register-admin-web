@@ -22,7 +22,7 @@ Scenario('FeesRegister Admin Console Editor Screen For Live Fees', I => {
   I.click('Sign out');
 });
 
-Scenario('FeesRegister Admin Console Editor Screen For Approved but not live fees', I => {
+Scenario('FeesRegister Admin Console Editor Screen Validation @crossbrowser', I => {
   I.login('functionaltesteditor@hmcts.net', 'LevelAt12');
   I.wait(CCFRATConstants.tenSecondWaitTime);
   I.waitForText('Approved but not live fees', CCFRATConstants.tenSecondWaitTime);
