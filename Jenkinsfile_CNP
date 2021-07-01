@@ -10,6 +10,9 @@ properties(
 def product = "fees-register"
 def component = "frontend"
 
+// Configure branches to sync with master branch
+def branchesToSync = ['demo', 'ithc', 'perftest']
+
 withPipeline("nodejs", product, component) {
 
   //installCharts()
@@ -23,5 +26,8 @@ withPipeline("nodejs", product, component) {
   after('build') {
     sh 'yarn setup'
   }
+
+  //Sync demo,ithc and perftest with master branch
+  syncBranchesWithMaster(branchesToSync)
 
 }
