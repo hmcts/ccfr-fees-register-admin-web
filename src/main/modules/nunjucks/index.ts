@@ -131,11 +131,11 @@ export default class Nunjucks {
       return result
     })
 
-    nunjucksEnv.addGlobal('getSelectedVersion', (fee: Fee2Dto, vno: any): FeeVersionDto => {
+    nunjucksEnv.addGlobal('getSelectedVersion', (fee: Fee2Dto, vno: number): FeeVersionDto => {
       if (fee.fee_versions != null) {
         let result: FeeVersionDto
-        fee.fee_versions.forEach((fv) => {
-          if (fv.status === 'approved') {
+        fee.fee_versions.forEach((fv: FeeVersionDto) => {
+          if (fv.status === 'approved' && fv.version === vno) {
             result = fv
           }
         })
