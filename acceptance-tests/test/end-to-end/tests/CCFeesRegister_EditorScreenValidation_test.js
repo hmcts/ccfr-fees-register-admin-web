@@ -10,7 +10,7 @@ Feature('CC FeesRegister Admin Acceptance Tests').retry(CCFRATConstants.retrySce
 //   I.resizeWindow(CCFRATConstants.windowsSizeX, CCFRATConstants.windowsSizeY);
 // });
 
-Scenario('FeesRegister Admin Console Editor Screen Validation', I => {
+Scenario('FeesRegister Admin Console Editor Screen Validation @crossbrowser', I => {
   I.login('functionaltesteditor@hmcts.net', 'LevelAt12');
   I.wait(CCFRATConstants.tenSecondWaitTime);
   I.waitForText('Welcome', CCFRATConstants.tenSecondWaitTime);
