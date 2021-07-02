@@ -25,7 +25,7 @@ Scenario('FeesRegister Admin Console Editor Screen For Approved but not live fee
   I.Logout("editor");
 });
 
-Scenario('FeesRegister Admin Console Editor Screen For Discontinued fees', I => {
+Scenario('FeesRegister Admin Console Editor Screen Validation @crossbrowser', I => {
   I.login('functionaltesteditor@hmcts.net', 'LevelAt12');
   I.wait(CCFRATConstants.tenSecondWaitTime);
   I.waitForText('Discontinued fees', CCFRATConstants.tenSecondWaitTime);
