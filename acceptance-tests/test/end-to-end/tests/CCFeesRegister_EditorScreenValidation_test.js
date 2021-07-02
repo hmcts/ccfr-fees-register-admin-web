@@ -1,9 +1,9 @@
-sconst { Logger } = require('@hmcts/nodejs-logging');
+const { Logger } = require('@hmcts/nodejs-logging');
 const CCFRATConstants = require('./CCFRAcceptanceTestConstants');
 const faker = require('faker');
 const RANDOM_NUMBER = 9999;
 
-Feature('CC FeesRegister Admin Acceptance Tests For Live Fees').retry(CCFRATConstants.retryScenario);
+Feature('CC FeesRegister Admin Acceptance Tests For Live Fees').retry(CCFRATConstants.retryScenario)
 
 Scenario('FeesRegister Admin Console Editor Header Validation', I => {
   I.login('functionaltesteditor@hmcts.net', 'LevelAt12');
@@ -18,7 +18,9 @@ Scenario('FeesRegister Admin Console Editor Screen For Live Fees', I => {
   I.login('functionaltesteditor@hmcts.net', 'LevelAt12');
   I.wait(CCFRATConstants.tenSecondWaitTime);
   // to-do based on updates and future stories
-  I.verifyLiveFees();
+  I.verifyLiveFeesHeaders();
+  //verify any existing fee details under live Tab
+  I.verifyFeeDetails('FEE0582','civil','100.00');
   I.click('Sign out');
 });
 
@@ -48,11 +50,7 @@ Scenario('FeesRegister Admin Console Editor Screen For Discontinued fees - Fee d
   I.waitForText('FEE0565', CCFRATConstants.tenSecondWaitTime);
   I.see('Version1');
   I.see('Version2');
-  I.click('FEE0565');
-  I.waitForText('Fee details', CCFRATConstants.tenSecondWaitTime);
-  I.see('Code');
-  I.see('FEE0565');
-  I.see('test editor');
+  I.verifyFeeDetails('FEE0565','family','66.99');
   I.click('Sign out');
 });
 
