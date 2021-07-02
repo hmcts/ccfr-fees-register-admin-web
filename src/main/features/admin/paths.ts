@@ -53,5 +53,5 @@ export class Paths {
   static readonly createBulkFeesPage = new RoutablePath('/admin/v2/bulkfeesupload', 'admin/v2/views/confirm-create-bulk-fees')
   static readonly csvToJsonPage = new RoutablePath('/admin/v2/tojson', 'admin/v2/views/fee-loader-json')
 
-  static readonly draftViewV2 = new RoutablePath('/admin/V2/views/confirm-draft-approval ', 'admin/V2/views/confirm-draft-approval')
+  static readonly draftViewV2 = new RoutablePath('/admin/v2/confirm-draft-approval/:feeCode', 'admin/v2/views/confirm-draft-approval')
 }
