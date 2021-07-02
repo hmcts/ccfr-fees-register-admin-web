@@ -27,16 +27,13 @@
 <div class="govuk-tabs__panel" id="past-day">
 <div class="container">
   <div class="row">
- <div class="col-xs-2">
-      <h1 class="govuk-heading-xl">Drafts</h1>
-    </div>
-    <div class="col-xs-4">
-      <a href="./fees/create">{{nextButton(t("Create a new fee"), t("govuk-button2 black-text"))}}</a>
-    </div>
-    </div>
-  </div>
-  
-
+ 
+  <div class="title-with-secondary">
+  <h1 class="heading">{{t("Drafts")}}</h1>
+  <div class="title-with-secondary" style="flex-grow: 1;"></div>
+   <a href="./fees/create">{{nextButton(t("Create a new fee"), t("govuk-button2 black-text"))}}</a>
+</div>
+  {% if (fees | length) > 0 %}
      <table class="govuk-table">
          <thead class="govuk-table__head font-16">
             <tr class="govuk-table__row">
@@ -52,6 +49,7 @@
           <tbody>
            {% for fee in fees %}
            {% set version = getLiveFeeVersion(fee) %}  
+             {% if version.approvedBy == null %}
            <tr>
                 <td data-label="Code" class="padding10 whitespace-inherit">{{ fee.code }}</td>
                 {% if version.flat_amount %}
@@ -82,10 +80,14 @@
                 {% endif %}
                 </td>
             </tr>
+            {% endif %}    
+        
         {% endfor %}            
          </tbody>
     </table>
-                
+    {% else %}
+  <p>No draft fees</p>
+  {% endif %}          
 </div>
       </div>
 
