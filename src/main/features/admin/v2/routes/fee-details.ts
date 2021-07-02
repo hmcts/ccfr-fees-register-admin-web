@@ -19,5 +19,5 @@ export default express.Router()
 
   .get(Paths.draftViewV2.uri, (req: express.Request, res: express.Response) => {
     console.log('one')
-    res.render('admin/v2/views/confirm-draft-approval')    
+    res.render('admin/v2/views/confirm-draft-approval')
   })
