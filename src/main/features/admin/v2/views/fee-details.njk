@@ -246,13 +246,13 @@
   <dd class="govuk-check-your-answers__answer">
   {% if pageType === 'livefee' %}
     {% if feeDto.current_version.percentage_amount.percentage %}
-       %{{feeDto.current_version.percentage_amount.percentage}}
+      {{feeDto.current_version.percentage_amount.percentage}}%
     {% else %}
         &nbsp;
     {% endif %}
   {% elif version and (pageType === 'disconfee' or pageType === 'notlivefee') %}
     {% if version.percentage_amount.percentage %}
-       %{{version.percentage_amount.percentage}}
+       %{{version.percentage_amount.percentage}}%
     {% else %}
        &nbsp;
     {% endif %}
