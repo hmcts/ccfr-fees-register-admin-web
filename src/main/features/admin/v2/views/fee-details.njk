@@ -1,3 +1,4 @@
+{% from "includes/macros/form.njk" import csrfProtection, submitButton %}
 {% extends "layout.njk" %}
 
   {% set title = t('Fee | ' + serviceName) %}
@@ -402,7 +403,29 @@
 {% endif %}
 </dl>
 
-  {% if not isDraftVersionExists(feeDto) %}
+
+         <a href="views/confirm-draft-approval?feeCode={{ feeDto.code }}" class="custom-button btn">
+        Request approval0
+         </a>
+          <a href="/confirm-draft-approval?feeCode={{ feeDto.code }}" class="custom-button btn">
+        Request approval
+         </a>
+          <a href="./confirm-draft-approval?feeCode={{ feeDto.code }}" class="custom-button btn">
+        Request approval1
+         </a>
+         <a href="/admin/v2/confirm-draft-approval?feeCode={{ feeDto.code }}" class="custom-button btn">
+        Request approval1
+         </a>
+
+         <form method="post" action="">
+          {{ csrfProtection(csrfToken) }}
+          <input type="hidden" name="feeCode" value="{{ fee.code }}"/>
+          <input type="hidden" name="version" value="{{ displayedFeeVersion.version }}"/>
+          <input type="hidden" name="action" value="delete"/>
+          <input type="submit" class="button delete-button" value="Delete">
+        </form>
+ 
+  {% if  isDraftVersionExists(feeDto) %}
     {% if isEditor(user.allInfo.roles) %}
 
       {% if feeDto.current_version.flat_amount.amount %}
