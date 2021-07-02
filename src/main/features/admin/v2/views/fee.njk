@@ -1,0 +1,206 @@
+{% extends "layout.njk" %}
+
+  {% set title = t('Fee | ' + serviceName) %}
+  {% set heading = t('Fee details')  %}
+  {% block content %}
+
+<div class="gird-row">
+  <div class="column-third">
+    <label class="bold">Code:</label> {{ feeDto.code }}
+  </div>
+  <div class="column-third">
+    <label class="bold">Type:</label> {{ feeDto.fee_type }}
+  </div>
+</div>
+<hr width=100%>
+
+  {% if feeDto.fee_type == 'ranged' %}
+
+<div class="gird-row">
+<div class="column-third">
+  <label class="bold">Min range:</label> {{ feeDto.min_range }}
+</div>
+<div class="column-third">
+  <label class="bold">Max range:</label> {{ feeDto.max_range }}
+</div>
+<div class="column-third">
+  <label class="bold">Range unit:</label> {{ feeDto.range_unit }}
+</div>
+</div>
+<hr width=100%>
+
+  {% endif %}
+
+<div class="gird-row">
+<div class="column-third">
+  <label class="bold">Channel:</label> {{ feeDto.channel_type.name }}
+</div>
+<div class="column-third">
+  <label class="bold">Event:</label> {{ feeDto.event_type.name }}
+</div>
+<div class="column-third">
+  <label class="bold">Jurisdiction1:</label> {{ feeDto.jurisdiction1.name }}
+</div>
+<hr>
+<div class="column-third">
+  <label class="bold">Jurisdiction2:</label> {{ feeDto.jurisdiction2.name }}
+</div>
+<div class="column-third">
+  <label class="bold">Service:</label> {{ feeDto.service_type.name }}
+</div>
+<div class="column-third">
+  <label class="bold">Keyword:</label> {{ feeDto.keyword }}
+</div>
+<div class="column-third">
+  <label class="bold">Applicant type:</label> {{ feeDto.applicant_type.name }}
+</div>
+</div>
+<hr width=100%>
+
+
+<div class="gird-row">
+<div class="column">
+  <h2 class="heading-medium">
+    <label class="bold">Live version</label>
+  </h2>
+</div>
+</div>
+
+<div class="gird-row">
+<div class="column-third">
+  <label class="bold">version:</label> {{ feeDto.current_version.version }}
+</div>
+<div class="column-third">
+  <label class="bold">Valid from:</label> {{ feeDto.current_version.valid_from }}
+</div>
+<div class="column-third">
+  <label class="bold">Valid to:</label> {{ feeDto.current_version.valid_to }}
+</div>
+<div class="column-third">
+  <label class="bold">Author:</label> {{ feeDto.current_version.author }}
+</div>
+<div class="column-third">
+  <label class="bold">Approved by:</label> {{ feeDto.current_version.approvedBy }}
+</div>
+<div class="column-third">
+  <label class="bold">Direction:</label> {{ feeDto.current_version.direction }}
+</div>
+<div class="column-third">
+  <label class="bold">Status:</label> {{ feeDto.current_version.status }}
+</div>
+<div class="column-third">
+  <label class="bold">Amount:</label>
+  {% if feeDto.current_version.flat_amount.amount %}
+  {{ feeDto.current_version.flat_amount.amount }}
+  {% elif feeDto.current_version.percentage_amount.percentage %}
+  {{ feeDto.current_version.percentage_amount.percentage }}
+  {% endif %}
+</div>
+<div class="column-two-thirds">
+  <label class="bold">Memo line:</label> {{ feeDto.current_version.memo_line }}
+</div>
+<div class="column-two-thirds">
+  <label class="bold">Natural account code:</label> {{ feeDto.current_version.natural_account_code }}
+</div>
+<div class="column-two-thirds">
+  <label class="bold">Description:</label> {{ feeDto.current_version.description }}
+</div>
+<div class="column-two-thirds">
+  <label class="bold">Reason For Update:</label> {{ feeDto.current_version.reason_for_update }}
+</div>
+</div>
+<hr width=100%>
+
+<div class="gird-row">
+<div class="column">
+  <h2 class="heading-medium">
+    <label class="bold">Versions</label>
+  </h2>
+</div>
+</div>
+
+
+  {% for version in feeDto.fee_versions%}
+<div class="gird-row">
+<div class="column-third">
+  <label class="bold">version:</label> {{ version.version }}
+</div>
+<div class="column-third">
+  <label class="bold">Valid from:</label> {{ version.valid_from }}
+</div>
+<div class="column-third">
+  <label class="bold">Valid to:</label> {{ version.valid_to }}
+</div>
+<div class="column-third">
+  <label class="bold">Author:</label> {{ version.author }}
+</div>
+<div class="column-third">
+  <label class="bold">Approved by:</label> {{ version.approvedBy }}
+</div>
+<div class="column-third">
+  <label class="bold">Direction:</label> {{ version.direction }}
+</div>
+<div class="column-third">
+  <label class="bold">Status:</label> {{ version.status }}
+</div>
+<div class="column-third">
+  <label class="bold">Amount:</label>
+  {% if version.flat_amount.amount %}
+  {{ version.flat_amount.amount }}
+  {% elif version.percentage_amount.percentage %}
+  {{ version.percentage_amount.percentage }}
+  {% endif %}
+</div>
+<div class="column-two-thirds">
+  <label class="bold">Memo line:</label> {{ version.memo_line }}
+</div>
+<div class="column-two-thirds">
+  <label class="bold">Natural account code:</label> {{ version.natural_account_code }}
+</div>
+<div class="column-two-thirds">
+  <label class="bold">Description:</label> {{ version.description }}
+</div>
+<div class="column-two-thirds">
+  <label class="bold">Reason For Update:</label> {{ version.reason_for_update }}
+</div>
+</div>
+<hr width=100%>
+  {% endfor %}
+
+{% if not isDraftVersionExists(feeDto) %}
+  {% if isEditor(user.allInfo.roles) %}
+  <div class="gird-row">
+  <div class="column">
+    <h2 class="heading-medium">
+      <label class="bold">Actions</label>
+    </h2>
+  </div>
+  </div>
+
+  <div class="gird-row">
+  <div class="column-third">
+    <ul class="list list-bullet">
+      <li>
+        {% if feeDto.current_version.flat_amount.amount %}
+          {% set type = 'flat' %}
+        {% elif feeDto.current_version.percentage_amount.percentage %}
+          {% set type = 'percentage' %}
+        {% elif feeDto.current_version.volume_amount.volume %}
+          {% set type = 'volume' %}
+        {% endif %}
+        <a href="/admin/v2/fees/version/create/{{ feeDto.code }}?type={{ type }}" class="link">{{ t("Create a new fee version") }}</a>
+      </li>
+    </ul>
+  </div>
+  </div>
+  <hr width=100%>
+  {% endif %}
+{% endif %}
+
+
+<div class="grid-row">
+<div class="column">
+  <p><a href="/admin/v2/all-fees" class="link-back">{{ t("View all fees") }}</a></p>
+</div>
+</div>
+  {% endblock %}
