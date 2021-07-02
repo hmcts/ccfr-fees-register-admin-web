@@ -16,3 +16,8 @@ export default express.Router()
           feeDto: feeDto })
       })
   })
+
+  .get(Paths.draftViewV2.uri, (req: express.Request, res: express.Response) => {
+    console.log('one')
+    res.render('admin/v2/views/confirm-draft-approval')    
+  })
