@@ -3,8 +3,8 @@
   {% set title = t('Fee | ' + serviceName) %}
   
   {% block content %}
-  {% if versionNo%}
-    {% set version = getLiveFeeVersion(feeDto, versionNo) %}
+  {% if versionNo %}
+    {% set version = getSelectedVersion(feeDto, versionNo) %}
   {% endif %}
 <div class="govuk-grid-row">
   <div class="govuk-grid-column-full">
