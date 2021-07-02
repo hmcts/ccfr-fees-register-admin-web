@@ -1,0 +1,39 @@
+{% extends "layout.njk" %}
+
+  {% set title = t('Fee | ' + serviceName) %}
+  
+  {% block content %}
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-full">
+    <nav class="hmcts-sub-navigation" aria-label="Sub navigation">
+      <div class="jui-width-container">
+        <ul class="hmcts-sub-navigation__list">
+          <li class="hmcts-sub-navigation__item">
+            <a class="hmcts-sub-navigation__link" aria-current="page" href="/admin/V2/fee-details?feeCode={{ feeDto.code }}&pageType={{ pageType }}">
+              Fee details
+            </a>
+          </li>
+          <li class="hmcts-sub-navigation__item">
+            <a class="hmcts-sub-navigation__link" href="/admin/V2/previous-versions?feeCode={{ feeDto.code }}&pageType={{ pageType }}">
+              Fee versions
+            </a>
+          </li>
+        </ul>
+      </div>
+    </nav>
+    <h1 class="heading-xlarge margin-bottom-0">
+            {{t('Fee versions')}}
+      </h1>
+  </div>
+</div>
+
+<details class="govuk-details">
+    <summary class="govuk-details-summary">
+        Version 2
+    </summary>
+    <div class="govuk-details-text">
+        <h2>
+            Updated details
+        </h2>
+    </div>
+</details>
