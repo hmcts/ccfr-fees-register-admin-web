@@ -9,14 +9,14 @@ export default express.Router()
   FeesClient.retrieveReferenceData()
   .then(data => {
     res.render(Paths.referenceDataPage.associatedView, {
-        referenceData: data,
-        applicants: data.applicantTypes,
-        jurisdictions: data.jurisdictions1,
-        jurisdictions2: data.jurisdictions2,
-        services: data.serviceTypes,
-        channels: data.channelTypes,
-        events: data.eventTypes,
-        directions: data.directionTypes
-        })
+      referenceData: data,
+      applicants: data.applicantTypes,
+      jurisdictions: data.jurisdictions1,
+      jurisdictions2: data.jurisdictions2,
+      services: data.serviceTypes,
+      channels: data.channelTypes,
+      events: data.eventTypes,
+      directions: data.directionTypes
     })
+  })
 })
