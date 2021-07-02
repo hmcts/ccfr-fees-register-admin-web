@@ -36,7 +36,7 @@ Scenario('FeesRegister Admin Console Editor Screen Validation @crossbrowser', I 
   I.click('Sign out');
 });
 
-Scenario('FeesRegister Admin Console Editor Screen For Discontinued fees - Fee details', I => {
+Scenario('FeesRegister Admin Console Editor Screen Validation @crossbrowser', I => {
   I.login('functionaltesteditor@hmcts.net', 'LevelAt12');
   I.wait(CCFRATConstants.tenSecondWaitTime);
   I.waitForText('Discontinued fees', CCFRATConstants.tenSecondWaitTime);
