@@ -19,7 +19,6 @@ export class ValidationErrors {
   static readonly SI_REF_ID_REQUIRED: string = 'Enter SI Ref ID'
   static readonly FEE_ORDER_NAME_REQUIRED: string = 'Enter Fee Order Name'
   static readonly ALPHA_NUMERIC_WITH_HYPHEN: string = 'Keyword should not have special characters except hyphen'
-  static readonly ALPHA_NUMERIC: string = 'Reason for rejection should not have special characters'
   static readonly AMOUNT_REQUIRED: string = 'Enter amount'
   static readonly AMOUNT_NOT_NEGATIVE: string = 'Enter amount equal or greater than zero'
   static readonly AMOUNT_TOO_BIG: string = 'Enter amount lower than 10,000,000'

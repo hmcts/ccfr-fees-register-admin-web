@@ -9,12 +9,11 @@ selectReferenceData %}
 {% extends "layout.njk" %}
 
 {% set title = t('Fee | ' + serviceName) %}
-{% set heading = t('Why are you rejecting this draft fee?') %}
 {% block content %}
-
+<h2 class="reject-fee-heading reject-fee-margin">Why are you rejecting this draft fee?</h2>
     <form method="post">
         {{ csrfProtection(csrfToken) }}
-        {{ textArea(t('Reason For Reject'), 'reasonForReject', form) }}
+        {{ textArea(t(''), 'reasonForReject', form) }}
         {{ submitButton(t('Submit')) }}
     </form>
 
