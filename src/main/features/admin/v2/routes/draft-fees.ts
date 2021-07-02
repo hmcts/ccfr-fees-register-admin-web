@@ -1,10 +1,10 @@
 import * as express from 'express'
 
-import { Paths } from '../../../admin/paths'
+import { Paths } from 'admin/paths'
 
-import { FeesClient } from '../../../../app/fees/v2/feesClient'
+import { FeesClient } from 'app/fees/v2/feesClient'
 
-import { Fee2Dto } from '../../../../app/fees/v2/model/fees-register-api-contract'
+import { Fee2Dto } from 'app/fees/v2/model/fees-register-api-contract'
 let draftAuthor = null
 
 export default express.Router()
