@@ -48,7 +48,11 @@
          </thead>
           <tbody>
            {% for fee in fees %}
-           {% set version = getLiveFeeVersion(fee) %}  
+              {% if fee.current_version != null %}
+                {% set version = fee.current_version %}
+              {% else %}
+                {% set version = fee.fee_versions[0] %}
+              {% endif %}
              {% if version.approvedBy == null %}
            <tr>
                 <td data-label="Code" class="padding10 whitespace-inherit">{{ fee.code }}</td>
@@ -74,9 +78,9 @@
 
                  <td >
                 {% if user %}
-                    <a href="/admin/V2/fee-details?feeCode={{ fee.code }}&pageType=livefee">View</a>
+                    <a href="/admin/V2/fee-details?feeCode={{ fee.code }}&pageType=draftfee&vno={{version.version}}">View</a>
                 {% else  %}
-                    <a href="/fees/{{fee.code}}">View</a>
+                    <a href="/admin/V2/fee-details?feeCode={{ fee.code }}&pageType=draftfee">View</a>
                 {% endif %}
                 </td>
             </tr>

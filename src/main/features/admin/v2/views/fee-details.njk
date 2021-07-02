@@ -484,22 +484,34 @@
   </div>
 {% endif %}
 </dl>
+  {% if pageType === 'draftfee' %}
+      <a href="/admin/v2/draft/confirm-draft-approval/{{ feeDto.code }}" class="custom-button btn">
+    Request approval
+      </a>
 
-         <a href="/admin/v2/draft/confirm-draft-approval/{{ feeDto.code }}" class="custom-button btn">
-        Request approval
-         </a>
-
-         <form method="post" action="">
-          {{ csrfProtection(csrfToken) }}
-          <input type="hidden" name="feeCode" value="{{ fee.code }}"/>
-          <input type="hidden" name="version" value="{{ displayedFeeVersion.version }}"/>
-          <input type="hidden" name="action" value="delete"/>
-          <input type="submit" class="button delete-button" value="Delete">
-        </form>
- 
+      <form method="post" action="">
+      {{ csrfProtection(csrfToken) }}
+      <input type="hidden" name="feeCode" value="{{ feeDto.code }}"/>
+      <input type="hidden" name="version" value="{{ versionNo }}"/>
+      <input type="hidden" name="action" value="delete"/>
+      <input type="submit" class="button delete-button" value="Delete">
+    </form>
+  {% endif %}
+ {% if not pageType === 'draftfee'%}s
   {% if  isDraftVersionExists(feeDto) %}
     {% if isEditor(user.allInfo.roles) %}
       <a href="/admin/v2/fees/version/create/{{ feeDto.code }}?type={{ type }}" class="custom-button btn">
+        Edit fee
+      </a>
+    {% endif %}
+  {% endif %}
+  {% else %}
+    {% if hasApprovedVersion(feeDto.fee_versions) %}
+      <a title="Edit version" href="/admin/v2/fees/version/create/{{ feeDto.code }}?action=edit&version={{ versionNo }}">
+        Edit fee
+      </a>
+    {% else %}
+      <a title="Edit fee" href="/admin/v2/fees/create?action=edit&feeCode={{ feeDto.code }}">
         Edit fee
       </a>
     {% endif %}
