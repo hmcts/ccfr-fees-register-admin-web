@@ -52,6 +52,7 @@ export class FeeVersionDto {
   valid_from: Date
   valid_to: Date
   description: string
+  reason_for_update: string
   status: FeeVersionStatus
   flat_amount: FlatAmountDto
   percentage_amount: PercentageAmountDto
