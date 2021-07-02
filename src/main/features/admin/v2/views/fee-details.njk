@@ -403,18 +403,8 @@
 {% endif %}
 </dl>
 
-
-         <a href="views/confirm-draft-approval?feeCode={{ feeDto.code }}" class="custom-button btn">
-        Request approval0
-         </a>
-          <a href="/confirm-draft-approval?feeCode={{ feeDto.code }}" class="custom-button btn">
+         <a href="/admin/v2/draft/confirm-draft-approval/{{ feeDto.code }}" class="custom-button btn">
         Request approval
-         </a>
-          <a href="./confirm-draft-approval?feeCode={{ feeDto.code }}" class="custom-button btn">
-        Request approval1
-         </a>
-         <a href="/admin/v2/confirm-draft-approval?feeCode={{ feeDto.code }}" class="custom-button btn">
-        Request approval1
          </a>
 
          <form method="post" action="">
