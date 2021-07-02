@@ -1,0 +1,33 @@
+{% from "includes/macros/form.njk" import errorSummary, textArea, textInput, radioGroup, submitButton, selectInline, selectReferenceData %}
+  {% extends "layout.njk" %}
+
+  {% set title = t('Fee Created | ' + serviceName) %}
+  {% set heading = t('Fee Created') %}
+
+  {% block content %}
+
+<div class="grid-row">
+  <div class="column-full">
+   Are you sure you want to submit this fee for approval?
+    {# TODO: add fee number here #}
+  </div>
+  <div class="column-full">
+
+  </div>
+ 
+
+  <div class="column-full">
+    <a href="/admin/welcome" class="link-back">{{ t('Don’t submit this fee for approval') }}</a>
+  </div>
+
+   <form method="post" action="">
+          {{ csrfProtection(csrfToken) }}
+          <input type="hidden" name="feeCode" value="{{ fee.code }}"/>
+          <input type="hidden" name="version" value="{{ displayedFeeVersion.version }}"/>
+          <input type="hidden" name="action" value="submit"/>
+          <input type="submit" class="button" value="Submit">
+        </form>
+
+</div>
+
+  {% endblock %}
