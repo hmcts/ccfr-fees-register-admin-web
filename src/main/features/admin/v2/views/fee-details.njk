@@ -6,9 +6,6 @@
   {% if versionNo%}
     {% set version = getLiveFeeVersion(feeDto, versionNo) %}
   {% endif %}
-  {{ version.si_ref_id}}
-  {{ version.status}}
-  {{ version.version}}
 <div class="govuk-grid-row">
   <div class="govuk-grid-column-full">
     <nav class="hmcts-sub-navigation" aria-label="Sub navigation">
@@ -225,7 +222,7 @@
     {% if feeDto.current_version.flat_amount.amount %}
       £{{feeDto.current_version.flat_amount.amount.toFixed(2).toString()}}
     {% elif feeDto.current_version.volume_amount.amount %}
-      £{{feeDto.current_version.flat_amount.amount.toFixed(2).toString()}}
+      £{{feeDto.current_version.volume_amount.amount.toFixed(2).toString()}}
     {% else %}
       &nbsp;
     {% endif %}
@@ -233,7 +230,7 @@
     {% if version.flat_amount.amount %}
       £{{version.flat_amount.amount.toFixed(2).toString()}}
     {% elif version.volume_amount.amount %}
-      £{{version.flat_amount.amount.toFixed(2).toString()}}
+      £{{version.volume_amount.amount.toFixed(2).toString()}}
     {% else %}
       &nbsp;
     {% endif %}
