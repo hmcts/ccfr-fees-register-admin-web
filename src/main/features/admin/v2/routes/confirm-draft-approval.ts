@@ -1,6 +1,6 @@
 import * as express from 'express'
 
-import { Paths } from '../../../admin/paths'
+import { Paths } from 'admin/paths'
 
 // import { FeesClient } from '../../../../app/fees/v2/feesClient'
 
@@ -16,9 +16,9 @@ import { Paths } from '../../../admin/paths'
 // }
 
 export default express.Router()
-.get(Paths.draftViewV2.uri, (req: express.Request, res: express.Response) => {
+.get(Paths.confirmDraftApprovalV2.uri, (req: express.Request, res: express.Response) => {
   console.log('one')
-  res.render(Paths.draftViewV2.associatedView)
+  res.render(Paths.confirmDraftApprovalV2.associatedView)
 })
 
   // .post(Paths.dashboard.uri, (req: express.Request, res: express.Response) => {
