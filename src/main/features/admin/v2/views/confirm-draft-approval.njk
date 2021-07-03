@@ -3,7 +3,6 @@
 
   {% set title = t('Fee Created | ' + serviceName) %}
   {% set heading = t('Fee Created') %}
-
   {% block content %}
 
 <div class="grid-row">
@@ -21,7 +20,6 @@
   </div>
 
    <form method="post" action="">
-          {{ csrfProtection(csrfToken) }}
           <input type="hidden" name="feeCode" value="{{ fee.code }}"/>
           <input type="hidden" name="version" value="{{ displayedFeeVersion.version }}"/>
           <input type="hidden" name="action" value="submit"/>

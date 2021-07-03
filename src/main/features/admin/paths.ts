@@ -43,6 +43,7 @@ export class Paths {
   static readonly myDraftFeesPageV2 = new RoutablePath('/admin/v2/draft-fees', 'admin/v2/views/draft-fees')
   static readonly myDraftRejectedByApproverV2 = new RoutablePath('/admin/v2/draft-rejectedbyapprover', 'admin/v2/views/draft-rejectedbyapprover')
   static readonly myDraftAwaitingApprovalV2 = new RoutablePath('/admin/v2/draft-awaitingapproval', 'admin/v2/views/draft-awaitingapproval')
+  static readonly confirmDraftApprovalV2 = new RoutablePath('/admin/v2/confirm-draft-approval/:feeCode', 'admin/v2/views/confirm-draft-approval')
 
   static readonly createFeeVersionPageV2 = new RoutablePath('/admin/v2/fees/version/create/:feeCode', 'admin/v2/views/create-fee-version')
   static readonly dashboard = new RoutablePath('/admin/v2/dashboard', 'admin/v2/views/dashboard')
@@ -53,5 +54,4 @@ export class Paths {
   static readonly createBulkFeesPage = new RoutablePath('/admin/v2/bulkfeesupload', 'admin/v2/views/confirm-create-bulk-fees')
   static readonly csvToJsonPage = new RoutablePath('/admin/v2/tojson', 'admin/v2/views/fee-loader-json')
 
-  static readonly draftViewV2 = new RoutablePath('/admin/v2/confirm-draft-approval/:feeCode', 'admin/v2/views/confirm-draft-approval')
 }
