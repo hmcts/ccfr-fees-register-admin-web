@@ -1,103 +1,38 @@
 import { IsDefined, Max, MaxLength, Min, ValidateIf, IsOptional, Matches } from 'class-validator'
-
 import { IsNotBlank } from 'app/forms/validation/validators/isBlank'
 import { Fractions } from 'app/forms/validation/validators/fractions'
-
-const moment = require('moment')
-
 import { ValidationErrors } from 'fees/v2/forms/model/ValidationErrors'
 import {
   FeeDto, FixedFeeDto, RangedFeeDto,
   FeeVersionDto, FlatAmountDto, PercentageAmountDto, VolumeAmountDto
 } from 'fees/v2/model/fees-register-api-contract'
 
+const moment = require('moment')
+const serviceMsg = { message: ValidationErrors.SERVICE_REQUIRED }
+const jurisdictionOneMsg = { message: ValidationErrors.JURISDICTION1_REQUIRED }
+const typeMsg = { message: ValidationErrors.TYPE_REQUIRED }
+const jurisdictionTwoMsg = { message: ValidationErrors.JURISDICTION2_REQUIRED }
+const eventMsg = { message: ValidationErrors.EVENT_REQUIRED }
+const chennalMsg = { message: ValidationErrors.CHANNEL_REQUIRED }
+const applicationTypeMsg = { message: ValidationErrors.APPLICATION_TYPE_REQUIRED }
+const directionMsg = { message: ValidationErrors.DIRECTION_REQUIRED }
+const fromDateMsg = { message: ValidationErrors.FROM_DATE_REQUIRED }
+const reasonForUpdateMsg = { message: ValidationErrors.REASON_FOR_UPDATE_REQUIRED }
+const descriptionMsg = { message: ValidationErrors.DESCRIPTION_REQUIRED }
+const amountNotNegMsg = { message: ValidationErrors.AMOUNT_NOT_NEGATIVE }
+const amountTooBigMsg = { message: ValidationErrors.AMOUNT_TOO_BIG }
+const amountInvalidMsg = { message: ValidationErrors.AMOUNT_INVALID_DECIMALS }
 export class CreateFeeForm {
   code?: string
 
-  @IsDefined({ message: ValidationErrors.TYPE_REQUIRED })
-  @IsNotBlank({ message: ValidationErrors.TYPE_REQUIRED })
-  type?: string
+  @IsDefined(reasonForUpdateMsg)
+  @IsNotBlank(reasonForUpdateMsg)
+  reasonForUpdate?: string
 
-  @IsDefined({ message: ValidationErrors.TYPE_REQUIRED })
-  @IsNotBlank({ message: ValidationErrors.TYPE_REQUIRED })
-  amountType?: string
-
-  @IsDefined({ message: ValidationErrors.DESCRIPTION_REQUIRED })
-  @IsNotBlank({ message: ValidationErrors.DESCRIPTION_REQUIRED })
+  @IsDefined(descriptionMsg)
+  @IsNotBlank(descriptionMsg)
   @MaxLength(2000, { message: ValidationErrors.DESCRIPTION_TOO_LONG })
   description?: string
-
-  @MaxLength(2000, { message: ValidationErrors.MEMO_LINE_TOO_LONG })
-  @IsDefined({ message: ValidationErrors.MEMO_LINE_REQUIRED })
-  memoLine?: string
-
-  @ValidateIf(o => o.amountType === 'flat')
-  @Min(0, { message: ValidationErrors.AMOUNT_NOT_NEGATIVE })
-  @Max(9999999.99, { message: ValidationErrors.AMOUNT_TOO_BIG })
-  @Fractions(0, 2, { message: ValidationErrors.AMOUNT_INVALID_DECIMALS })
-  amount?: number
-
-  @ValidateIf(o => o.type === 'ranged')
-  @Min(0, { message: ValidationErrors.AMOUNT_NOT_NEGATIVE })
-  @Max(9999999.99, { message: ValidationErrors.AMOUNT_TOO_BIG })
-  @Fractions(0, 2, { message: ValidationErrors.AMOUNT_INVALID_DECIMALS })
-  fromRange?: number
-
-  @ValidateIf(o => o.type === 'ranged' && o.toRange)
-  @Min(0, { message: ValidationErrors.AMOUNT_NOT_NEGATIVE })
-  @Max(9999999.99, { message: ValidationErrors.AMOUNT_TOO_BIG })
-  @Fractions(0, 2, { message: ValidationErrors.AMOUNT_INVALID_DECIMALS })
-  toRange?: number
-
-  @ValidateIf(o => o.type === 'ranged')
-  @IsDefined({ message: ValidationErrors.RANGE_UNIT_REQUIRED })
-  @IsNotBlank({ message: ValidationErrors.RANGE_UNIT_REQUIRED })
-  rangeUnit?: string
-
-  @ValidateIf(o => o.amountType === 'percentage')
-  @Min(0.01, { message: ValidationErrors.PERCENTAGE_GREATER_THAN_0 })
-  @Max(100, { message: ValidationErrors.PERCENTAGE_LOWER_THAN_100 })
-  @Fractions(0, 2, { message: ValidationErrors.PERCENTAGE_INVALID_DECIMALS })
-  percentage?: number
-
-  @IsDefined({ message: ValidationErrors.CHANNEL_REQUIRED })
-  @IsNotBlank({ message: ValidationErrors.CHANNEL_REQUIRED })
-  channel?: string
-
-  @IsDefined({ message: ValidationErrors.EVENT_REQUIRED })
-  @IsNotBlank({ message: ValidationErrors.EVENT_REQUIRED })
-  event?: string
-
-  @IsDefined({ message: ValidationErrors.DIRECTION_REQUIRED })
-  @IsNotBlank({ message: ValidationErrors.DIRECTION_REQUIRED })
-  direction?: string
-
-  @IsDefined({ message: ValidationErrors.APPLICATION_TYPE_REQUIRED })
-  @IsNotBlank({ message: ValidationErrors.APPLICATION_TYPE_REQUIRED })
-  applicantType?: string
-
-  @IsDefined({ message: ValidationErrors.SERVICE_REQUIRED })
-  @IsNotBlank({ message: ValidationErrors.SERVICE_REQUIRED })
-  service?: string
-
-  @IsDefined({ message: ValidationErrors.JURISDICTION1_REQUIRED })
-  @IsNotBlank({ message: ValidationErrors.JURISDICTION1_REQUIRED })
-  jurisdiction1?: string
-
-  @IsDefined({ message: ValidationErrors.JURISDICTION2_REQUIRED })
-  @IsNotBlank({ message: ValidationErrors.JURISDICTION2_REQUIRED })
-  jurisdiction2?: string
-
-  @IsDefined({ message: ValidationErrors.NAC_REQUIRED })
-  naturalAccountCode?: string
-
-  @IsDefined({ message: ValidationErrors.FROM_DATE_REQUIRED })
-  @IsNotBlank({ message: ValidationErrors.FROM_DATE_REQUIRED })
-  fromDate?: Date
-
-  toDate?: Date
-
-  edit: boolean
 
   statutoryInstrument?: string
 
@@ -106,11 +41,97 @@ export class CreateFeeForm {
   @IsDefined({ message: ValidationErrors.FEE_ORDER_NAME_REQUIRED })
   feeOrderName?: string
 
+  @IsDefined(serviceMsg)
+  @IsNotBlank(serviceMsg)
+  service?: string
+
+  @IsDefined(jurisdictionOneMsg)
+  @IsNotBlank(jurisdictionOneMsg)
+  jurisdiction1?: string
+
+  @IsDefined(jurisdictionTwoMsg)
+  @IsNotBlank(jurisdictionTwoMsg)
+  jurisdiction2?: string
+
+  @IsDefined(typeMsg)
+  @IsNotBlank(typeMsg)
+  type?: string
+
+  @IsDefined(typeMsg)
+  @IsNotBlank(typeMsg)
+  amountType?: string
+
+  @IsDefined(eventMsg)
+  @IsNotBlank(eventMsg)
+  event?: string
+
+  @IsDefined(chennalMsg)
+  @IsNotBlank(chennalMsg)
+  channel?: string
+
   @IsOptional()
   @Matches(/^([a-zA-Z0-9-]*)$/, {
     message: ValidationErrors.ALPHA_NUMERIC_WITH_HYPHEN
   })
   keyword?: string
+
+  @IsDefined(applicationTypeMsg)
+  @IsNotBlank(applicationTypeMsg)
+  applicantType?: string
+
+  @IsDefined(directionMsg)
+  @IsNotBlank(directionMsg)
+  direction?: string
+
+  @MaxLength(2000, { message: ValidationErrors.MEMO_LINE_TOO_LONG })
+  @IsDefined({ message: ValidationErrors.MEMO_LINE_REQUIRED })
+  memoLine?: string
+
+  @IsDefined(fromDateMsg)
+  @IsNotBlank(fromDateMsg)
+  fromDate?: Date
+
+  toDate?: Date
+
+  @IsDefined({ message: ValidationErrors.NAC_REQUIRED })
+  naturalAccountCode?: string
+
+  @ValidateIf(o => o.type === 'ranged')
+  @Min(0, amountNotNegMsg)
+  @Max(9999999.99, amountTooBigMsg)
+  @Fractions(0, 2, amountInvalidMsg)
+  fromRange?: number
+
+  @ValidateIf(o => o.type === 'ranged' && o.toRange)
+  @Min(0, amountNotNegMsg)
+  @Max(9999999.99, amountTooBigMsg)
+  @Fractions(0, 2, amountInvalidMsg)
+  toRange?: number
+
+  @ValidateIf(o => o.type === 'ranged')
+  @IsDefined({ message: ValidationErrors.RANGE_UNIT_REQUIRED })
+  @IsNotBlank({ message: ValidationErrors.RANGE_UNIT_REQUIRED })
+  rangeUnit?: string
+
+  @ValidateIf(o => o.amountType === 'flat')
+  @Min(0, amountNotNegMsg)
+  @Max(9999999.99, amountTooBigMsg)
+  @Fractions(0, 2, amountInvalidMsg)
+  amount?: number
+
+  @ValidateIf(o => o.amountType === 'percentage')
+  @Min(0.01, { message: ValidationErrors.PERCENTAGE_GREATER_THAN_0 })
+  @Max(100, { message: ValidationErrors.PERCENTAGE_LOWER_THAN_100 })
+  @Fractions(0, 2, { message: ValidationErrors.PERCENTAGE_INVALID_DECIMALS })
+  percentage?: number
+
+  @ValidateIf(o => o.amountType === 'volume')
+  @Min(0, amountNotNegMsg)
+  @Max(9999999.99, amountTooBigMsg)
+  @Fractions(0, 2, amountInvalidMsg)
+  volAmount?: number
+
+  edit: boolean
 
   constructor () {
     this.code = null
@@ -122,6 +143,7 @@ export class CreateFeeForm {
     this.event = ''
     this.channel = ''
     this.direction = ''
+    this.reasonForUpdate = ''
     this.jurisdiction1 = ''
     this.jurisdiction2 = ''
     this.rangeUnit = ''
@@ -156,6 +178,7 @@ export class CreateFeeForm {
     form.jurisdiction1 = (form as any).jurisdiction1.name
     form.jurisdiction2 = (form as any).jurisdiction2.name
     form.memoLine = (form as any).memo_line
+    form.reasonForUpdate = (form as any).reason_for_update
     form.naturalAccountCode = (form as any).natural_account_code
     form.siRefId = (form as any).si_ref_id
     form.keyword = (form as any).keyword
@@ -184,6 +207,11 @@ export class CreateFeeForm {
 
     if (form.amount) {
       form.amount = +form.amount
+    }
+
+    if (form.volAmount) {
+      form.amount = +form.volAmount
+      form.volAmount = +form.volAmount
     }
 
     if (form.fromRange) {
@@ -236,6 +264,7 @@ export class CreateFeeForm {
 
     dto.version.natural_account_code = this.naturalAccountCode
     dto.version.statutory_instrument = this.statutoryInstrument
+    dto.version.reason_for_update = this.reasonForUpdate
     dto.version.si_ref_id = this.siRefId
     dto.version.fee_order_name = this.feeOrderName
     dto.version.description = this.description
