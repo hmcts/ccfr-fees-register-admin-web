@@ -1,4 +1,4 @@
-{% from "includes/macros/form.njk" import errorSummary, textArea, textInput, radioGroup, submitButton, selectInline, selectReferenceData %}
+{% from "includes/macros/form.njk" import csrfProtection, submitButton %}
   {% extends "layout.njk" %}
   {% set title = t('Fee details') %}
   {% block content %}
