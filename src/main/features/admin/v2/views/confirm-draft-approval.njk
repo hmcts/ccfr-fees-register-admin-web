@@ -15,9 +15,10 @@
       <div class="column-full padding-left-right-0">
 
       <form method="post" action="">
+       {{ csrfProtection(csrfToken) }}
         <input type="hidden" name="feeCode" value="{{ feeCode }}"/>
         <input type="hidden" name="version" value="{{ version }}"/>
-        <input type="hidden" name="action" value="approve"/>
+        <input type="hidden" name="action" value="submit"/>
         <input type="submit" class="button custom-secondary-btn" value="Request approval">
       </form>
       </div>
