@@ -11,5 +11,5 @@ export default express.Router()
   })
   .post(Paths.draftDeleteAreYouSureV2.uri, (req: express.Request, res: express.Response) => {
     FeesClient.deleteFeeVersion(res.locals.user, req.body.feeCode, req.body.version)
-      .then(() =>res.redirect(`/admin/v2/draft-deleted-confirmation?feeCode=${req.query.feeCode}`))
+      .then(() => res.redirect(`/admin/v2/draft-deleted-confirmation?feeCode=${req.query.feeCode}`))
   })
