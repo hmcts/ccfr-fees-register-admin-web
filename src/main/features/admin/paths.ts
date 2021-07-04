@@ -43,7 +43,10 @@ export class Paths {
   static readonly myDraftFeesPageV2 = new RoutablePath('/admin/v2/draft-fees', 'admin/v2/views/draft-fees')
   static readonly myDraftRejectedByApproverV2 = new RoutablePath('/admin/v2/draft-rejectedbyapprover', 'admin/v2/views/draft-rejectedbyapprover')
   static readonly myDraftAwaitingApprovalV2 = new RoutablePath('/admin/v2/draft-awaitingapproval', 'admin/v2/views/draft-awaitingapproval')
-  static readonly confirmDraftApprovalV2 = new RoutablePath('/admin/v2/confirm-draft-approval/:feeCode', 'admin/v2/views/confirm-draft-approval')
+  static readonly confirmDraftApprovalV2 = new RoutablePath('/admin/v2/confirm-draft-approval', 'admin/v2/views/confirm-draft-approval')
+  static readonly approvalRequestConfirmationV2 = new RoutablePath('/admin/v2/approval-request-confirmation', 'admin/v2/views/approval-request-confirmation')
+  static readonly draftDeleteAreYouSureV2 = new RoutablePath('/admin/v2/draft-delete-are-you-sure', 'admin/v2/views/draft-delete-are-you-sure')
+  static readonly draftDeletedConfirmationV2 = new RoutablePath('/admin/v2/draft-deleted-confirmation', 'admin/v2/views/draft-deleted-confirmation')
 
   static readonly createFeeVersionPageV2 = new RoutablePath('/admin/v2/fees/version/create/:feeCode', 'admin/v2/views/create-fee-version')
   static readonly dashboard = new RoutablePath('/admin/v2/dashboard', 'admin/v2/views/dashboard')
