@@ -635,3 +635,28 @@ text-align: left;
 .margin-top-0 {
   margin-top: 0 !important;
 }
+.govuk-details {
+  margin-bottom: 30px;
+  
+}
+
+.govuk-details-text {
+  padding: 15px;
+  padding-left: 20px;
+  border-left: 5px solid #bfc1c3;
+}
+
+.reference-ul {
+  list-style: disc;
+  margin-left: 15px;
+}
+
+.govuk-details-summary {
+  display: inline-block;
+  color: #005ea5;
+  cursor: pointer;
+  position: relative;
+  margin-bottom: 0.26316em;
+  padding-left: 25px;
+  text-decoration: underline;
+}

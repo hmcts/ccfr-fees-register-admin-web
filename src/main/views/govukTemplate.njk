@@ -79,7 +79,7 @@
         {% if isEditor(user.allInfo.roles)%}
         <a href="./draft-fees" class="custom-draft-all-fees">{{ t('Your Drafts') }} </a>
         {% elif isApprover(user.allInfo.roles)%}
-          <a href="./draft-fees" class="custom-draft-all-fees">{{ t('Approvals') }} </a>
+        <a href="./pending-approval" class="custom-draft-all-fees">{{ t('Approvals') }} </a>
         {% endif %}
       </ul>
       </div>
