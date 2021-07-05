@@ -18,9 +18,13 @@ Scenario('FeesRegister Admin Console Editor Screen For Live Fees', I => {
   I.login('functionaltesteditor@hmcts.net', 'LevelAt12');
   I.wait(CCFRATConstants.tenSecondWaitTime);
   // to-do based on updates and future stories
+<<<<<<< HEAD
   I.verifyLiveFeesHeaders();
   //verify any existing fee details under live Tab
   I.verifyFeeDetails('FEE0582','civil','100.00');
+=======
+  I.verifyLiveFees();
+>>>>>>> 134962e146b191d48575d4b793ac72583017a729
   I.click('Sign out');
 });
 
@@ -50,7 +54,15 @@ Scenario('FeesRegister Admin Console Editor Screen Validation @crossbrowser', I 
   I.waitForText('FEE0565', CCFRATConstants.tenSecondWaitTime);
   I.see('Version1');
   I.see('Version2');
+<<<<<<< HEAD
   I.verifyFeeDetails('FEE0565','family','66.99');
+=======
+  I.click('FEE0565');
+  I.waitForText('Fee details', CCFRATConstants.tenSecondWaitTime);
+  I.see('Code');
+  I.see('FEE0565');
+  I.see('test editor');
+>>>>>>> 134962e146b191d48575d4b793ac72583017a729
   I.click('Sign out');
 });
 
