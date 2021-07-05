@@ -47,10 +47,10 @@ Scenario('FeesRegister Admin Console Editor Screen Validation @crossbrowser', I 
   I.waitForText('Valid to', CCFRATConstants.tenSecondWaitTime);
   // to-do based on updates and future stories
   //Check one of the existing fee, once full implementation done we can add our own code
-  I.waitForText('FEE0565', CCFRATConstants.tenSecondWaitTime);
+  I.waitForText('FEE0588', CCFRATConstants.tenSecondWaitTime);
   I.see('Version1');
   I.see('Version2');
-  I.verifyFeeDetails('FEE0565','family','66.99');
+  I.verifyFeeDetails('FEE0588','family','112.00');
   I.click('Sign out');
 });
 
