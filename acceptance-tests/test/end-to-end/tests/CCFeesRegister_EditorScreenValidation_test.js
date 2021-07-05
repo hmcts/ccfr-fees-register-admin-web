@@ -14,43 +14,36 @@ Scenario('FeesRegister Admin Console Editor Header Validation', I => {
   I.click('Sign out');
 });
 
-Scenario('FeesRegister Admin Console Editor Screen For Live Fees', I => {
+Scenario('FeesRegister Admin Console Editor Screen For Live Fees Details', I => {
   I.login('functionaltesteditor@hmcts.net', 'LevelAt12');
   I.wait(CCFRATConstants.tenSecondWaitTime);
   // to-do based on updates and future stories
-  I.verifyLiveFeesHeaders();
+  I.verifyFeesHeaders();
   //verify any existing fee details under live Tab
-  I.verifyFeeDetails('FEE0582','civil','100.00');
+  I.verifyFeeDetails('FEE0582','civil','Flat','100.00');
   I.click('Sign out');
 });
 
-Scenario('FeesRegister Admin Console Editor Screen Validation @crossbrowser', I => {
+Scenario('FeesRegister Admin Console Editor Approved but not live Fees Details Check @crossbrowser', I => {
   I.login('functionaltesteditor@hmcts.net', 'LevelAt12');
   I.wait(CCFRATConstants.tenSecondWaitTime);
   I.waitForText('Approved but not live fees', CCFRATConstants.tenSecondWaitTime);
   I.click('Approved but not live fees');
-  I.waitForText('Code', CCFRATConstants.tenSecondWaitTime);
-  I.waitForText('Description', CCFRATConstants.tenSecondWaitTime);
-  I.waitForText('Jurisdiction2', CCFRATConstants.tenSecondWaitTime);
-  // to-do based on updates and future stories
+  I.verifyFeesHeaders();
+  //Check one of the existing fee, once full implementation done we can add our own code
+  I.verifyFeeDetails('FEE0621','tribunal','Volume','100.00');
   I.click('Sign out');
 });
 
-Scenario('FeesRegister Admin Console Editor Screen Validation @crossbrowser', I => {
+Scenario('FeesRegister Admin Console Editor Discontinued Fees Details Check @crossbrowser', I => {
   I.login('functionaltesteditor@hmcts.net', 'LevelAt12');
   I.wait(CCFRATConstants.tenSecondWaitTime);
   I.waitForText('Discontinued fees', CCFRATConstants.tenSecondWaitTime);
   I.click('Discontinued fees');
-  I.waitForText('Code', CCFRATConstants.tenSecondWaitTime);
-  I.waitForText('Description', CCFRATConstants.tenSecondWaitTime);
-  I.waitForText('Jurisdiction2', CCFRATConstants.tenSecondWaitTime);
-  I.waitForText('Valid to', CCFRATConstants.tenSecondWaitTime);
+  I.verifyFeesHeaders();
   // to-do based on updates and future stories
   //Check one of the existing fee, once full implementation done we can add our own code
-  I.waitForText('FEE0588', CCFRATConstants.tenSecondWaitTime);
-  I.see('Version1');
-  I.see('Version2');
-  I.verifyFeeDetails('FEE0588','family','112.00');
+  I.verifyFeeDetails('FEE0588','family','Flat','112.00');
   I.click('Sign out');
 });
 
