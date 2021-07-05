@@ -14,24 +14,23 @@ Scenario('FeesRegister Admin Console Editor Header Validation', I => {
   I.click('Sign out');
 });
 
-Scenario('FeesRegister Admin Console Editor Screen For Live Fees Details', I => {
+Scenario('FeesRegister Admin Console Editor Screen For Live Fees', I => {
   I.login('functionaltesteditor@hmcts.net', 'LevelAt12');
   I.wait(CCFRATConstants.tenSecondWaitTime);
   // to-do based on updates and future stories
-  I.verifyFeesHeaders();
-  //verify any existing fee details under live Tab
-  I.verifyFeeDetails('FEE0582','civil','Flat','100.00');
+  I.verifyLiveFees();
   I.click('Sign out');
 });
 
-Scenario('FeesRegister Admin Console Editor Approved but not live Fees Details Check @crossbrowser', I => {
+Scenario('FeesRegister Admin Console Editor Screen Validation @crossbrowser', I => {
   I.login('functionaltesteditor@hmcts.net', 'LevelAt12');
   I.wait(CCFRATConstants.tenSecondWaitTime);
   I.waitForText('Approved but not live fees', CCFRATConstants.tenSecondWaitTime);
   I.click('Approved but not live fees');
-  I.verifyFeesHeaders();
-  //Check one of the existing fee, once full implementation done we can add our own code
-  I.verifyFeeDetails('FEE0621','tribunal','Volume','100.00');
+  I.waitForText('Code', CCFRATConstants.tenSecondWaitTime);
+  I.waitForText('Description', CCFRATConstants.tenSecondWaitTime);
+  I.waitForText('Jurisdiction2', CCFRATConstants.tenSecondWaitTime);
+  // to-do based on updates and future stories
   I.click('Sign out');
 });
 
@@ -43,7 +42,14 @@ Scenario('FeesRegister Admin Console Editor Discontinued Fees Details Check @cro
   I.verifyFeesHeaders();
   // to-do based on updates and future stories
   //Check one of the existing fee, once full implementation done we can add our own code
-  I.verifyFeeDetails('FEE0588','family','Flat','112.00');
+  I.waitForText('FEE0565', CCFRATConstants.tenSecondWaitTime);
+  I.see('Version1');
+  I.see('Version2');
+  I.click('FEE0565');
+  I.waitForText('Fee details', CCFRATConstants.tenSecondWaitTime);
+  I.see('Code');
+  I.see('FEE0565');
+  I.see('test editor');
   I.click('Sign out');
 });
 
