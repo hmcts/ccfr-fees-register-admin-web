@@ -266,7 +266,7 @@
     <label class="bold">Range from</label> 
   </dt>
   <dd class="govuk-check-your-answers__answer">
-    {% if feeDto.min_range %}
+    {% if feeDto.min_range and feeDto.min_range !== ''%}
        {{feeDto.min_range}}
     {% else %}
        &nbsp;
@@ -279,7 +279,7 @@
     <label class="bold">Range to</label> 
   </dt>
   <dd class="govuk-check-your-answers__answer">
-    {% if feeDto.max_range %}
+    {% if feeDto.max_range and feeDto.max_range !== '' %}
        {{feeDto.max_range}}
     {% else %}
        &nbsp;
