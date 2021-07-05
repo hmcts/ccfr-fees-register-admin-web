@@ -526,4 +526,5 @@ text-align: left;
 .version-div {
   position: relative;
   border-bottom: 1px solid #bfc1c3;
+  display: table-row;
 }
