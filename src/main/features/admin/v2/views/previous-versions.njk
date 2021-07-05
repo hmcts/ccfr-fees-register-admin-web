@@ -35,5 +35,17 @@
         <h2>
             Updated details
         </h2>
+        <dl class="govuk-check-your-answers">
+            <div class="govuk-check-your-answers__contents">
+                <dt class="govuk-check-your-answers__question">
+                    Reason for fee update
+                </dt>
+                <dd class="govuk-check-your-answers__change">
+                {% if feeDto.reason %}
+  {{feeDto.reason}}
+{% else %}
+  &nbsp;
+{% endif %}
+                </dd>
     </div>
 </details>
