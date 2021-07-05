@@ -13,6 +13,7 @@ export default express.Router()
       .then((feeDto: Fee2Dto) => {
         res.render(Paths.feeDetailsViewPagev2.associatedView, {
           pageType: req.query.pageType,
+          versionNo: req.query.vno,
           feeDto: feeDto })
       })
   })
