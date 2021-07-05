@@ -506,8 +506,12 @@ text-align: left;
 }
 
 .version-dt {
-  font-weight: bold;
+  display: table-cell;
   margin: 0.63158em 4em 0.21053em 0;
+  width: 30%;
+  font-weight: bold;
+  border-bottom: 1px solid #bfc1c3;
+  padding: 0.63158em 1.05263em 0.47368em 0;
 }
 
 .version-current {
@@ -516,8 +520,8 @@ text-align: left;
 
 .version-previous {
   width: 320px;
-    padding-left: 15px;
-    text-align: left;
+  padding-left: 15px;
+  text-align: left;
 }
 
 .version-div {
