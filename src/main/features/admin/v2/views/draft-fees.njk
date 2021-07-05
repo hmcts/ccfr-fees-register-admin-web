@@ -53,7 +53,8 @@
               {% else %}
                 {% set version = fee.fee_versions[0] %}
               {% endif %}
-             {% if version.approvedBy == null %}
+              
+             {% if fee.current_version.approvedBy  == null %}
            <tr>
                 <td data-label="Code" class="padding10 whitespace-inherit">{{ fee.code }}</td>
                 {% if version.flat_amount %}
