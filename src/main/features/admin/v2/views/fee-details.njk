@@ -488,12 +488,16 @@
     <a href="/admin/v2/confirm-draft-approval?feeCode={{ feeDto.code }}&version={{ versionNo }}" class="custom-button btn">
       Request approval
     </a>
+    <br>
+    <br>
     <a title="Delete version" href="/admin/v2/draft-delete-are-you-sure?feeCode={{ feeDto.code }}&version={{ versionNo }}">
       Delete
     </a>
   {% endif %}
 
     {% if pageType === 'draftfee' %}
+      <br>
+      <br>
       {% if hasApprovedVersion(feeDto.fee_versions) %}
         <a title="Edit version" href="/admin/v2/fees/version/create/{{ feeDto.code }}?action=edit&version={{ versionNo }}">
           Edit fee
