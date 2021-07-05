@@ -1,4 +1,4 @@
-/* Large table data columns */
+    /* Large table data columns */
 
 .font-xxsmall {
     font-family: "nta", Arial, sans-serif;
@@ -104,6 +104,102 @@
     -moz-box-sizing: border-box;
     box-sizing: border-box;
     vertical-align: top;
+}
+
+#serviceParent {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+#serviceChild {
+    flex: 1 0 33%;
+}
+
+#ranged-container,
+#flatAmount,
+#percentageAmount,
+#volumeAmount {
+    display: none;
+    position: relative;
+    border-left: 3px solid #ccc;
+    padding-left: 50px;
+    margin-left: 20px;
+}
+
+#fee-type>.form-group {
+    margin-bottom: 15px;
+}
+
+#RangedUnitValue {
+    width: 25%;
+}
+
+#serviceChild.form-group,
+#verticalRadio.form-group {
+    margin-bottom: 10px;
+}
+
+.govuk-form-group {
+    margin-bottom: 30px;
+}
+
+.govuk-fieldset {
+    margin: 0;
+    padding: 0;
+    border: 0;
+}
+
+.date-field--width {
+    width: 35%;
+}
+
+#siRefId {
+    width: 25%
+}
+
+#statutoryInstrument {
+    width: 40%
+}
+
+.small-box {
+    width: 10%;
+}
+
+.mid-box {
+    width: 20%;
+}
+
+.input-icon {
+    position: relative;
+}
+
+.input-icon>i {
+    position: absolute;
+    display: block;
+    transform: translate(0, -50%);
+    top: 50%;
+    pointer-events: none;
+    width: 25px;
+    text-align: center;
+    font-style: normal;
+    font-weight: bold;
+}
+
+.input-icon>input {
+    padding-left: 25px;
+    padding-right: 0;
+}
+
+.disply-section {
+    display: block !important;
+}
+
+#createForm span.error-message {
+    width: 300px;
+}
+
+.label-float {
+    float: left;
 }
 
 .govuk-tabs__list {
@@ -552,4 +648,24 @@ a.custom-signout-link:visited {
     display: block;
     margin-top: 0;
     margin-bottom: 15px;
-}
+    .govuk-details {
+        margin-bottom: 30px;
+    }
+    .govuk-details-text {
+        padding: 15px;
+        padding-left: 20px;
+        border-left: 5px solid #bfc1c3;
+    }
+    .reference-ul {
+        list-style: disc;
+        margin-left: 15px;
+    }
+    .govuk-details-summary {
+        display: inline-block;
+        color: #005ea5;
+        cursor: pointer;
+        position: relative;
+        margin-bottom: 0.26316em;
+        padding-left: 25px;
+        text-decoration: underline;
+    }
