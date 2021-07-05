@@ -30,6 +30,3 @@ Scenario('FeesRegister Verify Pending For Approval', I => {
   I.click('Sign out');
 
 });
-
-
-
