@@ -409,6 +409,7 @@
 	{% endif %}
 	{% if isApprover(user.allInfo.roles) %}
 		<p>
+		<br>
 			<a href="/admin/v2/reject-fee-reason/{{ feeDto.code }}/{{feeDto.current_version.version}}">Reject fee</a>
 		</p>
 	{% endif %}

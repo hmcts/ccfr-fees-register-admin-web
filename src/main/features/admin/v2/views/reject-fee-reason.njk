@@ -10,10 +10,11 @@ selectReferenceData %}
 
 {% set title = t('Fee | ' + serviceName) %}
 {% block content %}
-<h2 class="reject-fee-heading reject-fee-margin">Why are you rejecting this draft fee?</h2>
+<br>
+<h2 class="reject-fee-heading">Why are you rejecting this draft fee?</h2>
     <form method="post">
         {{ csrfProtection(csrfToken) }}
-        {{ textArea(t(''), 'reasonForReject', form) }}
+        {{ textArea(t(''), 'reasonForReject', form, rows=3) }}
         {{ submitButton(t('Submit')) }}
     </form>
 
