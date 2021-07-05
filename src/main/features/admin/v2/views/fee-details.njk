@@ -425,25 +425,6 @@
                 <dd class = "govuk-check-your-answers__change">
                 </dd>
             </div>
-            <div class="govuk-check-your-answers__contents">
-                <dt class="govuk-check-your-answers__question">
-                    Version
-                </dt>
-                <dd class="govuk-check-your-answers__change">
-                {% if feeDto.current_version.version %}
-                    {{feeDto.current_version.version}}
-                    {% else %}
-                    &nbsp;
-                    {% endif %}
-                </dd>
-                <dd class = "govuk-check-your-answers__change">
-                {% if feeDto.fee_versions.version[0] %}
-                    {{feeDto.fee_versions.version[0]}}
-                    {% else %}
-                    &nbsp;
-                    {% endif %}
-                </dd>
-            </div>
              <div class="govuk-check-your-answers__contents">
                 <dt class="govuk-check-your-answers__question">
                     Version
@@ -458,6 +439,27 @@
                 <dd class = "govuk-check-your-answers__change">
                 {% if feeDto.fee_versions[0] %}
                     {{feeDto.fee_versions[0]}}
+                    {% else %}
+                    &nbsp;
+                    {% endif %}
+                </dd>
+            </div>
+            <div class="govuk-check-your-answers__contents">
+                <dt class="govuk-check-your-answers__question">
+                    Amount
+                </dt>
+                <dd class="govuk-check-your-answers__change">
+                {% if feeDto.current_version.flat_amount.amount %}
+                  {{feeDto.current_version.flat_amount.amount}}
+                {% elif feeDto.current_version.volume_amount.amount %}
+                  {{feeDto.current_version.flat_amount.amount}}
+                {% else %}
+                  &nbsp;
+                {% endif %}
+                </dd>
+                <dd class = "govuk-check-your-answers__change">
+                {% if feeDto.flat_amount[0] %}
+                    {{feeDto.flat_amount[0]}}
                     {% else %}
                     &nbsp;
                     {% endif %}
