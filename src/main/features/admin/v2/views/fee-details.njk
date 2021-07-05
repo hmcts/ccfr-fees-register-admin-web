@@ -252,7 +252,7 @@
     {% endif %}
   {% elif version and (pageType === 'disconfee' or pageType === 'notlivefee') %}
     {% if version.percentage_amount.percentage %}
-       %{{version.percentage_amount.percentage}}%
+       {{version.percentage_amount.percentage}}%
     {% else %}
        &nbsp;
     {% endif %}
