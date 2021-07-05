@@ -495,8 +495,8 @@
 {% if pageType==='pa' %}
       <form method="post" action="">
        {{ csrfProtection(csrfToken) }}
-        <input type="hidden" name="feeCode" value="{{ feeCode }}"/>
-        <input type="hidden" name="version" value="{{ version }}"/>
+        <input type="hidden" name="feeCode" value="{{ feeDto.code }}"/>
+        <input type="hidden" name="version" value="{{ versionNo }}"/>
         <input type="hidden" name="action" value="approve"/>
         <input type="submit" class="button" value="Approve fee">
       </form>
