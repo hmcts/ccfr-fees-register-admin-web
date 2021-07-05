@@ -4,7 +4,7 @@ const CCPBConstants = require('../tests/CCFRAcceptanceTestConstants');
 // const faker = require('faker');
 const faker = require('faker');
 const RANDOM_NUMBER = 99999;
-const {verifyLiveFeesHeaders} = require('./live_fees');
+const {verifyFeesHeaders, verifyFeeDetails} = require('./live_fees');
 const CCDNumber = faker.random.number(RANDOM_NUMBER);
 module.exports = () => actor({
   // done
@@ -96,7 +96,6 @@ module.exports = () => actor({
     this.click(`//*[contains(text(),"${feeKeyword}")]/..//input[@type="submit" and @value = "Reject"]`)
     this.wait(CCPBConstants.fiveSecondWaitTime)
   },
-  verifyLiveFees() {
-    verifyLiveFeesHeaders
-  }
+    verifyFeesHeaders,
+    verifyFeeDetails
 });

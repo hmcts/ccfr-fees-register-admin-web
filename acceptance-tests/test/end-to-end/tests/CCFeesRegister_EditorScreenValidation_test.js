@@ -3,7 +3,7 @@ const CCFRATConstants = require('./CCFRAcceptanceTestConstants');
 const faker = require('faker');
 const RANDOM_NUMBER = 9999;
 
-Feature('CC FeesRegister Admin Acceptance Tests For Live Fees').retry(CCFRATConstants.retryScenario);
+Feature('CC FeesRegister Admin Acceptance Tests For Live Fees').retry(CCFRATConstants.retryScenario)
 
 Scenario('FeesRegister Admin Console Editor Header Validation', I => {
   I.login('functionaltesteditor@hmcts.net', 'LevelAt12');
@@ -34,15 +34,12 @@ Scenario('FeesRegister Admin Console Editor Screen Validation @crossbrowser', I 
   I.click('Sign out');
 });
 
-Scenario('FeesRegister Admin Console Editor Screen Validation @crossbrowser', I => {
+Scenario('FeesRegister Admin Console Editor Discontinued Fees Details Check @crossbrowser', I => {
   I.login('functionaltesteditor@hmcts.net', 'LevelAt12');
   I.wait(CCFRATConstants.tenSecondWaitTime);
   I.waitForText('Discontinued fees', CCFRATConstants.tenSecondWaitTime);
   I.click('Discontinued fees');
-  I.waitForText('Code', CCFRATConstants.tenSecondWaitTime);
-  I.waitForText('Description', CCFRATConstants.tenSecondWaitTime);
-  I.waitForText('Jurisdiction2', CCFRATConstants.tenSecondWaitTime);
-  I.waitForText('Valid to', CCFRATConstants.tenSecondWaitTime);
+  I.verifyFeesHeaders();
   // to-do based on updates and future stories
   //Check one of the existing fee, once full implementation done we can add our own code
   I.waitForText('FEE0565', CCFRATConstants.tenSecondWaitTime);
