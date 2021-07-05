@@ -565,18 +565,7 @@
                     Editor
                 </dt>
                 <dd class="govuk-check-your-answers__change">
-                {% if feeDto.current_version.editor %}
-                  {{ feeDto.current_version.editor }}
-                {% else %}
-                  &nbsp;
-                {% endif %}
-                </dd>
-                <dd class = "govuk-check-your-answers__change">
-                {% if feeDto.editor[0] %}
-                    {{feeDto.editor[0]}}
-                    {% else %}
-                    &nbsp;
-                    {% endif %}
+               {{user.allInfo.forename}} {{user.allInfo.surname}}
                 </dd>
             </div>
              <div class="govuk-check-your-answers__contents">
@@ -584,18 +573,7 @@
                     Approver
                 </dt>
                 <dd class="govuk-check-your-answers__change">
-                {% if feeDto.current_version.approver %}
-                  {{ feeDto.current_version.approver }}
-                {% else %}
-                  &nbsp;
-                {% endif %}
-                </dd>
-                <dd class = "govuk-check-your-answers__change">
-                {% if feeDto.approver[0] %}
-                    {{feeDto.approver[0]}}
-                    {% else %}
-                    &nbsp;
-                    {% endif %}
+                {{user.allInfo.forename}} {{user.allInfo.surname}}
                 </dd>
             </div>
             <div class="govuk-check-your-answers__contents">
@@ -603,15 +581,15 @@
                     Date approved
                 </dt>
                 <dd class="govuk-check-your-answers__change">
-                {% if feeDto.current_version.date_approved %}
-                  {{ feeDto.current_version.date_approved }}
+                {% if feeDto.current_version.approvedBy %}
+                  {{ feeDto.current_version.approvedBy }}
                 {% else %}
                   &nbsp;
                 {% endif %}
                 </dd>
                 <dd class = "govuk-check-your-answers__change">
-                {% if feeDto.date_approved[0] %}
-                    {{feeDto.date_approved[0]}}
+                {% if feeDto.approvedBy[0] %}
+                    {{feeDto.approvedBy[0]}}
                     {% else %}
                     &nbsp;
                     {% endif %}
