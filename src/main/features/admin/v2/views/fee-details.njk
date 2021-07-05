@@ -402,6 +402,51 @@
 {% endif %}
 </dl>
 
+<details class="govuk-details">
+    <summary class="govuk-details-summary">
+        Version 2
+    </summary>
+    <div class="govuk-details-text">
+        <h2>
+            Updated details
+        </h2>
+        <dl class="govuk-check-your-answers">
+            <div class="govuk-check-your-answers__contents">
+                <dt class="govuk-check-your-answers__question">
+                    Reason for fee update
+                </dt>
+                <dd class="govuk-check-your-answers__change">
+                {% if feeDto.reason %}
+                    {{feeDto.reason}}
+                    {% else %}
+                    &nbsp;
+                    {% endif %}
+                </dd>
+                <dd class = "govuk-check-your-answers__change">
+                </dd>
+            </div>
+            <div class="govuk-check-your-answers__contents">
+                <dt class="govuk-check-your-answers__question">
+                    Version
+                </dt>
+                <dd class="govuk-check-your-answers__change">
+                {% if feeDto.current_version.version %}
+                    {{feeDto.current_version.version}}
+                    {% else %}
+                    &nbsp;
+                    {% endif %}
+                </dd>
+                <dd class = "govuk-check-your-answers__change">
+                {% if feeDto.previous_version.version %}
+                    {{feeDto.previous_version.version}}
+                    {% else %}
+                    &nbsp;
+                    {% endif %}
+                </dd>
+            </div>
+        </dl>
+</details>
+
   {% if not isDraftVersionExists(feeDto) %}
     {% if isEditor(user.allInfo.roles) %}
 

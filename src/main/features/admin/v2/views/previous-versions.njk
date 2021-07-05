@@ -42,10 +42,32 @@
                 </dt>
                 <dd class="govuk-check-your-answers__change">
                 {% if feeDto.reason %}
-  {{feeDto.reason}}
-{% else %}
-  &nbsp;
-{% endif %}
+                    {{feeDto.reason}}
+                    {% else %}
+                    &nbsp;
+                    {% endif %}
                 </dd>
-    </div>
+                <dd class = "govuk-check-your-answers__change">
+                </dd>
+            </div>
+            <div class="govuk-check-your-answers__contents">
+                <dt class="govuk-check-your-answers__question">
+                    Version
+                </dt>
+                <dd class="govuk-check-your-answers__change">
+                {% if feeDto.current_version.version %}
+                    {{feeDto.current_version.version}}
+                    {% else %}
+                    &nbsp;
+                    {% endif %}
+                </dd>
+                <dd class = "govuk-check-your-answers__change">
+                {% if feeDto.previous_version.version %}
+                    {{feeDto.previous_version.version}}
+                    {% else %}
+                    &nbsp;
+                    {% endif %}
+                </dd>
+            </div>
+        </dl>
 </details>

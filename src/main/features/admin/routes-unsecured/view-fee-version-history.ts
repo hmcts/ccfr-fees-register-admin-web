@@ -13,6 +13,6 @@ export default express.Router()
         res.locals.user = {
           allInfo: { roles: [] }
         }
-        res.render(Paths.previousVersionsViewPagev2.associatedView, { feeDto: feeDto })
+        res.render(Paths.feeDetailsViewPagev2.associatedView, { feeDto: feeDto })
       })
   })
