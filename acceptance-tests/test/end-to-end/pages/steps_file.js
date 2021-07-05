@@ -4,7 +4,7 @@ const CCPBConstants = require('../tests/CCFRAcceptanceTestConstants');
 // const faker = require('faker');
 const faker = require('faker');
 const RANDOM_NUMBER = 99999;
-const {verifyLiveFeesHeaders} = require('./live_fees');
+const {verifyFeesHeaders, verifyFeeDetails} = require('./live_fees');
 const CCDNumber = faker.random.number(RANDOM_NUMBER);
 module.exports = () => actor({
   // done
@@ -26,17 +26,16 @@ module.exports = () => actor({
     this.click(signoutLabel);
     this.wait(CCPBConstants.fiveSecondWaitTime);
   },
-  // getDateInDDMMYYYY(date = new Date()) {
-  //   const stringFillSize = 2;
-  //   const day = date.getDate()
-  //     .toString()
-  //     .padStart(stringFillSize, '0');
-  //   const month = (date.getMonth() + 1).toString()
-  //     .padStart(stringFillSize, '0');
-  //   const year = date.getFullYear()
-  //     .toString();
-  //   return `${day}/${month}/${year}`;
-  // },
+
+  getFormattedDate(){
+    const date = new Date();
+    const stringFillSize = 2;
+    const day = date.getDate().toString().padStart(stringFillSize, '0');
+    const month = (date.getMonth() + 1).toString().padStart(stringFillSize, '0');
+    const year = date.getFullYear().toString();
+    return`${day}/${month}/${year}`;
+  },
+
   addNewFee(feeKeyword) {
     const memoLineNumber = faker.random.number(RANDOM_NUMBER);
     const naturalAccountCode = faker.random.number(RANDOM_NUMBER);
@@ -44,24 +43,33 @@ module.exports = () => actor({
     // const toDate = new Date();
     // toDate.setMonth(toDate.getMonth() + 3);
     this.click('Add a new fee');
+    this.fillField('textarea[id="reasonForUpdate"]', 'New Fee Creation');
     this.fillField({ css: '#memoLine'}, memoLineNumber);
     this.fillField({ css: '#naturalAccountCode'}, '232425');
     this.fillField({ css: '#description'}, feeKeyword);
-    this.fillField({ css: '#fromDate'}, fromDate.toLocaleDateString('en-GB'));
-    // this.fillField({ css: '#toDate'}, toDate.toLocaleDateString('en-GB'));
+    this.wait(2);
+    this.fillField({ css: '#fromDate'}, this.getFormattedDate());
+    this.wait(2);
     this.fillField({ css: '#amount'}, 120.00);
-    this.selectOption({ css: '#applicantType' }, 'all');
-    this.selectOption({ css: '#jurisdiction1' }, 'family');
-    this.selectOption({ css: '#jurisdiction2' }, 'family court');
-    this.selectOption({ css: '#service' }, 'divorce');
-    this.selectOption({ css: '#event' }, 'appeal');
-    this.selectOption({ css: '#channel' }, 'online');
-    this.selectOption({ css: '#direction' }, 'enhanced');
+    //Applicant;
+    this.checkOption('input[id="all"]');
+    //jurisdiction1;
+    this.checkOption('input[id="family"]');
+    //jurisdiction2
+    this.checkOption('input[id="family court"]');
+    //service
+    this.checkOption('input[id="divorce"]');
+    //event
+    this.checkOption('input[id="hearing"]');
+    //channel
+    this.checkOption('input[id="online"]');
+    //direction
+    this.checkOption('input[id="enhanced"]');
     this.fillField({ css: '#keyword'}, feeKeyword);
     this.fillField({ css: '#feeOrderName'}, feeKeyword);
     this.fillField({ css: '#statutoryInstrument'}, feeKeyword);
     this.fillField({ css: '#siRefId'}, feeKeyword);
-    this.click('Save draft');
+    this.click('Save as draft');
     this.wait(CCPBConstants.tenSecondWaitTime);
   },
   submitForApproval(feeKeyword) {
@@ -88,7 +96,6 @@ module.exports = () => actor({
     this.click(`//*[contains(text(),"${feeKeyword}")]/..//input[@type="submit" and @value = "Reject"]`)
     this.wait(CCPBConstants.fiveSecondWaitTime)
   },
-  verifyLiveFees() {
-    verifyLiveFeesHeaders
-  }
+    verifyFeesHeaders,
+    verifyFeeDetails
 });
