@@ -252,7 +252,7 @@
     {% endif %}
   {% elif version and (pageType === 'disconfee' or pageType === 'notlivefee') %}
     {% if version.percentage_amount.percentage %}
-       %{{version.percentage_amount.percentage}}%
+       {{version.percentage_amount.percentage}}%
     {% else %}
        &nbsp;
     {% endif %}
@@ -263,7 +263,7 @@
 
 <div class="govuk-check-your-answers__contents">
   <dt class="govuk-check-your-answers__question">
-    <label class="bold">Range from</label> 
+    <label class="bold">Range from</label>
   </dt>
   <dd class="govuk-check-your-answers__answer">
 {{feeDto.min_range}}
