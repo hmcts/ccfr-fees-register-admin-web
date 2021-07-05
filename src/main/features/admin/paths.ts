@@ -33,6 +33,7 @@ export class Paths {
   static readonly jurisdiction2ListPage = new RoutablePath('/admin/v2/jurisdictions2', 'admin/v2/views/jurisdiction2-list')
   static readonly eventListPage = new RoutablePath('/admin/v2/events', 'admin/v2/views/event-list')
   static readonly applicantListPage = new RoutablePath('/admin/v2/applicants', 'admin/v2/views/applicant-list')
+  static readonly referenceDataPage = new RoutablePath('/admin/v2/reference-data', 'admin/v2/views/reference-data')
 
   static readonly allFeesPageV2 = new RoutablePath('/admin/v2/all-fees', 'admin/v2/views/all-fees')
   static readonly allApprovedbutnotlivePageV2 = new RoutablePath('/admin/v2/all-approvedbutnotlive', 'admin/v2/views/all-approvedbutnotlive')
