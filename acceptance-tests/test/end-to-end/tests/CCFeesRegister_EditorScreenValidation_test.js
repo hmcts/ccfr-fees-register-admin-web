@@ -8,12 +8,21 @@ Feature('CC FeesRegister Admin Acceptance Tests For Live Fees').retry(CCFRATCons
 Scenario('FeesRegister Admin Console Editor Header Validation', I => {
   I.login('functionaltesteditor@hmcts.net', 'LevelAt12');
   I.wait(CCFRATConstants.tenSecondWaitTime);
-  // to-do based on updates and future stories
-  I.verifyLiveFees();
-  I.Logout("editor");
+  I.see("Fees");
+  I.see("Your Drafts");
+  I.see("Reference Data");
+  I.click('Sign out');
 });
 
-Scenario('FeesRegister Admin Console Editor Screen For Approved but not live fees', I => {
+Scenario('FeesRegister Admin Console Editor Screen For Live Fees', I => {
+  I.login('functionaltesteditor@hmcts.net', 'LevelAt12');
+  I.wait(CCFRATConstants.tenSecondWaitTime);
+  // to-do based on updates and future stories
+  I.verifyLiveFees();
+  I.click('Sign out');
+});
+
+Scenario('FeesRegister Admin Console Editor Screen Validation @crossbrowser', I => {
   I.login('functionaltesteditor@hmcts.net', 'LevelAt12');
   I.wait(CCFRATConstants.tenSecondWaitTime);
   I.waitForText('Approved but not live fees', CCFRATConstants.tenSecondWaitTime);
@@ -22,7 +31,7 @@ Scenario('FeesRegister Admin Console Editor Screen For Approved but not live fee
   I.waitForText('Description', CCFRATConstants.tenSecondWaitTime);
   I.waitForText('Jurisdiction2', CCFRATConstants.tenSecondWaitTime);
   // to-do based on updates and future stories
-  I.Logout("editor");
+  I.click('Sign out');
 });
 
 Scenario('FeesRegister Admin Console Editor Screen Validation @crossbrowser', I => {
@@ -41,7 +50,10 @@ Scenario('FeesRegister Admin Console Editor Screen Validation @crossbrowser', I 
   I.see('Version2');
   I.click('FEE0565');
   I.waitForText('Fee details', CCFRATConstants.tenSecondWaitTime);
-  I.Logout("editor");
+  I.see('Code');
+  I.see('FEE0565');
+  I.see('test editor');
+  I.click('Sign out');
 });
 
 Scenario('FeesRegister Add New Fee and Submit for Approval', I => {
@@ -52,5 +64,5 @@ Scenario('FeesRegister Add New Fee and Submit for Approval', I => {
   I.wait(CCFRATConstants.twoSecondWaitTime);
   I.waitForText('Live fees', CCFRATConstants.tenSecondWaitTime);
   // to-do based on updates and future stories
-  I.Logout("editor");
+  I.click('Sign out');
 });
