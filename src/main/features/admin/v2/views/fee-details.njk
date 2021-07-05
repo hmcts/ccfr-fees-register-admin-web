@@ -411,32 +411,32 @@
             Updated details
         </h2>
         <dl class="govuk-check-your-answers">
-            <div class="govuk-check-your-answers__contents">
-                <dt class="govuk-check-your-answers__question">
+            <div class="version-div">
+                <dt class="version-dt">
                     Reason for fee update
                 </dt>
-                <dd class="govuk-check-your-answers__change">
+                <dd class="version-current">
                 {% if feeDto.reason %}
                     {{feeDto.reason}}
                     {% else %}
                     &nbsp;
                     {% endif %}
                 </dd>
-                <dd class = "govuk-check-your-answers__change">
+                <dd class="version-previous">
                 </dd>
             </div>
-             <div class="govuk-check-your-answers__contents">
-                <dt class="govuk-check-your-answers__question">
+             <div class="version-div">
+                <dt class="version-dt">
                     Version
                 </dt>
-                <dd class="govuk-check-your-answers__change">
+                <dd class="version-current">
                 {% if feeDto.current_version.version %}
                     {{feeDto.current_version.version}}
                     {% else %}
                     &nbsp;
                     {% endif %}
                 </dd>
-                <dd class = "govuk-check-your-answers__change">
+                <dd class="version-previous">
                 {% if feeDto.fee_versions[0] %}
                     {{feeDto.fee_versions[0]}}
                     {% else %}
@@ -444,11 +444,11 @@
                     {% endif %}
                 </dd>
             </div>
-            <div class="govuk-check-your-answers__contents">
-                <dt class="govuk-check-your-answers__question">
+            <div class="version-div">
+                <dt class="version-dt">
                     Amount
                 </dt>
-                <dd class="govuk-check-your-answers__change">
+                <dd class="version-current">
                 {% if feeDto.current_version.flat_amount.amount %}
                   {{feeDto.current_version.flat_amount.amount}}
                 {% elif feeDto.current_version.volume_amount.amount %}
@@ -457,7 +457,7 @@
                   &nbsp;
                 {% endif %}
                 </dd>
-                <dd class = "govuk-check-your-answers__change">
+                <dd class="version-previous">
                 {% if feeDto.version.flat_amount[0] %}
                     {{feeDto.version.flat_amount[0]}}
                     {% else %}
@@ -465,18 +465,18 @@
                     {% endif %}
                 </dd>
             </div>
-            <div class="govuk-check-your-answers__contents">
-                <dt class="govuk-check-your-answers__question">
+            <div class="version-div">
+                <dt class="version-dt">
                     SI Ref ID
                 </dt>
-                <dd class="govuk-check-your-answers__change">
+                <dd class="version-current">
                 {% if feeDto.current_version.si_ref_id %}
                   {{feeDto.current_version.si_ref_id}}
                 {% else %}
                   &nbsp;
                 {% endif %}
                 </dd>
-                <dd class = "govuk-check-your-answers__change">
+                <dd class="version-previous">
                 {% if feeDto.si_ref_id[0] %}
                     {{feeDto.si_ref_id[0]}}
                     {% else %}
@@ -484,18 +484,18 @@
                     {% endif %}
                 </dd>
             </div>
-            <div class="govuk-check-your-answers__contents">
-                <dt class="govuk-check-your-answers__question">
+            <div class="version-div">
+                <dt class="version-dt">
                     Statutory Instrument
                 </dt>
-                <dd class="govuk-check-your-answers__change">
+                <dd class="version-current">
                 {% if feeDto.current_version.statutory_instrument %}
                   {{ feeDto.current_version.statutory_instrument }}
                 {% else %}
                   &nbsp;
                 {% endif %}
                 </dd>
-                <dd class = "govuk-check-your-answers__change">
+                <dd class="version-previous">
                 {% if feeDto.statutory_instrument[0] %}
                     {{feeDto.statutory_instrument[0]}}
                     {% else %}
@@ -503,18 +503,18 @@
                     {% endif %}
                 </dd>
             </div>
-             <div class="govuk-check-your-answers__contents">
-                <dt class="govuk-check-your-answers__question">
+             <div class="version-div">
+                <dt class="version-dt">
                     Fee Order Name
                 </dt>
-                <dd class="govuk-check-your-answers__change">
+                <dd class="version-current">
                 {% if feeDto.current_version.fee_order_name %}
                   {{ feeDto.current_version.fee_order_name }}
                 {% else %}
                   &nbsp;
                 {% endif %}
                 </dd>
-                <dd class = "govuk-check-your-answers__change">
+                <dd class="version-previous">
                 {% if feeDto.fee_order_name[0] %}
                     {{feeDto.fee_order_name[0]}}
                     {% else %}
@@ -522,18 +522,18 @@
                     {% endif %}
                 </dd>
             </div>
-            <div class="govuk-check-your-answers__contents">
-                <dt class="govuk-check-your-answers__question">
+            <div class="version-div">
+                <dt class="version-dt">
                     Valid from
                 </dt>
-                <dd class="govuk-check-your-answers__change">
+                <dd class="version-current">
                 {% if feeDto.current_version.valid_from %}
                   {{ feeDto.current_version.valid_from }}
                 {% else %}
                   &nbsp;
                 {% endif %}
                 </dd>
-                <dd class = "govuk-check-your-answers__change">
+                <dd class="version-previous">
                 {% if feeDto.valid_from[0] %}
                     {{feeDto.valid_from[0]}}
                     {% else %}
@@ -541,18 +541,18 @@
                     {% endif %}
                 </dd>
             </div>
-            <div class="govuk-check-your-answers__contents">
-                <dt class="govuk-check-your-answers__question">
+            <div class="version-div">
+                <dt class="version-dt">
                     Status
                 </dt>
-                <dd class="govuk-check-your-answers__change">
+                <dd class="version-current">
                 {% if feeDto.current_version.status %}
                   {{ feeDto.current_version.status }}
                 {% else %}
                   &nbsp;
                 {% endif %}
                 </dd>
-                <dd class = "govuk-check-your-answers__change">
+                <dd class="version-previous">
                 {% if feeDto.status[0] %}
                     {{feeDto.status[0]}}
                     {% else %}
@@ -560,39 +560,32 @@
                     {% endif %}
                 </dd>
             </div>
-             <div class="govuk-check-your-answers__contents">
-                <dt class="govuk-check-your-answers__question">
+             <div class="version-div">
+                <dt class="version-dt">
                     Editor
                 </dt>
-                <dd class="govuk-check-your-answers__change">
+                <dd class="version-current">
                {{user.allInfo.forename}} {{user.allInfo.surname}}
                 </dd>
             </div>
-             <div class="govuk-check-your-answers__contents">
-                <dt class="govuk-check-your-answers__question">
+             <div class="version-div">
+                <dt class="version-dt">
                     Approver
                 </dt>
-                <dd class="govuk-check-your-answers__change">
+                <dd class="version-current">
                 {{user.allInfo.forename}} {{user.allInfo.surname}}
                 </dd>
             </div>
-            <div class="govuk-check-your-answers__contents">
-                <dt class="govuk-check-your-answers__question">
+            <div class="version-div">
+                <dt class="version-dt">
                     Date approved
                 </dt>
-                <dd class="govuk-check-your-answers__change">
+                <dd class="version-current">
                 {% if feeDto.current_version.approvedBy %}
                   {{ feeDto.current_version.approvedBy }}
                 {% else %}
                   &nbsp;
                 {% endif %}
-                </dd>
-                <dd class = "govuk-check-your-answers__change">
-                {% if feeDto.approvedBy[0] %}
-                    {{feeDto.approvedBy[0]}}
-                    {% else %}
-                    &nbsp;
-                    {% endif %}
                 </dd>
             </div>
         </dl>
