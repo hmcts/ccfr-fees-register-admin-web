@@ -3,6 +3,9 @@
 {% set title = t('Fee | ' + serviceName) %}
 
 {% block content %}
+	{% if versionNo %}
+		{% set version = getSelectedVersion(feeDto, versionNo) %}
+	{% endif %}
 	<div class="govuk-grid-row">
 		<div class="govuk-grid-column-full">
 			<nav class="hmcts-sub-navigation" aria-label="Sub navigation">
@@ -409,7 +412,7 @@
 	{% endif %}
 	{% if isApprover(user.allInfo.roles) %}
 		<p>
-		<br>
+			<br>
 			<a href="/admin/v2/reject-fee-reason/{{ feeDto.code }}/{{feeDto.current_version.version}}">Reject fee</a>
 		</p>
 	{% endif %}
