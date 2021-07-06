@@ -470,16 +470,20 @@
     {% endif %}
   </dd>
 </div>
-{% if isEditor(user.allInfo.roles) %}
   <div class="govuk-check-your-answers__contents">
     <dt class="govuk-check-your-answers__question">
       <label class="bold">Editor</label> 
     </dt>
     <dd class="govuk-check-your-answers__answer">
-      {{user.allInfo.forename}} {{user.allInfo.surname}}
+      {% if feeDto.current_version.author and pageType === 'livefee' %}
+        {{feeDto.current_version.author}}
+      {% elif version and (pageType === 'disconfee' or pageType === 'notlivefee') %}
+        {{version.author}}
+      {% else %}
+        &nbsp;
+      {% endif %}
     </dd>
   </div>
-{% endif %}
 
   <div class="govuk-check-your-answers__contents">
     <dt class="govuk-check-your-answers__question">
