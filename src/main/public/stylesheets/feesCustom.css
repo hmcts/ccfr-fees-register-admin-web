@@ -569,3 +569,6 @@ a.custom-signout-link:visited {
   padding-left: 25px;
   text-decoration: underline;
 }
+h1.heading-xlarge {
+  float: left;
+}
