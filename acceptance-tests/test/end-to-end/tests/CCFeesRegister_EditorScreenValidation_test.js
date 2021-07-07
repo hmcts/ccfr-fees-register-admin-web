@@ -62,5 +62,5 @@ Scenario('FeesRegister Add New Fee and Submit for Approval', I => {
   I.wait(CCFRATConstants.twoSecondWaitTime);
   I.waitForText('Welcome', CCFRATConstants.tenSecondWaitTime);
   I.deleteFees(feeKeyword);
-  I.Logout("editor");
+  I.click('Sign out');
 });
