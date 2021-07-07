@@ -3,7 +3,7 @@ const CCFRATConstants = require('./CCFRAcceptanceTestConstants');
 const faker = require('faker');
 const RANDOM_NUMBER = 9999;
 
-Feature('CC FeesRegister Admin Acceptance Tests For Live Fees')
+Feature('CC FeesRegister Admin Acceptance Tests For Live Fees');
 
 Scenario('FeesRegister Admin Console Editor Header Validation', I => {
   I.login('functionaltesteditor@hmcts.net', 'LevelAt12');
@@ -12,7 +12,7 @@ Scenario('FeesRegister Admin Console Editor Header Validation', I => {
   I.see("Your Drafts");
   I.see("Reference Data");
   I.click('Sign out');
-});
+}).retry(CCFRATConstants.retryScenario);
 
 Scenario('FeesRegister Admin Console Editor Screen For Live Fees Details', I => {
   I.login('functionaltesteditor@hmcts.net', 'LevelAt12');
@@ -22,7 +22,7 @@ Scenario('FeesRegister Admin Console Editor Screen For Live Fees Details', I => 
   //verify any existing fee details under live Tab
   I.verifyFeeDetails('FEE0582','civil','Flat','100.00');
   I.click('Sign out');
-});
+}).retry(CCFRATConstants.retryScenario);
 
 Scenario('FeesRegister Admin Console Editor Approved but not live Fees Details Check @crossbrowser', I => {
   I.login('functionaltesteditor@hmcts.net', 'LevelAt12');
@@ -33,7 +33,7 @@ Scenario('FeesRegister Admin Console Editor Approved but not live Fees Details C
   //Check one of the existing fee, once full implementation done we can add our own code
   I.verifyFeeDetails('FEE0621','tribunal','Volume','100.00');
   I.click('Sign out');
-});
+}).retry(CCFRATConstants.retryScenario);
 
 Scenario('FeesRegister Admin Console Editor Discontinued Fees Details Check @crossbrowser', I => {
   I.login('functionaltesteditor@hmcts.net', 'LevelAt12');
@@ -45,7 +45,7 @@ Scenario('FeesRegister Admin Console Editor Discontinued Fees Details Check @cro
   //Check one of the existing fee, once full implementation done we can add our own code
   I.verifyFeeDetails('FEE0588','family','Flat','112.00');
   I.click('Sign out');
-});
+}).retry(CCFRATConstants.retryScenario);
 
 Scenario('FeesRegister Add New Fee and Submit for Approval', I => {
   const feeKeyword = "SN" + new Date().valueOf().toString();
@@ -63,4 +63,4 @@ Scenario('FeesRegister Add New Fee and Submit for Approval', I => {
   I.waitForText('Welcome', CCFRATConstants.tenSecondWaitTime);
   I.deleteFees(feeKeyword);
   I.click('Sign out');
-});
+}).retry(CCFRATConstants.retryScenario);
