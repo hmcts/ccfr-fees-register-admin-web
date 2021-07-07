@@ -393,7 +393,7 @@
 		{% endif %}
 	</dl>
 {% endif %}
-{% if draft === 'true' %}
+{# {% if draft === 'true' %}
   {% for version in feeDto.fee_versions | reverse %}
 				<details class="govuk-details">
 					<summary class="govuk-details__summary">
@@ -684,7 +684,7 @@
 						</dl>
 					</div>
 				</details>
-  {% endif %}
+  {% endif %} #}
 
 	{% if not isDraftVersionExists(feeDto) %}
 		{% if isEditor(user.allInfo.roles) %}
