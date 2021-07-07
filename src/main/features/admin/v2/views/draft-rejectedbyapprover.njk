@@ -66,9 +66,9 @@
 
                  <td >
                 {% if user %}
-                    <a href="/admin/V2/fee-details?feeCode={{ fee.code }}&pageType=draftfee&vno={{version.version}}">View</a>
+                    <a href="/admin/V2/fee-details?feeCode={{ fee.code }}&pageType=rejectfee&vno={{version.version}}">View</a>
                 {% else  %}
-                    <a href="/admin/V2/fee-details?feeCode={{ fee.code }}&pageType=draftfee">View</a>
+                    <a href="/admin/V2/fee-details?feeCode={{ fee.code }}&pageType=rejectfee">View</a>
                 {% endif %}
                 </td>
             </tr>
