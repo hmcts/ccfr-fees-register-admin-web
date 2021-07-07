@@ -660,3 +660,11 @@ text-align: left;
   padding-left: 25px;
   text-decoration: underline;
 }
+.link-button { 
+  background: none;
+  border: none;
+  color: #1a0dab;
+  text-decoration: underline;
+  cursor: pointer; 
+  margin-left: -5px;
+}
