@@ -27,7 +27,7 @@
   </div>
 </div>
   
-{# {% if draft === 'false' %} #}
+{% if draft === 'false' %}
 <dl class="govuk-check-your-answers govuk-check-your-answers--short">
 <div class="govuk-check-your-answers__contents">
   <dt class="govuk-check-your-answers__question">
@@ -392,6 +392,21 @@
 			</div>
 		{% endif %}
 	</dl>
+
+  {% else %}
+  <div class="govuk-details__text">
+						<dl class="govuk-check-your-answers govuk-check-your-answers--short">
+							{% for version2 in feeDto.fee_versions | reverse %}
+								{% if version2.version == version.version-1%}
+									<h2 class="govuk-body govuk-!-font-size-24 govuk-!-font-weight-bold govuk-!-margin-top-5">Updated details</h2>
+								{% endif %}
+							{% endfor %}
+							<br>
+							<div class="govuk-check-your-answers__contents">
+								<dt class="govuk-check-your-answers__question">Reason for fee update:</dt>
+								<dd class="govuk-check-your-answers__answer">{{ version.reason_for_update}}</dd>
+							</div>
+  {% endif %}
 
 	{% if not isDraftVersionExists(feeDto) %}
 		{% if isEditor(user.allInfo.roles) %}
