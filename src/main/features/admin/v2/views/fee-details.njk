@@ -392,8 +392,8 @@
 			</div>
 		{% endif %}
 	</dl>
-
-  {% else %}
+{% endif %}
+{% if draft === 'true' %}
   <div class="govuk-details__text">
 						<dl class="govuk-check-your-answers govuk-check-your-answers--short">
 							{% for version2 in feeDto.fee_versions | reverse %}
