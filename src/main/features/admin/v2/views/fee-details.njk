@@ -27,7 +27,7 @@
   </div>
 </div>
   
-{% if draft === 'false' && version2.version == version.version-1 %}
+{% if draft == 'false' %}
 <dl class="govuk-check-your-answers govuk-check-your-answers--short">
 <div class="govuk-check-your-answers__contents">
   <dt class="govuk-check-your-answers__question">
@@ -393,7 +393,7 @@
 		{% endif %}
 	</dl>
 {% endif %}
-{% if draft === 'true' %}
+{% if draft == 'true' %}
         {% if version2.version != version.version-1 %}
 						<dl class="govuk-check-your-answers govuk-check-your-answers--short">
 									<h2 class="govuk-body govuk-!-font-size-24 govuk-!-font-weight-bold govuk-!-margin-top-5">Updated details</h2>
