@@ -42,7 +42,7 @@ module.exports = () => actor({
     const fromDate = new Date();
     // const toDate = new Date();
     // toDate.setMonth(toDate.getMonth() + 3);
-    this.click('Add a new fee');
+    this.click('Create a new fee');
     this.fillField('textarea[id="reasonForUpdate"]', 'New Fee Creation');
     this.fillField({ css: '#memoLine'}, memoLineNumber);
     this.fillField({ css: '#naturalAccountCode'}, '232425');
