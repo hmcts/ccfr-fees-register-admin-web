@@ -70,7 +70,7 @@ module.exports = () => actor({
     this.fillField({ css: '#statutoryInstrument'}, feeKeyword);
     this.fillField({ css: '#siRefId'}, feeKeyword);
     this.click('Save as draft');
-    this.wait(CCPBConstants.tenSecondWaitTime);
+    this.wait(CCPBConstants.twentySecondWaitTime);
   },
   submitForApproval(feeKeyword) {
    this.see('My open action');
@@ -84,7 +84,7 @@ module.exports = () => actor({
     this.click('My open action');
     this.see(feeKeyword);
     this.click(`//*[contains(text(),"${feeKeyword}")]/..//input[@type="submit" and @value = "Delete"]`)
-    this.wait(CCPBConstants.fiveSecondWaitTime)
+    this.wait(CCPBConstants.fiveSecondWaitTime);
   },
   verifyFeesSentForApproval(feeKeyword) {
     this.see('My open action');
