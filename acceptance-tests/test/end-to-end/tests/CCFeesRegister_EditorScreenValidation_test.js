@@ -3,7 +3,7 @@ const CCFRATConstants = require('./CCFRAcceptanceTestConstants');
 const faker = require('faker');
 const RANDOM_NUMBER = 9999;
 
-Feature('CC FeesRegister Admin Acceptance Tests For Live Fees').retry(CCFRATConstants.retryScenario)
+Feature('CC FeesRegister Admin Acceptance Tests For Live Fees')
 
 Scenario('FeesRegister Admin Console Editor Header Validation', I => {
   I.login('functionaltesteditor@hmcts.net', 'LevelAt12');
@@ -54,6 +54,13 @@ Scenario('FeesRegister Add New Fee and Submit for Approval', I => {
   I.login('functionaltesteditor@hmcts.net', 'LevelAt12');
   I.wait(CCFRATConstants.twoSecondWaitTime);
   I.waitForText('Live fees', CCFRATConstants.tenSecondWaitTime);
-  // to-do based on updates and future stories
-  I.click('Sign out');
+  I.addNewFee(feeKeyword);
+  I.waitForText('Fee Created', CCFRATConstants.twoSecondWaitTime);
+  I.wait('5');
+  I.see('Fee has been created successfully.');
+  I.click('Return to welcome page');
+  I.wait(CCFRATConstants.twoSecondWaitTime);
+  I.waitForText('Welcome', CCFRATConstants.tenSecondWaitTime);
+  I.deleteFees(feeKeyword);
+  I.Logout("editor");
 });
