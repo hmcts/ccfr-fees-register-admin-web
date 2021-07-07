@@ -415,15 +415,19 @@
 									{% endif %}
 								{% endfor %}
 							</div>
-							{% for version2 in feeDto.fee_versions | reverse %}
-								{% if version2.version == version.version-1 and version.description != version2.description%}
-									<div class="govuk-check-your-answers__contents">
-										<dt class="govuk-check-your-answers__question">Description:</dt>
-										<dd class="govuk-check-your-answers__answer">{{ version.description }}</dd>
-										<dd class="govuk-check-your-answers__answer">Previously: {{ version2.description }}</dd>
-									</div>
-								{% endif %}
-							{% endfor %}
+
+
+							<dd class="govuk-check-your-answers__answer">
+				{% if feeDto.current_version.flat_amount.amount %}
+					{{feeDto.current_version.flat_amount.amount}}
+				{% elif feeDto.current_version.volume_amount.amount %}
+					{{feeDto.current_version.flat_amount.amount}}
+				{% else %}
+    &nbsp;
+  {% endif %}
+			</dd>
+
+
 							{% for version2 in feeDto.fee_versions | reverse %}
 								{% if version2.version == version.version-1 and version.flat_amount.amount != version2.flat_amount.amount%}
 									<div class="govuk-check-your-answers__contents">
@@ -470,29 +474,11 @@
 								{% endif %}
 							{% endfor %}
 							{% for version2 in feeDto.fee_versions | reverse %}
-								{% if version2.version == version.version-1 and version.valid_to!= version2.valid_to%}
-									<div class="govuk-check-your-answers__contents">
-										<dt class="govuk-check-your-answers__question">Valid to:</dt>
-										<dd class="govuk-check-your-answers__answer">{{ version.valid_to }}</dd>
-										<dd class="govuk-check-your-answers__answer">Previously: {{ version2.valid_to }}</dd>
-									</div>
-								{% endif %}
-							{% endfor %}
-							{% for version2 in feeDto.fee_versions | reverse %}
 								{% if version2.version == version.version-1 and version.natural_account_code!= version2.natural_account_code%}
 									<div class="govuk-check-your-answers__contents">
 										<dt class="govuk-check-your-answers__question">Natural account code:</dt>
 										<dd class="govuk-check-your-answers__answer">{{ version.natural_account_code}}</dd>
 										<dd class="govuk-check-your-answers__answer">Previously: {{ version2.natural_account_code }}</dd>
-									</div>
-								{% endif %}
-							{% endfor %}
-							{% for version2 in feeDto.fee_versions | reverse %}
-								{% if version2.version == version.version-1 and version.memo_line != version2.memo_line%}
-									<div class="govuk-check-your-answers__contents">
-										<dt class="govuk-check-your-answers__question">Memo:</dt>
-										<dd class="govuk-check-your-answers__answer">{{ version.memo_line }}</dd>
-										<dd class="govuk-check-your-answers__answer">Previously: {{ version2.memo_line }}</dd>
 									</div>
 								{% endif %}
 							{% endfor %}
@@ -505,22 +491,9 @@
 									</div>
 								{% endif %}
 							{% endfor %}
-							{% for version2 in feeDto.fee_versions | reverse %}
-								{% if version2.version == version.version-1 and version.direction != version2.direction%}
-									<div class="govuk-check-your-answers__contents">
-										<dt class="govuk-check-your-answers__question">Direction:</dt>
-										<dd class="govuk-check-your-answers__answer">{{ version.direction }}</dd>
-										<dd class="govuk-check-your-answers__answer">Previously: {{ version2.direction }}</dd>
-									</div>
-								{% endif %}
-							{% endfor %}
 							<div class="govuk-check-your-answers__contents">
 								<dt class="govuk-check-your-answers__question">Editor:</dt>
 								<dd class="govuk-check-your-answers__answer">{{ version.author }}</dd>
-							</div>
-							<div class="govuk-check-your-answers__contents">
-								<dt class="govuk-check-your-answers__question">Approver:</dt>
-								<dd class="govuk-check-your-answers__answer">{{ version.approvedBy }}</dd>
 							</div>
 						</dl>
             {# {% for version2 in feeDto.fee_versions | reverse %}
