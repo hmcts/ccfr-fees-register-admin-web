@@ -30,7 +30,7 @@
   </div>
 </div>
   
-{% if draft === 'false' %}
+{# {% if draft === 'false' %} #}
 <dl class="govuk-check-your-answers govuk-check-your-answers--short">
 <div class="govuk-check-your-answers__contents">
   <dt class="govuk-check-your-answers__question">
@@ -772,7 +772,7 @@
 								{% endif %}
 							{% endfor %}
 </dl>
-{% endif %}
+{# {% endif %} #}
 
   {% if not isDraftVersionExists(feeDto) %}
     {% if isEditor(user.allInfo.roles) %}
