@@ -398,11 +398,13 @@
 						<dl class="govuk-check-your-answers govuk-check-your-answers--short">
 									<h2 class="govuk-body govuk-!-font-size-24 govuk-!-font-weight-bold govuk-!-margin-top-5">Updated details</h2>
 							<br>
-              {% for version in feeDto.fee_versions | reverse %}
-              <div class="govuk-check-your-answers__contents">
+              			{% for version in feeDto.fee_versions | reverse %}
+              				<div class="govuk-check-your-answers__contents">
 								<dt class="govuk-check-your-answers__question">Reason for fee update:</dt>
 								<dd class="govuk-check-your-answers__answer">{{ version.reason_for_update}}</dd>
 							</div>
+							{% endfor %}
+							{% for version in feeDto.fee_versions | reverse %}
 							<div class="govuk-check-your-answers__contents">
 								<dt class="govuk-check-your-answers__question">Version:</dt>
 								<dd class="govuk-check-your-answers__answer">{{ version.version }}</dd>
@@ -412,27 +414,6 @@
 									{% endif %}
 								{% endfor %}
 							</div>
-<<<<<<< HEAD
-							<dd class="govuk-check-your-answers__answer">
-				{% if feeDto.current_version.flat_amount.amount %}
-					{{feeDto.current_version.flat_amount.amount}}
-				{% elif feeDto.current_version.volume_amount.amount %}
-					{{feeDto.current_version.flat_amount.amount}}
-				{% else %}
-    &nbsp;
-  {% endif %}
-			</dd>
-=======
-							{% for version2 in feeDto.fee_versions | reverse %}
-								{% if version2.version == version.version-1 and version.description != version2.description%}
-									<div class="govuk-check-your-answers__contents">
-										<dt class="govuk-check-your-answers__question">Description:</dt>
-										<dd class="govuk-check-your-answers__answer">{{ version.description }}</dd>
-										<dd class="govuk-check-your-answers__answer">Previously: {{ version2.description }}</dd>
-									</div>
-								{% endif %}
-							{% endfor %}
->>>>>>> parent of 8cc2b8d (removed unnecessary fields)
 							{% for version2 in feeDto.fee_versions | reverse %}
 								{% if version2.version == version.version-1 and version.flat_amount.amount != version2.flat_amount.amount%}
 									<div class="govuk-check-your-answers__contents">
