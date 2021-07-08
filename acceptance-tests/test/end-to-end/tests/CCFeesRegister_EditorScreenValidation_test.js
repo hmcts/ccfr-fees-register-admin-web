@@ -43,18 +43,7 @@ Scenario('FeesRegister Admin Console Editor Discontinued Fees Details Check @cro
   I.verifyFeesHeaders();
   // to-do based on updates and future stories
   //Check one of the existing fee, once full implementation done we can add our own code
-<<<<<<< HEAD
-  I.waitForText('FEE0565', CCFRATConstants.tenSecondWaitTime);
-  I.see('Version1');
-  I.see('Version2');
-  I.click('FEE0565');
-  I.waitForText('Fee details', CCFRATConstants.tenSecondWaitTime);
-  I.see('Code');
-  I.see('FEE0565');
-  I.see('test editor');
-=======
   I.verifyFeeDetails('FEE0588','family','Flat','112.00');
->>>>>>> b6c9f48d6f05724c8882a65f4217aae33dbe98be
   I.click('Sign out');
 }).retry(CCFRATConstants.retryScenario);
 
