@@ -362,11 +362,13 @@
     <label class="bold">Reason for fee update</label> 
   </dt>
   <dd class="govuk-check-your-answers__answer">
-{% if feeDto.reason %}
-  {{feeDto.reason}}
-{% else %}
-  &nbsp;
-{% endif %}
+     {% if feeDto.current_version.reason_for_update and pageType === 'livefee' %}
+      {{feeDto.current_version.reason_for_update}}
+    {% elif version and (pageType === 'disconfee' or pageType === 'notlivefee') %}
+      {{version.reason_for_update}}
+    {% else %}
+      &nbsp;
+    {% endif %}
   </dd>
 </div>
 
