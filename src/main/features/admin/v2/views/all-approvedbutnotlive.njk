@@ -69,11 +69,11 @@
       </td>
       <td>{{ version.description }}</td>
 
-      {% if version.flat_amount %}
+      {% if version.flat_amount and version.flat_amount.amount%}
       <td >£{{ version.flat_amount.amount.toFixed(2).toString()}}</td>
-      {% elif version.volume_amount %}
+      {% elif version.volume_amount and version.volume_amount.amount%}
       <td >£{{ version.volume_amount.amount.toFixed(2).toString()}}</td>
-      {% else %}
+      {% elif version.percentage_amount and version.percentage_amount.percentage %}
       <td >{{ version.percentage_amount.percentage }}%</td>
       {% endif %}
       <td >{{ version.statutory_instrument }}</td>
