@@ -668,3 +668,6 @@ text-align: left;
   cursor: pointer; 
   margin-left: -5px;
 }
+h1.heading-xlarge {
+  float: left;
+}
