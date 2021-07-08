@@ -6,6 +6,7 @@ let feeMapper = new FeeMapper()
 let fixedFlatFeeCsv = {
   feeVersion: '1',
   feeDescription: 'xxx',
+  reasonForUpdate: 'xxx',
   feeCode: 'xxx',
   feeStatus: 'pending',
   feeAmount: '100',
@@ -33,6 +34,7 @@ let fixedFlatFeeCsv = {
 let rangedPercentageFeeCsv = {
   feeVersion: '1',
   feeDescription: 'xxx',
+  reasonForUpdate: 'xxx',
   memoLine: 'xxx',
   feeCode: 'xxx',
   service: 'CMC',
@@ -60,6 +62,7 @@ let rangedPercentageFeeCsv = {
 let bandedVolumeFeeCsv = {
   feeVersion: '1',
   feeDescription: 'xxx',
+  reasonForUpdate: 'xxx',
   feeCode: 'xxx',
   feeStatus: 'pending',
   feeAmount: '100',
@@ -86,6 +89,7 @@ let bandedVolumeFeeCsv = {
 let rateableFlatFeeCsv = {
   feeVersion: '1',
   feeDescription: 'xxx',
+  reasonForUpdate: 'xxx',
   feeCode: 'xxx',
   feeStatus: 'pending',
   feeAmount: '100',
@@ -112,6 +116,7 @@ let rateableFlatFeeCsv = {
 let relationalFlatFeeCsv = {
   feeVersion: '1',
   feeDescription: 'xxx',
+  reasonForUpdate: 'xxx',
   feeCode: 'xxx',
   feeStatus: 'pending',
   feeAmount: '100',
