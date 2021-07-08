@@ -1,20 +1,14 @@
 /* eslint-disable no-magic-numbers */
 const CONF = require('config');
 
-const waitForTimeout = parseInt(CONF.e2e.waitForTimeoutValue);
-const waitForAction = parseInt(CONF.e2e.waitForActionValue);
-
 exports.config = {
-  name: 'ccpay-bubble-acceptance-tests',
+  name: 'fee-register-admin-web-acceptance-tests',
   tests: './test/end-to-end/tests/*_test.js',
   timeout: 10000,
   output: './output',
   helpers: {
     Puppeteer: {
       url: CONF.e2e.frontendUrl,
-      waitForTimeout,
-      waitForAction,
-      // waitForNavigation: 'networkidle0',
       waitForNavigation: 'domcontentloaded',
       show: false,
       headless: true,

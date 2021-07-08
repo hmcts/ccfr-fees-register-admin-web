@@ -253,7 +253,7 @@
     {% endif %}
   {% elif version and (pageType === 'disconfee' or pageType === 'notlivefee' or pageType==='draftfee' or pageType==='rejectfee') %}
     {% if version.percentage_amount.percentage %}
-       %{{version.percentage_amount.percentage}}%
+       {{version.percentage_amount.percentage}}%
     {% else %}
        &nbsp;
     {% endif %}
@@ -267,7 +267,11 @@
     <label class="bold">Range from</label> 
   </dt>
   <dd class="govuk-check-your-answers__answer">
-{{feeDto.min_range}}
+    {% if feeDto.min_range and feeDto.min_range !== ''%}
+       {{feeDto.min_range}}
+    {% else %}
+       &nbsp;
+    {% endif %}
   </dd>
 </div>
 
@@ -276,7 +280,11 @@
     <label class="bold">Range to</label> 
   </dt>
   <dd class="govuk-check-your-answers__answer">
-{{feeDto.max_range}}
+    {% if feeDto.max_range and feeDto.max_range !== '' %}
+       {{feeDto.max_range}}
+    {% else %}
+       &nbsp;
+    {% endif %}
   </dd>
 </div>
 
@@ -355,11 +363,13 @@
     <label class="bold">Reason for fee update</label> 
   </dt>
   <dd class="govuk-check-your-answers__answer">
-{% if feeDto.reason %}
-  {{feeDto.reason}}
-{% else %}
-  &nbsp;
-{% endif %}
+     {% if feeDto.current_version.reason_for_update and pageType === 'livefee' %}
+      {{feeDto.current_version.reason_for_update}}
+    {% elif version and (pageType === 'disconfee' or pageType === 'notlivefee') %}
+      {{version.reason_for_update}}
+    {% else %}
+      &nbsp;
+    {% endif %}
   </dd>
 </div>
 
@@ -463,26 +473,36 @@
     {% endif %}
   </dd>
 </div>
-{% if isEditor(user.allInfo.roles) %}
   <div class="govuk-check-your-answers__contents">
     <dt class="govuk-check-your-answers__question">
       <label class="bold">Editor</label> 
     </dt>
     <dd class="govuk-check-your-answers__answer">
-      {{user.allInfo.forename}} {{user.allInfo.surname}}
+      {% if feeDto.current_version.author and pageType === 'livefee' %}
+        {{feeDto.current_version.author}}
+      {% elif version and (pageType === 'disconfee' or pageType === 'notlivefee') %}
+        {{version.author}}
+      {% else %}
+        &nbsp;
+      {% endif %}
     </dd>
   </div>
-{% endif %}
-{% if isApprover(user.allInfo.roles) %}
+
   <div class="govuk-check-your-answers__contents">
     <dt class="govuk-check-your-answers__question">
      <label class="bold">Approver</label> 
     </dt>
     <dd class="govuk-check-your-answers__answer">
-      {{user.allInfo.forename}} {{user.allInfo.surname}}
+      {% if feeDto.current_version.approvedBy and pageType === 'livefee' %}
+        {{feeDto.current_version.approvedBy}}
+      {% elif version and (pageType === 'disconfee' or pageType === 'notlivefee') %}
+        {{version.approvedBy}}
+      {% else %}
+        &nbsp;
+      {% endif %}
     </dd>
   </div>
-{% endif %}
+
 </dl>
     {% if pageType === 'draftfee' %}
     <a href="/admin/v2/confirm-draft-approval?feeCode={{ feeDto.code }}&version={{ versionNo }}&pageType={{ pageType }}" class="custom-button btn">
