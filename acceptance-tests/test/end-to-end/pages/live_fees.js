@@ -1,7 +1,7 @@
 'use strict';
 const CCFRAcceptanceTestConstants = require('../tests/CCFRAcceptanceTestConstants');
 
-function verifyLiveFeesHeaders(){
+function verifyFeesHeaders(){
   const I = this;
   I.waitForText('Live fees', CCFRAcceptanceTestConstants.tenSecondWaitTime);
   I.waitForText('Code',CCFRAcceptanceTestConstants.fiveSecondWaitTime);
@@ -31,7 +31,7 @@ function verifyLiveFeesHeaders(){
   I.waitForText('Memo',CCFRAcceptanceTestConstants.fiveSecondWaitTime);
   I.waitForText('Natural Account Code',CCFRAcceptanceTestConstants.fiveSecondWaitTime);
 }
-function verifyFeeDetails(feeCode,jurisdiction1,amount) {
+function verifyFeeDetails(feeCode,jurisdiction1,amountType, amount) {
   const I = this;
   I.click(feeCode);
   I.waitForText('Fee details', CCFRAcceptanceTestConstants.tenSecondWaitTime);
@@ -40,11 +40,11 @@ function verifyFeeDetails(feeCode,jurisdiction1,amount) {
   I.see('Jurisdiction 1');
   I.see(jurisdiction1);
   I.see('Amount type');
-  I.see('Flat');
+  I.see(amountType);
   I.see('Amount');
   I.see('£'+amount);
   I.see('test editor');
 }
 module.exports = {
-  verifyLiveFeesHeaders , verifyFeeDetails
+  verifyFeesHeaders , verifyFeeDetails
 };
