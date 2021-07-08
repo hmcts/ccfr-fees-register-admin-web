@@ -9,7 +9,7 @@
 				<div class="jui-width-container">
 					<ul class="hmcts-sub-navigation__list">
 						<li class="hmcts-sub-navigation__item">
-							<a class="hmcts-sub-navigation__link" aria-current="page" href="/admin/V2/fee-details?feeCode={{ feeDto.code }}&pageType={{ pageType }}">
+							<a class="hmcts-sub-navigation__link" aria-current="page" href="/admin/V2/fee-details?draft=false&feeCode={{ feeDto.code }}&pageType={{ pageType }}">
               Fee details
             </a>
 						</li>
@@ -27,7 +27,7 @@
   </div>
 </div>
   
-{% if draft == 'false' %}
+{% if draft === 'false' %}
 <dl class="govuk-check-your-answers govuk-check-your-answers--short">
 <div class="govuk-check-your-answers__contents">
   <dt class="govuk-check-your-answers__question">
@@ -393,26 +393,19 @@
 		{% endif %}
 	</dl>
 {% endif %}
-{% if draft == 'true' %}
-        {% if version2.version != version.version-1 %}
+{% if draft === 'true' %}
+			{% for version in feeDto.fee_versions | reverse %}
 						<dl class="govuk-check-your-answers govuk-check-your-answers--short">
-<<<<<<< HEAD
+							{% for version2 in feeDto.fee_versions | reverse %}
+								{% if version2.version == version.version-1%}
 									<h2 class="govuk-body govuk-!-font-size-24 govuk-!-font-weight-bold govuk-!-margin-top-5">Updated details</h2>
-=======
-							{# {% for version2 in feeDto.fee_versions | reverse %}
-								{% if version2.version == version.version-1%} #}
-									<h2 class="govuk-body govuk-!-font-size-24 govuk-!-font-weight-bold govuk-!-margin-top-5">Updated details</h2>
-								{# {% endif %}
-							{% endfor %} #}
->>>>>>> parent of 2edf55b (removed comments to test)
+								{% endif %}
+							{% endfor %}
 							<br>
-              			{% for version in feeDto.fee_versions | reverse %}
-              				<div class="govuk-check-your-answers__contents">
+  <div class="govuk-check-your-answers__contents">
 								<dt class="govuk-check-your-answers__question">Reason for fee update:</dt>
 								<dd class="govuk-check-your-answers__answer">{{ version.reason_for_update}}</dd>
 							</div>
-							{% endfor %}
-							{% for version in feeDto.fee_versions | reverse %}
 							<div class="govuk-check-your-answers__contents">
 								<dt class="govuk-check-your-answers__question">Version:</dt>
 								<dd class="govuk-check-your-answers__answer">{{ version.version }}</dd>
@@ -422,6 +415,19 @@
 									{% endif %}
 								{% endfor %}
 							</div>
+
+
+							<dd class="govuk-check-your-answers__answer">
+				{% if feeDto.current_version.flat_amount.amount %}
+					{{feeDto.current_version.flat_amount.amount}}
+				{% elif feeDto.current_version.volume_amount.amount %}
+					{{feeDto.current_version.flat_amount.amount}}
+				{% else %}
+    &nbsp;
+  {% endif %}
+			</dd>
+
+
 							{% for version2 in feeDto.fee_versions | reverse %}
 								{% if version2.version == version.version-1 and version.flat_amount.amount != version2.flat_amount.amount%}
 									<div class="govuk-check-your-answers__contents">
@@ -468,29 +474,11 @@
 								{% endif %}
 							{% endfor %}
 							{% for version2 in feeDto.fee_versions | reverse %}
-								{% if version2.version == version.version-1 and version.valid_to!= version2.valid_to%}
-									<div class="govuk-check-your-answers__contents">
-										<dt class="govuk-check-your-answers__question">Valid to:</dt>
-										<dd class="govuk-check-your-answers__answer">{{ version.valid_to }}</dd>
-										<dd class="govuk-check-your-answers__answer">Previously: {{ version2.valid_to }}</dd>
-									</div>
-								{% endif %}
-							{% endfor %}
-							{% for version2 in feeDto.fee_versions | reverse %}
 								{% if version2.version == version.version-1 and version.natural_account_code!= version2.natural_account_code%}
 									<div class="govuk-check-your-answers__contents">
 										<dt class="govuk-check-your-answers__question">Natural account code:</dt>
 										<dd class="govuk-check-your-answers__answer">{{ version.natural_account_code}}</dd>
 										<dd class="govuk-check-your-answers__answer">Previously: {{ version2.natural_account_code }}</dd>
-									</div>
-								{% endif %}
-							{% endfor %}
-							{% for version2 in feeDto.fee_versions | reverse %}
-								{% if version2.version == version.version-1 and version.memo_line != version2.memo_line%}
-									<div class="govuk-check-your-answers__contents">
-										<dt class="govuk-check-your-answers__question">Memo:</dt>
-										<dd class="govuk-check-your-answers__answer">{{ version.memo_line }}</dd>
-										<dd class="govuk-check-your-answers__answer">Previously: {{ version2.memo_line }}</dd>
 									</div>
 								{% endif %}
 							{% endfor %}
@@ -503,26 +491,16 @@
 									</div>
 								{% endif %}
 							{% endfor %}
-							{% for version2 in feeDto.fee_versions | reverse %}
-								{% if version2.version == version.version-1 and version.direction != version2.direction%}
-									<div class="govuk-check-your-answers__contents">
-										<dt class="govuk-check-your-answers__question">Direction:</dt>
-										<dd class="govuk-check-your-answers__answer">{{ version.direction }}</dd>
-										<dd class="govuk-check-your-answers__answer">Previously: {{ version2.direction }}</dd>
-									</div>
-								{% endif %}
-							{% endfor %}
 							<div class="govuk-check-your-answers__contents">
 								<dt class="govuk-check-your-answers__question">Editor:</dt>
 								<dd class="govuk-check-your-answers__answer">{{ version.author }}</dd>
 							</div>
-							<div class="govuk-check-your-answers__contents">
-								<dt class="govuk-check-your-answers__question">Approver:</dt>
-								<dd class="govuk-check-your-answers__answer">{{ version.approvedBy }}</dd>
-							</div>
 						</dl>
+            {% for version2 in feeDto.fee_versions | reverse %}
+							{% if version2.version == version.version-1%}
 								<h2 class="govuk-body govuk-!-font-size-24 govuk-!-font-weight-bold govuk-!-margin-top-9">Existing details</h2>
-                {% endif %}
+							{% endif %}
+						{% endfor %}
 						<dl>
 							<br>
 							<div class="govuk-check-your-answers__contents">
