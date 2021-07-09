@@ -11,7 +11,6 @@ nodejs:
     ccpay:
       secrets:
   environment:
-    NODE_ENV: production
     FEES_URL: http://fees-register-api-pr-380.service.core-compute-preview.internal
 idam-pr:
   enabled: true
