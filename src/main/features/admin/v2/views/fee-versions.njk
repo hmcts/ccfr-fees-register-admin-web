@@ -20,7 +20,7 @@
 					</ul>
 				</div>
 			</nav>
-			<h1 class="heading-xlarge">
+			<h1 class="heading-xlarge margin-top=0px">
 				{{t('Fee versions')}}
 			</h1>
 			<br>
@@ -42,6 +42,7 @@
 							<div class="govuk-check-your-answers__contents">
 								<dt class="version-details-dt">Reason for fee update:</dt>
 								<dd class="version-details-dd-single">{{ version.reason_for_update}}</dd>
+								<dd class="govuk-check-your-answers__change" style="width: 320px; padding-left: 15px; text-align: left"></dd>
 							</div>
 							<div class="govuk-check-your-answers__contents">
 								<dt class="version-details-dt">Version:</dt>
@@ -154,10 +155,12 @@
 							<div class="govuk-check-your-answers__contents">
 								<dt class="version-details-dt">Editor:</dt>
 								<dd class="version-details-dd-single">{{ version.author }}</dd>
+								<dd class="govuk-check-your-answers__change" style="width: 320px; padding-left: 15px; text-align: left"></dd>
 							</div>
 							<div class="govuk-check-your-answers__contents">
 								<dt class="version-details-dt">Approver:</dt>
 								<dd class="version-details-dd-single">{{ version.approvedBy }}</dd>
+								<dd class="govuk-check-your-answers__change" style="width: 320px; padding-left: 15px; text-align: left"></dd>
 							</div>
 						</dl>
 						{% for version2 in feeDto.fee_versions | reverse %}
