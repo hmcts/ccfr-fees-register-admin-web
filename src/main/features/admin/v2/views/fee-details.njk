@@ -27,7 +27,7 @@
   </div>
 </div>
   
-{% if draft === 'false' %}
+{% if draft === 'false' or version2.version != version.version-1 %}
 <dl class="govuk-check-your-answers govuk-check-your-answers--short">
 <div class="govuk-check-your-answers__contents">
   <dt class="govuk-check-your-answers__question">
@@ -416,19 +416,15 @@
 									{% endif %}
 								{% endfor %}
 							</div>
-
-
-							<dd class="govuk-check-your-answers__answer">
+			<dd class="govuk-check-your-answers__answer">
 				{% if feeDto.current_version.flat_amount.amount %}
 					{{feeDto.current_version.flat_amount.amount}}
 				{% elif feeDto.current_version.volume_amount.amount %}
 					{{feeDto.current_version.flat_amount.amount}}
 				{% else %}
-    &nbsp;
-  {% endif %}
+    				&nbsp;
+  				{% endif %}
 			</dd>
-
-
 							{% for version2 in feeDto.fee_versions | reverse %}
 								{% if version2.version == version.version-1 and version.flat_amount.amount != version2.flat_amount.amount%}
 									<div class="govuk-check-your-answers__contents">
@@ -540,6 +536,22 @@
 								<dd class="govuk-check-your-answers__answer">{{ feeDto.range_unit }}</dd>
 							</div>
 							<div class="govuk-check-your-answers__contents">
+								<dt class="govuk-check-your-answers__question">Valid to:</dt>
+								<dd class="govuk-check-your-answers__answer">{{ feeDto.valid_to }}</dd>
+							</div>
+							<div class="govuk-check-your-answers__contents">
+								<dt class="govuk-check-your-answers__question">Natural account code:</dt>
+								<dd class="govuk-check-your-answers__answer">{{ feeDto.natural_account_code  }}</dd>
+							</div>
+							<div class="govuk-check-your-answers__contents">
+								<dt class="govuk-check-your-answers__question">Memo:</dt>
+								<dd class="govuk-check-your-answers__answer">{{ feeDto.memo  }}</dd>
+							</div>
+							<div class="govuk-check-your-answers__contents">
+								<dt class="govuk-check-your-answers__question">Direction:</dt>
+								<dd class="govuk-check-your-answers__answer">{{ feeDto.direction  }}</dd>
+							</div>
+							<div class="govuk-check-your-answers__contents">
 								<dt class="govuk-check-your-answers__question">Applicant type:</dt>
 								<dd class="govuk-check-your-answers__answer">{{ feeDto.applicant_type.name }}</dd>
 							</div>
@@ -551,94 +563,6 @@
 								<dt class="govuk-check-your-answers__question">Channel:</dt>
 								<dd class="govuk-check-your-answers__answer">{{ feeDto.channel }}</dd>
 							</div>
-							{% for version2 in feeDto.fee_versions | reverse %}
-								{% if version2.version == version.version-1 and version2.description == version.description%}
-									<div class="govuk-check-your-answers__contents">
-										<dt class="govuk-check-your-answers__question">Description:</dt>
-										<dd class="govuk-check-your-answers__answer">{{ version.description }}</dd>
-									</div>
-								{% endif %}
-							{% endfor %}
-							{% for version2 in feeDto.fee_versions | reverse %}
-								{% if version2.version == version.version-1 and version2.flat_amount.amount == version.flat_amount.amount%}
-									<div class="govuk-check-your-answers__contents">
-										<dt class="govuk-check-your-answers__question">Amount:</dt>
-										<dd class="govuk-check-your-answers__answer">{{ version.flat_amount.amount }}</dd>
-									</div>
-								{% endif %}
-							{% endfor %}
-							{% for version2 in feeDto.fee_versions | reverse %}
-								{% if version2.version == version.version-1 and version2.si_ref_id == version.si_ref_id%}
-									<div class="govuk-check-your-answers__contents">
-										<dt class="govuk-check-your-answers__question">SI Ref ID:</dt>
-										<dd class="govuk-check-your-answers__answer">{{ version.si_ref_id }}</dd>
-									</div>
-								{% endif %}
-							{% endfor %}
-							{% for version2 in feeDto.fee_versions | reverse %}
-								{% if version2.version == version.version-1 and version2.statutory_instrument == version.statutory_instrument%}
-									<div class="govuk-check-your-answers__contents">
-										<dt class="govuk-check-your-answers__question">Statutory Instrument:</dt>
-										<dd class="govuk-check-your-answers__answer">{{ version.statutory_instrument }}</dd>
-									</div>
-								{% endif %}
-							{% endfor %}
-							{% for version2 in feeDto.fee_versions | reverse %}
-								{% if version2.version == version.version-1 and version2.fee_order_name == version.fee_order_name%}
-									<div class="govuk-check-your-answers__contents">
-										<dt class="govuk-check-your-answers__question">Fee Order Name:</dt>
-										<dd class="govuk-check-your-answers__answer">{{ version.fee_order_name }}</dd>
-									</div>
-								{% endif %}
-							{% endfor %}
-							{% for version2 in feeDto.fee_versions | reverse %}
-								{% if version2.version == version.version-1 and version2.valid_from == version.valid_from%}
-									<div class="govuk-check-your-answers__contents">
-										<dt class="govuk-check-your-answers__question">Valid From:</dt>
-										<dd class="govuk-check-your-answers__answer">{{ version.valid_from }}</dd>
-									</div>
-								{% endif %}
-							{% endfor %}
-							{% for version2 in feeDto.fee_versions | reverse %}
-								{% if version2.version == version.version-1 and version2.valid_to == version.valid_to%}
-									<div class="govuk-check-your-answers__contents">
-										<dt class="govuk-check-your-answers__question">Valid To:</dt>
-										<dd class="govuk-check-your-answers__answer">{{ version.valid_to }}</dd>
-									</div>
-								{% endif %}
-							{% endfor %}
-							{% for version2 in feeDto.fee_versions | reverse %}
-								{% if version2.version == version.version-1 and version2.natural_account_code == version.natural_account_code%}
-									<div class="govuk-check-your-answers__contents">
-										<dt class="govuk-check-your-answers__question">Natural Account Code:</dt>
-										<dd class="govuk-check-your-answers__answer">{{ version.natural_account_code }}</dd>
-									</div>
-								{% endif %}
-							{% endfor %}
-							{% for version2 in feeDto.fee_versions | reverse %}
-								{% if version2.version == version.version-1 and version2.memo_line == version.memo_line%}
-									<div class="govuk-check-your-answers__contents">
-										<dt class="govuk-check-your-answers__question">Memo Line:</dt>
-										<dd class="govuk-check-your-answers__answer">{{ version.memo_line }}</dd>
-									</div>
-								{% endif %}
-							{% endfor %}
-							{% for version2 in feeDto.fee_versions | reverse %}
-								{% if version2.version == version.version-1 and version2.status == version.status%}
-									<div class="govuk-check-your-answers__contents">
-										<dt class="govuk-check-your-answers__question">Status:</dt>
-										<dd class="govuk-check-your-answers__answer">{{ version.status }}</dd>
-									</div>
-								{% endif %}
-							{% endfor %}
-							{% for version2 in feeDto.fee_versions | reverse %}
-								{% if version2.version == version.version-1 and version2.direction == version.direction%}
-									<div class="govuk-check-your-answers__contents">
-										<dt class="govuk-check-your-answers__question">Direction:</dt>
-										<dd class="govuk-check-your-answers__answer">{{ version.direction }}</dd>
-									</div>
-								{% endif %}
-							{% endfor %}
 						</dl>
   {% endif %}
 
