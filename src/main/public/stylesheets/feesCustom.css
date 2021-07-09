@@ -958,3 +958,8 @@
                                     width: 100%;
                                     padding-left: 88px;
                                 }
+                                
+                                .fee-details {
+                                    padding: 15px;
+                                    padding-left: 20px;
+                                }
