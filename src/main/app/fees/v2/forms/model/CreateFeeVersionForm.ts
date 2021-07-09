@@ -9,11 +9,16 @@ import { ValidationErrors } from 'fees/v2/forms/model/ValidationErrors'
 import {
   FeeVersionDto, FlatAmountDto, PercentageAmountDto, VolumeAmountDto
 } from 'fees/v2/model/fees-register-api-contract'
+const reasonForUpdateMsg = { message: ValidationErrors.REASON_FOR_UPDATE_REQUIRED }
 
 export class CreateFeeVersionForm {
   @IsDefined({ message: ValidationErrors.TYPE_REQUIRED })
   @IsNotBlank({ message: ValidationErrors.TYPE_REQUIRED })
   amountType?: string
+
+  @IsDefined(reasonForUpdateMsg)
+  @IsNotBlank(reasonForUpdateMsg)
+  reasonForUpdate?: string
 
   @IsDefined({ message: ValidationErrors.DESCRIPTION_REQUIRED })
   @IsNotBlank({ message: ValidationErrors.DESCRIPTION_REQUIRED })
@@ -62,6 +67,7 @@ export class CreateFeeVersionForm {
   constructor () {
     this.amountType = 'flat'
     this.description = ''
+    this.reasonForUpdate = ''
     this.memoLine = ''
     this.direction = ''
   }
@@ -130,6 +136,8 @@ export class CreateFeeVersionForm {
 
     dto.natural_account_code = this.naturalAccountCode
     dto.statutory_instrument = this.statutoryInstrument
+    dto.reason_for_update = this.reasonForUpdate
+
     dto.si_ref_id = this.siRefId
     dto.fee_order_name = this.feeOrderName
     dto.description = this.description
