@@ -403,6 +403,7 @@
 			</div>
 
 		</dl>
+	{% endif %}
 	{% for version in feeDto.fee_versions | reverse %}
 		{% if (version.length!=1 and draft=='true') and loop.index==1 %}
 				<dl class="govuk-check-your-answers govuk-check-your-answers--short">
