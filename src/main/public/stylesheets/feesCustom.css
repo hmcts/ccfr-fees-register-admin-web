@@ -1578,3 +1578,17 @@
                                 h1.heading-xlarge {
                                     float: left;
                                 }
+
+                                .version-details-dt {
+                                    display: table-cell;
+                                    border-bottom: 1px solid #bfc1c3;
+                                    padding: 0.63158em 1.05263em 0.47368em 0;
+                                    width: 30%;
+                                    font-weight: bold;
+                                }
+
+                                .version-details-dd {
+                                    display: table-cell;
+                                    border-bottom: 1px solid #bfc1c3;
+                                    padding: 0.63158em 1.05263em 0.47368em 0;
+                                }
