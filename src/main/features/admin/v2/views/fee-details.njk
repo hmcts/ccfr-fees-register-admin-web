@@ -404,7 +404,7 @@
 
 		</dl>
 	{% for version in feeDto.fee_versions | reverse %}
-		{% else if (version.length!=1 and draft==true) and loop.index==1 %}
+		{% if (version.length!=1 and draft==true) and loop.index==1 %}
 			<div class="fee-details">
 				<dl class="govuk-check-your-answers govuk-check-your-answers--short">
 					{% for version2 in feeDto.fee_versions | reverse %}
