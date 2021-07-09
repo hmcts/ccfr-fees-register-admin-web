@@ -263,30 +263,36 @@
 				{% else %}
       &nbsp;
     {% endif %}
-			</dd>
-		</div>
+  </dd>
+</div>
 
-		<div class="govuk-check-your-answers__contents">
-			<dt class="govuk-check-your-answers__question">
-				<label class="bold">Reason for fee update</label>
-			</dt>
-			<dd class="govuk-check-your-answers__answer">
-				{% if feeDto.reason %}
-					{{feeDto.reason}}
-				{% else %}
-  &nbsp;
-{% endif %}
-			</dd>
-		</div>
 
-		<div class="govuk-check-your-answers__contents">
-			<dt class="govuk-check-your-answers__question">
-				<label class="bold">Natural account code</label>
-			</dt>
-			<dd class="govuk-check-your-answers__answer">
-				{% if feeDto.current_version.natural_account_code %}
-					{{feeDto.current_version.natural_account_code}}
-				{% else %}
+<div class="govuk-check-your-answers__contents">
+  <dt class="govuk-check-your-answers__question">
+    <label class="bold">Reason for fee update</label> 
+  </dt>
+  <dd class="govuk-check-your-answers__answer">
+     {% if feeDto.current_version.reason_for_update and pageType === 'livefee' %}
+      {{feeDto.current_version.reason_for_update}}
+    {% elif version and (pageType === 'disconfee' or pageType === 'notlivefee') %}
+      {{version.reason_for_update}}
+    {% else %}
+      &nbsp;
+    {% endif %}
+  </dd>
+</div>
+
+
+<div class="govuk-check-your-answers__contents">
+  <dt class="govuk-check-your-answers__question">
+    <label class="bold">Natural account code</label> 
+  </dt>
+  <dd class="govuk-check-your-answers__answer">
+    {% if feeDto.current_version.natural_account_code and pageType === 'livefee' %}
+      {{feeDto.current_version.natural_account_code}}
+    {% elif version and (pageType === 'disconfee' or pageType === 'notlivefee') %}
+      {{version.natural_account_code}}
+    {% else %}
       &nbsp;
     {% endif %}
 			</dd>
@@ -647,6 +653,43 @@
 				{% set type = 'volume' %}
 			{% endif %}
 			<a href="/admin/v2/fees/version/create/{{ feeDto.code }}?type={{ type }}" class="custom-button btn">
+  </dd>
+</div>
+  <div class="govuk-check-your-answers__contents">
+    <dt class="govuk-check-your-answers__question">
+      <label class="bold">Editor</label> 
+    </dt>
+    <dd class="govuk-check-your-answers__answer">
+      {% if feeDto.current_version.author and pageType === 'livefee' %}
+        {{feeDto.current_version.author}}
+      {% elif version and (pageType === 'disconfee' or pageType === 'notlivefee') %}
+        {{version.author}}
+      {% else %}
+        &nbsp;
+      {% endif %}
+    </dd>
+  </div>
+
+  <div class="govuk-check-your-answers__contents">
+    <dt class="govuk-check-your-answers__question">
+     <label class="bold">Approver</label> 
+    </dt>
+    <dd class="govuk-check-your-answers__answer">
+      {% if feeDto.current_version.approvedBy and pageType === 'livefee' %}
+        {{feeDto.current_version.approvedBy}}
+      {% elif version and (pageType === 'disconfee' or pageType === 'notlivefee') %}
+        {{version.approvedBy}}
+      {% else %}
+        &nbsp;
+      {% endif %}
+    </dd>
+  </div>
+
+</dl>
+
+  {% if not isDraftVersionExists(feeDto) %}
+    {% if isEditor(user.allInfo.roles) %}
+      <a href="/admin/v2/fees/version/create/{{ feeDto.code }}?type={{ type }}" class="custom-button btn">
         Edit fee
       </a>
 		{% endif %}
