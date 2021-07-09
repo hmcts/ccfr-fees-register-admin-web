@@ -33,7 +33,7 @@
       <td >{{ fee.service_type.name }}</td>
       <td >{{ displayedFeeVersion.description }}</td>
       <td >{{ displayedFeeVersion.valid_from | date("DD MMMM YYYY") }}</td>
-      <td><a href="/admin/v2/fees/{{fee.code}}">View</a></td>
+	  <td><a href="/admin/V2/fee-details?feeCode={{ fee.code }}">View</a></td>
     </tr>
     {% endfor %}
     </tbody>

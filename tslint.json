@@ -1,24 +1,23 @@
 {
-  "extends": "tslint-config-standard",
-  "rules": {
-    "member-ordering": [
-      true,
-      {
-        "order": [
-          "public-static-field",
-          "protected-static-field",
-          "private-static-field",
-          "public-instance-field",
-          "protected-instance-field",
-          "private-instance-field",
-          "constructor",
-          "public-static-method",
-          "protected-static-method",
-          "public-instance-method",
-          "protected-instance-method"
-        ]
-      }
-    ],
-    "no-floating-promises": false
-  }
+    "rules": {
+        "member-ordering": [
+            true,
+            {
+                "order": [
+                    "public-static-field",
+                    "protected-static-field",
+                    "private-static-field",
+                    "public-instance-field",
+                    "protected-instance-field",
+                    "private-instance-field",
+                    "constructor",
+                    "public-static-method",
+                    "protected-static-method",
+                    "public-instance-method",
+                    "protected-instance-method"
+                ]
+            }
+        ],
+        "no-floating-promises": false
+    }
 }

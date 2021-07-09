@@ -130,6 +130,10 @@ export class FeeDto {
 export class FixedFeeDto extends FeeDto {
 }
 
+export class ReasonDto{
+  reasonForReject: string
+}
+
 export class BandedFeeDto extends FixedFeeDto {
 
 }
