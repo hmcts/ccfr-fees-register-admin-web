@@ -10,21 +10,21 @@
 					<ul class="hmcts-sub-navigation__list">
 						<li class="hmcts-sub-navigation__item">
 							<a class="hmcts-sub-navigation__link" aria-current="page" href="/admin/V2/fee-details?draft=false&feeCode={{ feeDto.code }}&pageType={{ pageType }}">
-              Fee details
-            </a>
+              					Fee details
+            				</a>
 						</li>
 						<li class="hmcts-sub-navigation__item">
 							<a class="hmcts-sub-navigation__link" href="/admin/v2/fee/versions/{{ feeDto.code }}">
-              Fee versions
-            </a>
-          </li>
-        </ul>
-      </div>
-    </nav>
-    <h1 class="heading-xlarge margin-bottom-0">
+              					Fee versions
+           					</a>
+          				</li>
+        			</ul>
+      			</div>
+    		</nav>
+    	<h1 class="heading-xlarge margin-bottom-0">
             {{t('Fee details')}}
-      </h1>
-  </div>
+      	</h1>
+  		</div>
 </div>
   
 {% if draft === 'false' or version2.version != version.version-1 %}
