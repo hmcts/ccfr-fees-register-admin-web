@@ -943,6 +943,7 @@
                                     border-bottom: 1px solid #bfc1c3;
                                     padding: 0.63158em 1.05263em 0.47368em 0;
                                     font-weight: bold;
+                                    width: 30%;
                                 }
                                 
                                 .version-details-dd {
@@ -959,7 +960,10 @@
                                     padding-left: 88px;
                                 }
                                 
-                                .fee-details {
-                                    padding: 15px;
-                                    padding-left: 20px;
+                                .fee-details-header {
+                                    float: left;
+                                    font-family: "nta", Arial, sans-serif;
+                                    font-weight: 700;
+                                    font-size: 32px;
+                                    line-height: 1.09375;
                                 }
