@@ -79,18 +79,16 @@ describe('CreateCategoryForm', () => {
   describe('code uniqueness validation', () => {
     const validator: Validator = new Validator()
 
-    it('should allow non existing code', (done) => {
+    it('should allow non existing code', async () => {
       validator.validate(validCreateCategoryFormWith({ code: 'non-existing-category' })).then((errors) => {
         expect(errors.length).to.equal(0)
-        done()
       })
     })
 
-    xit('should reject existing code', (done) => {
+    xit('should reject existing code', async () => {
       validator.validate(validCreateCategoryFormWith({ code: 'existing-category' })).then((errors) => {
         expect(errors.length).to.equal(1)
         expectValidationError(errors, ValidationErrors.CODE_EXISTS)
-        done()
       })
     })
   })
