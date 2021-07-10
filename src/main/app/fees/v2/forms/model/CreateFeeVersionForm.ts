@@ -106,6 +106,9 @@ export class CreateFeeVersionForm {
     if (value.fee_order_name) {
       form.feeOrderName = value.fee_order_name
     }
+    if (value.reason_for_update) {
+      form.reasonForUpdate = value.reason_for_update
+    }
     if (value.statutory_instrument) {
       form.statutoryInstrument = value.statutory_instrument
     }
