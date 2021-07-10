@@ -42,7 +42,7 @@ module.exports = () => actor({
     const fromDate = new Date();
     // const toDate = new Date();
     // toDate.setMonth(toDate.getMonth() + 3);
-    this.click('Add a new fee');
+    this.click('Create a new fee');
     this.fillField('textarea[id="reasonForUpdate"]', 'New Fee Creation');
     this.fillField({ css: '#memoLine'}, memoLineNumber);
     this.fillField({ css: '#naturalAccountCode'}, '232425');
@@ -70,7 +70,7 @@ module.exports = () => actor({
     this.fillField({ css: '#statutoryInstrument'}, feeKeyword);
     this.fillField({ css: '#siRefId'}, feeKeyword);
     this.click('Save as draft');
-    this.wait(CCPBConstants.tenSecondWaitTime);
+    this.wait(CCPBConstants.twentySecondWaitTime);
   },
   submitForApproval(feeKeyword) {
    this.see('My open action');
@@ -84,7 +84,7 @@ module.exports = () => actor({
     this.click('My open action');
     this.see(feeKeyword);
     this.click(`//*[contains(text(),"${feeKeyword}")]/..//input[@type="submit" and @value = "Delete"]`)
-    this.wait(CCPBConstants.fiveSecondWaitTime)
+    this.wait(CCPBConstants.fiveSecondWaitTime);
   },
   verifyFeesSentForApproval(feeKeyword) {
     this.see('My open action');
