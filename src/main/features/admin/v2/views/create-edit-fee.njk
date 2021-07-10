@@ -138,6 +138,11 @@ selectReferenceData %}
       {% set amounError = form.errorFor('amount') %}
       {% set percentageError = form.errorFor('percentage') %}
       {% set volumeAmountError = form.errorFor('volAmount') %}
+      {% if form.valueFor('amountType') == 'flat' %}
+          {% set flatAmountVal = form.valueFor('amount') %}
+      {% elif form.valueFor('amountType') == 'flat' %}
+          {% set VolumeAmountVal = form.valueFor('amount') %}
+      {% endif %}
       <div class="govuk-form-group">
         <fieldset class="govuk-fieldset">
           <label class="form-label-bold">Amount Type</label>
@@ -158,7 +163,7 @@ selectReferenceData %}
                 {% endif %}
                 <div class = "form-group">
                   <div class="input-icon">
-                    <input type="text" name="amount" id="amount" value="{{form.valueFor('amount')}}" class="form-control {{ 'form-control-error' if amounError}}">
+                    <input type="text" name="amount" id="amount" value="{{flatAmountVal}}" class="form-control {{ 'form-control-error' if amounError}}">
                     <i>£</i>
                   </div>
                 </div>
@@ -201,7 +206,7 @@ selectReferenceData %}
                 {% endif %}
                 <div class = "form-group">
                   <div class="input-icon">
-                    <input type="text" name="volAmount" id="volAmount" value="{{form.valueFor('volAmount')}}" class="form-control {{ 'form-control-error' if volumeAmountError}}">
+                    <input type="text" name="volAmount" id="volAmount" value="{{VolumeAmountVal}}" class="form-control {{ 'form-control-error' if volumeAmountError}}">
                     <i>£</i>
                   </div>
                 </div>
