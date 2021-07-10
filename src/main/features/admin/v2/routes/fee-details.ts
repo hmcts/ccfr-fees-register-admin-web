@@ -18,6 +18,6 @@ export default express.Router()
       })
   })
   .post(Paths.feeDetailsViewPagev2.uri, (req: express.Request, res: express.Response) => {
-    FeesClient.submitForReview(res.locals.user, req.body.feeCode, req.body.version)
-      .then(() => res.redirect(`/admin/v2/approval-request-confirmation?feeCode=${req.query.feeCode}`))
+    FeesClient.approveFee(res.locals.user, req.body.feeCode, req.body.version)
+      .then(() => res.redirect(`/admin/v2/approval-confirmation?feeCode=${req.query.feeCode}`))
   })

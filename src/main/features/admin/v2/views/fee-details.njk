@@ -54,7 +54,7 @@
   <dd class="govuk-check-your-answers__answer">
     {% if feeDto.current_version.si_ref_id and pageType==='livefee' %}
       {{feeDto.current_version.si_ref_id}}
-    {% elif version and (pageType==='disconfee' or pageType==='notlivefee' or pageType==='draftfee' or pageType==='rejectfee') %}
+    {% elif version and (pageType==='disconfee' or pageType==='notlivefee' or pageType==='draftfee' or pageType==='rejectfee' or pageType==='pa') %}
       {{version.si_ref_id}}
     {% else %}
       &nbsp;
@@ -98,7 +98,7 @@
   <dd class="govuk-check-your-answers__answer">
     {% if feeDto.current_version.description and pageType==='livefee' %}
       {{feeDto.current_version.description}}
-    {% elif version and (pageType==='disconfee' or pageType==='notlivefee' or pageType==='draftfee' or pageType==='rejectfee')%}
+    {% elif version and (pageType==='disconfee' or pageType==='notlivefee' or pageType==='draftfee' or pageType==='rejectfee' or pageType==='pa')%}
       {{version.description}}
     {% else %}
       &nbsp;
@@ -114,7 +114,7 @@
   <dd class="govuk-check-your-answers__answer">
     {% if feeDto.current_version.statutory_instrument and pageType==='livefee' %}
       {{feeDto.current_version.statutory_instrument}}
-    {% elif version and (pageType==='disconfee' or pageType==='notlivefee' or pageType==='draftfee' or pageType==='rejectfee')%}
+    {% elif version and (pageType==='disconfee' or pageType==='notlivefee' or pageType==='draftfee' or pageType==='rejectfee' or pageType==='pa')%}
       {{version.statutory_instrument}}
     {% else %}
       &nbsp;
@@ -129,7 +129,7 @@
   <dd class="govuk-check-your-answers__answer">
     {% if feeDto.current_version.fee_order_name and pageType==='livefee' %}
       {{feeDto.current_version.fee_order_name}}
-    {% elif version and (pageType==='disconfee' or pageType==='notlivefee' or pageType==='draftfee' or pageType==='rejectfee')%}
+    {% elif version and (pageType==='disconfee' or pageType==='notlivefee' or pageType==='draftfee' or pageType==='rejectfee' or pageType==='pa')%}
       {{version.fee_order_name}}
     {% else %}
       &nbsp;
@@ -197,7 +197,7 @@
   {% else %}
     &nbsp;
   {% endif %}
-  {% elif version and (pageType==='disconfee' or pageType==='notlivefee' or pageType==='draftfee' or pageType==='rejectfee')%}
+  {% elif version and (pageType==='disconfee' or pageType==='notlivefee' or pageType==='draftfee' or pageType==='rejectfee' or pageType==='pa')%}
     {% if version.flat_amount.amount %}
       {% set type = 'flat' %}
       Flat
@@ -227,7 +227,7 @@
     {% else %}
       &nbsp;
     {% endif %}
-  {% elif version and (pageType === 'disconfee' or pageType === 'notlivefee' or pageType==='draftfee' or pageType==='rejectfee') %}
+  {% elif version and (pageType === 'disconfee' or pageType === 'notlivefee' or pageType==='draftfee' or pageType==='rejectfee' or pageType==='pa') %}
     {% if version.flat_amount.amount %}
       £{{version.flat_amount.amount.toFixed(2).toString()}}
     {% elif version.volume_amount.amount %}
@@ -251,7 +251,7 @@
     {% else %}
         &nbsp;
     {% endif %}
-  {% elif version and (pageType === 'disconfee' or pageType === 'notlivefee' or pageType==='draftfee' or pageType==='rejectfee') %}
+  {% elif version and (pageType === 'disconfee' or pageType === 'notlivefee' or pageType==='draftfee' or pageType==='rejectfee' or pageType==='pa') %}
     {% if version.percentage_amount.percentage %}
        {{version.percentage_amount.percentage}}%
     {% else %}
@@ -318,7 +318,7 @@
       </dd>
     </div>
   {% endif %}
-{% elif version and (pageType === 'disconfee' or pageType === 'notlivefee' or pageType==='draftfee' or pageType==='rejectfee') %}
+{% elif version and (pageType === 'disconfee' or pageType === 'notlivefee' or pageType==='draftfee' or pageType==='rejectfee' or pageType==='pa') %}
  {% if version.valid_from %}
     <div class="govuk-check-your-answers__contents">
       <dt class="govuk-check-your-answers__question">
@@ -349,7 +349,7 @@
   <dd class="govuk-check-your-answers__answer">
     {% if feeDto.current_version.version and pageType === 'livefee'%}
       {{feeDto.current_version.version}}
-    {% elif version and (pageType === 'disconfee' or pageType === 'notlivefee' or pageType==='draftfee' or pageType==='rejectfee') %}
+    {% elif version and (pageType === 'disconfee' or pageType === 'notlivefee' or pageType==='draftfee' or pageType==='rejectfee' or pageType==='pa') %}
       {{version.version}}
     {% else %}
       &nbsp;
@@ -381,7 +381,7 @@
   <dd class="govuk-check-your-answers__answer">
     {% if feeDto.current_version.natural_account_code and pageType === 'livefee' %}
       {{feeDto.current_version.natural_account_code}}
-    {% elif version and (pageType === 'disconfee' or pageType === 'notlivefee' or pageType==='draftfee' or pageType==='rejectfee') %}
+    {% elif version and (pageType === 'disconfee' or pageType === 'notlivefee' or pageType==='draftfee' or pageType==='rejectfee' or pageType==='pa') %}
       {{version.natural_account_code}}
     {% else %}
       &nbsp;
@@ -397,7 +397,7 @@
   <dd class="govuk-check-your-answers__answer">
     {% if feeDto.current_version.memo_line and pageType === 'livefee' %}
       {{feeDto.current_version.memo_line}}
-    {% elif version and (pageType === 'disconfee' or pageType === 'notlivefee' or pageType==='draftfee' or pageType==='rejectfee') %}
+    {% elif version and (pageType === 'disconfee' or pageType === 'notlivefee' or pageType==='draftfee' or pageType==='rejectfee' or pageType==='pa') %}
       {{version.memo_line}}
     {% else %}
       &nbsp;
@@ -412,7 +412,7 @@
   <dd class="govuk-check-your-answers__answer">
     {% if feeDto.current_version.direction and pageType === 'livefee'%}
       {{feeDto.current_version.direction}}
-    {% elif version and (pageType === 'disconfee' or pageType === 'notlivefee' or pageType==='draftfee' or pageType==='rejectfee') %}
+    {% elif version and (pageType === 'disconfee' or pageType === 'notlivefee' or pageType==='draftfee' or pageType==='rejectfee' or pageType==='pa') %}
       {{version.direction}}  
     {% else %}
       &nbsp;
@@ -466,7 +466,7 @@
   <dd class="govuk-check-your-answers__answer">
     {% if feeDto.current_version.status and pageType === 'livefee' %}
       {{feeDto.current_version.status}}
-    {% elif version and (pageType === 'disconfee' or pageType === 'notlivefee' or pageType==='draftfee' or pageType==='rejectfee') %}
+    {% elif version and (pageType === 'disconfee' or pageType === 'notlivefee' or pageType==='draftfee' or pageType==='rejectfee' or pageType==='pa') %}
       {{version.status}}
     {% else %}
       &nbsp;
@@ -537,25 +537,28 @@
       {% endif %}
       <br>
       <br>
+    {% elif pageType==='pa' %}
       <form method="post" action="">
        {{ csrfProtection(csrfToken) }}
         <input type="hidden" name="feeCode" value="{{ feeDto.code }}"/>
         <input type="hidden" name="version" value="{{ versionNo }}"/>
-        <input type="hidden" name="action" value="submit"/>
-        <input type="submit" class="link-button" value="Request approval">
+        <input type="hidden" name="action" value="approve"/>
+        <input type="submit" class="button" value="Approve fee">
       </form>
-      <br>
-      <a title="Delete version" href="/admin/v2/draft-delete-are-you-sure?feeCode={{ feeDto.code }}&version={{ versionNo }}&pageType={{ pageType }}">
-        Delete
+    <br>
+    <br>
+    <a title="Reject version" href="#">
+      Reject fee
+    </a>
+
+{% else %}
+  {% if not isDraftVersionExists(feeDto) %}
+    {% if isEditor(user.allInfo.roles) %}
+      <a href="/admin/v2/fees/version/create/{{ feeDto.code }}?type={{ type }}" class="custom-button btn">
+        Edit fee
       </a>
-    {% else %}
-      {% if not isDraftVersionExists(feeDto) %}
-        {% if isEditor(user.allInfo.roles) %}
-          <a href="/admin/v2/fees/version/create/{{ feeDto.code }}?type={{ type }}" class="custom-button btn">
-            Edit fee
-          </a>
-        {% endif %}
-      {% endif %}
     {% endif %}
-    {% endif %}
+  {% endif %}
+{% endif %}
+
   {% endblock %}
