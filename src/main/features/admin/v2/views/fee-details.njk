@@ -547,9 +547,11 @@
       </form>
     <br>
     <br>
-    <a title="Reject version" href="#">
-      Reject fee
-    </a>
+    {% if isApprover(user.allInfo.roles) %}
+		<p>
+			<a href="/admin/v2/reject-fee-reason/{{ feeDto.code }}/{{feeDto.current_version.version}}">Reject fee</a>
+		</p>
+	{% endif %}
 
     {% else %}
       {% if not isDraftVersionExists(feeDto) %}
