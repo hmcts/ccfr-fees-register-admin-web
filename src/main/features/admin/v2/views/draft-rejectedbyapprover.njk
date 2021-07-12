@@ -71,13 +71,13 @@
                     <a href="/admin/V2/fee-details?feeCode={{ fee.code }}&pageType=rejectfee">View</a>
                 {% endif %}
                 </td>
-            </tr>
-            {% endif %}     
+            </tr> 
+			{% else %}
+				<p>No rejected fees.</p>
+			{% endif %}  
         {% endfor %}            
          </tbody>
     </table>
- {% else %}
-  <p>No rejected fees.</p>
-  {% endif %}           
+           
 </div>
   {% endblock %}
