@@ -76,7 +76,7 @@ selectReferenceData %}
                 <div class = "multiple-choice">
                 {% if form.valueFor('jurisdiction1') == jurisdiction1.name %}
                   <input type="radio" id="{{jurisdiction1.name}}" name="jurisdiction1" value="{{jurisdiction1.name}}" checked="checked">
-                {%else%}
+                {%else%}git 
                   <input type="radio" id="{{jurisdiction1.name}}" name="jurisdiction1" value="{{jurisdiction1.name}}">
                 {%endif%}
                 <label class="label-float">{{jurisdiction1.name}}</label>
@@ -140,7 +140,7 @@ selectReferenceData %}
       {% set volumeAmountError = form.errorFor('volAmount') %}
       {% if form.valueFor('amountType') == 'flat' %}
           {% set flatAmountVal = form.valueFor('amount') %}
-      {% elif form.valueFor('amountType') == 'flat' %}
+      {% elif form.valueFor('amountType') == 'volume' %}
           {% set VolumeAmountVal = form.valueFor('amount') %}
       {% endif %}
       <div class="govuk-form-group">
