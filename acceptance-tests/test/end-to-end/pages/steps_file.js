@@ -21,7 +21,7 @@ module.exports = () => actor({
   },
   Logout(role) {
     const signoutLabel = "Sign out (test " + role + ")";
-    this.moveCursorTo('#proposition-links > li > a');
+    this.moveCursorTo('#proposition-links > ul > a');
     this.see(signoutLabel);
     this.click(signoutLabel);
     this.wait(CCPBConstants.fiveSecondWaitTime);
