@@ -4,21 +4,21 @@
   {% set title = t('Fees | ' + serviceName) %}
   {% block content %}
 <ul class="govuk-tabs__list govuk-!-margin-top-8">
-<li class="govuk-tabs__list-item">
-    <a class="govuk-tabs__tab" href="./draft-fees">
-        {{ t("Draft") }}
-    </a>
-</li>
-<li class="govuk-tabs__list-item govuk-tabs__list-item--selected">
-    <a class="govuk-tabs__tab govuk-tabs__tab--selected" style="text-decoration: underline;">
-      {{ t("Rejected by approver") }}
-    </a>
-</li>
-<li class="govuk-tabs__list-item">
-    <a class="govuk-tabs__tab" href="./draft-awaitingapproval" style="text-decoration: underline;">
-         {{ t("Awaiting approval") }}
-    </a>
-</li>
+    <li class="govuk-tabs__list-item">
+        <a class="govuk-tabs__tab" href="./draft-fees">
+            {{ t("Draft") }}
+        </a>
+    </li>
+    <li class="govuk-tabs__list-item govuk-tabs__list-item--selected">
+        <a class="govuk-tabs__tab govuk-tabs__tab--selected" style="text-decoration: underline;">
+        {{ t("Rejected by approver") }}
+        </a>
+    </li>
+    <li class="govuk-tabs__list-item">
+        <a class="govuk-tabs__tab" href="./draft-awaitingapproval" style="text-decoration: underline;">
+            {{ t("Awaiting approval") }}
+        </a>
+    </li>
 </ul>
 <div class="govuk-tabs__panel" id="past-day">
  
@@ -78,6 +78,8 @@
         {% endfor %}            
          </tbody>
     </table>
-           
-</div>
+     {% endif %}  
+       </div>
+</div>  
+
   {% endblock %}
