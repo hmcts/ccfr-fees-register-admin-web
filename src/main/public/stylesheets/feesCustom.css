@@ -671,3 +671,8 @@ text-align: left;
 h1.heading-xlarge {
   float: left;
 }
+.govuk-panel__body {
+  font-weight: 400;
+  font-size: 36px;
+  line-height: 40px;
+}
