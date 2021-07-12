@@ -85,15 +85,14 @@
                 {% endif %}
                 </td>
             </tr>
-            {% endif %}    
-        
+           {% else %}
+				<p>No draft fees</p>
+		   {% endif %}   
         {% endfor %}            
          </tbody>
     </table>
-    {% else %}
-  <p>No draft fees</p>
-  {% endif %}          
+           
 </div>
-      </div>
+      
 
   {% endblock %}
