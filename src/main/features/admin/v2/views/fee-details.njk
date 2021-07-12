@@ -504,7 +504,7 @@
   </div>
 
 </dl>
-    {% if pageType === 'draftfee' %}
+{% if pageType === 'draftfee' %}
     <a href="/admin/v2/confirm-draft-approval?feeCode={{ feeDto.code }}&version={{ versionNo }}&pageType={{ pageType }}" class="custom-button btn">
       Request approval
     </a>
@@ -551,14 +551,14 @@
       Reject fee
     </a>
 
-{% else %}
-  {% if not isDraftVersionExists(feeDto) %}
-    {% if isEditor(user.allInfo.roles) %}
-      <a href="/admin/v2/fees/version/create/{{ feeDto.code }}?type={{ type }}" class="custom-button btn">
-        Edit fee
-      </a>
+    {% else %}
+      {% if not isDraftVersionExists(feeDto) %}
+        {% if isEditor(user.allInfo.roles) %}
+          <a href="/admin/v2/fees/version/create/{{ feeDto.code }}?type={{ type }}" class="custom-button btn">
+            Edit fee
+          </a>
+        {% endif %}
+      {% endif %}
     {% endif %}
-  {% endif %}
 {% endif %}
-
   {% endblock %}
