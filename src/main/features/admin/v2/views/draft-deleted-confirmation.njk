@@ -1,24 +1,21 @@
 {% from "includes/macros/form.njk" import errorSummary, textArea, textInput, radioGroup, submitButton, selectInline, selectReferenceData %}
   {% extends "layout.njk" %}
 
-  {% set title = t('Fee Created | ' + serviceName) %}
+  {% set title = t('Fee details') %}
   {% block content %}
 
   <div class="grid-row">
     <div class="column-full govuk-panel govuk-panel--confirmation">
-      <h2 class="govuk-panel__title"> Draft fee saved </h2>
+      <h2 class="govuk-panel__title"> {{feeCode}} has been deleted</h2>
     </div>
     <div class="column-full">
       <h2 class="govuk-heading-m">What happens next</h2>
-      <p class="govuk-body">This fee has been added to your draft fees.</p>
-      <p class="govuk-body">The approver won't be able to see this fee until you've submitted it for approval.</p>
-      <p class="govuk-body">Once the fee has been approved, it will be updated in the Fee Register.</p>
+      <p class="govuk-body">You can go back to your draft fees to edit other fee details or create a new fee.</p>
     </div>
     <div class="column-full">
       <a href="/admin/v2/draft-fees" class="custom-button btn margin-top-0 ">
-            View draft fee
+        View draft fees
       </a>     
     </div>
   </div>
-
   {% endblock %}

@@ -69,7 +69,7 @@
       </td>
       <td>{{ version.description }}</td>
 
-      {% if version.flat_amount and version.flat_amount.amount %}
+      {% if version.flat_amount and version.flat_amount.amount%}
       <td >£{{ version.flat_amount.amount.toFixed(2).toString()}}</td>
       {% elif version.volume_amount and version.volume_amount.amount%}
       <td >£{{ version.volume_amount.amount.toFixed(2).toString()}}</td>
