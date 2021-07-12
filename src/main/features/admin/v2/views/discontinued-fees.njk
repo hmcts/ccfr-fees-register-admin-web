@@ -43,7 +43,7 @@
     {% if fee.current_version.status === 'approved' %}
     <tr>
       <td class="font-xxsmall">
-        <a href="/admin/v2/fees/{{fee.code}}">{{ fee.code }}</a>
+        <a href="/admin/V2/fee-details?feeCode={{ fee.code }}&pageType=discontinuedfee">{{ fee.code }}</a>
       </td>
       <td class="font-xxsmall">{{ fee.current_version.description }}</td>
       {% if fee.min_range %}

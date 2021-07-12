@@ -1,35 +1,51 @@
+const { Logger } = require('@hmcts/nodejs-logging');
 const CCFRATConstants = require('./CCFRAcceptanceTestConstants');
 const faker = require('faker');
 const RANDOM_NUMBER = 9999;
 
-Feature('CC FeesRegister Admin Acceptance Tests').retry(CCFRATConstants.retryScenario);
+Feature('CC FeesRegister Admin Acceptance Tests For Live Fees');
 
-// BeforeSuite(I => {
-//   I.amOnPage('/');
-//   I.wait(CCFRATConstants.twoSecondWaitTime);
-//   I.resizeWindow(CCFRATConstants.windowsSizeX, CCFRATConstants.windowsSizeY);
-// });
-
-Scenario('FeesRegister Admin Console Editor Screen Validation @crossbrowser', I => {
+Scenario('FeesRegister Admin Console Editor Header Validation', I => {
   I.login('functionaltesteditor@hmcts.net', 'LevelAt12');
   I.wait(CCFRATConstants.tenSecondWaitTime);
-  I.waitForText('Welcome', CCFRATConstants.tenSecondWaitTime);
-  I.see('Choose an action');
-  I.see('Reference Data');
-  I.see('Add a new fee');
-  I.see('Upload fees');
-  I.see('View all fees');
-  I.see('View all discontinued fees');
-  I.see('My open actions');
-  I.see('Applicants');
-  I.see('Jurisdictions 1');
-  I.see('Jurisdictions 2');
-  I.see('Services');
-  I.see('Channels');
-  I.see('Events');
-  I.see('Directions');
-  I.Logout("editor");
-});
+  I.see("Fees");
+  I.see("Your Drafts");
+  I.see("Reference Data");
+  I.click('Sign out');
+}).retry(CCFRATConstants.retryScenario);
+
+Scenario('FeesRegister Admin Console Editor Screen For Live Fees Details', I => {
+  I.login('functionaltesteditor@hmcts.net', 'LevelAt12');
+  I.wait(CCFRATConstants.tenSecondWaitTime);
+  // to-do based on updates and future stories
+  I.verifyFeesHeaders();
+  //verify any existing fee details under live Tab
+  I.verifyFeeDetails('FEE0582','civil','Flat','100.00');
+  I.click('Sign out');
+}).retry(CCFRATConstants.retryScenario);
+
+Scenario('FeesRegister Admin Console Editor Approved but not live Fees Details Check @crossbrowser', I => {
+  I.login('functionaltesteditor@hmcts.net', 'LevelAt12');
+  I.wait(CCFRATConstants.tenSecondWaitTime);
+  I.waitForText('Approved but not live fees', CCFRATConstants.tenSecondWaitTime);
+  I.click('Approved but not live fees');
+  I.verifyFeesHeaders();
+  //Check one of the existing fee, once full implementation done we can add our own code
+  I.verifyFeeDetails('FEE0621','tribunal','Volume','100.00');
+  I.click('Sign out');
+}).retry(CCFRATConstants.retryScenario);
+
+Scenario('FeesRegister Admin Console Editor Discontinued Fees Details Check @crossbrowser', I => {
+  I.login('functionaltesteditor@hmcts.net', 'LevelAt12');
+  I.wait(CCFRATConstants.tenSecondWaitTime);
+  I.waitForText('Discontinued fees', CCFRATConstants.tenSecondWaitTime);
+  I.click('Discontinued fees');
+  I.verifyFeesHeaders();
+  // to-do based on updates and future stories
+  //Check one of the existing fee, once full implementation done we can add our own code
+  I.verifyFeeDetails('FEE0588','family','Flat','112.00');
+  I.click('Sign out');
+}).retry(CCFRATConstants.retryScenario);
 
 Scenario('FeesRegister Add New Fee and Submit for Approval', I => {
   const feeKeyword = "SN" + new Date().valueOf().toString();
@@ -37,17 +53,14 @@ Scenario('FeesRegister Add New Fee and Submit for Approval', I => {
 
   I.login('functionaltesteditor@hmcts.net', 'LevelAt12');
   I.wait(CCFRATConstants.twoSecondWaitTime);
-  I.waitForText('Welcome', CCFRATConstants.tenSecondWaitTime);
-  I.see('Choose an action');
-  I.see('Add a new fee');
+  I.waitForText('Live fees', CCFRATConstants.tenSecondWaitTime);
   I.addNewFee(feeKeyword);
   I.waitForText('Fee Created', CCFRATConstants.twoSecondWaitTime);
+  I.wait('5');
   I.see('Fee has been created successfully.');
-
   I.click('Return to welcome page');
   I.wait(CCFRATConstants.twoSecondWaitTime);
   I.waitForText('Welcome', CCFRATConstants.tenSecondWaitTime);
   I.deleteFees(feeKeyword);
-
-  I.Logout("editor");
-});
+  I.click('Sign out');
+}).retry(CCFRATConstants.retryScenario);

@@ -1,0 +1,39 @@
+{% from "includes/macros/form.njk" import csrfProtection,
+errorSummary,
+textArea,
+textInput,
+radioGroup,
+submitButton,
+selectInline,
+selectReferenceData %}
+{% extends "layout.njk" %}
+
+{% block content %}
+
+	<div class="hmcts-header__container">
+
+		<main role="main" class="govuk-main-wrapper">
+		
+			<div class="govuk-panel govuk-panel--confirmation">
+				<h2 class="govuk-panel__title">
+                    {{ feeCode }} has been rejected
+                </h2>
+				<div class="govuk-panel__body">
+                    Fee moved back to drafts for the editor to review.
+                    <br>
+					<br>
+					<strong></strong>
+				</div>
+			</div>
+
+			<h2 class="govuk-heading-m">What happens next</h2>
+			<p class="govuk-body">The editor will need to review the draft fee before submitting it to you for approval again.</p>
+
+			<a href="/admin/V2/pending-approval" role="button" class="custom-button btn">
+                 View fees awaiting approval
+             </a>
+
+		</main>
+
+	</div>
+{% endblock %}
