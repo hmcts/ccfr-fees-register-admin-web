@@ -1,32 +1,32 @@
 {
-  "security": {
-    "clientId": "FEES_CLIENT_ID",
-    "clientSecret": "FEES_CLIENT_SECRET"
-  },
-  "idam": {
-    "authentication-web": {
-      "url": "http://localhost:9002"
+    "security": {
+        "clientId": "FEES_CLIENT_ID",
+        "clientSecret": "FEES_CLIENT_SECRET"
     },
-    "login": {
-      "url": "http://localhost:9002/login"
+    "idam": {
+        "authentication-web": {
+            "url": "http://localhost:9002"
+        },
+        "login": {
+            "url": "http://localhost:9002/login"
+        },
+        "api": {
+            "url": "http://localhost:5000"
+        }
     },
-    "api": {
-      "url": "http://localhost:5000"
+    "session": {
+        "cookieName": "SESSION_ID"
+    },
+    "fees": {
+        "url": "http://localhost:8091"
+    },
+    "e2e": {
+        "frontendUrl": "https://localhost:4200/",
+        "waitForTimeoutValue": 2600,
+        "waitForActionValue": 2000
+    },
+    "appInsights": {
+        "instrumentationKey": "some-key",
+        "roleName": "fees-register-admin"
     }
-  },
-  "session": {
-    "cookieName": "SESSION_ID"
-  },
-  "fees": {
-    "url": "http://localhost:8081"
-  },
-  "e2e": {
-    "frontendUrl": "https://localhost:4200/",
-    "waitForTimeoutValue": 2600,
-    "waitForActionValue": 2000
-  },
-  "appInsights": {
-    "instrumentationKey": "some-key",
-    "roleName": "fees-register-admin"
-  }
 }
