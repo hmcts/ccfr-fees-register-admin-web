@@ -538,6 +538,8 @@
       <br>
       <br>
     {% elif pageType==='pa' %}
+      <br>
+      <br>
       <form method="post" action="">
        {{ csrfProtection(csrfToken) }}
         <input type="hidden" name="feeCode" value="{{ feeDto.code }}"/>
