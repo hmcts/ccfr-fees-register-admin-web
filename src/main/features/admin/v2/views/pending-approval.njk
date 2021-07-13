@@ -3,9 +3,7 @@
 
   {% set title = t('Fees | ' + serviceName) %}
   {% block content %}
-<div class="title-with-secondary">
   <h1 class="govuk-heading-xl govuk-!-margin-bottom-6 govuk-!-margin-top-7">{{t("Awaiting approval")}}</h1>
-</div>
 
 {% if (fees | length) > 0 %}
   <table class="custom-table-body">
@@ -33,7 +31,7 @@
       <td >{{ fee.service_type.name }}</td>
       <td >{{ displayedFeeVersion.description }}</td>
       <td >{{ displayedFeeVersion.valid_from | date("DD MMMM YYYY") }}</td>
-	  <td><a href="/admin/V2/fee-details?feeCode={{ fee.code }}">View</a></td>
+      <td><a href="/admin/V2/fee-details?feeCode={{ fee.code }}&pageType=pa&vno={{displayedFeeVersion.version}}">View</a></td>
     </tr>
     {% endfor %}
     </tbody>

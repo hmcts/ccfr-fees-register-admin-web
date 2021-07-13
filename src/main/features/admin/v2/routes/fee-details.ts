@@ -12,8 +12,13 @@ export default express.Router()
       .getFee(req.query.feeCode)
       .then((feeDto: Fee2Dto) => {
         res.render(Paths.feeDetailsViewPagev2.associatedView, {
+          draft: req.query.draft,
           pageType: req.query.pageType,
           versionNo: req.query.vno,
           feeDto: feeDto })
       })
+  })
+  .post(Paths.feeDetailsViewPagev2.uri, (req: express.Request, res: express.Response) => {
+    FeesClient.approveFee(res.locals.user, req.body.feeCode, req.body.version)
+      .then(() => res.redirect(`/admin/v2/approval-confirmation?feeCode=${req.query.feeCode}`))
   })

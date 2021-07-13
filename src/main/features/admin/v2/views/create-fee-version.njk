@@ -19,7 +19,11 @@
           <td>{{ textInput(t('Natural Account Code*'), 'naturalAccountCode', form) }}</td>
 
         </tr>
-
+      <tr>
+        <td colspan="3">
+          {{ textArea(t('Reason For Update'), 'reasonForUpdate', form, rows=2) }}  
+        </td>
+      </tr>
         <tr>
           <td colspan="3">
             {{ textArea(t('Description*'), 'description', form) }}

@@ -3,7 +3,7 @@
   {% set title = t('Fee | ' + serviceName) %}
   {% set heading = t('Fee details')  %}
   {% block content %}
-
+<p><a href="/admin/v2/fee/versions/{{ feeDto.code }}">Fee Versions</a></p>
 <div class="gird-row">
   <div class="column-third">
     <label class="bold">Code:</label> {{ feeDto.code }}
@@ -105,9 +105,6 @@
 <div class="column-two-thirds">
   <label class="bold">Description:</label> {{ feeDto.current_version.description }}
 </div>
-<div class="column-two-thirds">
-  <label class="bold">Reason For Update:</label> {{ feeDto.current_version.reason_for_update }}
-</div>
 </div>
 <hr width=100%>
 
@@ -160,13 +157,10 @@
 <div class="column-two-thirds">
   <label class="bold">Description:</label> {{ version.description }}
 </div>
-<div class="column-two-thirds">
-  <label class="bold">Reason For Update:</label> {{ version.reason_for_update }}
-</div>
 </div>
 <hr width=100%>
+<p><a href="/admin/v2/reject-fee-reason/{{ feeDto.code }}/{{ version.version }}">Reject fee</a></p>
   {% endfor %}
-
 {% if not isDraftVersionExists(feeDto) %}
   {% if isEditor(user.allInfo.roles) %}
   <div class="gird-row">

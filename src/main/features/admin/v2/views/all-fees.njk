@@ -67,18 +67,18 @@
     <tr>
       <td >
       {% if user %}
-        <a href="/admin/V2/fee-details?feeCode={{ fee.code }}&pageType=livefee">{{ fee.code }}</a>
+        <a href="/admin/V2/fee-details?draft=false&feeCode={{ fee.code }}&pageType=livefee">{{ fee.code }}</a>
       {% else  %}
         <a href="/fees/{{fee.code}}">{{ fee.code }}</a>
       {% endif %}
       </td>
       <td>{{ version.description }}</td>
 
-      {% if version.flat_amount %}
+      {% if version.flat_amount and version.flat_amount.amount %}
       <td >£{{ version.flat_amount.amount.toFixed(2).toString()}}</td>
-      {% elif version.volume_amount %}
+      {% elif version.volume_amount and version.flat_amount.amountv%}
       <td >£{{ version.volume_amount.amount.toFixed(2).toString()}}</td>
-      {% else %}
+      {% elif  version.percentage_amount and version.percentage_amount.percentage %}
       <td >{{ version.percentage_amount.percentage }}%</td>
       {% endif %}
       <td >{{ version.statutory_instrument }}</td>
