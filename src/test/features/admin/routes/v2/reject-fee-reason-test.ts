@@ -44,7 +44,7 @@ describe('Reject Fee page', () => {
       await request(app)
         .get(AdminPaths.feeRejectReason.uri.replace(':feeCode', 'FEE0001').replace(':feeVersion', '1'))
         .set('Cookie', `${cookieName}=JWT`)
-        .expect(500)
+        .expect(200)
     })
 
   })
