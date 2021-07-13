@@ -618,10 +618,12 @@ text-align: left;
 .govuk-panel__title {
   margin-top: 0;
   width: 890px;
-  margin-bottom: 80px;
   font-weight: 700;
   font-size: 48px;
   line-height: 50px;
+}
+.title-margin-btm {
+    margin-bottom: 80px;
 }
 .govuk-heading-m {
   margin-bottom: 20px;
