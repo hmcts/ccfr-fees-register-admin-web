@@ -1,11 +1,4 @@
-{% from "includes/macros/form.njk" import csrfProtection,
-errorSummary,
-textArea,
-textInput,
-radioGroup,
-submitButton,
-selectInline,
-selectReferenceData %}
+{% from "includes/macros/form.njk" import csrfProtection, textArea, submitButton%}
 {% extends "layout.njk" %}
 
 {% set title = t('Fee | ' + serviceName) %}
