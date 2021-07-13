@@ -547,12 +547,13 @@
         <input type="hidden" name="action" value="approve"/>
         <input type="submit" class="button" value="Approve fee">
       </form>
-    <br>
-    <br>
-    <a title="Reject version" href="/admin/v2/reject-fee-reason/{{ feeDto.code }}/{{ versionNo }}">
-      Reject fee
-    </a>
-
+      {% if isApprover(user.allInfo.roles) %}
+        <br>
+        <br>
+        <a title="Reject version" href="/admin/v2/reject-fee-reason/{{ feeDto.code }}/{{ versionNo }}">
+          Reject fee
+        </a>
+      {% endif %}
     {% else %}
       {% if not isDraftVersionExists(feeDto) %}
         {% if isEditor(user.allInfo.roles) %}
