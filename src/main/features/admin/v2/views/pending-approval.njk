@@ -3,9 +3,7 @@
 
   {% set title = t('Fees | ' + serviceName) %}
   {% block content %}
-<div class="title-with-secondary">
   <h1 class="govuk-heading-xl govuk-!-margin-bottom-6 govuk-!-margin-top-7">{{t("Awaiting approval")}}</h1>
-</div>
 
 {% if (fees | length) > 0 %}
   <table class="custom-table-body">

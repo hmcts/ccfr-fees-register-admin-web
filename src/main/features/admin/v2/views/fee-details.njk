@@ -724,29 +724,30 @@
 				<a title="Edit fee" href="/admin/v2/fees/create?action=edit&feeCode={{ feeDto.code }}" class="custom-button btn">
           Edit fee
         </a>
-			{% endif %}
-			<br>
-			<br>
-		{% elif pageType === 'pa' %}
-			<form method="post" action="">
-				{{ csrfProtection(csrfToken) }}
-				<input type="hidden" name="feeCode" value="{{ feeDto.code }}"/>
-				<input type="hidden" name="version" value="{{ versionNo }}"/>
-				<input type="hidden" name="action" value="approve"/>
-				<input type="submit" class="button" value="Approve fee">
-			</form>
-			<br>
-			<br>
-			{% if isApprover(user.allInfo.roles) %}
-				<p>
-					<a href="/admin/v2/reject-fee-reason/{{ feeDto.code }}/{{feeDto.current_version.version}}">Reject fee</a>
-				</p>
-			{% endif %}
-
-		{% else %}
-			{% if not isDraftVersionExists(feeDto) %}
-				{% if isEditor(user.allInfo.roles) %}
-					<a href="/admin/v2/fees/version/create/{{ feeDto.code }}?type={{ type }}" class="custom-button btn">
+      {% endif %}
+      <br>
+      <br>
+    {% elif pageType==='pa' %}
+      <br>
+      <br>
+      <form method="post" action="">
+       {{ csrfProtection(csrfToken) }}
+        <input type="hidden" name="feeCode" value="{{ feeDto.code }}"/>
+        <input type="hidden" name="version" value="{{ versionNo }}"/>
+        <input type="hidden" name="action" value="approve"/>
+        <input type="submit" class="button" value="Approve fee">
+      </form>
+      {% if isApprover(user.allInfo.roles) %}
+        <br>
+        <br>
+        <a title="Reject version" href="/admin/v2/reject-fee-reason/{{ feeDto.code }}/{{ versionNo }}">
+          Reject fee
+        </a>
+      {% endif %}
+    {% else %}
+      {% if not isDraftVersionExists(feeDto) %}
+        {% if isEditor(user.allInfo.roles) %}
+          <a href="/admin/v2/fees/version/create/{{ feeDto.code }}?type={{ type }}" class="custom-button btn">
             Edit fee
           </a>
 				{% endif %}
