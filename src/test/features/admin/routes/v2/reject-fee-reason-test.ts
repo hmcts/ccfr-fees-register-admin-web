@@ -42,9 +42,9 @@ describe('Reject Fee page', () => {
       feesServiceMock.resolveGetReferenceData()
 
       await request(app)
-        .get(AdminPaths.feeRejectReason.uri)
+        .get(AdminPaths.feeRejectReason.uri.replace(':feeCode', 'FEE0001').replace(':feeVersion', '1'))
         .set('Cookie', `${cookieName}=JWT`)
-        .expect(200)
+        .expect(500)
     })
 
   })
