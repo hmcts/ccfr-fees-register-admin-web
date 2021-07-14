@@ -14,7 +14,7 @@ export default express.Router()
       draftAuthor = res.locals.user.allInfo.id
     }
     FeesClient
-    .searchFees('draft', draftAuthor, null, null, null, true)
+    .searchFees('draft', draftAuthor, null)
       .then((fees: Array<Fee2Dto>) => {
         fees.sort((a: Fee2Dto, b: Fee2Dto): number => -a.code.localeCompare(b.code))
         res.render(Paths.myDraftRejectedByApproverV2.associatedView, {
