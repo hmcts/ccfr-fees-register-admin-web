@@ -5,6 +5,7 @@ export class CsvFeeDto {
   feeVersion: string
   feeStatus: string
   reasonForUpdate: string
+  reasonForReject: string
   validFrom: string
   validTo: string
   rangeFrom: string

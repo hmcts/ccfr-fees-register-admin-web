@@ -20,6 +20,8 @@ export class CreateFeeVersionForm {
   @IsNotBlank(reasonForUpdateMsg)
   reasonForUpdate?: string
 
+  reasonForReject?: string
+
   @IsDefined({ message: ValidationErrors.DESCRIPTION_REQUIRED })
   @IsNotBlank({ message: ValidationErrors.DESCRIPTION_REQUIRED })
   @MaxLength(2000, { message: ValidationErrors.DESCRIPTION_TOO_LONG })
@@ -68,6 +70,7 @@ export class CreateFeeVersionForm {
     this.amountType = 'flat'
     this.description = ''
     this.reasonForUpdate = ''
+	this.reasonForReject = ''
     this.memoLine = ''
     this.direction = ''
   }
@@ -109,6 +112,9 @@ export class CreateFeeVersionForm {
     if (value.reason_for_update) {
       form.reasonForUpdate = value.reason_for_update
     }
+	if (value.reason_for_reject) {
+		form.reasonForReject = value.reason_for_reject
+	}
     if (value.statutory_instrument) {
       form.statutoryInstrument = value.statutory_instrument
     }

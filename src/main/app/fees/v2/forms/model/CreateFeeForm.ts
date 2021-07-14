@@ -29,6 +29,8 @@ export class CreateFeeForm {
   @IsNotBlank(reasonForUpdateMsg)
   reasonForUpdate?: string
 
+  reasonForReject?: string
+
   @IsDefined(descriptionMsg)
   @IsNotBlank(descriptionMsg)
   @MaxLength(2000, { message: ValidationErrors.DESCRIPTION_TOO_LONG })
@@ -144,6 +146,7 @@ export class CreateFeeForm {
     this.channel = ''
     this.direction = ''
     this.reasonForUpdate = ''
+	this.reasonForReject = ''
     this.jurisdiction1 = ''
     this.jurisdiction2 = ''
     this.rangeUnit = ''
@@ -179,6 +182,7 @@ export class CreateFeeForm {
     form.jurisdiction2 = (form as any).jurisdiction2.name
     form.memoLine = (form as any).memo_line
     form.reasonForUpdate = (form as any).reason_for_update
+	form.reasonForReject = (form as any).reason_for_reject
     form.naturalAccountCode = (form as any).natural_account_code
     form.siRefId = (form as any).si_ref_id
     form.keyword = (form as any).keyword
@@ -265,6 +269,7 @@ export class CreateFeeForm {
     dto.version.natural_account_code = this.naturalAccountCode
     dto.version.statutory_instrument = this.statutoryInstrument
     dto.version.reason_for_update = this.reasonForUpdate
+	dto.version.reason_for_reject = this.reasonForReject
     dto.version.si_ref_id = this.siRefId
     dto.version.fee_order_name = this.feeOrderName
     dto.version.description = this.description
