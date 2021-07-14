@@ -431,15 +431,6 @@
 					{% endfor %}
 				</div>
 				{% for version2 in feeDto.fee_versions | reverse %}
-					{% if version2.version == version.version-1 and version.description != version2.description%}
-						<div class="govuk-check-your-answers__contents">
-							<dt class="version-details-dt">Description</dt>
-							<dd class="version-details-dd">{{ version.description }}</dd>
-							<dd class="version-details-dd">Previously: {{ version2.description }}</dd>
-						</div>
-					{% endif %}
-				{% endfor %}
-				{% for version2 in feeDto.fee_versions | reverse %}
 					{% if version2.version == version.version-1 and version.flat_amount.amount != version2.flat_amount.amount%}
 						<div class="govuk-check-your-answers__contents">
 							<dt class="version-details-dt">Amount</dt>
@@ -485,47 +476,11 @@
 					{% endif %}
 				{% endfor %}
 				{% for version2 in feeDto.fee_versions | reverse %}
-					{% if version2.version == version.version-1 and version.valid_to!= version2.valid_to%}
-						<div class="govuk-check-your-answers__contents">
-							<dt class="version-details-dt">Valid to</dt>
-							<dd class="version-details-dd">{{ version.valid_to }}</dd>
-							<dd class="version-details-dd">Previously: {{ version2.valid_to }}</dd>
-						</div>
-					{% endif %}
-				{% endfor %}
-				{% for version2 in feeDto.fee_versions | reverse %}
-					{% if version2.version == version.version-1 and version.natural_account_code!= version2.natural_account_code%}
-						<div class="govuk-check-your-answers__contents">
-							<dt class="version-details-dt">Natural account code</dt>
-							<dd class="version-details-dd">{{ version.natural_account_code}}</dd>
-							<dd class="version-details-dd">Previously: {{ version2.natural_account_code }}</dd>
-						</div>
-					{% endif %}
-				{% endfor %}
-				{% for version2 in feeDto.fee_versions | reverse %}
-					{% if version2.version == version.version-1 and version.memo_line != version2.memo_line%}
-						<div class="govuk-check-your-answers__contents">
-							<dt class="version-details-dt">Memo</dt>
-							<dd class="version-details-dd">{{ version.memo_line }}</dd>
-							<dd class="version-details-dd">Previously: {{ version2.memo_line }}</dd>
-						</div>
-					{% endif %}
-				{% endfor %}
-				{% for version2 in feeDto.fee_versions | reverse %}
 					{% if version2.version == version.version-1 and version.status != version2.status%}
 						<div class="govuk-check-your-answers__contents">
 							<dt class="version-details-dt">Status</dt>
 							<dd class="version-details-dd">{{ version.status }}</dd>
 							<dd class="version-details-dd">Previously: {{ version2.status }}</dd>
-						</div>
-					{% endif %}
-				{% endfor %}
-				{% for version2 in feeDto.fee_versions | reverse %}
-					{% if version2.version == version.version-1 and version.direction != version2.direction%}
-						<div class="govuk-check-your-answers__contents">
-							<dt class="version-details-dt">Direction:</dt>
-							<dd class="version-details-dd">{{ version.direction }}</dd>
-							<dd class="version-details-dd">Previously: : : {{ version2.direction }}</dd>
 						</div>
 					{% endif %}
 				{% endfor %}
