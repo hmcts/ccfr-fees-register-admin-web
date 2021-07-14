@@ -141,8 +141,6 @@ function showFlatAmountSection() {
   document.getElementById("percentageAmount").classList.remove("disply-section")
   document.getElementById("volumeAmount").style.display="none";
   document.getElementById("volumeAmount").classList.remove("disply-section")
-
-  onKeywordChanged();
 }
 
 function showPercentageSection() {
@@ -151,8 +149,6 @@ function showPercentageSection() {
   document.getElementById("flatAmount").style.display="none";
   document.getElementById("flatAmount").classList.remove("disply-section")
   document.getElementById("percentageAmount").style.display="block";
-
-  onKeywordChanged();
 }
 
 function showVolumeAmountSection() {
@@ -161,8 +157,6 @@ function showVolumeAmountSection() {
   document.getElementById("percentageAmount").classList.remove("disply-section")
   document.getElementById("flatAmount").style.display="none";
   document.getElementById("flatAmount").classList.remove("disply-section")
-
-  onKeywordChanged();
 }
 
 document.addEventListener("DOMContentLoaded", function () {
