@@ -680,7 +680,7 @@
 				</dt>
 				<dd class="govuk-check-your-answers__answer">
 					{% if feeDto.current_version.percentage_amount.percentage %}
-						{{feeDto.current_version.percentage_amount.percentage}}
+						{{feeDto.current_version.percentage_amount.percentage}}%
 					{% else %}
             &nbsp;
           {% endif %}
@@ -927,8 +927,8 @@
 					{% if version2.version == version.version-1 and version.flat_amount.amount != version2.flat_amount.amount%}
 						<div class="govuk-check-your-answers__contents">
 							<dt class="version-details-dt">Amount</dt>
-							<dd class="version-details-dd">{{ version.flat_amount.amount.toFixed(2).toString() }}</dd>
-							<dd class="version-details-dd">Previously: {{ version2.flat_amount.amount.toFixed(2).toString() }}</dd>
+							<dd class="version-details-dd">£{{ version.flat_amount.amount.toFixed(2).toString() }}</dd>
+							<dd class="version-details-dd">Previously: £{{ version2.flat_amount.amount.toFixed(2).toString() }}</dd>
 						</div>
 					{% endif %}
 				{% endfor %}
@@ -1072,10 +1072,10 @@
 						{% endif %}
 					</dd>
 				</div>
-				{% if fversion.percentage_amount.percentage %}
+				{% if version.percentage_amount.percentage %}
 				<div class="govuk-check-your-answers__contents">
 					<dt class="version-details-dt">Percentage</dt>
-					<dd class="version-details-dd-single">{{ version.percentage_amount.percentage }}</dd>
+					<dd class="version-details-dd-single">{{ version.percentage_amount.percentage }}%</dd>
 				</div>
 				{% endif %}
 					{% if feeDto.fee_type == 'ranged' %}
@@ -1116,7 +1116,7 @@
 					{% if (version2.version == version.version-1 and version2.flat_amount.amount == version.flat_amount.amount) or (version.version==1 and version2.version==1)%}
 						<div class="govuk-check-your-answers__contents">
 							<dt class="version-details-dt">Amount</dt>
-							<dd class="version-details-dd-single">{{ version.flat_amount.amount.toFixed(2).toString() }}</dd>
+							<dd class="version-details-dd-single">£{{ version.flat_amount.amount.toFixed(2).toString() }}</dd>
 						</div>
 					{% endif %}
 				{% endfor %}
