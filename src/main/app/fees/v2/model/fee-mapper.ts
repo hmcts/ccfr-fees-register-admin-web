@@ -37,6 +37,7 @@ export class FeeMapper {
     feeVersionDto.direction = dto.direction
     feeVersionDto.memo_line = dto.memoLine
     feeVersionDto.reason_for_update = dto.reasonForUpdate
+    feeVersionDto.reason_for_reject = dto.reasonForReject
     feeVersionDto.fee_order_name = dto.feeOrderName
     feeVersionDto.natural_account_code = dto.naturalAccountCode
     feeVersionDto.statutory_instrument = dto.statutoryInstrument

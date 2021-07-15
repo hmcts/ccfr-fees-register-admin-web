@@ -728,8 +728,9 @@ a.custom-reference-data:visited {
     display: table-cell;
     border-bottom: 1px solid #bfc1c3;
     padding: 0.63158em 1.05263em 0.47368em 0;
-    width: 100%;
-    padding-left: 88px;
+    width: 1000px;
+    padding-left: 4px;
+    text-align: left;
 }
 
 .fee-details-header {
@@ -738,6 +739,10 @@ a.custom-reference-data:visited {
     font-weight: 700;
     font-size: 32px;
     line-height: 1.09375;
+}
+
+.fee-details-reason-for-reject {
+  margin-bottom: 25px;
 }
 
 #fee-type>.form-group {
