@@ -31,7 +31,7 @@
   </div>
 </div>
 
-{% if pageType =='livefee' or pageType =='disconfee' or pageType =='notlivefee' %}
+{% if pageType =='livefee' or pageType =='disconfee' or pageType =='notlivefee' or pageType =='rejectfee'%}
 {% for version in feeDto.fee_versions | reverse %}
 	{% if (version.length==1 or draft=='false') and loop.index == 1  %}
 	{% if waitingforapproval == 'true' %}
