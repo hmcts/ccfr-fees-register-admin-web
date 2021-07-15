@@ -65,8 +65,8 @@
 								{% if version2.version == version.version-1 and version.flat_amount.amount != version2.flat_amount.amount%}
 									<div class="govuk-check-your-answers__contents">
 										<dt class="version-details-dt">Amount</dt>
-										<dd class="version-details-dd">{{ version.flat_amount.amount }}</dd>
-										<dd class="version-details-dd">Previously: {{ version2.flat_amount.amount }}</dd>
+										<dd class="version-details-dd">{{ version.flat_amount.amount.toFixed(2).toString() }}</dd>
+										<dd class="version-details-dd">Previously: {{ version2.flat_amount.amount.toFixed(2).toString() }}</dd>
 									</div>
 								{% endif %}
 							{% endfor %}
@@ -101,8 +101,8 @@
 								{% if version2.version == version.version-1 and version.valid_from != version2.valid_from%}
 									<div class="govuk-check-your-answers__contents">
 										<dt class="version-details-dt">Valid from</dt>
-										<dd class="version-details-dd">{{ version.valid_from }}</dd>
-										<dd class="version-details-dd">Previously: {{ version2.valid_from }}</dd>
+										<dd class="version-details-dd">{{ version.valid_from | date("DD MMMM YYYY") }}</dd>
+										<dd class="version-details-dd">Previously: {{ version2.valid_from | date("DD MMMM YYYY") }}</dd>
 									</div>
 								{% endif %}
 							{% endfor %}
@@ -110,8 +110,8 @@
 								{% if version2.version == version.version-1 and version.valid_to!= version2.valid_to%}
 									<div class="govuk-check-your-answers__contents">
 										<dt class="version-details-dt">Valid to</dt>
-										<dd class="version-details-dd">{{ version.valid_to }}</dd>
-										<dd class="version-details-dd">Previously: {{ version2.valid_to }}</dd>
+										<dd class="version-details-dd">{{ version.valid_to | date("DD MMMM YYYY") }}</dd>
+										<dd class="version-details-dd">Previously: {{ version2.valid_to | date("DD MMMM YYYY") }}</dd>
 									</div>
 								{% endif %}
 							{% endfor %}
@@ -237,7 +237,7 @@
 								{% if (version2.version == version.version-1 and version2.flat_amount.amount == version.flat_amount.amount) or (version.version==1 and version2.version==1)%}
 									<div class="govuk-check-your-answers__contents">
 										<dt class="version-details-dt">Amount</dt>
-										<dd class="version-details-dd-single">{{ version.flat_amount.amount }}</dd>
+										<dd class="version-details-dd-single">{{ version.flat_amount.amount.toFixed(2).toString() }}</dd>
 									</div>
 								{% endif %}
 							{% endfor %}
@@ -269,7 +269,7 @@
 								{% if (version2.version == version.version-1 and version2.valid_from == version.valid_from) or (version.version==1 and version2.version==1)%}
 									<div class="govuk-check-your-answers__contents">
 										<dt class="version-details-dt">Valid From</dt>
-										<dd class="version-details-dd-single">{{ version.valid_from }}</dd>
+										<dd class="version-details-dd-single">{{ version.valid_from | date("DD MMMM YYYY")}}</dd>
 									</div>
 								{% endif %}
 							{% endfor %}
@@ -277,7 +277,7 @@
 								{% if (version2.version == version.version-1 and version2.valid_to == version.valid_to) or (version.version==1 and version2.version==1)%}
 									<div class="govuk-check-your-answers__contents">
 										<dt class="version-details-dt">Valid To</dt>
-										<dd class="version-details-dd-single">{{ version.valid_to }}</dd>
+										<dd class="version-details-dd-single">{{ version.valid_to | date("DD MMMM YYYY")}}</dd>
 									</div>
 								{% endif %}
 							{% endfor %}

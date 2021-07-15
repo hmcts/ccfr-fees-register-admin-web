@@ -743,3 +743,8 @@ a.custom-reference-data:visited {
 #fee-type>.form-group {
   margin-bottom: 15px;
 }
+.fee-details {
+  border-left: 6px solid darkgray;
+  margin-left: 6px;
+  padding-left: 25px;
+}
