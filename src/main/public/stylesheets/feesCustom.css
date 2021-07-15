@@ -748,3 +748,6 @@ a.custom-reference-data:visited {
   margin-left: 6px;
   padding-left: 25px;
 }
+.dd-width {
+  width: 100%;
+}
