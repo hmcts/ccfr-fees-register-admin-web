@@ -13,12 +13,12 @@
       <div class="jui-width-container">
         <ul class="hmcts-sub-navigation__list">
           <li class="hmcts-sub-navigation__item">
-            <a class="hmcts-sub-navigation__link" aria-current="page" href="/admin/V2/fee-details?draft=false&feeCode={{ feeDto.code }}&pageType={{ pageType }}">
+            <a class="hmcts-sub-navigation__link" aria-current="page" href="/admin/V2/fee-details?draft={{ draft }}&feeCode={{ feeDto.code }}&pageType={{ pageType }}&vno={{ versionNo }}">
               Fee details
             </a>
           </li>
           <li class="hmcts-sub-navigation__item">
-			<a class="hmcts-sub-navigation__link" href="/admin/v2/fee/versions/{{ feeDto.code }}">
+			<a class="hmcts-sub-navigation__link" href="/admin/v2/fee/versions/{{ feeDto.code }}?draft={{ draft }}&pageType={{ pageType }}&vno={{ versionNo }}">
               Fee versions
             </a>
           </li>
