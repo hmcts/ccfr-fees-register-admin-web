@@ -47,6 +47,7 @@
 							</tr>
 						</thead>
 						<tbody>
+						{% set isApprovedDraft = false %}
 							{% for fee in fees %}
 								{% if fee.current_version != null %}
 									{% set version = fee.current_version %}
@@ -54,7 +55,8 @@
 									{% set version = fee.fee_versions[0] %}
 								{% endif %}
 
-								{% if fee.current_version.approvedBy == null %}
+								{% if version.approvedBy == null %}
+								   {% set isApprovedDraft = true %}
 									<tr>
 										<td data-label="Code" class="padding10 whitespace-inherit">{{ fee.code }}</td>
 										{% if version.flat_amount %}
@@ -85,17 +87,22 @@
 											{% endif %}
 										</td>
 									</tr>
-								{% else %}
-									{%if loop.index==1%}
-										<p>No draft fees.</p>
-										{%endif%}
-									{% endif %}
+							    {% endif %}
+
 								{% endfor %}
+								{% if isApprovedDraft == false %}
+								<tr>
+									<td colspan='7'> 
+									No draft fees.
+									</td>
+								</tr>
+								{% endif %}
 							</tbody>
 						</table>
 					{% else %}
 						<p>No draft fees.</p>
 					{% endif %}
+
 				</div>
 			</div>
 

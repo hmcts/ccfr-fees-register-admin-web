@@ -645,6 +645,8 @@
 					<label class="bold">Amount type</label>
 				</dt>
 				<dd class="govuk-check-your-answers__answer">
+
+				
 					{% if feeDto.current_version.flat_amount.amount %}
             Flat
           {% elif feeDto.current_version.percentage_amount.percentage %}
@@ -719,7 +721,7 @@
 						<label class="bold">Valid from</label>
 					</dt>
 					<dd class="govuk-check-your-answers__answer">
-						{{feeDto.current_version.valid_from}}
+						{{feeDto.current_version.valid_from | date("DD MMMM YYYY") }}
 					</dd>
 				</div>
 			{% endif %}
@@ -960,8 +962,8 @@
 					{% if version2.version == version.version-1 and version.valid_from != version2.valid_from%}
 						<div class="govuk-check-your-answers__contents">
 							<dt class="version-details-dt">Valid from</dt>
-							<dd class="version-details-dd">{{ version.valid_from }}</dd>
-							<dd class="version-details-dd">Previously: {{ version2.valid_from }}</dd>
+							<dd class="version-details-dd">{{ version.valid_from | date("DD MMMM YYYY") }}</dd>
+							<dd class="version-details-dd">Previously: {{ version2.valid_from | date("DD MMMM YYYY") }}</dd>
 						</div>
 					{% endif %}
 				{% endfor %}
@@ -969,8 +971,8 @@
 					{% if version2.version == version.version-1 and version.valid_to!= version2.valid_to%}
 						<div class="govuk-check-your-answers__contents">
 							<dt class="version-details-dt">Valid to</dt>
-							<dd class="version-details-dd">{{ version.valid_to }}</dd>
-							<dd class="version-details-dd">Previously: {{ version2.valid_to }}</dd>
+							<dd class="version-details-dd">{{ version.valid_to | date("DD MMMM YYYY")}}</dd>
+							<dd class="version-details-dd">Previously: {{ version2.valid_to | date("DD MMMM YYYY")}}</dd>
 						</div>
 					{% endif %}
 				{% endfor %}
@@ -1054,12 +1056,28 @@
 				</div>
 				<div class="govuk-check-your-answers__contents">
 					<dt class="version-details-dt">Amount type</dt>
-					<dd class="version-details-dd-single">{{ version.amount_type }}</dd>
+					<dd class="version-details-dd-single">
+						{% if version.flat_amount.amount %}
+							{% set type = 'flat' %}
+							Flat
+						{% elif version.percentage_amount.percentage %}
+							{% set type = 'percentage' %}
+							percentage
+						{% elif version.volume_amount.amount %}
+							{% set type = 'volume' %}
+							Volume
+						{% else %}
+							&nbsp;
+						{% endif %}
+					</dd>
 				</div>
+				{% if fversion.percentage_amount.percentage %}
 				<div class="govuk-check-your-answers__contents">
 					<dt class="version-details-dt">Percentage</dt>
 					<dd class="version-details-dd-single">{{ version.percentage_amount.percentage }}</dd>
 				</div>
+				{% endif %}
+					{% if feeDto.fee_type == 'ranged' %}
 				<div class="govuk-check-your-answers__contents">
 					<dt class="version-details-dt">Range from</dt>
 					<dd class="version-details-dd-single">{{ feeDto.min_range }}</dd>
@@ -1072,6 +1090,7 @@
 					<dt class="version-details-dt">Range units</dt>
 					<dd class="version-details-dd-single">{{ feeDto.range_unit }}</dd>
 				</div>
+				{% endif %}
 				<div class="govuk-check-your-answers__contents">
 					<dt class="version-details-dt">Applicant type</dt>
 					<dd class="version-details-dd-single">{{ feeDto.applicant_type.name }}</dd>
@@ -1128,7 +1147,7 @@
 					{% if (version2.version == version.version-1 and version2.valid_from == version.valid_from) or (version.version==1 and version2.version==1)%}
 						<div class="govuk-check-your-answers__contents">
 							<dt class="version-details-dt">Valid From</dt>
-							<dd class="version-details-dd-single">{{ version.valid_from }}</dd>
+							<dd class="version-details-dd-single">{{ version.valid_from | date("DD MMMM YYYY")}}</dd>
 						</div>
 					{% endif %}
 				{% endfor %}
@@ -1136,7 +1155,7 @@
 					{% if (version2.version == version.version-1 and version2.valid_to == version.valid_to) or (version.version==1 and version2.version==1)%}
 						<div class="govuk-check-your-answers__contents">
 							<dt class="version-details-dt">Valid To</dt>
-							<dd class="version-details-dd-single">{{ version.valid_to }}</dd>
+							<dd class="version-details-dd-single">{{ version.valid_to | date("DD MMMM YYYY")}}</dd>
 						</div>
 					{% endif %}
 				{% endfor %}
