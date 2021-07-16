@@ -43,7 +43,7 @@
 					<tbody>
 						{% set isApprovedDraft = false %}
 						{% for fee in fees %}
-							{% set version = getLiveFeeVersion(fee) %}
+							{% set version = getDraftFeeVersion(fee) %}
 							{% if version.approvedBy | length %}
 						      {% set isApprovedDraft = true %}
 
