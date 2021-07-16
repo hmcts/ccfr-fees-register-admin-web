@@ -7,7 +7,11 @@
   {% set heading = t('Create Fee Version') %}
 
   {% block content %}
-
+    {% if isApprover(user.allInfo.roles) %}
+        <input type='hidden' id='userRole' value='Approver'/>
+    {% else %}
+        <input type='hidden' id='userRole' value='Editor'/>
+    {% endif %}
 <div class="grid-row">
   <div class="column-full">
     <form method="post" action="">

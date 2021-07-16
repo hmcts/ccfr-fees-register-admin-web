@@ -1209,6 +1209,7 @@
 	{% endfor %}
 {% endif %}
 {% if pageType === 'draftfee' %}
+ {% if isEditor(user.allInfo.roles) %}
     <a href="/admin/v2/confirm-draft-approval?feeCode={{ feeDto.code }}&version={{ versionNo }}&pageType={{ pageType }}" class="custom-button btn">
       Request approval
     </a>
@@ -1228,8 +1229,10 @@
       <a title="Delete version" href="/admin/v2/draft-delete-are-you-sure?feeCode={{ feeDto.code }}&version={{ versionNo }}&pageType={{ pageType }}">
         Delete
       </a>
+	  {% endif %}
     {% else %}
     {% if pageType === 'rejectfee' %}
+	 {% if isEditor(user.allInfo.roles) %}
       {% if hasApprovedVersion(feeDto.fee_versions) %}
         <a title="Edit version" href="/admin/v2/fees/version/create/{{ feeDto.code }}?action=edit&version={{ versionNo }}" class="custom-button btn">
           Edit fee
@@ -1239,9 +1242,11 @@
           Edit fee
         </a>
       {% endif %}
+	{% endif %}
       <br>
       <br>
     {% elif pageType==='pa' %}
+	{% if isApprover(user.allInfo.roles) %}
       <br>
       <br>
       <form method="post" action="">
@@ -1251,7 +1256,7 @@
         <input type="hidden" name="action" value="approve"/>
         <input type="submit" class="button" value="Approve fee">
       </form>
-      {% if isApprover(user.allInfo.roles) %}
+   
         <br>
         <br>
         <a title="Reject version" href="/admin/v2/reject-fee-reason/{{ feeDto.code }}/{{ versionNo }}">

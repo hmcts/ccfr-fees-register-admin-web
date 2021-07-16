@@ -3,6 +3,11 @@
 
   {% set title = t('Fees | ' + serviceName) %}
   {% block content %}
+    {% if isApprover(user.allInfo.roles) %}
+        <input type='hidden' id='userRole' value='Approver'/>
+    {% else %}
+        <input type='hidden' id='userRole' value='Editor'/>
+    {% endif %}
 <ul class="govuk-tabs__list govuk-!-margin-top-8">
 <li class="govuk-tabs__list-item">
     <a class="govuk-tabs__tab" href="./draft-fees">
@@ -25,7 +30,7 @@
   <h1 class="heading">{{t("Awaiting approval")}}</h1>
 </div>
   {% if (fees | length) > 0 %}
-     <table class="govuk-table">
+     <table class="govuk-table" >
          <thead class="govuk-table__head font-16">
             <tr class="govuk-table__row">
                 <th class="govuk-table__header" scope="col" style="width: 60px;">Code</th>
