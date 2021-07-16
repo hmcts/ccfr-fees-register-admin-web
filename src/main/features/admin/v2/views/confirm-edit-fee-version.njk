@@ -5,7 +5,7 @@
   {% set heading = t('Fee Version Created') %}
 
   {% block content %}
-
+<input type='hidden' id='userRole' value='{{ 'Approver' if isApprover(user.allInfo.roles) else 'Editor' }}'/>
 <div class="grid-row">
   <div class="column-full">
     Fee version has been updated successfully.
