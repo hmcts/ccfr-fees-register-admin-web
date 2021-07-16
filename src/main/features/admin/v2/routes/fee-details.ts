@@ -11,8 +11,6 @@ export default express.Router()
     FeesClient
       .getFee(req.query.feeCode)
       .then((feeDto: Fee2Dto) => {
-
-
         res.render(Paths.feeDetailsViewPagev2.associatedView, {
           draft: req.query.draft,
           pageType: req.query.pageType,
