@@ -1,0 +1,20 @@
+  {% extends "layout.njk" %}
+
+  {% set title = t('Fee details') %}
+  {% block content %}
+    <input type='hidden' id='userRole' value=''/>
+  <div class="grid-row">
+    <div class="column-full govuk-panel govuk-panel--confirmation">
+      <h2 class="govuk-panel__title title-margin-btm"> {{feeCode}} has been approved</h2>
+    </div>
+    <div class="column-full">
+      <h2 class="govuk-heading-m">What happens next</h2>
+      <p class="govuk-body">This fee will be added to the Fee Register on the scheduled date.</p>
+    </div>
+    <div class="column-full">
+      <a href="/admin/v2/pending-approval" class="custom-button btn margin-top-0 ">
+            View fees awaiting approval
+      </a>     
+    </div>
+  </div>
+  {% endblock %}

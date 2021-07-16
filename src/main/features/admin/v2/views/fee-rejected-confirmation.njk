@@ -1,0 +1,23 @@
+
+  {% extends "layout.njk" %}
+  {% set title = t('Fee details') %}
+  {% block content %}
+  <input type='hidden' id='userRole' value=''/>
+  <div class="grid-row">
+    <div class="column-full govuk-panel govuk-panel--confirmation">
+      <h2 class="govuk-panel__title"> {{feeCode}} has been rejected</h2>
+		<div class="govuk-panel__body">
+			You’ll need to submit this fee for approval
+		</div>
+    </div>
+    <div class="column-full">
+      <h2 class="govuk-heading-m">What happens next</h2>
+      <p class="govuk-body">The editor will need to review the draft fee before submitting it to you for approval again.</p>
+    </div>
+    <div class="column-full">
+      <a href="/admin/v2/pending-approval" class="custom-button btn margin-top-0 ">
+            View fees awaiting approval
+      </a>     
+    </div>
+  </div>
+  {% endblock %}

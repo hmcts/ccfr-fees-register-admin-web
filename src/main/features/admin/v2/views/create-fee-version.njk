@@ -7,7 +7,7 @@
   {% set heading = t('Create Fee Version') %}
 
   {% block content %}
-
+<input type='hidden' id='userRole' value='{{ 'Approver' if isApprover(user.allInfo.roles) else 'Editor' }}'/>
 <div class="grid-row">
   <div class="column-full">
     <form method="post" action="">
@@ -19,7 +19,11 @@
           <td>{{ textInput(t('Natural Account Code*'), 'naturalAccountCode', form) }}</td>
 
         </tr>
-
+      <tr>
+        <td colspan="3">
+          {{ textArea(t('Reason For Update'), 'reasonForUpdate', form, rows=2) }}  
+        </td>
+      </tr>
         <tr>
           <td colspan="3">
             {{ textArea(t('Description*'), 'description', form) }}
@@ -109,11 +113,11 @@
       </tr>
 
     </table>
-
+    <br/>
     {{ submitButton(t('Next')) }}
   </form>
   <input type="hidden" name="feeCode" value="{{ feeCode }}"/>
-  <a href="/admin/welcome" class="link-back">{{ t('Cancel') }}</a>
+  <a href="/admin/v2/all-fees" class="link-back">{{ t('Cancel') }}</a>
 </div>
   </div>
 
