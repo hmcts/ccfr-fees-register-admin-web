@@ -4,6 +4,7 @@
 {% set title = t('Fee | ' + serviceName) %}
 {% set heading = t('Why are you rejecting this draft fee?') %}
 {% block content %}
+<input type='hidden' id='userRole' value=''/>
 
     <form method="post">
         {{ csrfProtection(csrfToken) }}

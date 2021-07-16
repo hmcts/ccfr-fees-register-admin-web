@@ -3,11 +3,7 @@
 
   {% set title = t('Fee details') %}
   {% block content %}
-    {% if isApprover(user.allInfo.roles) %}
-      <input type='hidden' id='userRole' value='Approver'/>
-    {% else %}
-      <input type='hidden' id='userRole' value='Editor'/>
-    {% endif %}
+<input type='hidden' id='userRole' value='{{ 'Approver' if isApprover(user.allInfo.roles) else 'Editor' }}'/>
     <div class="grid-row">
       <div class="column-full padding-left-right-0">
         <h1 class="heading-xlarge approval-confirm-h1">
