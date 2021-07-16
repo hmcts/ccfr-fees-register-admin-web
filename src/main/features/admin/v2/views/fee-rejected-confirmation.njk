@@ -2,6 +2,7 @@
   {% extends "layout.njk" %}
   {% set title = t('Fee details') %}
   {% block content %}
+  <input type='hidden' id='userRole' value=''/>
   <div class="grid-row">
     <div class="column-full govuk-panel govuk-panel--confirmation">
       <h2 class="govuk-panel__title"> {{feeCode}} has been rejected</h2>
