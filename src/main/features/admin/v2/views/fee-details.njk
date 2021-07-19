@@ -1251,10 +1251,21 @@
           Edit fee
         </a>
       {% endif %}
+		<br>
+		<br>
+      <form method="post" action="">
+       {{ csrfProtection(csrfToken) }}
+        <input type="hidden" name="feeCode" value="{{ feeDto.code }}"/>
+        <input type="hidden" name="version" value="{{ versionNo }}"/>
+		<input type="hidden" name="action" value="submit"/>
+        <input type="submit" class="link-button" value="Request approval">
+      </form>
+      <br>
+      <a title="Delete version" href="/admin/v2/draft-delete-are-you-sure?feeCode={{ feeDto.code }}&version={{ versionNo }}&pageType={{ pageType }}">
+        Delete
+      </a>
 	{% endif %}
-      <br>
-      <br>
-    {% elif pageType==='pa' %}
+    {% elif pageType == 'pa' or pageType == 'afa' %}
 	{% if isApprover(user.allInfo.roles) %}
       <br>
       <br>

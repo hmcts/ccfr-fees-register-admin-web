@@ -7,18 +7,18 @@
 	<ul class="govuk-tabs__list govuk-!-margin-top-8">
 
 		<li class="govuk-tabs__list-item govuk-tabs__list-item--selected">
-			<a class="govuk-tabs__tab govuk-tabs__tab--selected" href="./draft-fees" style="text-decoration: underline;">
+			<a class="govuk-tabs__tab govuk-tabs__tab--selected" href="/admin/V2/draft-fees">
 				{{ t("Drafts") }}
 			</a>
 		</li>
 
 		<li class="govuk-tabs__list-item">
-			<a class="govuk-tabs__tab" href="./draft-rejectedbyapprover" style="text-decoration: underline;">
+			<a class="govuk-tabs__tab" href="/admin/V2/draft-rejectedbyapprover">
 				{{ t("Rejected by approver") }}
 			</a>
 		</li>
 		<li class="govuk-tabs__list-item">
-			<a class="govuk-tabs__tab" href="./draft-awaitingapproval" style="text-decoration: underline;">
+			<a class="govuk-tabs__tab" href="/admin/V2/draft-awaitingapproval">
 				{{ t("Awaiting approval") }}
 			</a>
 		</li>
@@ -30,20 +30,20 @@
 
 				<div class="title-with-secondary">
 					<h1 class="heading">{{t("Drafts")}}</h1>
-					<div class="title-with-secondary" style="flex-grow: 1;"></div>
+					<div class="title-with-secondary live-fee-al"></div>
 					<a href="./fees/create">{{nextButton(t("Create a new fee"), t("govuk-button2 black-text"))}}</a>
 				</div>
 				{% if (fees | length) > 0 %}
 					<table class="govuk-table">
 						<thead class="govuk-table__head font-16">
 							<tr class="govuk-table__row">
-								<th class="govuk-table__header" scope="col" style="width: 60px;">Code</th>
-								<th class="govuk-table__header" scope="col" style="width:84px; text-align: right; padding-right: 20px;">Amount</th>
-								<th class="govuk-table__header" scope="col" style="width: 120px;">Service</th>
-								<th class="govuk-table__header" scope="col" style="width: 200px;">Description</th>
-								<th class="govuk-table__header" scope="col" style="width: 100px;">Statutory Instrument</th>
-								<th class="govuk-table__header" scope="col" style="width:100px;">Valid from</th>
-								<th class="govuk-table__header" scope="col" style="width:40px;"></th>
+								<th class="govuk-table__header draft-col1" scope="col" >Code</th>
+								<th class="govuk-table__header draft-col2" scope="col">Amount</th>
+								<th class="govuk-table__header draft-col3" scope="col">Service</th>
+								<th class="govuk-table__header draft-col4" scope="col">Description</th>
+								<th class="govuk-table__header draft-col5" scope="col">Statutory Instrument</th>
+								<th class="govuk-table__header draft-col5" scope="col">Valid from</th>
+								<th class="govuk-table__header draft-col6" scope="col"></th>
 							</tr>
 						</thead>
 						<tbody>
