@@ -35,6 +35,10 @@ module.exports = () => actor({
     const year = date.getFullYear().toString();
     return`${day}/${month}/${year}`;
   },
+  getFeeCode(textFromRequestSubmittedScreen){
+    const FeeCode = textFromRequestSubmittedScreen.split(" ")[0];
+    console.log(FeeCode);
+  },
 
   addNewFee(feeKeyword) {
     const memoLineNumber = faker.random.number(RANDOM_NUMBER);
@@ -73,11 +77,12 @@ module.exports = () => actor({
     this.wait(CCPBConstants.twentySecondWaitTime);
   },
   submitForApproval(feeKeyword) {
-   this.see('My open action');
-   this.click('My open action');
-   this.see(feeKeyword);
-   this.click(`//*[contains(text(),"${feeKeyword}")]/..//input[@type="submit" and @value = "Submit"]`)
-   this.wait(CCPBConstants.fiveSecondWaitTime)
+    this.see(  'Request approval')
+    this.click(  'Request approval');
+    this.waitForText('Don’t submit this fee for approval',CCPBConstants.tenSecondWaitTime);
+    this.see('Are you sure you want to submit this fee for approval?' );
+    this.click(  'Request approval');
+    this.wait(CCPBConstants.fiveSecondWaitTime);
   },
   deleteFees(feeKeyword) {
     this.see('My open action');
