@@ -6,24 +6,24 @@
     <input type='hidden' id='userRole' value=''/>
 <ul class="govuk-tabs__list govuk-!-margin-top-7">
 <li class="govuk-tabs__list-item govuk-tabs__list-item--selected">
-    <a class="govuk-tabs__tab govuk-tabs__tab--selected" href="./all-fees">
+    <a class="govuk-tabs__tab govuk-tabs__tab--selected" href="/admin/V2/all-fees">
         {{ t("Live fees") }}
     </a>
 </li>
 <li class="govuk-tabs__list-item">
-    <a class="govuk-tabs__tab" href="./all-approvedbutnotlive" style="text-decoration: underline;">
+    <a class="govuk-tabs__tab" href="/admin/V2/all-approvedbutnotlive">
       {{ t("Approved but not live fees") }}
     </a>
 </li>
 <li class="govuk-tabs__list-item">
-    <a class="govuk-tabs__tab" href="./all-discontinued" style="text-decoration: underline;">
+    <a class="govuk-tabs__tab" href="/admin/V2/all-discontinued">
          {{ t("Discontinued fees") }}
     </a>
 </li>
 </ul>
 <div class="title-with-secondary">
   <h1 class="govuk-heading-xl govuk-!-margin-bottom-6 govuk-!-margin-top-7">{{t("Live fees")}}</h1>
-  <div class="title-with-secondary" style="flex-grow: 1;"></div>
+  <div class="title-with-secondary live-fee-al"></div>
   <p class="govuk-!-margin-top-9 govuk-!-margin-bottom-0"> &nbsp;</p>
 </div>
 {% if isEditor(user.allInfo.roles) %}
