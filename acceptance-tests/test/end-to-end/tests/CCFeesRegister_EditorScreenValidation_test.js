@@ -75,7 +75,7 @@ Scenario('FeesRegister Add New Fee and Delete Draft', async I => {
   I.waitForText('Live fees', CCFRATConstants.tenSecondWaitTime);
   await I.addNewFee(feeKeyword);
   //I.waitForText('Draft fee saved', CCFRATConstants.tenSecondWaitTime);
-  I.click('View draft fee');
+  //I.click('View draft fee');
   I.waitForText('Amount', CCFRATConstants.tenSecondWaitTime);
   I.waitForText('View', CCFRATConstants.fiveSecondWaitTime);
   I.click('//a[contains(text(),"View")][1]');
