@@ -40,7 +40,7 @@ module.exports = () => actor({
     console.log(FeeCode);
   },
 
-  addNewFee(feeKeyword) {
+  async addNewFee(feeKeyword) {
     const memoLineNumber = faker.random.number(RANDOM_NUMBER);
     const naturalAccountCode = faker.random.number(RANDOM_NUMBER);
     const fromDate = new Date();
@@ -48,31 +48,34 @@ module.exports = () => actor({
     // toDate.setMonth(toDate.getMonth() + 3);
     this.click('Create a new fee');
     this.fillField('textarea[id="reasonForUpdate"]', 'New Fee Creation');
-    this.fillField({ css: '#memoLine'}, memoLineNumber);
-    this.fillField({ css: '#naturalAccountCode'}, '232425');
     this.fillField({ css: '#description'}, feeKeyword);
-    this.wait(2);
-    this.fillField({ css: '#fromDate'}, this.getFormattedDate());
-    this.wait(2);
-    this.fillField({ css: '#amount'}, 120.00);
-    //Applicant;
-    this.checkOption('input[id="all"]');
+    this.fillField({ css: '#statutoryInstrument'}, feeKeyword);
+    this.fillField({ css: '#siRefId'}, feeKeyword);
+    this.fillField({ css: '#feeOrderName'}, feeKeyword);
+
+    //service
+    this.checkOption('input[id="divorce"]');
     //jurisdiction1;
     this.checkOption('input[id="family"]');
     //jurisdiction2
     this.checkOption('input[id="family court"]');
-    //service
-    this.checkOption('input[id="divorce"]');
+    //FeeType
+    this.checkOption('input[id="typefixed"]');
+    this.fillField({ css: '#amount'}, 120.00);
     //event
     this.checkOption('input[id="hearing"]');
     //channel
     this.checkOption('input[id="online"]');
+    this.fillField({ css: '#keyword'}, feeKeyword);
+    //Applicant;
+    this.checkOption('input[id="all"]');
     //direction
     this.checkOption('input[id="enhanced"]');
-    this.fillField({ css: '#keyword'}, feeKeyword);
-    this.fillField({ css: '#feeOrderName'}, feeKeyword);
-    this.fillField({ css: '#statutoryInstrument'}, feeKeyword);
-    this.fillField({ css: '#siRefId'}, feeKeyword);
+    this.fillField({ css: '#memoLine'}, memoLineNumber);
+    this.wait(2);
+    this.fillField({ css: '#fromDate'}, this.getFormattedDate());
+    this.wait(2);
+    this.fillField({ css: '#naturalAccountCode'}, '232425');
     this.wait(CCPBConstants.tenSecondWaitTime);
     this.click('Save as draft');
     this.wait(CCPBConstants.tenSecondWaitTime);
