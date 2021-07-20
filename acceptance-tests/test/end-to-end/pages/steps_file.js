@@ -78,12 +78,11 @@ module.exports = () => actor({
     this.fillField({ css: '#memoLine'}, memoLineNumber);
     this.wait(CCPBConstants.twoSecondWaitTime);
     this.fillField({ css: '#fromDate'}, this.getFormattedDate());
-    this.wait(CCPBConstants.twoSecondWaitTime);
     this.click({ css: '#naturalAccountCode'});
     this.fillField({ css: '#naturalAccountCode'}, '232425');
-    this.wait(CCPBConstants.tenSecondWaitTime);
+    this.wait(CCPBConstants.fiveSecondWaitTime);
     this.click('input[id="submit"]');
-    this.wait(60);
+    this.wait(CCPBConstants.tenSecondWaitTime);
     this.waitForText('Draft fee saved', CCPBConstants.tenSecondWaitTime);
     this.click('View draft fee');
   },
