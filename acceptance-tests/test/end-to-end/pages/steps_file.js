@@ -61,24 +61,30 @@ module.exports = () => actor({
     this.checkOption('input[id="family court"]');
     //FeeType
     this.checkOption('input[id="typefixed"]');
+    this.wait(CCPBConstants.twoSecondWaitTime);
     this.fillField({ css: '#amount'}, 120.00);
+    this.wait(CCPBConstants.twoSecondWaitTime);
     //event
     this.checkOption('input[id="hearing"]');
     //channel
     this.checkOption('input[id="online"]');
+    this.wait(CCPBConstants.twoSecondWaitTime);
     this.fillField({ css: '#keyword'}, feeKeyword);
     //Applicant;
     this.checkOption('input[id="all"]');
+    this.wait(CCPBConstants.twoSecondWaitTime);
     //direction
     this.checkOption('input[id="enhanced"]');
+    this.wait(CCPBConstants.twoSecondWaitTime);
     this.fillField({ css: '#memoLine'}, memoLineNumber);
-    this.wait(2);
+    this.wait(CCPBConstants.twoSecondWaitTime);
     this.fillField({ css: '#fromDate'}, this.getFormattedDate());
-    this.wait(2);
+    this.wait(CCPBConstants.twoSecondWaitTime);
     this.fillField({ css: '#naturalAccountCode'}, '232425');
-    this.wait(CCPBConstants.tenSecondWaitTime);
+    this.wait(CCPBConstants.twoSecondWaitTime);
     this.click('Save as draft');
-    this.wait(CCPBConstants.tenSecondWaitTime);
+    console.log("this is saved");
+    this.wait(CCPBConstants.thirtySecondWaitTime);
   },
   submitForApproval(feeKeyword) {
     this.see(  'Request approval')
