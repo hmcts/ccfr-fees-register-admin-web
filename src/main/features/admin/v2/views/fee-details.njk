@@ -909,8 +909,7 @@
 			
 			<div class="govuk-check-your-answers__contents">
 			<dt class="version-details-dt dd-width-50">Reason approver rejected fee</dt>
-			<dd class="version-details-dd dd-width-50">{{ version.reason_for_reject}}</dd>
-			<dd class="version-details-dd dd-width-25" ></dd>
+			<dd class="version-details-dd-single">{{ version.reason_for_reject}}</dd>
 			</div>
 			<dl class="govuk-check-your-answers govuk-check-your-answers--short">
 				{% for version2 in feeDto.fee_versions | reverse %}
@@ -921,13 +920,12 @@
 				{% endfor %}
 				<div class="govuk-check-your-answers__contents">
 					<dt class="version-details-dt">Reason for fee update</dt>
-					<dd class="version-details-dd">{{ version.reason_for_update}}</dd>
-					<dd class="version-details-dd" ></dd>
+					<dd class="version-details-dd-single">{{ version.reason_for_update}}</dd>
 				</div>
 				
 				<div class="govuk-check-your-answers__contents">
 					<dt class="version-details-dt">Version</dt>
-					<dd class="version-details-dd">{{ version.version }}</dd>
+					<dd class="{% 'version-details-dd' if (feeDto.fee_versions | length) > 1 'version-details-dd-single' %}">{{ version.version }}</dd>
 					{% for version2 in feeDto.fee_versions | reverse %}
 						{% if version2.version == version.version-1 and version.version!= version2.version%}
 							<dd class="version-details-dd">Previously: {{ version2.version }}</dd>
@@ -1044,13 +1042,11 @@
 				{% endfor %}
 				<div class="govuk-check-your-answers__contents">
 					<dt class="version-details-dt">Editor</dt>
-					<dd class="version-details-dd">{{ version.author }}</dd>
-					<dd class="govuk-check-your-answers__change" style="width: 320px; padding-left: 15px; text-align: left"></dd>
+					<dd class="version-details-dd-single">{{ version.author }}</dd>
 				</div>
 				<div class="govuk-check-your-answers__contents">
 					<dt class="version-details-dt">Approver</dt>
-					<dd class="version-details-dd">{{ version.approvedBy }}</dd>
-					<dd class="govuk-check-your-answers__change" style="width: 320px; padding-left: 15px; text-align: left"></dd>
+					<dd class="version-details-dd-single">{{ version.approvedBy }}</dd>
 				</div>
 			</dl>
 			{% for version2 in feeDto.fee_versions | reverse %}
@@ -1131,7 +1127,7 @@
 				</div>
 				<div class="govuk-check-your-answers__contents">
 					<dt class="version-details-dt">Channel</dt>
-					<dd class="version-details-dd-single">{{ feeDto.channel }}</dd>
+					<dd class="version-details-dd-single">{{ feeDto.channel_type.name }}</dd>
 				</div>
 				{% for version2 in feeDto.fee_versions | reverse %}
 					{% if (version2.version == version.version-1 and version2.description == version.description) or (version.version==1 and version2.version==1)%}
@@ -1157,8 +1153,7 @@
 					{% if (version2.version == version.version-1 and version2.si_ref_id == version.si_ref_id) or (version.version==1 and version2.version==1)%}
 						<div class="govuk-check-your-answers__contents">
 							<dt class="version-details-dt">SI Ref ID</dt>
-							<dd class="version-details-dd">{{ version.si_ref_id }}</dd>
-							<dd class="version-details-dd"> &nbsp;</dd>
+							<dd class="version-details-dd-single">{{ version.si_ref_id }}</dd>
 						</div>
 					{% endif %}
 				{% endfor %}
