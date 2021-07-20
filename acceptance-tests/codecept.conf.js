@@ -25,7 +25,8 @@ exports.config = {
   },
   plugins: {
     screenshotOnFail: {
-      enabled: true
+      enabled: true,
+      fullPageScreenshots: true
     }
   },
   include: { I: './test/end-to-end/pages/steps_file.js' },
