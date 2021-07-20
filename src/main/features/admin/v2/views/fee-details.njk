@@ -317,7 +317,11 @@
         <label class="bold">Valid to</label> 
       </dt>
       <dd class="govuk-check-your-answers__answer">
-    {{feeDto.current_version.valid_to | date("DD MMMM YYYY") }}
+		{% if feeDto.current_version.valid_to%}
+			{{feeDto.current_version.valid_to | date("DD MMMM YYYY") }}
+		{% else %}
+			&nbsp;
+		{% endif %}
       </dd>
     </div>
   {% endif %}
@@ -338,7 +342,11 @@
         <label class="bold">Valid to</label> 
       </dt>
       <dd class="govuk-check-your-answers__answer">
-    {{version.valid_to | date("DD MMMM YYYY") }}
+		{% if version.valid_to %}
+			{{version.valid_to | date("DD MMMM YYYY") }}
+		{% else %}
+			&nbsp;
+		{% endif %}
       </dd>
     </div>
   {% endif %}
@@ -530,11 +538,11 @@
 					<label class="bold">SI Ref ID</label>
 				</dt>
 				<dd class="govuk-check-your-answers__answer">
-					{% if feeDto.current_version.si_ref_id %}
-						{{feeDto.current_version.si_ref_id}}
-					{% else %}
-            &nbsp;
-          {% endif %}
+				{% if feeDto.current_version.si_ref_id %}
+					{{feeDto.current_version.si_ref_id}}
+				{% else %}
+					&nbsp;
+				{% endif %}
 				</dd>
 			</div>
 
@@ -543,11 +551,11 @@
 					<label class="bold">Service</label>
 				</dt>
 				<dd class="govuk-check-your-answers__answer">
-					{% if feeDto.service_type.name %}
-						{{feeDto.service_type.name}}
-					{% else %}
-      &nbsp;
-    {% endif %}
+				{% if feeDto.service_type.name %}
+					{{feeDto.service_type.name}}
+				{% else %}
+					&nbsp;
+				{% endif %}
 				</dd>
 			</div>
 
@@ -733,7 +741,11 @@
 						<label class="bold">Valid to</label>
 					</dt>
 					<dd class="govuk-check-your-answers__answer">
-						{{feeDto.current_version.valid_to}}
+						{% if feeDto.current_version.valid_to %}
+							{{feeDto.current_version.valid_to | date("DD MMMM YYYY")}}
+						{% else %}
+							&nbsp;
+						{% endif %}
 					</dd>
 				</div>
 			{% endif %}
@@ -989,7 +1001,7 @@
 					{% if version2.version == version.version-1 and version.valid_to!= version2.valid_to%}
 						<div class="govuk-check-your-answers__contents">
 							<dt class="version-details-dt">Valid to</dt>
-							<dd class="version-details-dd">{{ version.valid_to | date("DD MMMM YYYY")}}</dd>
+							<dd class="version-details-dd">{{ version.valid_to | date("DD MMMM YYYY")}}2q2</dd>
 							<dd class="version-details-dd">Previously: {{ version2.valid_to | date("DD MMMM YYYY")}}</dd>
 						</div>
 					{% endif %}
@@ -1026,7 +1038,7 @@
 						<div class="govuk-check-your-answers__contents">
 							<dt class="version-details-dt">Direction:</dt>
 							<dd class="version-details-dd">{{ version.direction }}</dd>
-							<dd class="version-details-dd">Previously: : : {{ version2.direction }}</dd>
+							<dd class="version-details-dd">Previously: {{ version2.direction }}</dd>
 						</div>
 					{% endif %}
 				{% endfor %}
@@ -1145,7 +1157,8 @@
 					{% if (version2.version == version.version-1 and version2.si_ref_id == version.si_ref_id) or (version.version==1 and version2.version==1)%}
 						<div class="govuk-check-your-answers__contents">
 							<dt class="version-details-dt">SI Ref ID</dt>
-							<dd class="version-details-dd-single">{{ version.si_ref_id }}</dd>
+							<dd class="version-details-dd">{{ version.si_ref_id }}</dd>
+							<dd class="version-details-dd"> &nbsp;</dd>
 						</div>
 					{% endif %}
 				{% endfor %}
@@ -1169,7 +1182,8 @@
 					{% if (version2.version == version.version-1 and version2.valid_from == version.valid_from) or (version.version==1 and version2.version==1)%}
 						<div class="govuk-check-your-answers__contents">
 							<dt class="version-details-dt">Valid From</dt>
-							<dd class="version-details-dd-single">{{ version.valid_from | date("DD MMMM YYYY")}}</dd>
+							<dd class="version-details-dd-single">
+							{{ version.valid_from | date("DD MMMM YYYY")}}</dd>
 						</div>
 					{% endif %}
 				{% endfor %}
@@ -1177,7 +1191,14 @@
 					{% if (version2.version == version.version-1 and version2.valid_to == version.valid_to) or (version.version==1 and version2.version==1)%}
 						<div class="govuk-check-your-answers__contents">
 							<dt class="version-details-dt">Valid To</dt>
-							<dd class="version-details-dd-single">{{ version.valid_to | date("DD MMMM YYYY")}}</dd>
+							<dd class="version-details-dd-single">
+							{% if version.valid_to %}
+								{{ version.valid_to | date("DD MMMM YYYY")}}
+							{% else %}
+								&nbsp;
+							{% endif %}
+							
+							</dd>
 						</div>
 					{% endif %}
 				{% endfor %}
