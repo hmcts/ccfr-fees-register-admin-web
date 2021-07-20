@@ -68,25 +68,30 @@
 								{% endif %}
 							{% endfor %}
 							{% for version2 in feeDto.fee_versions | reverse %}
-								{% if version2.version == version.version-1 and version.flat_amount.amount != version2.flat_amount.amount%}
+								{% if version2.version == version.version-1 and (version.flat_amount.amount != version2.flat_amount.amount or version.volume_amount.amount != version2.volume_amount.amount) %}
 									<div class="govuk-check-your-answers__contents">
 										<dt class="version-details-dt">Amount</dt>
 										<dd class="version-details-dd">
 											{% if version.flat_amount.amount %}
 												£{{ version.flat_amount.amount.toFixed(2).toString() }}
+											{% elif version.volume_amount.amount %}
+												£{{ version.volume_amount.amount.toFixed(2).toString() }}
 											{% else %}
-											&nbsp;
+												&nbsp;
 											{% endif %}
 										</dd>
 										<dd class="version-details-dd">
 											{% if version2.flat_amount.amount %}
 												Previously: £{{ version2.flat_amount.amount.toFixed(2).toString() }}
+									        {% elif version.volume_amount.amount %}
+												Previously:: £{{ version2.volume_amount.amount.toFixed(2).toString() }}
 											{% else %}
 												&nbsp;
 											{% endif %}
 										</dd>
 									</div>
 								{% endif %}
+								
 							{% endfor %}
 							{% for version2 in feeDto.fee_versions | reverse %}
 								{% if version2.version == version.version-1 and version.si_ref_id != version2.si_ref_id%}
@@ -235,7 +240,7 @@
 							{% if version.percentage_amount.percentage %}
 								<div class="govuk-check-your-answers__contents">
 									<dt class="version-details-dt">Percentage</dt>
-									<dd class="version-details-dd-single">{{ version.percentage_amount.percentage }}%</dd>
+									<dd class="version-details-dd">{{ version.percentage_amount.percentage }}%</dd>
 									<dd class="version-details-dd">&nbsp;</dd>
 								</div>
 							{% endif %}
@@ -281,15 +286,17 @@
 								{% endif %}
 							{% endfor %}
 							{% for version2 in feeDto.fee_versions | reverse %}
-								{% if (version2.version == version.version-1 and version2.flat_amount.amount == version.flat_amount.amount) or (version.version==1 and version2.version==1)%}
+								{% if (version2.version == version.version-1 and (version2.flat_amount.amount == version.flat_amount.amount or version2.volume_amount.amount == version.volume_amount.amount)) or (version.version==1 and version2.version==1)%}
 									<div class="govuk-check-your-answers__contents">
 										<dt class="version-details-dt">Amount</dt>
 										<dd class="version-details-dd">
-										{% if version.flat_amount.amount %}
-											£{{ version.flat_amount.amount.toFixed(2).toString() }}
-										{% else %}
-										  &nbsp;
-										{% endif %}
+									        {% if version.flat_amount.amount %}
+												£{{ version.flat_amount.amount.toFixed(2).toString() }}
+											{% elif version.volume_amount.amount %}
+												£{{ version.volume_amount.amount.toFixed(2).toString() }}
+											{% else %}
+												&nbsp;
+											{% endif %}
 										</dd>
 										<dd class="version-details-dd">&nbsp;</dd>
 
