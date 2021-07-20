@@ -963,7 +963,7 @@
 				{% endfor %}
 				{% for version2 in feeDto.fee_versions | reverse %}
 					{% if version2.version == version.version-1 and version.si_ref_id != version2.si_ref_id%}
-						<div class="cgovuk-check-your-answers__contents">
+						<div class="govuk-check-your-answers__contents">
 							<dt class="version-details-dt">SI Ref ID</dt>
 							<dd class="version-details-dd">{{ version.si_ref_id }}</dd>
 							<dd class="version-details-dd">Previously: {{ version2.si_ref_id }}</dd>
