@@ -48,7 +48,7 @@ module.exports = () => actor({
     // toDate.setMonth(toDate.getMonth() + 3);
     this.click('Create a new fee');
     this.fillField('textarea[id="reasonForUpdate"]', 'New Fee Creation');
-    this.fillField({ css: '#description'}, "test vivek jenkins");
+    this.fillField({ css: '#description'}, "test vivek jenkins1");
     this.fillField({ css: '#statutoryInstrument'}, feeKeyword);
     this.fillField({ css: '#siRefId'}, feeKeyword);
     this.fillField({ css: '#feeOrderName'}, feeKeyword);
@@ -82,8 +82,8 @@ module.exports = () => actor({
     this.wait(CCPBConstants.twoSecondWaitTime);
     this.fillField({ css: '#naturalAccountCode'}, '232425');
     this.wait(CCPBConstants.twoSecondWaitTime);
-    this.click('Save as draft');
-    this.wait(CCPBConstants.fiveSecondWaitTime);
+    this.click('input[id="submit"]');
+    this.wait(CCPBConstants.thirtySecondWaitTime);
   },
   submitForApproval(feeKeyword) {
     this.see(  'Request approval')
