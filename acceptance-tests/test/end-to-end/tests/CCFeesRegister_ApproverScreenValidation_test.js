@@ -10,7 +10,7 @@ BeforeSuite(I => {
   // I.resizeWindow(CCFRATConstants.windowsSizeX, CCFRATConstants.windowsSizeY);
 });
 
-Scenario('FeesRegister Admin Console Approver Screen Validation @crossbrowser', I => {
+xScenario('FeesRegister Admin Console Approver Screen Validation @crossbrowser', I => {
   I.login('functionaltestapprover@hmcts.net', 'LevelAt12');
   I.wait(CCFRATConstants.tenSecondWaitTime);
   I.see("Fees");
@@ -19,7 +19,7 @@ Scenario('FeesRegister Admin Console Approver Screen Validation @crossbrowser', 
   I.click('Sign out');
 })
 
-Scenario('FeesRegister Verify Pending For Approval', I => {
+xScenario('FeesRegister Verify Pending For Approval', I => {
   I.login('functionaltestapprover@hmcts.net', 'LevelAt12');
   I.wait(CCFRATConstants.twoSecondWaitTime);
   I.amOnPage('/admin/V2/pending-approval');
