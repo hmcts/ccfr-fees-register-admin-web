@@ -4,7 +4,7 @@ const CCPBConstants = require('../tests/CCFRAcceptanceTestConstants');
 // const faker = require('faker');
 const faker = require('faker');
 const RANDOM_NUMBER = 99999;
-const {verifyFeesHeaders, verifyFeeDetails} = require('./live_fees');
+const {verifyFeesHeaders, verifyFeeDetails} = require('./fees_details');
 const CCDNumber = faker.random.number(RANDOM_NUMBER);
 module.exports = () => actor({
   // done
@@ -85,10 +85,11 @@ module.exports = () => actor({
     this.wait(CCPBConstants.fiveSecondWaitTime);
   },
   deleteFees(feeKeyword) {
-    this.see('My open action');
-    this.click('My open action');
-    this.see(feeKeyword);
-    this.click(`//*[contains(text(),"${feeKeyword}")]/..//input[@type="submit" and @value = "Delete"]`)
+    this.see('Delete');
+    this.click('Delete');
+    this.waitForText('Are you sure you want to delete this draft fee?', '10');
+    this.see('Don’t delete draft');
+    this.click('Delete draft');
     this.wait(CCPBConstants.fiveSecondWaitTime);
   },
   verifyFeesSentForApproval(feeKeyword) {
