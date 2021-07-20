@@ -73,8 +73,9 @@ module.exports = () => actor({
     this.fillField({ css: '#feeOrderName'}, feeKeyword);
     this.fillField({ css: '#statutoryInstrument'}, feeKeyword);
     this.fillField({ css: '#siRefId'}, feeKeyword);
+    this.wait(CCPBConstants.tenSecondWaitTime);
     this.click('Save as draft');
-    this.wait(CCPBConstants.twentySecondWaitTime);
+    this.wait(CCPBConstants.tenSecondWaitTime);
   },
   submitForApproval(feeKeyword) {
     this.see(  'Request approval')
