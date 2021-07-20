@@ -48,7 +48,7 @@ module.exports = () => actor({
     // toDate.setMonth(toDate.getMonth() + 3);
     this.click('Create a new fee');
     this.fillField('textarea[id="reasonForUpdate"]', 'New Fee Creation');
-    this.fillField({ css: '#description'}, feeKeyword);
+    this.fillField({ css: '#description'}, "test vivek qa from jenkins");
     this.fillField({ css: '#statutoryInstrument'}, feeKeyword);
     this.fillField({ css: '#siRefId'}, feeKeyword);
     this.fillField({ css: '#feeOrderName'}, feeKeyword);
