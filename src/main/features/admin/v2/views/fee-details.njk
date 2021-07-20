@@ -908,7 +908,7 @@
 			and loop.index == 1 %}
 			
 			<div class="govuk-check-your-answers__contents">
-			<dt class="version-details-dt dd-width-50">Reason approver rejected fee</dt>
+			<dt class="version-details-dt">Reason approver rejected fee</dt>
 			<dd class="version-details-dd-single">{{ version.reason_for_reject}}</dd>
 			</div>
 			<dl class="govuk-check-your-answers govuk-check-your-answers--short">
@@ -925,7 +925,7 @@
 				
 				<div class="govuk-check-your-answers__contents">
 					<dt class="version-details-dt">Version</dt>
-					<dd class="version-details-dd">{{ version.version }}</dd>
+					<dd class="{{ 'version-details-dd' if feeDto.fee_versions.length > 1 else 'version-details-dd-single' }}">{{ version.version }}</dd>
 					{% for version2 in feeDto.fee_versions | reverse %}
 						{% if version2.version == version.version-1 and version.version!= version2.version%}
 							<dd class="version-details-dd">Previously: {{ version2.version }}</dd>
