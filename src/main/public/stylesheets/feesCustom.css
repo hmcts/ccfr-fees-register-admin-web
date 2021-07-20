@@ -780,3 +780,9 @@ a.custom-reference-data:visited {
 .live-fee-al {
   flex-grow: 1;
 }
+.a-create-link {
+  display: inline-block;
+  overflow: hidden;
+  height: 50px;
+  width: 165px;
+}
