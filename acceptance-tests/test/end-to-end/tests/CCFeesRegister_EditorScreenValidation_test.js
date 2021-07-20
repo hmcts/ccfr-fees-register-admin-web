@@ -20,7 +20,7 @@ Scenario('FeesRegister Admin Console Editor Screen For Live Fees Details', I => 
   // to-do based on updates and future stories
   I.verifyFeesHeaders();
   //verify any existing fee details under live Tab
-  I.verifyFeeDetails('FEE0582','civil','Flat','100.00');
+  I.verifyFeeDetails('FEE0580','civil','Flat','100.00');
   I.click('Sign out');
 }).retry(CCFRATConstants.retryScenario);
 
@@ -47,7 +47,7 @@ Scenario('FeesRegister Admin Console Editor Discontinued Fees Details Check @cro
   I.click('Sign out');
 }).retry(CCFRATConstants.retryScenario);
 
-Scenario('FeesRegister Add New Fee and Submit for Approval', I => {
+Scenario('FeesRegister Add New Fee and Submit for Approval', async I => {
   const feeKeyword = "SN" + new Date().valueOf().toString();
   const submitBtnVisibilityChk = true;
 
@@ -55,12 +55,14 @@ Scenario('FeesRegister Add New Fee and Submit for Approval', I => {
   I.wait(CCFRATConstants.twoSecondWaitTime);
   I.waitForText('Live fees', CCFRATConstants.tenSecondWaitTime);
   I.addNewFee(feeKeyword);
-  I.waitForText('Fee Created', CCFRATConstants.twoSecondWaitTime);
-  I.wait('5');
-  I.see('Fee has been created successfully.');
-  I.click('Return to welcome page');
-  I.wait(CCFRATConstants.twoSecondWaitTime);
-  I.waitForText('Welcome', CCFRATConstants.tenSecondWaitTime);
-  I.deleteFees(feeKeyword);
+  I.waitForText('Draft fee saved', CCFRATConstants.tenSecondWaitTime);
+  I.click('View draft fee');
+  I.waitForText('Amount', CCFRATConstants.tenSecondWaitTime);
+  I.waitForText('View', CCFRATConstants.fiveSecondWaitTime);
+  I.click('//a[contains(text(),"View")][1]');
+  I.submitForApproval(feeKeyword, submitBtnVisibilityChk);
+  let pin = await I.grabTextFrom({css: '.govuk-panel__title'});
+  I.getFeeCode(pin);
+ // I.deleteFees(feeKeyword);
   I.click('Sign out');
 }).retry(CCFRATConstants.retryScenario);
