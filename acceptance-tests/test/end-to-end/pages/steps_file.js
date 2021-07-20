@@ -81,9 +81,9 @@ module.exports = () => actor({
     this.wait(CCPBConstants.twoSecondWaitTime);
     this.click({ css: '#naturalAccountCode'});
     this.fillField({ css: '#naturalAccountCode'}, '232425');
-    this.wait(CCPBConstants.twoSecondWaitTime);
-    this.click('input[id="submit"]');
     this.wait(CCPBConstants.tenSecondWaitTime);
+    this.click('input[id="submit"]');
+    this.wait(60);
     this.waitForText('Draft fee saved', CCPBConstants.tenSecondWaitTime);
     this.click('View draft fee');
   },

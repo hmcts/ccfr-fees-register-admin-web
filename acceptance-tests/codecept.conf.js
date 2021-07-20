@@ -5,7 +5,7 @@ exports.config = {
   name: 'fee-register-admin-web-acceptance-tests',
   tests: './test/end-to-end/tests/*_test.js',
   timeout: 10000,
-  output: './output',
+  output: process.cwd() + '/functional-output',
   helpers: {
     Puppeteer: {
       url: CONF.e2e.frontendUrl,
@@ -22,6 +22,11 @@ exports.config = {
       }
     },
     Mochawesome: { uniqueScreenshotNames: 'true' }
+  },
+  plugins: {
+    screenshotOnFail: {
+      enabled: true
+    }
   },
   include: { I: './test/end-to-end/pages/steps_file.js' },
   mocha: {
