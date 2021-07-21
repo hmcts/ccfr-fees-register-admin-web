@@ -41,7 +41,6 @@ Scenario('FeesRegister Admin Console Editor Discontinued Fees Details Check @cro
   I.waitForText('Discontinued fees', CCFRATConstants.tenSecondWaitTime);
   I.click('Discontinued fees');
   I.verifyFeesHeaders();
-  // to-do based on updates and future stories
   //Check one of the existing fee, once full implementation done we can add our own code
   I.verifyFeeDetails('FEE0588','family','Flat','112.00');
   I.click('Sign out');
@@ -60,8 +59,7 @@ Scenario('FeesRegister Add New Fee and Submit for Approval', async I => {
   I.waitForText('View', CCFRATConstants.fiveSecondWaitTime);
   I.click('//a[contains(text(),"View")][1]');
   I.submitForApproval();
-  let feeCodeConfirmationText = await I.grabTextFrom({css: '.govuk-panel__title'});
-  I.getFeeCode(feeCodeConfirmationText);
+  await I.getFeeCode();
   I.click('Sign out');
 }).retry(CCFRATConstants.retryScenario);
 
@@ -78,7 +76,6 @@ Scenario('FeesRegister Add New Fee and Delete Draft', async I => {
   I.waitForText('View', CCFRATConstants.fiveSecondWaitTime);
   I.click('//a[contains(text(),"View")][1]');
   I.deleteFees();
-  let feeCodeConfirmationText = await I.grabTextFrom({css: '.govuk-panel__title'});
-  I.getFeeCode(feeCodeConfirmationText);
+  await I.getFeeCode();
   I.click('Sign out');
 }).retry(CCFRATConstants.retryScenario);
