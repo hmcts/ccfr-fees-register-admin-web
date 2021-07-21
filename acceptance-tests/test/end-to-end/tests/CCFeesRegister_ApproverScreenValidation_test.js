@@ -2,7 +2,7 @@ const CCFRATConstants = require('./CCFRAcceptanceTestConstants');
 const faker = require('faker');
 const RANDOM_NUMBER = 9999;
 
-Feature('CC FeesRegister Admin Acceptance Tests');
+Feature('CC FeesRegister Admin Acceptance Tests For Approver');
 
 Scenario('FeesRegister Admin Console Approver Header and Tab Validation', I => {
   I.login('functionaltestapprover@hmcts.net', 'LevelAt12');
@@ -30,6 +30,15 @@ Scenario('FeesRegister Verify Pending For Approval And Approve The Fees', async 
   I.wait(CCFRATConstants.fiveSecondWaitTime);
   I.see('Awaiting approval');
   await I.verifyFeesSentForApprovalAndApprove()
+  I.click('Sign out');
+
+});
+
+Scenario('FeesRegister Verify Pending For Approval And Reject The Fees', async I => {
+  I.login('functionaltestapprover@hmcts.net', 'LevelAt12');
+  I.wait(CCFRATConstants.fiveSecondWaitTime);
+  I.waitForText("Awaiting approval","10");
+  await I.rejectFees()
   I.click('Sign out');
 
 });
