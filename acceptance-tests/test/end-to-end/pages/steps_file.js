@@ -47,7 +47,6 @@ module.exports = () => actor({
     this.click('Create a new fee');
     this.fillField('textarea[id="reasonForUpdate"]', 'New Fee Creation');
     this.fillField({ css: '#description'}, "test vivek jenkins1");
-    this.fillField({ css: '#fromDate'}, date);
     this.fillField({ css: '#statutoryInstrument'}, feeKeyword);
     this.fillField({ css: '#siRefId'}, feeKeyword);
     this.fillField({ css: '#feeOrderName'}, feeKeyword);
@@ -72,8 +71,10 @@ module.exports = () => actor({
     //direction
     this.checkOption('input[id="enhanced"]');
     this.fillField({ css: '#memoLine'}, memoLineNumber);
+    this.pressKey('Backspace');
+    this.fillField({ css: '#fromDate'}, date);
     this.fillField({ css: '#naturalAccountCode'}, '232425');
-    this.wait(CCPBConstants.twoSecondWaitTime);
+    this.wait(CCPBConstants.tenSecondWaitTime);
     this.click('input[id="submit"]');
     this.wait(CCPBConstants.tenSecondWaitTime);
     this.waitForText('Draft fee saved', CCPBConstants.tenSecondWaitTime);
