@@ -43,7 +43,10 @@ module.exports = () => actor({
   async addNewFee(feeKeyword) {
     const memoLineNumber = faker.random.number(RANDOM_NUMBER);
     const naturalAccountCode = faker.random.number(RANDOM_NUMBER);
-    const date = this.getFormattedDate();
+    //const date = this.getFormattedDate();
+    const fromDate = new Date();
+    const formattedFromDate = fromDate.toLocaleDateString('en-GB');
+
     this.click('Create a new fee');
     this.fillField('textarea[id="reasonForUpdate"]', 'New Fee Creation');
     this.fillField({ css: '#description'}, "test vivek jenkins1");
@@ -72,7 +75,8 @@ module.exports = () => actor({
     this.checkOption('input[id="enhanced"]');
     this.fillField({ css: '#memoLine'}, memoLineNumber);
     this.pressKey('Backspace');
-    this.fillField({ css: '#fromDate'}, date);
+
+    this.fillField({ css: '#fromDate'}, formattedFromDate);
     this.fillField({ css: '#naturalAccountCode'}, '232425');
     this.wait(CCPBConstants.tenSecondWaitTime);
     this.click('input[id="submit"]');
