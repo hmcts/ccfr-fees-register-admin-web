@@ -85,6 +85,18 @@ module.exports = () => actor({
     this.click('input[id="submit"]');
     this.wait(CCPBConstants.tenSecondWaitTime);
   },
+  editDraft(){
+    this.waitForText(  'Direction', '10');
+    this.click(  'Edit fee');
+    this.waitForText(  'Statutory Instrument', '10');
+    this.fillField('textarea[id="reasonForUpdate"]', 'Edited this fee');
+    this.checkOption('input[id="percentage"]');
+    this.wait(CCPBConstants.twoSecondWaitTime);
+    this.fillField('//input[@type="text" and @id="percentage"]', '10');
+    this.wait(CCPBConstants.fiveSecondWaitTime);
+    this.click('input[id="submit"]');
+    this.wait(CCPBConstants.fiveSecondWaitTime);
+  },
   submitForApproval() {
     this.see(  'Request approval')
     this.click(  'Request approval');
@@ -105,7 +117,8 @@ module.exports = () => actor({
     this.see('Code');
     this.see('Service');
     // we are trying to use fee code already existed and created as par of editor journey
-    this.click(`//*[contains(text(),"E2E Testing")]/..//a["View"][1]`)
+    this.click(`//*[contains(text(),"E2E Testing")]/..//a["View"][1]`);
+    this.waitForText('Direction','10');
     this.click("Approve fee");
     let feeCode= await this.getFeeCode();
     // verify approved fee under Live Tab
@@ -114,10 +127,20 @@ module.exports = () => actor({
     this.wait(CCPBConstants.fiveSecondWaitTime);
     this.see(feeCode);
   },
-  rejectFeesSentForApproval(feeKeyword) {
-    this.see(feeKeyword);
-    this.click(`//*[contains(text(),"${feeKeyword}")]/..//input[@type="submit" and @value = "Reject"]`)
-    this.wait(CCPBConstants.fiveSecondWaitTime)
+  async rejectFees() {
+    // we are trying to use fee code already existed and created as par of editor journey
+    this.click(`//*[contains(text(),"E2E Testing")]/..//a["View"][1]`);
+    this.waitForText('Direction','10');
+    this.click("Reject fee");
+    this.waitForText("Why are you rejecting this draft fee?","10");
+    this.fillField('textarea[id="reasonForReject"]', 'E2E Test Rejected this fee');
+    this.click("Submit");
+    let feeCode= await this.getFeeCode();
+    // verify approved fee under Live Tab
+    this.click('Approvals');
+    this.waitForText('Awaiting approval', '10');
+    this.wait(CCPBConstants.fiveSecondWaitTime);
+    this.dontSee(feeCode);
   },
     verifyFeesHeaders,
     verifyFeeDetails
