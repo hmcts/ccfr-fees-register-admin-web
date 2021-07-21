@@ -43,13 +43,14 @@ module.exports = () => actor({
   async addNewFee(feeKeyword) {
     const memoLineNumber = faker.random.number(RANDOM_NUMBER);
     const naturalAccountCode = faker.random.number(RANDOM_NUMBER);
-    //const date = this.getFormattedDate();
+    // Use this for local testing
+    // const formattedFromDate  = this.getFormattedDate();
     const fromDate = new Date();
     const formattedFromDate = fromDate.toLocaleDateString('en-GB');
 
     this.click('Create a new fee');
     this.fillField('textarea[id="reasonForUpdate"]', 'New Fee Creation');
-    this.fillField({ css: '#description'}, "test vivek jenkins1");
+    this.fillField({ css: '#description'}, "this is description for new fee creation from E2E Testing");
     this.fillField({ css: '#statutoryInstrument'}, feeKeyword);
     this.fillField({ css: '#siRefId'}, feeKeyword);
     this.fillField({ css: '#feeOrderName'}, feeKeyword);
@@ -81,10 +82,8 @@ module.exports = () => actor({
     this.wait(CCPBConstants.tenSecondWaitTime);
     this.click('input[id="submit"]');
     this.wait(CCPBConstants.tenSecondWaitTime);
-    this.waitForText('Draft fee saved', CCPBConstants.tenSecondWaitTime);
-    this.click('View draft fee');
   },
-  submitForApproval(feeKeyword) {
+  submitForApproval() {
     this.see(  'Request approval')
     this.click(  'Request approval');
     this.waitForText('Don’t submit this fee for approval',CCPBConstants.tenSecondWaitTime);
