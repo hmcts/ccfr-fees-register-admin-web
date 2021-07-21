@@ -35,9 +35,11 @@ module.exports = () => actor({
     const year = date.getFullYear().toString();
     return`${day}/${month}/${year}`;
   },
-  getFeeCode(textFromRequestSubmittedScreen){
-    const FeeCode = textFromRequestSubmittedScreen.split(" ")[0];
+  async getFeeCode(){
+    let feeCodeConfirmationText = await this.grabTextFrom({css: '.govuk-panel__title'});
+    const FeeCode = feeCodeConfirmationText.split(" ")[0];
     console.log(FeeCode);
+    return FeeCode;
   },
 
   async addNewFee(feeKeyword) {
@@ -50,7 +52,7 @@ module.exports = () => actor({
 
     this.click('Create a new fee');
     this.fillField('textarea[id="reasonForUpdate"]', 'New Fee Creation');
-    this.fillField({ css: '#description'}, "this is description for new fee creation from E2E Testing");
+    this.fillField({ css: '#description'}, "E2E Testing");
     this.fillField({ css: '#statutoryInstrument'}, feeKeyword);
     this.fillField({ css: '#siRefId'}, feeKeyword);
     this.fillField({ css: '#feeOrderName'}, feeKeyword);
@@ -99,10 +101,18 @@ module.exports = () => actor({
     this.click('Delete draft');
     this.wait(CCPBConstants.fiveSecondWaitTime);
   },
-  verifyFeesSentForApproval(feeKeyword) {
-    this.see('My open action');
-    this.click('My open action');
-    this.see(feeKeyword);
+  async verifyFeesSentForApprovalAndApprove() {
+    this.see('Code');
+    this.see('Service');
+    // we are trying to use fee code already existed and created as par of editor journey
+    this.click(`//*[contains(text(),"E2E Testing")]/..//a["View"][1]`)
+    this.click("Approve fee");
+    let feeCode= await this.getFeeCode();
+    // verify approved fee under Live Tab
+    this.click('Fees');
+    this.waitForText('Live fees', '10');
+    this.wait(CCPBConstants.fiveSecondWaitTime);
+    this.see(feeCode);
   },
   rejectFeesSentForApproval(feeKeyword) {
     this.see(feeKeyword);
