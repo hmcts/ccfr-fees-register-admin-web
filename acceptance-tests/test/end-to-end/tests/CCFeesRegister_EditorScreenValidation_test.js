@@ -5,7 +5,7 @@ const RANDOM_NUMBER = 9999;
 
 Feature('CC FeesRegister Admin Acceptance Tests For Live Fees');
 
-xScenario('FeesRegister Admin Console Editor Header Validation', I => {
+Scenario('FeesRegister Admin Console Editor Header Validation', I => {
   I.login('functionaltesteditor@hmcts.net', 'LevelAt12');
   I.wait(CCFRATConstants.tenSecondWaitTime);
   I.see("Fees");
@@ -14,7 +14,7 @@ xScenario('FeesRegister Admin Console Editor Header Validation', I => {
   I.click('Sign out');
 }).retry(CCFRATConstants.retryScenario);
 
-xScenario('FeesRegister Admin Console Editor Screen For Live Fees Details', I => {
+Scenario('FeesRegister Admin Console Editor Screen For Live Fees Details', I => {
   I.login('functionaltesteditor@hmcts.net', 'LevelAt12');
   I.wait(CCFRATConstants.tenSecondWaitTime);
   // to-do based on updates and future stories
@@ -24,7 +24,7 @@ xScenario('FeesRegister Admin Console Editor Screen For Live Fees Details', I =>
   I.click('Sign out');
 }).retry(CCFRATConstants.retryScenario);
 
-xScenario('FeesRegister Admin Console Editor Approved but not live Fees Details Check @crossbrowser', I => {
+Scenario('FeesRegister Admin Console Editor Approved but not live Fees Details Check @crossbrowser', I => {
   I.login('functionaltesteditor@hmcts.net', 'LevelAt12');
   I.wait(CCFRATConstants.tenSecondWaitTime);
   I.waitForText('Approved but not live fees', CCFRATConstants.tenSecondWaitTime);
@@ -35,7 +35,7 @@ xScenario('FeesRegister Admin Console Editor Approved but not live Fees Details 
   I.click('Sign out');
 }).retry(CCFRATConstants.retryScenario);
 
-xScenario('FeesRegister Admin Console Editor Discontinued Fees Details Check @crossbrowser', I => {
+Scenario('FeesRegister Admin Console Editor Discontinued Fees Details Check @crossbrowser', I => {
   I.login('functionaltesteditor@hmcts.net', 'LevelAt12');
   I.wait(CCFRATConstants.tenSecondWaitTime);
   I.waitForText('Discontinued fees', CCFRATConstants.tenSecondWaitTime);
@@ -47,9 +47,8 @@ xScenario('FeesRegister Admin Console Editor Discontinued Fees Details Check @cr
   I.click('Sign out');
 }).retry(CCFRATConstants.retryScenario);
 
-xScenario('FeesRegister Add New Fee and Submit for Approval', async I => {
+Scenario('FeesRegister Add New Fee and Submit for Approval', async I => {
   const feeKeyword = "SN" + new Date().valueOf().toString();
-  const submitBtnVisibilityChk = true;
 
   I.login('functionaltesteditor@hmcts.net', 'LevelAt12');
   I.wait(CCFRATConstants.twoSecondWaitTime);
@@ -60,7 +59,7 @@ xScenario('FeesRegister Add New Fee and Submit for Approval', async I => {
   I.waitForText('Amount', CCFRATConstants.tenSecondWaitTime);
   I.waitForText('View', CCFRATConstants.fiveSecondWaitTime);
   I.click('//a[contains(text(),"View")][1]');
-  I.submitForApproval(feeKeyword, submitBtnVisibilityChk);
+  I.submitForApproval();
   let feeCodeConfirmationText = await I.grabTextFrom({css: '.govuk-panel__title'});
   I.getFeeCode(feeCodeConfirmationText);
   I.click('Sign out');
@@ -69,13 +68,12 @@ xScenario('FeesRegister Add New Fee and Submit for Approval', async I => {
 Scenario('FeesRegister Add New Fee and Delete Draft', async I => {
   const feeKeyword = "SN" + new Date().valueOf().toString();
   const submitBtnVisibilityChk = true;
-
   I.login('functionaltesteditor@hmcts.net', 'LevelAt12');
   I.wait(CCFRATConstants.twoSecondWaitTime);
   I.waitForText('Live fees', CCFRATConstants.tenSecondWaitTime);
   await I.addNewFee(feeKeyword);
-  //I.waitForText('Draft fee saved', CCFRATConstants.tenSecondWaitTime);
-  //I.click('View draft fee');
+  I.waitForText('Draft fee saved', CCFRATConstants.tenSecondWaitTime);
+  I.click('View draft fee');
   I.waitForText('Amount', CCFRATConstants.tenSecondWaitTime);
   I.waitForText('View', CCFRATConstants.fiveSecondWaitTime);
   I.click('//a[contains(text(),"View")][1]');
