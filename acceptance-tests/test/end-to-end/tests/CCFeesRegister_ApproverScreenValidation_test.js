@@ -2,13 +2,7 @@ const CCFRATConstants = require('./CCFRAcceptanceTestConstants');
 const faker = require('faker');
 const RANDOM_NUMBER = 9999;
 
-Feature('CC FeesRegister Admin Acceptance Tests').retry(CCFRATConstants.retryScenario);
-
-BeforeSuite(I => {
-  // I.amOnPage('/');
-  // I.wait(CCFRATConstants.twoSecondWaitTime);
-  // I.resizeWindow(CCFRATConstants.windowsSizeX, CCFRATConstants.windowsSizeY);
-});
+Feature('CC FeesRegister Admin Acceptance Tests');
 
 Scenario('FeesRegister Admin Console Approver Screen Validation @crossbrowser', I => {
   I.login('functionaltestapprover@hmcts.net', 'LevelAt12');
@@ -17,16 +11,13 @@ Scenario('FeesRegister Admin Console Approver Screen Validation @crossbrowser', 
   I.see("Approvals");
   I.see("Reference Data");
   I.click('Sign out');
-})
+}).retry(CCFRATConstants.retryScenario)
 
-Scenario('FeesRegister Verify Pending For Approval', I => {
+Scenario('FeesRegister Verify Pending For Approval', async I => {
   I.login('functionaltestapprover@hmcts.net', 'LevelAt12');
-  I.wait(CCFRATConstants.twoSecondWaitTime);
-  I.amOnPage('/admin/V2/pending-approval');
+  I.wait(CCFRATConstants.fiveSecondWaitTime);
   I.see('Awaiting approval');
-  // to-do : assume we have fee codes always- based on future stories we will update .
-  I.see('Code');
-  I.see('Service');
+  await I.verifyFeesSentForApprovalAndApprove()
   I.click('Sign out');
 
 });
