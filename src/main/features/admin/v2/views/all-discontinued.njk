@@ -4,6 +4,8 @@
   {% set title = t('Fees | ' + serviceName) %}
   {% block content %}
     <input type='hidden' id='userRole' value=''/>
+
+       <a href="#" id="mybutton" class="a-create-link">{{nextButton(t("Download all fees"), t("govuk-button2 black-text"))}}</a>  
 <ul class="govuk-tabs__list govuk-!-margin-top-7">
 <li class="govuk-tabs__list-item ">
     <a class="govuk-tabs__tab" href="/admin/V2/all-fees">
@@ -128,4 +130,12 @@
   </table>
 </div>
 </div>
+
+   <input type="hidden" id="URL" name="URL" value="{{ baseurl }}">
+  <input type="hidden" id="AuthToken" name="AuthToken" value="{{ authtoken }}">
+
+  <script src="{{ asset_paths['js'] }}/exportexcel.js"></script>
+  <script src="{{ asset_paths['js'] }}/cdnlib.js"></script>
+  <script src="{{ asset_paths['js'] }}/jquery.min.js"></script>
+  <script src="{{ asset_paths['js'] }}/filesaver.js"></script>
   {% endblock %}
