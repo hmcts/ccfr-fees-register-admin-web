@@ -3,14 +3,32 @@ const CCFRATConstants = require('./CCFRAcceptanceTestConstants');
 const faker = require('faker');
 const RANDOM_NUMBER = 9999;
 
-Feature('CC FeesRegister Admin Acceptance Tests For Live Fees');
+Feature('CC FeesRegister Admin Acceptance Tests For Editor');
 
-Scenario('FeesRegister Admin Console Editor Header Validation', I => {
+Scenario('FeesRegister Admin Console Editor Header and Tab Validation', I => {
   I.login('functionaltesteditor@hmcts.net', 'LevelAt12');
   I.wait(CCFRATConstants.tenSecondWaitTime);
   I.see("Fees");
+  I.click("Fees");
+  I.waitForText("Live fees","10");
+  I.click("Approved but not live fees");
+  I.waitForText("Approved but not live fees","10");
+  I.see("Code");
+  I.click("Discontinued fees");
+  I.waitForText("Discontinued fees","10");
+  I.see("Code");
   I.see("Your Drafts");
+  I.click("Your Drafts");
+  I.waitForText("Drafts", "10");
+  I.see("Rejected by approver");
+  I.click("Rejected by approver");
+  I.waitForText("Code", "10");
+  I.see("Awaiting approval");
+  I.click("Awaiting approval");
+  I.waitForText("Code", "10");
   I.see("Reference Data");
+  I.click("Reference Data");
+  I.waitForText("Applicants","10");
   I.click('Sign out');
 }).retry(CCFRATConstants.retryScenario);
 
@@ -59,6 +77,23 @@ Scenario('FeesRegister Add New Fee and Submit for Approval', async I => {
   I.waitForText('View', CCFRATConstants.fiveSecondWaitTime);
   I.click('//a[contains(text(),"View")][1]');
   I.submitForApproval();
+  await I.getFeeCode();
+  I.click('Sign out');
+}).retry(CCFRATConstants.retryScenario);
+
+Scenario('FeesRegister Add New Fee and Edit the fee', async I => {
+  const feeKeyword = "SN" + new Date().valueOf().toString();
+
+  I.login('functionaltesteditor@hmcts.net', 'LevelAt12');
+  I.wait(CCFRATConstants.twoSecondWaitTime);
+  I.waitForText('Live fees', CCFRATConstants.tenSecondWaitTime);
+  await I.addNewFee(feeKeyword);
+  I.waitForText('Draft fee saved', CCFRATConstants.tenSecondWaitTime);
+  I.click('View draft fee');
+  I.waitForText('Amount', CCFRATConstants.tenSecondWaitTime);
+  I.waitForText('View', CCFRATConstants.fiveSecondWaitTime);
+  I.click('//a[contains(text(),"View")][1]');
+  I.editDraft();
   await I.getFeeCode();
   I.click('Sign out');
 }).retry(CCFRATConstants.retryScenario);

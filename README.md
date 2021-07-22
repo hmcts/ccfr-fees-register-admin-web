@@ -49,6 +49,18 @@ Run them with:
 $ yarn test
 ```
 
+### Running the Functional tests
+
+configure the following environment variables
+E2E_FRONTEND_URL=<PR/AAT>
+TEST_URL=<PR/AAT>
+To see steps running and screenshots on failover change the ```--reporter mochawesome``` to ```--steps"``` for ```yarn test:acceptance``` under package.
+
+Run them with:
+```bash
+$ yarn test:acceptance
+```
+
 ## License
 
 This project is licensed under the MIT License - see the [LICENSE](LICENSE.txt) file for details
