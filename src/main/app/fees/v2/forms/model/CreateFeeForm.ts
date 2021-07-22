@@ -190,8 +190,13 @@ export class CreateFeeForm {
     if (form.type === 'ranged') {
       form.rangeUnit = (form as any).range_unit
     }
-    form.fromDate = moment((form as any).valid_from).format('YYYY-MM-DD')
-    form.toDate = moment((form as any).valid_to).format('YYYY-MM-DD')
+    if(feeVersionInfo.valid_to !== undefined) {
+      form.toDate = moment((form as any).valid_to).format('YYYY-MM-DD')
+    }
+    if(feeVersionInfo.valid_from !== undefined) {
+      form.fromDate = moment((form as any).valid_from).format('YYYY-MM-DD')
+    }
+ 
 
     return form
   }
