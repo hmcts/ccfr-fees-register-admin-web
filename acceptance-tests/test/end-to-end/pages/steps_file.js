@@ -136,7 +136,7 @@ module.exports = () => actor({
     this.fillField('textarea[id="reasonForReject"]', 'E2E Test Rejected this fee');
     this.click("Submit");
     let feeCode= await this.getFeeCode();
-    // verify approved fee under Live Tab
+    // verify rejected fee doesn't appear  under Awaiting Approval Tab
     this.click('Approvals');
     this.waitForText('Awaiting approval', '10');
     this.wait(CCPBConstants.fiveSecondWaitTime);
