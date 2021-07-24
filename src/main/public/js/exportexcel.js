@@ -4,33 +4,13 @@ document.getElementById("mybutton").addEventListener("click", myFunction);
 
 function myFunction() {
 
-     var baseUrl = $("#URL").val();
-     var authToken = $("#AuthToken").val();
-
-     console.log("URL:", baseUrl);
-
-     console.log("authtoken:", authToken)
-
-     authBearerToken = "Bearer " + authToken.trim();
-
-     requestURL = baseUrl + "/fees-register/fees";
-
-     var settings = {
-          "url": requestURL,
-          "method": "GET",
-          "headers": {
-               "Authorization": authBearerToken 
-          },
-     }; // end of settings
-
-     $.ajax(settings).done(function (response) {
-          console.log(response)
+     var FeesReadable = $("#FeesReadable").val();
 
           var feesExcel = [];
           var totalFeeCount = 0;
           var currentDate = new Date();
 
-          var downloadfees = response;
+          var downloadfees = JSON.parse(FeesReadable);
           var monthNames = ["January", "February", "March", "April", "May", "June",
                "July", "August", "September", "October", "November", "December"
           ];
@@ -123,8 +103,6 @@ function myFunction() {
                }
           }
 
-          console.log("part one ")
-          console.log("totalFeeCount :", totalFeeCount)
 
 
           var feesExcelDownload = [];
@@ -195,7 +173,7 @@ function myFunction() {
           };
 
           const excelBuffer = XLSX.write(workbook, { bookType: 'xlsx', type: 'array' });
-          console.log(excelBuffer);
+
           saveAsExcel(excelBuffer, 'Fee');
 
 
@@ -203,9 +181,9 @@ function myFunction() {
           function saveAsExcel(buffer, filename) {
 
                var today = new Date();
-              
+
                var date = ("0" + today.getDate()).slice(-2) + ("0" + (today.getMonth() + 1)).slice(-2) + ("0" + today.getYear()).slice(-2);
-               var time = ("0" + today.getHours()).slice(-2) + ("0" + today.getMinutes()).slice(-2)  + ("0" + today.getSeconds()).slice(-2);        
+               var time = ("0" + today.getHours()).slice(-2) + ("0" + today.getMinutes()).slice(-2)  + ("0" + today.getSeconds()).slice(-2);
                var dateTime = date+'_'+time;
                const EXCEL_TYPE = 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet;charset=UTF-8';
                const EXCEL_EXTENSION = '.xlsx';
@@ -215,7 +193,7 @@ function myFunction() {
           }
 
 
-     });  //end of Ajax
+//     });  //end of Ajax
 
 }  //end of function
 
