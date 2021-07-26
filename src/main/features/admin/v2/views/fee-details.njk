@@ -958,15 +958,15 @@
 							<dt class="version-details-dt">Amount</dt>
 							{% if version.flat_amount.amount %}
 							 <dd class="version-details-dd">£{{ version.flat_amount.amount.toFixed(2).toString() }}</dd>
-							{% elif version.flat_amount.amount %}
-							 <dd class="version-details-dd">£{{ version.flat_amount.amount.toFixed(2).toString() }}</dd>
+							{% elif version.volume_amount.amount %}
+							 <dd class="version-details-dd">£{{ version.volume_amount.amount.toFixed(2).toString() }}</dd>
 							{% else %}
 							 <dd class="version-details-dd">&nbsp;</dd>
 							{% endif %}
 							{% if version2.flat_amount.amount %}
 							  <dd class="version-details-dd">Previously: £{{ version2.flat_amount.amount.toFixed(2).toString() }}</dd>
-							{% elif version.flat_amount.amount %}
-							  <dd class="version-details-dd">Previously: £{{ version2.flat_amount.amount.toFixed(2).toString() }}</dd>
+							{% elif version.volume_amount.amount %}
+							  <dd class="version-details-dd">Previously: £{{ version2.volume_amount.amount.toFixed(2).toString() }}</dd>
 							{% else %}
 							  <dd class="version-details-dd">&nbsp;</dd>
 							{% endif %}
@@ -1253,7 +1253,7 @@
 	{% endfor %}
 {% endif %}
 {% if pageType === 'draftfee' %}
- {% if isEditor(user.allInfo.roles) %}
+ {% if isEditor(user.allInfo.roles) or isAdmin(user.allInfo.roles)%}
     <a href="/admin/v2/confirm-draft-approval?feeCode={{ feeDto.code }}&version={{ versionNo }}&pageType={{ pageType }}" class="custom-button btn">
       Request approval
     </a>
@@ -1276,7 +1276,7 @@
 	  {% endif %}
     {% else %}
     {% if pageType === 'rejectfee' %}
-	 {% if isEditor(user.allInfo.roles) %}
+	 {% if isEditor(user.allInfo.roles) or isAdmin(user.allInfo.roles)%}
       {% if hasApprovedVersion(feeDto.fee_versions) %}
         <a title="Edit version" href="/admin/v2/fees/version/create/{{ feeDto.code }}?action=edit&version={{ versionNo }}" class="custom-button btn">
           Edit fee
@@ -1320,7 +1320,7 @@
       {% endif %}
     {% else %}
       {% if not isDraftVersionExists(feeDto) %}
-        {% if isEditor(user.allInfo.roles) %}
+        {% if isEditor(user.allInfo.roles) or isAdmin(user.allInfo.roles)%}
           <a href="/admin/v2/fees/version/create/{{ feeDto.code }}?type={{ type }}" class="custom-button btn">
             Edit fee
           </a>
