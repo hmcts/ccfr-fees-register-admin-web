@@ -219,7 +219,7 @@
 
 <div class="govuk-check-your-answers__contents">
   <dt class="govuk-check-your-answers__question">
-    <label class="bold">Amount</label> 
+    <label class="bold">Amount-2</label> 
   </dt>
   <dd class="govuk-check-your-answers__answer">
   {% if pageType === 'livefee' %}
@@ -671,7 +671,7 @@
 
 			<div class="govuk-check-your-answers__contents">
 				<dt class="govuk-check-your-answers__question">
-					<label class="bold">Amount</label>
+					<label class="bold">Amount-4</label>
 				</dt>
 				<dd class="govuk-check-your-answers__answer">
 					{% if feeDto.current_version.flat_amount.amount %}
@@ -955,7 +955,7 @@
 				{% for version2 in feeDto.fee_versions | reverse %}
 					{% if version2.version == version.version-1 and version.flat_amount.amount != version2.flat_amount.amount%}
 						<div class="govuk-check-your-answers__contents">
-							<dt class="version-details-dt">Amount</dt>
+							<dt class="version-details-dt">Amount-5</dt>
 							{% if version.flat_amount.amount %}
 							 <dd class="version-details-dd">£{{ version.flat_amount.amount.toFixed(2).toString() }}</dd>
 							{% else %}
@@ -1153,7 +1153,7 @@
 				{% for version2 in feeDto.fee_versions | reverse %}
 					{% if (version2.version == version.version-1 and version2.flat_amount.amount == version.flat_amount.amount) or (version.version==1 and version2.version==1)%}
 						<div class="govuk-check-your-answers__contents">
-							<dt class="version-details-dt">Amount</dt>
+							<dt class="version-details-dt">Amount-7</dt>
 							{% if version.flat_amount.amount %}
 							 <dd class="version-details-dd-single">£{{ version.flat_amount.amount.toFixed(2).toString() }}</dd>
 							{% else %}
