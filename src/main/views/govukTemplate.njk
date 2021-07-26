@@ -78,6 +78,7 @@
         <a href="/admin/V2/all-fees" class="custom-draft-all-fees">{{ t('Fees') }} </a>
         {% if isEditor(user.allInfo.roles) or isAdmin(user.allInfo.roles) %}
         <a href="/admin/V2/draft-fees" class="custom-draft-all-fees">{{ t('Your Drafts') }} </a>
+        <a href="/admin/v2/upload" class="custom-draft-all-fees">{{ t('Upload fees') }} </a>
         {% elif isApprover(user.allInfo.roles)%}
         <a href="/admin/V2/pending-approval" class="custom-draft-all-fees">{{ t('Approvals') }} </a>
         {% endif %}
