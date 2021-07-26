@@ -7,7 +7,7 @@ const editorPassword = process.env.EDITOR_PASSWORD;
 
 Feature('CC FeesRegister Admin Acceptance Tests For Editor');
 Scenario('FeesRegister Admin Console Editor Header and Tab Validationtest', I => {
-  I.login('functionaltesteditor@hmcts.net', 'LevelAt12');
+  I.login(editorUserName, editorPassword);
   I.wait(CCFRATConstants.tenSecondWaitTime);
   I.see("Fees");
   I.click("Fees");
