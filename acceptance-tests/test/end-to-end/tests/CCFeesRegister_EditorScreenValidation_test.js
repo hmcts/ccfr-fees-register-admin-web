@@ -2,13 +2,13 @@ const { Logger } = require('@hmcts/nodejs-logging');
 const CCFRATConstants = require('./CCFRAcceptanceTestConstants');
 const faker = require('faker');
 const RANDOM_NUMBER = 9999;
-
+const editorUserName = process.env.EDITOR_USERNAME;
+const editorPassword = process.env.EDITOR_PASSWORD;
 
 Feature('CC FeesRegister Admin Acceptance Tests For Editor');
 
 Scenario('FeesRegister Admin Console Editor Header and Tab Validationtest', I => {
-  console.log('value is'+CCFRATConstants.editorUserName);
-  I.login(CCFRATConstants.editorUserName, CCFRATConstants.editorPassword);
+  I.login(editorUserName, editorPassword);
   I.wait(CCFRATConstants.tenSecondWaitTime);
   I.see("Fees");
   I.click("Fees");

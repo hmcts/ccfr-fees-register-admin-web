@@ -8,10 +8,5 @@ module.exports = {
   twentySecondWaitTime: 20,
   thirtySecondWaitTime: 30,
   retryCountForStep: 4,
-  retryScenario: 3,
-  editorUserName:process.env.EDITOR_USERNAME,
-  editorPassword:process.env.EDITOR_PASSWORD,
-  approverUserName:process.env.APPROVER_USERNAME,
-  approverPassword:process.env.APPROVER_PASSWORD
-
+  retryScenario: 3
 };
