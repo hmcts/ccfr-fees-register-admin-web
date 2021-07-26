@@ -30,3 +30,17 @@ xScenario('FeesRegister Verify Pending For Approval', I => {
   I.click('Sign out');
 
 });
+
+xScenario('FeesRegister Approver Verify Live Fees @crossbrowser', I => {
+  I.login('functionaltestapprover@hmcts.net', 'LevelAt12');
+  I.wait(CCFRATConstants.tenSecondWaitTime);
+  I.see("Fees");
+  I.see("Approvals");
+  I.see("Reference Data");
+  I.click('Fees');
+  I.wait(CCFRATConstants.twoSecondWaitTime);
+  I.verifyDownloadLink();
+  I.waitForText('Live fees', CCFRATConstants.tenSecondWaitTime);
+  I.verifyFeesHeaders();
+  I.click('Sign out');
+})
