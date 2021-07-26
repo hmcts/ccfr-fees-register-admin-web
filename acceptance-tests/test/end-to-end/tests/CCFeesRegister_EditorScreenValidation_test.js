@@ -6,7 +6,7 @@ const editorUserName = process.env.EDITOR_USERNAME;
 const editorPassword = process.env.EDITOR_PASSWORD;
 
 Feature('CC FeesRegister Admin Acceptance Tests For Editor');
-Scenario('FeesRegister Admin Console Editor Header and Tab Validationtest', I => {
+Scenario('FeesRegister Admin Console Editor Header and Tab Validation', I => {
   I.login(editorUserName, editorPassword);
   I.wait(CCFRATConstants.tenSecondWaitTime);
   I.see("Fees");
@@ -43,7 +43,7 @@ Scenario('FeesRegister Admin Console Editor Screen For Live Fees Details', I => 
   I.click('Sign out');
 }).retry(CCFRATConstants.retryScenario);
 
-xScenario('FeesRegister Admin Console Editor Approved but not live Fees Details Check @crossbrowser', I => {
+Scenario('FeesRegister Admin Console Editor Approved but not live Fees Details Check @crossbrowser', I => {
   I.login(CCFRATConstants.editorUserName, CCFRATConstants.editorPassword);
   I.wait(CCFRATConstants.tenSecondWaitTime);
   I.waitForText('Approved but not live fees', CCFRATConstants.tenSecondWaitTime);
@@ -54,7 +54,7 @@ xScenario('FeesRegister Admin Console Editor Approved but not live Fees Details 
   I.click('Sign out');
 }).retry(CCFRATConstants.retryScenario);
 
-xScenario('FeesRegister Admin Console Editor Discontinued Fees Details Check @crossbrowser', I => {
+Scenario('FeesRegister Admin Console Editor Discontinued Fees Details Check @crossbrowser', I => {
   I.login(CCFRATConstants.editorUserName, CCFRATConstants.editorPassword);
   I.wait(CCFRATConstants.tenSecondWaitTime);
   I.waitForText('Discontinued fees', CCFRATConstants.tenSecondWaitTime);
@@ -65,7 +65,7 @@ xScenario('FeesRegister Admin Console Editor Discontinued Fees Details Check @cr
   I.click('Sign out');
 }).retry(CCFRATConstants.retryScenario);
 
-xScenario('FeesRegister Add New Fee and Submit for Approval', async I => {
+Scenario('FeesRegister Add New Fee and Submit for Approval', async I => {
   const feeKeyword = "SN" + new Date().valueOf().toString();
   I.login(CCFRATConstants.editorUserName, CCFRATConstants.editorPassword);
   I.wait(CCFRATConstants.twoSecondWaitTime);
@@ -81,7 +81,7 @@ xScenario('FeesRegister Add New Fee and Submit for Approval', async I => {
   I.click('Sign out');
 }).retry(CCFRATConstants.retryScenario);
 
-xScenario('FeesRegister Add New Fee and Edit the fee', async I => {
+Scenario('FeesRegister Add New Fee and Edit the fee', async I => {
   const feeKeyword = "SN" + new Date().valueOf().toString();
   I.login(CCFRATConstants.editorUserName, CCFRATConstants.editorPassword);
   I.wait(CCFRATConstants.twoSecondWaitTime);
@@ -97,7 +97,7 @@ xScenario('FeesRegister Add New Fee and Edit the fee', async I => {
   I.click('Sign out');
 }).retry(CCFRATConstants.retryScenario);
 
-xScenario('FeesRegister Add New Fee and Delete Draft', async I => {
+Scenario('FeesRegister Add New Fee and Delete Draft', async I => {
   const feeKeyword = "SN" + new Date().valueOf().toString();
   I.login(CCFRATConstants.editorUserName, CCFRATConstants.editorPassword);
   I.wait(CCFRATConstants.twoSecondWaitTime);
