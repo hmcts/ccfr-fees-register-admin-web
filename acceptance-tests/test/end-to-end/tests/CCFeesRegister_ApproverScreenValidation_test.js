@@ -5,7 +5,7 @@ const RANDOM_NUMBER = 9999;
 Feature('CC FeesRegister Admin Acceptance Tests For Approver');
 
 Scenario('FeesRegister Admin Console Approver Header and Tab Validation', I => {
-  I.login('functionaltestapprover@hmcts.net', 'LevelAt12');
+  I.login(CCFRATConstants.approverUserName, CCFRATConstants.approverPassword);
   I.wait(CCFRATConstants.tenSecondWaitTime);
   I.see("Fees");
   I.click("Fees");
@@ -26,7 +26,7 @@ Scenario('FeesRegister Admin Console Approver Header and Tab Validation', I => {
 }).retry(CCFRATConstants.retryScenario)
 
 Scenario('FeesRegister Verify Pending For Approval And Approve The Fees', async I => {
-  I.login('functionaltestapprover@hmcts.net', 'LevelAt12');
+  I.login(CCFRATConstants.approverUserName, CCFRATConstants.approverPassword);
   I.wait(CCFRATConstants.fiveSecondWaitTime);
   I.see('Awaiting approval');
   await I.verifyFeesSentForApprovalAndApprove()
@@ -35,10 +35,11 @@ Scenario('FeesRegister Verify Pending For Approval And Approve The Fees', async 
 });
 
 Scenario('FeesRegister Verify Pending For Approval And Reject The Fees', async I => {
-  I.login('functionaltestapprover@hmcts.net', 'LevelAt12');
+  I.login(CCFRATConstants.approverUserName, CCFRATConstants.approverPassword);
   I.wait(CCFRATConstants.fiveSecondWaitTime);
   I.waitForText("Awaiting approval","10");
   await I.rejectFees()
   I.click('Sign out');
 
 });
+
