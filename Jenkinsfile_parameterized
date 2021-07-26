@@ -1,8 +1,28 @@
 #!groovy
 @Library("Infrastructure") _
 
+def product = "fees-register"
+def component = "frontend"
+
+List<LinkedHashMap<String, Object>> secrets = [
+  secret('editors-username', 'EDITOR_USERNAME'),
+  secret('editors-password', 'EDITOR_PASSWORD'),
+  secret('approver-username', 'APPROVER_USERNAME'),
+  secret('approver-password', 'APPROVER_PASSWORD')
+]
+
+static LinkedHashMap<String, Object> secret(String secretName, String envVar) {
+  [ $class: 'AzureKeyVaultSecret',
+    secretType: 'Secret',
+    name: secretName,
+    version: '',
+    envVariable: envVar
+  ]
+}
+
+
 properties([
-  parameters([    
+  parameters([
     choice(name: 'ENVIRONMENT', choices: 'saat\nsprod\nsandbox', description: 'Environment where code should be build and deployed')
   ]),
     [$class: 'GithubProjectProperty', projectUrlStr: 'github.com/hmcts/ccfr-fees-register-admin-web'],
@@ -13,4 +33,5 @@ withParameterizedPipeline('nodejs', 'fees-register', 'frontend', params.ENVIRONM
   after('build') {
     sh 'yarn setup'
   }
+  loadVaultSecrets(secrets)
 }
