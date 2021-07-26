@@ -5,12 +5,13 @@ const RANDOM_NUMBER = 9999;
 Feature('CC FeesRegister Admin Acceptance Tests For Approver');
 
 Scenario('FeesRegister Admin Console Approver Header and Tab Validation', I => {
-  console.log('arrover Email '+CCFRATConstants.approverUserName);
+  const sometext = CCFRATConstants.approverUserName+1;
+  console.log('arrover Email '+sometext);
   I.login(CCFRATConstants.approverUserName, CCFRATConstants.approverPassword);
   I.wait(CCFRATConstants.tenSecondWaitTime);
   I.see("Fees");
   I.click("Fees");
-  I.waitForText("Live fees","10");
+  I.waitForText("Live fees","20");
   I.click("Approved but not live fees");
   I.waitForText("Approved but not live fees","10");
   I.see("Code");
