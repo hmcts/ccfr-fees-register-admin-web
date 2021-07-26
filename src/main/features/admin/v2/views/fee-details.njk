@@ -674,13 +674,21 @@
 					<label class="bold">Amount</label>
 				</dt>
 				<dd class="govuk-check-your-answers__answer">
-				{% if version.flat_amount.amount %}
-					£{{version.flat_amount.amount.toFixed(2).toString()}}
-					{% elif version.volume_amount.amount %}
-					£{{version.volume_amount.amount.toFixed(2).toString()}}
+					{% if feeDto.current_version.flat_amount.amount %}
+					  £{{feeDto.current_version.flat_amount.amount.toFixed(2).toString()}}
+					{% elif feeDto.current_version.volume_amount.amount %}
+					  £{{feeDto.current_version.volume_amount.amount.toFixed(2).toString()}}
 					{% else %}
-					&nbsp;
+						{% if version.flat_amount.amount %}
+							£{{version.flat_amount.amount.toFixed(2).toString()}}
+						{% elif version.volume_amount.amount %}
+							£{{version.volume_amount.amount.toFixed(2).toString()}}
+						{% else %}
+							&nbsp;
+						{% endif %}
 					{% endif %}
+
+
 				</dd>
 			</div>
 
