@@ -1,15 +1,17 @@
 const CCFRATConstants = require('./CCFRAcceptanceTestConstants');
 const faker = require('faker');
 const RANDOM_NUMBER = 9999;
+const approverUserName = process.env.APPROVER_USERNAME;
+const approverPassword = process.env.APPROVER_PASSWORD;
 
 Feature('CC FeesRegister Admin Acceptance Tests For Approver');
 
 Scenario('FeesRegister Admin Console Approver Header and Tab Validation', I => {
-  I.login(CCFRATConstants.approverUserName, CCFRATConstants.approverPassword);
+  I.login(approverUserName, approverPassword);
   I.wait(CCFRATConstants.tenSecondWaitTime);
   I.see("Fees");
   I.click("Fees");
-  I.waitForText("Live fees","10");
+  I.waitForText("Live fees","20");
   I.click("Approved but not live fees");
   I.waitForText("Approved but not live fees","10");
   I.see("Code");
