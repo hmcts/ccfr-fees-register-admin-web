@@ -26,7 +26,7 @@ describe('All fees list page', () => {
       await request(app)
         .get(AdminPaths.feeVersions.uri)
         .set('Cookie', `${cookieName}=JWT`)
-        .expect(500)
+        .expect(200)
     })
   })
 })
