@@ -48,7 +48,7 @@ function verifyFeeDetails(feeCode,jurisdiction1,amountType, amount) {
 
 function verifyDownloadLink(){
   const I = this;
-  I.waitForText('Download all fees', CCFRAcceptanceTestConstants.fiveSecondWaitTime);
+  I.waitForText('Download all fees', CCFRAcceptanceTestConstants.tenSecondWaitTime);
 }
 module.exports = {
   verifyFeesHeaders , verifyFeeDetails, verifyDownloadLink
