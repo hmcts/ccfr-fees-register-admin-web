@@ -28,7 +28,7 @@ Scenario('FeesRegister Admin Console Approver Header and Tab Validation', I => {
 }).retry(CCFRATConstants.retryScenario)
 
 Scenario('FeesRegister Verify Pending For Approval And Approve The Fees', async I => {
-  I.login(CCFRATConstants.approverUserName, CCFRATConstants.approverPassword);
+  I.login(approverUserName, approverPassword);
   I.wait(CCFRATConstants.fiveSecondWaitTime);
   I.see('Awaiting approval');
   await I.verifyFeesSentForApprovalAndApprove()
@@ -37,7 +37,7 @@ Scenario('FeesRegister Verify Pending For Approval And Approve The Fees', async 
 });
 
 Scenario('FeesRegister Verify Pending For Approval And Reject The Fees', async I => {
-  I.login(CCFRATConstants.approverUserName, CCFRATConstants.approverPassword);
+  I.login(approverUserName, approverPassword);
   I.wait(CCFRATConstants.fiveSecondWaitTime);
   I.waitForText("Awaiting approval","10");
   await I.rejectFees()
