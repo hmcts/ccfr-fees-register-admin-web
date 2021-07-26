@@ -7,7 +7,6 @@ const approverPassword = process.env.APPROVER_PASSWORD;
 Feature('CC FeesRegister Admin Acceptance Tests For Approver');
 
 Scenario('FeesRegister Admin Console Approver Header and Tab Validation', I => {
-  console.log('arrover Email '+approverUserName);
   I.login(approverUserName, approverPassword);
   I.wait(CCFRATConstants.tenSecondWaitTime);
   I.see("Fees");
@@ -28,7 +27,7 @@ Scenario('FeesRegister Admin Console Approver Header and Tab Validation', I => {
   I.click('Sign out');
 }).retry(CCFRATConstants.retryScenario)
 
-xScenario('FeesRegister Verify Pending For Approval And Approve The Fees', async I => {
+Scenario('FeesRegister Verify Pending For Approval And Approve The Fees', async I => {
   I.login(CCFRATConstants.approverUserName, CCFRATConstants.approverPassword);
   I.wait(CCFRATConstants.fiveSecondWaitTime);
   I.see('Awaiting approval');
@@ -37,7 +36,7 @@ xScenario('FeesRegister Verify Pending For Approval And Approve The Fees', async
 
 });
 
-xScenario('FeesRegister Verify Pending For Approval And Reject The Fees', async I => {
+Scenario('FeesRegister Verify Pending For Approval And Reject The Fees', async I => {
   I.login(CCFRATConstants.approverUserName, CCFRATConstants.approverPassword);
   I.wait(CCFRATConstants.fiveSecondWaitTime);
   I.waitForText("Awaiting approval","10");
