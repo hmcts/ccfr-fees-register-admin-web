@@ -66,7 +66,7 @@ Scenario('FeesRegister Add New Fee and Submit for Approval', async I => {
   I.waitForText('Live fees', CCFRATConstants.tenSecondWaitTime);
   I.verifyDownloadLink();
   await I.addNewFee(feeKeyword);
-  I.waitForText('Draft fee saved', CCFRATConstants.tenSecondWaitTime);
+  I.waitForText('Draft fee saved', CCFRATConstants.fifteenSecondWaitTime);
   I.click('View draft fee');
   I.waitForText('Amount', CCFRATConstants.tenSecondWaitTime);
   I.waitForText('View', CCFRATConstants.fiveSecondWaitTime);
@@ -77,7 +77,7 @@ Scenario('FeesRegister Add New Fee and Submit for Approval', async I => {
   I.click('Sign out');
 }).retry(CCFRATConstants.retryScenario);
 
-Scenario.only('FeesRegister Add New Fee and Delete Draft', async I => {
+Scenario('FeesRegister Add New Fee and Delete Draft', async I => {
   const feeKeyword = "SN" + new Date().valueOf().toString();
   const submitBtnVisibilityChk = true;
 
