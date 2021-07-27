@@ -167,12 +167,11 @@ describe('Create/Edit Fee page', () => {
 
     it('should edit a ranged fee', async () => {
 
-      feesServiceMock.resolveDeleteFee()
       feesServiceMock.resolveCreateRangedFee()
       feesServiceMock.resolveGetReferenceData()
 
       await request(app)
-        .post(AdminPaths.feeCreatePageV2.uri)
+        .put(AdminPaths.feeCreatePageV2.uri)
         .send(CreateFeeForm.fromGivenVersion(rangedFee, version, true))
         .set('Cookie', `${cookieName}=JWT`)
 
@@ -192,12 +191,11 @@ describe('Create/Edit Fee page', () => {
 
     it('should edit a fixed fee', async () => {
 
-      feesServiceMock.resolveDeleteFee()
       feesServiceMock.resolveCreateFixedFee()
       feesServiceMock.resolveGetReferenceData()
 
       await request(app)
-        .post(AdminPaths.feeCreatePageV2.uri)
+        .put(AdminPaths.feeCreatePageV2.uri)
         .send(CreateFeeForm.fromGivenVersion(fixedFee, version, true))
         .set('Cookie', `${cookieName}=JWT`)
 
