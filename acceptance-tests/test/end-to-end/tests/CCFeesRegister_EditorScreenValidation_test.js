@@ -83,8 +83,8 @@ Scenario('FeesRegister Add New Fee and Delete Draft', async I => {
 
   I.login('functionaltesteditor@hmcts.net', 'LevelAt12');
   I.wait(CCFRATConstants.twoSecondWaitTime);
-  I.verifyDownloadLink();
   I.waitForText('Live fees', CCFRATConstants.tenSecondWaitTime);
+  I.verifyDownloadLink();
   await I.addNewFee(feeKeyword);
   I.waitForText('Draft fee saved', CCFRATConstants.fifteenSecondWaitTime);
   I.click('View draft fee');
