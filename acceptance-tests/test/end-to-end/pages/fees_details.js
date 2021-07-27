@@ -48,7 +48,7 @@ function verifyFeeDetails(feeCode,jurisdiction1,amountType, amount) {
 
 function verifyDownloadLink(){
   const I = this;
-  I.waitForValue('//input','Download all fees', CCFRAcceptanceTestConstants.tenSecondWaitTime);
+  I.waitForValue('//input','Download all fees', CCFRAcceptanceTestConstants.fiveSecondWaitTime);
 }
 
 function clickDownloadLink(){
