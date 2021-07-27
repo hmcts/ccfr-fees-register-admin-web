@@ -45,6 +45,18 @@ function verifyFeeDetails(feeCode,jurisdiction1,amountType, amount) {
   I.see('£'+amount);
   I.see('test editor');
 }
+
+function verifyDownloadLink(){
+  const I = this;
+  I.waitForValue('//input','Download all fees', CCFRAcceptanceTestConstants.fiveSecondWaitTime);
+}
+
+function clickDownloadLink(){
+  const I = this;
+  I.click('Download all fees');
+  I.wait(CCFRAcceptanceTestConstants.fiveSecondWaitTime);
+}
+
 module.exports = {
-  verifyFeesHeaders , verifyFeeDetails
+  verifyFeesHeaders , verifyFeeDetails, verifyDownloadLink, clickDownloadLink
 };
