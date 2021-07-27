@@ -32,17 +32,17 @@ function myFunction() {
                     if (downloadFees[i].fee_versions[feeVersionCount].flat_amount !== undefined) {
                          let amount_ext = downloadFees[i].fee_versions[feeVersionCount].flat_amount.amount;
                          let amount_formatted = parseFloat(amount_ext).toFixed(2)
-                         jsonData['Amount'] = '£' + amount_formatted.toString();
+                         jsonData['Amount'] = amount_formatted.toString();
                     }
                     else if (downloadFees[i].fee_versions[feeVersionCount].volume_amount !== undefined) {
                          let amount_ext = downloadFees[i].fee_versions[feeVersionCount].volume_amount.amount;
                          let amount_formatted = parseFloat(amount_ext).toFixed(2)
-                         jsonData['Amount'] = '£' + amount_formatted.toString();
+                         jsonData['Amount'] = amount_formatted.toString();
                     }
                     else if (downloadFees[i].fee_versions[feeVersionCount].percentage_amount !== undefined) {
                          let amount_ext = downloadFees[i].fee_versions[feeVersionCount].percentage_amount.percentage;
                          let amount_formatted = parseFloat(amount_ext).toFixed(2)
-                         jsonData['Amount'] = '£' + amount_formatted.toString();
+                         jsonData['Amount'] =  amount_formatted.toString();
                     }
                     else {
                          jsonData['Amount'] = '';
@@ -114,7 +114,10 @@ function myFunction() {
 
                     JsonInsert['code'] = feesExcel[j].code;
                     JsonInsert['Description'] = feesExcel[j].Description;
-                    JsonInsert['Amount'] = feesExcel[j].Amount;
+                    if (isNaN(feesExcel[j].Amount)) {
+                         JsonInsert['Amount'] = ''; 
+                    } else {
+                    JsonInsert['Amount'] = '£' + feesExcel[j].Amount; }
                     JsonInsert['Statutory Instrument'] = feesExcel[j].Statutory_Instrument;
                     JsonInsert['SI Ref ID'] = feesExcel[j].SI_Ref_ID;
                     JsonInsert['Fee Order Name'] = feesExcel[j].Fee_Order_Name;
