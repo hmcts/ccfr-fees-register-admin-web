@@ -112,7 +112,7 @@ function myFunction() {
                var JsonInsert = {};
                if (feesExcel[j].Status === 'approved') {
 
-                    JsonInsert['code'] = feesExcel[j].code;
+                    JsonInsert['Code'] = feesExcel[j].code;
                     JsonInsert['Description'] = feesExcel[j].Description;
                     if (isNaN(feesExcel[j].Amount)) {
                          JsonInsert['Amount'] = ''; 
