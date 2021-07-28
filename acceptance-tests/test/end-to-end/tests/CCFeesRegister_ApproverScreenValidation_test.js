@@ -1,46 +1,47 @@
 const CCFRATConstants = require('./CCFRAcceptanceTestConstants');
 const faker = require('faker');
 const RANDOM_NUMBER = 9999;
+const approverUserName = process.env.APPROVER_USERNAME;
+const approverPassword = process.env.APPROVER_PASSWORD;
 
-Feature('CC FeesRegister Admin Acceptance Tests').retry(CCFRATConstants.retryScenario);
+Feature('CC FeesRegister Admin Acceptance Tests For Approver');
 
-BeforeSuite(I => {
-  // I.amOnPage('/');
-  // I.wait(CCFRATConstants.twoSecondWaitTime);
-  // I.resizeWindow(CCFRATConstants.windowsSizeX, CCFRATConstants.windowsSizeY);
-});
-
-xScenario('FeesRegister Admin Console Approver Screen Validation @crossbrowser', I => {
-  I.login('functionaltestapprover@hmcts.net', 'LevelAt12');
+Scenario('FeesRegister Admin Console Approver Header and Tab Validation', I => {
+  I.login(approverUserName, approverPassword);
   I.wait(CCFRATConstants.tenSecondWaitTime);
   I.see("Fees");
+  I.click("Fees");
+  I.waitForText("Live fees","20");
+  I.click("Approved but not live fees");
+  I.waitForText("Approved but not live fees","10");
+  I.see("Code");
+  I.click("Discontinued fees");
+  I.waitForText("Discontinued fees","10");
+  I.see("Code");
   I.see("Approvals");
+  I.click("Approvals");
+  I.waitForText("Awaiting approval", "10");
   I.see("Reference Data");
+  I.click("Reference Data");
+  I.waitForText("Applicants","10");
   I.click('Sign out');
-})
+}).retry(CCFRATConstants.retryScenario)
 
-xScenario('FeesRegister Verify Pending For Approval', I => {
-  I.login('functionaltestapprover@hmcts.net', 'LevelAt12');
-  I.wait(CCFRATConstants.twoSecondWaitTime);
-  I.amOnPage('/admin/V2/pending-approval');
+Scenario('FeesRegister Verify Pending For Approval And Approve The Fees', async I => {
+  I.login(approverUserName, approverPassword);
+  I.wait(CCFRATConstants.fiveSecondWaitTime);
   I.see('Awaiting approval');
-  // to-do : assume we have fee codes always- based on future stories we will update .
-  I.see('Code');
-  I.see('Service');
+  await I.verifyFeesSentForApprovalAndApprove()
   I.click('Sign out');
 
 });
 
-xScenario('FeesRegister Approver Verify Live Fees @crossbrowser', I => {
-  I.login('functionaltestapprover@hmcts.net', 'LevelAt12');
-  I.wait(CCFRATConstants.tenSecondWaitTime);
-  I.see("Fees");
-  I.see("Approvals");
-  I.see("Reference Data");
-  I.click('Fees');
-  I.wait(CCFRATConstants.twoSecondWaitTime);
-  I.verifyDownloadLink();
-  I.waitForText('Live fees', CCFRATConstants.tenSecondWaitTime);
-  I.verifyFeesHeaders();
+Scenario('FeesRegister Verify Pending For Approval And Reject The Fees', async I => {
+  I.login(approverUserName, approverPassword);
+  I.wait(CCFRATConstants.fiveSecondWaitTime);
+  I.waitForText("Awaiting approval","10");
+  await I.rejectFees()
   I.click('Sign out');
-})
+
+});
+

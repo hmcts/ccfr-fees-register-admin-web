@@ -9,5 +9,4 @@ module.exports = {
   thirtySecondWaitTime: 30,
   retryCountForStep: 4,
   retryScenario: 3
-
 };

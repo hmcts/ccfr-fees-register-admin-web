@@ -35,20 +35,24 @@ module.exports = () => actor({
     const year = date.getFullYear().toString();
     return`${day}/${month}/${year}`;
   },
-  getFeeCode(textFromRequestSubmittedScreen){
-    const FeeCode = textFromRequestSubmittedScreen.split(" ")[0];
+  async getFeeCode(){
+    let feeCodeConfirmationText = await this.grabTextFrom({css: '.govuk-panel__title'});
+    const FeeCode = feeCodeConfirmationText.split(" ")[0];
     console.log(FeeCode);
+    return FeeCode;
   },
 
   async addNewFee(feeKeyword) {
     const memoLineNumber = faker.random.number(RANDOM_NUMBER);
     const naturalAccountCode = faker.random.number(RANDOM_NUMBER);
+    // Use this for local testing
+    // const formattedFromDate  = this.getFormattedDate();
     const fromDate = new Date();
-    // const toDate = new Date();
-    // toDate.setMonth(toDate.getMonth() + 3);
+    const formattedFromDate = fromDate.toLocaleDateString('en-GB');
+
     this.click('Create a new fee');
     this.fillField('textarea[id="reasonForUpdate"]', 'New Fee Creation');
-    this.fillField({ css: '#description'}, "test vivek qa from jenkins");
+    this.fillField({ css: '#description'}, "E2E Testing");
     this.fillField({ css: '#statutoryInstrument'}, feeKeyword);
     this.fillField({ css: '#siRefId'}, feeKeyword);
     this.fillField({ css: '#feeOrderName'}, feeKeyword);
@@ -61,32 +65,39 @@ module.exports = () => actor({
     this.checkOption('input[id="family court"]');
     //FeeType
     this.checkOption('input[id="typefixed"]');
-    this.wait(CCPBConstants.twoSecondWaitTime);
     this.fillField({ css: '#amount'}, 120.00);
     this.wait(CCPBConstants.twoSecondWaitTime);
     //event
     this.checkOption('input[id="hearing"]');
     //channel
     this.checkOption('input[id="online"]');
-    this.wait(CCPBConstants.twoSecondWaitTime);
     this.fillField({ css: '#keyword'}, feeKeyword);
     //Applicant;
     this.checkOption('input[id="all"]');
-    this.wait(CCPBConstants.twoSecondWaitTime);
     //direction
     this.checkOption('input[id="enhanced"]');
-    this.wait(CCPBConstants.twoSecondWaitTime);
     this.fillField({ css: '#memoLine'}, memoLineNumber);
-    this.wait(CCPBConstants.twoSecondWaitTime);
-    this.fillField({ css: '#fromDate'}, this.getFormattedDate());
-    this.wait(CCPBConstants.twoSecondWaitTime);
+    this.pressKey('Backspace');
+
+    this.fillField({ css: '#fromDate'}, formattedFromDate);
     this.fillField({ css: '#naturalAccountCode'}, '232425');
-    this.wait(CCPBConstants.twoSecondWaitTime);
-    this.click('Save as draft');
-    console.log("this is saved");
-    this.wait(CCPBConstants.thirtySecondWaitTime);
+    this.wait(CCPBConstants.tenSecondWaitTime);
+    this.click('input[id="submit"]');
+    this.wait(CCPBConstants.tenSecondWaitTime);
   },
-  submitForApproval(feeKeyword) {
+  editDraft(){
+    this.waitForText(  'Direction', '10');
+    this.click(  'Edit fee');
+    this.waitForText(  'Statutory Instrument', '10');
+    this.fillField('textarea[id="reasonForUpdate"]', 'Edited this fee');
+    this.checkOption('input[id="percentage"]');
+    this.wait(CCPBConstants.twoSecondWaitTime);
+    this.fillField('//input[@type="text" and @id="percentage"]', '10');
+    this.wait(CCPBConstants.fiveSecondWaitTime);
+    this.click('input[id="submit"]');
+    this.wait(CCPBConstants.fiveSecondWaitTime);
+  },
+  submitForApproval() {
     this.see(  'Request approval')
     this.click(  'Request approval');
     this.waitForText('Don’t submit this fee for approval',CCPBConstants.tenSecondWaitTime);
@@ -102,15 +113,34 @@ module.exports = () => actor({
     this.click('Delete draft');
     this.wait(CCPBConstants.fiveSecondWaitTime);
   },
-  verifyFeesSentForApproval(feeKeyword) {
-    this.see('My open action');
-    this.click('My open action');
-    this.see(feeKeyword);
+  async verifyFeesSentForApprovalAndApprove() {
+    this.see('Code');
+    this.see('Service');
+    // we are trying to use fee code already existed and created as par of editor journey
+    this.click(`//*[contains(text(),"E2E Testing")]/..//a["View"][1]`);
+    this.waitForText('Direction','10');
+    this.click("Approve fee");
+    let feeCode= await this.getFeeCode();
+    // verify approved fee under Live Tab
+    this.click('Fees');
+    this.waitForText('Live fees', '10');
+    this.wait(CCPBConstants.fiveSecondWaitTime);
+    this.see(feeCode);
   },
-  rejectFeesSentForApproval(feeKeyword) {
-    this.see(feeKeyword);
-    this.click(`//*[contains(text(),"${feeKeyword}")]/..//input[@type="submit" and @value = "Reject"]`)
-    this.wait(CCPBConstants.fiveSecondWaitTime)
+  async rejectFees() {
+    // we are trying to use fee code already existed and created as par of editor journey
+    this.click(`//*[contains(text(),"E2E Testing")]/..//a["View"][1]`);
+    this.waitForText('Direction','10');
+    this.click("Reject fee");
+    this.waitForText("Why are you rejecting this draft fee?","10");
+    this.fillField('textarea[id="reasonForReject"]', 'E2E Test Rejected this fee');
+    this.click("Submit");
+    let feeCode= await this.getFeeCode();
+    // verify rejected fee doesn't appear  under Awaiting Approval Tab
+    this.click('Approvals');
+    this.waitForText('Awaiting approval', '10');
+    this.wait(CCPBConstants.fiveSecondWaitTime);
+    this.dontSee(feeCode);
   },
     verifyFeesHeaders,
     verifyFeeDetails,
