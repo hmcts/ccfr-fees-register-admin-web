@@ -30,7 +30,7 @@
   <div class="title-with-secondary live-fee-al"></div>
   <p class="govuk-!-margin-top-9 govuk-!-margin-bottom-0"> &nbsp;</p>
 </div>
-{% if isEditor(user.allInfo.roles) %}
+{% if isEditor(user.allInfo.roles) or isAdmin(user.allInfo.roles)%}
    <a href="./fees/create" class="a-create-link">{{nextButton(t("Create a new fee"), t("govuk-button2 black-text"))}}</a>
 {% endif %}
 
@@ -84,9 +84,10 @@
       <td >£{{ version.flat_amount.amount.toFixed(2).toString()}}</td>
       {% elif version.volume_amount and version.volume_amount.amount%}
       <td >£{{ version.volume_amount.amount.toFixed(2).toString()}}</td>
-      {% elif  version.percentage_amount and version.percentage_amount.percentage %}
-      <td >{{ version.percentage_amount.percentage }}%</td>
+      {% else %}
+      <td/>
       {% endif %}
+
       <td >{{ version.statutory_instrument }}</td>
       <td >{{ version.si_ref_id }}</td>
       <td>{{ version.fee_order_name }}</td>
@@ -115,8 +116,8 @@
       <td >Volume</td>
       <td/>
       {% else %}
-      <td/>
       <td >Percentage</td>
+      <td>{{version.percentage_amount.percentage }}</td>
       {% endif %}
 
       <td >{{ fee.channel_type.name }}</td>
