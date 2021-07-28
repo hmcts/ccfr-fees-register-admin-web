@@ -3,6 +3,7 @@
 document.getElementById("mybutton").addEventListener("click", myFunction);
 
 function myFunction() {
+     document.getElementById("mybutton").disabled = true;
 
      var feesReadable = $("#FeesReadable").val();
 
@@ -192,7 +193,7 @@ function myFunction() {
                const EXCEL_EXTENSION = '.xlsx';
                const data = new Blob([buffer], { type: EXCEL_TYPE });
                saveAs(data, filename + '_Register_' + dateTime + EXCEL_EXTENSION);
-
+               document.getElementById("mybutton").disabled = false;
           }
 
 
