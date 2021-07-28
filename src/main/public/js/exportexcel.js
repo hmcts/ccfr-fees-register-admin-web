@@ -4,98 +4,98 @@ document.getElementById("mybutton").addEventListener("click", myFunction);
 
 function myFunction() {
 
-     var FeesReadable = $("#FeesReadable").val();
+     var feesReadable = $("#FeesReadable").val();
 
           var feesExcel = [];
           var totalFeeCount = 0;
           var currentDate = new Date();
 
-          var downloadfees = JSON.parse(FeesReadable);
+          var downloadFees = JSON.parse(feesReadable);
           var monthNames = ["January", "February", "March", "April", "May", "June",
                "July", "August", "September", "October", "November", "December"
           ];
-          var totalResults = Object.keys(downloadfees).length;
+          var totalResults = Object.keys(downloadFees).length;
 
 
           for (var i = 0; i < totalResults; i++) {
 
-               feeVersionTotalCount = Object.keys(downloadfees[i].fee_versions).length
+               feeVersionTotalCount = Object.keys(downloadFees[i].fee_versions).length
 
 
                for (var feeVersionCount = 0; feeVersionCount < feeVersionTotalCount; feeVersionCount++) {
 
                     var jsonData = {};
-                    jsonData['code'] = downloadfees[i].code;
+                    jsonData['code'] = downloadFees[i].code;
 
-                    jsonData['Description'] = downloadfees[i].fee_versions[feeVersionCount].description;
+                    jsonData['Description'] = downloadFees[i].fee_versions[feeVersionCount].description;
 
-                    if (downloadfees[i].fee_versions[feeVersionCount].flat_amount !== undefined) {
-                         let amount_ext = downloadfees[i].fee_versions[feeVersionCount].flat_amount.amount;
+                    if (downloadFees[i].fee_versions[feeVersionCount].flat_amount !== undefined) {
+                         let amount_ext = downloadFees[i].fee_versions[feeVersionCount].flat_amount.amount;
                          let amount_formatted = parseFloat(amount_ext).toFixed(2)
-                         jsonData['Amount'] = '£ ' + amount_formatted.toString();
+                         jsonData['Amount'] = amount_formatted.toString();
                     }
-                    else if (downloadfees[i].fee_versions[feeVersionCount].volume_amount !== undefined) {
-                         let amount_ext = downloadfees[i].fee_versions[feeVersionCount].volume_amount.amount;
+                    else if (downloadFees[i].fee_versions[feeVersionCount].volume_amount !== undefined) {
+                         let amount_ext = downloadFees[i].fee_versions[feeVersionCount].volume_amount.amount;
                          let amount_formatted = parseFloat(amount_ext).toFixed(2)
-                         jsonData['Amount'] = '£ ' + amount_formatted.toString();
+                         jsonData['Amount'] = amount_formatted.toString();
                     }
-                    else if (downloadfees[i].fee_versions[feeVersionCount].percentage_amount !== undefined) {
-                         let amount_ext = downloadfees[i].fee_versions[feeVersionCount].percentage_amount.percentage;
+                    else if (downloadFees[i].fee_versions[feeVersionCount].percentage_amount !== undefined) {
+                         let amount_ext = downloadFees[i].fee_versions[feeVersionCount].percentage_amount.percentage;
                          let amount_formatted = parseFloat(amount_ext).toFixed(2)
-                         jsonData['Amount'] = '£ ' + amount_formatted.toString();
+                         jsonData['Amount'] =  amount_formatted.toString();
                     }
                     else {
                          jsonData['Amount'] = '';
                     }
 
-                    jsonData['Statutory_Instrument'] = downloadfees[i].fee_versions[feeVersionCount].statutory_instrument;
-                    jsonData['SI _Ref_ID'] = downloadfees[i].fee_versions[feeVersionCount].si_ref_id;
-                    jsonData['Fee_Order_Name'] = downloadfees[i].fee_versions[feeVersionCount].fee_order_name;
-                    jsonData['Service'] = downloadfees[i].service_type.name;
-                    jsonData['Jurisdiction1'] = downloadfees[i].jurisdiction1.name;
-                    jsonData['Jurisdiction2'] = downloadfees[i].jurisdiction2.name;
-                    jsonData['Event'] = downloadfees[i].event_type.name;
-                    if (downloadfees[i].min_range !== undefined) {
-                         jsonData['Range_from'] = parseFloat(downloadfees[i].min_range).toFixed(2);
+                    jsonData['Statutory_Instrument'] = downloadFees[i].fee_versions[feeVersionCount].statutory_instrument;
+                    jsonData['SI_Ref_ID'] = downloadFees[i].fee_versions[feeVersionCount].si_ref_id;
+                    jsonData['Fee_Order_Name'] = downloadFees[i].fee_versions[feeVersionCount].fee_order_name;
+                    jsonData['Service'] = downloadFees[i].service_type.name;
+                    jsonData['Jurisdiction1'] = downloadFees[i].jurisdiction1.name;
+                    jsonData['Jurisdiction2'] = downloadFees[i].jurisdiction2.name;
+                    jsonData['Event'] = downloadFees[i].event_type.name;
+                    if (downloadFees[i].min_range !== undefined) {
+                         jsonData['Range_from'] = parseFloat(downloadFees[i].min_range).toFixed(2);
                     }
                     else { jsonData['Range_from'] = ''; }
-                    if (downloadfees[i].max_range !== undefined) {
-                         jsonData['Range_to'] = parseFloat(downloadfees[i].max_range).toFixed(2);
+                    if (downloadFees[i].max_range !== undefined) {
+                         jsonData['Range_to'] = parseFloat(downloadFees[i].max_range).toFixed(2);
                     }
                     else { jsonData['Range_to'] = ''; }
-                    jsonData['Unit'] = downloadfees[i].range_unit;
-                    jsonData['Fee_Type'] = downloadfees[i].fee_type;
+                    jsonData['Unit'] = downloadFees[i].range_unit;
+                    jsonData['Fee_Type'] = downloadFees[i].fee_type;
 
-                    if (downloadfees[i].fee_versions[feeVersionCount].flat_amount !== undefined) {
+                    if (downloadFees[i].fee_versions[feeVersionCount].flat_amount !== undefined) {
                          jsonData['Amount_type'] = 'Flat';
                     }
-                    else if (downloadfees[i].fee_versions[feeVersionCount].volume_amount !== undefined) {
+                    else if (downloadFees[i].fee_versions[feeVersionCount].volume_amount !== undefined) {
                          jsonData['Amount_type'] = 'Volume';
                     }
                     else {
                          jsonData['Amount_type'] = 'Percentage';
                     }
 
-                    jsonData['Channel'] = downloadfees[i].channel_type.name;
-                    jsonData['Keyword'] = downloadfees[i].Keyword;
-                    jsonData['Applicant type'] = downloadfees[i].applicant_type.name;
-                    jsonData['Version'] = downloadfees[i].fee_versions[feeVersionCount].version;
-                    jsonData['Direction'] = downloadfees[i].fee_versions[feeVersionCount].direction;
-                    if (downloadfees[i].fee_versions[feeVersionCount].valid_from !== undefined) {
-                         var date_ext = downloadfees[i].fee_versions[feeVersionCount].valid_from;
+                    jsonData['Channel'] = downloadFees[i].channel_type.name;
+                    jsonData['Keyword'] = downloadFees[i].Keyword;
+                    jsonData['Applicant type'] = downloadFees[i].applicant_type.name;
+                    jsonData['Version'] = downloadFees[i].fee_versions[feeVersionCount].version;
+                    jsonData['Direction'] = downloadFees[i].fee_versions[feeVersionCount].direction;
+                    if (downloadFees[i].fee_versions[feeVersionCount].valid_from !== undefined) {
+                         var date_ext = downloadFees[i].fee_versions[feeVersionCount].valid_from;
                          var date_formatted = date_ext.substr(8, 2) + ' ' + monthNames[date_ext.substr(5, 2) - 1] + ' ' + date_ext.substr(0, 4);
                          jsonData['Valid_from'] = date_formatted
                     }
                     else { jsonData['Valid_from'] = ''; }
-                    if (downloadfees[i].fee_versions[feeVersionCount].valid_to !== undefined) {
-                         var date_ext = downloadfees[i].fee_versions[feeVersionCount].valid_to;
+                    if (downloadFees[i].fee_versions[feeVersionCount].valid_to !== undefined) {
+                         var date_ext = downloadFees[i].fee_versions[feeVersionCount].valid_to;
                          var date_formatted = date_ext.substr(8, 2) + ' ' + monthNames[date_ext.substr(5, 2) - 1] + ' ' + date_ext.substr(0, 4);
                          jsonData['Valid_to'] = date_formatted
                     }
                     else { jsonData['Valid_to'] = ''; }
-                    jsonData['Status'] = downloadfees[i].fee_versions[feeVersionCount].status;
-                    jsonData['Memo'] = downloadfees[i].fee_versions[feeVersionCount].memo_line;
-                    jsonData['Natural_Account_Code'] = downloadfees[i].fee_versions[feeVersionCount].natural_account_code;
+                    jsonData['Status'] = downloadFees[i].fee_versions[feeVersionCount].status;
+                    jsonData['Memo'] = downloadFees[i].fee_versions[feeVersionCount].memo_line;
+                    jsonData['Natural_Account_Code'] = downloadFees[i].fee_versions[feeVersionCount].natural_account_code;
 
 
                     feesExcel.push(jsonData);
@@ -114,7 +114,10 @@ function myFunction() {
 
                     JsonInsert['code'] = feesExcel[j].code;
                     JsonInsert['Description'] = feesExcel[j].Description;
-                    JsonInsert['Amount'] = feesExcel[j].Amount;
+                    if (isNaN(feesExcel[j].Amount)) {
+                         JsonInsert['Amount'] = ''; 
+                    } else {
+                    JsonInsert['Amount'] = '£' + feesExcel[j].Amount; }
                     JsonInsert['Statutory Instrument'] = feesExcel[j].Statutory_Instrument;
                     JsonInsert['SI Ref ID'] = feesExcel[j].SI_Ref_ID;
                     JsonInsert['Fee Order Name'] = feesExcel[j].Fee_Order_Name;
@@ -133,7 +136,7 @@ function myFunction() {
                     JsonInsert['Version'] = feesExcel[j].Version;
                     JsonInsert['Direction'] = feesExcel[j].Direction;
                     JsonInsert['Valid from'] = feesExcel[j].Valid_from;
-                    JsonInsert['Valid_to'] = feesExcel[j].Valid_to;
+                    JsonInsert['Valid to'] = feesExcel[j].Valid_to;
 
                     if (feesExcel[j].Valid_to != '') {
                          var validToDate = new Date(feesExcel[j].Valid_to)
