@@ -57,7 +57,7 @@ Scenario('FeesRegister Admin Console Editor Discontinued Fees Details Check @cro
   I.click('Sign out');
 }).retry(CCFRATConstants.retryScenario);
 
-Scenario('FeesRegister Add New Fee and Submit for Approval', async I => {
+xScenario('FeesRegister Add New Fee and Submit for Approval', async I => {
   const feeKeyword = "SN" + new Date().valueOf().toString();
   const submitBtnVisibilityChk = true;
 
@@ -66,7 +66,7 @@ Scenario('FeesRegister Add New Fee and Submit for Approval', async I => {
   I.waitForText('Live fees', CCFRATConstants.tenSecondWaitTime);
   I.verifyDownloadLink();
   await I.addNewFee(feeKeyword);
-  I.waitForText('Draft fee saved', CCFRATConstants.tenSecondWaitTime);
+  I.waitForText('Draft fee saved', CCFRATConstants.fifteenSecondWaitTime);
   I.click('View draft fee');
   I.waitForText('Amount', CCFRATConstants.tenSecondWaitTime);
   I.waitForText('View', CCFRATConstants.fiveSecondWaitTime);
@@ -77,16 +77,16 @@ Scenario('FeesRegister Add New Fee and Submit for Approval', async I => {
   I.click('Sign out');
 }).retry(CCFRATConstants.retryScenario);
 
-Scenario.only('FeesRegister Add New Fee and Delete Draft', async I => {
+xScenario('FeesRegister Add New Fee and Delete Draft', async I => {
   const feeKeyword = "SN" + new Date().valueOf().toString();
   const submitBtnVisibilityChk = true;
 
   I.login('functionaltesteditor@hmcts.net', 'LevelAt12');
   I.wait(CCFRATConstants.twoSecondWaitTime);
-  I.verifyDownloadLink();
   I.waitForText('Live fees', CCFRATConstants.tenSecondWaitTime);
+  I.verifyDownloadLink();
   await I.addNewFee(feeKeyword);
-  I.waitForText('Draft fee saved', CCFRATConstants.fifteengit sSecondWaitTime);
+  I.waitForText('Draft fee saved', CCFRATConstants.fifteenSecondWaitTime);
   I.click('View draft fee');
   I.waitForText('Amount', CCFRATConstants.tenSecondWaitTime);
   I.waitForText('View', CCFRATConstants.fiveSecondWaitTime);
