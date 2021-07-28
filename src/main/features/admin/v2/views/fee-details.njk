@@ -674,13 +674,21 @@
 					<label class="bold">Amount</label>
 				</dt>
 				<dd class="govuk-check-your-answers__answer">
-				{% if version.flat_amount.amount %}
-					£{{version.flat_amount.amount.toFixed(2).toString()}}
-					{% elif version.volume_amount.amount %}
-					£{{version.volume_amount.amount.toFixed(2).toString()}}
+					{% if feeDto.current_version.flat_amount.amount %}
+					  £{{feeDto.current_version.flat_amount.amount.toFixed(2).toString()}}
+					{% elif feeDto.current_version.volume_amount.amount %}
+					  £{{feeDto.current_version.volume_amount.amount.toFixed(2).toString()}}
 					{% else %}
-					&nbsp;
+						{% if version.flat_amount.amount %}
+							£{{version.flat_amount.amount.toFixed(2).toString()}}
+						{% elif version.volume_amount.amount %}
+							£{{version.volume_amount.amount.toFixed(2).toString()}}
+						{% else %}
+							&nbsp;
+						{% endif %}
 					{% endif %}
+
+
 				</dd>
 			</div>
 
@@ -909,7 +917,8 @@
 			
 			<div class="govuk-check-your-answers__contents">
 			<dt class="version-details-dt">Reason approver rejected fee</dt>
-			<dd class="version-details-dd-single">{{ version.reason_for_reject}}</dd>
+			<dd class="version-details-dd">{{ version.reason_for_reject}}</dd>
+			<dd class="version-details-dd">&nbsp;</dd>
 			</div>
 			<dl class="govuk-check-your-answers govuk-check-your-answers--short">
 				{% for version2 in feeDto.fee_versions | reverse %}
@@ -920,12 +929,13 @@
 				{% endfor %}
 				<div class="govuk-check-your-answers__contents">
 					<dt class="version-details-dt">Reason for fee update</dt>
-					<dd class="version-details-dd-single">{{ version.reason_for_update}}</dd>
+					<dd class="version-details-dd">{{ version.reason_for_update}}</dd>
+					<dd class="version-details-dd">&nbsp;</dd>
 				</div>
 				
 				<div class="govuk-check-your-answers__contents">
 					<dt class="version-details-dt">Version</dt>
-					<dd class="{{ 'version-details-dd' if feeDto.fee_versions.length > 1 else 'version-details-dd-single' }}">{{ version.version }}</dd>
+					<dd class="version-details-dd">{{ version.version }}</dd>
 					{% for version2 in feeDto.fee_versions | reverse %}
 						{% if version2.version == version.version-1 and version.version!= version2.version%}
 							<dd class="version-details-dd">Previously: {{ version2.version }}</dd>
@@ -948,11 +958,15 @@
 							<dt class="version-details-dt">Amount</dt>
 							{% if version.flat_amount.amount %}
 							 <dd class="version-details-dd">£{{ version.flat_amount.amount.toFixed(2).toString() }}</dd>
+							{% elif version.volume_amount.amount %}
+							 <dd class="version-details-dd">£{{ version.volume_amount.amount.toFixed(2).toString() }}</dd>
 							{% else %}
 							 <dd class="version-details-dd">&nbsp;</dd>
 							{% endif %}
 							{% if version2.flat_amount.amount %}
 							  <dd class="version-details-dd">Previously: £{{ version2.flat_amount.amount.toFixed(2).toString() }}</dd>
+							{% elif version.volume_amount.amount %}
+							  <dd class="version-details-dd">Previously: £{{ version2.volume_amount.amount.toFixed(2).toString() }}</dd>
 							{% else %}
 							  <dd class="version-details-dd">&nbsp;</dd>
 							{% endif %}
@@ -1042,11 +1056,14 @@
 				{% endfor %}
 				<div class="govuk-check-your-answers__contents">
 					<dt class="version-details-dt">Editor</dt>
-					<dd class="version-details-dd-single">{{ version.author }}</dd>
+					<dd class="version-details-dd">{{ version.author }}</dd>
+					<dd class="version-details-dd">&nbsp;</dd>
+
 				</div>
 				<div class="govuk-check-your-answers__contents">
 					<dt class="version-details-dt">Approver</dt>
-					<dd class="version-details-dd-single">{{ version.approvedBy }}</dd>
+					<dd class="version-details-dd">{{ version.approvedBy }}</dd>
+					<dd class="version-details-dd">&nbsp;</dd>
 				</div>
 			</dl>
 			{% for version2 in feeDto.fee_versions | reverse %}
@@ -1143,6 +1160,8 @@
 							<dt class="version-details-dt">Amount</dt>
 							{% if version.flat_amount.amount %}
 							 <dd class="version-details-dd-single">£{{ version.flat_amount.amount.toFixed(2).toString() }}</dd>
+							 {% elif version.volume_amount.amount %}
+							 <dd class="version-details-dd-single">£{{ version.volume_amount.amount.toFixed(2).toString() }}</dd>
 							{% else %}
 							 <dd class="version-details-dd-single">&nbsp;</dd>
 							{% endif %}
@@ -1234,7 +1253,7 @@
 	{% endfor %}
 {% endif %}
 {% if pageType === 'draftfee' %}
- {% if isEditor(user.allInfo.roles) %}
+ {% if isEditor(user.allInfo.roles) or isAdmin(user.allInfo.roles)%}
     <a href="/admin/v2/confirm-draft-approval?feeCode={{ feeDto.code }}&version={{ versionNo }}&pageType={{ pageType }}" class="custom-button btn">
       Request approval
     </a>
@@ -1257,7 +1276,7 @@
 	  {% endif %}
     {% else %}
     {% if pageType === 'rejectfee' %}
-	 {% if isEditor(user.allInfo.roles) %}
+	 {% if isEditor(user.allInfo.roles) or isAdmin(user.allInfo.roles)%}
       {% if hasApprovedVersion(feeDto.fee_versions) %}
         <a title="Edit version" href="/admin/v2/fees/version/create/{{ feeDto.code }}?action=edit&version={{ versionNo }}" class="custom-button btn">
           Edit fee
@@ -1301,7 +1320,7 @@
       {% endif %}
     {% else %}
       {% if not isDraftVersionExists(feeDto) %}
-        {% if isEditor(user.allInfo.roles) %}
+        {% if isEditor(user.allInfo.roles) or isAdmin(user.allInfo.roles)%}
           <a href="/admin/v2/fees/version/create/{{ feeDto.code }}?type={{ type }}" class="custom-button btn">
             Edit fee
           </a>

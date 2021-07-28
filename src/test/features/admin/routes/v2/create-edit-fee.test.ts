@@ -167,7 +167,6 @@ describe('Create/Edit Fee page', () => {
 
     it('should edit a ranged fee', async () => {
 
-
       feesServiceMock.resolveCreateRangedFee()
       feesServiceMock.resolveGetReferenceData()
 
@@ -192,7 +191,6 @@ describe('Create/Edit Fee page', () => {
 
     it('should edit a fixed fee', async () => {
 
-   
       feesServiceMock.resolveCreateFixedFee()
       feesServiceMock.resolveGetReferenceData()
 
