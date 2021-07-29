@@ -35,11 +35,7 @@ Scenario('FeesRegister Admin Console Editor Header Validation', I => {
 });
 
 Scenario('FeesRegister Admin Console Editor Screen For Live Fees Details', I => {
-<<<<<<< HEAD
-  I.login(editorUserName, editorPassword);
-=======
   I.login('functionaltesteditor@hmcts.net', 'LevelAt12');
->>>>>>> 810ca2e908a7d691eeae69ddcaf5507712b164e2
   I.wait(CCFRATConstants.tenSecondWaitTime);
   // to-do based on updates and future stories
   I.waitForText('Live fees', CCFRATConstants.tenSecondWaitTime);
@@ -53,11 +49,7 @@ Scenario('FeesRegister Admin Console Editor Screen For Live Fees Details', I => 
 }).retry(CCFRATConstants.retryScenario);;
 
 Scenario('FeesRegister Admin Console Editor Approved but not live Fees Details Check @crossbrowser', I => {
-<<<<<<< HEAD
-  I.login(editorUserName, editorPassword);
-=======
   I.login('functionaltesteditor@hmcts.net', 'LevelAt12');
->>>>>>> 810ca2e908a7d691eeae69ddcaf5507712b164e2
   I.wait(CCFRATConstants.tenSecondWaitTime);
   I.waitForText('Approved but not live fees', CCFRATConstants.tenSecondWaitTime);
   I.verifyDownloadLink();
@@ -71,21 +63,14 @@ Scenario('FeesRegister Admin Console Editor Approved but not live Fees Details C
 }).retry(CCFRATConstants.retryScenario);
 
 Scenario('FeesRegister Admin Console Editor Discontinued Fees Details Check @crossbrowser', I => {
-<<<<<<< HEAD
-  I.login(editorUserName, editorPassword);
-=======
   I.login('functionaltesteditor@hmcts.net', 'LevelAt12');
->>>>>>> 810ca2e908a7d691eeae69ddcaf5507712b164e2
   I.wait(CCFRATConstants.tenSecondWaitTime);
   I.waitForText('Discontinued fees', CCFRATConstants.tenSecondWaitTime);
   I.verifyDownloadLink();
   I.click('Discontinued fees');
   I.verifyFeesHeaders();
-<<<<<<< HEAD
-=======
   I.clickDownloadLink();
   // to-do based on updates and future stories
->>>>>>> 810ca2e908a7d691eeae69ddcaf5507712b164e2
   //Check one of the existing fee, once full implementation done we can add our own code
   I.verifyFeeDetails('FEE0588','family','Flat','112.00');
   I.wait(CCFRATConstants.tenSecondWaitTime);

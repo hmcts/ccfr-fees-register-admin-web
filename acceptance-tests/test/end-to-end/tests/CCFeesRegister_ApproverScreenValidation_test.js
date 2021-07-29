@@ -6,10 +6,6 @@ const approverPassword = process.env.APPROVER_PASSWORD;
 
 Feature('CC FeesRegister Admin Acceptance Tests For Approver');
 
-<<<<<<< HEAD
-Scenario('FeesRegister Admin Console Approver Header and Tab Validation', I => {
-  I.login(approverUserName, approverPassword);
-=======
 BeforeSuite(I => {
   // I.amOnPage('/');
   // I.wait(CCFRATConstants.twoSecondWaitTime);
@@ -18,7 +14,6 @@ BeforeSuite(I => {
 
 Scenario('FeesRegister Admin Console Approver Screen Validation @crossbrowser', I => {
   I.login('functionaltestapprover@hmcts.net', 'LevelAt12');
->>>>>>> 810ca2e908a7d691eeae69ddcaf5507712b164e2
   I.wait(CCFRATConstants.tenSecondWaitTime);
   I.see("Fees");
   I.click("Fees");
