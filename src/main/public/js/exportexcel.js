@@ -78,8 +78,8 @@ function myFunction() {
                     }
 
                     jsonData['Channel'] = downloadFees[i].channel_type.name;
-                    jsonData['Keyword'] = downloadFees[i].Keyword;
-                    jsonData['Applicant type'] = downloadFees[i].applicant_type.name;
+                    jsonData['Keyword'] = downloadFees[i].keyword;
+                    jsonData['Applicant_type'] = downloadFees[i].applicant_type.name;
                     jsonData['Version'] = downloadFees[i].fee_versions[feeVersionCount].version;
                     jsonData['Direction'] = downloadFees[i].fee_versions[feeVersionCount].direction;
                     if (downloadFees[i].fee_versions[feeVersionCount].valid_from !== undefined) {
@@ -128,13 +128,14 @@ function myFunction() {
                     JsonInsert['Event'] = feesExcel[j].Event;
                     JsonInsert['Range from'] = feesExcel[j].Range_from;
                     JsonInsert['Range to'] = feesExcel[j].Range_to;
+                    JsonInsert['Unit'] = feesExcel[j].Unit;
                     JsonInsert['Fee Type'] = feesExcel[j].Fee_Type;
                     JsonInsert['Amount type'] = feesExcel[j].Amount_type;
                     JsonInsert['%'] = '';
                     JsonInsert['Channel'] = feesExcel[j].Channel;
                     JsonInsert['Keyword'] = feesExcel[j].Keyword;
                     JsonInsert['Applicant type'] = feesExcel[j].Applicant_type;
-                    JsonInsert['Version'] = feesExcel[j].Version;
+                    JsonInsert['Version'] = feesExcel[j].Version.toString();
                     JsonInsert['Direction'] = feesExcel[j].Direction;
                     JsonInsert['Valid from'] = feesExcel[j].Valid_from;
                     JsonInsert['Valid to'] = feesExcel[j].Valid_to;
@@ -146,18 +147,18 @@ function myFunction() {
                          var validFromDate = new Date(feesExcel[j].Valid_from)
                     } else { var validFromDate = '' }
 
-                    if (validToDate != '' && validToDate < currentDate) {
-                         JsonInsert['Status'] = 'Discontinued fees';
-                    }
-                    else if (validFromDate != '' && validFromDate > currentDate) {
-                         JsonInsert['Status'] = 'Approved but not live fees';
-                    }
-                    else {
-                         JsonInsert['Status'] = 'Live fees';
-                    }
-
+                    JsonInsert['Status'] = feesExcel[j].Status;
                     JsonInsert['Memo'] = feesExcel[j].Memo;
                     JsonInsert['Natural Account Code'] = feesExcel[j].Natural_Account_Code;
+                    if (validToDate != '' && validToDate < currentDate) {
+                         JsonInsert['Page type'] = 'Discontinued fees';
+                    }
+                    else if (validFromDate != '' && validFromDate > currentDate) {
+                         JsonInsert['Page type'] = 'Approved but not live fees';
+                    }
+                    else {
+                         JsonInsert['Page type'] = 'Live fees';
+                    }
                     feesExcelDownload.push(JsonInsert);
                }  //endif
 
