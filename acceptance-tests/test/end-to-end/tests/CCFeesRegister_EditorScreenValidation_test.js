@@ -6,9 +6,8 @@ const editorUserName = process.env.EDITOR_USERNAME;
 const editorPassword = process.env.EDITOR_PASSWORD;
 
 Feature('CC FeesRegister Admin Acceptance Tests For Live Fees');
-
 Scenario('FeesRegister Admin Console Editor Header Validation', I => {
-  I.login('functionaltesteditor@hmcts.net', 'LevelAt12');
+  I.login(editorUserName, editorPassword);
   I.wait(CCFRATConstants.tenSecondWaitTime);
   I.see("Fees");
   I.click("Fees");
@@ -35,7 +34,7 @@ Scenario('FeesRegister Admin Console Editor Header Validation', I => {
 });
 
 Scenario('FeesRegister Admin Console Editor Screen For Live Fees Details', I => {
-  I.login('functionaltesteditor@hmcts.net', 'LevelAt12');
+  I.login(editorUserName, editorPassword);
   I.wait(CCFRATConstants.tenSecondWaitTime);
   // to-do based on updates and future stories
   I.waitForText('Live fees', CCFRATConstants.tenSecondWaitTime);
@@ -110,7 +109,7 @@ Scenario('FeesRegister Add New Fee and Edit the fee', async I => {
   I.click('Sign out');
 }).retry(CCFRATConstants.retryScenario);
 
-xScenario('FeesRegister Add New Fee and Delete Draft', async I => {
+Scenario('FeesRegister Add New Fee and Delete Draft', async I => {
   const feeKeyword = "SN" + new Date().valueOf().toString();
   I.login(editorUserName, editorPassword);
   I.wait(CCFRATConstants.twoSecondWaitTime);
