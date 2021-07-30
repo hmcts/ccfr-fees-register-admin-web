@@ -24,6 +24,7 @@ const amountTooBigMsg = { message: ValidationErrors.AMOUNT_TOO_BIG }
 const amountInvalidMsg = { message: ValidationErrors.AMOUNT_INVALID_DECIMALS }
 export class CreateFeeForm {
   code?: string
+  reasonForReject?: string
 
   @IsDefined(reasonForUpdateMsg)
   @IsNotBlank(reasonForUpdateMsg)
@@ -174,6 +175,7 @@ export class CreateFeeForm {
       form.percentage = (form as any).percentage_amount.percentage
       form.amountType = 'percentage'
     }
+    form.reasonForReject = (form as any).reason_for_reject
     form.service = (form as any).service_type.name
     form.jurisdiction1 = (form as any).jurisdiction1.name
     form.jurisdiction2 = (form as any).jurisdiction2.name
@@ -269,8 +271,10 @@ export class CreateFeeForm {
 
     dto.version.natural_account_code = this.naturalAccountCode
     dto.version.statutory_instrument = this.statutoryInstrument
-    dto.version.reason_for_update = this.reasonForUpdate
+    dto.version.reason_for_update = this.reasonForUpdate !== '' ? this.reasonForUpdate : null
+
     dto.version.si_ref_id = this.siRefId
+    dto.version.reason_for_reject = this.reasonForReject
     dto.version.fee_order_name = this.feeOrderName
     dto.version.description = this.description
 

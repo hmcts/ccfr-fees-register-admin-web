@@ -31,6 +31,7 @@ selectReferenceData %}
             <p>{{ form.valueFor('code') }}</p>
           </div>
           <input type="hidden" name="code" id="code" value="{{ form.valueFor('code') }}">
+          <input type="hidden" name="reasonForReject" id="reasonForReject" value="{{reasonReject}}">
         {% endif %}
 
         {{ textArea(t('Reason For Update'), 'reasonForUpdate', form, rows=2) }}
