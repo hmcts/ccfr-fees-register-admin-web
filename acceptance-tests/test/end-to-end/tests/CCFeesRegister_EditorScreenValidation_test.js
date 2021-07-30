@@ -5,8 +5,8 @@ const RANDOM_NUMBER = 9999;
 const editorUserName = process.env.EDITOR_USERNAME;
 const editorPassword = process.env.EDITOR_PASSWORD;
 
-Feature('CC FeesRegister Admin Acceptance Tests For Live Fees');
-Scenario('FeesRegister Admin Console Editor Header Validation', I => {
+Feature('CC FeesRegister Admin Acceptance Tests For Editor');
+Scenario('FeesRegister Admin Console Editor Header and Tab Validation', I => {
   I.login(editorUserName, editorPassword);
   I.wait(CCFRATConstants.tenSecondWaitTime);
   I.see("Fees");
@@ -37,42 +37,31 @@ Scenario('FeesRegister Admin Console Editor Screen For Live Fees Details', I => 
   I.login(editorUserName, editorPassword);
   I.wait(CCFRATConstants.tenSecondWaitTime);
   // to-do based on updates and future stories
-  I.waitForText('Live fees', CCFRATConstants.tenSecondWaitTime);
-  I.verifyDownloadLink();
   I.verifyFeesHeaders();
-  I.clickDownloadLink();
   //verify any existing fee details under live Tab
   I.verifyFeeDetails('FEE0580','civil','Flat','100.00');
-  I.wait(CCFRATConstants.tenSecondWaitTime);
   I.click('Sign out');
-}).retry(CCFRATConstants.retryScenario);;
+}).retry(CCFRATConstants.retryScenario);
 
 Scenario('FeesRegister Admin Console Editor Approved but not live Fees Details Check @crossbrowser', I => {
-  I.login('functionaltesteditor@hmcts.net', 'LevelAt12');
+  I.login(editorUserName, editorPassword);
   I.wait(CCFRATConstants.tenSecondWaitTime);
   I.waitForText('Approved but not live fees', CCFRATConstants.tenSecondWaitTime);
-  I.verifyDownloadLink();
   I.click('Approved but not live fees');
   I.verifyFeesHeaders();
-  I.clickDownloadLink();
   //Check one of the existing fee, once full implementation done we can add our own code
   I.verifyFeeDetails('FEE0621','tribunal','Volume','100.00');
-  I.wait(CCFRATConstants.tenSecondWaitTime);
   I.click('Sign out');
 }).retry(CCFRATConstants.retryScenario);
 
 Scenario('FeesRegister Admin Console Editor Discontinued Fees Details Check @crossbrowser', I => {
-  I.login('functionaltesteditor@hmcts.net', 'LevelAt12');
+  I.login(editorUserName, editorPassword);
   I.wait(CCFRATConstants.tenSecondWaitTime);
   I.waitForText('Discontinued fees', CCFRATConstants.tenSecondWaitTime);
-  I.verifyDownloadLink();
   I.click('Discontinued fees');
   I.verifyFeesHeaders();
-  I.clickDownloadLink();
-  // to-do based on updates and future stories
   //Check one of the existing fee, once full implementation done we can add our own code
   I.verifyFeeDetails('FEE0588','family','Flat','112.00');
-  I.wait(CCFRATConstants.tenSecondWaitTime);
   I.click('Sign out');
 }).retry(CCFRATConstants.retryScenario);
 
@@ -97,9 +86,8 @@ Scenario('FeesRegister Add New Fee and Edit the fee', async I => {
   I.login(editorUserName, editorPassword);
   I.wait(CCFRATConstants.twoSecondWaitTime);
   I.waitForText('Live fees', CCFRATConstants.tenSecondWaitTime);
-  I.verifyDownloadLink();
   await I.addNewFee(feeKeyword);
-  I.waitForText('Draft fee saved', CCFRATConstants.fifteenSecondWaitTime);
+  I.waitForText('Draft fee saved', CCFRATConstants.tenSecondWaitTime);
   I.click('View draft fee');
   I.waitForText('Amount', CCFRATConstants.tenSecondWaitTime);
   I.waitForText('View', CCFRATConstants.fiveSecondWaitTime);
@@ -114,9 +102,8 @@ Scenario('FeesRegister Add New Fee and Delete Draft', async I => {
   I.login(editorUserName, editorPassword);
   I.wait(CCFRATConstants.twoSecondWaitTime);
   I.waitForText('Live fees', CCFRATConstants.tenSecondWaitTime);
-  I.verifyDownloadLink();
   await I.addNewFee(feeKeyword);
-  I.waitForText('Draft fee saved', CCFRATConstants.fifteenSecondWaitTime);
+  I.waitForText('Draft fee saved', CCFRATConstants.tenSecondWaitTime);
   I.click('View draft fee');
   I.waitForText('Amount', CCFRATConstants.tenSecondWaitTime);
   I.waitForText('View', CCFRATConstants.fiveSecondWaitTime);
