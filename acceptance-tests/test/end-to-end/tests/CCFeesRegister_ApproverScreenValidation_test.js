@@ -29,13 +29,13 @@ Scenario('FeesRegister Admin Console Approver Header and Tab Validation', I => {
 
 Scenario('FeesRegister Verify Pending For Approval And Approve The Fees', async I => {
   I.login(approverUserName, approverPassword);
-  I.wait(CCFRATConstants.twoSecondWaitTime);
-  I.amOnPage('/admin/V2/pending-approval');
+  I.wait(CCFRATConstants.fiveSecondWaitTime);
   I.see('Awaiting approval');
   await I.verifyFeesSentForApprovalAndApprove()
   I.click('Sign out');
 
 });
+
 Scenario('FeesRegister Verify Pending For Approval And Reject The Fees', async I => {
   I.login(approverUserName, approverPassword);
   I.wait(CCFRATConstants.fiveSecondWaitTime);
@@ -44,21 +44,3 @@ Scenario('FeesRegister Verify Pending For Approval And Reject The Fees', async I
   I.click('Sign out');
 
 });
-Scenario('FeesRegister Approver Verify Download Fee @crossbrowser', I => {
-  I.login(approverUserName, approverPassword);
-  I.wait(CCFRATConstants.tenSecondWaitTime);
-  I.see("Fees");
-  I.see("Approvals");
-  I.see("Reference Data");
-  I.click('Fees');
-  I.wait(CCFRATConstants.twoSecondWaitTime);
-  I.verifyDownloadLink();
-  I.waitForText('Live fees', CCFRATConstants.tenSecondWaitTime);
-  I.verifyFeesHeaders();
-  I.click('Fees');
-  I.clickDownloadLink();
-  I.wait(CCFRATConstants.tenSecondWaitTime);
-  I.click('Sign out');
-
-});
-
