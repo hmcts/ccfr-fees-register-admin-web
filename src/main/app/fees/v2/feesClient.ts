@@ -92,7 +92,7 @@ export class FeesClient {
   }
 
   static createFixedFee (user, dto: FixedFeeDto): Promise<boolean> {
-
+console.log(dto)
     return request
       .post({
         uri: `${feesUrl}/fees-register/fixed-fees/`,
