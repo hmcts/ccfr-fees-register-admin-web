@@ -64,7 +64,8 @@ export class FeeVersionDto {
   approvedBy: string
   /* READ ONLY */
   memo_line: string
-  fee_order_name: string
+  last_amending_si: string
+  consolidated_fee_order_name: string
   natural_account_code: string
   statutory_instrument: string
   si_ref_id: string

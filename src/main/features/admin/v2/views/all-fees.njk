@@ -43,7 +43,7 @@
       <th class="govuk-table__header table-colsl">Amount</th>
       <th class="govuk-table__header table-colml">Statutory Instrument</th>
       <th class="govuk-table__header table-colsl">SI Ref ID</th>
-      <th class="govuk-table__header table-colxl">Fee Order Name</th>
+      <th class="govuk-table__header table-colxl">Last Amending SI</th>
       <th class="govuk-table__header table-colsl">Service</th>
       <th class="govuk-table__header table-colsl">Jurisdiction1</th>
       <th class="govuk-table__header table-colsl">Jurisdiction2</th>
@@ -90,7 +90,8 @@
 
       <td >{{ version.statutory_instrument }}</td>
       <td >{{ version.si_ref_id }}</td>
-      <td>{{ version.fee_order_name }}</td>
+      <td>{{ version.last_amending_si }}</td>
+      <td>{{ version.consolidated_fee_order_name }}</td>
       <td >{{ fee.service_type.name }}</td>
       <td >{{ fee.jurisdiction1.name }}</td>
       <td >{{ fee.jurisdiction2.name }}</td>

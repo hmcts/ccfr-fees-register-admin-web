@@ -19,7 +19,8 @@ export class CsvFeeDto {
   direction: string
   feeType: string
   amountType: string
-  feeOrderName: string
+  lastAmendingSi: string
+  consolidatedFeeOrderName: string
   naturalAccountCode: string
   memoLine: string
   siRefId: string
