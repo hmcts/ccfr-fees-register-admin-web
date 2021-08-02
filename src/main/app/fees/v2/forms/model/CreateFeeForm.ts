@@ -25,6 +25,7 @@ const amountInvalidMsg = { message: ValidationErrors.AMOUNT_INVALID_DECIMALS }
 export class CreateFeeForm {
   code?: string
   reasonForReject?: string
+  approvedBy?: string
 
   @IsDefined(reasonForUpdateMsg)
   @IsNotBlank(reasonForUpdateMsg)
@@ -176,6 +177,8 @@ export class CreateFeeForm {
       form.amountType = 'percentage'
     }
     form.reasonForReject = (form as any).reason_for_reject
+    form.approvedBy = (form as any).approvedBy
+
     form.service = (form as any).service_type.name
     form.jurisdiction1 = (form as any).jurisdiction1.name
     form.jurisdiction2 = (form as any).jurisdiction2.name
@@ -275,6 +278,8 @@ export class CreateFeeForm {
 
     dto.version.si_ref_id = this.siRefId
     dto.version.reason_for_reject = this.reasonForReject
+    dto.version.approvedBy = this.approvedBy
+
     dto.version.fee_order_name = this.feeOrderName
     dto.version.description = this.description
 
