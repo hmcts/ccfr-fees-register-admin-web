@@ -51,7 +51,8 @@ function myFunction() {
 
                     jsonData['Statutory_Instrument'] = downloadFees[i].fee_versions[feeVersionCount].statutory_instrument;
                     jsonData['SI_Ref_ID'] = downloadFees[i].fee_versions[feeVersionCount].si_ref_id;
-                    jsonData['Fee_Order_Name'] = downloadFees[i].fee_versions[feeVersionCount].fee_order_name;
+                    jsonData['Last_Amending_Si'] = downloadFees[i].fee_versions[feeVersionCount].last_amending_si;
+                    jsonData['Consolidated_Fee_Order_Name'] = downloadFees[i].fee_versions[feeVersionCount].consolidated_fee_order_name;
                     jsonData['Service'] = downloadFees[i].service_type.name;
                     jsonData['Jurisdiction1'] = downloadFees[i].jurisdiction1.name;
                     jsonData['Jurisdiction2'] = downloadFees[i].jurisdiction2.name;
@@ -121,7 +122,8 @@ function myFunction() {
                     JsonInsert['Amount'] = '£' + feesExcel[j].Amount; }
                     JsonInsert['Statutory Instrument'] = feesExcel[j].Statutory_Instrument;
                     JsonInsert['SI Ref ID'] = feesExcel[j].SI_Ref_ID;
-                    JsonInsert['Fee Order Name'] = feesExcel[j].Fee_Order_Name;
+                    JsonInsert['Last Amending SI'] = feesExcel[j].last_amending_si;
+                    JsonInsert['Consolidated Fee Order Name'] = feesExcel[j].consolidated_fee_order_name;
                     JsonInsert['Service'] = feesExcel[j].Service;
                     JsonInsert['Jurisdiction1'] = feesExcel[j].Jurisdiction1;
                     JsonInsert['Jurisdiction2'] = feesExcel[j].Jurisdiction2;

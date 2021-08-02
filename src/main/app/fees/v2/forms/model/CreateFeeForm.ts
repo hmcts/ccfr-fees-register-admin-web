@@ -40,7 +40,10 @@ export class CreateFeeForm {
   siRefId?: string
 
   @IsDefined({ message: ValidationErrors.FEE_ORDER_NAME_REQUIRED })
-  feeOrderName?: string
+  lastAmendingSi?: string
+
+  @IsDefined({ message: ValidationErrors.FEE_ORDER_NAME_REQUIRED })
+  consolidatedFeeOrderName?: string
 
   @IsDefined(serviceMsg)
   @IsNotBlank(serviceMsg)
@@ -184,7 +187,8 @@ export class CreateFeeForm {
     form.naturalAccountCode = (form as any).natural_account_code
     form.siRefId = (form as any).si_ref_id
     form.keyword = (form as any).keyword
-    form.feeOrderName = (form as any).fee_order_name
+    form.lastAmendingSi = (form as any).last_amending_si
+    form.consolidatedFeeOrderName = (form as any).consolidated_fee_order_name
     form.statutoryInstrument = (form as any).statutory_instrument
     form.fromRange = (form as any).min_range
     form.toRange = (form as any).max_range
@@ -275,7 +279,9 @@ export class CreateFeeForm {
 
     dto.version.si_ref_id = this.siRefId
     dto.version.reason_for_reject = this.reasonForReject
-    dto.version.fee_order_name = this.feeOrderName
+    dto.version.last_amending_si = this.lastAmendingSi
+    dto.version.consolidated_fee_order_name = this.consolidatedFeeOrderName
+
     dto.version.description = this.description
 
     if (this.fromDate) {
