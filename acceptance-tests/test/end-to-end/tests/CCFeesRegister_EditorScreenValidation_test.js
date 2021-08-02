@@ -5,6 +5,7 @@ const RANDOM_NUMBER = 9999;
 const editorUserName = process.env.EDITOR_USERNAME;
 const editorPassword = process.env.EDITOR_PASSWORD;
 
+
 Feature('CC FeesRegister Admin Acceptance Tests For Editor');
 Scenario('FeesRegister Admin Console Editor Header and Tab Validation', I => {
   I.login(editorUserName, editorPassword);
@@ -44,7 +45,7 @@ Scenario('FeesRegister Admin Console Editor Screen For Live Fees Details', I => 
   I.wait(CCFRATConstants.tenSecondWaitTime);
   // to-do based on updates and future stories
   I.verifyDownloadLink();
-    I.clickDownloadLink();
+  I.clickDownloadLink();
   I.verifyFeesHeaders();
   //verify any existing fee details under live Tab
   I.verifyFeeDetails('FEE0580','civil','Flat','100.00');
