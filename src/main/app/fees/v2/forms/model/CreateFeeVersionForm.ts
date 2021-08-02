@@ -62,7 +62,11 @@ export class CreateFeeVersionForm {
 
   @IsDefined({ message: ValidationErrors.FEE_ORDER_NAME_REQUIRED })
   @IsNotBlank({ message: ValidationErrors.FEE_ORDER_NAME_REQUIRED })
-  feeOrderName?: string
+  lastAmendingSi?: string
+
+  @IsDefined({ message: ValidationErrors.FEE_ORDER_NAME_REQUIRED })
+  @IsNotBlank({ message: ValidationErrors.FEE_ORDER_NAME_REQUIRED })
+  consolidatedFeeOrderName?: string
 
   constructor () {
     this.amountType = 'flat'
@@ -103,8 +107,11 @@ export class CreateFeeVersionForm {
     if (value.natural_account_code) {
       form.naturalAccountCode = value.natural_account_code
     }
-    if (value.fee_order_name) {
-      form.feeOrderName = value.fee_order_name
+    if (value.last_amending_si) {
+      form.lastAmendingSi = value.last_amending_si
+    }
+    if (value.consolidated_fee_order_name) {
+      form.consolidatedFeeOrderName = value.consolidated_fee_order_name
     }
     if (value.reason_for_update) {
       form.reasonForUpdate = value.reason_for_update
@@ -142,7 +149,8 @@ export class CreateFeeVersionForm {
     dto.reason_for_update = this.reasonForUpdate
 
     dto.si_ref_id = this.siRefId
-    dto.fee_order_name = this.feeOrderName
+    dto.last_amending_si = this.lastAmendingSi
+    dto.consolidated_fee_order_name = this.consolidatedFeeOrderName
     dto.description = this.description
 
     if (this.fromDate) {

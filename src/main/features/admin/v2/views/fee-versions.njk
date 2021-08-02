@@ -112,11 +112,20 @@
 								{% endif %}
 							{% endfor %}
 							{% for version2 in feeDto.fee_versions | reverse %}
-								{% if version2.version == version.version-1 and version.fee_order_name != version2.fee_order_name%}
+								{% if version2.version == version.version-1 and version.last_amending_si != version2.last_amending_si %}
 									<div class="govuk-check-your-answers__contents">
-										<dt class="version-details-dt">Fee Order Name</dt>
-										<dd class="version-details-dd">{{ version.fee_order_name }}</dd>
-										<dd class="version-details-dd">Previously: {{ version2.fee_order_name }}</dd>
+										<dt class="version-details-dt">Last Amending SI</dt>
+										<dd class="version-details-dd">{{ version.last_amending_si }}</dd>
+										<dd class="version-details-dd">Previously: {{ version2.last_amending_si }}</dd>
+									</div>
+								{% endif %}
+							{% endfor %}
+							{% for version2 in feeDto.fee_versions | reverse %}
+								{% if version2.version == version.version-1 and version.consolidated_fee_order_name != version2.consolidated_fee_order_name %}
+									<div class="govuk-check-your-answers__contents">
+										<dt class="version-details-dt">Consolidated/Original Fee Order Name</dt>
+										<dd class="version-details-dd">{{ version.consolidated_fee_order_name }}</dd>
+										<dd class="version-details-dd">Previously: {{ version2.consolidated_fee_order_name }}</dd>
 									</div>
 								{% endif %}
 							{% endfor %}
@@ -324,10 +333,19 @@
 								{% endif %}
 							{% endfor %}
 							{% for version2 in feeDto.fee_versions | reverse %}
-								{% if (version2.version == version.version-1 and version2.fee_order_name == version.fee_order_name) or (version.version==1 and version2.version==1)%}
+								{% if (version2.version == version.version-1 and version2.last_amending_si == version.last_amending_si) or (version.version==1 and version2.version==1)%}
 									<div class="govuk-check-your-answers__contents">
-										<dt class="version-details-dt">Fee Order Name</dt>
-										<dd class="version-details-dd dd-width-100">{{ version.fee_order_name }}</dd>
+										<dt class="version-details-dt">Last Amending SI</dt>
+										<dd class="version-details-dd dd-width-100">{{ version.last_amending_si }}</dd>
+										<dd class="version-details-dd">&nbsp;</dd>
+									</div>
+								{% endif %}
+							{% endfor %}
+							{% for version2 in feeDto.fee_versions | reverse %}
+								{% if (version2.version == version.version-1 and version2.consolidated_fee_order_name == version.consolidated_fee_order_name) or (version.version==1 and version2.version==1)%}
+									<div class="govuk-check-your-answers__contents">
+										<dt class="version-details-dt">Consolidated/Original Fee Order Name</dt>
+										<dd class="version-details-dd dd-width-100">{{ version.consolidated_fee_order_name }}</dd>
 										<dd class="version-details-dd">&nbsp;</dd>
 									</div>
 								{% endif %}

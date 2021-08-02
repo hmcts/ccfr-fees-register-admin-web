@@ -67,7 +67,8 @@ export default class Nunjucks {
           testVersion.memo_line.length === 0 ||
           testVersion.si_ref_id.length === 0 ||
           testVersion.statutory_instrument.length === 0 ||
-          testVersion.fee_order_name.length === 0) {
+          testVersion.last_amending_si.length === 0 ||
+          testVersion.consolidated_fee_order_name.length === 0) {
           return false
         }
         return true
