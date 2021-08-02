@@ -14,6 +14,7 @@ Scenario('FeesRegister Admin Console Approver Header and Tab Validation', I => {
   I.wait(CCFRATConstants.twoSecondWaitTime);
   I.waitForText("Live fees","20");
   I.verifyDownloadLink();
+  I.clickDownloadLink();
   I.click("Approved but not live fees");
   I.waitForText("Approved but not live fees","10");
   I.see("Code");
@@ -26,7 +27,6 @@ Scenario('FeesRegister Admin Console Approver Header and Tab Validation', I => {
   I.see("Reference Data");
   I.click("Reference Data");
   I.waitForText("Applicants","10");
-  I.clickDownloadLink();
   I.click('Sign out');
 }).retry(CCFRATConstants.retryScenario)
 
