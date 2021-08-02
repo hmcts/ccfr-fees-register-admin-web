@@ -12,11 +12,17 @@ Scenario('FeesRegister Admin Console Editor Header and Tab Validation', I => {
   I.see("Fees");
   I.click("Fees");
   I.waitForText("Live fees","10");
+  I.verifyDownloadLink();
+  I.clickDownloadLink();
   I.click("Approved but not live fees");
   I.waitForText("Approved but not live fees","10");
+  I.verifyDownloadLink();
+  I.clickDownloadLink();
   I.see("Code");
   I.click("Discontinued fees");
   I.waitForText("Discontinued fees","10");
+  I.verifyDownloadLink();
+  I.clickDownloadLink();
   I.see("Code");
   I.see("Your Drafts");
   I.click("Your Drafts");
@@ -37,6 +43,8 @@ Scenario('FeesRegister Admin Console Editor Screen For Live Fees Details', I => 
   I.login(editorUserName, editorPassword);
   I.wait(CCFRATConstants.tenSecondWaitTime);
   // to-do based on updates and future stories
+  I.verifyDownloadLink();
+    I.clickDownloadLink();
   I.verifyFeesHeaders();
   //verify any existing fee details under live Tab
   I.verifyFeeDetails('FEE0580','civil','Flat','100.00');
@@ -47,6 +55,8 @@ Scenario('FeesRegister Admin Console Editor Approved but not live Fees Details C
   I.login(editorUserName, editorPassword);
   I.wait(CCFRATConstants.tenSecondWaitTime);
   I.waitForText('Approved but not live fees', CCFRATConstants.tenSecondWaitTime);
+  I.verifyDownloadLink();
+  I.clickDownloadLink();
   I.click('Approved but not live fees');
   I.verifyFeesHeaders();
   //Check one of the existing fee, once full implementation done we can add our own code
@@ -58,6 +68,8 @@ Scenario('FeesRegister Admin Console Editor Discontinued Fees Details Check @cro
   I.login(editorUserName, editorPassword);
   I.wait(CCFRATConstants.tenSecondWaitTime);
   I.waitForText('Discontinued fees', CCFRATConstants.tenSecondWaitTime);
+  I.verifyDownloadLink();
+  I.clickDownloadLink();
   I.click('Discontinued fees');
   I.verifyFeesHeaders();
   //Check one of the existing fee, once full implementation done we can add our own code
