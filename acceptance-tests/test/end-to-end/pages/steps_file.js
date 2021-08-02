@@ -129,7 +129,8 @@ module.exports = () => actor({
   },
   async rejectFees() {
     // we are trying to use fee code already existed and created as par of editor journey
-    this.click(`//*[contains(text(),"E2E Testing")]/..//a["View"][1]`);
+    //this.click("//*[contains(text(),\"E2E Testing\")]/..//a[\"View\"][1]");
+    this.click("//td[.='E2E Testing']/following-sibling::View[1]");
     this.waitForText('Direction','10');
     this.click("Reject fee");
     this.waitForText("Why are you rejecting this draft fee?","10");
