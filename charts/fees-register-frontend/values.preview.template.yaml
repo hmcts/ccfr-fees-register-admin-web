@@ -11,6 +11,9 @@ nodejs:
     ccpay:
       secrets:
         - freg-idam-client-secret
+  environment:
+    NODE_ENV: production
+    FEES_URL: http://fees-register-api-pr-397.service.core-compute-preview.internal
 idam-pr:
   enabled: true
   redirect_uris:
