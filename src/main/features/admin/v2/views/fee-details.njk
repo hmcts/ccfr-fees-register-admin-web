@@ -912,7 +912,7 @@
 	{% endif %}
 	{% endfor %}
 	{% for version in feeDto.fee_versions | reverse %}
-		{% if (version.length != 1 and draft == 'true') 
+		{% if (version.length > 1 and draft == 'true') 
 			and loop.index == 1 %}
 			
 			<div class="govuk-check-your-answers__contents">
