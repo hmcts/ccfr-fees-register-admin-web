@@ -2,8 +2,14 @@ const { Logger } = require('@hmcts/nodejs-logging');
 const CCFRATConstants = require('./CCFRAcceptanceTestConstants');
 const faker = require('faker');
 const RANDOM_NUMBER = 9999;
-const editorUserName = process.env.EDITOR_USERNAME;
-const editorPassword = process.env.EDITOR_PASSWORD;
+/*const editorUserName = process.env.EDITOR_USERNAME;
+const editorPassword = process.env.EDITOR_PASSWORD;*/
+const approverUserName = 'functionaltestapprover@hmcts.net';
+const approverPassword = 'LevelAt12';
+const editorUserName = 'functionaltesteditor@hmcts.net';
+const editorPassword = 'LevelAt12';
+
+
 
 Feature('CC FeesRegister Admin Acceptance Tests For Editor');
 Scenario('FeesRegister Admin Console Editor Header and Tab Validation', I => {
@@ -44,7 +50,7 @@ Scenario('FeesRegister Admin Console Editor Screen For Live Fees Details', I => 
   I.wait(CCFRATConstants.tenSecondWaitTime);
   // to-do based on updates and future stories
   I.verifyDownloadLink();
-    I.clickDownloadLink();
+  I.clickDownloadLink();
   I.verifyFeesHeaders();
   //verify any existing fee details under live Tab
   I.verifyFeeDetails('FEE0580','civil','Flat','100.00');
