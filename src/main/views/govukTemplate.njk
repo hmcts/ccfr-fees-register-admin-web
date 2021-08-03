@@ -51,8 +51,11 @@
 
   {% block head %}{% endblock %}
 </head>
-
-<body class="{% block body_classes %}{% endblock %}">
+{% if (currentPage == 'all-fees' or currentPage == 'all-approvedbutnotlive' or currentPage == 'all-discontinued') %}
+  <body class="{% block body_classes %}{% endblock %} fees-overflow-scroll">
+{% else %}
+  <body class="{% block body_classes %}{% endblock %}">
+{% endif %}
 
 {% block body_start %}{% endblock %}
 
