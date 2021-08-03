@@ -2,7 +2,7 @@
 
 [![Standard - JavaScript Style Guide](https://img.shields.io/badge/code%20style-standard-brightgreen.svg)](http://standardjs.com/) [![Greenkeeper badge](https://badges.greenkeeper.io/hmcts/ccfr-fees-register-admin-web.svg)](https://greenkeeper.io/)
 
-This is the frontend application for CMC.
+This is the frontend application for Fee-register.
 
 ## Getting Started
 
