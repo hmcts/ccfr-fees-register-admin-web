@@ -34,7 +34,6 @@
 </div>
 
 {% if pageType =='livefee' or pageType =='disconfee' or pageType =='notlivefee' %}
-			no-draft-section
 
 <dl class="govuk-check-your-answers govuk-check-your-answers--short">
 <div class="govuk-check-your-answers__contents">
@@ -520,8 +519,6 @@
 
 	{% for version in feeDto.fee_versions | reverse %}
 	{% if (version.length==1 or draft=='false') and loop.index == 1  %}
-				false-draft-section
-
 		<dl class="govuk-check-your-answers govuk-check-your-answers--short">
 			<div class="govuk-check-your-answers__contents">
 				<dt class="govuk-check-your-answers__question">
@@ -917,8 +914,6 @@
 	{% for version in feeDto.fee_versions | reverse %}
 		{% if (version.length != 1 and draft == 'true') 
 			and loop.index == 1 %}
-			draft-section
-
 			<dl class="govuk-check-your-answers govuk-check-your-answers--short">
 				<div class="govuk-check-your-answers__contents">
 				<dt class="version-details-dt">Reason approver rejected fee</dt>
