@@ -20,9 +20,8 @@ let rangedFee = {
   code: 'X0001',
 
   natural_account_code: 'xxx',
-
-  fee_order_name: 'xxx',
-
+  last_amending_si: 'xxx',
+  consolidated_fee_order_name: 'xxx',
   description: 'a lonely fee',
 
   applicant_type: {
@@ -77,8 +76,8 @@ let fixedFee = {
 
   natural_account_code: 'xxx',
 
-  fee_order_name: 'xxx',
-
+  last_amending_si: 'xxx',
+  consolidated_fee_order_name: 'xxx',
   description: 'a lonely fee',
 
   applicant_type: {

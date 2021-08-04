@@ -35,7 +35,7 @@
       <th class="bold-xxsmall">Status</th>
       <th class="bold-xxsmall">Statutory Instrument</th>
       <th class="bold-xxsmall">SI Ref ID</th>
-      <th class="bold-xxsmall">Fee Order Name</th>
+      <th class="bold-xxsmall">Last Amending SI</th>
       <th class="bold-xxsmall">Natural Account Code</th>
     </tr>
     </thead>
@@ -95,7 +95,8 @@
       <td class="font-xxsmall">{{ fee.current_version.status }}</td>
       <td class="font-xxsmall">{{ fee.current_version.statutory_instrument }}</td>
       <td class="font-xxsmall">{{ fee.current_version.si_ref_id }}</td>
-      <td class="font-xxsmall">{{ fee.current_version.fee_order_name }}</td>
+      <td class="font-xxsmall">{{ fee.current_version.last_amending_si }}</td>
+      <td class="font-xxsmall">{{ fee.current_version.consolidated_fee_order_name }}</td>
       <td class="font-xxsmall">{{ fee.current_version.natural_account_code }}</td>
     </tr>
     {% endif %}

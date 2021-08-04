@@ -1,3 +1,3 @@
-feeCode,feeDescription,feeAmount,feeVersion,feeStatus,validFrom,validTo,statutoryInstrument,jurisdiction1,jurisdiction2,service,event,channel,direction,feeType,amountType,feeOrderName,naturalAccountCode,memoLine,siRefId,keyword
-X0033,xxxRecovery of Land - High Court,480,1,approved,xxx,xxx,2014 No  874(L17),civil,high court,civil money claims,issue,default,enhanced,fixed,flat,XXX,XXX,XXX,XXX,testKeyword
+feeCode,feeDescription,feeAmount,feeVersion,feeStatus,validFrom,validTo,statutoryInstrument,jurisdiction1,jurisdiction2,service,event,channel,direction,feeType,amountType,lastAmendingSi,consolidatedFeeOrderName,naturalAccountCode,memoLine,siRefId,keyword
+X0033,xxxRecovery of Land - High Court,480,1,approved,xxx,xxx,2014 No  874(L17),civil,high court,civil money claims,issue,default,enhanced,fixed,flat,XXX,XXX,XXX,XXX,XXX,testKeyword
 X0034,xxxRecovery of Land - County Court,355,1,approved,xxx,xxx, 2016 No. 402 (L. 5),civil,county court,civil money claims,issue,default,enhanced,fixed,flat,XXX,XXX,XXX,XXX,
