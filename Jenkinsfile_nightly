@@ -13,9 +13,29 @@ properties([
 def product = "fees-register"
 def component = "frontend"
 
+def secrets = [
+  'fees-register-${env}'      : [
+    secret('editors-username', 'EDITOR_USERNAME'),
+    secret('editors-password', 'EDITOR_PASSWORD'),
+    secret('approver-username', 'APPROVER_USERNAME'),
+    secret('approver-password', 'APPROVER_PASSWORD')
+  ]
+]
+
+static LinkedHashMap<String, Object> secret(String secretName, String envVar) {
+  [ $class: 'AzureKeyVaultSecret',
+    secretType: 'Secret',
+    name: secretName,
+    version: '',
+    envVariable: envVar
+  ]
+}
+
 
 withNightlyPipeline("nodejs", product, component) {
-  env.TEST_URL = params.URL_TO_TEST
+  env.TEST_URL = "https://fees-register-frontend-pr-371.service.core-compute-preview.internal"
+  env.NIGHTLY_TEST= true
+  loadVaultSecrets(secrets)
   enableFullFunctionalTest()
   enableCrossBrowserTest()
   after('checkout') {

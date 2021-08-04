@@ -557,7 +557,9 @@ a.custom-signout-link:visited {
 .padding10 {
   padding-right:10px;
 }
-
+.paddingl10 {
+  padding-left:10px !important;
+}
 .padding20 {
   padding-right:20px;
   text-align: right;
@@ -785,4 +787,10 @@ a.custom-reference-data:visited {
   overflow: hidden;
   height: 50px;
   width: 165px;
+}
+
+.fees-overflow-scroll {
+  display: inline-block;
+  overflow: scroll;
+  width: 100%;
 }

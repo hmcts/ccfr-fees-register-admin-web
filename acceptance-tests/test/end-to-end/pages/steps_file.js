@@ -117,7 +117,8 @@ module.exports = () => actor({
     this.see('Code');
     this.see('Service');
     // we are trying to use fee code already existed and created as par of editor journey
-    this.click(`//*[contains(text(),"E2E Testing")]/..//a["View"][1]`);
+    this.click({xpath: '//td[.="E2E Testing"]/following-sibling::td/a[.="View"][1]'});
+    //this.click({xpath: '//td/a[1]'});
     this.waitForText('Direction','10');
     this.click("Approve fee");
     let feeCode= await this.getFeeCode();
@@ -127,9 +128,13 @@ module.exports = () => actor({
     this.wait(CCPBConstants.fiveSecondWaitTime);
     this.see(feeCode);
   },
+
   async rejectFees() {
     // we are trying to use fee code already existed and created as par of editor journey
-    this.click(`//*[contains(text(),"E2E Testing")]/..//a["View"][1]`);
+    //this.click("//*[contains(text(),\"E2E Testing\")]/..//a[\"View\"][1]");
+    //this.click("/html/body/main/table/tbody/tr[1]/td[6]/a");
+    //this.click({xpath: '//td/a[1]'});
+    this.click({xpath: '//td[.="E2E Testing"]/following-sibling::td/a[.="View"][1]'});
     this.waitForText('Direction','10');
     this.click("Reject fee");
     this.waitForText("Why are you rejecting this draft fee?","10");
