@@ -41,10 +41,8 @@ selectReferenceData %}
         {{ textArea(t('Description'), 'description', form, rows=4) }}
 
         {{ textInput(t('Statutory Instrument'), 'statutoryInstrument', form, style="width:400px;") }}
-
-        {{ textInput(t('SI REF ID'), 'siRefId', form, style="width:150px;") }}
-
         {{ textArea(t('Last Amending SI'), 'lastAmendingSi', form, rows=2) }}
+        {{ textInput(t('SI REF ID'), 'siRefId', form, style="width:150px;") }}
         {{ textArea(t('Consolidated/Original Fee Order Name'), 'consolidatedFeeOrderName', form, rows=2) }}
         {% set serviceError = form.errorFor('service') %}
         <div class="govuk-form-group {{ 'form-group-error' if serviceError}}">
