@@ -103,6 +103,15 @@
 								{% endif %}
 							{% endfor %}
 							{% for version2 in feeDto.fee_versions | reverse %}
+								{% if version2.version == version.version-1 and version.consolidated_fee_order_name != version2.consolidated_fee_order_name %}
+									<div class="govuk-check-your-answers__contents">
+										<dt class="version-details-dt">Consolidated/Original Fee Order Name</dt>
+										<dd class="version-details-dd">{{ version.consolidated_fee_order_name }}</dd>
+										<dd class="version-details-dd">Previously: {{ version2.consolidated_fee_order_name }}</dd>
+									</div>
+								{% endif %}
+							{% endfor %}
+							{% for version2 in feeDto.fee_versions | reverse %}
 								{% if version2.version == version.version-1 and version.statutory_instrument != version2.statutory_instrument%}
 									<div class="govuk-check-your-answers__contents">
 										<dt class="version-details-dt">Statutory Instrument</dt>
@@ -120,15 +129,7 @@
 									</div>
 								{% endif %}
 							{% endfor %}
-							{% for version2 in feeDto.fee_versions | reverse %}
-								{% if version2.version == version.version-1 and version.consolidated_fee_order_name != version2.consolidated_fee_order_name %}
-									<div class="govuk-check-your-answers__contents">
-										<dt class="version-details-dt">Consolidated/Original Fee Order Name</dt>
-										<dd class="version-details-dd">{{ version.consolidated_fee_order_name }}</dd>
-										<dd class="version-details-dd">Previously: {{ version2.consolidated_fee_order_name }}</dd>
-									</div>
-								{% endif %}
-							{% endfor %}
+
 							{% for version2 in feeDto.fee_versions | reverse %}
 								{% if version2.version == version.version-1 and version.valid_from != version2.valid_from%}
 									<div class="govuk-check-your-answers__contents">
@@ -323,6 +324,15 @@
 								{% endif %}
 							{% endfor %}
 							{% for version2 in feeDto.fee_versions | reverse %}
+								{% if (version2.version == version.version-1 and version2.consolidated_fee_order_name == version.consolidated_fee_order_name) or (version.version==1 and version2.version==1)%}
+									<div class="govuk-check-your-answers__contents">
+										<dt class="version-details-dt">Consolidated/Original Fee Order Name</dt>
+										<dd class="version-details-dd dd-width-100">{{ version.consolidated_fee_order_name }}</dd>
+										<dd class="version-details-dd">&nbsp;</dd>
+									</div>
+								{% endif %}
+							{% endfor %}
+							{% for version2 in feeDto.fee_versions | reverse %}
 								{% if (version2.version == version.version-1 and version2.statutory_instrument == version.statutory_instrument) or (version.version==1 and version2.version==1)%}
 									<div class="govuk-check-your-answers__contents">
 										<dt class="version-details-dt">Statutory Instrument</dt>
@@ -341,15 +351,7 @@
 									</div>
 								{% endif %}
 							{% endfor %}
-							{% for version2 in feeDto.fee_versions | reverse %}
-								{% if (version2.version == version.version-1 and version2.consolidated_fee_order_name == version.consolidated_fee_order_name) or (version.version==1 and version2.version==1)%}
-									<div class="govuk-check-your-answers__contents">
-										<dt class="version-details-dt">Consolidated/Original Fee Order Name</dt>
-										<dd class="version-details-dd dd-width-100">{{ version.consolidated_fee_order_name }}</dd>
-										<dd class="version-details-dd">&nbsp;</dd>
-									</div>
-								{% endif %}
-							{% endfor %}
+
 							{% for version2 in feeDto.fee_versions | reverse %}
 								{% if (version2.version == version.version-1 and version2.valid_from == version.valid_from) or (version.version==1 and version2.version==1)%}
 									<div class="govuk-check-your-answers__contents">

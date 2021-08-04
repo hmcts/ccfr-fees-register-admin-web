@@ -101,17 +101,14 @@
           {{ selectReferenceData ('direction', referenceData.directionTypes, form, 'Direction*') }}
         </td>
       </tr>
-
       <tr>
-
+        <td> {{ textInput(t('Statutory Instrument'), 'statutoryInstrument', form) }}</td>
+        <td> {{ textInput(t('SI REF ID'), 'siRefId', form) }}</td>
+      </tr>
+      <tr>
         <td> {{ textInput(t('Last Amending SI*'), 'lastAmendingSi', form) }}</td>
         <td> {{ textInput(t('Consolidated/Original Fee Order Name*'), 'consolidatedFeeOrderName', form) }}</td>
-        <td> {{ textInput(t('Statutory Instrument'), 'statutoryInstrument', form) }}</td>
-
-        <td> {{ textInput(t('SI REF ID'), 'siRefId', form) }}</td>
-
       </tr>
-
     </table>
     <br/>
     {{ submitButton(t('Next')) }}
