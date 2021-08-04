@@ -557,7 +557,9 @@ a.custom-signout-link:visited {
 .padding10 {
   padding-right:10px;
 }
-
+.paddingl10 {
+  padding-left:10px !important;
+}
 .padding20 {
   padding-right:20px;
   text-align: right;
