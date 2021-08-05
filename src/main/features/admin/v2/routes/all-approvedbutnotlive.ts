@@ -15,9 +15,12 @@ export default express.Router()
       .searchFees(null, null, null, null, null, false)
       .then((fees: Array<Fee2Dto>) => {
         fees.sort((a: Fee2Dto, b: Fee2Dto): number => -a.code.localeCompare(b.code))
-        var feesReadable = JSON.stringify(fees)
+        const feecount  = fees.length;
+        const feesReadable = JSON.stringify(fees)
         res.render(Paths.allApprovedbutnotlivePageV2.associatedView, {
-          fees: fees , feesReadable: feesReadable
+          fees: fees,
+          feesReadable: feesReadable,
+          feecount: feecount
         })
       })
   })
