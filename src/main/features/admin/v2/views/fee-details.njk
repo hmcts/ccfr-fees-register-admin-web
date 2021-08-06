@@ -66,7 +66,7 @@
 </div>
 <div class="govuk-check-your-answers__contents">
   <dt class="govuk-check-your-answers__question">
-    <label class="bold">Consolidated/Original Fee Order Name</label> 
+    <label class="bold">Consolidated/Original Fee Order Name1</label> 
   </dt>
   <dd class="govuk-check-your-answers__answer">
     {% if feeDto.current_version.consolidated_fee_order_name and pageType==='livefee' %}
@@ -563,7 +563,7 @@
 			</div>
 			<div class="govuk-check-your-answers__contents">
 				<dt class="govuk-check-your-answers__question">
-					<label class="bold">Consolidated/Original Fee Order Name</label>
+					<label class="bold">Consolidated/Original Fee Order Name2</label>
 				</dt>
 				<dd class="govuk-check-your-answers__answer">
 					{% if feeDto.current_version.consolidated_fee_order_name %}
@@ -1013,7 +1013,7 @@
 				{% for version2 in feeDto.fee_versions | reverse %}
 					{% if version2.version == version.version-1 and version.consolidated_fee_order_name != version2.consolidated_fee_order_name %}
 						<div class="govuk-check-your-answers__contents">
-							<dt class="version-details-dt">Consolidated/Original Fee Order Name</dt>
+							<dt class="version-details-dt">Consolidated/Original Fee Order Name3</dt>
 							<dd class="version-details-dd">{{ version.consolidated_fee_order_name }}</dd>
 							<dd class="version-details-dd">Previously: {{ version2.consolidated_fee_order_name }}</dd>
 						</div>
@@ -1217,7 +1217,7 @@
 				{% for version2 in feeDto.fee_versions | reverse %}
 					{% if (version2.version == version.version-1 and version2.consolidated_fee_order_name == version.consolidated_fee_order_name) or (version.version==1 and version2.version==1)%}
 						<div class="govuk-check-your-answers__contents">
-							<dt class="version-details-dt">Consolidated/Original Fee Order Name</dt>
+							<dt class="version-details-dt">Consolidated/Original Fee Order Name4</dt>
 							<dd class="version-details-dd-single">{{ version.consolidated_fee_order_name }}</dd>
 						</div>
 					{% endif %}
