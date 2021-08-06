@@ -39,7 +39,7 @@ withNightlyPipeline("nodejs", product, component) {
 
   loadVaultSecrets(secrets)
   enableFullFunctionalTest()
-  enableCrossBrowserTest(['chrome','firefox'])
+  enableCrossBrowserTest(['chrome','firefox','microsoft'])
   after('checkout') {
     sh "yarn cache clean"
     echo 'ccfr-fees-register-admin-web checked out'
