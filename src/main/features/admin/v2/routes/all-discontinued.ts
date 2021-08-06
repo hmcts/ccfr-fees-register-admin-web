@@ -19,12 +19,10 @@ export default express.Router()
       FeesClient
       .searchFees(null, null, null, null, null, false)
       .then((allfees: Array<Fee2Dto>) => {
-        const feecount  = allfees.length;
         const feesReadable = JSON.stringify(allfees)
         res.render(Paths.discontinuedFeesPageV2.associatedView, {
           fees: fees,
-          feesReadable: feesReadable,
-          feecount: feecount
+          feesReadable: feesReadable
         })
       })
     })
