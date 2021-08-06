@@ -2,16 +2,16 @@ const CCFRATConstants = require('./CCFRAcceptanceTestConstants');
 const faker = require('faker');
 const RANDOM_NUMBER = 9999;
 
-/*const approverUserName = process.env.APPROVER_USERNAME;
+const approverUserName = process.env.APPROVER_USERNAME;
 const approverPassword = process.env.APPROVER_PASSWORD;
 
 const editorUserName = process.env.EDITOR_USERNAME;
-const editorPassword = process.env.EDITOR_PASSWORD;*/
+const editorPassword = process.env.EDITOR_PASSWORD;
 
-const approverUserName = 'functionaltestapprover@hmcts.net';
+/*const approverUserName = 'functionaltestapprover@hmcts.net';
 const approverPassword = 'LevelAt12';
 const editorUserName = 'functionaltesteditor@hmcts.net';
-const editorPassword = 'LevelAt12';
+const editorPassword = 'LevelAt12';*/
 
 
 

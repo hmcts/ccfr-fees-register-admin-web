@@ -34,12 +34,12 @@ static LinkedHashMap<String, Object> secret(String secretName, String envVar) {
 
 withNightlyPipeline("nodejs", product, component) {
 
-  env.TEST_URL = "https://fees-register-frontend-pr-377.service.core-compute-preview.internal"
+  env.TEST_URL = params.URL_TO_TEST
   env.NIGHTLY_TEST= true
 
   loadVaultSecrets(secrets)
   enableFullFunctionalTest()
-  enableCrossBrowserTest(['chrome'])
+  enableCrossBrowserTest(['chrome','firefox'])
   after('checkout') {
     sh "yarn cache clean"
     echo 'ccfr-fees-register-admin-web checked out'
