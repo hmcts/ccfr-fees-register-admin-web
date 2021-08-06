@@ -55,7 +55,7 @@ module.exports = () => actor({
     this.fillField({ css: '#description'}, "E2E Testing");
     this.fillField({ css: '#statutoryInstrument'}, feeKeyword);
     this.fillField({ css: '#siRefId'}, feeKeyword);
-    this.fillField({ css: '#feeOrderName'}, feeKeyword);
+    this.fillField({ css: '#consolidatedFeeOrderName'}, feeKeyword);
 
     //service
     this.checkOption('input[id="divorce"]');
