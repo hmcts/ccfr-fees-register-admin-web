@@ -47,9 +47,9 @@ withNightlyPipeline("nodejs", product, component) {
   }
   after('build') {
     sh 'yarn setup'
+    sh 'mkdir -p functional-output'
     sh 'chmod +x bin/run-crossbrowser-tests.sh'
   }
-
   after('crossBrowserTest') {
     steps.archiveArtifacts allowEmptyArchive: true, artifacts: 'functional-output/**/*'
   }
