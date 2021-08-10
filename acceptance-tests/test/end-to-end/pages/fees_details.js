@@ -10,6 +10,7 @@ function verifyFeesHeaders(){
   I.waitForText('Statutory Instrument',CCFRAcceptanceTestConstants.fiveSecondWaitTime);
   I.waitForText('SI Ref ID',CCFRAcceptanceTestConstants.fiveSecondWaitTime);
   I.waitForText('Last Amending SI',CCFRAcceptanceTestConstants.fiveSecondWaitTime);
+  I.waitForText('Consolidated/Original Fee Order Name',CCFRAcceptanceTestConstants.fiveSecondWaitTime);
   I.waitForText('Service',CCFRAcceptanceTestConstants.fiveSecondWaitTime);
   I.waitForText('Jurisdiction1',CCFRAcceptanceTestConstants.fiveSecondWaitTime);
   I.waitForText('Jurisdiction2',CCFRAcceptanceTestConstants.fiveSecondWaitTime);
