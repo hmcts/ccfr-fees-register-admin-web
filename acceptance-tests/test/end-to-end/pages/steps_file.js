@@ -54,6 +54,7 @@ module.exports = () => actor({
     this.fillField('textarea[id="reasonForUpdate"]', 'New Fee Creation');
     this.fillField({ css: '#description'}, "E2E Testing");
     this.fillField({ css: '#statutoryInstrument'}, feeKeyword);
+    this.fillField('textarea[id="lastAmendingSi"]', feeKeyword);
     this.fillField({ css: '#siRefId'}, feeKeyword);
     this.fillField({ css: '#consolidatedFeeOrderName'}, feeKeyword);
 
@@ -122,13 +123,15 @@ module.exports = () => actor({
     this.waitForText('Direction','10');
     this.click("Approve fee");
     let feeCode= await this.getFeeCode();
+    console.log('The Fee Code after approval : '+feeCode)
     // verify approved fee under Live Tab
     this.click('Fees');
     this.waitForText('Live fees', '10');
+    this.click('Approved but not live fees');
     this.wait(CCPBConstants.fiveSecondWaitTime);
+    this.waitForText('Approved but not live fees', '10');
     this.see(feeCode);
   },
-
   async rejectFees() {
     // we are trying to use fee code already existed and created as par of editor journey
     //this.click("//*[contains(text(),\"E2E Testing\")]/..//a[\"View\"][1]");
@@ -147,6 +150,23 @@ module.exports = () => actor({
     this.wait(CCPBConstants.fiveSecondWaitTime);
     this.dontSee(feeCode);
   },
+
+  async addNewFeeAndSubmitForApproval(editorUserName, editorPassword) {
+      const feeKeyword = "SN" + new Date().valueOf().toString();
+      this.login(editorUserName, editorPassword);
+      this.wait(CCPBConstants.twoSecondWaitTime);
+      this.waitForText('Live fees', CCPBConstants.tenSecondWaitTime);
+      await this.addNewFee(feeKeyword);
+      this.waitForText('Draft fee saved', CCPBConstants.tenSecondWaitTime);
+      this.click('View draft fee');
+      this.waitForText('Amount', CCPBConstants.tenSecondWaitTime);
+      this.waitForText('View', CCPBConstants.fiveSecondWaitTime);
+      this.click('//a[contains(text(),"View")][1]');
+      this.submitForApproval();
+      await this.getFeeCode();
+      this.click('Sign out');
+    },
+
     verifyFeesHeaders,
     verifyFeeDetails,
     verifyDownloadLink,

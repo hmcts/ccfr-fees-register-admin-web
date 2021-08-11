@@ -8,9 +8,6 @@ const approverPassword = process.env.APPROVER_PASSWORD;
 const editorUserName = process.env.EDITOR_USERNAME;
 const editorPassword = process.env.EDITOR_PASSWORD;
 
-
-
-
 Feature('CC FeesRegister Admin Acceptance Tests For Approver');
 
 Scenario('FeesRegister Admin Console Approver Header and Tab Validation', I => {
@@ -37,48 +34,19 @@ Scenario('FeesRegister Admin Console Approver Header and Tab Validation', I => {
   I.click('Sign out');
 }).retry(CCFRATConstants.retryScenario)
 
-Scenario('FeesRegister Add New Fee and Submit for Approval First Time', async I => {
-  const feeKeyword = "SN" + new Date().valueOf().toString();
-  I.login(editorUserName, editorPassword);
-  I.wait(CCFRATConstants.twoSecondWaitTime);
-  I.waitForText('Live fees', CCFRATConstants.tenSecondWaitTime);
-  await I.addNewFee(feeKeyword);
-  I.waitForText('Draft fee saved', CCFRATConstants.tenSecondWaitTime);
-  I.click('View draft fee');
-  I.waitForText('Amount', CCFRATConstants.tenSecondWaitTime);
-  I.waitForText('View', CCFRATConstants.fiveSecondWaitTime);
-  I.click('//a[contains(text(),"View")][1]');
-  I.submitForApproval();
-  await I.getFeeCode();
-  I.click('Sign out');
-}).retry(CCFRATConstants.retryScenario);
-
 Scenario('FeesRegister Verify Pending For Approval And Approve The Fees', async I => {
+  await I.addNewFeeAndSubmitForApproval(editorUserName, editorPassword);
+  I.wait(CCFRATConstants.tenSecondWaitTime);
   I.login(approverUserName, approverPassword);
   I.wait(CCFRATConstants.fiveSecondWaitTime);
   I.see('Awaiting approval');
   await I.retry(3).verifyFeesSentForApprovalAndApprove()
   I.click('Sign out');
-
 });
 
-Scenario('FeesRegister Add New Fee and Submit for Approval Second Time', async I => {
-  const feeKeyword = "SN" + new Date().valueOf().toString();
-  I.login(editorUserName, editorPassword);
-  I.wait(CCFRATConstants.twoSecondWaitTime);
-  I.waitForText('Live fees', CCFRATConstants.tenSecondWaitTime);
-  await I.addNewFee(feeKeyword);
-  I.waitForText('Draft fee saved', CCFRATConstants.tenSecondWaitTime);
-  I.click('View draft fee');
-  I.waitForText('Amount', CCFRATConstants.tenSecondWaitTime);
-  I.waitForText('View', CCFRATConstants.fiveSecondWaitTime);
-  I.click('//a[contains(text(),"View")][1]');
-  I.submitForApproval();
-  await I.getFeeCode();
-  I.click('Sign out');
-}).retry(CCFRATConstants.retryScenario);
-
 Scenario('FeesRegister Verify Pending For Approval And Reject The Fees', async I => {
+
+  await I.addNewFeeAndSubmitForApproval(editorUserName, editorPassword);
   I.login(approverUserName, approverPassword);
   I.wait(CCFRATConstants.tenSecondWaitTime);
   I.waitForText("Awaiting approval","10");
