@@ -121,9 +121,9 @@ function myFunction() {
                     } else {
                     JsonInsert['Amount'] = '£' + feesExcel[j].Amount; }
                     JsonInsert['Statutory Instrument'] = feesExcel[j].Statutory_Instrument;
-                    JsonInsert['SI Ref ID'] = feesExcel[j].SI_Ref_ID;
                     JsonInsert['Last Amending SI'] = feesExcel[j].last_amending_si;
-                    JsonInsert['Consolidated Fee Order Name'] = feesExcel[j].consolidated_fee_order_name;
+                    JsonInsert['SI Ref ID'] = feesExcel[j].SI_Ref_ID;
+                    JsonInsert['Consolidated/Original Fee Order Name'] = feesExcel[j].consolidated_fee_order_name;
                     JsonInsert['Service'] = feesExcel[j].Service;
                     JsonInsert['Jurisdiction1'] = feesExcel[j].Jurisdiction1;
                     JsonInsert['Jurisdiction2'] = feesExcel[j].Jurisdiction2;
