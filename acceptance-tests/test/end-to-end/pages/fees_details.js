@@ -32,7 +32,7 @@ function verifyFeesHeaders(){
   I.waitForText('Memo',CCFRAcceptanceTestConstants.fiveSecondWaitTime);
   I.waitForText('Natural Account Code',CCFRAcceptanceTestConstants.fiveSecondWaitTime);
 }
-function verifyFeeDetails(feeCode,jurisdiction1,amountType, amount) {
+function verifyFeeDetails(feeCode, jurisdiction1, amountType, amount) {
   const I = this;
   I.click(feeCode);
   I.waitForText('Fee details', CCFRAcceptanceTestConstants.tenSecondWaitTime);
