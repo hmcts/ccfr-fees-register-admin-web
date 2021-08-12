@@ -40,13 +40,13 @@ export class CreateFeeForm {
 
   siRefId?: string
 
-  @IsDefined({ message: ValidationErrors.FEE_ORDER_NAME_REQUIRED })
-  @IsNotBlank({ message: ValidationErrors.FEE_ORDER_NAME_REQUIRED })
+  @IsDefined({ message: ValidationErrors.LAST_AMENDING_REQUIRED })
+  @IsNotBlank({ message: ValidationErrors.LAST_AMENDING_REQUIRED })
   @MaxLength(255, { message: ValidationErrors.LAST_AMENDING_TOO_LONG })
   lastAmendingSi?: string
 
-  @IsDefined({ message: ValidationErrors.FEE_ORDER_NAME_REQUIRED })
-  @IsNotBlank({ message: ValidationErrors.FEE_ORDER_NAME_REQUIRED })
+  @IsDefined({ message: ValidationErrors.CONSOLIDATE_ORIGINAL_REQUIRED })
+  @IsNotBlank({ message: ValidationErrors.CONSOLIDATE_ORIGINAL_REQUIRED })
   @MaxLength(1000, { message: ValidationErrors.CONSOLIDATE_ORIGINAL_TOO_LONG })
   consolidatedFeeOrderName?: string
 
