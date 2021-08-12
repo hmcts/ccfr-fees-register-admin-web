@@ -32,18 +32,44 @@ function verifyFeesHeaders(){
   I.waitForText('Memo',CCFRAcceptanceTestConstants.fiveSecondWaitTime);
   I.waitForText('Natural Account Code',CCFRAcceptanceTestConstants.fiveSecondWaitTime);
 }
-function verifyFeeDetails(feeCode, jurisdiction1, amountType, amount) {
+function verifyFeeDetails(feeCode, siRefID, consolidatedOriginalFeeOrderName, service, event, jurisdiction1, amountType, amount) {
   const I = this;
   I.click(feeCode);
   I.waitForText('Fee details', CCFRAcceptanceTestConstants.tenSecondWaitTime);
   I.see('Code');
   I.see(feeCode);
+  I.see('SI Ref ID');
+  I.see(siRefID);
+  I.see('Consolidated/Original Fee Order Name');
+  I.see(consolidatedOriginalFeeOrderName);
+  I.see('Service');
+  I.see(service);
+  I.see('Event');
+  I.see(event);
+  I.see('Description');
+  I.see('Statutory Instrument');
+  I.see('Last Amending SI');
   I.see('Jurisdiction 1');
   I.see(jurisdiction1);
+  I.see('Jurisdiction 2');
+  I.see('Fee type');
   I.see('Amount type');
   I.see(amountType);
   I.see('Amount');
   I.see('£'+amount);
+  I.see('Percentage');
+  I.see('Valid from');
+  I.see('Version');
+  I.see('Reason for fee update');
+  I.see('Natural account code');
+  I.see('Memo');
+  I.see('Direction');
+  I.see('Applicant type');
+  I.see('Keyword');
+  I.see('Channel');
+  I.see('Status');
+  I.see('Editor');
+  I.see('Approver');
   I.see('test editor');
 }
 
