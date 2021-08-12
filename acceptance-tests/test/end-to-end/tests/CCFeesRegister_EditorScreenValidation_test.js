@@ -51,7 +51,8 @@ Scenario('FeesRegister Admin Console Editor Screen For Live Fees Details', I => 
   I.click('Live fees');
   I.verifyFeesHeaders();
   //verify any existing fee details under live Tab
-  I.verifyFeeDetails('FEE0002','1.2','','divorce','issue','family','Flat','550.00');
+  I.verifyFeeDetails('FEE0002','1.2','','divorce','issue','Filing an application for a divorce, nullity or civil partnership dissolution',
+  '2016 No 402','','family','family court','fixed','Flat','550.00','');
   I.click('Sign out');
 }).retry(CCFRATConstants.retryScenario);
 
@@ -77,7 +78,8 @@ Scenario('FeesRegister Admin Console Editor Discontinued Fees Details Check @cro
   I.click('Discontinued fees');
   I.verifyFeesHeaders();
   //Check one of the existing fee, once full implementation done we can add our own code
-  I.verifyFeeDetails('FEE0002','1.2','','divorce','issue','family','Flat','550.00');
+  I.verifyFeeDetails('FEE0002','1.2','','divorce','issue','Filing an application for a divorce, nullity or civil partnership dissolution – fees order 1.2.',
+  '2016 No. 402 (L. 5)','','family','family court','fixed','Flat','550.00','');
   I.click('Sign out');
 }).retry(CCFRATConstants.retryScenario);
 
