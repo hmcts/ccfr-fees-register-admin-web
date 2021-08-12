@@ -176,6 +176,7 @@
 }
 .input-icon > input#percentage {
   padding: 0 0 0 7px;
+  width: 90px;
 }
 .disply-section {
   display: block !important;
