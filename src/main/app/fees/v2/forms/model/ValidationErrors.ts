@@ -20,7 +20,9 @@ export class ValidationErrors {
   static readonly TO_DATE_REQUIRED: string = 'Enter To Date'
   static readonly STATUTORY_INSTRUMENT_REQUIRED: string = 'Enter Statutory Instrument'
   static readonly SI_REF_ID_REQUIRED: string = 'Enter SI Ref ID'
-  static readonly FEE_ORDER_NAME_REQUIRED: string = 'Enter Fee Order Name'
+  static readonly LAST_AMENDING_REQUIRED: string = 'Enter Last Amending SI'
+  static readonly CONSOLIDATE_ORIGINAL_REQUIRED: string = 'Enter Consolidated/Original Fee Order Name'
+
   static readonly ALPHA_NUMERIC_WITH_HYPHEN: string = 'Keyword should not have special characters except hyphen'
   static readonly AMOUNT_REQUIRED: string = 'Enter amount'
   static readonly AMOUNT_NOT_NEGATIVE: string = 'Enter amount equal or greater than zero'
