@@ -32,7 +32,8 @@ function verifyFeesHeaders(){
   I.waitForText('Memo',CCFRAcceptanceTestConstants.fiveSecondWaitTime);
   I.waitForText('Natural Account Code',CCFRAcceptanceTestConstants.fiveSecondWaitTime);
 }
-function verifyFeeDetails(feeCode, siRefID, consolidatedOriginalFeeOrderName, service, event, jurisdiction1, amountType, amount) {
+function verifyFeeDetails(feeCode, siRefID, consolidatedOriginalFeeOrderName, service, event, description, statutoryInstrument,
+lastAmendingSI, jurisdiction1, jurisdiction2, feeType, amountType, amount, percentage) {
   const I = this;
   I.click(feeCode);
   I.waitForText('Fee details', CCFRAcceptanceTestConstants.tenSecondWaitTime);
@@ -47,12 +48,17 @@ function verifyFeeDetails(feeCode, siRefID, consolidatedOriginalFeeOrderName, se
   I.see('Event');
   I.see(event);
   I.see('Description');
+  I.see(description);
   I.see('Statutory Instrument');
+  I.see(statutoryInstrument);
   I.see('Last Amending SI');
+  I.see(lastAmendingSI);
   I.see('Jurisdiction 1');
   I.see(jurisdiction1);
   I.see('Jurisdiction 2');
+  I.see(jurisdiction2);
   I.see('Fee type');
+  I.see(feeType);
   I.see('Amount type');
   I.see(amountType);
   I.see('Amount');
