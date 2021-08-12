@@ -967,7 +967,13 @@
 				<div class="govuk-check-your-answers__contents">
 					<dt class="version-details-dt">Reason for fee update</dt>
 					<dd class="version-details-dd paddingl10">{{ version.reason_for_update}}</dd>
-					<dd class="version-details-dd">&nbsp;</dd>
+					{% for version2 in feeDto.fee_versions | reverse %}
+						{% if version2.version == version.version-1 and version.reason_for_update!= version2.reason_for_update%}
+							<dd class="version-details-dd">Previously: {{ version2.reason_for_update }}</dd>
+						{% else %}
+							<dd class="version-details-dd">&nbsp;</dd>
+						{% endif %}
+					{% endfor %}
 				</div>
 				
 				<div class="govuk-check-your-answers__contents">
