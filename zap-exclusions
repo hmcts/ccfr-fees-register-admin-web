@@ -1,4 +1,4 @@
 .*idam-web-public.aat.platform.hmcts.net.*
-.*fees-register-frontend-pr-377.service.core-compute-preview.internal.*
+.*fees-register-frontend-pr-*
 .*jquery-3.5.1.min.js$
-10038_*
+.*idam*
