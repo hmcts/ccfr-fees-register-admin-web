@@ -2,14 +2,11 @@ const { Logger } = require('@hmcts/nodejs-logging');
 const CCFRATConstants = require('./CCFRAcceptanceTestConstants');
 const faker = require('faker');
 const RANDOM_NUMBER = 9999;
-/*const editorUserName = process.env.EDITOR_USERNAME;
-const editorPassword = process.env.EDITOR_PASSWORD;*/
-const approverUserName = 'functionaltestapprover@hmcts.net';
-const approverPassword = 'LevelAt12';
-const editorUserName = 'functionaltesteditor@hmcts.net';
-const editorPassword = 'LevelAt12';
 
-
+const approverUserName = process.env.APPROVER_USERNAME;
+const approverPassword = process.env.APPROVER_PASSWORD;
+const editorUserName = process.env.EDITOR_USERNAME;
+const editorPassword = process.env.EDITOR_PASSWORD;
 
 Feature('CC FeesRegister Admin Acceptance Tests For Editor');
 Scenario('FeesRegister Admin Console Editor Header and Tab Validation', I => {
@@ -51,13 +48,15 @@ Scenario('FeesRegister Admin Console Editor Screen For Live Fees Details', I => 
   // to-do based on updates and future stories
   I.verifyDownloadLink();
   I.clickDownloadLink();
+  I.click('Live fees');
   I.verifyFeesHeaders();
   //verify any existing fee details under live Tab
-  I.verifyFeeDetails('FEE0580','civil','Flat','100.00');
+  I.verifyFeeDetails('FEE0002','1.2','','divorce','issue','Filing an application for a divorce, nullity or civil partnership dissolution',
+  '2016 No 402','','family','family court','fixed','Flat','550.00','');
   I.click('Sign out');
 }).retry(CCFRATConstants.retryScenario);
 
-Scenario('FeesRegister Admin Console Editor Approved but not live Fees Details Check @crossbrowser', I => {
+Scenario.skip('FeesRegister Admin Console Editor Approved but not live Fees Details Check @crossbrowser', I => {
   I.login(editorUserName, editorPassword);
   I.wait(CCFRATConstants.tenSecondWaitTime);
   I.waitForText('Approved but not live fees', CCFRATConstants.tenSecondWaitTime);
@@ -66,7 +65,7 @@ Scenario('FeesRegister Admin Console Editor Approved but not live Fees Details C
   I.click('Approved but not live fees');
   I.verifyFeesHeaders();
   //Check one of the existing fee, once full implementation done we can add our own code
-  I.verifyFeeDetails('FEE0621','tribunal','Volume','100.00');
+  I.verifyFeeDetails('FEE0621','798','','adoption','miscellaneous','tribunal','Volume','100.00');
   I.click('Sign out');
 }).retry(CCFRATConstants.retryScenario);
 
@@ -79,7 +78,8 @@ Scenario('FeesRegister Admin Console Editor Discontinued Fees Details Check @cro
   I.click('Discontinued fees');
   I.verifyFeesHeaders();
   //Check one of the existing fee, once full implementation done we can add our own code
-  I.verifyFeeDetails('FEE0588','family','Flat','112.00');
+  I.verifyFeeDetails('FEE0002','1.2','','divorce','issue','Filing an application for a divorce, nullity or civil partnership dissolution – fees order 1.2.',
+  '2016 No. 402 (L. 5)','','family','family court','fixed','Flat','550.00','');
   I.click('Sign out');
 }).retry(CCFRATConstants.retryScenario);
 

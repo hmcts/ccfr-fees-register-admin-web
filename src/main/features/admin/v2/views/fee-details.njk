@@ -57,7 +57,7 @@
   <dd class="govuk-check-your-answers__answer">
     {% if feeDto.current_version.si_ref_id and pageType==='livefee' %}
       {{feeDto.current_version.si_ref_id}}
-    {% elif version and (pageType==='disconfee' or pageType==='notlivefee') %}
+    {% elif version.si_ref_id and (pageType==='disconfee' or pageType==='notlivefee') %}
       {{version.si_ref_id}}
     {% else %}
       &nbsp;
@@ -70,9 +70,13 @@
   </dt>
   <dd class="govuk-check-your-answers__answer">
     {% if feeDto.current_version.consolidated_fee_order_name and pageType==='livefee' %}
-      {{feeDto.current_version.consolidated_fee_order_name}} dd
-    {% elif version and (pageType==='disconfee' or pageType==='notlivefee')%}
+      {{feeDto.current_version.consolidated_fee_order_name}}
+		<br/>
+		<br/>
+    {% elif version.consolidated_fee_order_name and (pageType==='disconfee' or pageType==='notlivefee')%}
       {{version.consolidated_fee_order_name}}
+		<br/>
+		<br/>
     {% else %}
       &nbsp;
 	  <br/>
@@ -116,7 +120,7 @@
   <dd class="govuk-check-your-answers__answer">
     {% if feeDto.current_version.description and pageType==='livefee' %}
       {{feeDto.current_version.description}}
-    {% elif version and (pageType==='disconfee' or pageType==='notlivefee')%}
+    {% elif version.description and (pageType==='disconfee' or pageType==='notlivefee')%}
       {{version.description}}
     {% else %}
       &nbsp;
@@ -132,7 +136,7 @@
   <dd class="govuk-check-your-answers__answer">
     {% if feeDto.current_version.statutory_instrument and pageType==='livefee' %}
       {{feeDto.current_version.statutory_instrument}}
-    {% elif version and (pageType==='disconfee' or pageType==='notlivefee')%}
+    {% elif version.statutory_instrument and (pageType==='disconfee' or pageType==='notlivefee')%}
       {{version.statutory_instrument}}
     {% else %}
       &nbsp;
@@ -147,7 +151,7 @@
   <dd class="govuk-check-your-answers__answer">
     {% if feeDto.current_version.last_amending_si and pageType==='livefee' %}
       {{feeDto.current_version.last_amending_si}}
-    {% elif version and (pageType==='disconfee' or pageType==='notlivefee')%}
+    {% elif version.last_amending_si and (pageType==='disconfee' or pageType==='notlivefee')%}
       {{version.last_amending_si}}
     {% else %}
       &nbsp;
@@ -392,7 +396,7 @@
   <dd class="govuk-check-your-answers__answer">
      {% if feeDto.current_version.reason_for_update and pageType === 'livefee' %}
       {{feeDto.current_version.reason_for_update}}
-    {% elif version and (pageType === 'disconfee' or pageType === 'notlivefee') %}
+    {% elif version.reason_for_update and (pageType === 'disconfee' or pageType === 'notlivefee') %}
       {{version.reason_for_update}}
     {% else %}
       &nbsp;
@@ -408,7 +412,7 @@
   <dd class="govuk-check-your-answers__answer">
     {% if feeDto.current_version.natural_account_code and pageType === 'livefee' %}
       {{feeDto.current_version.natural_account_code}}
-    {% elif version and (pageType === 'disconfee' or pageType === 'notlivefee') %}
+    {% elif version.natural_account_code and (pageType === 'disconfee' or pageType === 'notlivefee') %}
       {{version.natural_account_code}}
     {% else %}
       &nbsp;
@@ -424,7 +428,7 @@
   <dd class="govuk-check-your-answers__answer">
     {% if feeDto.current_version.memo_line and pageType === 'livefee' %}
       {{feeDto.current_version.memo_line}}
-    {% elif version and (pageType === 'disconfee' or pageType === 'notlivefee' or pageType==='draftfee') %}
+    {% elif version.memo_line and (pageType === 'disconfee' or pageType === 'notlivefee' or pageType==='draftfee') %}
       {{version.memo_line}}
     {% else %}
       &nbsp;
@@ -439,7 +443,7 @@
   <dd class="govuk-check-your-answers__answer">
     {% if feeDto.current_version.direction and pageType === 'livefee'%}
       {{feeDto.current_version.direction}}
-    {% elif version and (pageType === 'disconfee' or pageType === 'notlivefee') %}
+    {% elif version.direction and (pageType === 'disconfee' or pageType === 'notlivefee') %}
       {{version.direction}}  
     {% else %}
       &nbsp;
@@ -493,7 +497,7 @@
   <dd class="govuk-check-your-answers__answer">
     {% if feeDto.current_version.status and pageType === 'livefee' %}
       {{feeDto.current_version.status}}
-    {% elif version and (pageType === 'disconfee' or pageType === 'notlivefee') %}
+    {% elif version.status and (pageType === 'disconfee' or pageType === 'notlivefee') %}
       {{version.status}}
     {% else %}
       &nbsp;
@@ -522,7 +526,7 @@
     <dd class="govuk-check-your-answers__answer">
       {% if feeDto.current_version.approvedBy and pageType === 'livefee' %}
         {{feeDto.current_version.approvedBy}}
-      {% elif version and (pageType === 'disconfee' or pageType === 'notlivefee') %}
+      {% elif version.approvedBy and (pageType === 'disconfee' or pageType === 'notlivefee') %}
         {{version.approvedBy}}
       {% else %}
         &nbsp;
@@ -568,6 +572,8 @@
 				<dd class="govuk-check-your-answers__answer">
 					{% if feeDto.current_version.consolidated_fee_order_name %}
 						{{feeDto.current_version.consolidated_fee_order_name}}
+						<br/>
+						<br/>
 					{% else %}
 						&nbsp;
 						<br/>
@@ -944,11 +950,14 @@
 		{% if (version.length != 1 and draft == 'true') 
 			and loop.index == 1 %}
 			<dl class="govuk-check-your-answers govuk-check-your-answers--short">
+
+			{% if version.reason_for_reject  %}
 				<div class="govuk-check-your-answers__contents">
 				<dt class="version-details-dt">Reason approver rejected fee</dt>
 				<dd class="version-details-dd paddingl10">{{ version.reason_for_reject}}</dd>
 				<dd class="version-details-dd">&nbsp;</dd>
 				</div>
+           {% endif %}
 				{% for version2 in feeDto.fee_versions | reverse %}
 					{% if version2.version == version.version-1%}
 						<h2 class="govuk-body govuk-!-font-size-24 govuk-!-font-weight-bold govuk-!-margin-top-5">Updated details</h2>
@@ -958,7 +967,13 @@
 				<div class="govuk-check-your-answers__contents">
 					<dt class="version-details-dt">Reason for fee update</dt>
 					<dd class="version-details-dd paddingl10">{{ version.reason_for_update}}</dd>
-					<dd class="version-details-dd">&nbsp;</dd>
+					{% for version2 in feeDto.fee_versions | reverse %}
+						{% if version2.version == version.version-1 and version.reason_for_update!= version2.reason_for_update%}
+							<dd class="version-details-dd">Previously: {{ version2.reason_for_update }}</dd>
+						{% else %}
+							<dd class="version-details-dd">&nbsp;</dd>
+						{% endif %}
+					{% endfor %}
 				</div>
 				
 				<div class="govuk-check-your-answers__contents">
@@ -974,7 +989,7 @@
 					{% if version2.version == version.version-1 and version.description != version2.description%}
 						<div class="govuk-check-your-answers__contents">
 							<dt class="version-details-dt">Description</dt>
-							<dd class="version-details-dd">{{ version.description }}</dd>
+							<dd class="version-details-dd paddingl10">{{ version.description }}</dd>
 							<dd class="version-details-dd">Previously: {{ version2.description }}</dd>
 						</div>
 					{% endif %}
@@ -985,14 +1000,14 @@
 						<div class="govuk-check-your-answers__contents">
 							<dt class="version-details-dt">Amount</dt>
 							{% if version.flat_amount.amount %}
-							 <dd class="version-details-dd">£{{ version.flat_amount.amount.toFixed(2).toString() }}</dd>
+							 <dd class="version-details-dd paddingl10">£{{ version.flat_amount.amount.toFixed(2).toString() }}</dd>
 							{% elif version.volume_amount.amount %}
-							 <dd class="version-details-dd">£{{ version.volume_amount.amount.toFixed(2).toString() }}</dd>
+							 <dd class="version-details-dd paddingl10">£{{ version.volume_amount.amount.toFixed(2).toString() }}</dd>
 							{% else %}
-							 <dd class="version-details-dd">&nbsp;</dd>
+							 <dd class="version-details-dd paddingl10">&nbsp;</dd>
 							{% endif %}
 							{% if version2.flat_amount.amount %}
-							  <dd class="version-details-dd">Previously: £{{ version2.flat_amount.amount.toFixed(2).toString() }}</dd>
+							  <dd class="version-details-dd ">Previously: £{{ version2.flat_amount.amount.toFixed(2).toString() }}</dd>
 							{% elif version.volume_amount.amount %}
 							  <dd class="version-details-dd">Previously: £{{ version2.volume_amount.amount.toFixed(2).toString() }}</dd>
 							{% else %}
@@ -1005,7 +1020,7 @@
 					{% if version2.version == version.version-1 and version.si_ref_id != version2.si_ref_id%}
 						<div class="govuk-check-your-answers__contents">
 							<dt class="version-details-dt">SI Ref ID</dt>
-							<dd class="version-details-dd">{{ version.si_ref_id }}</dd>
+							<dd class="version-details-dd paddingl10">{{ version.si_ref_id }}</dd>
 							<dd class="version-details-dd">Previously: {{ version2.si_ref_id }}</dd>
 						</div>
 					{% endif %}
@@ -1014,7 +1029,7 @@
 					{% if version2.version == version.version-1 and version.consolidated_fee_order_name != version2.consolidated_fee_order_name %}
 						<div class="govuk-check-your-answers__contents">
 							<dt class="version-details-dt">Consolidated/Original Fee Order Name</dt>
-							<dd class="version-details-dd">{{ version.consolidated_fee_order_name }}</dd>
+							<dd class="version-details-dd paddingl10">{{ version.consolidated_fee_order_name }}</dd>
 							<dd class="version-details-dd">Previously: {{ version2.consolidated_fee_order_name }}</dd>
 						</div>
 					{% endif %}
@@ -1023,7 +1038,7 @@
 					{% if version2.version == version.version-1 and version.statutory_instrument != version2.statutory_instrument%}
 						<div class="govuk-check-your-answers__contents">
 							<dt class="version-details-dt">Statutory Instrument</dt>
-							<dd class="version-details-dd">{{ version.statutory_instrument }}</dd>
+							<dd class="version-details-dd paddingl10">{{ version.statutory_instrument }}</dd>
 							<dd class="version-details-dd">Previously: {{ version2.statutory_instrument }}</dd>
 						</div>
 					{% endif %}
@@ -1032,7 +1047,7 @@
 					{% if version2.version == version.version-1 and version.last_amending_si != version2.last_amending_si %}
 						<div class="govuk-check-your-answers__contents">
 							<dt class="version-details-dt">Last Amending SI</dt>
-							<dd class="version-details-dd">{{ version.last_amending_si }}</dd>
+							<dd class="version-details-dd paddingl10">{{ version.last_amending_si }}</dd>
 							<dd class="version-details-dd">Previously: {{ version2.last_amending_si }}</dd>
 						</div>
 					{% endif %}
@@ -1042,7 +1057,7 @@
 					{% if version2.version == version.version-1 and version.valid_from != version2.valid_from%}
 						<div class="govuk-check-your-answers__contents">
 							<dt class="version-details-dt">Valid from</dt>
-							<dd class="version-details-dd">{{ version.valid_from | date("DD MMMM YYYY") }}</dd>
+							<dd class="version-details-dd paddingl10">{{ version.valid_from | date("DD MMMM YYYY") }}</dd>
 							<dd class="version-details-dd">Previously: {{ version2.valid_from | date("DD MMMM YYYY") }}</dd>
 						</div>
 					{% endif %}
@@ -1051,7 +1066,7 @@
 					{% if version2.version == version.version-1 and version.valid_to!= version2.valid_to%}
 						<div class="govuk-check-your-answers__contents">
 							<dt class="version-details-dt">Valid to</dt>
-							<dd class="version-details-dd">{{ version.valid_to | date("DD MMMM YYYY")}}</dd>
+							<dd class="version-details-dd paddingl10">{{ version.valid_to | date("DD MMMM YYYY")}}</dd>
 							<dd class="version-details-dd">Previously: {{ version2.valid_to | date("DD MMMM YYYY")}}</dd>
 						</div>
 					{% endif %}
@@ -1060,7 +1075,7 @@
 					{% if version2.version == version.version-1 and version.natural_account_code!= version2.natural_account_code%}
 						<div class="govuk-check-your-answers__contents">
 							<dt class="version-details-dt">Natural account code</dt>
-							<dd class="version-details-dd">{{ version.natural_account_code}}</dd>
+							<dd class="version-details-dd paddingl10">{{ version.natural_account_code}}</dd>
 							<dd class="version-details-dd">Previously: {{ version2.natural_account_code }}</dd>
 						</div>
 					{% endif %}
@@ -1069,7 +1084,7 @@
 					{% if version2.version == version.version-1 and version.memo_line != version2.memo_line%}
 						<div class="govuk-check-your-answers__contents">
 							<dt class="version-details-dt">Memo</dt>
-							<dd class="version-details-dd">{{ version.memo_line }}</dd>
+							<dd class="version-details-dd paddingl10">{{ version.memo_line }}</dd>
 							<dd class="version-details-dd">Previously: {{ version2.memo_line }}</dd>
 						</div>
 					{% endif %}
@@ -1078,7 +1093,7 @@
 					{% if version2.version == version.version-1 and version.status != version2.status%}
 						<div class="govuk-check-your-answers__contents">
 							<dt class="version-details-dt">Status</dt>
-							<dd class="version-details-dd">{{ version.status }}</dd>
+							<dd class="version-details-dd paddingl10">{{ version.status }}</dd>
 							<dd class="version-details-dd">Previously: {{ version2.status }}</dd>
 						</div>
 					{% endif %}
@@ -1087,7 +1102,7 @@
 					{% if version2.version == version.version-1 and version.direction != version2.direction%}
 						<div class="govuk-check-your-answers__contents">
 							<dt class="version-details-dt">Direction:</dt>
-							<dd class="version-details-dd">{{ version.direction }}</dd>
+							<dd class="version-details-dd paddingl10">{{ version.direction }}</dd>
 							<dd class="version-details-dd">Previously: {{ version2.direction }}</dd>
 						</div>
 					{% endif %}
@@ -1218,7 +1233,17 @@
 					{% if (version2.version == version.version-1 and version2.consolidated_fee_order_name == version.consolidated_fee_order_name) or (version.version==1 and version2.version==1)%}
 						<div class="govuk-check-your-answers__contents">
 							<dt class="version-details-dt">Consolidated/Original Fee Order Name</dt>
-							<dd class="version-details-dd-single">{{ version.consolidated_fee_order_name }}</dd>
+							<dd class="version-details-dd-single">
+							{% if version.consolidated_fee_order_name %}
+								{{ version.consolidated_fee_order_name }}
+								<br/>
+								<br/>
+							{% else %}
+								&nbsp;
+								<br/>
+								<br/>
+							{% endif %}
+							</dd>
 						</div>
 					{% endif %}
 				{% endfor %}

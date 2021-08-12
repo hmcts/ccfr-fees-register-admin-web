@@ -174,6 +174,10 @@
   padding-left: 25px;
 	padding-right: 0;
 }
+.input-icon > input#percentage {
+  padding: 0 0 0 7px;
+  width: 90px;
+}
 .disply-section {
   display: block !important;
 }
@@ -558,7 +562,7 @@ a.custom-signout-link:visited {
   padding-right:10px;
 }
 .paddingl10 {
-  padding-left:10px !important;
+  padding-left:85px !important;
 }
 .padding20 {
   padding-right:20px;

@@ -43,10 +43,13 @@ function myFunction() {
                     else if (downloadFees[i].fee_versions[feeVersionCount].percentage_amount !== undefined) {
                          let amount_ext = downloadFees[i].fee_versions[feeVersionCount].percentage_amount.percentage;
                          let amount_formatted = parseFloat(amount_ext).toFixed(2)
-                         jsonData['Amount'] =  amount_formatted.toString();
+                         jsonData['Amount'] =  '';
+                         jsonData['percent'] =  amount_formatted.toString();
+
                     }
                     else {
                          jsonData['Amount'] = '';
+                         jsonData['percent'] = '';
                     }
 
                     jsonData['Statutory_Instrument'] = downloadFees[i].fee_versions[feeVersionCount].statutory_instrument;
@@ -121,9 +124,9 @@ function myFunction() {
                     } else {
                     JsonInsert['Amount'] = '£' + feesExcel[j].Amount; }
                     JsonInsert['Statutory Instrument'] = feesExcel[j].Statutory_Instrument;
+                    JsonInsert['Last Amending SI'] = feesExcel[j].Last_Amending_Si;
                     JsonInsert['SI Ref ID'] = feesExcel[j].SI_Ref_ID;
-                    JsonInsert['Last Amending SI'] = feesExcel[j].last_amending_si;
-                    JsonInsert['Consolidated Fee Order Name'] = feesExcel[j].consolidated_fee_order_name;
+                    JsonInsert['Consolidated/Original Fee Order Name'] = feesExcel[j].Consolidated_Fee_Order_Name;
                     JsonInsert['Service'] = feesExcel[j].Service;
                     JsonInsert['Jurisdiction1'] = feesExcel[j].Jurisdiction1;
                     JsonInsert['Jurisdiction2'] = feesExcel[j].Jurisdiction2;
@@ -133,7 +136,7 @@ function myFunction() {
                     JsonInsert['Unit'] = feesExcel[j].Unit;
                     JsonInsert['Fee Type'] = feesExcel[j].Fee_Type;
                     JsonInsert['Amount type'] = feesExcel[j].Amount_type;
-                    JsonInsert['%'] = '';
+                    JsonInsert['%'] = feesExcel[j].percent;
                     JsonInsert['Channel'] = feesExcel[j].Channel;
                     JsonInsert['Keyword'] = feesExcel[j].Keyword;
                     JsonInsert['Applicant type'] = feesExcel[j].Applicant_type;
