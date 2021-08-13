@@ -43,7 +43,15 @@
 							<div class="govuk-check-your-answers__contents">
 								<dt class="version-details-dt">Reason for fee update</dt>
 								<dd class="version-details-dd">{{ version.reason_for_update}}</dd>
-								<dd class="version-details-dd">&nbsp;</dd>
+								{% if feeDto.fee_versions.length > 1%}
+									{% for version2 in feeDto.fee_versions | reverse %}
+										{% if version2.version == version.version-1 and version.reason_for_update!= version2.reason_for_update%}
+											<dd class="version-details-dd">Previously: {{ version2.reason_for_update }}</dd>
+										{% endif %}
+									{% endfor %}
+								{% else %}
+									<dd class="version-details-dd">&nbsp;</dd>
+								{% endif %}
 							</div>
 							<div class="govuk-check-your-answers__contents">
 								<dt class="version-details-dt">Version</dt>
@@ -187,12 +195,28 @@
 							<div class="govuk-check-your-answers__contents">
 								<dt class="version-details-dt">Editor</dt>
 								<dd class="version-details-dd">{{ version.author }}</dd>
-								<dd class="version-details-dd">&nbsp;</dd>
+								{% if feeDto.fee_versions.length > 1%}
+									{% for version2 in feeDto.fee_versions | reverse %}
+										{% if version2.version == version.version-1 and version.author != version2.author %}
+											<dd class="version-details-dd">Previously: {{ version2.author }}</dd>
+										{% endif %}
+									{% endfor %}
+								{% else %}
+									<dd class="version-details-dd">&nbsp;</dd>
+								{% endif %}
 							</div>
 							<div class="govuk-check-your-answers__contents">
 								<dt class="version-details-dt">Approver</dt>
 								<dd class="version-details-dd">{{ version.approvedBy }}</dd>
-								<dd class="version-details-dd">&nbsp;</dd>
+								{% if feeDto.fee_versions.length > 1%}
+									{% for version2 in feeDto.fee_versions | reverse %}
+										{% if version2.version == version.version-1 and version.approvedBy != version2.approvedBy %}
+											<dd class="version-details-dd">Previously: {{ version2.approvedBy }}</dd>
+										{% endif %}
+									{% endfor %}
+								{% else %}
+									<dd class="version-details-dd">&nbsp;</dd>
+								{% endif %}
 							</div>
 						</dl>
 						{% for version2 in feeDto.fee_versions | reverse %}
