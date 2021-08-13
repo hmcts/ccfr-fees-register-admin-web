@@ -203,7 +203,7 @@
 							{% endfor %}
 
 							{% for version2 in feeDto.fee_versions | reverse %}
-								{% if version2.version == version.version-1 and version.memo_line != version2.memo_line%}
+								{% if version2.version == version.version-1 and version.approvedBy != version2.approvedBy %}
 									<div class="govuk-check-your-answers__contents">
 										<dt class="version-details-dt">Approver</dt>
 										<dd class="version-details-dd">{{ version.approvedBy }}</dd>
