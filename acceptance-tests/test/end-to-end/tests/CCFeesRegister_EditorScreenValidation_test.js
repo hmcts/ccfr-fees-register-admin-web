@@ -99,7 +99,7 @@ Scenario('FeesRegister Add New Fee and Submit for Approval', async I => {
   I.click('Sign out');
 }).retry(CCFRATConstants.retryScenario);
 
-Scenario('FeesRegister Add New Fee and Edit the fee', async I => {
+Scenario.skip('FeesRegister Add New Fee and Edit the fee', async I => {
   const feeKeyword = "SN" + new Date().valueOf().toString();
   I.login(editorUserName, editorPassword);
   I.wait(CCFRATConstants.twoSecondWaitTime);

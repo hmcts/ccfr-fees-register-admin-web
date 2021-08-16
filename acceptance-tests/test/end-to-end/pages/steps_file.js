@@ -127,9 +127,9 @@ module.exports = () => actor({
     // verify approved fee under Live Tab
     this.click('Fees');
     this.waitForText('Live fees', '10');
-    /*this.click('Approved but not live fees');
+    this.click('Approved but not live fees');
     this.wait(CCPBConstants.fiveSecondWaitTime);
-    this.waitForText('Approved but not live fees', '10');*/
+    this.waitForText('Approved but not live fees', '10');
     this.see(feeCode);
   },
   async rejectFees() {
