@@ -17,6 +17,7 @@ def component = "frontend"
 withNightlyPipeline("nodejs", product, component) {
   env.TEST_URL = params.URL_TO_TEST
   enableFullFunctionalTest()
+  enableFortifyScan()
   enableCrossBrowserTest()
   after('checkout') {
     sh "yarn cache clean"
@@ -25,6 +26,9 @@ withNightlyPipeline("nodejs", product, component) {
   after('build') {
     sh 'yarn setup'
     sh 'chmod +x bin/run-crossbrowser-tests.sh'
+  }
+    after('fortify-scan') {
+    steps.archiveArtifacts allowEmptyArchive: true, artifacts: '**/Fortify Scan/**/*'
   }
 
   after('crossBrowserTest') {
