@@ -40,32 +40,25 @@
 								{% endif %}
 							{% endfor %}
 							<br>
-							<div class="govuk-check-your-answers__contents">
-								<dt class="version-details-dt">Reason for fee update</dt>
-								<dd class="version-details-dd">{{ version.reason_for_update}}</dd>
-								{% if feeDto.fee_versions.length > 1%}
-									{% for version2 in feeDto.fee_versions | reverse %}
-										{% if version2.version == version.version-1 and version.reason_for_update!= version2.reason_for_update%}
-											<dd class="version-details-dd">Previously: {{ version2.reason_for_update }}</dd>
-										{% endif %}
-									{% endfor %}
-								{% else %}
-									<dd class="version-details-dd">&nbsp;</dd>
+
+							{% for version2 in feeDto.fee_versions | reverse %}
+								{% if version2.version == version.version-1 and version.reason_for_update != version2.reason_for_update%}
+									<div class="govuk-check-your-answers__contents">
+										<dt class="version-details-dt">Reason for fee update</dt>
+										<dd class="version-details-dd">{{ version.reason_for_update }}</dd>
+										<dd class="version-details-dd">Previously: {{ version2.reason_for_update }}</dd>
+									</div>
 								{% endif %}
-							</div>
-							<div class="govuk-check-your-answers__contents">
-								<dt class="version-details-dt">Version</dt>
-								<dd class="version-details-dd">{{ version.version }}</dd>
-								{% if feeDto.fee_versions.length > 1%}
-									{% for version2 in feeDto.fee_versions | reverse %}
-										{% if version2.version == version.version-1 and version.version!= version2.version%}
-											<dd class="version-details-dd">Previously: {{ version2.version }}</dd>
-										{% endif %}
-									{% endfor %}
-								{% else %}
-									<dd class="version-details-dd">&nbsp;</dd>
+							{% endfor %}
+								{% for version2 in feeDto.fee_versions | reverse %}
+								{% if version2.version == version.version-1 and version.version != version2.version%}
+									<div class="govuk-check-your-answers__contents">
+										<dt class="version-details-dt">Version</dt>
+										<dd class="version-details-dd">{{ version.version }}</dd>
+										<dd class="version-details-dd">Previously: {{ version2.version}}</dd>
+									</div>
 								{% endif %}
-							</div>
+							{% endfor %}
 							{% for version2 in feeDto.fee_versions | reverse %}
 								{% if version2.version == version.version-1 and version.description != version2.description%}
 									<div class="govuk-check-your-answers__contents">
@@ -335,6 +328,16 @@
 									<div class="govuk-check-your-answers__contents">
 										<dt class="version-details-dt">SI Ref ID</dt>
 										<dd class="version-details-dd dd-width-100">{{ version.si_ref_id }}</dd>
+										<dd class="version-details-dd">&nbsp;</dd>
+
+									</div>
+								{% endif %}
+							{% endfor %}
+							{% for version2 in feeDto.fee_versions | reverse %}
+								{% if (version2.version == version.version-1 and version2.reason_for_update== version.reason_for_update) or (version.version==1 and version2.version==1)%}
+									<div class="govuk-check-your-answers__contents">
+										<dt class="version-details-dt">Reason for fee update</dt>
+										<dd class="version-details-dd dd-width-100">{{ version.reason_for_update}}</dd>
 										<dd class="version-details-dd">&nbsp;</dd>
 
 									</div>
