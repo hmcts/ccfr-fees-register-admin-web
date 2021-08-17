@@ -1,11 +1,13 @@
-import { IsOptional, MaxLength } from 'class-validator'
+import { IsDefined, MaxLength } from 'class-validator'
+import { IsNotBlank } from 'app/forms/validation/validators/isBlank'
 import { ValidationErrors } from 'fees/v2/forms/model/ValidationErrors'
 import { ReasonDto } from 'app/fees/v2/model/fees-register-api-contract'
 
 export class RejectFeeForm {
   code?: string
 
-  @IsOptional()
+  @IsDefined({ message: ValidationErrors.REASON_FOR_REJECTION_REQUIRED })
+  @IsNotBlank({ message: ValidationErrors.REASON_FOR_REJECTION_REQUIRED })
   @MaxLength(1000, { message: ValidationErrors.REASON_FOR_REJECTION_TOO_LONG })
 
 	reasonForReject?: string
