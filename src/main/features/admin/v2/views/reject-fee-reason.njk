@@ -6,7 +6,7 @@
 {% block content %}
 <input type='hidden' id='userRole' value=''/>
 
-    <form method="post">
+    <form id="reasonRejectFeesId" method="post">
         {{ csrfProtection(csrfToken) }}
         {{ textArea(t(''), 'reasonForReject', form) }}
         {{ submitButton(t('Submit')) }}
