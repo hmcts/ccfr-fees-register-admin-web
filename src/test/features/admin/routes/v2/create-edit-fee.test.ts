@@ -20,9 +20,8 @@ let rangedFee = {
   code: 'X0001',
 
   natural_account_code: 'xxx',
-
-  fee_order_name: 'xxx',
-
+  last_amending_si: 'xxx',
+  consolidated_fee_order_name: 'xxx',
   description: 'a lonely fee',
 
   applicant_type: {
@@ -77,8 +76,8 @@ let fixedFee = {
 
   natural_account_code: 'xxx',
 
-  fee_order_name: 'xxx',
-
+  last_amending_si: 'xxx',
+  consolidated_fee_order_name: 'xxx',
   description: 'a lonely fee',
 
   applicant_type: {
@@ -167,12 +166,11 @@ describe('Create/Edit Fee page', () => {
 
     it('should edit a ranged fee', async () => {
 
-      feesServiceMock.resolveDeleteFee()
       feesServiceMock.resolveCreateRangedFee()
       feesServiceMock.resolveGetReferenceData()
 
       await request(app)
-        .post(AdminPaths.feeCreatePageV2.uri)
+        .put(AdminPaths.feeCreatePageV2.uri)
         .send(CreateFeeForm.fromGivenVersion(rangedFee, version, true))
         .set('Cookie', `${cookieName}=JWT`)
 
@@ -192,12 +190,11 @@ describe('Create/Edit Fee page', () => {
 
     it('should edit a fixed fee', async () => {
 
-      feesServiceMock.resolveDeleteFee()
       feesServiceMock.resolveCreateFixedFee()
       feesServiceMock.resolveGetReferenceData()
 
       await request(app)
-        .post(AdminPaths.feeCreatePageV2.uri)
+        .put(AdminPaths.feeCreatePageV2.uri)
         .send(CreateFeeForm.fromGivenVersion(fixedFee, version, true))
         .set('Cookie', `${cookieName}=JWT`)
 

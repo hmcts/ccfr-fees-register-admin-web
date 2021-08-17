@@ -3,7 +3,7 @@
   {% set title = t('Fee | ' + serviceName) %}
   {% set heading = t('Fee details')  %}
   {% block content %}
-
+<p><a href="/admin/v2/fee/versions/{{ feeDto.code }}">Fee Versions</a></p>
 <div class="gird-row">
   <div class="column-third">
     <label class="bold">Code:</label> {{ feeDto.code }}
@@ -159,8 +159,8 @@
 </div>
 </div>
 <hr width=100%>
+<p><a href="/admin/v2/reject-fee-reason/{{ feeDto.code }}/{{ version.version }}">Reject fee</a></p>
   {% endfor %}
-
 {% if not isDraftVersionExists(feeDto) %}
   {% if isEditor(user.allInfo.roles) %}
   <div class="gird-row">

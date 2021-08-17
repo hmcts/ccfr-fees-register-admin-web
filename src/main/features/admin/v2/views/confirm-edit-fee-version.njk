@@ -5,7 +5,7 @@
   {% set heading = t('Fee Version Created') %}
 
   {% block content %}
-
+<input type='hidden' id='userRole' value='{{ 'Approver' if isApprover(user.allInfo.roles) else 'Editor' }}'/>
 <div class="grid-row">
   <div class="column-full">
     Fee version has been updated successfully.
@@ -15,7 +15,7 @@
   </div>
 
   <div class="column-full">
-    <a href="/admin/welcome" class="link-back">{{ t('Return to welcome page') }}</a>
+    <a href="/admin/v2/draft-fees" class="link-back">{{ t('Return to draft page') }}</a>
   </div>
 
 </div>
