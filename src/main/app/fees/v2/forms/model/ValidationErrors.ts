@@ -11,6 +11,7 @@ export class ValidationErrors {
   static readonly MEMO_LINE_REQUIRED: string = 'Enter memo line'
   static readonly MEMO_LINE_TOO_LONG: string = 'Enter a memo line no longer than $constraint1 characters'
   static readonly REASON_FOR_REJECTION_TOO_LONG: string = 'Enter a reason for rejection no longer than 1000 characters'
+  static readonly REASON_FOR_REJECTION_REQUIRED: string = 'Enter reason for reject'
   static readonly LAST_AMENDING_TOO_LONG: string = 'Enter a Last Amending SI no longer than 255 characters'
   static readonly CONSOLIDATE_ORIGINAL_TOO_LONG: string = 'Enter a Consolidated/Original Fee Order Name no longer than 1000 characters'
 

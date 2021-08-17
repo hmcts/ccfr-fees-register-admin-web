@@ -186,7 +186,7 @@
 								{% endif %}
 							{% endfor %}
 							{% for version2 in feeDto.fee_versions | reverse %}
-								{% if version2.version == version.version-1 and version.memo_line != version2.memo_line%}
+								{% if version2.version == version.version-1 and version.author != version2.author %}
 									<div class="govuk-check-your-answers__contents">
 										<dt class="version-details-dt">Editor</dt>
 										<dd class="version-details-dd">{{ version.author }}</dd>
