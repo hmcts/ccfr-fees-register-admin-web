@@ -67,7 +67,8 @@ export default class Nunjucks {
           testVersion.memo_line.length === 0 ||
           testVersion.si_ref_id.length === 0 ||
           testVersion.statutory_instrument.length === 0 ||
-          testVersion.fee_order_name.length === 0) {
+          testVersion.last_amending_si.length === 0 ||
+          testVersion.consolidated_fee_order_name.length === 0) {
           return false
         }
         return true
@@ -87,6 +88,75 @@ export default class Nunjucks {
       }
       return result
     })
+
+    nunjucksEnv.addGlobal('getLiveFeeVersion', (fee: Fee2Dto): FeeVersionDto => {
+      let currentVersionNumber: number = -1
+      let result: FeeVersionDto = fee.current_version
+      let todayDate: Date = new Date()
+      if (fee.fee_versions != null) {
+        fee.fee_versions.forEach((fv) => {
+          if (fv.version > currentVersionNumber
+            && fv.status === 'approved'
+            && new Date(fv.valid_from) <= todayDate
+            && ((fv.valid_to !== undefined && new Date(fv.valid_to) >= todayDate)
+            || fv.valid_to === undefined)) {
+            currentVersionNumber = fv.version
+            result = fv
+          }
+        })
+      }
+      return result
+    })
+
+    nunjucksEnv.addGlobal('getDraftFeeVersion', (fee: Fee2Dto): FeeVersionDto => {
+      if (fee.fee_versions != null) {
+        let result: FeeVersionDto
+        fee.fee_versions.filter((v) => {
+          if (v.status === 'draft') {
+            result = v
+          }
+        })
+        return result
+      }
+    })
+
+    nunjucksEnv.addGlobal('getApprovedNotLiveFeeVersion', (fee: Fee2Dto): FeeVersionDto => {
+      let todayDate: Date = new Date()
+      if (fee.fee_versions != null) {
+        let result: FeeVersionDto
+        fee.fee_versions.forEach((fv) => {
+          if (fv.status === 'approved' && new Date(fv.valid_from) > todayDate) {
+            result = fv
+          }
+        })
+        return result
+
+      }
+    })
+
+    nunjucksEnv.addGlobal('getDiscontinuedFeeVersion', (fee: Fee2Dto): FeeVersionDto => {
+      let todayDate: Date = new Date()
+      const fcv = fee.current_version
+      let result: FeeVersionDto
+      if (fcv != null && fcv.status === 'approved' && new Date(fcv.valid_from) < todayDate) {
+        result = fcv
+      }
+
+      return result
+    })
+
+    nunjucksEnv.addGlobal('getSelectedVersion', (fee: Fee2Dto, vno: number): FeeVersionDto => {
+      if (fee.fee_versions != null) {
+        let result: FeeVersionDto
+        fee.fee_versions.forEach((fv: FeeVersionDto) => {
+          if (fv.version.toString() === vno.toString()) {
+            result = fv
+          }
+        })
+        return result
+      }
+    })
+
     nunjucksEnv.addGlobal('isDraftVersionExists', (fee: Fee2Dto): boolean => {
       let isExists = false
       fee.fee_versions.filter((v) => {

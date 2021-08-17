@@ -4,6 +4,7 @@ export class CsvFeeDto {
   feeAmount: string
   feeVersion: string
   feeStatus: string
+  reasonForUpdate: string
   validFrom: string
   validTo: string
   rangeFrom: string
@@ -18,7 +19,8 @@ export class CsvFeeDto {
   direction: string
   feeType: string
   amountType: string
-  feeOrderName: string
+  lastAmendingSi: string
+  consolidatedFeeOrderName: string
   naturalAccountCode: string
   memoLine: string
   siRefId: string

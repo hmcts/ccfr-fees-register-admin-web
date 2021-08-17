@@ -1,181 +1,343 @@
 {% set currentPage = 'create-edit-fee' %}
 
-  {% from "includes/macros/form.njk" import csrfProtection, errorSummary, textArea, textInput, radioGroup, submitButton, selectInline, selectReferenceData %}
-  {% extends "layout.njk" %}
+{% from "includes/macros/form.njk" import csrfProtection,
+errorSummary,
+textArea,
+textInput,
+radioGroup,
+submitButton,
+selectInline,
+selectReferenceData %}
+{% extends "layout.njk" %}
 
-  {% if edit %}
-  {% set thisPageHeading =  'Edit Fee' %}
-  {% else %}
-  {% set thisPageHeading = 'Create Fee' %}
-  {% endif %}
+{% if edit %}
+  {% set thisPageHeading = 'Edit Fee' %}
+{% else %}
+  {% set thisPageHeading = 'Create a new fee' %}
+{% endif %}
 
-  {% set title = t(thisPageHeading + ' | ' + serviceName) %}
-  {% set heading = t(thisPageHeading) %}
+{% set title = t(thisPageHeading + ' | ' + serviceName) %}
+{% set heading = t(thisPageHeading) %}
 
-  {% block content %}
+{% block content %}
+<input type='hidden' id='userRole' value='{{ 'Approver' if isApprover(user.allInfo.roles) else 'Editor' }}'/>
+  <div class="grid-row">
+    <div class="column-full">
+      <form method="post" id="createForm" action="create">
+        {{ csrfProtection(csrfToken) }}
+        {% if edit %}
+          <div class="form-group">
+            <label class="form-label-bold">Fee Code</label>
+            <p>{{ form.valueFor('code') }}</p>
+          </div>
+          <input type="hidden" name="code" id="code" value="{{ form.valueFor('code') }}">
+          <input type="hidden" name="reasonForReject" id="reasonForReject" value="{{reasonReject}}">
+          <input type="hidden" name="approvedBy" id="approvedBy" value="{{approvedBy}}">
 
-<div class="grid-row">
-  <div class="column-full">
-    <form method="post" action="create">
-      {{ csrfProtection(csrfToken) }}
-      <table id="create-fee-form-table">
-        <tr>
-          {% if edit %}
-          <td>
-            <div class="form-group">
-              <label class="form-label-bold">Fee Code</label>
-              <p>{{ form.valueFor('code') }}</p>
+        {% endif %}
+
+        {{ textArea(t('Reason For Update'), 'reasonForUpdate', form, rows=2) }}
+
+        {{ textArea(t('Description'), 'description', form, rows=4) }}
+
+        {{ textInput(t('Statutory Instrument'), 'statutoryInstrument', form, style="width:400px;") }}
+        {{ textArea(t('Last Amending SI'), 'lastAmendingSi', form, rows=2) }}
+        {{ textInput(t('SI REF ID'), 'siRefId', form, style="width:150px;") }}
+        {{ textArea(t('Consolidated/Original Fee Order Name'), 'consolidatedFeeOrderName', form, rows=2) }}
+        {% set serviceError = form.errorFor('service') %}
+        <div class="govuk-form-group {{ 'form-group-error' if serviceError}}">
+          <fieldset class="govuk-fieldset">
+            <label class="form-label-bold">Service</label>
+            {% if serviceError %}
+              <span class="error-message"> {{serviceError}} </span>
+            {% endif %}
+            <div id='serviceParent'>
+              {% for serviceName in referenceData.serviceTypes %}
+                <div id="serviceChild" class = "form-group">
+                  <div class = "multiple-choice">
+                    {% if form.valueFor('service') == serviceName.name %}
+                      <input type="radio" id="{{serviceName.name}}" name="service" value="{{serviceName.name}}" checked="checked">
+                    {%else%}
+                      <input type="radio" id="{{serviceName.name}}" name="service" value="{{serviceName.name}}">
+                    {%endif%}
+                    <label class="label-float">{{serviceName.name}}</label>
+                  </div> 
+                </div>
+              {% endfor %}
             </div>
-            <input type="hidden" name="code" id="code" value="{{ form.valueFor('code') }}">
-          </td>
+          </fieldset>
+      </div>
+      {% set jurisdictionOneError = form.errorFor('jurisdiction1') %}
+      <div class="govuk-form-group {{ 'form-group-error' if jurisdictionOneError}}">
+        <fieldset class="govuk-fieldset">
+          <label class="form-label-bold">Jurisdiction 1</label>
+            {% if jurisdictionOneError %}
+              <span class="error-message"> {{jurisdictionOneError}} </span>
+            {% endif %}
+          {% for jurisdiction1 in referenceData.jurisdictions1 %}
+            <div id="verticalRadio" class = "form-group">
+                <div class = "multiple-choice">
+                {% if form.valueFor('jurisdiction1') == jurisdiction1.name %}
+                  <input type="radio" id="{{jurisdiction1.name}}" name="jurisdiction1" value="{{jurisdiction1.name}}" checked="checked">
+                {%else%}
+                  <input type="radio" id="{{jurisdiction1.name}}" name="jurisdiction1" value="{{jurisdiction1.name}}">
+                {%endif%}
+                <label class="label-float">{{jurisdiction1.name}}</label>
+              </div> 
+            </div>
+          {% endfor %}
+        </fieldset>
+      </div>
+      {% set jurisdictionTwoError = form.errorFor('jurisdiction2') %}
+      <div class="govuk-form-group {{ 'form-group-error' if jurisdictionTwoError}}">
+        <fieldset class="govuk-fieldset">
+          <label class="form-label-bold">Jurisdiction 2</label>
+            {% if jurisdictionTwoError %}
+              <span class="error-message"> {{jurisdictionTwoError}} </span>
+            {% endif %}
+          <div id='serviceParent'>
+            {% for jurisdiction2 in referenceData.jurisdictions2 %}
+              <div id="serviceChild" class = "form-group">
+                <div class = "multiple-choice">
+                  {% if form.valueFor('jurisdiction2') == jurisdiction2.name %}
+                    <input type="radio" id="{{jurisdiction2.name}}" name="jurisdiction2" value="{{jurisdiction2.name}}" checked="checked">
+                  {%else%}
+                    <input type="radio" id="{{jurisdiction2.name}}" name="jurisdiction2" value="{{jurisdiction2.name}}">
+                  {%endif%}
+                  <label class="label-float">{{jurisdiction2.name}}</label>
+                </div> 
+              </div>
+            {% endfor %}
+          </div>
+        </fieldset>
+      </div>
+      {% set rangeUnitError = form.errorFor('rangeUnit') %}
+      {% set fromRangeError = form.errorFor('fromRange') %}
+      {% set toRangeError = form.errorFor('toRange') %}
+
+      <div class="govuk-form-group">
+        <fieldset class="govuk-fieldset">
+          <div id="fee-type">
+            {{ radioGroup(form = form, checked=false, name = 'type', label = t('Fee Type'), options = [
+              { label: t('Fixed'), value: 'fixed', onclick: "disableRangedFees"},
+              { label: t('Ranged'), value: 'ranged', onclick: "enableRangedFees"}
+            ]) }}
+          </div>
+          <div id="ranged-container" class="{{ 'disply-section' if form.valueFor('type') == 'ranged'}}">
+            <div id="RangesUnit">
+              {{ radioGroup(form = form, checked=false, name = 'rangeUnit', label = t('Ranged units'), options = [
+                { label: t('Pounds (£)'), value: 'GBP'},
+                { label: t('Volume'), value: 'Volume'}
+              ]) }}
+            </div>
+            <div id="RangedUnitValue">
+              <p>{{ textInput(t('From'), 'fromRange', form) }}</p>
+              <p>{{ textInput(t('Up to (optional)'), 'toRange', form) }}</p>
+            </div>
+          </div>
+        </fieldset>
+      </div>
+
+      {% set amounError = form.errorFor('amount') %}
+      {% set percentageError = form.errorFor('percentage') %}
+      {% set volumeAmountError = form.errorFor('volAmount') %}
+      {% if form.valueFor('amountType') == 'flat' %}
+          {% set flatAmountVal = form.valueFor('amount') %}
+      {% elif form.valueFor('amountType') == 'volume' %}
+          {% set VolumeAmountVal = form.valueFor('amount') %}
+      {% endif %}
+      <div class="govuk-form-group">
+        <fieldset class="govuk-fieldset">
+          <label class="form-label-bold">Amount Type</label>
+            <div id="verticalRadio" class = "form-group">
+              <div class = "multiple-choice">
+                {% if form.valueFor('amountType') == 'flat' %}
+                  <input type="radio" id="flat" name="amountType" value="flat" checked="checked" >
+                {%else%}
+                  <input type="radio" id="flat" name="amountType" value="flat" >
+                {%endif%}
+                <label class="label-float">Flat</label>
+              </div> 
+            </div>
+              <div id="flatAmount" class="mid-box {{ 'disply-section' if form.valueFor('amountType') == 'flat'}}" >
+                <label class="form-label-bold">Amount</label>
+                {% if amounError %}
+                  <span class="error-message"> {{amounError}} </span>
+                {% endif %}
+                <div class = "form-group">
+                  <div class="input-icon">
+                    <input type="text" name="amount" id="amount" value="{{flatAmountVal}}" class="form-control {{ 'form-control-error' if amounError}}">
+                    <i>£</i>
+                  </div>
+                </div>
+              </div>
+
+            <div id="verticalRadio" class = "form-group">
+              <div class = "multiple-choice">
+                {% if form.valueFor('amountType') == 'percentage' %}
+                  <input type="radio" id="percentage" name="amountType" value="percentage" checked="checked" >
+                {%else%}
+                  <input type="radio" id="percentage" name="amountType" value="percentage">
+                {%endif%}
+                <label class="label-float">Percentage</label>
+              </div> 
+            </div>
+           <div id="percentageAmount" class="small-box {{ 'disply-section' if form.valueFor('amountType') == 'percentage'}}">
+                {% if percentageError %}
+                  <span class="error-message"> {{percentageError}} </span>
+                {% endif %}
+                <div class = "form-group">
+                  <div class="input-icon">
+                    <input type="text" name="percentage" id="percentage" value="{{form.valueFor('percentage')}}" class="form-control {{ 'form-control-error' if percentageError}}">
+                  </div>
+                </div>
+            </div>
+            <div id="verticalRadio" class = "form-group">
+              <div class = "multiple-choice">
+                {% if form.valueFor('amountType') == 'volume' %}
+                  <input type="radio" id="volume" name="amountType" value="volume" checked="checked">
+                {%else%}
+                  <input type="radio" id="volume" name="amountType" value="volume">
+                {%endif%}
+                <label class="label-float">Volume</label>
+              </div> 
+            </div>
+            <div id="volumeAmount" class="mid-box {{ 'disply-section' if form.valueFor('amountType') == 'volume'}}" >
+               <label class="form-label-bold">Amount</label>
+                {% if volumeAmountError %}
+                  <span class="error-message"> {{volumeAmountError}} </span>
+                {% endif %}
+                <div class = "form-group">
+                  <div class="input-icon">
+                    <input type="text" name="volAmount" id="volAmount" value="{{VolumeAmountVal}}" class="form-control {{ 'form-control-error' if volumeAmountError}}">
+                    <i>£</i>
+                  </div>
+                </div>
+            </div>
+        </fieldset>
+      </div>
+      {% set eventError = form.errorFor('event') %}
+      <div class="govuk-form-group {{ 'form-group-error' if eventError}}">
+        <fieldset class="govuk-fieldset">
+          <label class="form-label-bold">Event</label>
+          {% if eventError %}
+            <span class="error-message"> {{eventError}} </span>
           {% endif %}
-          <td>{{ textInput(t('Memo Line'), 'memoLine', form) }}</td>
-          <td>{{ textInput(t('Natural Account Code'), 'naturalAccountCode', form) }}</td>
-        </tr>
-
-        <tr>
-          <td colspan="3">
-            {{ textArea(t('Description*'), 'description', form) }}
-          </td>
-        </tr>
-
-        <tr>
-          <td>
-            {% set fromDateError = form.errorFor('fromDate') %}
-            <div class="form-group {% if fromDateError %} form-group-error {% endif %}">
-              <label class="form-label-bold" for="fromDate" id="fromDate[label]">From Date*</label>
-              <input type="date" id="fromDate"
-                     class="form-control {% if fromDateError %} form-control-error {% endif %}"
-                     name="fromDate"
-                     value="{{ form.valueFor('fromDate') }}"/>
+          <div id='serviceParent'>
+            {% for event in referenceData.eventTypes %}
+              <div id="serviceChild" class = "form-group">
+                <div class = "multiple-choice">
+                  {% if form.valueFor('event') == event.name %}
+                    <input type="radio" id="{{event.name}}" name="event" value="{{event.name}}" checked="checked">
+                  {%else%}
+                    <input type="radio" id="{{event.name}}" name="event" value="{{event.name}}">
+                  {%endif%}
+                  <label class="label-float">{{event.name}}</label>
+                </div> 
+              </div>
+            {% endfor %}
+          </div>
+        </fieldset>
+      </div>
+      {% set channelError = form.errorFor('channel') %}
+      <div class="govuk-form-group {{ 'form-group-error' if channelError}}">
+        <fieldset class="govuk-fieldset">
+          <label class="form-label-bold">Channel</label>
+          {% if channelError %}
+            <span class="error-message"> {{channelError}} </span>
+          {% endif %}
+          {% for  channel in referenceData.channelTypes %}
+            <div id="verticalRadio" class = "form-group">
+              <div class = "multiple-choice">
+                {% if form.valueFor('channel') == channel.name %}
+                  <input type="radio" id="{{channel.name}}" name="channel" value="{{channel.name}}" checked="checked">
+                {%else%}
+                  <input type="radio" id="{{channel.name}}" name="channel" value="{{channel.name}}">
+                {%endif%}
+                <label class="label-float">{{channel.name}}</label>
+              </div> 
             </div>
-          </td>
+          {% endfor %}
+        </fieldset>
+      </div>
 
-          <td>
-            <div class="form-group">
-              <label class="form-label-bold" for="toDate" id="toDate[label]">To Date</label>
-              <input type="date" class="form-control"
-                     id="toDate"
-                     name="toDate"
-                     value="{{ form.valueFor('toDate') }}"/>
+        <p>{{ textInput(t('Keyword'), 'keyword', form) }}</p>
+        <p id="keyword-error" hidden="true">
+          <span class="form-group-error form-label-bold">
+            Keyword already in use
+          </span>
+        </p>
+      {% set applicantTypeError = form.errorFor('applicantType') %}
+      <div class="govuk-form-group {{ 'form-group-error' if applicantTypeError}}">
+        <fieldset class="govuk-fieldset">
+          <label class="form-label-bold">Applicant</label>
+          {% if applicantTypeError %}
+            <span class="error-message"> {{applicantTypeError}} </span>
+          {% endif %}
+          {% for applicant in referenceData.applicantTypes %}
+            <div id="verticalRadio" class = "form-group">
+              <div class = "multiple-choice">
+                {% if form.valueFor('applicantType') == applicant.name %}
+                  <input type="radio" id="{{applicant.name}}" name="applicantType" value="{{applicant.name}}" checked="checked">
+                {%else%}
+                  <input type="radio" id="{{applicant.name}}" name="applicantType" value="{{applicant.name}}">
+                {%endif%}
+                <label class="label-float">{{applicant.name}}</label>
+              </div> 
             </div>
-          </td>
-        </tr>
+          {% endfor %}
+        </fieldset>
+      </div>
+      {% set directionError = form.errorFor('direction') %}
+      <div class="govuk-form-group {{ 'form-group-error' if directionError}}">
+        <fieldset class="govuk-fieldset">
+          <label class="form-label-bold">Direction</label>
+          {% if directionError %}
+            <span class="error-message"> {{directionError}} </span>
+          {% endif %}
+          <div id='serviceParent'>
+            {% for direction in referenceData.directionTypes %}
+            <div id="serviceChild" class = "form-group">
+              <div class = "multiple-choice">
+                {% if form.valueFor('direction') == direction.name %}
+                  <input type="radio" id="{{direction.name}}" name="direction" value="{{direction.name}}" checked="checked">
+                {%else%}
+                  <input type="radio" id="{{direction.name}}" name="direction" value="{{direction.name}}">
+                {%endif%}
+                <label class="label-float">{{direction.name}}</label>
+              </div> 
+            </div>
+            {% endfor %}
+          </div>
+        </fieldset>
+      </div>
+        {{ textInput(t('Memo Line'), 'memoLine', form) }}
 
-        {% set isRanged = form.valueFor('type') == 'ranged' %}
+        {% set fromDateError = form.errorFor('fromDate') %}
+        <div class="form-group date-field--width {% if fromDateError %} form-group-error {% endif %}">
+          <label class="form-label-bold" for="fromDate" id="fromDate[label]">From Date</label>
+          <input type="date" id="fromDate"
+          class="form-control {% if fromDateError %} form-control-error {% endif %}"
+          name="fromDate"
+          value="{{ form.valueFor('fromDate') }}"/>
+        </div>
 
-        <tr>
-          <td>
-            {{ radioGroup(form = form, name = 'type', disabled = false, label = t('Fee Type'), options = [
-            { label: t('Fixed'), value: 'fixed', onclick: "disableRangedFees" },
-            { label: t('Ranged'), value: 'ranged', onclick: "enableRangedFees" }
-            ]) }}
-          </td>
+        <div class="form-group date-field--width">
+          <label class="form-label-bold" for="toDate" id="toDate[label]">To Date</label>
+          <input type="date" class="form-control"
+          id="toDate"
+          name="toDate"
+          value="{{ form.valueFor('toDate') }}"/>
+        </div>
 
-          <td>
-            {{ textInput(t('From more than*'), 'fromRange', form, disabled = not isRanged) }}
-            {{ textInput(t('Up to'), 'toRange', form, disabled = not isRanged) }}
-          </td>
+        {{ textInput(t('Natural Account Code'), 'naturalAccountCode', form) }}
 
-          <td>
-            {{ selectReferenceData ('rangeUnit', referenceData.rangeUnits, form, 'Range Units*', disabled = not
-            isRanged)
-            }}
-          </td>
+        <input type="hidden" name="edit" id="edit" value="{{edit}}">
 
-        </tr>
+        {{ submitButton(t('Save as draft')) }}
+      </form>
 
-        {% set isPercentage = form.valueFor('amountType') == 'percentage' %}
-
-        <tr>
-          <td rowspan="2">
-            {{ radioGroup(form = form, name = 'amountType', disabled = false, label = t('Amount Type'), options = [
-            { label: t('Flat'), value: 'flat' },
-            { label: t('Percentage'), value: 'percentage' },
-            { label: t('Volume'), value: 'volume' }
-            ]) }}
-          </td>
-
-          <td>{{ textInput(t('Amount (£)*'), 'amount', form, disabled = isPercentage) }}</td>
-
-        </tr>
-
-        <tr>
-          <td>{{ textInput(t('Percentage (%)*'), 'percentage', form, disabled = not isPercentage) }}</td>
-        </tr>
-
-        <tr>
-          <td colspan="2">
-            {{ selectReferenceData ('applicantType', referenceData.applicantTypes, form, 'Applicant type*') }}
-          </td>
-        </tr>
-
-        <tr>
-          <td colspan="2">
-            {{ selectReferenceData ('jurisdiction1', referenceData.jurisdictions1, form, 'Jurisdiction 1*') }}
-          </td>
-        </tr>
-
-        <tr>
-          <td colspan="2">
-            {{ selectReferenceData ('jurisdiction2', referenceData.jurisdictions2, form, 'Jurisdiction 2*') }}
-          </td>
-        </tr>
-
-
-        <tr>
-          <td colspan="2">
-            {{ selectReferenceData ('service', referenceData.serviceTypes, form, 'Service*') }}
-          </td>
-        </tr>
-
-        <tr>
-          <td colspan="2">
-            {{ selectReferenceData ('event', referenceData.eventTypes, form, 'Event*') }}
-          </td>
-        </tr>
-
-
-        <tr>
-          <td colspan="2">
-            {{ selectReferenceData ('channel', referenceData.channelTypes, form, 'Channel*') }}
-          </td>
-        </tr>
-
-        <tr>
-          <td colspan="2">
-            {{ selectReferenceData ('direction', referenceData.directionTypes, form, 'Direction*') }}
-          </td>
-        </tr>
-        <tr rowspan="2">
-            <td colspan="2">
-              <p>{{ textInput(t('Keyword'), 'keyword', form) }}</p>
-              <p id="keyword-error" hidden="true">
-              <span class="form-group-error form-label-bold">
-                Keyword already in use
-              </span>
-              </p>
-            </td>
-        </tr>
-        <tr>
-
-          <td> {{ textInput(t('Fee Order Name'), 'feeOrderName', form) }}</td>
-
-          <td> {{ textInput(t('Statutory Instrument'), 'statutoryInstrument', form) }}</td>
-
-          <td> {{ textInput(t('SI REF ID'), 'siRefId', form) }}</td>
-
-        </tr>
-
-      </table>
-
-      <input type="hidden" name="edit" id="edit" value="{{edit}}">
-
-      {{ submitButton(t('Save draft')) }}
-    </form>
-
-    <a href="/admin/welcome" class="link-back">{{ t('Cancel') }}</a>
   </div>
-</div>
+  </div>
 
-  {% endblock %}
+{% endblock %}

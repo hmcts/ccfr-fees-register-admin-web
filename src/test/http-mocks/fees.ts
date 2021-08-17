@@ -4,7 +4,7 @@ import * as HttpStatus from 'http-status-codes'
 
 const serviceBaseURL: string = config.get<string>('fees.url')
 
-function validFeeWithCode (code: string, description?: string) {
+function validFeeWithCode (code: string, description?: string, validFrom?: any) {
   return {
     'code': code,
     'type': 'fixed',
@@ -28,9 +28,11 @@ function validFeeWithCode (code: string, description?: string) {
     'jurisdiction2': {
       name: 'xxx'
     },
+
     'fee_versions': [{
       'version': 1,
-      'status': 'approved'
+      'status': 'approved',
+      'valid_from': validFrom
     }]
   }
 }
@@ -195,8 +197,9 @@ export function resolveGetFees () {
     .persist()
     .get(new RegExp(`/fees.*`))
     .reply(HttpStatus.OK, [
-      validFeeWithCode('X0001', 'Civil Court fees - Hearing fees - Claim Amount - 0.01 upto 300 GBP'),
-      validFeeWithCode('X0002', 'Civil Court fees - Hearing fees - Claim Amount - 0.01 upto 300 GBP')
+      validFeeWithCode('X0001', 'Civil Court fees - Hearing fees - Claim Amount - 0.01 upto 300 GBP', '2020-01-01T00:00:00.000+00:00'),
+      validFeeWithCode('X0002', 'Civil Court fees - Hearing fees - Claim Amount - 0.01 upto 300 GBP', '2020-01-01T00:00:00.000+00:00'),
+      validFeeWithCode('X0003', 'Civil Court fees - Hearing fees - Claim Amount - 0.01 upto 300 GBP', '2021-06-21T00:00:00.000+00:00')
     ])
 }
 

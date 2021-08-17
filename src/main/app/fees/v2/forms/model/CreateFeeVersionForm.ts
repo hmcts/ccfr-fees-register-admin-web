@@ -9,11 +9,16 @@ import { ValidationErrors } from 'fees/v2/forms/model/ValidationErrors'
 import {
   FeeVersionDto, FlatAmountDto, PercentageAmountDto, VolumeAmountDto
 } from 'fees/v2/model/fees-register-api-contract'
+const reasonForUpdateMsg = { message: ValidationErrors.REASON_FOR_UPDATE_REQUIRED }
 
 export class CreateFeeVersionForm {
   @IsDefined({ message: ValidationErrors.TYPE_REQUIRED })
   @IsNotBlank({ message: ValidationErrors.TYPE_REQUIRED })
   amountType?: string
+
+  @IsDefined(reasonForUpdateMsg)
+  @IsNotBlank(reasonForUpdateMsg)
+  reasonForUpdate?: string
 
   @IsDefined({ message: ValidationErrors.DESCRIPTION_REQUIRED })
   @IsNotBlank({ message: ValidationErrors.DESCRIPTION_REQUIRED })
@@ -55,13 +60,20 @@ export class CreateFeeVersionForm {
 
   siRefId?: string
 
-  @IsDefined({ message: ValidationErrors.FEE_ORDER_NAME_REQUIRED })
-  @IsNotBlank({ message: ValidationErrors.FEE_ORDER_NAME_REQUIRED })
-  feeOrderName?: string
+  @IsDefined({ message: ValidationErrors.LAST_AMENDING_REQUIRED })
+  @IsNotBlank({ message: ValidationErrors.LAST_AMENDING_REQUIRED })
+  @MaxLength(255, { message: ValidationErrors.LAST_AMENDING_TOO_LONG })
+  lastAmendingSi?: string
+
+  @IsDefined({ message: ValidationErrors.CONSOLIDATE_ORIGINAL_REQUIRED })
+  @IsNotBlank({ message: ValidationErrors.CONSOLIDATE_ORIGINAL_REQUIRED })
+  @MaxLength(1000, { message: ValidationErrors.CONSOLIDATE_ORIGINAL_TOO_LONG })
+  consolidatedFeeOrderName?: string
 
   constructor () {
     this.amountType = 'flat'
     this.description = ''
+    this.reasonForUpdate = ''
     this.memoLine = ''
     this.direction = ''
   }
@@ -97,8 +109,14 @@ export class CreateFeeVersionForm {
     if (value.natural_account_code) {
       form.naturalAccountCode = value.natural_account_code
     }
-    if (value.fee_order_name) {
-      form.feeOrderName = value.fee_order_name
+    if (value.last_amending_si) {
+      form.lastAmendingSi = value.last_amending_si
+    }
+    if (value.consolidated_fee_order_name) {
+      form.consolidatedFeeOrderName = value.consolidated_fee_order_name
+    }
+    if (value.reason_for_update) {
+      form.reasonForUpdate = value.reason_for_update
     }
     if (value.statutory_instrument) {
       form.statutoryInstrument = value.statutory_instrument
@@ -130,8 +148,11 @@ export class CreateFeeVersionForm {
 
     dto.natural_account_code = this.naturalAccountCode
     dto.statutory_instrument = this.statutoryInstrument
+    dto.reason_for_update = this.reasonForUpdate
+
     dto.si_ref_id = this.siRefId
-    dto.fee_order_name = this.feeOrderName
+    dto.last_amending_si = this.lastAmendingSi
+    dto.consolidated_fee_order_name = this.consolidatedFeeOrderName
     dto.description = this.description
 
     if (this.fromDate) {
