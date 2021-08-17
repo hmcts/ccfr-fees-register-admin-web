@@ -8,7 +8,8 @@ let feeVersion = {
   memoLine: 'ironic',
   amount: 100,
   direction: 'nowhere',
-  feeOrderName: 'xxx'
+  lastAmendingSi: 'xxx',
+  consolidatedFeeOrderName: 'xxx'
 }
 
 let feeVersionVolume = {
@@ -18,7 +19,8 @@ let feeVersionVolume = {
   memoLine: 'ironic',
   amount: 100,
   direction: 'nowhere',
-  feeOrderName: 'xxx'
+  lastAmendingSi: 'xxx',
+  consolidatedFeeOrderName: 'xxx'
 
 }
 
@@ -29,8 +31,8 @@ let feeVersionPercentage = {
   memoLine: 'ironic',
   percentage: 10,
   direction: 'nowhere',
-  feeOrderName: 'xxx'
-
+  lastAmendingSi: 'xxx',
+  consolidatedFeeOrderName: 'xxx'
 }
 
 describe('CreateFeeVersionForm',

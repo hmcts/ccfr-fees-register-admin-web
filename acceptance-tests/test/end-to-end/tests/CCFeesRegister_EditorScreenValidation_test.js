@@ -1,53 +1,132 @@
+const { Logger } = require('@hmcts/nodejs-logging');
 const CCFRATConstants = require('./CCFRAcceptanceTestConstants');
 const faker = require('faker');
 const RANDOM_NUMBER = 9999;
 
-Feature('CC FeesRegister Admin Acceptance Tests').retry(CCFRATConstants.retryScenario);
+const approverUserName = process.env.APPROVER_USERNAME;
+const approverPassword = process.env.APPROVER_PASSWORD;
+const editorUserName = process.env.EDITOR_USERNAME;
+const editorPassword = process.env.EDITOR_PASSWORD;
 
-// BeforeSuite(I => {
-//   I.amOnPage('/');
-//   I.wait(CCFRATConstants.twoSecondWaitTime);
-//   I.resizeWindow(CCFRATConstants.windowsSizeX, CCFRATConstants.windowsSizeY);
-// });
-
-Scenario('FeesRegister Admin Console Editor Screen Validation @crossbrowser', I => {
-  I.login('functionaltesteditor@hmcts.net', 'LevelAt12');
+Feature('CC FeesRegister Admin Acceptance Tests For Editor');
+Scenario('FeesRegister Admin Console Editor Header and Tab Validation', I => {
+  I.login(editorUserName, editorPassword);
   I.wait(CCFRATConstants.tenSecondWaitTime);
-  I.waitForText('Welcome', CCFRATConstants.tenSecondWaitTime);
-  I.see('Choose an action');
-  I.see('Reference Data');
-  I.see('Add a new fee');
-  I.see('Upload fees');
-  I.see('View all fees');
-  I.see('View all discontinued fees');
-  I.see('My open actions');
-  I.see('Applicants');
-  I.see('Jurisdictions 1');
-  I.see('Jurisdictions 2');
-  I.see('Services');
-  I.see('Channels');
-  I.see('Events');
-  I.see('Directions');
-  I.Logout("editor");
+  I.see("Fees");
+  I.click("Fees");
+  I.waitForText("Live fees","10");
+  I.verifyDownloadLink();
+  I.clickDownloadLink();
+  I.click("Approved but not live fees");
+  I.waitForText("Approved but not live fees","10");
+  I.verifyDownloadLink();
+  I.clickDownloadLink();
+  I.see("Code");
+  I.click("Discontinued fees");
+  I.waitForText("Discontinued fees","10");
+  I.verifyDownloadLink();
+  I.clickDownloadLink();
+  I.see("Code");
+  I.see("Your Drafts");
+  I.click("Your Drafts");
+  I.waitForText("Drafts", "10");
+  I.see("Rejected by approver");
+  I.click("Rejected by approver");
+  I.waitForText("Code", "10");
+  I.see("Awaiting approval");
+  I.click("Awaiting approval");
+  I.waitForText("Code", "10");
+  I.see("Reference Data");
+  I.click("Reference Data");
+  I.waitForText("Applicants","10");
+  I.click('Sign out');
 });
 
-Scenario('FeesRegister Add New Fee and Submit for Approval', I => {
+Scenario('FeesRegister Admin Console Editor Screen For Live Fees Details', I => {
+  I.login(editorUserName, editorPassword);
+  I.wait(CCFRATConstants.tenSecondWaitTime);
+  // to-do based on updates and future stories
+  I.verifyDownloadLink();
+  I.clickDownloadLink();
+  I.click('Live fees');
+  I.verifyFeesHeaders();
+  //verify any existing fee details under live Tab
+  I.verifyFeeDetails('FEE0002','1.2','','divorce','issue','Filing an application for a divorce, nullity or civil partnership dissolution',
+  '2016 No 402','','family','family court','fixed','Flat','550.00','');
+  I.click('Sign out');
+}).retry(CCFRATConstants.retryScenario);
+
+Scenario.skip('FeesRegister Admin Console Editor Approved but not live Fees Details Check @crossbrowser', I => {
+  I.login(editorUserName, editorPassword);
+  I.wait(CCFRATConstants.tenSecondWaitTime);
+  I.waitForText('Approved but not live fees', CCFRATConstants.tenSecondWaitTime);
+  I.verifyDownloadLink();
+  I.clickDownloadLink();
+  I.click('Approved but not live fees');
+  I.verifyFeesHeaders();
+  //Check one of the existing fee, once full implementation done we can add our own code
+  I.verifyFeeDetails('FEE0621','798','','adoption','miscellaneous','tribunal','Volume','100.00');
+  I.click('Sign out');
+}).retry(CCFRATConstants.retryScenario);
+
+Scenario('FeesRegister Admin Console Editor Discontinued Fees Details Check @crossbrowser', I => {
+  I.login(editorUserName, editorPassword);
+  I.wait(CCFRATConstants.tenSecondWaitTime);
+  I.waitForText('Discontinued fees', CCFRATConstants.tenSecondWaitTime);
+  I.verifyDownloadLink();
+  I.clickDownloadLink();
+  I.click('Discontinued fees');
+  I.verifyFeesHeaders();
+  //Check one of the existing fee, once full implementation done we can add our own code
+  I.verifyFeeDetails('FEE0002','1.2','','divorce','issue','Filing an application for a divorce, nullity or civil partnership dissolution – fees order 1.2.',
+  '2016 No. 402 (L. 5)','','family','family court','fixed','Flat','550.00','');
+  I.click('Sign out');
+}).retry(CCFRATConstants.retryScenario);
+
+Scenario('FeesRegister Add New Fee and Submit for Approval', async I => {
   const feeKeyword = "SN" + new Date().valueOf().toString();
-  const submitBtnVisibilityChk = true;
-
-  I.login('functionaltesteditor@hmcts.net', 'LevelAt12');
+  I.login(editorUserName, editorPassword);
   I.wait(CCFRATConstants.twoSecondWaitTime);
-  I.waitForText('Welcome', CCFRATConstants.tenSecondWaitTime);
-  I.see('Choose an action');
-  I.see('Add a new fee');
-  I.addNewFee(feeKeyword);
-  I.waitForText('Fee Created', CCFRATConstants.twoSecondWaitTime);
-  I.see('Fee has been created successfully.');
+  I.waitForText('Live fees', CCFRATConstants.tenSecondWaitTime);
+  await I.addNewFee(feeKeyword);
+  I.waitForText('Draft fee saved', CCFRATConstants.tenSecondWaitTime);
+  I.click('View draft fee');
+  I.waitForText('Amount', CCFRATConstants.tenSecondWaitTime);
+  I.waitForText('View', CCFRATConstants.fiveSecondWaitTime);
+  I.click('//a[contains(text(),"View")][1]');
+  I.submitForApproval();
+  await I.getFeeCode();
+  I.click('Sign out');
+}).retry(CCFRATConstants.retryScenario);
 
-  I.click('Return to welcome page');
+Scenario.skip('FeesRegister Add New Fee and Edit the fee', async I => {
+  const feeKeyword = "SN" + new Date().valueOf().toString();
+  I.login(editorUserName, editorPassword);
   I.wait(CCFRATConstants.twoSecondWaitTime);
-  I.waitForText('Welcome', CCFRATConstants.tenSecondWaitTime);
-  I.deleteFees(feeKeyword);
+  I.waitForText('Live fees', CCFRATConstants.tenSecondWaitTime);
+  await I.addNewFee(feeKeyword);
+  I.waitForText('Draft fee saved', CCFRATConstants.tenSecondWaitTime);
+  I.click('View draft fee');
+  I.waitForText('Amount', CCFRATConstants.tenSecondWaitTime);
+  I.waitForText('View', CCFRATConstants.fiveSecondWaitTime);
+  I.click('//a[contains(text(),"View")][1]');
+  I.editDraft();
+  await I.getFeeCode();
+  I.click('Sign out');
+}).retry(CCFRATConstants.retryScenario);
 
-  I.Logout("editor");
-});
+Scenario('FeesRegister Add New Fee and Delete Draft', async I => {
+  const feeKeyword = "SN" + new Date().valueOf().toString();
+  I.login(editorUserName, editorPassword);
+  I.wait(CCFRATConstants.twoSecondWaitTime);
+  I.waitForText('Live fees', CCFRATConstants.tenSecondWaitTime);
+  await I.addNewFee(feeKeyword);
+  I.waitForText('Draft fee saved', CCFRATConstants.tenSecondWaitTime);
+  I.click('View draft fee');
+  I.waitForText('Amount', CCFRATConstants.tenSecondWaitTime);
+  I.waitForText('View', CCFRATConstants.fiveSecondWaitTime);
+  I.click('//a[contains(text(),"View")][1]');
+  I.deleteFees();
+  await I.getFeeCode();
+  I.click('Sign out');
+}).retry(CCFRATConstants.retryScenario);
