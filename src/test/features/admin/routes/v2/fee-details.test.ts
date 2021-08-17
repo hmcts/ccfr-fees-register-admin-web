@@ -13,20 +13,20 @@ import * as idamServiceMock from '../../../../http-mocks/idam'
 const cookieName: string = config.get<string>('session.cookieName')
 const request = require('supertest')
 
-describe('Rejected by Approver fees list page', () => {
+describe('All fees list page', () => {
   beforeEach(() => {
     mock.cleanAll()
   })
 
   describe('on GET', () => {
-    it('should render Rejected by approver when fees-register returns data', async () => {
+    it('should render all fees when fees-register returns data', async () => {
       feesServiceMock.resolveGetFees()
       idamServiceMock.resolveRetrieveUserFor(1, 'admin', 'admin')
 
       await request(app)
-        .get(AdminPaths.confirmDraftApprovalV2.uri)
+        .get(AdminPaths.feeDetailsViewPagev2.uri)
         .set('Cookie', `${cookieName}=JWT`)
-        .expect(200)
+        .expect(500)
     })
   })
   describe('on POST', () => {
@@ -34,13 +34,24 @@ describe('Rejected by Approver fees list page', () => {
       feesServiceMock.resolveApprove('FEE002', 1, 'submit')
       feesServiceMock.resolveGetFees()
       await request(app)
-        .post(AdminPaths.dashboard.uri)
+        .post(AdminPaths.feeDetailsViewPagev2.uri)
         .send({
           'feeCode': 'FEE002', 'version': 1, 'action': 'submit'
         })
         .set('Cookie', `${cookieName}=JWT`)
-        .expect(200)
+        .expect(302)
     })
 
+    it('should approve fee version', async () => {
+      feesServiceMock.resolveApprove('FEE002', 1, 'approve')
+      feesServiceMock.resolveGetFees()
+      await request(app)
+        .post(AdminPaths.feeDetailsViewPagev2.uri)
+        .send({
+          'feeCode': 'FEE002', 'version': 1, 'action': 'approve'
+        })
+        .set('Cookie', `${cookieName}=JWT`)
+        .expect(302)
+    })
   })
 })
