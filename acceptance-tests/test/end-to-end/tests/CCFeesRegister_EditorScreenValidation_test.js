@@ -52,7 +52,8 @@ Scenario('FeesRegister Admin Console Editor Screen For Live Fees Details', I => 
   I.verifyFeesHeaders();
   //verify any existing fee details under live Tab
   I.verifyFeeDetails('FEE0002','1.2','','divorce','issue','Filing an application for a divorce, nullity or civil partnership dissolution',
-  '2016 No 402','','family','family court','fixed','Flat','550.00','');
+  '2016 No 402','The Civil Proceedings, Family Proceedings and Upper Tribunal Fees (Amendment) Order 2016','family','family court','fixed','Flat','550.00','',
+    '21 March 2016', '5', '', '4481102159', 'RECEIPT OF FEES - Family issue divorce', 'enhanced', 'all', '', 'default', 'approved', '124756', '39907');
   I.click('Sign out');
 }).retry(CCFRATConstants.retryScenario);
 
