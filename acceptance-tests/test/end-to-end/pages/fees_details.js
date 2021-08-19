@@ -32,6 +32,26 @@ function verifyFeesHeaders(){
   I.waitForText('Memo',CCFRAcceptanceTestConstants.fiveSecondWaitTime);
   I.waitForText('Natural Account Code',CCFRAcceptanceTestConstants.fiveSecondWaitTime);
 }
+
+function verifyLiveFeeDetails(feeCode, siRefID, consolidatedOriginalFeeOrderName, service, event, description, statutoryInstrument,
+                          lastAmendingSI, jurisdiction1, jurisdiction2, feeType, amountType, amount, percentage, validFrom, version, reasonForFeeUpdate, naturalAccountCode,
+                          memo, direction, applicantType, keyword, channel, status, editor, approver) {
+  verifyFeeDetails(feeCode, siRefID, consolidatedOriginalFeeOrderName, service, event, description, statutoryInstrument,
+    lastAmendingSI, jurisdiction1, jurisdiction2, feeType, amountType, amount, percentage, validFrom, version, reasonForFeeUpdate, naturalAccountCode,
+    memo, direction, applicantType, keyword, channel, status, editor, approver);
+}
+
+function verifyDiscontinuedFeeDetails(feeCode, siRefID, consolidatedOriginalFeeOrderName, service, event, description, statutoryInstrument,
+                              lastAmendingSI, jurisdiction1, jurisdiction2, feeType, amountType, amount, percentage, validFrom, validTo, version, reasonForFeeUpdate, naturalAccountCode,
+                              memo, direction, applicantType, keyword, channel, status, editor, approver) {
+  verifyFeeDetails(feeCode, siRefID, consolidatedOriginalFeeOrderName, service, event, description, statutoryInstrument,
+    lastAmendingSI, jurisdiction1, jurisdiction2, feeType, amountType, amount, percentage, validFrom, version, reasonForFeeUpdate, naturalAccountCode,
+    memo, direction, applicantType, keyword, channel, status, editor, approver);
+  const I = this;
+  I.see('Valid to');
+  I.see(validTo);
+}
+
 function verifyFeeDetails(feeCode, siRefID, consolidatedOriginalFeeOrderName, service, event, description, statutoryInstrument,
 lastAmendingSI, jurisdiction1, jurisdiction2, feeType, amountType, amount, percentage, validFrom, version, reasonForFeeUpdate, naturalAccountCode,
 memo, direction, applicantType, keyword, channel, status, editor, approver) {
@@ -104,5 +124,5 @@ function clickDownloadLink(){
 }
 
 module.exports = {
-  verifyFeesHeaders , verifyFeeDetails, verifyDownloadLink, clickDownloadLink
+  verifyFeesHeaders, verifyLiveFeeDetails, verifyDiscontinuedFeeDetails, verifyDownloadLink, clickDownloadLink
 };
