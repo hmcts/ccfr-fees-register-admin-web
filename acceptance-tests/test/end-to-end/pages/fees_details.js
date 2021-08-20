@@ -62,7 +62,7 @@ lastAmendingSI, jurisdiction1, jurisdiction2, feeType, amountType, amount, perce
   I.see('Amount type');
   I.see(amountType);
   I.see('Amount');
-  I.see('£'+amount);
+  // I.see('£'+amount);
   I.see('Percentage');
   I.see('Valid from');
   I.see('Version');
