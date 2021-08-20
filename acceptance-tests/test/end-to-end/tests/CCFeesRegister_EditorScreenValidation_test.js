@@ -76,7 +76,7 @@ Scenario('FeesRegister Admin Console Editor Discontinued Fees Details Check @cro
   I.verifyDownloadLink();
   I.clickDownloadLink();
   I.click('Discontinued fees');
-  I.verifyFeesHeaders();
+  I.verifyFeesHeadersDiscontinuedFees();
   //Check one of the existing fee, once full implementation done we can add our own code
   I.verifyFeeDetails('FEE0002','1.2','','divorce','issue','Filing an application for a divorce, nullity or civil partnership dissolution – fees order 1.2.',
   '2016 No. 402 (L. 5)','','family','family court','fixed','Flat','550.00','');
