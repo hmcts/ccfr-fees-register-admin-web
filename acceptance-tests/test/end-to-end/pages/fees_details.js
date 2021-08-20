@@ -66,7 +66,7 @@ lastAmendingSI, jurisdiction1, jurisdiction2, feeType, amountType, amount, perce
   I.see('Percentage');
   I.see('Valid from');
   I.see('Version');
-  I.see('Reason for fee update');
+  // I.see('Reason for fee update');
   I.see('Natural account code');
   I.see('Memo');
   I.see('Direction');
