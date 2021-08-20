@@ -36,7 +36,7 @@ function verifyFeeDetails(feeCode, siRefID, consolidatedOriginalFeeOrderName, se
 lastAmendingSI, jurisdiction1, jurisdiction2, feeType, amountType, amount, percentage) {
   const I = this;
   I.click(feeCode);
-  I.waitForText('Code', CCFRAcceptanceTestConstants.tenSecondWaitTime);
+  I.waitForText('Code', CCFRAcceptanceTestConstants.fifteenSecondWaitTime);
   I.see('Code');
   I.see(feeCode);
   I.see('SI Ref ID');
