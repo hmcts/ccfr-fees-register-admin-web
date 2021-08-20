@@ -36,7 +36,7 @@ function verifyFeeDetails(feeCode, siRefID, consolidatedOriginalFeeOrderName, se
 lastAmendingSI, jurisdiction1, jurisdiction2, feeType, amountType, amount, percentage) {
   const I = this;
   I.click(feeCode);
-  I.waitForText('Fee details', CCFRAcceptanceTestConstants.tenSecondWaitTime);
+  I.waitForText('Code', CCFRAcceptanceTestConstants.tenSecondWaitTime);
   I.see('Code');
   I.see(feeCode);
   I.see('SI Ref ID');
@@ -76,6 +76,7 @@ lastAmendingSI, jurisdiction1, jurisdiction2, feeType, amountType, amount, perce
   I.see('Status');
   I.see('Editor');
   I.see('Approver');
+  I.see('test editor');
 }
 
 function verifyDownloadLink(){
