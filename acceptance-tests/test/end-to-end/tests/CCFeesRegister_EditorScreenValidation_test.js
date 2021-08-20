@@ -70,7 +70,7 @@ Scenario.skip('FeesRegister Admin Console Editor Approved but not live Fees Deta
   I.click('Sign out');
 }).retry(CCFRATConstants.retryScenario);
 
-Scenario('FeesRegister Admin Console Editor Discontinued Fees Details Check @crossbrowser', I => {
+Scenario.skip('FeesRegister Admin Console Editor Discontinued Fees Details Check @crossbrowser', I => {
   I.login(editorUserName, editorPassword);
   I.wait(CCFRATConstants.tenSecondWaitTime);
   I.waitForText('Discontinued fees', CCFRATConstants.tenSecondWaitTime);
