@@ -76,7 +76,6 @@ lastAmendingSI, jurisdiction1, jurisdiction2, feeType, amountType, amount, perce
   I.see('Status');
   I.see('Editor');
   I.see('Approver');
-  I.see('test editor');
 }
 
 function verifyDownloadLink(){
