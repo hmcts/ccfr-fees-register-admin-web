@@ -83,6 +83,7 @@ function getTokenFromCode(self, req) {
     .type('form')
     .send({"grant_type": 'authorization_code'})
     .send({"code": req.query.code})
+    .send({"scope": 'search-user'})
     .send({"redirect_uri": req.protocol + "://" + req.get('host') + self.opts.redirectUri});
 }
 
