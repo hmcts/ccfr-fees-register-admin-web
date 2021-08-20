@@ -4,7 +4,7 @@ const CCPBConstants = require('../tests/CCFRAcceptanceTestConstants');
 // const faker = require('faker');
 const faker = require('faker');
 const RANDOM_NUMBER = 99999;
-const {verifyFeesHeaders, verifyLiveFeeDetails, verifyDiscontinuedFeeDetails, verifyDownloadLink, clickDownloadLink} = require('./fees_details');
+const {verifyFeesHeaders, verifyFeeDetails, verifyDownloadLink, clickDownloadLink} = require('./fees_details');
 const CCDNumber = faker.random.number(RANDOM_NUMBER);
 module.exports = () => actor({
   // done
@@ -168,8 +168,7 @@ module.exports = () => actor({
     },
 
     verifyFeesHeaders,
-    verifyLiveFeeDetails,
-    verifyDiscontinuedFeeDetails,
+    verifyFeeDetails,
     verifyDownloadLink,
     clickDownloadLink
 });
