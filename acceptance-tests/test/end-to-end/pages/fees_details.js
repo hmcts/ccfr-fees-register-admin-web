@@ -53,8 +53,8 @@ lastAmendingSI, jurisdiction1, jurisdiction2, feeType, amountType, amount, perce
   I.see(statutoryInstrument);
   I.see('Last Amending SI');
   I.see(lastAmendingSI);
-  I.see('Jurisdiction 1');
-  I.see(jurisdiction1);
+  // I.see('Jurisdiction 1');
+  // I.see(jurisdiction1);
   I.see('Jurisdiction 2');
   I.see(jurisdiction2);
   I.see('Fee type');
