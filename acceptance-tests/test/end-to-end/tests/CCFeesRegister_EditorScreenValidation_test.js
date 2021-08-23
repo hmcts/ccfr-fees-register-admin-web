@@ -132,3 +132,18 @@ Scenario('FeesRegister Add New Fee and Delete Draft', async I => {
   await I.getFeeCode();
   I.click('Sign out');
 }).retry(CCFRATConstants.retryScenario);
+
+Scenario('FeesRegister Verify Version details for existing fee',  I => {
+  I.login(editorUserName, editorPassword);
+  I.wait(CCFRATConstants.twoSecondWaitTime);
+  I.waitForText('Live fees', CCFRATConstants.tenSecondWaitTime);
+  I.click('FEE0002');
+  I.waitForText('Fee versions', CCFRATConstants.tenSecondWaitTime);
+  I.click('Fee versions');
+  I.verifyCurrentFeeVersion('5', 'Previously: 4', 'Filing an application for a divorce, nullity or civil partnership dissolution', 'Previously: Filing an application for a divorce, nullity or civil partnership dissolution – fees order 1.2.',
+    '2016 No 402', 'Previously: 2016 No. 402 (L. 5)', '23 August 2021', 'Previously: 21 March 2016', 'RECEIPT OF FEES - Family issue divorce', 'Previously: GOV - App for divorce/nullity of marriage or CP',
+    '124756', 'Previously:', '39907', 'Previously:', 'FEE0002', 'divorce', 'issue', 'family', 'family court', 'fixed', 'Flat', 'all', '', 'default', '550', '1.2', '', '', 'The Civil Proceedings, Family Proceedings and Upper Tribunal Fees (Amendment) Order 2016',
+    '21 March 2016', '4481102159', 'approved', 'enhanced');
+  I.verifyPreviousFeeVersion('4', 'FEE0002', 'divorce', 'issue', 'family', 'family court', 'fixed', 'Flat', 'all', '', 'default');
+  I.click('Sign out');
+}).retry(CCFRATConstants.retryScenario);
