@@ -91,10 +91,37 @@ module.exports = () => actor({
     this.waitForText(  'Direction', '10');
     this.click(  'Edit fee');
     this.waitForText(  'Statutory Instrument', '10');
+    this.fillField({ css: '#description'}, "E2E Testing Edit");
     this.fillField('textarea[id="reasonForUpdate"]', 'Edited this fee');
+    this.fillField('textarea[id="lastAmendingSi"]', 'Edit last amending SI');
+    this.fillField({ css: '#consolidatedFeeOrderName'}, 'Edit consolidated fee');
     this.checkOption('input[id="percentage"]');
     this.wait(CCPBConstants.twoSecondWaitTime);
     this.fillField('//input[@type="text" and @id="percentage"]', '10');
+
+    //service
+    this.checkOption('input[id="probate"]');
+    //jurisdiction1;
+    this.checkOption('input[id="civil"]');
+    //jurisdiction2
+    this.checkOption('input[id="county court"]');
+    //FeeType
+    this.checkOption('input[id="typefixed"]');
+    this.fillField({ css: '#amount'}, 150.00);
+    this.wait(CCPBConstants.twoSecondWaitTime);
+    //event
+    this.checkOption('input[id="issue"]');
+    //channel
+    this.checkOption('input[id="online"]');
+    //Applicant;
+    this.checkOption('input[id="personal"]');
+    //direction
+    this.checkOption('input[id="licence"]');
+
+    const fromDate = new Date();
+    const formattedFromDate = fromDate.toLocaleDateString('en-GB');
+    this.fillField({ css: '#fromDate'}, formattedFromDate);
+
     this.wait(CCPBConstants.fiveSecondWaitTime);
     this.click('input[id="submit"]');
     this.wait(CCPBConstants.fiveSecondWaitTime);
