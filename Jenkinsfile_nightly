@@ -39,7 +39,7 @@ withNightlyPipeline("nodejs", product, component) {
 
   loadVaultSecrets(secrets)
   enableFullFunctionalTest()
-  enableCrossBrowserTest(['chrome','firefox','microsoft','safari'])
+  enableCrossBrowserTest(['chrome','firefox','microsoft'])
   enableSecurityScan()
   after('checkout') {
     sh "yarn cache clean"
