@@ -51,9 +51,9 @@ Scenario('FeesRegister Admin Console Editor Screen For Live Fees Details', I => 
   I.click('Live fees');
   I.verifyFeesHeaders();
   //verify any existing fee details under live Tab
-  I.verifyFeeDetails('FEE0002','1.2','','divorce','issue','Filing an application for a divorce, nullity or civil partnership dissolution',
+  I.verifyFeeDetails('live', 'FEE0002','1.2','','divorce','issue','Filing an application for a divorce, nullity or civil partnership dissolution',
   '2016 No 402','The Civil Proceedings, Family Proceedings and Upper Tribunal Fees (Amendment) Order 2016','family','family court','fixed','Flat','550.00','',
-    '21 March 2016', '5', '', '4481102159', 'RECEIPT OF FEES - Family issue divorce', 'enhanced', 'all', '', 'default', 'approved', '124756', '39907');
+    '21 March 2016', '', '5', '', '4481102159', 'RECEIPT OF FEES - Family issue divorce', 'enhanced', 'all', '', 'default', 'approved', '124756', '39907');
   I.click('Sign out');
 }).retry(CCFRATConstants.retryScenario);
 
@@ -70,7 +70,7 @@ Scenario.skip('FeesRegister Admin Console Editor Approved but not live Fees Deta
   I.click('Sign out');
 }).retry(CCFRATConstants.retryScenario);
 
-Scenario.skip('FeesRegister Admin Console Editor Discontinued Fees Details Check @crossbrowser', I => {
+Scenario('FeesRegister Admin Console Editor Discontinued Fees Details Check @crossbrowser', I => {
   I.login(editorUserName, editorPassword);
   I.wait(CCFRATConstants.tenSecondWaitTime);
   I.waitForText('Discontinued fees', CCFRATConstants.tenSecondWaitTime);
@@ -79,7 +79,7 @@ Scenario.skip('FeesRegister Admin Console Editor Discontinued Fees Details Check
   I.click('Discontinued fees');
   I.verifyFeesHeaders();
   //Check one of the existing fee, once full implementation done we can add our own code
-  I.verifyFeeDetails('FEE0002','1.2','','divorce','issue','Filing an application for a divorce, nullity or civil partnership dissolution – fees order 1.2.',
+  I.verifyFeeDetails('disconnected', 'FEE0002','1.2','','divorce','issue','Filing an application for a divorce, nullity or civil partnership dissolution – fees order 1.2.',
   '2016 No. 402 (L. 5)','','family','family court','fixed','Flat','550.00','', '21 March 2016','21 March 2016', '4', '', '4481102159', 'GOV - App for divorce/nullity of marriage or CP',
     'enhanced', 'all', '', 'default', 'approved', '', '');
   I.click('Sign out');
@@ -141,7 +141,7 @@ Scenario('FeesRegister Verify Version details for existing fee',  I => {
   I.waitForText('Fee versions', CCFRATConstants.tenSecondWaitTime);
   I.click('Fee versions');
   I.verifyCurrentFeeVersion('5', 'Previously: 4', 'Filing an application for a divorce, nullity or civil partnership dissolution', 'Previously: Filing an application for a divorce, nullity or civil partnership dissolution – fees order 1.2.',
-    '2016 No 402', 'Previously: 2016 No. 402 (L. 5)', '23 August 2021', 'Previously: 21 March 2016', 'RECEIPT OF FEES - Family issue divorce', 'Previously: GOV - App for divorce/nullity of marriage or CP',
+    '2016 No 402', 'Previously: 2016 No. 402 (L. 5)', '24 August 2021', 'Previously: 21 March 2016', 'RECEIPT OF FEES - Family issue divorce', 'Previously: GOV - App for divorce/nullity of marriage or CP',
     '124756', 'Previously:', '39907', 'Previously:', 'FEE0002', 'divorce', 'issue', 'family', 'family court', 'fixed', 'Flat', 'all', '', 'default', '550', '1.2', '', '', 'The Civil Proceedings, Family Proceedings and Upper Tribunal Fees (Amendment) Order 2016',
     '21 March 2016', '4481102159', 'approved', 'enhanced');
   I.verifyPreviousFeeVersion('4', 'FEE0002', 'divorce', 'issue', 'family', 'family court', 'fixed', 'Flat', 'all', '', 'default');

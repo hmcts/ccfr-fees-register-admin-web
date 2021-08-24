@@ -1,8 +1,8 @@
 'use strict';
 const CCFRAcceptanceTestConstants = require('../tests/CCFRAcceptanceTestConstants');
 
-function verifyFeeDetails(feeCode, siRefID, consolidatedOriginalFeeOrderName, service, event, description, statutoryInstrument,
-lastAmendingSI, jurisdiction1, jurisdiction2, feeType, amountType, amount, percentage, validFrom, version, reasonForFeeUpdate, naturalAccountCode,
+function verifyFeeDetails(feeTypeFlag, feeCode, siRefID, consolidatedOriginalFeeOrderName, service, event, description, statutoryInstrument,
+lastAmendingSI, jurisdiction1, jurisdiction2, feeType, amountType, amount, percentage, validFrom, validTo, version, reasonForFeeUpdate, naturalAccountCode,
 memo, direction, applicantType, keyword, channel, status, editor, approver) {
   const I = this;
   I.click(feeCode);
@@ -37,6 +37,11 @@ memo, direction, applicantType, keyword, channel, status, editor, approver) {
   I.see(percentage);
   I.see('Valid from');
   I.see(validFrom);
+
+  if(feeTypeFlag === 'disconnected') {
+    I.see('Valid to');
+    I.see(validTo);
+  }
   I.see('Version');
   I.see(version);
   I.see('Reason for fee update');
