@@ -57,7 +57,7 @@ Scenario('FeesRegister Admin Console Editor Screen For Live Fees Details', I => 
   I.click('Sign out');
 }).retry(CCFRATConstants.retryScenario);
 
-Scenario.skip('FeesRegister Admin Console Editor Approved but not live Fees Details Check @crossbrowser', I => {
+Scenario('FeesRegister Admin Console Editor Approved but not live Fees Details Check @crossbrowser', I => {
   I.login(editorUserName, editorPassword);
   I.wait(CCFRATConstants.tenSecondWaitTime);
   I.waitForText('Approved but not live fees', CCFRATConstants.tenSecondWaitTime);
@@ -66,7 +66,9 @@ Scenario.skip('FeesRegister Admin Console Editor Approved but not live Fees Deta
   I.click('Approved but not live fees');
   I.verifyFeesHeaders();
   //Check one of the existing fee, once full implementation done we can add our own code
-  I.verifyFeeDetails('FEE0621','798','','adoption','miscellaneous','tribunal','Volume','100.00');
+  I.verifyFeeDetails('notLive','FEE0721','SN1629109343364','','divorce','hearing','E2E Testing','SN1629109343364','', 'family', 'family court', 'fixed', 'Flat',
+    '120.00', '', '08 December 2021', '', '1', '', '232425', '6346', 'enhanced', 'all', 'SN1629109343364', 'online', 'approved', 'fef0daba-7815-4be0-b5f0-5a8cd2085cfe',
+    '92466b62-e3a0-4c17-b2b9-934ef13218db');
   I.click('Sign out');
 }).retry(CCFRATConstants.retryScenario);
 
@@ -79,7 +81,7 @@ Scenario('FeesRegister Admin Console Editor Discontinued Fees Details Check @cro
   I.click('Discontinued fees');
   I.verifyFeesHeaders();
   //Check one of the existing fee, once full implementation done we can add our own code
-  I.verifyFeeDetails('disconnected', 'FEE0002','1.2','','divorce','issue','Filing an application for a divorce, nullity or civil partnership dissolution – fees order 1.2.',
+  I.verifyFeeDetails('discontinued', 'FEE0002','1.2','','divorce','issue','Filing an application for a divorce, nullity or civil partnership dissolution – fees order 1.2.',
   '2016 No. 402 (L. 5)','','family','family court','fixed','Flat','550.00','', '21 March 2016','21 March 2016', '4', '', '4481102159', 'GOV - App for divorce/nullity of marriage or CP',
     'enhanced', 'all', '', 'default', 'approved', '', '');
   I.click('Sign out');
@@ -101,7 +103,7 @@ Scenario('FeesRegister Add New Fee and Submit for Approval', async I => {
   I.click('Sign out');
 }).retry(CCFRATConstants.retryScenario);
 
-Scenario.skip('FeesRegister Add New Fee and Edit the fee', async I => {
+Scenario('FeesRegister Add New Fee and Edit the fee', async I => {
   const feeKeyword = "SN" + new Date().valueOf().toString();
   I.login(editorUserName, editorPassword);
   I.wait(CCFRATConstants.twoSecondWaitTime);
