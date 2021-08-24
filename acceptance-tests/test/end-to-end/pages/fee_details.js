@@ -38,7 +38,7 @@ memo, direction, applicantType, keyword, channel, status, editor, approver) {
   I.see('Valid from');
   I.see(validFrom);
 
-  if(feeTypeFlag === 'disconnected') {
+  if(feeTypeFlag === 'discontinued') {
     I.see('Valid to');
     I.see(validTo);
   }
