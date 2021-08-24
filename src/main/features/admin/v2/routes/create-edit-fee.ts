@@ -9,14 +9,16 @@ import { FormValidator } from 'app/forms/validation/formValidator'
 import { FixedFeeDto, RangedFeeDto } from 'fees/v2/model/fees-register-api-contract'
 
 class Renderer {
-  static renderPage (form: Form<CreateFeeForm>, res: express.Response, isEdit?: boolean) {
+  static renderPage (form: Form<CreateFeeForm>, res: express.Response, isEdit?: boolean, rejectReason?: string, approvedBy?: string) {
     FeesClient.retrieveReferenceData().then(
       data => {
         res.render(Paths.feeCreatePageV2.associatedView,
           {
             form: form,
             referenceData: data,
-            edit: isEdit ? isEdit : false
+            edit: isEdit ? isEdit : false,
+            reasonReject: rejectReason ? rejectReason : null,
+            approvedBy: approvedBy ? approvedBy : null
           })
       }
     )
@@ -28,7 +30,10 @@ export default express.Router()
     if (req.query.action === 'edit' && req.query.feeCode) {
       FeesClient.getFee(req.query.feeCode)
         .then(fee => {
-          Renderer.renderPage(new Form(CreateFeeForm.fromGivenVersion(fee, 1, true)), res, true)
+          let reasonForReject = fee.fee_versions[0].reason_for_reject
+          let approvedBy = fee.fee_versions[0].approvedBy
+
+          Renderer.renderPage(new Form(CreateFeeForm.fromGivenVersion(fee, 1, true)), res, true, reasonForReject, approvedBy)
         })
     } else {
       Renderer.renderPage(new Form(new CreateFeeForm()), res)

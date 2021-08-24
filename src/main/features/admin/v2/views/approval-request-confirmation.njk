@@ -1,0 +1,26 @@
+{% from "includes/macros/form.njk" import errorSummary, textArea, textInput, radioGroup, submitButton, selectInline, selectReferenceData %}
+  {% extends "layout.njk" %}
+
+  {% set title = t('Fee details') %}
+  {% block content %}
+    <input type='hidden' id='userRole' value=''/>
+  <div class="grid-row">
+    <div class="column-full govuk-panel govuk-panel--confirmation">
+      <h2 class="govuk-panel__title title-margin-btm"> {{feeCode}} has been submitted for approval</h2>
+    </div>
+    <div class="column-full">
+      <h2 class="govuk-heading-m">What happens next</h2>
+      <p class="govuk-body">
+        If the approver rejects the fee, you’ll need to review it again before resubmitting the draft for approval.
+      </p>
+      <p class="govuk-body">
+        Once the fee has been approved, it will appear in the Fee Register on the agreed date.
+      </p>
+    </div>
+    <div class="column-full">
+      <a href="/admin/v2/draft-awaitingapproval" class="custom-button btn margin-top-0 ">
+        View draft fees
+      </a>     
+    </div>
+  </div>
+  {% endblock %}

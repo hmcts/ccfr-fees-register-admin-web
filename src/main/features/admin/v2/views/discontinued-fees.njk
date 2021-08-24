@@ -4,6 +4,7 @@
   {% set heading = t('Discontinued fees')  %}
   {% set xLargeTable = t('custom') %}
   {% block content %}
+    <input type='hidden' id='userRole' value='{{feecount}}'/>
 
 <div class="custom-grid-row">
   <p><a href="/admin/welcome/" class="link-back">{{ t("Back to welcome page") }}</a></p>
@@ -34,7 +35,7 @@
       <th class="bold-xxsmall">Status</th>
       <th class="bold-xxsmall">Statutory Instrument</th>
       <th class="bold-xxsmall">SI Ref ID</th>
-      <th class="bold-xxsmall">Fee Order Name</th>
+      <th class="bold-xxsmall">Last Amending SI</th>
       <th class="bold-xxsmall">Natural Account Code</th>
     </tr>
     </thead>
@@ -43,7 +44,7 @@
     {% if fee.current_version.status === 'approved' %}
     <tr>
       <td class="font-xxsmall">
-        <a href="/admin/v2/fees/{{fee.code}}">{{ fee.code }}</a>
+        <a href="/admin/V2/fee-details?feeCode={{ fee.code }}&pageType=discontinuedfee">{{ fee.code }}</a>
       </td>
       <td class="font-xxsmall">{{ fee.current_version.description }}</td>
       {% if fee.min_range %}
@@ -94,7 +95,8 @@
       <td class="font-xxsmall">{{ fee.current_version.status }}</td>
       <td class="font-xxsmall">{{ fee.current_version.statutory_instrument }}</td>
       <td class="font-xxsmall">{{ fee.current_version.si_ref_id }}</td>
-      <td class="font-xxsmall">{{ fee.current_version.fee_order_name }}</td>
+      <td class="font-xxsmall">{{ fee.current_version.last_amending_si }}</td>
+      <td class="font-xxsmall">{{ fee.current_version.consolidated_fee_order_name }}</td>
       <td class="font-xxsmall">{{ fee.current_version.natural_account_code }}</td>
     </tr>
     {% endif %}

@@ -13,32 +13,6 @@ function formatDecimals(event) {
   }
 }
 
-function enableFlatOrVolumeAmount() {
-  document.getElementById("amount").removeAttribute("disabled");
-  document.getElementById("percentage").setAttribute("disabled", "disabled");
-}
-
-function enablePercentageAmount() {
-  document.getElementById("percentage").removeAttribute("disabled");
-  document.getElementById("amount").setAttribute("disabled", "disabled");
-}
-
-document.addEventListener("DOMContentLoaded", function () {
-  document.getElementById("amountTypepercentage")
-    .addEventListener("click", enablePercentageAmount);
-});
-
-document.addEventListener("DOMContentLoaded", function () {
-  document.getElementById("amountTypeflat")
-    .addEventListener("click", enableFlatOrVolumeAmount);
-});
-
-document.addEventListener("DOMContentLoaded", function () {
-  document.getElementById("amountTypevolume")
-    .addEventListener("click", enableFlatOrVolumeAmount);
-});
-
-
 function showKeywordError() {
   document.getElementById("keyword-error").hidden = false;
   document.getElementById("keyword").className = keywordClass + "form-control-error";
@@ -53,15 +27,15 @@ function hideKeywordError() {
 
 function getValidateKeywordUrl() {
 
-  const service = document.getElementById("service").value;
+  const service = document.querySelector('input[name="service"]:checked').value;
 
-  const jurisdiction1 = document.getElementById("jurisdiction1").value;
+  const jurisdiction1 = document.querySelector('input[name="jurisdiction1"]:checked').value;
 
-  const jurisdiction2 = document.getElementById("jurisdiction2").value;
+  const jurisdiction2 = document.querySelector('input[name="jurisdiction2"]:checked').value;
 
-  const channel = document.getElementById("channel").value;
+  const channel = document.querySelector('input[name="channel"]:checked').value;
 
-  const event = document.getElementById("event").value;
+  const event = document.querySelector('input[name="event"]:checked').value;
 
   const keyword = document.getElementById("keyword").value;
 
@@ -87,15 +61,15 @@ function getValidateKeywordUrl() {
 /* eslint-disable */
 function onKeywordChanged() {
 
-  const service = document.getElementById("service").value;
+  const service = document.querySelector('input[name="service"]:checked').value;
 
-  const jurisdiction1 = document.getElementById("jurisdiction1").value;
+  const jurisdiction1 = document.querySelector('input[name="jurisdiction1"]:checked').value;
 
-  const jurisdiction2 = document.getElementById("jurisdiction2").value;
+  const jurisdiction2 = document.querySelector('input[name="jurisdiction2"]:checked').value;
 
-  const channel = document.getElementById("channel").value;
+  const channel = document.querySelector('input[name="channel"]:checked').value;
 
-  const event = document.getElementById("event").value;
+  const event = document.querySelector('input[name="event"]:checked').value;
 
   const keyword = document.getElementById("keyword").value;
 
@@ -146,34 +120,62 @@ function onKeywordChanged() {
 
 /* eslint-enable */
 
-function enableRangedFees() {
-  document.getElementById("rangeUnit").removeAttribute("disabled");
-  document.getElementById("fromRange").removeAttribute("disabled");
-  document.getElementById("toRange").removeAttribute("disabled");
-
+function displayRangeFeesSection() {
+  document.getElementById("ranged-container").style.display="block";
   type = "ranged";
 
   onKeywordChanged();
 }
 
-function disabledRangedFees() {
-  document.getElementById("rangeUnit").setAttribute("disabled", "disabled");
-  document.getElementById("fromRange").setAttribute("disabled", "disabled");
-  document.getElementById("toRange").setAttribute("disabled", "disabled");
-
+function hideRangeFeesSection() {
+  document.getElementById("ranged-container").style.display="none";
+  document.getElementById("ranged-container").classList.remove("disply-section")
   type = "fixed";
 
   onKeywordChanged();
+}
+
+function showFlatAmountSection() {
+  document.getElementById("flatAmount").style.display="block";
+  document.getElementById("percentageAmount").style.display="none";
+  document.getElementById("percentageAmount").classList.remove("disply-section")
+  document.getElementById("volumeAmount").style.display="none";
+  document.getElementById("volumeAmount").classList.remove("disply-section")
+}
+
+function showPercentageSection() {
+  document.getElementById("volumeAmount").style.display="none";
+  document.getElementById("volumeAmount").classList.remove("disply-section")
+  document.getElementById("flatAmount").style.display="none";
+  document.getElementById("flatAmount").classList.remove("disply-section")
+  document.getElementById("percentageAmount").style.display="block";
+}
+
+function showVolumeAmountSection() {
+  document.getElementById("volumeAmount").style.display="block";
+  document.getElementById("percentageAmount").style.display="none";
+  document.getElementById("percentageAmount").classList.remove("disply-section")
+  document.getElementById("flatAmount").style.display="none";
+  document.getElementById("flatAmount").classList.remove("disply-section")
 }
 
 document.addEventListener("DOMContentLoaded", function () {
 
   if (document.getElementById("typefixed") && document.getElementById("typeranged")) {
   document.getElementById("typefixed")
-    .addEventListener("click", disabledRangedFees);
+    .addEventListener("click", hideRangeFeesSection);
   document.getElementById("typeranged")
-    .addEventListener("click", enableRangedFees);
+    .addEventListener("click", displayRangeFeesSection);
   }
+
+  if (document.getElementById("flat") && document.getElementById("percentage") && document.getElementById("volume")) {
+    document.getElementById("flat")
+      .addEventListener("click", showFlatAmountSection);
+    document.getElementById("percentage")
+      .addEventListener("click", showPercentageSection);
+      document.getElementById("volume")
+      .addEventListener("click", showVolumeAmountSection);
+    }
 
   if (document.getElementById("amount")) {
     document.getElementById("amount").onchange = formatDecimals;

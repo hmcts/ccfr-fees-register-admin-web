@@ -1,0 +1,51 @@
+{% extends "layout.njk" %}
+
+  {% set title = t('Range Group | ' + serviceName) %}
+  {% set heading = 'Range groups' %}
+
+  {% block content %}
+
+<div class="column-full">
+  <table>
+    <thead>
+    <tr>
+      <th>Category</th>
+      <th>Fee code</th>
+      <th>Fee description</th>
+      <th>Range from</th>
+      <th>Range to</th>
+      <th>Fixed fee</th>
+      <th>Percentage fee</th>
+    </tr>
+    </thead>
+    <tbody>
+    {% for category in categories %}
+    {% for range in category.rangeGroup.ranges %}
+    <tr>
+      <td>{{ category.code }}</td>
+      <td>{{ range.fee.code }}</td>
+      <td>{{ range.fee.description }}</td>
+      <td>{{ range.from }}</td>
+      <td>{{ range.to }}</td>
+      <td>{{ range.fee.amount }}</td>
+      <td>{{ range.fee.percentage }}</td>
+    </tr>
+    {% endfor %}
+    {% for fee in category.fees %}
+    <tr>
+      <td>{{ category.code }}</td>
+      <td>{{ fee.code }}</td>
+      <td>{{ fee.description }}</td>
+      <td>{{ fee.from }}</td>
+      <td>{{ fee.to }}</td>
+      <td>{{ fee.amount }}</td>
+      <td>{{ fee.percentage }}</td>
+    </tr>
+    {% endfor %}
+    {% endfor %}
+    </tbody>
+  </table>
+  <p><a href="/admin/welcome/" class="link-back">{{ t("Back to welcome page") }}</a></p>
+</div>
+
+  {% endblock %}

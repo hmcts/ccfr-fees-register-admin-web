@@ -17,11 +17,10 @@ describe('Unsecured view-fees page', () => {
   describe('on GET', () => {
     it('should respond with all-fees pointing at view-fee-version-history', async () => {
       feesServiceMock.resolveGetFees()
-
       await request(app)
         .get(AdminPaths.unsecuredViewFees.uri)
         .expect(res => {
-          expect(res.text).to.include('/fees/X0001')
+          expect(res.text).to.include(AdminPaths.unsecuredViewFees.uri)
         })
     })
   })

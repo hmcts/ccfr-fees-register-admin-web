@@ -1,0 +1,15 @@
+{% from "includes/macros/form.njk" import csrfProtection,errorSummary, textArea, submitButton%}
+{% extends "layout.njk" %}
+
+{% set title = t('Fee | ' + serviceName) %}
+{% set heading = t('Why are you rejecting this draft fee?') %}
+{% block content %}
+<input type='hidden' id='userRole' value=''/>
+
+    <form id="reasonRejectFeesId" method="post">
+        {{ csrfProtection(csrfToken) }}
+        {{ textArea(t(''), 'reasonForReject', form) }}
+        {{ submitButton(t('Submit')) }}
+    </form>
+
+{% endblock %} 

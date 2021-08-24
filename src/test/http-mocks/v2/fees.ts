@@ -21,7 +21,8 @@ const csvJSONStr = JSON.stringify([{
   'direction': 'enhanced',
   'feeType': 'fixed',
   'amountType': 'flat',
-  'feeOrderName': 'XXX',
+  'lastAmendingSi': 'XXX',
+  'consolidatedFeeOrderName': 'XXX',
   'naturalAccountCode': 'XXX',
   'memoLine': 'XXX',
   'siRefId': 'XXX'

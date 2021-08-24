@@ -1,27 +1,26 @@
-{% from "includes/macros/form.njk" import errorSummary, textArea, textInput, radioGroup, submitButton, selectInline, selectReferenceData %}
   {% extends "layout.njk" %}
 
   {% set title = t('Fee Created | ' + serviceName) %}
-  {% set heading = t('Fee Created') %}
-
   {% block content %}
-
-<div class="grid-row">
-  <div class="column-full">
-    Fee has been created successfully.
-    {# TODO: add fee number here #}
+<input type='hidden' id='userRole' value='{{ 'Approver' if isApprover(user.allInfo.roles) else 'Editor' }}'/>
+  <div class="grid-row">
+    <div class="column-full govuk-panel govuk-panel--confirmation">
+      <h2 class="govuk-panel__title "> Draft fee saved </h2>
+      <div class="govuk-panel__body">
+          You’ll need to submit this fee for approval
+        </div>
+    </div>
+    <div class="column-full">
+      <h2 class="govuk-heading-m">What happens next</h2>
+      <p class="govuk-body">This fee has been added to your draft fees.</p>
+      <p class="govuk-body">The approver won't be able to see this fee until you've submitted it for approval.</p>
+      <p class="govuk-body">Once the fee has been approved, it will be updated in the Fee Register.</p>
+    </div>
+    <div class="column-full">
+      <a href="/admin/v2/draft-fees" class="custom-button btn margin-top-0 ">
+            View draft fee
+      </a>     
+    </div>
   </div>
-  <div class="column-full">
-
-  </div>
-  <div class="column-full">
-    <a href="/admin/v2/fees/create" class="link-back">{{ t('Create another fee') }}</a>
-  </div>
-
-  <div class="column-full">
-    <a href="/admin/welcome" class="link-back">{{ t('Return to welcome page') }}</a>
-  </div>
-
-</div>
 
   {% endblock %}

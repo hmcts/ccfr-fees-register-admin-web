@@ -7,7 +7,7 @@
   {% set heading = t('Create Fee Version') %}
 
   {% block content %}
-
+<input type='hidden' id='userRole' value='{{ 'Approver' if isApprover(user.allInfo.roles) else 'Editor' }}'/>
 <div class="grid-row">
   <div class="column-full">
     <form method="post" action="">
@@ -19,7 +19,11 @@
           <td>{{ textInput(t('Natural Account Code*'), 'naturalAccountCode', form) }}</td>
 
         </tr>
-
+      <tr>
+        <td colspan="3">
+          {{ textArea(t('Reason For Update'), 'reasonForUpdate', form, rows=2) }}  
+        </td>
+      </tr>
         <tr>
           <td colspan="3">
             {{ textArea(t('Description*'), 'description', form) }}
@@ -97,23 +101,20 @@
           {{ selectReferenceData ('direction', referenceData.directionTypes, form, 'Direction*') }}
         </td>
       </tr>
-
       <tr>
-
-        <td> {{ textInput(t('Fee Order Name*'), 'feeOrderName', form) }}</td>
-
         <td> {{ textInput(t('Statutory Instrument'), 'statutoryInstrument', form) }}</td>
-
         <td> {{ textInput(t('SI REF ID'), 'siRefId', form) }}</td>
-
       </tr>
-
+      <tr>
+        <td> {{ textInput(t('Last Amending SI*'), 'lastAmendingSi', form) }}</td>
+        <td> {{ textInput(t('Consolidated/Original Fee Order Name*'), 'consolidatedFeeOrderName', form) }}</td>
+      </tr>
     </table>
-
+    <br/>
     {{ submitButton(t('Next')) }}
   </form>
   <input type="hidden" name="feeCode" value="{{ feeCode }}"/>
-  <a href="/admin/welcome" class="link-back">{{ t('Cancel') }}</a>
+  <a href="/admin/v2/all-fees" class="link-back">{{ t('Cancel') }}</a>
 </div>
   </div>
 

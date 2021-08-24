@@ -9,11 +9,30 @@ properties(
 
 def product = "fees-register"
 def component = "frontend"
+def secrets = [
+  'fees-register-${env}'      : [
+    secret('editors-username', 'EDITOR_USERNAME'),
+    secret('editors-password', 'EDITOR_PASSWORD'),
+    secret('approver-username', 'APPROVER_USERNAME'),
+    secret('approver-password', 'APPROVER_PASSWORD')
+  ]
+]
+
+static LinkedHashMap<String, Object> secret(String secretName, String envVar) {
+  [ $class: 'AzureKeyVaultSecret',
+    secretType: 'Secret',
+    name: secretName,
+    version: '',
+    envVariable: envVar
+  ]
+}
 
 // Configure branches to sync with master branch
 def branchesToSync = ['demo', 'ithc', 'perftest']
 
 withPipeline("nodejs", product, component) {
+
+  loadVaultSecrets(secrets)
 
   //installCharts()
   enableSlackNotifications('#cc-payments-tech')

@@ -6,6 +6,7 @@ let feeMapper = new FeeMapper()
 let fixedFlatFeeCsv = {
   feeVersion: '1',
   feeDescription: 'xxx',
+  reasonForUpdate: 'xxx',
   feeCode: 'xxx',
   feeStatus: 'pending',
   feeAmount: '100',
@@ -24,7 +25,8 @@ let fixedFlatFeeCsv = {
   direction: 'xxx',
   statutoryInstrument: 'xxx',
   memoLine: 'xxx',
-  feeOrderName: 'xxx',
+  lastAmendingSi: 'xxx',
+  consolidatedFeeOrderName: 'xxx',
   siRefId: 'xxx',
   feeType: 'fixed',
   keyword: 'keyword1'
@@ -33,6 +35,7 @@ let fixedFlatFeeCsv = {
 let rangedPercentageFeeCsv = {
   feeVersion: '1',
   feeDescription: 'xxx',
+  reasonForUpdate: 'xxx',
   memoLine: 'xxx',
   feeCode: 'xxx',
   service: 'CMC',
@@ -40,7 +43,8 @@ let rangedPercentageFeeCsv = {
   naturalAccountCode: 'xxx',
   channel: 'online',
   siRefId: 'xxx',
-  feeOrderName: 'xxx',
+  lastAmendingSi: 'xxx',
+  consolidatedFeeOrderName: 'xxx',
   direction: 'xxx',
   jurisdiction1: 'xxx',
   jurisdiction2: 'xxx',
@@ -60,6 +64,7 @@ let rangedPercentageFeeCsv = {
 let bandedVolumeFeeCsv = {
   feeVersion: '1',
   feeDescription: 'xxx',
+  reasonForUpdate: 'xxx',
   feeCode: 'xxx',
   feeStatus: 'pending',
   feeAmount: '100',
@@ -78,7 +83,8 @@ let bandedVolumeFeeCsv = {
   direction: 'xxx',
   statutoryInstrument: 'xxx',
   memoLine: 'xxx',
-  feeOrderName: 'xxx',
+  lastAmendingSi: 'xxx',
+  consolidatedFeeOrderName: 'xxx',
   siRefId: 'xxx',
   feeType: 'banded',
   keyword: ''
@@ -86,6 +92,7 @@ let bandedVolumeFeeCsv = {
 let rateableFlatFeeCsv = {
   feeVersion: '1',
   feeDescription: 'xxx',
+  reasonForUpdate: 'xxx',
   feeCode: 'xxx',
   feeStatus: 'pending',
   feeAmount: '100',
@@ -104,7 +111,8 @@ let rateableFlatFeeCsv = {
   direction: 'xxx',
   statutoryInstrument: 'xxx',
   memoLine: 'xxx',
-  feeOrderName: 'xxx',
+  lastAmendingSi: 'xxx',
+  consolidatedFeeOrderName: 'xxx',
   siRefId: 'xxx',
   feeType: 'rateable',
   keyword: ''
@@ -112,6 +120,7 @@ let rateableFlatFeeCsv = {
 let relationalFlatFeeCsv = {
   feeVersion: '1',
   feeDescription: 'xxx',
+  reasonForUpdate: 'xxx',
   feeCode: 'xxx',
   feeStatus: 'pending',
   feeAmount: '100',
@@ -130,7 +139,8 @@ let relationalFlatFeeCsv = {
   direction: 'xxx',
   statutoryInstrument: 'xxx',
   memoLine: 'xxx',
-  feeOrderName: 'xxx',
+  lastAmendingSi: 'xxx',
+  consolidatedFeeOrderName: 'xxx',
   siRefId: 'xxx',
   feeType: 'relational',
   keyword: ''

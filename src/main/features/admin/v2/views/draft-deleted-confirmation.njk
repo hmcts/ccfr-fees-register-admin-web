@@ -1,0 +1,21 @@
+{% from "includes/macros/form.njk" import errorSummary, textArea, textInput, radioGroup, submitButton, selectInline, selectReferenceData %}
+  {% extends "layout.njk" %}
+
+  {% set title = t('Fee details') %}
+  {% block content %}
+<input type='hidden' id='userRole' value='{{ 'Approver' if isApprover(user.allInfo.roles) else 'Editor' }}'/>
+  <div class="grid-row">
+    <div class="column-full govuk-panel govuk-panel--confirmation">
+      <h2 class="govuk-panel__title title-margin-btm"> {{feeCode}} has been deleted</h2>
+    </div>
+    <div class="column-full">
+      <h2 class="govuk-heading-m">What happens next</h2>
+      <p class="govuk-body">You can go back to your draft fees to edit other fee details or create a new fee.</p>
+    </div>
+    <div class="column-full">
+      <a href="/admin/v2/draft-fees" class="custom-button btn margin-top-0 ">
+        View draft fees
+      </a>     
+    </div>
+  </div>
+  {% endblock %}

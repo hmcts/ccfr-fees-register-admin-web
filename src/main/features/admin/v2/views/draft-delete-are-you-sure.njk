@@ -1,0 +1,25 @@
+{% from "includes/macros/form.njk" import csrfProtection, errorSummary, textArea, textInput, radioGroup, submitButton, selectInline, selectReferenceData %}
+  {% extends "layout.njk" %}
+  {% set title = t('Fee details') %}
+  {% block content %}
+<input type='hidden' id='userRole' value='{{ 'Approver' if isApprover(user.allInfo.roles) else 'Editor' }}'/>
+    <div class="grid-row">
+      <div class="column-full padding-left-right-0">
+        <h1 class="heading-xlarge approval-confirm-h1">
+          {{t('Are you sure you want to delete this draft fee?')}}
+        </h1>
+      </div>
+      <div class="column-full approval-confirm-link padding-left-right-0">
+        <a href="/admin/v2/fee-details?draft=true&feeCode={{feeCode}}&pageType={{pageType}}&vno={{version}}">{{ t('Don’t delete draft') }}</a>
+      </div>
+      <div class="column-full padding-left-right-0">
+      <form method="post" action="">
+       {{ csrfProtection(csrfToken) }}
+        <input type="hidden" name="feeCode" value="{{ feeCode }}"/>
+        <input type="hidden" name="version" value="{{ version }}"/>
+        <input type="hidden" name="action" value="delete"/>
+        <input type="submit" class="button custom-secondary-btn" value="Delete draft">
+      </form>
+      </div>
+    </div>
+  {% endblock %}

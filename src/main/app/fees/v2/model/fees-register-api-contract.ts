@@ -52,6 +52,8 @@ export class FeeVersionDto {
   valid_from: Date
   valid_to: Date
   description: string
+  reason_for_update: string
+  reason_for_reject: string
   status: FeeVersionStatus
   flat_amount: FlatAmountDto
   percentage_amount: PercentageAmountDto
@@ -62,7 +64,8 @@ export class FeeVersionDto {
   approvedBy: string
   /* READ ONLY */
   memo_line: string
-  fee_order_name: string
+  last_amending_si: string
+  consolidated_fee_order_name: string
   natural_account_code: string
   statutory_instrument: string
   si_ref_id: string
@@ -127,6 +130,10 @@ export class FeeDto {
 }
 
 export class FixedFeeDto extends FeeDto {
+}
+
+export class ReasonDto{
+  reasonForReject: string
 }
 
 export class BandedFeeDto extends FixedFeeDto {

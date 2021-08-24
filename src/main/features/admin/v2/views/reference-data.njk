@@ -1,0 +1,113 @@
+{% extends "layout.njk" %}
+{% set title = t('Reference data | ' + serviceName + ' V2') %}
+  {% set heading = t('Reference data') %}
+
+  {% block content %}
+  <input type='hidden' id='userRole' value=''/>
+ <div class="column-full">
+    <details class="govuk-details" role="group">
+      <summary class="govuk-details-summary" role="button" aria-expanded="true">
+        <span>
+          Applicants
+        </span>
+      </summary>
+        <div class="govuk-details-text" aria-hidden="false">
+          <ul class="reference-ul">
+            {% for applicant in applicants %}
+              <li>{{ applicant.name }}</li>
+            {% endfor %}
+          </ul>
+        </div>
+      </details>
+
+      <details class="govuk-details" role="group">
+      <summary class="govuk-details-summary" role="button" aria-expanded="true">
+        <span>
+          Jurisdictions 1
+        </span>
+      </summary>
+        <div class="govuk-details-text" aria-hidden="false">
+          <ul class="reference-ul">
+            {% for jurisdiction in jurisdictions %}
+              <li>{{ jurisdiction.name }}</li>
+            {% endfor %}
+          </ul>
+        </div>
+      </details>
+
+      <details class="govuk-details" role="group">
+      <summary class="govuk-details-summary" role="button" aria-expanded="true">
+        <span>
+          Jurisdictions 2
+        </span>
+      </summary>
+        <div class="govuk-details-text"  aria-hidden="false">
+          <ul class="reference-ul">
+            {% for jurisdiction in jurisdictions2 %}
+              <li>{{ jurisdiction.name }}</li>
+            {% endfor %}
+          </ul>
+        </div>
+      </details>
+
+      <details class="govuk-details" role="group">
+      <summary class="govuk-details-summary" role="button" aria-expanded="true">
+        <span>
+          Services
+        </span>
+      </summary>
+        <div class="govuk-details-text" aria-hidden="false">
+          <ul class="reference-ul">
+            {% for service in services %}
+              <li>{{ service.name }}</li>
+            {% endfor %}
+          </ul>
+        </div>
+      </details>
+
+      <details class="govuk-details" role="group">
+      <summary class="govuk-details-summary" role="button" aria-expanded="true">
+        <span>
+          Channels
+        </span>
+      </summary>
+        <div class="govuk-details-text" aria-hidden="false">
+          <ul class="reference-ul">
+            {% for channel in channels %}
+              <li>{{ channel.name }}</li>
+            {% endfor %}
+          </ul>
+        </div>
+      </details>
+
+      <details class="govuk-details" role="group">
+      <summary class="govuk-details-summary" role="button" aria-expanded="true">
+        <span>
+          Events
+        </span>
+      </summary>
+        <div class="govuk-details-text" aria-hidden="false">
+          <ul class="reference-ul">
+            {% for event in events %}
+              <li>{{ event.name }}</li>
+            {% endfor %}
+          </ul>
+        </div>
+      </details>
+
+      <details class="govuk-details" role="group">
+      <summary class="govuk-details-summary" role="button" aria-expanded="true">
+        <span>
+          Directions
+        </span>
+      </summary>
+        <div class="govuk-details-text" aria-hidden="false">
+          <ul class="reference-ul">
+            {% for direction in directions %}
+              <li>{{ direction.name }}</li>
+            {% endfor %}
+          </ul>
+        </div>
+      </details>
+
+  {% endblock %}
