@@ -42,7 +42,7 @@ Scenario('FeesRegister Admin Console Editor Header and Tab Validation', I => {
   I.click('Sign out');
 });
 
-Scenario('FeesRegister Admin Console Editor Screen For Live Fees Details', I => {
+Scenario.skip('FeesRegister Admin Console Editor Screen For Live Fees Details', I => {
   I.login(editorUserName, editorPassword);
   I.wait(CCFRATConstants.tenSecondWaitTime);
   // to-do based on updates and future stories
@@ -57,7 +57,14 @@ Scenario('FeesRegister Admin Console Editor Screen For Live Fees Details', I => 
   I.click('Sign out');
 }).retry(CCFRATConstants.retryScenario);
 
-Scenario('FeesRegister Admin Console Editor Approved but not live Fees Details Check @crossbrowser', I => {
+Scenario('FeesRegister Admin Console Editor Approved but not live Fees Details Check @crossbrowser', async I => {
+  let feeObj = await I.addNewFeeAndSubmitForApproval(editorUserName, editorPassword);
+  I.wait(CCFRATConstants.tenSecondWaitTime);
+  I.login(approverUserName, approverPassword);
+  I.wait(CCFRATConstants.fiveSecondWaitTime);
+  I.see('Awaiting approval');
+  await I.retry(3).verifyFeesSentForApprovalAndApprove()
+  I.click('Sign out');
   I.login(editorUserName, editorPassword);
   I.wait(CCFRATConstants.tenSecondWaitTime);
   I.waitForText('Approved but not live fees', CCFRATConstants.tenSecondWaitTime);
@@ -65,9 +72,11 @@ Scenario('FeesRegister Admin Console Editor Approved but not live Fees Details C
   I.clickDownloadLink();
   I.click('Approved but not live fees');
   I.verifyFeesHeaders();
-  //Check one of the existing fee, once full implementation done we can add our own code
-  I.verifyFeeDetails('notLive','FEE0721','SN1629109343364','','divorce','hearing','E2E Testing','SN1629109343364','', 'family', 'family court', 'fixed', 'Flat',
-    '120.00', '', '08 December 2021', '', '1', '', '232425', '6346', 'enhanced', 'all', 'SN1629109343364', 'online', 'approved', 'fef0daba-7815-4be0-b5f0-5a8cd2085cfe',
+  I.see(feeObj.feeCode);
+  I.click(feeObj.feeCode)
+  let parsedDate = I.parseDate(feeObj.fromDate);
+  I.verifyFeeDetails('notLive',feeObj.feeCode,feeObj.feeKeyword,feeObj.feeKeyword,'divorce','hearing','E2E Testing',feeObj.feeKeyword,'', 'family', 'family court', 'fixed', 'Flat',
+    '120.00', '', parsedDate, '', '', '1', '', '232425', feeObj.memoLineNumber, 'enhanced', 'all', feeObj.feeKeyword, 'online', 'approved', 'fef0daba-7815-4be0-b5f0-5a8cd2085cfe',
     '92466b62-e3a0-4c17-b2b9-934ef13218db');
   I.click('Sign out');
 }).retry(CCFRATConstants.retryScenario);
@@ -89,10 +98,12 @@ Scenario('FeesRegister Admin Console Editor Discontinued Fees Details Check @cro
 
 Scenario('FeesRegister Add New Fee and Submit for Approval', async I => {
   const feeKeyword = "SN" + new Date().valueOf().toString();
+  const fromDate = new Date();
+  const formattedFromDate = fromDate.toLocaleDateString('en-GB');
   I.login(editorUserName, editorPassword);
   I.wait(CCFRATConstants.twoSecondWaitTime);
   I.waitForText('Live fees', CCFRATConstants.tenSecondWaitTime);
-  await I.addNewFee(feeKeyword);
+  await I.addNewFee(feeKeyword, formattedFromDate);
   I.waitForText('Draft fee saved', CCFRATConstants.tenSecondWaitTime);
   I.click('View draft fee');
   I.waitForText('Amount', CCFRATConstants.tenSecondWaitTime);
@@ -105,10 +116,12 @@ Scenario('FeesRegister Add New Fee and Submit for Approval', async I => {
 
 Scenario('FeesRegister Add New Fee and Edit the fee', async I => {
   const feeKeyword = "SN" + new Date().valueOf().toString();
+  const fromDate = new Date();
+  const formattedFromDate = fromDate.toLocaleDateString('en-GB');
   I.login(editorUserName, editorPassword);
   I.wait(CCFRATConstants.twoSecondWaitTime);
   I.waitForText('Live fees', CCFRATConstants.tenSecondWaitTime);
-  await I.addNewFee(feeKeyword);
+  await I.addNewFee(feeKeyword, formattedFromDate);
   I.waitForText('Draft fee saved', CCFRATConstants.tenSecondWaitTime);
   I.click('View draft fee');
   I.waitForText('Amount', CCFRATConstants.tenSecondWaitTime);
@@ -121,10 +134,12 @@ Scenario('FeesRegister Add New Fee and Edit the fee', async I => {
 
 Scenario('FeesRegister Add New Fee and Delete Draft', async I => {
   const feeKeyword = "SN" + new Date().valueOf().toString();
+  const fromDate = new Date();
+  const formattedFromDate = fromDate.toLocaleDateString('en-GB');
   I.login(editorUserName, editorPassword);
   I.wait(CCFRATConstants.twoSecondWaitTime);
   I.waitForText('Live fees', CCFRATConstants.tenSecondWaitTime);
-  await I.addNewFee(feeKeyword);
+  await I.addNewFee(feeKeyword, formattedFromDate);
   I.waitForText('Draft fee saved', CCFRATConstants.tenSecondWaitTime);
   I.click('View draft fee');
   I.waitForText('Amount', CCFRATConstants.tenSecondWaitTime);
@@ -135,7 +150,7 @@ Scenario('FeesRegister Add New Fee and Delete Draft', async I => {
   I.click('Sign out');
 }).retry(CCFRATConstants.retryScenario);
 
-Scenario('FeesRegister Verify Version details for existing fee',  I => {
+Scenario.skip('FeesRegister Verify Version details for existing fee',  I => {
   I.login(editorUserName, editorPassword);
   I.wait(CCFRATConstants.twoSecondWaitTime);
   I.waitForText('Live fees', CCFRATConstants.tenSecondWaitTime);
@@ -147,5 +162,14 @@ Scenario('FeesRegister Verify Version details for existing fee',  I => {
     '124756', 'Previously:', '39907', 'Previously:', 'FEE0002', 'divorce', 'issue', 'family', 'family court', 'fixed', 'Flat', 'all', '', 'default', '550', '1.2', '', '', 'The Civil Proceedings, Family Proceedings and Upper Tribunal Fees (Amendment) Order 2016',
     '21 March 2016', '4481102159', 'approved', 'enhanced');
   I.verifyPreviousFeeVersion('4', 'FEE0002', 'divorce', 'issue', 'family', 'family court', 'fixed', 'Flat', 'all', '', 'default');
+  I.click('Sign out');
+}).retry(CCFRATConstants.retryScenario);
+
+Scenario('FeesRegister upload fee',  I => {
+  I.login(editorUserName, editorPassword);
+  I.wait(CCFRATConstants.twoSecondWaitTime);
+  I.waitForText('Upload fees', CCFRATConstants.tenSecondWaitTime);
+  I.click('Upload fees');
+  I.see('CSV upload');
   I.click('Sign out');
 }).retry(CCFRATConstants.retryScenario);
