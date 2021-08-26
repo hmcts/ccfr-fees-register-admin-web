@@ -37,6 +37,15 @@ module.exports = () => actor({
     const year = date.getFullYear().toString();
     return`${day}/${month}/${year}`;
   },
+  parseDate(dateToBeParsed){
+    let date = new Date(dateToBeParsed);
+    const day = date.toLocaleString('default', { day: '2-digit'});
+    const month = date.toLocaleString('default', { month: 'long'});
+    const year = date.toLocaleString('default', { year: 'numeric'});
+    const newDate = day+' '+month+' '+year;
+    console.log("newDate----------->"+newDate);
+  return newDate;
+  },
   async getFeeCode(){
     let feeCodeConfirmationText = await this.grabTextFrom({css: '.govuk-panel__title'});
     const FeeCode = feeCodeConfirmationText.split(" ")[0];
@@ -44,13 +53,9 @@ module.exports = () => actor({
     return FeeCode;
   },
 
-  async addNewFee(feeKeyword) {
+  async addNewFee(feeKeyword, formattedFromDate) {
     const memoLineNumber = faker.random.number(RANDOM_NUMBER);
     const naturalAccountCode = faker.random.number(RANDOM_NUMBER);
-    // Use this for local testing
-    // const formattedFromDate  = this.getFormattedDate();
-    const fromDate = new Date();
-    const formattedFromDate = fromDate.toLocaleDateString('en-GB');
 
     this.click('Create a new fee');
     this.fillField('textarea[id="reasonForUpdate"]', 'New Fee Creation');
@@ -80,13 +85,18 @@ module.exports = () => actor({
     //direction
     this.checkOption('input[id="enhanced"]');
     this.fillField({ css: '#memoLine'}, memoLineNumber);
-    this.pressKey('Backspace');
+    // this.pressKey('Backspace');
 
     this.fillField({ css: '#fromDate'}, formattedFromDate);
     this.fillField({ css: '#naturalAccountCode'}, '232425');
     this.wait(CCPBConstants.tenSecondWaitTime);
     this.click('input[id="submit"]');
     this.wait(CCPBConstants.tenSecondWaitTime);
+
+    let newFeeObj = {
+      memoLineNumber: memoLineNumber
+    }
+    return newFeeObj;
   },
   editDraft(){
     this.waitForText(  'Direction', '10');
@@ -154,8 +164,8 @@ module.exports = () => actor({
     let feeCode= await this.getFeeCode();
     console.log('The Fee Code after approval : '+feeCode)
     // verify approved fee under Live Tab
-    this.click('Fees');
-    this.waitForText('Live fees', '10');
+    // this.click('Fees');
+    // this.waitForText('Live fees', '10');
     /*this.click('Approved but not live fees');
     this.wait(CCPBConstants.fiveSecondWaitTime);
     this.waitForText('Approved but not live fees', '10');*/
@@ -182,18 +192,28 @@ module.exports = () => actor({
 
   async addNewFeeAndSubmitForApproval(editorUserName, editorPassword) {
       const feeKeyword = "SN" + new Date().valueOf().toString();
+      let fromDate = new Date();
+      fromDate.setDate(fromDate.getDate() + 2);
+      const formattedFromDate = fromDate.toLocaleDateString('en-GB');
       this.login(editorUserName, editorPassword);
       this.wait(CCPBConstants.twoSecondWaitTime);
       this.waitForText('Live fees', CCPBConstants.tenSecondWaitTime);
-      await this.addNewFee(feeKeyword);
+      let newFeeObj = await this.addNewFee(feeKeyword, formattedFromDate);
       this.waitForText('Draft fee saved', CCPBConstants.tenSecondWaitTime);
       this.click('View draft fee');
       this.waitForText('Amount', CCPBConstants.tenSecondWaitTime);
       this.waitForText('View', CCPBConstants.fiveSecondWaitTime);
       this.click('//a[contains(text(),"View")][1]');
       this.submitForApproval();
-      await this.getFeeCode();
+      let feeCode = await this.getFeeCode();
       this.click('Sign out');
+      let feeObj = {
+        feeKeyword: feeKeyword,
+        feeCode: feeCode,
+        memoLineNumber: newFeeObj.memoLineNumber,
+        fromDate: fromDate
+      }
+      return feeObj;
     },
 
     verifyFeesHeaders,
