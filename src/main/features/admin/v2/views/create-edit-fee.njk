@@ -36,7 +36,7 @@ selectReferenceData %}
 
         {% endif %}
 
-        {{ textArea(t('Reason For Update'), 'reasonForUpdate', form, rows=2) }}
+        {{ textArea(t('Reason For Fee Update'), 'reasonForUpdate', form, rows=2) }}
 
         {{ textArea(t('Description'), 'description', form, rows=4) }}
 
@@ -329,9 +329,9 @@ selectReferenceData %}
           name="toDate"
           value="{{ form.valueFor('toDate') }}"/>
         </div>
-
-        {{ textInput(t('Natural Account Code'), 'naturalAccountCode', form) }}
-
+        <div class="date-field--width">
+          {{ textInput(t('Natural Account Code'), 'naturalAccountCode', form) }}
+        </div>
         <input type="hidden" name="edit" id="edit" value="{{edit}}">
 
         {{ submitButton(t('Save as draft')) }}
