@@ -153,7 +153,7 @@
 										    </dd>
 											<dd class="version-details-dd">
 												{% if version2.valid_to %}
-													{{ version2.valid_to| date("DD MMMM YYYY") }}
+													Previously: {{ version2.valid_to| date("DD MMMM YYYY") }}
 												{% else %}
 													&nbsp;
 												{% endif %}
