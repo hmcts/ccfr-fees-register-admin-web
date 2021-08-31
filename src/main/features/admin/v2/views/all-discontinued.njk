@@ -6,7 +6,11 @@
   {% block content %}
     <input type='hidden' id='userRole' value=''/>
 
-       <a href="#" id="mybutton" class="a-create-link">{{nextButton(t("Download all fees"), t("govuk-button2 black-text"))}}</a>
+    <div class="downloadbtn-container">
+      <div>
+        <a href="#" id="mybutton" class="a-create-link">{{nextButton(t("Download all fees"), t("govuk-button2 black-text"))}}</a>
+      </div>
+    </div>
 <ul class="govuk-tabs__list govuk-!-margin-top-7">
 <li class="govuk-tabs__list-item ">
     <a class="govuk-tabs__tab" href="/admin/V2/all-fees">
