@@ -1,6 +1,7 @@
 const { Logger } = require('@hmcts/nodejs-logging');
 const CCFRATConstants = require('./CCFRAcceptanceTestConstants');
 const faker = require('faker');
+const CCFRAcceptanceTestConstants = require("../tests/CCFRAcceptanceTestConstants");
 const RANDOM_NUMBER = 9999;
 
 const approverUserName = process.env.APPROVER_USERNAME;
@@ -42,7 +43,7 @@ Scenario('FeesRegister Admin Console Editor Header and Tab Validation', I => {
   I.click('Sign out');
 });
 
-Scenario.skip('FeesRegister Admin Console Editor Screen For Live Fees Details', I => {
+Scenario('FeesRegister Admin Console Editor Screen For Live Fees Details', I => {
   I.login(editorUserName, editorPassword);
   I.wait(CCFRATConstants.tenSecondWaitTime);
   // to-do based on updates and future stories
@@ -150,6 +151,7 @@ Scenario('FeesRegister Add New Fee and Delete Draft', async I => {
   I.click('Sign out');
 }).retry(CCFRATConstants.retryScenario);
 
+// Version To field is appearing in latest version even though that's not filled out as part of creating fee
 Scenario.skip('FeesRegister Verify Version details for existing fee',  I => {
   I.login(editorUserName, editorPassword);
   I.wait(CCFRATConstants.twoSecondWaitTime);
@@ -173,3 +175,34 @@ Scenario('FeesRegister upload fee',  I => {
   I.see('CSV upload');
   I.click('Sign out');
 }).retry(CCFRATConstants.retryScenario);
+
+// Draft tests
+Scenario('FeesRegister Admin Console Editor Screen For Fee Draft Details', I => {
+  I.login(editorUserName, editorPassword);
+  I.wait(CCFRATConstants.tenSecondWaitTime);
+  I.click("Your Drafts");
+  I.waitForText('Drafts', CCFRAcceptanceTestConstants.tenSecondWaitTime);
+  I.verifyFeeDraftHeaders();
+  I.click('Sign out');
+}).retry(CCFRATConstants.retryScenario);
+
+Scenario('FeesRegister Editor Screen For Fee Draft Rejected by approver', I => {
+  I.login(editorUserName, editorPassword);
+  I.wait(CCFRATConstants.tenSecondWaitTime);
+  I.click("Your Drafts");
+  I.click("Rejected by approver");
+  I.waitForText('Rejected by approver', CCFRAcceptanceTestConstants.tenSecondWaitTime);
+  I.verifyFeeDraftHeaders();
+  I.click('Sign out');
+}).retry(CCFRATConstants.retryScenario);
+
+Scenario('FeesRegister Editor Screen For Fee Draft Awaiting approval', I => {
+  I.login(editorUserName, editorPassword);
+  I.wait(CCFRATConstants.tenSecondWaitTime);
+  I.click("Your Drafts");
+  I.click("Awaiting approval");
+  I.waitForText('Awaiting approval', CCFRAcceptanceTestConstants.tenSecondWaitTime);
+  I.verifyFeeDraftHeaders();
+  I.click('Sign out');
+}).retry(CCFRATConstants.retryScenario);
+

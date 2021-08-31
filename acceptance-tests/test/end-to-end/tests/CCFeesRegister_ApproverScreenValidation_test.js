@@ -54,3 +54,13 @@ Scenario('FeesRegister Verify Pending For Approval And Reject The Fees', async I
   await I.rejectFees()
   I.click('Sign out');
 });
+
+Scenario('FeesRegister Verify Pending For Approval header list',  I => {
+  I.login(approverUserName, approverPassword);
+  I.wait(CCFRATConstants.tenSecondWaitTime);
+  I.see("Approvals");
+  I.click("Approvals");
+  I.waitForText("Awaiting approval",CCFRATConstants.tenSecondWaitTime);
+  I.verifyFeeDraftHeadersAwaitingApproval();
+  I.click('Sign out');
+});
