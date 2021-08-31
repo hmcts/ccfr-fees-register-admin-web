@@ -804,3 +804,7 @@ a.custom-reference-data:visited {
 .draft-success-padding15 {
   padding-bottom: 15px;;
 }
+.downloadbtn-container {
+  display: flex;
+  justify-content: flex-end;
+}
