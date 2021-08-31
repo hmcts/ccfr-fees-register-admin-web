@@ -3,7 +3,7 @@
   {% set title = t('Fee | ' + serviceName) %}
   {% set heading = t('Fee details')  %}
   {% block content %}
-<div class="gird-row">
+<div class="gird-row downloadbtn-container ">
   <div class="column-third">
     <label class="bold">Code:</label> {{ feeDto.code }}
   </div>
@@ -14,7 +14,6 @@
 <hr width=100%>
 
   {% if feeDto.fee_type == 'ranged' %}
-
 <div class="gird-row">
 <div class="column-third">
   <label class="bold">Min range:</label> {{ feeDto.min_range }}
