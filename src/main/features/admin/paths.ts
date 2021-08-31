@@ -14,7 +14,7 @@ export class Paths {
   static readonly rangeGroupPage = new RoutablePath('/admin/ranges-group/:rangeGroupCode', 'admin/views/range-group')
 
   static readonly allFeesPage = new RoutablePath('/admin/all-fees', 'admin/views/all-fees')
-  static readonly externalFeesV2 = new RoutablePath('/fees', 'admin/v2/views/external-fees')
+  static readonly externalFeesV2 = new RoutablePath('admin/v2/external-fees', 'admin/v2/views/external-fees')
 
 
   static readonly feeListPage = new RoutablePath('/admin/fees', 'admin/views/fee-list')
@@ -22,7 +22,7 @@ export class Paths {
   static readonly feeCreatePage = new RoutablePath('/admin/fees/create', 'admin/views/fee-create')
   static readonly healthInfoPage = new RoutablePath('/health', 'admin/views/health-info')
   static readonly unsecuredViewFees = new RoutablePath('/fees', 'admin/v2/views/external-fees')
-  static readonly unsecuredViewFeeVersionHistory = new RoutablePath('/fees/:feeCode', 'admin/v2/views/fee')
+  static readonly unsecuredViewFeeVersionHistory = new RoutablePath('/fees/:feeCode', 'admin/v2/views/external-fees')
 
   static readonly notFoundPage = new RoutablePath('n/a', 'admin/views/not-found')
 
