@@ -24,7 +24,7 @@ describe('external fees list page', () => {
       idamServiceMock.resolveRetrieveUserFor(1, 'admin', 'admin')
 
       await request(app)
-        .get(AdminPaths.externalFeesV2.uri)
+        .get(AdminPaths.externalFeesPageV2.uri)
         .set('Cookie', `${cookieName}=JWT`)
         .expect(200)
     })
