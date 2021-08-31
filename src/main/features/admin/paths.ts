@@ -26,7 +26,7 @@ export class Paths {
   static readonly notFoundPage = new RoutablePath('n/a', 'admin/views/not-found')
 
   /* V2 */
-  static readonly externalFeesV2 = new RoutablePath('/admin/v2/external-fees', 'admin/v2/views/external-fees')
+  static readonly externalFeesPageV2 = new RoutablePath('/admin/v2/external-fees', 'admin/v2/views/external-fees')
   static readonly serviceListPage = new RoutablePath('/admin/v2/services', 'admin/v2/views/service-list')
   static readonly directionListPage = new RoutablePath('/admin/v2/directions', 'admin/v2/views/direction-list')
   static readonly channelListPage = new RoutablePath('/admin/v2/channels', 'admin/v2/views/channel-list')
