@@ -8,11 +8,11 @@ export default express.Router()
   .get(Paths.unsecuredViewFeeVersionHistory.uri, (req: express.Request, res: express.Response) => {
 
     FeesClient
-      .getFee(req.params.feeCode)
-      .then((feeDto: Fee2Dto) => {
-        res.locals.user = {
-          allInfo: { roles: [] }
-        }
-        res.render(Paths.feeDetailsViewPagev2.associatedView, { feeDto: feeDto })
+      .searchFees(null, null, null, null, null, false)
+      .then((fees: Array<Fee2Dto>) => {
+        fees.sort((a: Fee2Dto, b: Fee2Dto): number => -a.code.localeCompare(b.code))
+        res.render(Paths.allFeesPageV2.associatedView, {
+          fees: fees
+        })
       })
   })
