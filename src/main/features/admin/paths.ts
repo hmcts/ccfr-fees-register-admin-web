@@ -52,7 +52,7 @@ export class Paths {
   static readonly draftDeleteAreYouSureV2 = new RoutablePath('/admin/v2/draft-delete-are-you-sure', 'admin/v2/views/draft-delete-are-you-sure')
   static readonly draftDeletedConfirmationV2 = new RoutablePath('/admin/v2/draft-deleted-confirmation', 'admin/v2/views/draft-deleted-confirmation')
 
-  static readonly feeViewPagev2 = new RoutablePath('/admin/v2/fees/:feeCode', 'admin/v2/views/fee')
+  static readonly feePagev2 = new RoutablePath('/admin/v2/fees/:feeCode', 'admin/v2/views/fee')
   static readonly feeVersions = new RoutablePath('/admin/v2/fee/versions/:feeCode', 'admin/v2/views/fee-versions')
   static readonly createFeeVersionPageV2 = new RoutablePath('/admin/v2/fees/version/create/:feeCode', 'admin/v2/views/create-fee-version')
   static readonly dashboard = new RoutablePath('/admin/v2/dashboard', 'admin/v2/views/dashboard')
