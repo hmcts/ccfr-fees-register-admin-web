@@ -25,7 +25,7 @@ describe('All fees list page', () => {
       idamServiceMock.resolveRetrieveUserFor(1, 'admin', 'admin')
 
       await request(app)
-        .get(AdminPaths.allFeesPage.uri)
+        .get(AdminPaths.unsecuredViewFees.uri)
         .set('Cookie', `${cookieName}=JWT`)
         .expect(res => (expect(res).to.be as any).successful.withText('online-fees', 'X0024'))
     })
