@@ -801,3 +801,6 @@ a.custom-reference-data:visited {
 #reasonRejectFeesId > .form-group-error {
   border: 0;
 }
+.draft-success-padding15 {
+  padding-bottom: 15px;;
+}
