@@ -807,5 +807,7 @@ a.custom-reference-data:visited {
 .downloadbtn-container {
   display: flex;
   width: 100%;
+}
+.downloadbtn-container-align {
   justify-content: flex-end;
 }
