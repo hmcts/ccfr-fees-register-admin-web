@@ -144,8 +144,20 @@
 								{% if version2.version == version.version-1 and version.valid_to!= version2.valid_to%}
 									<div class="govuk-check-your-answers__contents">
 										<dt class="version-details-dt">Valid to</dt>
-										<dd class="version-details-dd">{{ version.valid_to | date("DD MMMM YYYY") }}</dd>
-										<dd class="version-details-dd">Previously: {{ version2.valid_to | date("DD MMMM YYYY") }}</dd>
+														<dd class="version-details-dd">
+												{% if version.valid_to %}
+													{{ version.valid_to| date("DD MMMM YYYY") }}
+												{% else %}
+													&nbsp;
+												{% endif %}
+										    </dd>
+											<dd class="version-details-dd">
+												{% if version2.valid_to %}
+													{{ version2.valid_to| date("DD MMMM YYYY") }}
+												{% else %}
+													&nbsp;
+												{% endif %}
+										    </dd>
 									</div>
 								{% endif %}
 							{% endfor %}
