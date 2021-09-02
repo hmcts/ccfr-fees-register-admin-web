@@ -19,6 +19,8 @@ export class ValidationErrors {
   static readonly NAC_REQUIRED: string = 'Enter natural account code'
   static readonly FROM_DATE_REQUIRED: string = 'Enter From Date'
   static readonly TO_DATE_REQUIRED: string = 'Enter To Date'
+  static readonly DATE_INVALID_REQUIRED: string = 'Enter valid data'
+
   static readonly STATUTORY_INSTRUMENT_REQUIRED: string = 'Enter Statutory Instrument'
   static readonly SI_REF_ID_REQUIRED: string = 'Enter SI Ref ID'
   static readonly LAST_AMENDING_REQUIRED: string = 'Enter Last Amending SI'
