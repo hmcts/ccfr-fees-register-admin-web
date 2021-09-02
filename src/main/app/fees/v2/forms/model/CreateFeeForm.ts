@@ -1,4 +1,4 @@
-import { IsDefined, IsDate, Max, MaxLength, Min, ValidateIf, IsOptional, Matches } from 'class-validator'
+import { IsDefined, IsDateString, Max, MaxLength, Min, ValidateIf, IsOptional, Matches } from 'class-validator'
 import { IsNotBlank } from 'app/forms/validation/validators/isBlank'
 import { Fractions } from 'app/forms/validation/validators/fractions'
 import { ValidationErrors } from 'fees/v2/forms/model/ValidationErrors'
@@ -98,11 +98,11 @@ export class CreateFeeForm {
 
   @IsDefined(fromDateMsg)
   @IsNotBlank(fromDateMsg)
-  @IsDate({ message: ValidationErrors.DATE_INVALID_REQUIRED })
+  @IsDateString({ message: ValidationErrors.DATE_INVALID_REQUIRED })
   fromDate?: Date
-  
+
   @ValidateIf(o => o.toDate !== '')
-  @IsDate({ message: ValidationErrors.DATE_INVALID_REQUIRED })
+  @IsDateString({ message: ValidationErrors.DATE_INVALID_REQUIRED })
   toDate?: Date
 
   @IsDefined({ message: ValidationErrors.NAC_REQUIRED })
