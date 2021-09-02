@@ -100,7 +100,8 @@ export class CreateFeeForm {
   @IsNotBlank(fromDateMsg)
   @IsDate({ message: ValidationErrors.DATE_INVALID_REQUIRED })
   fromDate?: Date
-
+  
+  @ValidateIf(o => o.toDate !== '')
   @IsDate({ message: ValidationErrors.DATE_INVALID_REQUIRED })
   toDate?: Date
 
