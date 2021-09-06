@@ -4,7 +4,10 @@ const CCPBConstants = require('../tests/CCFRAcceptanceTestConstants');
 // const faker = require('faker');
 const faker = require('faker');
 const RANDOM_NUMBER = 99999;
-const {verifyFeesHeaders, verifyFeeDetails, verifyDownloadLink, clickDownloadLink} = require('./fees_details');
+const {verifyFeeDetails} = require('./fee_details');
+const {verifyFeesHeaders, verifyDownloadLink, clickDownloadLink} = require('./fee_dashboard_list');
+const {verifyCurrentFeeVersion, verifyPreviousFeeVersion} = require('./fee_versions');
+const {verifyFeeDraftHeaders, verifyFeeDraftHeadersAwaitingApproval} = require('./fee_draft_dashboard_list');
 const CCDNumber = faker.random.number(RANDOM_NUMBER);
 module.exports = () => actor({
   // done
@@ -35,6 +38,15 @@ module.exports = () => actor({
     const year = date.getFullYear().toString();
     return`${day}/${month}/${year}`;
   },
+  parseDate(dateToBeParsed){
+    let date = new Date(dateToBeParsed);
+    const day = date.toLocaleString('default', { day: '2-digit'});
+    const month = date.toLocaleString('default', { month: 'long'});
+    const year = date.toLocaleString('default', { year: 'numeric'});
+    const newDate = day+' '+month+' '+year;
+    console.log("newDate----------->"+newDate);
+    return newDate;
+  },
   async getFeeCode(){
     let feeCodeConfirmationText = await this.grabTextFrom({css: '.govuk-panel__title'});
     const FeeCode = feeCodeConfirmationText.split(" ")[0];
@@ -42,13 +54,9 @@ module.exports = () => actor({
     return FeeCode;
   },
 
-  async addNewFee(feeKeyword) {
+  async addNewFee(feeKeyword, formattedFromDate) {
     const memoLineNumber = faker.random.number(RANDOM_NUMBER);
     const naturalAccountCode = faker.random.number(RANDOM_NUMBER);
-    // Use this for local testing
-    // const formattedFromDate  = this.getFormattedDate();
-    const fromDate = new Date();
-    const formattedFromDate = fromDate.toLocaleDateString('en-GB');
 
     this.click('Create a new fee');
     this.fillField('textarea[id="reasonForUpdate"]', 'New Fee Creation');
@@ -78,22 +86,54 @@ module.exports = () => actor({
     //direction
     this.checkOption('input[id="enhanced"]');
     this.fillField({ css: '#memoLine'}, memoLineNumber);
-    this.pressKey('Backspace');
+    // this.pressKey('Backspace');
 
     this.fillField({ css: '#fromDate'}, formattedFromDate);
     this.fillField({ css: '#naturalAccountCode'}, '232425');
     this.wait(CCPBConstants.tenSecondWaitTime);
     this.click('input[id="submit"]');
     this.wait(CCPBConstants.tenSecondWaitTime);
+
+    let newFeeObj = {
+      memoLineNumber: memoLineNumber
+    }
+    return newFeeObj;
   },
   editDraft(){
     this.waitForText(  'Direction', '10');
     this.click(  'Edit fee');
     this.waitForText(  'Statutory Instrument', '10');
+    this.fillField({ css: '#description'}, "E2E Testing Edit");
     this.fillField('textarea[id="reasonForUpdate"]', 'Edited this fee');
+    this.fillField('textarea[id="lastAmendingSi"]', 'Edit last amending SI');
+    this.fillField({ css: '#consolidatedFeeOrderName'}, 'Edit consolidated fee');
     this.checkOption('input[id="percentage"]');
     this.wait(CCPBConstants.twoSecondWaitTime);
     this.fillField('//input[@type="text" and @id="percentage"]', '10');
+
+    //service
+    this.checkOption('input[id="probate"]');
+    //jurisdiction1;
+    this.checkOption('input[id="civil"]');
+    //jurisdiction2
+    this.checkOption('input[id="county court"]');
+    //FeeType
+    this.checkOption('input[id="typefixed"]');
+    this.fillField({ css: '#amount'}, 150.00);
+    this.wait(CCPBConstants.twoSecondWaitTime);
+    //event
+    this.checkOption('input[id="issue"]');
+    //channel
+    this.checkOption('input[id="online"]');
+    //Applicant;
+    this.checkOption('input[id="personal"]');
+    //direction
+    this.checkOption('input[id="licence"]');
+
+    const fromDate = new Date();
+    const formattedFromDate = fromDate.toLocaleDateString('en-GB');
+    this.fillField({ css: '#fromDate'}, formattedFromDate);
+
     this.wait(CCPBConstants.fiveSecondWaitTime);
     this.click('input[id="submit"]');
     this.wait(CCPBConstants.fiveSecondWaitTime);
@@ -125,8 +165,8 @@ module.exports = () => actor({
     let feeCode= await this.getFeeCode();
     console.log('The Fee Code after approval : '+feeCode)
     // verify approved fee under Live Tab
-    this.click('Fees');
-    this.waitForText('Live fees', '10');
+    // this.click('Fees');
+    // this.waitForText('Live fees', '10');
     /*this.click('Approved but not live fees');
     this.wait(CCPBConstants.fiveSecondWaitTime);
     this.waitForText('Approved but not live fees', '10');*/
@@ -152,23 +192,37 @@ module.exports = () => actor({
   },
 
   async addNewFeeAndSubmitForApproval(editorUserName, editorPassword) {
-      const feeKeyword = "SN" + new Date().valueOf().toString();
-      this.login(editorUserName, editorPassword);
-      this.wait(CCPBConstants.twoSecondWaitTime);
-      this.waitForText('Live fees', CCPBConstants.tenSecondWaitTime);
-      await this.addNewFee(feeKeyword);
-      this.waitForText('Draft fee saved', CCPBConstants.tenSecondWaitTime);
-      this.click('View draft fee');
-      this.waitForText('Amount', CCPBConstants.tenSecondWaitTime);
-      this.waitForText('View', CCPBConstants.fiveSecondWaitTime);
-      this.click('//a[contains(text(),"View")][1]');
-      this.submitForApproval();
-      await this.getFeeCode();
-      this.click('Sign out');
-    },
+    const feeKeyword = "SN" + new Date().valueOf().toString();
+    let fromDate = new Date();
+    fromDate.setDate(fromDate.getDate() + 2);
+    const formattedFromDate = fromDate.toLocaleDateString('en-GB');
+    this.login(editorUserName, editorPassword);
+    this.wait(CCPBConstants.twoSecondWaitTime);
+    this.waitForText('Live fees', CCPBConstants.tenSecondWaitTime);
+    let newFeeObj = await this.addNewFee(feeKeyword, formattedFromDate);
+    this.waitForText('Draft fee saved', CCPBConstants.tenSecondWaitTime);
+    this.click('View draft fee');
+    this.waitForText('Amount', CCPBConstants.tenSecondWaitTime);
+    this.waitForText('View', CCPBConstants.fiveSecondWaitTime);
+    this.click('//a[contains(text(),"View")][1]');
+    this.submitForApproval();
+    let feeCode = await this.getFeeCode();
+    this.click('Sign out');
+    let feeObj = {
+      feeKeyword: feeKeyword,
+      feeCode: feeCode,
+      memoLineNumber: newFeeObj.memoLineNumber,
+      fromDate: fromDate
+    }
+    return feeObj;
+  },
 
-    verifyFeesHeaders,
-    verifyFeeDetails,
-    verifyDownloadLink,
-    clickDownloadLink
+  verifyFeesHeaders,
+  verifyFeeDetails,
+  verifyDownloadLink,
+  clickDownloadLink,
+  verifyCurrentFeeVersion,
+  verifyPreviousFeeVersion,
+  verifyFeeDraftHeaders,
+  verifyFeeDraftHeadersAwaitingApproval
 });
