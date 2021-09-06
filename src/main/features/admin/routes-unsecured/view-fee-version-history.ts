@@ -8,7 +8,7 @@ export default express.Router()
   .get(Paths.unsecuredViewFeeVersionHistory.uri, (req: express.Request, res: express.Response) => {
 
     FeesClient
-      .getFee(res.locals.user, req.params.feeCode)
+      .getAnonUserFee(req.params.feeCode)
       .then((feeDto: Fee2Dto) => {
         res.locals.user = {
           allInfo: { roles: [] }
