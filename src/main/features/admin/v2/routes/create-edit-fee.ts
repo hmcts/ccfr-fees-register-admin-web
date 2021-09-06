@@ -28,7 +28,7 @@ class Renderer {
 export default express.Router()
   .get(Paths.feeCreatePageV2.uri, (req: express.Request, res: express.Response) => {
     if (req.query.action === 'edit' && req.query.feeCode) {
-      FeesClient.getFee(req.query.feeCode)
+      FeesClient.getFee(res.locals.user, req.query.feeCode)
         .then(fee => {
           let reasonForReject = fee.fee_versions[0].reason_for_reject
           let approvedBy = fee.fee_versions[0].approvedBy

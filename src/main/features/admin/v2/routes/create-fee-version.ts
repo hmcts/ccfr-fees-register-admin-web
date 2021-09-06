@@ -26,7 +26,7 @@ class Renderer {
 export default express.Router()
   .get(Paths.createFeeVersionPageV2.uri, (req: express.Request, res: express.Response) => {
     FeesClient
-      .getFee(req.params.feeCode)
+      .getFee(res.locals.user, req.params.feeCode)
       .then((feeDto: Fee2Dto) => {
         if (req.query.action === 'edit') {
           const v = feeDto.fee_versions.find((v: FeeVersionDto) => v.status === 'draft' && req.query.version === v.version.toString())

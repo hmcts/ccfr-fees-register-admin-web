@@ -206,11 +206,15 @@ export class FeesClient {
 
   }
 
-  static getFee (feeCode: string): Promise<Fee2Dto> {
-    let uri: string = `${feesUrl}/fees-register/fees/${feeCode}`
+  static getFee (user, feeCode: string): Promise<Fee2Dto> {
 
     return request
-      .get(uri)
+      .get({
+        uri: `${feesUrl}/fees-register/fees/${feeCode}`,
+        headers: {
+          Authorization: `Bearer ${user.bearerToken}`
+        }
+      })
       .then(response => {
         return response as Fee2Dto
       })
