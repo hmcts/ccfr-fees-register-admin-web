@@ -26,8 +26,8 @@ describe('Fees client', () => {
   describe('on GET fee', () => {
     it('should return the data of the fee', async () => {
       feesServiceMock.resolveGetFee()
-
-      expect(FeesClient.getFee('X0001')).to.not.equal(null)
+      let user = { bearerToken: 'xxx' }
+      expect(FeesClient.getFee(user, 'X0001')).to.not.equal(null)
 
     })
   })
