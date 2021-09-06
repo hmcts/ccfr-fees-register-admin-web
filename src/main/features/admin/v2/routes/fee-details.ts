@@ -22,7 +22,7 @@ class Renderer {
 export default express.Router()
   .get(Paths.feeDetailsViewPagev2.uri, (req: express.Request, res: express.Response) => {
     FeesClient
-      .getFee(req.query.feeCode)
+      .getFee(res.locals.user, req.query.feeCode)
       .then((feeDto: Fee2Dto) => {
         res.render(Paths.feeDetailsViewPagev2.associatedView, {
           draft: req.query.draft,
