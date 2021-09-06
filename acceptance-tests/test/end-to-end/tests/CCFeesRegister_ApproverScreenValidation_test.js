@@ -2,12 +2,16 @@ const CCFRATConstants = require('./CCFRAcceptanceTestConstants');
 const faker = require('faker');
 const RANDOM_NUMBER = 9999;
 
-const approverUserName = process.env.APPROVER_USERNAME;
-const approverPassword = process.env.APPROVER_PASSWORD;
+// const approverUserName = process.env.APPROVER_USERNAME;
+// const approverPassword = process.env.APPROVER_PASSWORD;
+//
+// const editorUserName = process.env.EDITOR_USERNAME;
+// const editorPassword = process.env.EDITOR_PASSWORD;
 
-const editorUserName = process.env.EDITOR_USERNAME;
-const editorPassword = process.env.EDITOR_PASSWORD;
-
+const approverUserName = 'functionaltestapprover@hmcts.net';
+const approverPassword = 'LevelAt12';
+const editorUserName = 'functionaltesteditor@hmcts.net';
+const editorPassword = 'LevelAt12';
 
 Feature('CC FeesRegister Admin Acceptance Tests For Approver');
 
@@ -35,7 +39,7 @@ Scenario('FeesRegister Admin Console Approver Header and Tab Validation', I => {
   I.click('Sign out');
 }).retry(CCFRATConstants.retryScenario)
 
-Scenario('FeesRegister Verify Pending For Approval And Approve The Fees', async I => {
+Scenario.skip('FeesRegister Verify Pending For Approval And Approve The Fees', async I => {
   await I.addNewFeeAndSubmitForApproval(editorUserName, editorPassword);
   I.wait(CCFRATConstants.tenSecondWaitTime);
   I.login(approverUserName, approverPassword);
@@ -45,12 +49,22 @@ Scenario('FeesRegister Verify Pending For Approval And Approve The Fees', async 
   I.click('Sign out');
 });
 
-Scenario('FeesRegister Verify Pending For Approval And Reject The Fees', async I => {
+Scenario.skip('FeesRegister Verify Pending For Approval And Reject The Fees', async I => {
 
   await I.addNewFeeAndSubmitForApproval(editorUserName, editorPassword);
   I.login(approverUserName, approverPassword);
   I.wait(CCFRATConstants.tenSecondWaitTime);
   I.waitForText("Awaiting approval","10");
   await I.rejectFees()
+  I.click('Sign out');
+});
+
+Scenario('FeesRegister Verify Pending For Approval header list',  I => {
+  I.login(approverUserName, approverPassword);
+  I.wait(CCFRATConstants.tenSecondWaitTime);
+  I.see("Approvals");
+  I.click("Approvals");
+  I.waitForText("Awaiting approval",CCFRATConstants.tenSecondWaitTime);
+  I.verifyFeeDraftHeadersAwaitingApproval();
   I.click('Sign out');
 });
