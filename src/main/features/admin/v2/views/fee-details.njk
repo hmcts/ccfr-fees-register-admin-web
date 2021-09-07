@@ -331,20 +331,18 @@
       </dd>
     </div>
   {% endif %}
-  {% if feeDto.current_version.valid_to %}
     <div class="govuk-check-your-answers__contents">
       <dt class="govuk-check-your-answers__question">
         <label class="bold">Valid to</label> 
       </dt>
       <dd class="govuk-check-your-answers__answer">
-		{% if feeDto.current_version.valid_to%}
+		{% if feeDto.current_version.valid_to %}
 			{{feeDto.current_version.valid_to | date("DD MMMM YYYY") }}
 		{% else %}
 			&nbsp;
 		{% endif %}
       </dd>
     </div>
-  {% endif %}
 {% elif version and (pageType === 'disconfee' or pageType === 'notlivefee') %}
  {% if version.valid_from %}
     <div class="govuk-check-your-answers__contents">
@@ -356,7 +354,7 @@
       </dd>
     </div>
   {% endif %}
-  {% if version.valid_to %}
+
     <div class="govuk-check-your-answers__contents">
       <dt class="govuk-check-your-answers__question">
         <label class="bold">Valid to</label> 
@@ -369,7 +367,6 @@
 		{% endif %}
       </dd>
     </div>
-  {% endif %}
 {% endif %}
  
 
@@ -778,7 +775,6 @@
 					</dd>
 				</div>
 			{% endif %}
-			{% if feeDto.current_version.valid_to %}
 				<div class="govuk-check-your-answers__contents">
 					<dt class="govuk-check-your-answers__question">
 						<label class="bold">Valid to</label>
@@ -791,7 +787,6 @@
 						{% endif %}
 					</dd>
 				</div>
-			{% endif %}
 
 			<div class="govuk-check-your-answers__contents">
 				<dt class="govuk-check-your-answers__question">
