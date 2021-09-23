@@ -32,7 +32,6 @@
     "test:crossbrowser": "./bin/run-crossbrowser-tests.sh",
     "sonar-scan": "sonar-scanner -Dsonar.projectKey='fees-register-admin-web' -Dsonar.projectName='Fees-Register-Admin-Web' -Dsonar.sources=src/main -Dsonar.tests=src/test -Dsonar.exclusions=src/main/public/**,src/main/server.ts,src/main/modules/**,src/main/app/idam/security.js -Dsonar.typescript.lcov.reportPaths=coverage-report/lcov.info",
     "precommit": "yarn lint",
-    "prepush": "yarn test && yarn test:routes",
     "dependency-setup-with-yarn-lock": "yarn --mutex network install --frozen-lockfile"
   },
   "dependencies": {

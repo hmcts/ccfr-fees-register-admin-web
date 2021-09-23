@@ -1,33 +1,32 @@
 {
-    "security": {
-      "clientId": "FEES_CLIENT_ID",
-      "clientSecret": "FEES_CLIENT_SECRET"
+  "security": {
+    "clientId": "FEES_CLIENT_ID",
+    "clientSecret": "FEES_CLIENT_SECRET"
+  },
+  "idam": {
+    "authentication-web": {
+      "url": "http://localhost:9002"
     },
-    "idam": {
-      "authentication-web": {
-        "url": "https://idam.dev.ccidam.reform.hmcts.net"
-      },
-      "login": {
-        "url": "https://idam.dev.ccidam.reform.hmcts.net/login"
-      },
-      "api": {
-        "url": "https://idam.dev.ccidam.reform.hmcts.net"
-      }
+    "login": {
+      "url": "http://localhost:9002/login"
     },
-    "session": {
-      "cookieName": "SESSION_ID"
-    },
-    "fees": {
-      "url": "http://localhost:8080"
-    },
-    "e2e": {
-      "frontendUrl": "https://localhost:4200/",
-      "waitForTimeoutValue": 2600,
-      "waitForActionValue": 2000
-    },
-    "appInsights": {
-      "instrumentationKey": "some-key",
-      "roleName": "fees-register-admin"
+    "api": {
+      "url": "http://localhost:5000"
     }
+  },
+  "session": {
+    "cookieName": "SESSION_ID"
+  },
+  "fees": {
+    "url": "http://localhost:8091"
+  },
+  "e2e": {
+    "frontendUrl": "https://localhost:4200/",
+    "waitForTimeoutValue": 2600,
+    "waitForActionValue": 2000
+  },
+  "appInsights": {
+    "instrumentationKey": "some-key",
+    "roleName": "fees-register-admin"
   }
-  
+}
