@@ -19,7 +19,6 @@ export class Paths {
   static readonly feeEditPage = new RoutablePath('/admin/fees/edit/:feeCode', 'admin/views/fee-edit')
   static readonly feeCreatePage = new RoutablePath('/admin/fees/create', 'admin/views/fee-create')
   static readonly healthInfoPage = new RoutablePath('/health', 'admin/views/health-info')
-  static readonly unsecuredViewFees = new RoutablePath('/fees', 'admin/v2/views/all-fees')
   static readonly unsecuredViewFees = new RoutablePath('/fees', 'admin/v2/views/external-fees')
   static readonly unsecuredViewFeeVersionHistory = new RoutablePath('/fees/:feeCode', 'admin/v2/views/fee')
 
