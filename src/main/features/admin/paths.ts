@@ -19,13 +19,13 @@ export class Paths {
   static readonly feeEditPage = new RoutablePath('/admin/fees/edit/:feeCode', 'admin/views/fee-edit')
   static readonly feeCreatePage = new RoutablePath('/admin/fees/create', 'admin/views/fee-create')
   static readonly healthInfoPage = new RoutablePath('/health', 'admin/views/health-info')
-  static readonly unsecuredViewFees = new RoutablePath('/fees', 'admin/v2/views/all-fees')
+  static readonly unsecuredViewFees = new RoutablePath('/fees', 'admin/v2/views/external-fees')
   static readonly unsecuredViewFeeVersionHistory = new RoutablePath('/fees/:feeCode', 'admin/v2/views/fee')
 
   static readonly notFoundPage = new RoutablePath('n/a', 'admin/views/not-found')
 
   /* V2 */
-
+  static readonly externalFeesPageV2 = new RoutablePath('/admin/v2/external-fees', 'admin/v2/views/external-fees')
   static readonly serviceListPage = new RoutablePath('/admin/v2/services', 'admin/v2/views/service-list')
   static readonly directionListPage = new RoutablePath('/admin/v2/directions', 'admin/v2/views/direction-list')
   static readonly channelListPage = new RoutablePath('/admin/v2/channels', 'admin/v2/views/channel-list')
@@ -50,7 +50,7 @@ export class Paths {
   static readonly approvalRequestConfirmationV2 = new RoutablePath('/admin/v2/approval-request-confirmation', 'admin/v2/views/approval-request-confirmation')
   static readonly draftDeleteAreYouSureV2 = new RoutablePath('/admin/v2/draft-delete-are-you-sure', 'admin/v2/views/draft-delete-are-you-sure')
   static readonly draftDeletedConfirmationV2 = new RoutablePath('/admin/v2/draft-deleted-confirmation', 'admin/v2/views/draft-deleted-confirmation')
-
+  static readonly feePagev2 = new RoutablePath('/admin/v2/fees/:feeCode', 'admin/v2/views/fee')
   static readonly feeViewPagev2 = new RoutablePath('/admin/v2/fees/:feeCode', 'admin/v2/views/fee')
   static readonly feeVersions = new RoutablePath('/admin/v2/fee/versions/:feeCode', 'admin/v2/views/fee-versions')
   static readonly createFeeVersionPageV2 = new RoutablePath('/admin/v2/fees/version/create/:feeCode', 'admin/v2/views/create-fee-version')
