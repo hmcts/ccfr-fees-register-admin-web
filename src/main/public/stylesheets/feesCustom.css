@@ -801,3 +801,7 @@ a.custom-reference-data:visited {
 #reasonRejectFeesId > .form-group-error {
   border: 0;
 }
+.downloadbtn-container {
+  display: flex;
+  width: 100%;
+}
