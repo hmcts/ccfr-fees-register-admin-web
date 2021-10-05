@@ -8,8 +8,11 @@ export default express.Router()
     FeesClient
       .searchFees(null, null, null, null, null, false)
       .then((fees: Array<Fee2Dto>) => {
+        res.locals.user = {
+          allInfo: { roles: [] }
+        }
         fees.sort((a: Fee2Dto, b: Fee2Dto): number => -a.code.localeCompare(b.code))
-        res.render(Paths.unsecuredViewFees.associatedView, {
+        res.render(Paths.externalFeesPageV2.associatedView, {
           fees: fees
         })
       })
