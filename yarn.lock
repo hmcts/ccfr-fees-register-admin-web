@@ -393,9 +393,9 @@
     "@types/node" "*"
 
 "@types/node@*":
-  version "16.10.5"
-  resolved "https://registry.yarnpkg.com/@types/node/-/node-16.10.5.tgz#7fe4123b061753f1a58a6cd077ff0bb069ee752d"
-  integrity sha512-9iI3OOlkyOjLQQ9s+itIJNMRepDhB/96jW3fqduJ2FTPQj1dJjw6Q3QCImF9FE1wmdBs5QSun4FjDSFS8d8JLw==
+  version "16.10.9"
+  resolved "https://registry.yarnpkg.com/@types/node/-/node-16.10.9.tgz#8f1cdd517972f76a3b928298f4c0747cd6fef25a"
+  integrity sha512-H9ReOt+yqIJPCutkTYjFjlyK6WEMQYT9hLZMlWtOjFQY2ItppsWZ6RJf8Aw+jz5qTYceuHvFgPIaKOHtLAEWBw==
 
 "@types/node@^10.5.2":
   version "10.17.60"
@@ -403,9 +403,9 @@
   integrity sha512-F0KIgDJfy2nA3zMLmWGKxcH2ZVEtCZXHHdOQs2gSaQ27+lNeEfGxzkIw90aXswATX7AZ33tahPbzy6KAfUreVw==
 
 "@types/node@^14.0.1", "@types/node@^14.14.41":
-  version "14.17.22"
-  resolved "https://registry.yarnpkg.com/@types/node/-/node-14.17.22.tgz#4053ec255ede70104f23df4a326c5f8e72b71d7d"
-  integrity sha512-6Mgu9YWd8j0dk9M8V9+5w6ktqIFCcn/fFXAVIDFk/niAOFiOiz4GeFAMWYAQjKrcsASbFqMkqR8/Y2wuVCAkNg==
+  version "14.17.26"
+  resolved "https://registry.yarnpkg.com/@types/node/-/node-14.17.26.tgz#47a53c7e7804490155a4646d60c8e194816d073c"
+  integrity sha512-eSTNkK/nfmnC7IKpOJZixDgG0W2/eHz1qyFN7o/rwwwIHsVRp+G9nbh4BrQ77kbQ2zPu286AQRxkuRLPcR3gXw==
 
 "@types/normalize-package-data@^2.4.0":
   version "2.4.1"
@@ -497,6 +497,11 @@
   version "4.0.1"
   resolved "https://registry.yarnpkg.com/@types/tough-cookie/-/tough-cookie-4.0.1.tgz#8f80dd965ad81f3e1bc26d6f5c727e132721ff40"
   integrity sha512-Y0K95ThC3esLEYD6ZuqNek29lNX2EM1qxV8y2FTLUB0ff5wWrk7az+mLrnNFUnaXcgKye22+sFBRXOgpPILZNg==
+
+"@types/validator@^13.1.3":
+  version "13.6.3"
+  resolved "https://registry.yarnpkg.com/@types/validator/-/validator-13.6.3.tgz#31ca2e997bf13a0fffca30a25747d5b9f7dbb7de"
+  integrity sha512-fWG42pMJOL4jKsDDZZREnXLjc3UE0R8LOJfARWYg6U966rxDT7TYejYzLnUF5cvSObGg34nd0+H2wHHU5Omdfw==
 
 "@types/vinyl@^2.0.4":
   version "2.0.6"
@@ -1673,12 +1678,14 @@ class-utils@^0.3.5:
     isobject "^3.0.0"
     static-extend "^0.1.1"
 
-class-validator@^0.8.5:
-  version "0.8.5"
-  resolved "https://registry.yarnpkg.com/class-validator/-/class-validator-0.8.5.tgz#484785acda98f68549c3a84dc1bb2f77b736dc58"
-  integrity sha512-84yezRo44aP4oGhvPmqj6obAFQF1NzUyfR0+f8jubzdAspO5pmjpHhBBlPf335epUskzXAFe5uo4Qf+c7SI+DA==
+class-validator@^0.13.1:
+  version "0.13.1"
+  resolved "https://registry.yarnpkg.com/class-validator/-/class-validator-0.13.1.tgz#381b2001ee6b9e05afd133671fbdf760da7dec67"
+  integrity sha512-zWIeYFhUitvAHBwNhDdCRK09hWx+P0HUwFE8US8/CxFpMVzkUK8RJl7yOIE+BVu2lxyPNgeOaFv78tLE47jBIg==
   dependencies:
-    validator "9.2.0"
+    "@types/validator" "^13.1.3"
+    libphonenumber-js "^1.9.7"
+    validator "^13.5.2"
 
 cli-boxes@^2.2.1:
   version "2.2.1"
@@ -4263,9 +4270,9 @@ i18next-sprintf-postprocessor@^0.2.0:
   integrity sha1-LkCfEENXk4Jpi2otpwzapVHWfqQ=
 
 i18next@>=17.0.11:
-  version "21.3.0"
-  resolved "https://registry.yarnpkg.com/i18next/-/i18next-21.3.0.tgz#679b9bdc27a26ccca4799436cf2195107ad6feeb"
-  integrity sha512-MiarmWb/a+5z8C7QvihkcJf2YofuyhGvH28Wlip/c1YTSvHijYBFmc7dH6RrNkc2O44ApTdHnkK4FaM/S33C0w==
+  version "21.3.1"
+  resolved "https://registry.yarnpkg.com/i18next/-/i18next-21.3.1.tgz#cb132b6e0975de7d5472b26c4cdec57ecca96cf0"
+  integrity sha512-VElMm+LoeEuhViVwnDw1gR3snTItK9NJqgok8PZ5WU870MVO1x+5KEbzLO/6GC1zu42Uc3EuGj3nsGMGMNwT0A==
   dependencies:
     "@babel/runtime" "^7.12.0"
 
@@ -5206,6 +5213,11 @@ levn@^0.3.0, levn@~0.3.0:
   dependencies:
     prelude-ls "~1.1.2"
     type-check "~0.3.2"
+
+libphonenumber-js@^1.9.7:
+  version "1.9.37"
+  resolved "https://registry.yarnpkg.com/libphonenumber-js/-/libphonenumber-js-1.9.37.tgz#944f59a3618a8f85d9b619767a0b6fb87523f285"
+  integrity sha512-RnUR4XwiVhMLnT7uFSdnmLeprspquuDtaShAgKTA+g/ms9/S4hQU3/QpFdh3iXPHtxD52QscXLm2W2+QBmvYAg==
 
 liftoff@^3.1.0:
   version "3.1.0"
@@ -8869,15 +8881,15 @@ validate-npm-package-license@^3.0.1:
     spdx-correct "^3.0.0"
     spdx-expression-parse "^3.0.0"
 
-validator@9.2.0:
-  version "9.2.0"
-  resolved "https://registry.yarnpkg.com/validator/-/validator-9.2.0.tgz#ad216eed5f37cac31a6fe00ceab1f6b88bded03e"
-  integrity sha512-6Ij4Eo0KM4LkR0d0IegOwluG5453uqT5QyF5SV5Ezvm8/zmkKI/L4eoraafZGlZPC9guLkwKzgypcw8VGWWnGA==
-
 validator@^10.11.0:
   version "10.11.0"
   resolved "https://registry.yarnpkg.com/validator/-/validator-10.11.0.tgz#003108ea6e9a9874d31ccc9e5006856ccd76b228"
   integrity sha512-X/p3UZerAIsbBfN/IwahhYaBbY68EN/UQBWHtsbXGT5bfrH/p4NQzUCG1kF/rtKaNpnJ7jAu6NGTdSNtyNIXMw==
+
+validator@^13.5.2:
+  version "13.6.0"
+  resolved "https://registry.yarnpkg.com/validator/-/validator-13.6.0.tgz#1e71899c14cdc7b2068463cb24c1cc16f6ec7059"
+  integrity sha512-gVgKbdbHgtxpRyR8K0O6oFZPhhB5tT1jeEHZR0Znr9Svg03U0+r9DXWMrnRAB+HtCStDQKlaIZm42tVsVjqtjg==
 
 value-or-function@^3.0.0:
   version "3.0.0"
