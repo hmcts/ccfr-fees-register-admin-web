@@ -8,7 +8,7 @@ type Mapper<T> = (value: any) => T
 
 export class FormValidator {
 
-  static requestHandler<T extends object> (modelType: Constructor<T>, modelTypeMapper?: Mapper<T>, actionsWithoutValidation?: string[]): express.RequestHandler {
+  static requestHandler<T> (modelType: Constructor<T>, modelTypeMapper?: Mapper<T>, actionsWithoutValidation?: string[]): express.RequestHandler {
     const validator: Validator = new Validator()
 
     if (!modelTypeMapper) {
