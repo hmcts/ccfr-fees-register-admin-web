@@ -51,9 +51,9 @@ Scenario('FeesRegister Admin Console Editor Screen For Live Fees Details', I => 
   I.click('Live fees');
   I.verifyFeesHeaders();
   //verify any existing fee details under live Tab
-  I.verifyFeeDetails('live', 'FEE0002','1.2','','divorce','issue','Filing an application for a divorce, nullity or civil partnership dissolution',
-  '2016 No 402','The Civil Proceedings, Family Proceedings and Upper Tribunal Fees (Amendment) Order 2016','family','family court','fixed','Flat','550.00','',
-  '21 March 2016', '', '5', '', '4481102159', 'RECEIPT OF FEES - Family issue divorce', 'enhanced', 'all', '', 'default', 'approved', '124756', '39907');
+  I.verifyFeeDetails('live', 'FEE0002','1.2','Family Proceedings Fees Order 2008','divorce','issue','Filing an application for a divorce, nullity or civil partnership dissolution',
+    '2021 No 985','The Court Fees (Miscellaneous Amendments) Order 2021','family','family court','fixed','Flat','593.00','',
+    '30 September 2021', '', '6', 'Inflationary Increase', '4481102159', 'RECEIPT OF FEES - Family issue divorce', 'enhanced', 'all', 'DivorceCivPart', 'default', 'approved', 'cef56daa-572c-464b-bd32-4a487c771d47', '39907');
   I.click('Sign out');
 }).retry(CCFRATConstants.retryScenario);
 
@@ -79,9 +79,9 @@ Scenario('FeesRegister Admin Console Editor Discontinued Fees Details Check @cro
   I.click('Discontinued fees');
   I.verifyFeesHeaders();
   //Check one of the existing fee, once full implementation done we can add our own code
-  I.verifyFeeDetails('discontinued', 'FEE0002','1.2','','divorce','issue','Filing an application for a divorce, nullity or civil partnership dissolution – fees order 1.2.',
-  '2016 No. 402 (L. 5)','','family','family court','fixed','Flat','550.00','', '21 March 2016','21 March 2016', '4', '', '4481102159', 'GOV - App for divorce/nullity of marriage or CP',
-  'enhanced', 'all', '', 'default', 'approved', '', '');
+  I.verifyFeeDetails('discontinued', 'FEE0227','5.3','Family Proceedings Fees Order 2008','other','general application','Application (on notice) (unless otherwise listed)',
+    '2014 No 877','The Family Proceedings Fees (Amendment) Order 2014','family','family court','fixed','Flat','155.00','', '21 April 2014','29 September 2021', '1', '', '4481102165', 'RECEIPT OF FEES - Family GA other',
+    'cost recovery', 'all', 'GAOnNotice', 'default', 'approved', '124756', '39907');
   I.click('Sign out');
 }).retry(CCFRATConstants.retryScenario);
 
