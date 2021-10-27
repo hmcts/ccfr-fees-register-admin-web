@@ -81,7 +81,7 @@ Scenario('FeesRegister Admin Console Editor Discontinued Fees Details Check @cro
   //Check one of the existing fee, once full implementation done we can add our own code
   I.verifyFeeDetails('discontinued', 'FEE0227','5.3','Family Proceedings Fees Order 2008','other','general application','Application (on notice) (unless otherwise listed)',
     '2014 No 877','The Family Proceedings Fees (Amendment) Order 2014','family','family court','fixed','Flat','155.00','', '21 April 2014','29 September 2021', '1', '', '4481102165', 'RECEIPT OF FEES - Family GA other',
-    'cost recovery', 'all', 'GAOnNotice', 'default', 'approved', '124756', '39907');
+    'cost recovery', 'all', 'GAOnNotice', 'default', 'approved', '124756', '39907'); 
   I.click('Sign out');
 }).retry(CCFRATConstants.retryScenario);
 
