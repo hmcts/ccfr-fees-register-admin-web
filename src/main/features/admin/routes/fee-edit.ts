@@ -46,7 +46,7 @@ export default express.Router()
         .then((fee: Fee) => {
           res.render(Paths.feeEditPage.associatedView, {
             form: new Form(new EditFeeForm(fee.code, fee.type, fee.description, fee.amount / 100, fee.percentage)),
-            returnUri: ensureSafeReturnUri(req.query.returnUri as string)
+            returnUri: ensureSafeReturnUri(req.query.returnUri)
           })
         })
     } else {
@@ -56,7 +56,7 @@ export default express.Router()
   .post(Paths.feeEditPage.uri, FormValidator.requestHandler(EditFeeForm, EditFeeForm.fromObject), (req: express.Request, res: express.Response, next: express.NextFunction) => {
     if (featureToggles.isFeatureEnabled('edit')) {
       const form: Form<EditFeeForm> = req.body
-      const returnUri = ensureSafeReturnUri(req.query.returnUri as string)
+      const returnUri = ensureSafeReturnUri(req.query.returnUri)
 
       if (form.hasErrors()) {
         res.render(Paths.feeEditPage.associatedView, { form: form, returnUri: returnUri })
