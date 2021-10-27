@@ -170,7 +170,6 @@
     "hosted-git-info": "^3.0.8",
     "lodash": "^4.17.21",
     "merge": "^2.1.1",
-    "minimist": "^1.2.2",
     "node-fetch": "^2.6.1",
     "path-parse": "^1.0.7",
     "trim-newlines": "^4.0.1",
