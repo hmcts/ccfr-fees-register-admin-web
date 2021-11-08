@@ -35,7 +35,7 @@ Scenario('FeesRegister Admin Console Approver Header and Tab Validation', I => {
   I.click('Sign out');
 }).retry(CCFRATConstants.retryScenario)
 
-Scenario.skip('FeesRegister Verify Pending For Approval And Approve The Fees', async I => {
+Scenario('FeesRegister Verify Pending For Approval And Approve The Fees', async I => {
   await I.addNewFeeAndSubmitForApproval(editorUserName, editorPassword);
   I.wait(CCFRATConstants.tenSecondWaitTime);
   I.login(approverUserName, approverPassword);
@@ -45,7 +45,7 @@ Scenario.skip('FeesRegister Verify Pending For Approval And Approve The Fees', a
   I.click('Sign out');
 });
 
-Scenario.skip('FeesRegister Verify Pending For Approval And Reject The Fees', async I => {
+Scenario('FeesRegister Verify Pending For Approval And Reject The Fees', async I => {
 
   await I.addNewFeeAndSubmitForApproval(editorUserName, editorPassword);
   I.login(approverUserName, approverPassword);
