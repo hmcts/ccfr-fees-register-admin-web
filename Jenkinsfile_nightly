@@ -39,6 +39,7 @@ withNightlyPipeline("nodejs", product, component) {
 
   loadVaultSecrets(secrets)
   enableFullFunctionalTest()
+  enableFortifyScan()
   enableCrossBrowserTest(['chrome','firefox','microsoft'])
   enableSecurityScan()
   after('checkout') {
@@ -49,6 +50,9 @@ withNightlyPipeline("nodejs", product, component) {
     sh 'yarn setup'
     sh 'mkdir -p functional-output'
     sh 'chmod +x bin/run-crossbrowser-tests.sh'
+  }
+   after('fortify-scan') {
+    steps.archiveArtifacts allowEmptyArchive: true, artifacts: '**/Fortify Scan/**/*'
   }
   after('crossBrowserTest') {
     steps.archiveArtifacts allowEmptyArchive: true, artifacts: 'functional-output/**/*'
