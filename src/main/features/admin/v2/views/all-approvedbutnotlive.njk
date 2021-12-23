@@ -37,6 +37,7 @@
     <thead>
     <tr>
       <th class="govuk-table__header table-colsl">Code</th>
+      <th class="govuk-table__header table-colxl">Date approved</th>
       <th class="govuk-table__header table-colxl">Valid from</th>
       <th class="govuk-table__header table-colxl">Description</th>
       <th class="govuk-table__header table-colml">Statutory Instrument</th>
@@ -82,6 +83,11 @@
         <a href="/fees/{{fee.code}}">{{ fee.code }}</a>
       {% endif %}
       </td>
+      {% if version.approved_date %}
+        <td >{{ version.approved_date | date("DD MMMM YYYY") }}</td>
+      {% else %}
+        <td/>
+      {% endif %}
       {% if version.valid_from %}
         <td >{{ version.valid_from | date("DD MMMM YYYY") }}</td>
       {% else %}
