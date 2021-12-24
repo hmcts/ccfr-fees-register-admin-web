@@ -61,7 +61,7 @@ selectReferenceData %}
                       <input type="radio" id="{{serviceName.name}}" name="service" value="{{serviceName.name}}">
                     {%endif%}
                     <label class="label-float">{{serviceName.name}}</label>
-                  </div> 
+                  </div>
                 </div>
               {% endfor %}
             </div>
@@ -83,7 +83,7 @@ selectReferenceData %}
                   <input type="radio" id="{{jurisdiction1.name}}" name="jurisdiction1" value="{{jurisdiction1.name}}">
                 {%endif%}
                 <label class="label-float">{{jurisdiction1.name}}</label>
-              </div> 
+              </div>
             </div>
           {% endfor %}
         </fieldset>
@@ -105,7 +105,7 @@ selectReferenceData %}
                     <input type="radio" id="{{jurisdiction2.name}}" name="jurisdiction2" value="{{jurisdiction2.name}}">
                   {%endif%}
                   <label class="label-float">{{jurisdiction2.name}}</label>
-                </div> 
+                </div>
               </div>
             {% endfor %}
           </div>
@@ -157,7 +157,7 @@ selectReferenceData %}
                   <input type="radio" id="flat" name="amountType" value="flat" >
                 {%endif%}
                 <label class="label-float">Flat</label>
-              </div> 
+              </div>
             </div>
               <div id="flatAmount" class="mid-box {{ 'disply-section' if form.valueFor('amountType') == 'flat'}}" >
                 <label class="form-label-bold">Amount</label>
@@ -180,7 +180,7 @@ selectReferenceData %}
                   <input type="radio" id="percentage" name="amountType" value="percentage">
                 {%endif%}
                 <label class="label-float">Percentage</label>
-              </div> 
+              </div>
             </div>
            <div id="percentageAmount" class="small-box {{ 'disply-section' if form.valueFor('amountType') == 'percentage'}}">
                 {% if percentageError %}
@@ -200,7 +200,7 @@ selectReferenceData %}
                   <input type="radio" id="volume" name="amountType" value="volume">
                 {%endif%}
                 <label class="label-float">Volume</label>
-              </div> 
+              </div>
             </div>
             <div id="volumeAmount" class="mid-box {{ 'disply-section' if form.valueFor('amountType') == 'volume'}}" >
                <label class="form-label-bold">Amount</label>
@@ -233,7 +233,7 @@ selectReferenceData %}
                     <input type="radio" id="{{event.name}}" name="event" value="{{event.name}}">
                   {%endif%}
                   <label class="label-float">{{event.name}}</label>
-                </div> 
+                </div>
               </div>
             {% endfor %}
           </div>
@@ -255,7 +255,7 @@ selectReferenceData %}
                   <input type="radio" id="{{channel.name}}" name="channel" value="{{channel.name}}">
                 {%endif%}
                 <label class="label-float">{{channel.name}}</label>
-              </div> 
+              </div>
             </div>
           {% endfor %}
         </fieldset>
@@ -283,7 +283,7 @@ selectReferenceData %}
                   <input type="radio" id="{{applicant.name}}" name="applicantType" value="{{applicant.name}}">
                 {%endif%}
                 <label class="label-float">{{applicant.name}}</label>
-              </div> 
+              </div>
             </div>
           {% endfor %}
         </fieldset>
@@ -305,9 +305,14 @@ selectReferenceData %}
                   <input type="radio" id="{{direction.name}}" name="direction" value="{{direction.name}}">
                 {%endif%}
                 <label class="label-float">{{direction.name}}</label>
-              </div> 
+              </div>
             </div>
             {% endfor %}
+            {% if (referenceData.directionTypes.length)%3 !=0 %}
+              {% for i in range((referenceData.directionTypes.length)%3, 3) -%}
+                <div id="serviceChild" class = "form-group"></div>
+              {%- endfor %}
+            {%endif%}
           </div>
         </fieldset>
       </div>
