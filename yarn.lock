@@ -157,10 +157,10 @@
     on-finished "^2.3.0"
     winston "^2.4.5"
 
-"@hmcts/properties-volume@^0.0.9":
-  version "0.0.9"
-  resolved "https://registry.yarnpkg.com/@hmcts/properties-volume/-/properties-volume-0.0.9.tgz#1c2b29a563fcad9041231442476a4a3b7a8abf7d"
-  integrity sha512-qW6XDDnJT8wPfSrrFNFkoQXbtWS/KE55ifeRzXeHAXB8CB9r8e8H33jCql/3WYz/LX6PGQRlrZrU27mtQaNQ4g==
+"@hmcts/properties-volume@^0.0.13":
+  version "0.0.13"
+  resolved "https://registry.yarnpkg.com/@hmcts/properties-volume/-/properties-volume-0.0.13.tgz#d1baeab407d519505aeb2614fb91632a1a328366"
+  integrity sha512-WTz5KTQG3IXQnNZCb63fR44muNn++GxGWZad0k12iIYsNfgws+dMOw7QwhbuKOMhQ2sSWxNK882ZxchVihZN9w==
   dependencies:
     "@hmcts/nodejs-logging" "^3.0.0"
     lodash "^4.17.11"
@@ -8663,10 +8663,10 @@ validate-npm-package-license@^3.0.1:
     spdx-correct "^3.0.0"
     spdx-expression-parse "^3.0.0"
 
-validator@9.2.0:
-  version "9.2.0"
-  resolved "https://registry.yarnpkg.com/validator/-/validator-9.2.0.tgz#ad216eed5f37cac31a6fe00ceab1f6b88bded03e"
-  integrity sha512-6Ij4Eo0KM4LkR0d0IegOwluG5453uqT5QyF5SV5Ezvm8/zmkKI/L4eoraafZGlZPC9guLkwKzgypcw8VGWWnGA==
+validator@9.2.0, validator@>=13.7.0:
+  version "13.7.0"
+  resolved "https://registry.yarnpkg.com/validator/-/validator-13.7.0.tgz#4f9658ba13ba8f3d82ee881d3516489ea85c0857"
+  integrity sha512-nYXQLCBkpJ8X6ltALua9dRrZDHVYxjJ1wgskNt1lH9fzGjs3tgojGSCBjmEPwkWS1y29+DrizMTW19Pr9uB2nw==
 
 validator@^10.11.0:
   version "10.11.0"
