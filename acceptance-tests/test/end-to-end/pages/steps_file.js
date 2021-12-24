@@ -10,7 +10,7 @@ const {verifyCurrentFeeVersion, verifyPreviousFeeVersion} = require('./fee_versi
 const {verifyFeeDraftHeaders, verifyFeeDraftHeadersAwaitingApproval} = require('./fee_draft_dashboard_list');
 const CCDNumber = faker.random.number(RANDOM_NUMBER);
 module.exports = () => actor({
-  // done
+  // done/
   login(email, password) {
     this.amOnPage('/');
     this.wait(CCPBConstants.twoSecondWaitTime);
