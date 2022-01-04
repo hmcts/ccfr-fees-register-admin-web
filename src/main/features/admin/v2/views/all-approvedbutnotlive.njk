@@ -37,32 +37,38 @@
     <thead>
     <tr>
       <th class="govuk-table__header table-colsl">Code</th>
+      <th class="govuk-table__header table-colxl">Date approved</th>
+      <th class="govuk-table__header table-colxl">Valid from</th>
       <th class="govuk-table__header table-colxl">Description</th>
-      <th class="govuk-table__header table-colsl">Amount</th>
       <th class="govuk-table__header table-colml">Statutory Instrument</th>
-      <th class="govuk-table__header table-colxl">Last Amending SI</th>
       <th class="govuk-table__header table-colsl">SI Ref ID</th>
-      <th class="govuk-table__header table-colxl">Consolidated/Original Fee Order Name</th>
+      <th class="govuk-table__header table-colxl">Last Amending SI</th>
       <th class="govuk-table__header table-colsl">Service</th>
       <th class="govuk-table__header table-colsl">Jurisdiction1</th>
       <th class="govuk-table__header table-colsl">Jurisdiction2</th>
-      <th class="govuk-table__header table-colsl">Event</th>
       <th class="govuk-table__header table-colsl">Range from</th>
       <th class="govuk-table__header table-colsl">Range to</th>
       <th class="govuk-table__header table-colsl">Unit</th>
       <th class="govuk-table__header table-colml">Fee type</th>
       <th class="govuk-table__header table-colml">Amount type</th>
+      <th class="govuk-table__header table-colsl">Amount</th>
       <th class="govuk-table__header table-colsl">%</th>
-      <th class="govuk-table__header table-colsl">Channel</th>
+      <th class="govuk-table__header table-colsl">Event</th>
+            <th class="govuk-table__header table-colsl">Channel</th>
       <th class="govuk-table__header table-colsl">Keyword</th>
       <th class="govuk-table__header table-colsl">Applicant type</th>
-      <th class="govuk-table__header table-colsl">Version</th>
       <th class="govuk-table__header table-colxl">Direction</th>
-      <th class="govuk-table__header table-colxl">Valid from</th>
+      <th class="govuk-table__header table-colxl">Memo</th>
+      <th class="govuk-table__header table-colsl">Version</th>
       <th class="govuk-table__header table-colxl">Valid to</th>
       <th class="govuk-table__header table-colsl">Status</th>
-      <th class="govuk-table__header table-colxl">Memo</th>
       <th class="govuk-table__header table-colsl">Natural Account Code</th>
+
+      <th class="govuk-table__header table-colxl">Consolidated/Original Fee Order Name</th>
+
+
+
+
     </tr>
     </thead>
     <tbody>
@@ -77,24 +83,23 @@
         <a href="/fees/{{fee.code}}">{{ fee.code }}</a>
       {% endif %}
       </td>
-      <td>{{ version.description }}</td>
-
-      {% if version.flat_amount and version.flat_amount.amount%}
-      <td >£{{ version.flat_amount.amount.toFixed(2).toString()}}</td>
-      {% elif version.volume_amount and version.volume_amount.amount%}
-      <td >£{{ version.volume_amount.amount.toFixed(2).toString()}}</td>
+      {% if version.approved_date %}
+        <td >{{ version.approved_date | date("DD MMMM YYYY") }}</td>
       {% else %}
-      <td/>
+        <td/>
       {% endif %}
+      {% if version.valid_from %}
+        <td >{{ version.valid_from | date("DD MMMM YYYY") }}</td>
+      {% else %}
+        <td/>
+      {% endif %}
+      <td>{{ version.description }}</td>
       <td >{{ version.statutory_instrument }}</td>
-      <td>{{ version.last_amending_si }}</td>
       <td >{{ version.si_ref_id }}</td>
-      <td>{{ version.consolidated_fee_order_name }}</td>
+      <td>{{ version.last_amending_si }}</td>
       <td >{{ fee.service_type.name }}</td>
       <td >{{ fee.jurisdiction1.name }}</td>
       <td >{{ fee.jurisdiction2.name }}</td>
-      <td >{{ fee.event_type.name }}</td>
-
       {% if fee.min_range %}
       <td >{{ fee.min_range }}</td>
       {% else %}
@@ -105,39 +110,44 @@
       {% else %}
       <td/>
       {% endif %}
-
       <td >{{ fee.range_unit }}</td>
       <td >{{ fee.fee_type }}</td>
       {% if version.flat_amount %}
       <td >Flat</td>
-      <td/>
       {% elif version.volume_amount %}
       <td >Volume</td>
-      <td/>
       {% else %}
       <td >Percentage</td>
+      {% endif %}
+      {% if version.flat_amount and version.flat_amount.amount%}
+      <td >£{{ version.flat_amount.amount.toFixed(2).toString()}}</td>
+      {% elif version.volume_amount and version.volume_amount.amount%}
+      <td >£{{ version.volume_amount.amount.toFixed(2).toString()}}</td>
+      {% else %}
+      <td/>
+      {% endif %}
+      {% if version.flat_amount %}
+      <td/>
+      {% elif version.volume_amount %}
+      <td/>
+      {% else %}
       <td>{{ version.percentage_amount.percentage }}</td>
       {% endif %}
-
+      <td >{{ fee.event_type.name }}</td>
       <td >{{ fee.channel_type.name }}</td>
       <td >{{ fee.keyword }}</td>
       <td >{{ fee.applicant_type.name }}</td>
-      <td >{{ version.version }}</td>
-
       <td>{{ version.direction }}</td>
-      {% if version.valid_from %}
-        <td >{{ version.valid_from | date("DD MMMM YYYY") }}</td>
-      {% else %}
-        <td/>
-      {% endif %}
+      <td>{{ version.memo_line }}</td>
+      <td >{{ version.version }}</td>
       {% if version.valid_to %}
         <td >{{ version.valid_to | date("DD MMMM YYYY") }}</td>
       {% else %}
         <td/>
       {% endif %}
       <td >{{ version.status }}</td>
-      <td>{{ version.memo_line }}</td>
       <td >{{ version.natural_account_code }}</td>
+      <td>{{ version.consolidated_fee_order_name }}</td>
     </tr>
     {% endif %}
     {% endfor %}
