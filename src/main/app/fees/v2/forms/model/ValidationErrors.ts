@@ -19,6 +19,10 @@ export class ValidationErrors {
   static readonly NAC_REQUIRED: string = 'Enter natural account code'
   static readonly FROM_DATE_REQUIRED: string = 'Enter From Date'
   static readonly TO_DATE_REQUIRED: string = 'Enter To Date'
+
+  static readonly FROM_DATE_INVALID_REQUIRED: string = 'Enter valid from date'
+  static readonly TO_DATE_INVALID_REQUIRED: string = 'Enter valid to date'
+
   static readonly STATUTORY_INSTRUMENT_REQUIRED: string = 'Enter Statutory Instrument'
   static readonly SI_REF_ID_REQUIRED: string = 'Enter SI Ref ID'
   static readonly LAST_AMENDING_REQUIRED: string = 'Enter Last Amending SI'
@@ -39,7 +43,7 @@ export class ValidationErrors {
   static readonly EVENT_REQUIRED: string = 'Select a event'
   static readonly SERVICE_REQUIRED: string = 'Select a service'
   static readonly DIRECTION_REQUIRED: string = 'Select a direction'
-  static readonly REASON_FOR_UPDATE_REQUIRED: string = 'Enter reason for update'
+  static readonly REASON_FOR_UPDATE_REQUIRED: string = 'Enter reason for fee update'
   static readonly APPLICATION_TYPE_REQUIRED: string = 'Select an applicant type'
   static readonly RANGE_UNIT_REQUIRED: string = 'Select a unit for the range'
 }

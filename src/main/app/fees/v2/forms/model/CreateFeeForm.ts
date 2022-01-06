@@ -22,6 +22,7 @@ const descriptionMsg = { message: ValidationErrors.DESCRIPTION_REQUIRED }
 const amountNotNegMsg = { message: ValidationErrors.AMOUNT_NOT_NEGATIVE }
 const amountTooBigMsg = { message: ValidationErrors.AMOUNT_TOO_BIG }
 const amountInvalidMsg = { message: ValidationErrors.AMOUNT_INVALID_DECIMALS }
+const regex = /([12]\d{3}-(0[1-9]|1[0-2])-(0[1-9]|[12]\d|3[01]))/;
 export class CreateFeeForm {
   code?: string
   reasonForReject?: string
@@ -98,8 +99,15 @@ export class CreateFeeForm {
 
   @IsDefined(fromDateMsg)
   @IsNotBlank(fromDateMsg)
+  @Matches(regex, {
+    message: ValidationErrors.FROM_DATE_INVALID_REQUIRED
+  })
   fromDate?: Date
 
+  @ValidateIf(o => o.toDate !== '')
+  @Matches(regex, {
+    message: ValidationErrors.TO_DATE_INVALID_REQUIRED 
+  })
   toDate?: Date
 
   @IsDefined({ message: ValidationErrors.NAC_REQUIRED })

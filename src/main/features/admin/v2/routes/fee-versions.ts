@@ -9,7 +9,7 @@ import { Fee2Dto } from 'fees/v2/model/fees-register-api-contract'
 export default express.Router()
     .get(Paths.feeVersions.uri, (req: express.Request, res: express.Response) => {
       FeesClient
-          .getFee(req.params.feeCode)
+          .getFee(res.locals.user, req.params.feeCode)
             .then((feeDto: Fee2Dto) => {
 
               res.render(Paths.feeVersions.associatedView, { 

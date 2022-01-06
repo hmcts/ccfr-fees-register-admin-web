@@ -206,17 +206,30 @@ export class FeesClient {
 
   }
 
-  static getFee (feeCode: string): Promise<Fee2Dto> {
-    let uri: string = `${feesUrl}/fees-register/fees/${feeCode}`
+  static getFee (user, feeCode: string): Promise<Fee2Dto> {
 
     return request
-      .get(uri)
+      .get({
+        uri: `${feesUrl}/fees-register/fees/${feeCode}`,
+        headers: {
+          Authorization: `Bearer ${user.bearerToken}`
+        }
+      })
       .then(response => {
         return response as Fee2Dto
       })
       .catch(FeesClientErrorMapper)
   }
 
+  static getAnonUserFee (feeCode: string): Promise<Fee2Dto> {
+    let url: string = `${feesUrl}/fees-register/fees/${feeCode}`;
+    return request
+      .get(url)
+      .then(response => {
+        return response as Fee2Dto
+      })
+      .catch(FeesClientErrorMapper)
+  }
   static prevalidate (user, event: string, service: string, channel: string, jurisdiction1: string, jurisdiction2: string, keyword: string, rangeFrom: string, rangeTo: string): Promise<boolean> {
 
     let url: string = `${feesUrl}/fees-register/fees/prevalidate?event=${event}&channel=${channel}&service=${service}&jurisdiction1=${jurisdiction1}&jurisdiction2=${jurisdiction2}&keyword=${keyword}`

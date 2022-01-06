@@ -7,8 +7,12 @@
   {% block content %}
 
     <input type='hidden' id='userRole' value=''/>
+    <div class="downloadbtn-container downloadbtn-container-align">
+      <div>
+        <a href="#" id="mybutton" class="a-create-link">{{nextButton(t("Download all fees"), t("govuk-button2 black-text"))}}</a>
+      </div>
+    </div>
 
-       <a href="#" id="mybutton" class="a-create-link">{{nextButton(t("Download all fees"), t("govuk-button2 black-text"))}}</a>
 
 <ul class="govuk-tabs__list govuk-!-margin-top-7">
 <li class="govuk-tabs__list-item govuk-tabs__list-item--selected">

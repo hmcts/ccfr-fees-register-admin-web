@@ -801,7 +801,13 @@ a.custom-reference-data:visited {
 #reasonRejectFeesId > .form-group-error {
   border: 0;
 }
+.draft-success-padding15 {
+  padding-bottom: 15px;;
+}
 .downloadbtn-container {
   display: flex;
   width: 100%;
+}
+.downloadbtn-container-align {
+  justify-content: flex-end;
 }
