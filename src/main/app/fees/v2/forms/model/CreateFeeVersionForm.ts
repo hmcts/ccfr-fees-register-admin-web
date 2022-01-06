@@ -1,4 +1,4 @@
-import { IsDefined, Max, MaxLength, Min, ValidateIf } from 'class-validator'
+import { IsDefined, Max, MaxLength, Min, ValidateIf, Matches } from 'class-validator'
 
 import { IsNotBlank } from 'app/forms/validation/validators/isBlank'
 import { Fractions } from 'app/forms/validation/validators/fractions'
@@ -10,6 +10,7 @@ import {
   FeeVersionDto, FlatAmountDto, PercentageAmountDto, VolumeAmountDto
 } from 'fees/v2/model/fees-register-api-contract'
 const reasonForUpdateMsg = { message: ValidationErrors.REASON_FOR_UPDATE_REQUIRED }
+const regex = /([12]\d{3}-(0[1-9]|1[0-2])-(0[1-9]|[12]\d|3[01]))/;
 
 export class CreateFeeVersionForm {
   @IsDefined({ message: ValidationErrors.TYPE_REQUIRED })
@@ -52,8 +53,15 @@ export class CreateFeeVersionForm {
 
   @IsDefined({ message: ValidationErrors.FROM_DATE_REQUIRED })
   @IsNotBlank({ message: ValidationErrors.FROM_DATE_REQUIRED })
+  @Matches(regex, {
+    message: ValidationErrors.FROM_DATE_INVALID_REQUIRED
+  })
   fromDate?: Date
 
+  @ValidateIf(o => o.toDate !== '')
+  @Matches(regex, {
+    message: ValidationErrors.TO_DATE_INVALID_REQUIRED 
+  })
   toDate?: Date
 
   statutoryInstrument?: string
