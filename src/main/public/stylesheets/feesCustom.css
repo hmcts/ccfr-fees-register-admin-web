@@ -109,6 +109,7 @@
 }
 #serviceChild {
   flex: 1 0 33%;
+  max-width: 33%;
 }
 #ranged-container,
 #flatAmount,
@@ -330,7 +331,7 @@
   font-size: 19px;
   line-height: 25px;
   font-weight: 400;
-} 
+}
 .govuk-check-your-answers--short {
   width: 100%;
 }
@@ -419,11 +420,11 @@ a.btn {
 }
 
 a.custom-header-title:link {
-  color: white; 
+  color: white;
   text-decoration: none;}
 
 a.custom-header-title:visited {
-  color: white; 
+  color: white;
   text-decoration: none;}
 
 a.custom-header-title:hover {
@@ -646,7 +647,7 @@ text-align: left;
 }
 .govuk-details {
   margin-bottom: 30px;
-  
+
 }
 
 .govuk-details-text {
@@ -669,12 +670,12 @@ text-align: left;
   padding-left: 25px;
   text-decoration: underline;
 }
-.link-button { 
+.link-button {
   background: none;
   border: none;
   color: #1a0dab;
   text-decoration: underline;
-  cursor: pointer; 
+  cursor: pointer;
   margin-left: -5px;
 }
 h1.heading-xlarge {
