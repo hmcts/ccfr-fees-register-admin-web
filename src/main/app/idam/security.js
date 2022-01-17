@@ -19,7 +19,6 @@ function Security(options) {
 }
 
 /* --- INTERNAL --- */
-
 function addOAuth2Parameters(url, state, self, req) {
 
   url.query.response_type = "code";
