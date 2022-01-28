@@ -49,7 +49,7 @@ Run them with:
 $ yarn test
 ```
 
-### Running the Functional tests
+#### Running the Functional tests
 
 configure the following environment variables
 E2E_FRONTEND_URL=<PR/AAT>

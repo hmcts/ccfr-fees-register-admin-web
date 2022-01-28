@@ -178,7 +178,8 @@
     "class-validator/validator": ">=13.7.0",
     "json-schema": "^0.4.0",
     "copy-props": "^2.0.5",
-    "node-sass": "^4.14.0"
+    "node-sass": "^4.14.0",
+    "nanoid": "^3.1.31"
     
   }
 }
