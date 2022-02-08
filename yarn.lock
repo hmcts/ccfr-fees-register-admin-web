@@ -157,6 +157,15 @@
     on-finished "^2.3.0"
     winston "^2.4.5"
 
+"@hmcts/nodejs-logging@^3.0.4":
+  version "3.0.4"
+  resolved "https://registry.yarnpkg.com/@hmcts/nodejs-logging/-/nodejs-logging-3.0.4.tgz#82418571e85f0a275e021f53008195accc55e3b9"
+  integrity sha512-42JgVVxxMI9JD+lnKkBcwIYAiJM/mIUlSLlqs8uVqnzHG/JdMhg1g6cYWqWc3UIhxl2KS+n8y4bh09nLC47nSA==
+  dependencies:
+    moment "^2.19.3"
+    on-finished "^2.3.0"
+    winston "^2.4.5"
+
 "@hmcts/properties-volume@^0.0.13":
   version "0.0.13"
   resolved "https://registry.npmjs.org/@hmcts/properties-volume/-/properties-volume-0.0.13.tgz"
@@ -1715,6 +1724,12 @@ cls-hooked@^4.2.2:
     async-hook-jl "^1.7.6"
     emitter-listener "^1.0.1"
     semver "^5.4.1"
+
+"cmc-cookies-manager@github:hmcts/cmc-cookies-manager":
+  version "1.0.6"
+  resolved "https://codeload.github.com/hmcts/cmc-cookies-manager/tar.gz/b41d9321c8c0b12ed36a550a0859b75c7c75467b"
+  dependencies:
+    govuk-frontend "^3.11.0"
 
 co@^4.6.0:
   version "4.6.0"
@@ -3735,6 +3750,16 @@ govuk-elements-sass@^3.0.2:
   integrity sha512-uLg/LHSrylkXDKVPlz9uQtdAOQ2CG4rwxPBmQGO5c5QqW4OS83gspNEDaM/dzK2n2OduiieynfkwKbtqR89xiA==
   dependencies:
     govuk_frontend_toolkit "^7.1.0"
+
+govuk-frontend@^3.11.0:
+  version "3.14.0"
+  resolved "https://registry.yarnpkg.com/govuk-frontend/-/govuk-frontend-3.14.0.tgz#d3a9c54437c08f5188f87b1f4480ba60e95c8eb6"
+  integrity sha512-y7FTuihCSA8Hty+e9h0uPhCoNanCAN+CLioNFlPmlbeHXpbi09VMyxTcH+XfnMPY4Cp++7096v0rLwwdapTXnA==
+
+govuk-frontend@^4.0.0:
+  version "4.0.0"
+  resolved "https://registry.yarnpkg.com/govuk-frontend/-/govuk-frontend-4.0.0.tgz#4b58df200b85be72589fa3b4655638f972ade427"
+  integrity sha512-liaJildULUNSSvEgDm36SQTivqBHiZLdrm+O7bBxnW4Q1g64asi+mJIMzW8QeOqlG4Yn8s0gSklsIyaFOuCisQ==
 
 govuk_frontend_toolkit@^7.1.0:
   version "7.6.0"
