@@ -48,7 +48,6 @@ Run them with:
 ```bash
 $ yarn test
 ```
-
 #### Running the Functional tests
 
 configure the following environment variables
