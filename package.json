@@ -166,7 +166,6 @@
     "hosted-git-info": "^3.0.8",
     "lodash": "^4.17.21",
     "merge": "^2.1.1",
-    "node-fetch": "^2.6.1",
     "path-parse": "^1.0.7",
     "trim-newlines": "^4.0.1",
     "websocket-extensions": "^0.1.4",
@@ -174,12 +173,13 @@
     "yargs-parser": "^18.1.2",
     "y18n": "^5.0.5",
     "set-value": "^4.0.1",
-    "minimist": "^1.2.2",
+    "minimist": "^1.2.6",
     "class-validator/validator": ">=13.7.0",
     "json-schema": "^0.4.0",
     "copy-props": "^2.0.5",
     "node-sass": "^4.14.0",
     "nanoid": "^3.1.31",
+    "node-fetch": "^2.6.7",
     "ajv": "^6.12.3"
   }
 }
