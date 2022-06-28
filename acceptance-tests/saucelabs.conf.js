@@ -41,7 +41,7 @@ function getBrowserConfig(browserGroup) {
 testConfig.TestOutputDir = undefined;
 const setupConfig = {
   tests: './test/end-to-end/tests/*_test.js',
-  output: './output',
+  output: `${process.cwd()}/functional-output`,
   helpers: {
     WebDriver: {
       url: testConfig.e2e.frontendUrl,
@@ -77,15 +77,14 @@ const setupConfig = {
         options: { steps: true }
       },
       'mocha-junit-reporter': {
-        stdout: '-',
-        options: { mochaFile: 'output/result.xml' }
+        stdout: './functional-output/ccfr-fees-register-admin-web--mocha-stdout.log',
+        options: {
+          mochaFile: process.env.MOCHA_JUNIT_FILE_LOCATION || './build/test-results/codeceptjs/ccfr-fees-register-admin-web-result.xml' }
       },
       mochawesome: {
-        stdout: 'output/console.log',
+        stdout: './functional-output/ccfr-fees-register-admin-web-mochawesome-stdout.log',
         options: {
-          reportDir: 'output',
-          reportName: 'index',
-          reportTitle: 'Crossbrowser results',
+          reportDir: 'functional-output',
           inlineAssets: true
         }
       }
@@ -94,8 +93,7 @@ const setupConfig = {
   multiple: {
     microsoft: { browsers: getBrowserConfig('microsoft') },
     chrome: { browsers: getBrowserConfig('chrome') },
-    firefox: { browsers: getBrowserConfig('firefox') },
-    safari: { browsers: getBrowserConfig('safari') }
+    firefox: { browsers: getBrowserConfig('firefox') }
   },
   name: 'Fee and Pay Fees Register Admin Cross-Browser Tests'
 };
