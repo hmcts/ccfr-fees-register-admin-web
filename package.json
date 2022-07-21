@@ -36,7 +36,7 @@
     "dependency-setup-with-yarn-lock": "yarn --mutex network install --frozen-lockfile"
   },
   "dependencies": {
-    "@hmcts/nodejs-healthcheck": "^1.7.0",
+    "@hmcts/nodejs-healthcheck": "^1.7.3",
     "@hmcts/nodejs-logging": "^3.0.0",
     "@hmcts/properties-volume": "^0.0.13",
     "@types/config": "^0.0.35",
