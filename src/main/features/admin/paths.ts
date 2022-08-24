@@ -63,4 +63,7 @@ export class Paths {
   static readonly createBulkFeesPage = new RoutablePath('/admin/v2/bulkfeesupload', 'admin/v2/views/confirm-create-bulk-fees')
   static readonly csvToJsonPage = new RoutablePath('/admin/v2/tojson', 'admin/v2/views/fee-loader-json')
 
+  /* Cookie Banner */
+  static readonly cookiePolicyPage = new RoutablePath('/admin/cookies','admin/views/cookie-policy')
+  static readonly cookieDetailsPage = new RoutablePath('/admin/cookies-details','admin/views/cookie-details')
 }
