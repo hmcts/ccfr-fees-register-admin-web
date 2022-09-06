@@ -51,18 +51,6 @@ Scenario('@functional FeesRegister Admin Console Approver Header and Tab Validat
   I.click('Sign out');
 }).retry(CCFRATConstants.retryScenario);
 
-// Already covered in Editor and Approver journey tests
-Scenario('@functional FeesRegister Verify Pending For Approval And Approve The Fees', async I => {
-  let feeObj = await I.addNewFeeAndSubmitForApproval(editorUserName, editorPassword);
-  feeCode = feeObj.feeCode;
-  I.wait(CCFRATConstants.tenSecondWaitTime);
-  I.login(approverUserName, approverPassword);
-  I.wait(CCFRATConstants.fiveSecondWaitTime);
-  I.see('Awaiting approval');
-  await I.retry(3).verifyFeesSentForApprovalAndApprove();
-  I.click('Sign out');
-}).retry(CCFRATConstants.retryScenario);
-
 Scenario('@functional FeesRegister Verify Pending For Approval And Reject The Fees', async I => {
   let feeObj = await I.addNewFeeAndSubmitForApproval(editorUserName, editorPassword);
   feeCode = feeObj.feeCode;

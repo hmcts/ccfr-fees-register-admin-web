@@ -28,7 +28,7 @@ AfterSuite(async () => {
   }
 });
 
-Scenario('FeesRegister Admin Console Editor Header and Tab Validation', I => {
+Scenario('@functional FeesRegister Admin Console Editor Header and Tab Validation', I => {
   I.login(editorUserName, editorPassword);
   I.wait(CCFRATConstants.tenSecondWaitTime);
   I.see("Fees");
@@ -61,7 +61,7 @@ Scenario('FeesRegister Admin Console Editor Header and Tab Validation', I => {
   I.click('Sign out');
 });
 
-Scenario('FeesRegister Admin Console Editor Screen For Live Fees Details', I => {
+Scenario('@functional FeesRegister Admin Console Editor Screen For Live Fees Details', I => {
   I.login(editorUserName, editorPassword);
   I.wait(CCFRATConstants.tenSecondWaitTime);
   // to-do based on updates and future stories
@@ -76,7 +76,6 @@ Scenario('FeesRegister Admin Console Editor Screen For Live Fees Details', I => 
   I.click('Sign out');
 }).retry(CCFRATConstants.retryScenario);
 
-// Enabled now
 Scenario('@functional FeesRegister Admin Console Editor Approved but not live Fees Details Check', async I => {
   let feeObj = await I.addNewFeeAndSubmitForApproval(editorUserName, editorPassword);
   feeCode = feeObj.feeCode;
@@ -117,25 +116,7 @@ Scenario('@functional @crossbrowser FeesRegister Admin Console Editor Discontinu
   I.click('Sign out');
 }).retry(CCFRATConstants.retryScenario);
 
-Scenario('@debug FeesRegister Add New Fee and Submit for Approval', async I => {
-  const feeKeyword = "SN" + new Date().valueOf().toString();
-  const fromDate = new Date();
-  const formattedFromDate = fromDate.toLocaleDateString('en-GB');
-  I.login(editorUserName, editorPassword);
-  I.wait(CCFRATConstants.twoSecondWaitTime);
-  I.waitForText('Live fees', CCFRATConstants.tenSecondWaitTime);
-  await I.addNewFee(feeKeyword, formattedFromDate);
-  I.waitForText('Draft fee saved', CCFRATConstants.tenSecondWaitTime);
-  I.click('View draft fee');
-  I.waitForText('Amount', CCFRATConstants.tenSecondWaitTime);
-  I.waitForText('View', CCFRATConstants.fiveSecondWaitTime);
-  I.click('//a[contains(text(),"View")][1]');
-  I.submitForApproval();
-  feeCode =  await I.getFeeCode();
-  I.click('Sign out');
-}).retry(CCFRATConstants.retryScenario);
-
-Scenario('@functional FeesRegister Add New Fee and Edit the fee', async I => {
+Scenario('@functional FeesRegister Add New Fee, Edit the fee and Delete the Fee', async I => {
   const feeKeyword = "SN" + new Date().valueOf().toString();
   const fromDate = new Date();
   const formattedFromDate = fromDate.toLocaleDateString('en-GB');
@@ -149,26 +130,21 @@ Scenario('@functional FeesRegister Add New Fee and Edit the fee', async I => {
   I.waitForText('Amount', CCFRATConstants.tenSecondWaitTime);
   I.waitForText('View', CCFRATConstants.fiveSecondWaitTime);
   I.click('//a[contains(text(),"View")][1]');
-  I.editDraft();
-  feeCode = await I.getFeeCode();
-  I.click('Sign out');
-}).retry(CCFRATConstants.retryScenario);
+  I.waitForText(  'Direction', '10');
 
-Scenario('@functional FeesRegister Add New Fee and Delete Draft', async I => {
-  const feeKeyword = "SN" + new Date().valueOf().toString();
-  const fromDate = new Date();
-  const formattedFromDate = fromDate.toLocaleDateString('en-GB');
-  I.login(editorUserName, editorPassword);
-  I.wait(CCFRATConstants.twoSecondWaitTime);
-  I.waitForText('Live fees', CCFRATConstants.tenSecondWaitTime);
-  await I.addNewFee(feeKeyword, formattedFromDate);
+  let currentUrl = await I.grabCurrentUrl();
+  const url = new URL(currentUrl);
+  const feeCode = url.searchParams.get('feeCode');
+
+  I.editDraft();
   I.waitForText('Draft fee saved', CCFRATConstants.tenSecondWaitTime);
   I.click('View draft fee');
   I.waitForText('Amount', CCFRATConstants.tenSecondWaitTime);
   I.waitForText('View', CCFRATConstants.fiveSecondWaitTime);
   I.click('//a[contains(text(),"View")][1]');
+  I.wait(CCFRATConstants.fiveSecondWaitTime);
   I.deleteFees();
-  feeCode = await I.getFeeCode();
+  I.waitForText(`${feeCode} has been deleted`, CCFRATConstants.tenSecondWaitTime);
   I.click('Sign out');
 }).retry(CCFRATConstants.retryScenario);
 
