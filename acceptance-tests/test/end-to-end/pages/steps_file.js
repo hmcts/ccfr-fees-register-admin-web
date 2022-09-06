@@ -96,11 +96,11 @@ module.exports = () => actor({
 
     let newFeeObj = {
       memoLineNumber: memoLineNumber
-    }
+    };
     return newFeeObj;
   },
+
   editDraft(){
-    this.waitForText(  'Direction', '10');
     this.click(  'Edit fee');
     this.waitForText(  'Statutory Instrument', '10');
     this.fillField({ css: '#description'}, "E2E Testing Edit");
@@ -146,7 +146,7 @@ module.exports = () => actor({
     this.click(  'Request approval');
     this.wait(CCPBConstants.fiveSecondWaitTime);
   },
-  deleteFees(feeKeyword) {
+  deleteFees() {
     this.see('Delete');
     this.click('Delete');
     this.waitForText('Are you sure you want to delete this draft fee?', '10');
@@ -213,7 +213,7 @@ module.exports = () => actor({
       feeCode: feeCode,
       memoLineNumber: newFeeObj.memoLineNumber,
       fromDate: fromDate
-    }
+    };
     return feeObj;
   },
 
