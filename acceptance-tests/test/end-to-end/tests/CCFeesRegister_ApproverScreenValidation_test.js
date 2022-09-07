@@ -51,16 +51,6 @@ Scenario('@functional FeesRegister Admin Console Approver Header and Tab Validat
   I.click('Sign out');
 }).retry(CCFRATConstants.retryScenario);
 
-Scenario('@functional FeesRegister Verify Pending For Approval And Reject The Fees', async I => {
-  let feeObj = await I.addNewFeeAndSubmitForApproval(editorUserName, editorPassword);
-  feeCode = feeObj.feeCode;
-  I.login(approverUserName, approverPassword);
-  I.wait(CCFRATConstants.tenSecondWaitTime);
-  I.waitForText("Awaiting approval","10");
-  await I.rejectFees();
-  I.click('Sign out');
-}).retry(CCFRATConstants.retryScenario);
-
 Scenario('@functional FeesRegister Verify Pending For Approval header list',  I => {
   I.login(approverUserName, approverPassword);
   I.wait(CCFRATConstants.tenSecondWaitTime);

@@ -207,7 +207,6 @@ module.exports = () => actor({
     this.click('//a[contains(text(),"View")][1]');
     this.submitForApproval();
     let feeCode = await this.getFeeCode();
-    this.click('Sign out');
     let feeObj = {
       feeKeyword: feeKeyword,
       feeCode: feeCode,

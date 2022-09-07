@@ -33,30 +33,25 @@ Scenario('@functional FeesRegister Admin Console Editor Header and Tab Validatio
   I.wait(CCFRATConstants.tenSecondWaitTime);
   I.see("Fees");
   I.click("Fees");
+  I.wait(CCFRATConstants.twoSecondWaitTime);
   I.waitForText("Live fees","10");
   I.verifyDownloadLink();
   I.clickDownloadLink();
   I.click("Approved but not live fees");
+  I.wait(CCFRATConstants.twoSecondWaitTime);
   I.waitForText("Approved but not live fees","10");
   I.verifyDownloadLink();
   I.clickDownloadLink();
   I.see("Code");
   I.click("Discontinued fees");
+  I.wait(CCFRATConstants.twoSecondWaitTime);
   I.waitForText("Discontinued fees","10");
   I.verifyDownloadLink();
   I.clickDownloadLink();
   I.see("Code");
-  I.see("Your Drafts");
-  I.click("Your Drafts");
-  I.waitForText("Drafts", "10");
-  I.see("Rejected by approver");
-  I.click("Rejected by approver");
-  I.waitForText("Code", "10");
-  I.see("Awaiting approval");
-  I.click("Awaiting approval");
-  I.waitForText("Code", "10");
   I.see("Reference Data");
   I.click("Reference Data");
+  I.wait(CCFRATConstants.twoSecondWaitTime);
   I.waitForText("Applicants","10");
   I.click('Sign out');
 });
@@ -70,15 +65,22 @@ Scenario('@functional FeesRegister Admin Console Editor Screen For Live Fees Det
   I.click('Live fees');
   I.verifyFeesHeaders();
   //verify any existing fee details under live Tab
-  I.verifyFeeDetails('live', 'FEE0002','1.2','Family Proceedings Fees Order 2008','divorce','issue','Filing an application for a divorce, nullity or civil partnership dissolution',
-    '2021 No 985','The Court Fees (Miscellaneous Amendments) Order 2021','family','family court','fixed','Flat','593.00','',
-    '30 September 2021', '', '6', 'Inflationary Increase', '4481102159', 'RECEIPT OF FEES - Family issue divorce', 'inflationary', 'all', 'DivorceCivPart', 'default', 'approved', 'cef56daa-572c-464b-bd32-4a487c771d47', '39907');
+  if (CONF.e2e.frontendUrl.includes("aat")) {
+    I.verifyFeeDetails('live', 'FEE0002','1.2','Family Proceedings Fees Order 2008','divorce','issue','Filing an application for a divorce, nullity or civil partnership dissolution',
+      '2021 No 985','The Court Fees (Miscellaneous Amendments) Order 2021','family','family court','fixed','Flat','593.00','',
+      '30 September 2021', '', '6', 'Inflationary Increase', '4481102159', 'RECEIPT OF FEES - Family issue divorce', 'inflationary', 'all', 'DivorceCivPart', 'default', 'approved', 'cef56daa-572c-464b-bd32-4a487c771d47', '39907');
+  } else if (CONF.e2e.frontendUrl.includes("demo")) {
+    I.verifyFeeDetails('live', 'FEE0002','1.2','Family Proceedings Fees Order 2008','divorce','issue','Filing an application for a divorce, nullity or civil partnership dissolution',
+      '2021 No 985','The Court Fees (Miscellaneous Amendments) Order 2021','family','family court','fixed','Flat','593.00','',
+      '30 September 2021', '', '6', 'Inflationary Increase', '4481102159', 'RECEIPT OF FEES - Family issue divorce', 'inflationary', 'all', 'DivorceCivPart', 'default', 'approved', 'cef56daa-572c-464b-bd32-4a487c771d47', 'pkiauq puuujbhe');
+  }
   I.click('Sign out');
 }).retry(CCFRATConstants.retryScenario);
 
 Scenario('@functional FeesRegister Admin Console Editor Approved but not live Fees Details Check', async I => {
   let feeObj = await I.addNewFeeAndSubmitForApproval(editorUserName, editorPassword);
   feeCode = feeObj.feeCode;
+  I.click('Sign out');
   I.wait(CCFRATConstants.tenSecondWaitTime);
   I.login(approverUserName, approverPassword);
   I.wait(CCFRATConstants.fiveSecondWaitTime);
@@ -184,18 +186,37 @@ Scenario('@functional FeesRegister upload fee',  I => {
 }).retry(CCFRATConstants.retryScenario);
 
 // Draft tests
-Scenario('@functional FeesRegister Admin Console Editor Screen For Fee Draft Details', I => {
+Scenario('@functional FeesRegister Admin Console Editor Screen For Fee Draft Details', async I => {
+  const feeKeyword = "SN" + new Date().valueOf().toString();
+  const fromDate = new Date();
+  const formattedFromDate = fromDate.toLocaleDateString('en-GB');
   I.login(editorUserName, editorPassword);
-  I.wait(CCFRATConstants.tenSecondWaitTime);
+  I.wait(CCFRATConstants.fiveSecondWaitTime);
+  I.waitForText('Live fees', CCFRATConstants.tenSecondWaitTime);
+  await I.addNewFee(feeKeyword, formattedFromDate);
+  I.waitForText('Draft fee saved', CCFRATConstants.tenSecondWaitTime);
+  I.see("Your Drafts");
   I.click("Your Drafts");
+  I.wait(CCFRATConstants.fiveSecondWaitTime);
   I.waitForText('Drafts', CCFRATConstants.tenSecondWaitTime);
   I.verifyFeeDraftHeaders();
   I.click('Sign out');
 }).retry(CCFRATConstants.retryScenario);
 
-Scenario('@functional FeesRegister Editor Screen For Fee Draft Rejected by approver', I => {
+Scenario('@functional FeesRegister Editor Screen For Fee Draft Rejected by approver', async I => {
+  let feeObj = await I.addNewFeeAndSubmitForApproval(editorUserName, editorPassword);
+  feeCode = feeObj.feeCode;
+  I.click('Sign out');
+  I.wait(CCFRATConstants.fiveSecondWaitTime);
+  I.login(approverUserName, approverPassword);
+  I.wait(CCFRATConstants.fiveSecondWaitTime);
+  I.waitForText("Awaiting approval","10");
+  await I.rejectFees();
+  I.click('Sign out');
+  I.wait(CCFRATConstants.fiveSecondWaitTime);
   I.login(editorUserName, editorPassword);
-  I.wait(CCFRATConstants.tenSecondWaitTime);
+  I.wait(CCFRATConstants.fiveSecondWaitTime);
+  I.see("Your Drafts");
   I.click("Your Drafts");
   I.click("Rejected by approver");
   I.waitForText('Rejected by approver', CCFRATConstants.tenSecondWaitTime);
@@ -203,9 +224,9 @@ Scenario('@functional FeesRegister Editor Screen For Fee Draft Rejected by appro
   I.click('Sign out');
 }).retry(CCFRATConstants.retryScenario);
 
-Scenario('@functional FeesRegister Editor Screen For Fee Draft Awaiting approval', I => {
-  I.login(editorUserName, editorPassword);
-  I.wait(CCFRATConstants.tenSecondWaitTime);
+Scenario('@functional FeesRegister Editor Screen For Fee Draft Awaiting approval', async I => {
+  let feeObj = await I.addNewFeeAndSubmitForApproval(editorUserName, editorPassword);
+  feeCode = feeObj.feeCode;
   I.click("Your Drafts");
   I.click("Awaiting approval");
   I.waitForText('Awaiting approval', CCFRATConstants.tenSecondWaitTime);
