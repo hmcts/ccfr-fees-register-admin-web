@@ -234,3 +234,13 @@ Scenario('@functional FeesRegister Editor Screen For Fee Draft Awaiting approval
   I.click('Sign out');
 }).retry(CCFRATConstants.retryScenario);
 
+Scenario('@functional FeesRegister Verify Reference Data Page',  I => {
+  I.login(approverUserName, approverPassword);
+  I.wait(CCFRATConstants.tenSecondWaitTime);
+  I.see("Reference Data");
+  I.click("Reference Data");
+  I.waitForText("Reference data",CCFRATConstants.tenSecondWaitTime);
+  I.verifyReferenceData();
+  I.click('Sign out');
+}).retry(CCFRATConstants.retryScenario);
+

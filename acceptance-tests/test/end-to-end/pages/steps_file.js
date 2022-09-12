@@ -8,6 +8,7 @@ const {verifyFeeDetails} = require('./fee_details');
 const {verifyFeesHeaders, verifyDownloadLink, clickDownloadLink} = require('./fee_dashboard_list');
 const {verifyCurrentFeeVersion, verifyPreviousFeeVersion} = require('./fee_versions');
 const {verifyFeeDraftHeaders, verifyFeeDraftHeadersAwaitingApproval} = require('./fee_draft_dashboard_list');
+const {verifyReferenceData} = require('./reference_data');
 const CCDNumber = faker.random.number(RANDOM_NUMBER);
 module.exports = () => actor({
   // done/
@@ -223,5 +224,6 @@ module.exports = () => actor({
   verifyCurrentFeeVersion,
   verifyPreviousFeeVersion,
   verifyFeeDraftHeaders,
-  verifyFeeDraftHeadersAwaitingApproval
+  verifyFeeDraftHeadersAwaitingApproval,
+  verifyReferenceData
 });
