@@ -5,6 +5,9 @@ const livereload = require('gulp-livereload');
 const sass = require('gulp-sass');
 const path = require('path');
 const replace = require('gulp-replace');
+const browserify = require('browserify');
+const babelify = require('babelify');
+const source = require('vinyl-source-stream');
 
 const repoRoot = path.join(__dirname, '/');
 const govUkFrontendToolkitRoot = path.join(repoRoot, 'node_modules/govuk_frontend_toolkit/stylesheets');
@@ -12,6 +15,7 @@ const govUkElementRoot = path.join(repoRoot, 'node_modules/govuk-elements-sass/p
 
 const assetsDirectory = './src/main/public';
 const stylesheetsDirectory = `${assetsDirectory}/stylesheets`;
+const jsDirectory = `${assetsDirectory}/js`;
 
 gulp.task('sass', function(done) {
   gulp.src(stylesheetsDirectory + '/*.scss')
@@ -29,6 +33,19 @@ gulp.task('sass', function(done) {
   done();
 
 })
+
+gulp.task('cookie-js', function() {
+   return browserify('./src/main/app/cookie-banner/cookie-manager.js')
+   .transform(babelify, {
+    presets: ['@babel/preset-env'],
+    sourceMaps: true, 
+    global: true, 
+    ignore: [/\/node_modules\/(?!@hmcts\/cookie-manager)/]
+   })
+   .bundle()
+   .pipe(source('cookie.js'))
+   .pipe(gulp.dest(jsDirectory))
+});
 
 gulp.task("copy-files", function(done) {
   gulp.src([
