@@ -10,7 +10,7 @@ const editorUserName = process.env.EDITOR_USERNAME;
 const editorPassword = process.env.EDITOR_PASSWORD;
 
 Feature('CC FeesRegister Admin Acceptance Tests For Editor');
-Scenario('FeesRegister Admin Console Editor Header and Tab Validation', I => {
+Scenario.skip('FeesRegister Admin Console Editor Header and Tab Validation', I => {
   I.login(editorUserName, editorPassword);
   I.wait(CCFRATConstants.tenSecondWaitTime);
   I.see("Fees");
@@ -196,7 +196,7 @@ Scenario('FeesRegister Editor Screen For Fee Draft Rejected by approver', I => {
   I.click('Sign out');
 }).retry(CCFRATConstants.retryScenario);
 
-Scenario('FeesRegister Editor Screen For Fee Draft Awaiting approval', I => {
+Scenario.skip('FeesRegister Editor Screen For Fee Draft Awaiting approval', I => {
   I.login(editorUserName, editorPassword);
   I.wait(CCFRATConstants.tenSecondWaitTime);
   I.click("Your Drafts");
