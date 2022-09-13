@@ -11,7 +11,7 @@
     "start:express-dev": "cross-env NODE_ENV=development IGNORE_CERTS=true nodemon --inspect start.js",
     "start:express-prod": "cross-env IGNORE_CERTS=true nodemon --inspect start.js",
     "debug": "NODE_OPTIONS=--inspect ./node_modules/.bin/ts-node --inspect --no-lazy -r tsconfig-paths/register src/main/server.ts",
-    "setup": "gulp sass copy-files cookie-js",
+    "setup": "gulp sass copy-files",
     "lint": "tslint --project tsconfig.json --project && sass-lint -v -q",
     "test": "FEES_CLIENT_ID=feeid FEES_CLIENT_SECRET=feesecret DISABLE_AUTH=true mocha --timeout 10000 --require ts-node/register -r tsconfig-paths/register $(find src/test \\( -name '*.ts' -or -name '*.js' \\) ! -path '*a11y*' ! -path '*/routes/disabled/*') --reporter mochawesome --reporter-options reportFilename=unit,inlineAssets=true,reportTitle=fees-register-admin-web-unit",
     "test:coverage": "FEES_CLIENT_ID=feeid FEES_CLIENT_SECRET=feesecret DISABLE_AUTH=true LOG_LEVEL=OFF nyc mocha --compilers ts:ts-node/register -r tsconfig-paths/register --exit --timeout 8000 --opts mocha.opts $(find src/test \\( -name '*.ts' \\) ! -path '*a11y*')",
@@ -109,15 +109,11 @@
     "yarn": "^1.6.0"
   },
   "devDependencies": {
-    "@babel/core": "^7.19.0",
-    "@babel/preset-env": "^7.19.0",
     "@types/chai": "^4.1.4",
     "@types/chai-as-promised": "^7.1.0",
     "@types/chai-spies": "^1.0.0",
     "@types/mocha": "*",
     "@types/supertest": "*",
-    "babelify": "^10.0.0",
-    "browserify": "^17.0.0",
     "chai": "^4.1.2",
     "chai-as-promised": "^7.1.1",
     "chai-spies": "^1.0.0",
@@ -147,7 +143,6 @@
     "ts-mockito": "^2.3.0",
     "tslint": "^5.1.0",
     "tslint-config-standard": "^9.0.0",
-    "vinyl-source-stream": "^2.0.0",
     "webdriverio": "^6.12.1"
   },
   "nyc": {
