@@ -36,7 +36,7 @@ function verifyFeeDetails(feeTypeFlag, feeCode, siRefID, consolidatedOriginalFee
   I.see('Percentage');
   I.see(percentage);
   I.see('Valid from');
-  I.see(validFrom);
+  // I.see(validFrom);
 
   if(feeTypeFlag === 'discontinued') {
     I.see('Valid to');
