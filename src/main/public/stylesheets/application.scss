@@ -50,3 +50,47 @@ $delete-button-color-hover: #a60000;
     background-color: $delete-button-color-hover;
   }
 }
+
+
+// Cookie Banner and Cookie Details
+.notification-fs {
+  font-size: 19px;
+}
+
+$cookie-background-color: #f3f2f1;
+$cookie-border-bottom-color: #000;
+
+.pb-notification {
+  .cookie-banner {
+    background-color: $cookie-background-color;
+    border-bottom: 10px solid $cookie-border-bottom-color;
+    padding-top: 20px;
+  }
+}
+
+.govuk-heading-l {
+  font-size: 24px;
+}
+
+$hr-background-color: #000;
+
+hr {
+  background-color: $hr-background-color;
+  border: 0;
+  height: 1px;
+}
+
+.cookie-preference-success {
+  display: 0;
+  margin-bottom: 30px;
+}
+
+.success-message {
+  padding: 20px;
+}
+
+$notification-banner-border-color: #00703c;
+
+.notification-banner--success {
+  border: 5px solid $notification-banner-border-color;
+}
