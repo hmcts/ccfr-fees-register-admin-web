@@ -9,7 +9,8 @@ function verifyCurrentFeeVersion(cVersion, pVersion, cDescription, pDescription,
   I.see('Version '+cVersion);
 
   I.click('//span[contains(text(),"Version '+cVersion+'")]');
-  I.see('Updated details');
+  I.wait(CCFRAcceptanceTestConstants.fiveSecondWaitTime);
+  I.waitForText('Updated details', CCFRAcceptanceTestConstants.fiveSecondWaitTime);
   I.see('Version');
   I.see(cVersion);
   I.see(pVersion);
@@ -64,7 +65,7 @@ function verifyCurrentFeeVersion(cVersion, pVersion, cDescription, pDescription,
   I.see(consolidateOrderFee);
   I.see('Last Amending SI');
   I.see(lastAmendingSI);
-  I.see('Valid From');
+  I.see('Valid from');
   I.see(validFrom);
   I.see('Natural Account Code');
   I.see(naturalAccountCode);
@@ -80,7 +81,8 @@ function verifyPreviousFeeVersion(version, code, service, event, jurisdiction1, 
   I.see('Version '+version);
 
   I.click('//span[contains(text(),"Version '+version+'")]');
-  I.see('Code');
+  I.wait(CCFRAcceptanceTestConstants.fiveSecondWaitTime);
+  I.waitForText('Code', CCFRAcceptanceTestConstants.fiveSecondWaitTime);
   I.see(code);
   I.see('Service');
   I.see(service);
