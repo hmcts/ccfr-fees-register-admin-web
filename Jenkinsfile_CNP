@@ -46,4 +46,28 @@ withPipeline("nodejs", product, component) {
   //Sync demo,ithc and perftest with master branch
   syncBranchesWithMaster(branchesToSync)
 
+  after('functionalTest:preview') {
+    publishHTML target: [
+      allowMissing         : true,
+      alwaysLinkToLastBuild: true,
+      keepAll              : true,
+      reportDir            : "functional-output",
+      reportFiles          : "fees-reg-admin-web-e2e-result.html",
+      reportName           : "Fees Reg Admin Web E2E tests result"
+    ]
+  }
+
+  after('functionalTest:aat') {
+    publishHTML target: [
+      allowMissing         : true,
+      alwaysLinkToLastBuild: true,
+      keepAll              : true,
+      reportDir            : "functional-output",
+      reportFiles          : "fees-reg-admin-web-e2e-result.html",
+      reportName           : "Fees Reg Admin Web E2E tests result"
+    ]
+    sh 'yarn test:a11y'
+    steps.archiveArtifacts allowEmptyArchive: true, artifacts: 'functional-output/**/*'
+  }
+
 }
