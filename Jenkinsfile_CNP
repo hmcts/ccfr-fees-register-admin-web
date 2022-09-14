@@ -11,10 +11,7 @@ def product = "fees-register"
 def component = "frontend"
 def secrets = [
   'fees-register-${env}'      : [
-    secret('editors-username', 'EDITOR_USERNAME'),
-    secret('editors-password', 'EDITOR_PASSWORD'),
-    secret('approver-username', 'APPROVER_USERNAME'),
-    secret('approver-password', 'APPROVER_PASSWORD')
+    secret('freg-idam-client-secret', 'CLIENT_SECRET')
   ]
 ]
 

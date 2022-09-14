@@ -28,8 +28,7 @@ exports.config = {
     Mochawesome: { uniqueScreenshotNames: 'true' }
   },
   include: {
-    I: './test/end-to-end/pages/steps_file.js',
-    idam: './test/end-to-end/pages/idam_backdoor.js'
+    I: './test/end-to-end/pages/steps_file.js'
   },
   mocha: {
     reporterOptions: {
