@@ -21,7 +21,7 @@
                 <a class="govuk-link notification-fs" href="/">Go to homepage</a>
               </div>
           </div>
-          <h1 class="heading-xlarge" id="cookies">Cookies</h1>
+          <h1 class="heading-xlarge cookies-xlarge-heading" id="cookies">Cookies</h1>
           <p >A cookie is a small piece of data that’s stored on your computer, tablet, or phone when
               you visit a website. Most websites need cookies to work properly.</p>
            <hr>
@@ -162,15 +162,17 @@
                 fieldset: {
                   legend: {
                     text: "Allow cookies that measure website use?",
-                    classes: "govuk-fieldset__legend--s"
+                    classes: "govuk-fieldset__legend--s notification-fs"
                   }
                 },
                 items: [
                   {
+                    label: {classes: 'notification-fs'},
                     value: 'on',
                     text: 'Use cookies that measure my website use'
                   },
                   {
+                    label: {classes: 'notification-fs'},
                     value: 'off',
                     text: 'Do not use cookies that measure my website use',
                     checked: true
@@ -185,15 +187,17 @@
                 fieldset: {
                   legend: {
                     text: "Allow cookies that measure website application performance monitoring?",
-                    classes: "govuk-fieldset__legend--s"
+                    classes: "govuk-fieldset__legend--s notification-fs"
                   }
                 },
                 items: [
                   {
+                    label: {classes: 'notification-fs'},
                     value: 'on',
                     text: 'Use cookies that measure website application performance monitoring'
                   },
                   {
+                    label: {classes: 'notification-fs'},
                     value: 'off',
                     text: 'Do not use cookies that measure website application performance monitoring',
                     checked: true
@@ -202,7 +206,8 @@
               }) }}
             
               {{ govukButton({
-                text: 'Save'
+                text: 'Save',
+                classes: 'notification-fs'
               }) }}
             </form> 
               </div>

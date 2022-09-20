@@ -7,10 +7,9 @@
     <main id="main-content" role="main">
         <article class="content__body">
             <a href="/admin/cookies" class="link-back">Back</a>
-            <h1 class="heading-xlarge" id="skiplinktarget">
+            <h1 class="heading-xlarge cookies-xlarge-heading" id="skiplinktarget">
                 Cookies
             </h1>
-            <br>
             <div id="tabs" class="ui-tabs ui-corner-all ui-widget ui-widget-content">
                 <div id="nav-links">
                     <ol class="nav-list ui-tabs-nav ui-corner-all ui-helper-reset ui-helper-clearfix ui-widget-header" role="tablist">
@@ -164,7 +163,7 @@
                     {% macro cookie_table(tableTitle, tableContent, cookiesByCategory) %}
                     <table aria-label="cookie-details" class="govuk-table">
                         <summary><h3 class="heading-medium">{{tableTitle}}</h3></summary>
-                        <caption><p>{{tableContent}}</p></caption>
+                        <caption><p class="notification-fs">{{tableContent}}</p></caption>
                         <thead class="govuk-table__head">
                             <tr class="govuk-table__row">
                                 <th scope="col" class="govuk-table__header" scope="col">
