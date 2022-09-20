@@ -87,18 +87,8 @@ export class CookieDetails {
       }
     ];
 
-  static countCookies(category: string): number {
-    return this.cookiesByCat(category).length;
-  }
-
   static cookiesByCat(category: string): Cookie[] {
     return this.cookieDetails.filter(c => c.cat === category);
-  }
-  static showCookiePage() {
-    this.isCookiePageEnabled = true;
-  }
-  static hideCookiePage() {
-    this.isCookiePageEnabled = false;
   }
 
 }
