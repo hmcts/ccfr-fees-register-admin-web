@@ -11,10 +11,7 @@ def product = "fees-register"
 def component = "frontend"
 def secrets = [
   'fees-register-${env}'      : [
-    secret('editors-username', 'EDITOR_USERNAME'),
-    secret('editors-password', 'EDITOR_PASSWORD'),
-    secret('approver-username', 'APPROVER_USERNAME'),
-    secret('approver-password', 'APPROVER_PASSWORD')
+    secret('freg-idam-client-secret', 'CLIENT_SECRET')
   ]
 ]
 
@@ -48,5 +45,29 @@ withPipeline("nodejs", product, component) {
 
   //Sync demo,ithc and perftest with master branch
   syncBranchesWithMaster(branchesToSync)
+
+  after('functionalTest:preview') {
+    publishHTML target: [
+      allowMissing         : true,
+      alwaysLinkToLastBuild: true,
+      keepAll              : true,
+      reportDir            : "functional-output",
+      reportFiles          : "fees-reg-admin-web-e2e-result.html",
+      reportName           : "Fees Reg Admin Web E2E tests result"
+    ]
+  }
+
+  after('functionalTest:aat') {
+    publishHTML target: [
+      allowMissing         : true,
+      alwaysLinkToLastBuild: true,
+      keepAll              : true,
+      reportDir            : "functional-output",
+      reportFiles          : "fees-reg-admin-web-e2e-result.html",
+      reportName           : "Fees Reg Admin Web E2E tests result"
+    ]
+    sh 'yarn test:a11y'
+    steps.archiveArtifacts allowEmptyArchive: true, artifacts: 'functional-output/**/*'
+  }
 
 }
