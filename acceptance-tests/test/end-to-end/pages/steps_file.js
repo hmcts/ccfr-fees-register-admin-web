@@ -31,6 +31,20 @@ module.exports = () => actor({
     this.wait(CCPBConstants.fiveSecondWaitTime);
   },
 
+  AcceptFeeRegAdminWebCookies() {
+    this.waitForText('Cookies on Fees Register Admin console', 5);
+    this.click({ css: 'button.cookie-banner-accept-button' });
+    this.click({ css: 'div.cookie-banner-accept-message > div.govuk-button-group > button' });
+    this.wait(CCPBConstants.twoSecondWaitTime);
+  },
+
+  RejectFeeRegAdminWebCookies() {
+    this.waitForText('Cookies on Fees Register Admin console', 5);
+    this.click({ css: 'button.cookie-banner-reject-button' });
+    this.click({ css: 'div.cookie-banner-reject-message > div.govuk-button-group > button' });
+    this.wait(CCPBConstants.twoSecondWaitTime);
+  },
+
   getFormattedDate(){
     const date = new Date();
     const stringFillSize = 2;
@@ -200,12 +214,13 @@ module.exports = () => actor({
     this.login(editorUserName, editorPassword);
     this.wait(CCPBConstants.twoSecondWaitTime);
     this.waitForText('Live fees', CCPBConstants.tenSecondWaitTime);
+    this.AcceptFeeRegAdminWebCookies();
     let newFeeObj = await this.addNewFee(feeKeyword, formattedFromDate);
     this.waitForText('Draft fee saved', CCPBConstants.tenSecondWaitTime);
     this.click('View draft fee');
     this.waitForText('Amount', CCPBConstants.tenSecondWaitTime);
     this.waitForText('View', CCPBConstants.fiveSecondWaitTime);
-    this.click('//a[contains(text(),"View")][1]');
+    this.click('.govuk-tabs__panel > div > div > table > tbody > tr:nth-child(1) > td:nth-child(7) > a');
     this.submitForApproval();
     let feeCode = await this.getFeeCode();
     let feeObj = {
