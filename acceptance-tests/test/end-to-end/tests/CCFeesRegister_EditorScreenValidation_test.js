@@ -107,6 +107,7 @@ Scenario('@functional @crossbrowser FeesRegister Admin Console Editor Discontinu
   I.login(editorUserName, editorPassword);
   I.wait(CCFRATConstants.tenSecondWaitTime);
   I.waitForText('Discontinued fees', CCFRATConstants.tenSecondWaitTime);
+  I.RejectFeeRegAdminWebCookies
   I.verifyDownloadLink();
   I.clickDownloadLink();
   I.click('Discontinued fees');
@@ -131,7 +132,8 @@ Scenario('@functional FeesRegister Add New Fee, Edit the fee and Delete the Fee'
   I.wait(CCFRATConstants.fiveSecondWaitTime);
   I.waitForText('Amount', CCFRATConstants.tenSecondWaitTime);
   I.waitForText('View', CCFRATConstants.fiveSecondWaitTime);
-  I.click('//a[contains(text(),"View")][1]');
+  I.click('.govuk-tabs__panel > div > div > table > tbody > tr:nth-child(1) > td:nth-child(7) > a');
+
   I.waitForText(  'Direction', '10');
 
   let currentUrl = await I.grabCurrentUrl();
@@ -143,7 +145,7 @@ Scenario('@functional FeesRegister Add New Fee, Edit the fee and Delete the Fee'
   I.click('View draft fee');
   I.waitForText('Amount', CCFRATConstants.tenSecondWaitTime);
   I.waitForText('View', CCFRATConstants.fiveSecondWaitTime);
-  I.click('//a[contains(text(),"View")][1]');
+  I.click('.govuk-tabs__panel > div > div > table > tbody > tr:nth-child(1) > td:nth-child(7) > a');
   I.wait(CCFRATConstants.fiveSecondWaitTime);
   I.deleteFees();
   I.waitForText(`${feeCode} has been deleted`, CCFRATConstants.tenSecondWaitTime);
