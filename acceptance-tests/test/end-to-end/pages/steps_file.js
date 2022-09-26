@@ -210,7 +210,13 @@ module.exports = () => actor({
     const feeKeyword = "SN" + new Date().valueOf().toString();
     let fromDate = new Date();
     fromDate.setDate(fromDate.getDate() + 2);
-    const formattedFromDate = fromDate.toLocaleDateString('en-GB');
+
+    const day = fromDate.toLocaleString('default', { day: '2-digit'});
+    const month = fromDate.toLocaleString('default', { month: '2-digit'});
+    const year = fromDate.toLocaleString('default', { year: 'numeric'});
+    const formattedFromDate = day+month+year;
+    console.log("formattedFromDate: " + formattedFromDate);
+
     this.login(editorUserName, editorPassword);
     this.wait(CCPBConstants.twoSecondWaitTime);
     this.waitForText('Live fees', CCPBConstants.tenSecondWaitTime);
