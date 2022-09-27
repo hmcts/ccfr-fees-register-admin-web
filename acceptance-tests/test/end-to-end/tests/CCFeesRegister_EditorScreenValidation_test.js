@@ -135,12 +135,12 @@ Scenario('FeesRegister Add New Fee and Submit for Approval', async I => {
   I.click('Sign out');
 }).retry(CCFRATConstants.retryScenario);
 
-Scenario('@functional FeesRegister Edit and Delete the Fee', async I => {
+Scenario('FeesRegister Edit the Fee', async I => {
   const feeKeyword = "SN" + new Date().valueOf().toString();
   let fromDate = new Date();
   fromDate.setDate(fromDate.getDate() + 2);
 
-  const feeCode = await I.createNewFeeApi(editorUserName, editorPassword, fromDate, feeKeyword);
+  feeCode = await I.createNewFeeApi(editorUserName, editorPassword, fromDate, feeKeyword);
   I.login(editorUserName, editorPassword);
   I.wait(CCFRATConstants.tenSecondWaitTime);
   I.click("Your Drafts");
@@ -150,9 +150,20 @@ Scenario('@functional FeesRegister Edit and Delete the Fee', async I => {
   I.wait(CCFRATConstants.fiveSecondWaitTime);
   I.editDraft();
   I.waitForText('Draft fee saved', CCFRATConstants.tenSecondWaitTime);
-  I.click('View draft fee');
-  I.waitForText('Amount', CCFRATConstants.tenSecondWaitTime);
-  I.waitForText('View', CCFRATConstants.fiveSecondWaitTime);
+  I.click('Sign out');
+}).retry(CCFRATConstants.retryScenario);
+
+Scenario('@functional FeesRegister Delete the Fee', async I => {
+  const feeKeyword = "SN" + new Date().valueOf().toString();
+  let fromDate = new Date();
+  fromDate.setDate(fromDate.getDate() + 2);
+
+  feeCode = await I.createNewFeeApi(editorUserName, editorPassword, fromDate, feeKeyword);
+  I.login(editorUserName, editorPassword);
+  I.wait(CCFRATConstants.tenSecondWaitTime);
+  I.click("Your Drafts");
+  I.wait(CCFRATConstants.fiveSecondWaitTime);
+  I.waitForText('Drafts', CCFRATConstants.tenSecondWaitTime);
   I.click('//a[contains(text(),"View")][1]');
   I.wait(CCFRATConstants.fiveSecondWaitTime);
   I.deleteFees();
@@ -198,14 +209,13 @@ Scenario('@functional FeesRegister upload fee',  I => {
 // Draft tests
 Scenario('@functional FeesRegister Admin Console Editor Screen For Fee Draft Details', async I => {
   const feeKeyword = "SN" + new Date().valueOf().toString();
-  const fromDate = new Date();
-  const formattedFromDate = fromDate.toLocaleDateString('en-GB');
+  let fromDate = new Date();
+  fromDate.setDate(fromDate.getDate() + 2);
+
+  feeCode = await I.createNewFeeApi(editorUserName, editorPassword, fromDate, feeKeyword);
+
   I.login(editorUserName, editorPassword);
-  I.wait(CCFRATConstants.fiveSecondWaitTime);
-  I.waitForText('Live fees', CCFRATConstants.tenSecondWaitTime);
-  await I.addNewFee(feeKeyword, formattedFromDate);
-  I.waitForText('Draft fee saved', CCFRATConstants.tenSecondWaitTime);
-  I.see("Your Drafts");
+  I.wait(CCFRATConstants.tenSecondWaitTime);
   I.click("Your Drafts");
   I.wait(CCFRATConstants.fiveSecondWaitTime);
   I.waitForText('Drafts', CCFRATConstants.tenSecondWaitTime);
