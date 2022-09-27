@@ -78,10 +78,8 @@ Scenario('@functional FeesRegister Admin Console Editor Screen For Live Fees Det
 }).retry(CCFRATConstants.retryScenario);
 
 Scenario('@functional FeesRegister Admin Console Editor Approved but not live Fees Details Check', async I => {
-  let feeObj = await I.addNewFeeAndSubmitForApproval(editorUserName, editorPassword);
+  let feeObj = await I.addNewFeeAndSubmitForApprovalUsingApi(editorUserName, editorPassword);
   feeCode = feeObj.feeCode;
-  I.click('Sign out');
-  I.wait(CCFRATConstants.tenSecondWaitTime);
   I.login(approverUserName, approverPassword);
   I.wait(CCFRATConstants.fiveSecondWaitTime);
   I.see('Awaiting approval');
@@ -118,7 +116,7 @@ Scenario('@functional @crossbrowser FeesRegister Admin Console Editor Discontinu
   I.click('Sign out');
 }).retry(CCFRATConstants.retryScenario);
 
-Scenario('@functional FeesRegister Add New Fee, Edit the fee and Delete the Fee', async I => {
+Scenario('FeesRegister Add New Fee and Submit for Approval', async I => {
   const feeKeyword = "SN" + new Date().valueOf().toString();
   const fromDate = new Date();
   const formattedFromDate = fromDate.toLocaleDateString('en-GB');
@@ -132,12 +130,24 @@ Scenario('@functional FeesRegister Add New Fee, Edit the fee and Delete the Fee'
   I.waitForText('Amount', CCFRATConstants.tenSecondWaitTime);
   I.waitForText('View', CCFRATConstants.fiveSecondWaitTime);
   I.click('//a[contains(text(),"View")][1]');
-  I.waitForText(  'Direction', '10');
+  I.submitForApproval();
+  await I.getFeeCode();
+  I.click('Sign out');
+}).retry(CCFRATConstants.retryScenario);
 
-  let currentUrl = await I.grabCurrentUrl();
-  const url = new URL(currentUrl);
-  const feeCode = url.searchParams.get('feeCode');
+Scenario('@functional FeesRegister Edit and Delete the Fee', async I => {
+  const feeKeyword = "SN" + new Date().valueOf().toString();
+  let fromDate = new Date();
+  fromDate.setDate(fromDate.getDate() + 2);
 
+  const feeCode = await I.createNewFeeApi(editorUserName, editorPassword, fromDate, feeKeyword);
+  I.login(editorUserName, editorPassword);
+  I.wait(CCFRATConstants.tenSecondWaitTime);
+  I.click("Your Drafts");
+  I.wait(CCFRATConstants.fiveSecondWaitTime);
+  I.waitForText('Drafts', CCFRATConstants.tenSecondWaitTime);
+  I.click('//a[contains(text(),"View")][1]');
+  I.wait(CCFRATConstants.fiveSecondWaitTime);
   I.editDraft();
   I.waitForText('Draft fee saved', CCFRATConstants.tenSecondWaitTime);
   I.click('View draft fee');
@@ -204,10 +214,9 @@ Scenario('@functional FeesRegister Admin Console Editor Screen For Fee Draft Det
 }).retry(CCFRATConstants.retryScenario);
 
 Scenario('@functional FeesRegister Editor Screen For Fee Draft Rejected by approver', async I => {
-  let feeObj = await I.addNewFeeAndSubmitForApproval(editorUserName, editorPassword);
+  let feeObj = await I.addNewFeeAndSubmitForApprovalUsingApi(editorUserName, editorPassword);
   feeCode = feeObj.feeCode;
-  I.click('Sign out');
-  I.wait(CCFRATConstants.fiveSecondWaitTime);
+
   I.login(approverUserName, approverPassword);
   I.wait(CCFRATConstants.fiveSecondWaitTime);
   I.waitForText("Awaiting approval","10");
@@ -225,8 +234,10 @@ Scenario('@functional FeesRegister Editor Screen For Fee Draft Rejected by appro
 }).retry(CCFRATConstants.retryScenario);
 
 Scenario('@functional FeesRegister Editor Screen For Fee Draft Awaiting approval', async I => {
-  let feeObj = await I.addNewFeeAndSubmitForApproval(editorUserName, editorPassword);
+  let feeObj = await I.addNewFeeAndSubmitForApprovalUsingApi(editorUserName, editorPassword);
   feeCode = feeObj.feeCode;
+  I.login(editorUserName, editorPassword);
+  I.wait(CCFRATConstants.fiveSecondWaitTime);
   I.click("Your Drafts");
   I.click("Awaiting approval");
   I.waitForText('Awaiting approval', CCFRATConstants.tenSecondWaitTime);
