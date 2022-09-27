@@ -199,9 +199,7 @@ module.exports = () => actor({
     const memoLineNumber = faker.random.number(RANDOM_NUMBER);
     let fromDate = new Date();
     fromDate.setDate(fromDate.getDate() + 2);
-    // const feeCode = await fregHelper.createFee(editorUserName, editorPassword, fromDate.toISOString(), feeKeyword, memoLineNumber);
-    // await fregHelper.subbmitFeeForApproval(editorUserName, editorPassword, feeCode, 1);
-    const feeCode = await this.createNewFeeApi(editorUserName, editorPassword, fromDate.toISOString(), feeKeyword, memoLineNumber);
+    const feeCode = await this.createNewFeeApi(editorUserName, editorPassword, fromDate, feeKeyword, memoLineNumber);
     this.submitFeeForApprovalApi(editorUserName, editorPassword, feeCode, 1);
     let feeObj = {
       feeKeyword: feeKeyword,
