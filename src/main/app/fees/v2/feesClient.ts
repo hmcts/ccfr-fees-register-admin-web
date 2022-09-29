@@ -93,12 +93,6 @@ export class FeesClient {
 
   static createFixedFee (user, dto: FixedFeeDto): Promise<boolean> {
     
-    let fromDate = new Date();
-    fromDate.setDate(fromDate.getDate() + 2);
-    dto.version.valid_from = fromDate;
-    const str = "Blank " + dto.version.valid_from;
-    console.log(str);
-
     return request
       .post({
         uri: `${feesUrl}/fees-register/fixed-fees/`,
