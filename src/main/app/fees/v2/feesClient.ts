@@ -93,9 +93,11 @@ export class FeesClient {
 
   static createFixedFee (user, dto: FixedFeeDto): Promise<boolean> {
     
-    console.log("Fixed Fee Dto: " + dto);
-    dto.version.valid_from = null;
-    console.log("Fixed Fee Dto valid from: " + dto.version.valid_from);
+    let fromDate = new Date();
+    fromDate.setDate(fromDate.getDate() + 2);
+    dto.version.valid_from = fromDate;
+    const str = "Blank " + dto.version.valid_from;
+    console.log(str);
 
     return request
       .post({
