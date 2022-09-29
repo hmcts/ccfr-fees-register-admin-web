@@ -118,10 +118,14 @@ Scenario('@functional @crossbrowser FeesRegister Admin Console Editor Discontinu
 
 Scenario('@functional FeesRegister Add New Fee and Submit for Approval', async I => {
   const feeKeyword = "SN" + new Date().valueOf().toString();
-  const fromDate = new Date();
-  console.log("fromDate: " + fromDate);
-  const formattedFromDate = fromDate.toLocaleDateString('en-GB');
+  // const fromDate = new Date();
+  // console.log("fromDate: " + fromDate);
+  // const formattedFromDate = fromDate.toLocaleDateString('en-GB');
+  // console.log("formattedFromDate: " + formattedFromDate);
+
+  const formattedFromDate = getTodayDateInDDMMYYY();
   console.log("formattedFromDate: " + formattedFromDate);
+
   I.login(editorUserName, editorPassword);
   I.wait(CCFRATConstants.twoSecondWaitTime);
   I.waitForText('Live fees', CCFRATConstants.tenSecondWaitTime);
@@ -136,6 +140,40 @@ Scenario('@functional FeesRegister Add New Fee and Submit for Approval', async I
   await I.getFeeCode();
   I.click('Sign out');
 }).retry(CCFRATConstants.retryScenario);
+
+function getTodayDateInDDMMYYY() {
+
+  const todayDate = getDayMonthYear();
+
+  return `${todayDate[0]}/${todayDate[1]}/${todayDate[2]}`;
+
+}
+
+function getDayMonthYear(date = null) {
+
+  let newDate = null;
+
+  if (date === null) {
+
+    newDate = new Date();
+
+  } else {
+
+    newDate = date;
+
+  }
+
+  const day = newDate.getDate().toString()
+
+    .padStart(2, '0');
+
+  const month = (newDate.getMonth() + 1).toString().padStart(2, '0');
+
+  const year = newDate.getFullYear().toString();
+
+  return [day, month, year];
+
+}
 
 Scenario('@functional FeesRegister Edit the Fee', async I => {
   const feeKeyword = "SN" + new Date().valueOf().toString();
