@@ -57,7 +57,7 @@ module.exports = () => actor({
     return FeeCode;
   },
 
-  async addNewFee(feeKeyword, formattedFromDate) {
+  async addNewFee(feeKeyword, formattedFromDate, formattedToDate) {
     const memoLineNumber = faker.random.number(RANDOM_NUMBER);
     const naturalAccountCode = faker.random.number(RANDOM_NUMBER);
 
@@ -92,6 +92,7 @@ module.exports = () => actor({
     // this.pressKey('Backspace');
 
     this.fillField({ css: '#fromDate'}, formattedFromDate);
+    this.fillField({ css: '#toDate'}, formattedToDate);
     this.fillField({ css: '#naturalAccountCode'}, '232425');
     this.wait(CCPBConstants.tenSecondWaitTime);
     this.click('input[id="submit"]');

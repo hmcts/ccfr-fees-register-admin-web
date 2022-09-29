@@ -118,18 +118,24 @@ Scenario('@functional @crossbrowser FeesRegister Admin Console Editor Discontinu
 
 Scenario('@functional FeesRegister Add New Fee and Submit for Approval', async I => {
   const feeKeyword = "SN" + new Date().valueOf().toString();
-  // const fromDate = new Date();
-  // console.log("fromDate: " + fromDate);
-  // const formattedFromDate = fromDate.toLocaleDateString('en-GB');
-  // console.log("formattedFromDate: " + formattedFromDate);
+   const fromDate = new Date();
+   console.log("fromDate: " + fromDate);
+   fromDate.setDate(fromDate.getDate() - 2);
+   console.log("fromDate: " + fromDate);
+   formattedFromDate = fromDate.toLocaleDateString('en-GB');
+   console.log("formattedFromDate: " + formattedFromDate);
 
-  const formattedFromDate = getTodayDateInDDMMYYY();
-  console.log("formattedFromDate: " + formattedFromDate);
+   const toDate = new Date();
+   console.log("toDate: " + toDate);
+   fromDate.setDate(toDate.getDate() + 2);
+   console.log("toDate: " + toDate);
+   formattedToDate = toDate.toLocaleDateString('en-GB');
+   console.log("formattedToDate: " + formattedToDate);
 
   I.login(editorUserName, editorPassword);
   I.wait(CCFRATConstants.twoSecondWaitTime);
   I.waitForText('Live fees', CCFRATConstants.tenSecondWaitTime);
-  await I.addNewFee(feeKeyword, formattedFromDate);
+  await I.addNewFee(feeKeyword, formattedFromDate, formattedToDate);
   I.waitForText('Draft fee saved', CCFRATConstants.tenSecondWaitTime);
   I.click('View draft fee');
   I.wait(CCFRATConstants.fiveSecondWaitTime);
