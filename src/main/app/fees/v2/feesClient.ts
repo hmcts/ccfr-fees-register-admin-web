@@ -92,6 +92,8 @@ export class FeesClient {
   }
 
   static createFixedFee (user, dto: FixedFeeDto): Promise<boolean> {
+    
+    console.log("Fixed Fee Dto: " + dto);
 
     return request
       .post({
