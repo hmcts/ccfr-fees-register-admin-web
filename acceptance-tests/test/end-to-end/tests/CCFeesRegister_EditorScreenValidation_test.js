@@ -119,7 +119,9 @@ Scenario('@functional @crossbrowser FeesRegister Admin Console Editor Discontinu
 Scenario('@functional FeesRegister Add New Fee and Submit for Approval', async I => {
   const feeKeyword = "SN" + new Date().valueOf().toString();
   const fromDate = new Date();
+  console.log("fromDate: " + fromDate);
   const formattedFromDate = fromDate.toLocaleDateString('en-GB');
+  console.log("formattedFromDate: " + formattedFromDate);
   I.login(editorUserName, editorPassword);
   I.wait(CCFRATConstants.twoSecondWaitTime);
   I.waitForText('Live fees', CCFRATConstants.tenSecondWaitTime);
