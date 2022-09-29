@@ -116,7 +116,7 @@ Scenario('@functional @crossbrowser FeesRegister Admin Console Editor Discontinu
   I.click('Sign out');
 }).retry(CCFRATConstants.retryScenario);
 
-Scenario('FeesRegister Add New Fee and Submit for Approval', async I => {
+Scenario('@functional FeesRegister Add New Fee and Submit for Approval', async I => {
   const feeKeyword = "SN" + new Date().valueOf().toString();
   const fromDate = new Date();
   const formattedFromDate = fromDate.toLocaleDateString('en-GB');
@@ -135,7 +135,7 @@ Scenario('FeesRegister Add New Fee and Submit for Approval', async I => {
   I.click('Sign out');
 }).retry(CCFRATConstants.retryScenario);
 
-Scenario('FeesRegister Edit the Fee', async I => {
+Scenario('@functional FeesRegister Edit the Fee', async I => {
   const feeKeyword = "SN" + new Date().valueOf().toString();
   let fromDate = new Date();
   fromDate.setDate(fromDate.getDate() + 2);
