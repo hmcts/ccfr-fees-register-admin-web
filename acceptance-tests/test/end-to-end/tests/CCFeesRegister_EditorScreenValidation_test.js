@@ -117,11 +117,12 @@ Scenario('@functional @crossbrowser FeesRegister Admin Console Editor Discontinu
 }).retry(CCFRATConstants.retryScenario);
 
 Scenario('@functional FeesRegister Add New Fee and Submit for Approval', async I => {
+
   const feeKeyword = "SN" + new Date().valueOf().toString();
-   const fromDate = new Date();
-   console.log("fromDate: " + fromDate);
-   const formattedFromDate = fromDate.toLocaleDateString('en-GB');
-   console.log("formattedFromDate: " + formattedFromDate);
+  let fromDate = new Date();
+  console.log("fromDate: " + fromDate);
+  let formattedFromDate = fromDate.toLocaleDateString('en-GB');
+  console.log("formattedFromDate: " + formattedFromDate);
 
  // const formattedFromDate = getTodayDateInDDMMYYY();
  // console.log("formattedFromDate: " + formattedFromDate);
