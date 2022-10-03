@@ -91,6 +91,7 @@ Scenario('@functional FeesRegister Admin Console Editor Approved but not live Fe
   I.verifyDownloadLink();
   I.clickDownloadLink();
   I.click('Approved but not live fees');
+  I.wait(CCFRATConstants.fiveSecondWaitTime);
   I.verifyFeesHeaders();
   I.see(feeObj.feeCode);
   I.click(feeObj.feeCode);
