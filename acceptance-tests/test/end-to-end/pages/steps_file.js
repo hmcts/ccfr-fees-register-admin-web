@@ -1,5 +1,7 @@
 'use strict';
 const CCPBConstants = require('../tests/CCFRAcceptanceTestConstants');
+const fregHelper = require('../helpers/freg_helper');
+
 // in this file you can append custom step methods to 'I' object
 // const faker = require('faker');
 const faker = require('faker');
@@ -140,7 +142,7 @@ module.exports = () => actor({
     this.wait(CCPBConstants.fiveSecondWaitTime);
   },
   submitForApproval() {
-    this.see(  'Request approval')
+    this.see(  'Request approval');
     this.click(  'Request approval');
     this.waitForText('Don’t submit this fee for approval',CCPBConstants.tenSecondWaitTime);
     this.see('Are you sure you want to submit this fee for approval?' );
@@ -192,29 +194,29 @@ module.exports = () => actor({
     this.dontSee(feeCode);
   },
 
-  async addNewFeeAndSubmitForApproval(editorUserName, editorPassword) {
+  async addNewFeeAndSubmitForApprovalUsingApi(editorUserName, editorPassword) {
     const feeKeyword = "SN" + new Date().valueOf().toString();
+    const memoLineNumber = faker.random.number(RANDOM_NUMBER);
     let fromDate = new Date();
     fromDate.setDate(fromDate.getDate() + 2);
-    const formattedFromDate = fromDate.toLocaleDateString('en-GB');
-    this.login(editorUserName, editorPassword);
-    this.wait(CCPBConstants.twoSecondWaitTime);
-    this.waitForText('Live fees', CCPBConstants.tenSecondWaitTime);
-    let newFeeObj = await this.addNewFee(feeKeyword, formattedFromDate);
-    this.waitForText('Draft fee saved', CCPBConstants.tenSecondWaitTime);
-    this.click('View draft fee');
-    this.waitForText('Amount', CCPBConstants.tenSecondWaitTime);
-    this.waitForText('View', CCPBConstants.fiveSecondWaitTime);
-    this.click('//a[contains(text(),"View")][1]');
-    this.submitForApproval();
-    let feeCode = await this.getFeeCode();
+    const feeCode = await this.createNewFeeApi(editorUserName, editorPassword, fromDate, feeKeyword, memoLineNumber);
+    this.submitFeeForApprovalApi(editorUserName, editorPassword, feeCode, 1);
     let feeObj = {
       feeKeyword: feeKeyword,
       feeCode: feeCode,
-      memoLineNumber: newFeeObj.memoLineNumber,
+      memoLineNumber: memoLineNumber,
       fromDate: fromDate
     };
     return feeObj;
+  },
+
+  async createNewFeeApi(editorUserName, editorPassword, fromDate, feeKeyword, memoLineNumber = '12345') {
+    const feeCode = await fregHelper.createFee(editorUserName, editorPassword, fromDate.toISOString(), feeKeyword, memoLineNumber);
+    return feeCode;
+  },
+
+  async submitFeeForApprovalApi(editorUserName, editorPassword, feeCode, version) {
+    await fregHelper.subbmitFeeForApproval(editorUserName, editorPassword, feeCode, version);
   },
 
   verifyFeesHeaders,

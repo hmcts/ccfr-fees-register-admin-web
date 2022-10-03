@@ -41,7 +41,7 @@ export default express.Router()
   })
   .post(Paths.feeCreatePageV2.uri, FormValidator.requestHandler(CreateFeeForm, CreateFeeForm.fromObject), (req: express.Request, res: express.Response) => {
     const form: Form<CreateFeeForm> = req.body
-
+    
     if (form.hasErrors()) {
       Renderer.renderPage(form, res, form.model.edit)
     } else {
