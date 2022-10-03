@@ -807,3 +807,22 @@ h1.cookies-xlarge-heading {
 .govuk-cookie-banner__heading {
   font-size: 19px;
 }
+
+/* Fee Custom Footer Styles*/
+.govuk-footer { 
+  font-size: 16px; 
+  font-family: "nta", arial, sans-serif;
+  color: #454a4c;
+}
+
+.govuk-footer__link {
+  font-family: "nta", arial, sans-serif;
+}
+
+.govuk-footer__link:link, .govuk-footer__link:visited {
+  color: #454a4c;;
+}
+
+.govuk-footer__copyright-logo {
+  background-image: url(../img/govuk-crest.png);
+}
