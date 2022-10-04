@@ -153,7 +153,7 @@ Scenario('@functional FeesRegister Edit the Fee', async I => {
   I.click("Your Drafts");
   I.wait(CCFRATConstants.fiveSecondWaitTime);
   I.waitForText('Drafts', CCFRATConstants.tenSecondWaitTime);
-  I.click('//a[contains(text(),"View")][1]');
+  I.click('.govuk-tabs__panel > div > div > table > tbody > tr:nth-child(1) > td:nth-child(7) > a');
   I.wait(CCFRATConstants.fiveSecondWaitTime);
   I.editDraft();
   I.waitForText('Draft fee saved', CCFRATConstants.tenSecondWaitTime);
@@ -171,7 +171,7 @@ Scenario('@functional FeesRegister Delete the Fee', async I => {
   I.click("Your Drafts");
   I.wait(CCFRATConstants.fiveSecondWaitTime);
   I.waitForText('Drafts', CCFRATConstants.tenSecondWaitTime);
-  I.click('//a[contains(text(),"View")][1]');
+  I.click('.govuk-tabs__panel > div > div > table > tbody > tr:nth-child(1) > td:nth-child(7) > a');
   I.wait(CCFRATConstants.fiveSecondWaitTime);
   I.deleteFees();
   I.waitForText(`${feeCode} has been deleted`, CCFRATConstants.tenSecondWaitTime);
