@@ -199,15 +199,7 @@
 }
 
 .govuk-tabs__tab {
-  margin-right: 5px;
-  padding: 10px 20px 10px 20px;
-  float: left;
-  color: #0b0c0c !important;
-  background-color: #f8f8f8;
-  text-align: center;
-  text-decoration: underline;
   font-size: 19px;
-  line-height: 25px;
 }
 
 .govuk-\!-margin-top-7 {
@@ -218,13 +210,6 @@
   content: "";
   display: block;
   clear: both;
-}
-.govuk-tabs__tab--selected {
-  border: 1px solid #b1b4b6;
-  border-bottom: 0;
-  margin-bottom: -1px;
-  background-color: #fff;
-  text-decoration: none !important;
 }
 
 .govuk-heading-xl  {
@@ -810,4 +795,15 @@ a.custom-reference-data:visited {
 }
 .downloadbtn-container-align {
   justify-content: flex-end;
+}
+/* Fee Custom Cookie Styles*/
+h1.cookies-xlarge-heading {
+  float: none;
+  margin-bottom: 20px;
+}
+.govuk-button-group .notification-fs {
+  font-size: 19px;
+}
+.govuk-cookie-banner__heading {
+  font-size: 19px;
 }
