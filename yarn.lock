@@ -130,6 +130,11 @@
     lodash.isundefined "^3.0.1"
     lodash.uniq "^4.5.0"
 
+"@hmcts/cookie-manager@^1.0.0":
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/@hmcts/cookie-manager/-/cookie-manager-1.0.0.tgz#06a850f3854aebccf3948081e2d7071b36c60cd5"
+  integrity sha512-NLG4OY41oXp4pNKNznmpRZ7nAvmavoaOAWrRN6er+i6lVoZFY7B1yWv2R80b5n7l6cGPpT7THNoC7FPFHRaFgg==
+
 "@hmcts/nodejs-healthcheck@^1.7.0":
   version "1.7.0"
   resolved "https://registry.npmjs.org/@hmcts/nodejs-healthcheck/-/nodejs-healthcheck-1.7.0.tgz"
@@ -1122,7 +1127,7 @@ balanced-match@^1.0.0:
 
 base64-js@^1.3.1:
   version "1.5.1"
-  resolved "https://registry.npmjs.org/base64-js/-/base64-js-1.5.1.tgz"
+  resolved "https://registry.yarnpkg.com/base64-js/-/base64-js-1.5.1.tgz#1b1b440160a5bf7ad40b650f095963481903930a"
   integrity sha512-AKpaYlHn8t4SVbOHCy+b5+KKgvR4vrsD8vbvrbiQJps7fKDTkjkDry6ji0rUJjC0kzbNePLwzxq8iypo41qeWA==
 
 base@^0.11.1:
@@ -3723,6 +3728,11 @@ govuk-elements-sass@^3.0.2:
   dependencies:
     govuk_frontend_toolkit "^7.1.0"
 
+govuk-frontend@^4.3.0:
+  version "4.3.0"
+  resolved "https://registry.yarnpkg.com/govuk-frontend/-/govuk-frontend-4.3.0.tgz#83cd9fdf5df73ebfa2d974fc91f926e19015bc6e"
+  integrity sha512-U8IyhayW5tpEktTU1Ea2wYyUsmS6UQWkuec/ebB51keSCUfZtrLsj5u9oa6GtwzTatk+3NYMOEEclGNTz4/FKQ==
+
 govuk_frontend_toolkit@^7.1.0:
   version "7.6.0"
   resolved "https://registry.npmjs.org/govuk_frontend_toolkit/-/govuk_frontend_toolkit-7.6.0.tgz"
@@ -4204,7 +4214,7 @@ iconv-lite@^0.6.2:
 
 ieee754@^1.1.13:
   version "1.2.1"
-  resolved "https://registry.npmjs.org/ieee754/-/ieee754-1.2.1.tgz"
+  resolved "https://registry.yarnpkg.com/ieee754/-/ieee754-1.2.1.tgz#8eb7a10a63fff25d15a57b001586d177d1b0d352"
   integrity sha512-dcyqhDvX1C46lXZcVqCpK+FtMRQVdIMN6/Df5js2zouUsqG7I6sFxitIC+7KYK29KdXOLHdu9zL4sFnoVQnqaA==
 
 ienoopen@1.1.0:
@@ -8206,8 +8216,8 @@ through2@^2.0.0, through2@^2.0.3, through2@~2.0.0:
 
 through@^2.3.6, through@^2.3.8:
   version "2.3.8"
-  resolved "https://registry.npmjs.org/through/-/through-2.3.8.tgz"
-  integrity sha1-DdTJ/6q8NXlgsbckEV1+Doai4fU=
+  resolved "https://registry.yarnpkg.com/through/-/through-2.3.8.tgz#0dd4c9ffaabc357960b1b724115d7e0e86a2e1f5"
+  integrity sha512-w89qg7PI8wAdvX60bMDP+bFoD5Dvhm9oLheFp5O4a2QF0cSBGsBX4qZmadPMvVqlLJBBci+WqGGOAPvcDeNSVg==
 
 time-stamp@^1.0.0:
   version "1.1.0"

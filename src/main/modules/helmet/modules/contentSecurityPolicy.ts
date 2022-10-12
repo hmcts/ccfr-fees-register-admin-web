@@ -3,6 +3,8 @@ import * as helmet from 'helmet'
 
 const none = '\'none\''
 const self = '\'self\''
+const googleAnalyticsDomain = '*.google-analytics.com';
+const tagManager = ['*.googletagmanager.com', 'https://tagmanager.google.com'];
 
 export class ContentSecurityPolicy {
 
@@ -10,8 +12,8 @@ export class ContentSecurityPolicy {
   }
 
   enableFor (app: express.Express) {
-    const scriptSrc = [self]
-    const connectSrc = [self]
+    const scriptSrc = [self, ...tagManager, googleAnalyticsDomain, "'unsafe-inline'", "'unsafe-eval'"]
+    const connectSrc = [self, googleAnalyticsDomain]
 
     if (this.developmentMode) {
       scriptSrc.push('http://localhost:35729')
@@ -21,9 +23,9 @@ export class ContentSecurityPolicy {
     app.use(helmet.contentSecurityPolicy({
       directives: {
         defaultSrc: [none],
-        fontSrc: [self, 'data:'],
-        imgSrc: [self],
-        styleSrc: [self],
+        fontSrc: [self, 'data:', 'https://fonts.gstatic.com'],
+        imgSrc: [self , ...tagManager, googleAnalyticsDomain, 'data:', 'https://ssl.gstatic.com', 'https://www.gstatic.com'],
+        styleSrc: [self, ...tagManager,  "'unsafe-inline'", 'https://fonts.googleapis.com'],
         scriptSrc: scriptSrc,
         connectSrc: connectSrc,
         objectSrc: [self]

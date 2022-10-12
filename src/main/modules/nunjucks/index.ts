@@ -27,6 +27,7 @@ export default class Nunjucks {
   enableFor (app: express.Express) {
     app.set('view engine', 'njk')
     const nunjucksEnv = nunjucks.configure([
+      path.join(__dirname, '..', '..','..', '..', 'node_modules', 'govuk-frontend'),
       path.join(__dirname, '..', '..', 'views'),
       path.join(__dirname, '..', '..', 'features')
     ], {

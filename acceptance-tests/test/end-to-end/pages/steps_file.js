@@ -33,6 +33,20 @@ module.exports = () => actor({
     this.wait(CCPBConstants.fiveSecondWaitTime);
   },
 
+  AcceptFeeRegAdminWebCookies() {
+    this.waitForText('Cookies on Fees Register Admin console', 5);
+    this.click({ css: 'button.cookie-banner-accept-button' });
+    this.click({ css: 'div.cookie-banner-accept-message > div.govuk-button-group > button' });
+    this.wait(CCPBConstants.twoSecondWaitTime);
+  },
+
+  RejectFeeRegAdminWebCookies() {
+    this.waitForText('Cookies on Fees Register Admin console', 5);
+    this.click({ css: 'button.cookie-banner-reject-button' });
+    this.click({ css: 'div.cookie-banner-reject-message > div.govuk-button-group > button' });
+    this.wait(CCPBConstants.twoSecondWaitTime);
+  },
+
   getFormattedDate(){
     const date = new Date();
     const stringFillSize = 2;
