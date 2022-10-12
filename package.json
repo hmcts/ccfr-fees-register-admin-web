@@ -36,6 +36,7 @@
     "dependency-setup-with-yarn-lock": "yarn --mutex network install --frozen-lockfile"
   },
   "dependencies": {
+    "@hmcts/cookie-manager": "^1.0.0",
     "@hmcts/nodejs-healthcheck": "^1.7.0",
     "@hmcts/nodejs-logging": "^3.0.0",
     "@hmcts/properties-volume": "^0.0.13",
@@ -70,6 +71,7 @@
     "fast-csv": "^4.3.6",
     "feature-toggles": "^1.4.0",
     "govuk-elements-sass": "^3.0.2",
+    "govuk-frontend": "^4.3.0",
     "govuk_template_jinja": "0.25.0",
     "gulp": "4.0.2",
     "helmet": "^3.1.0",

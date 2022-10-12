@@ -22,7 +22,6 @@ gulp.task('sass', function(done) {
     ]
   }))
   .pipe(plumber())
-  .pipe(sass())
   .pipe(gulp.dest(stylesheetsDirectory))
   .pipe(livereload());
 
