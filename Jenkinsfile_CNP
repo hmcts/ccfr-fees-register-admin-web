@@ -55,6 +55,8 @@ withPipeline("nodejs", product, component) {
       reportFiles          : "fees-reg-admin-web-e2e-result.html",
       reportName           : "Fees Reg Admin Web E2E tests result"
     ]
+    sh 'yarn test:a11y'
+    steps.archiveArtifacts allowEmptyArchive: true, artifacts: 'functional-output/**/*'
   }
 
   after('functionalTest:aat') {
