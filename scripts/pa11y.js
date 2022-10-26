@@ -226,7 +226,7 @@ async function runApproverTests() {
         'click element .button',
         'wait for element .govuk-panel__title to be visible'
       ],
-      wait: 10000,
+      wait: 100000,
       timeout: 100000,
       screenCapture: `${outputFolder}/admin-V2-reject-fee-reason.png`,
       log: {
