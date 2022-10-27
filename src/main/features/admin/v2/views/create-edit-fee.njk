@@ -70,7 +70,8 @@ selectReferenceData %}
       </div>
       {% set jurisdictionOneError = form.errorFor('jurisdiction1') %}
       <div class="govuk-form-group {{ 'form-group-error' if jurisdictionOneError}}">
-        <fieldset class="govuk-fieldset">
+        <fieldset class="govuk-fieldset" aria-label="Service">
+          <legend></legend>
           <label class="form-label-bold">Jurisdiction 1</label>
             {% if jurisdictionOneError %}
               <span class="error-message"> {{jurisdictionOneError}} </span>
@@ -79,9 +80,9 @@ selectReferenceData %}
             <div id="verticalRadio" class = "form-group">
                 <div class = "multiple-choice">
                 {% if form.valueFor('jurisdiction1') == jurisdiction1.name %}
-                  <input type="radio" id="{{jurisdiction1.name}}" name="jurisdiction1" value="{{jurisdiction1.name}}" checked="checked">
+                  <input type="radio" class="{{jurisdiction1.name}}" name="jurisdiction1" title="jurisdiction1" value="{{jurisdiction1.name}}" checked="checked">
                 {%else%}
-                  <input type="radio" id="{{jurisdiction1.name}}" name="jurisdiction1" value="{{jurisdiction1.name}}">
+                  <input type="radio" class="{{jurisdiction1.name}}" name="jurisdiction1" title="jurisdiction1" value="{{jurisdiction1.name}}">
                 {%endif%}
                 <label class="label-float">{{jurisdiction1.name}}</label>
               </div>
@@ -91,7 +92,8 @@ selectReferenceData %}
       </div>
       {% set jurisdictionTwoError = form.errorFor('jurisdiction2') %}
       <div class="govuk-form-group {{ 'form-group-error' if jurisdictionTwoError}}">
-        <fieldset class="govuk-fieldset">
+        <fieldset class="govuk-fieldset" aria-label="Service">
+          <legend></legend>
           <label class="form-label-bold">Jurisdiction 2</label>
             {% if jurisdictionTwoError %}
               <span class="error-message"> {{jurisdictionTwoError}} </span>
@@ -101,9 +103,9 @@ selectReferenceData %}
               <div id="serviceChild" class = "form-group">
                 <div class = "multiple-choice">
                   {% if form.valueFor('jurisdiction2') == jurisdiction2.name %}
-                    <input type="radio" id="{{jurisdiction2.name}}" name="jurisdiction2" value="{{jurisdiction2.name}}" checked="checked">
+                    <input type="radio" class="{{jurisdiction2.name}}" name="jurisdiction2" title="jurisdiction2" value="{{jurisdiction2.name}}" checked="checked">
                   {%else%}
-                    <input type="radio" id="{{jurisdiction2.name}}" name="jurisdiction2" value="{{jurisdiction2.name}}">
+                    <input type="radio" class="{{jurisdiction2.name}}" name="jurisdiction2" title="jurisdiction2" value="{{jurisdiction2.name}}">
                   {%endif%}
                   <label class="label-float">{{jurisdiction2.name}}</label>
                 </div>
