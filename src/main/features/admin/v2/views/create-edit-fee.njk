@@ -46,7 +46,8 @@ selectReferenceData %}
         {{ textArea(t('Consolidated/Original Fee Order Name'), 'consolidatedFeeOrderName', form, rows=2) }}
         {% set serviceError = form.errorFor('service') %}
         <div class="govuk-form-group {{ 'form-group-error' if serviceError}}">
-          <fieldset class="govuk-fieldset">
+          <fieldset class="govuk-fieldset" aria-label="Service">
+            <legend></legend>
             <label class="form-label-bold">Service</label>
             {% if serviceError %}
               <span class="error-message"> {{serviceError}} </span>
@@ -56,9 +57,9 @@ selectReferenceData %}
                 <div id="serviceChild" class = "form-group">
                   <div class = "multiple-choice">
                     {% if form.valueFor('service') == serviceName.name %}
-                      <input type="radio" id="{{serviceName.name}}" name="service" value="{{serviceName.name}}" checked="checked">
+                      <input type="radio" class="{{serviceName.name}}" name="service" title="service" value="{{serviceName.name}}" checked="checked">
                     {%else%}
-                      <input type="radio" id="{{serviceName.name}}" name="service" value="{{serviceName.name}}">
+                      <input type="radio" class="{{serviceName.name}}" name="service" title="service value="{{serviceName.name}}">
                     {%endif%}
                     <label class="label-float">{{serviceName.name}}</label>
                   </div>
