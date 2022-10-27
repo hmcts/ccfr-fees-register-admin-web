@@ -70,7 +70,7 @@ selectReferenceData %}
       </div>
       {% set jurisdictionOneError = form.errorFor('jurisdiction1') %}
       <div class="govuk-form-group {{ 'form-group-error' if jurisdictionOneError}}">
-        <fieldset class="govuk-fieldset" aria-label="Service">
+        <fieldset class="govuk-fieldset" aria-label="Jurisdiction">
           <legend></legend>
           <label class="form-label-bold">Jurisdiction 1</label>
             {% if jurisdictionOneError %}
@@ -92,7 +92,7 @@ selectReferenceData %}
       </div>
       {% set jurisdictionTwoError = form.errorFor('jurisdiction2') %}
       <div class="govuk-form-group {{ 'form-group-error' if jurisdictionTwoError}}">
-        <fieldset class="govuk-fieldset" aria-label="Service">
+        <fieldset class="govuk-fieldset" aria-label="Jurisdiction">
           <legend></legend>
           <label class="form-label-bold">Jurisdiction 2</label>
             {% if jurisdictionTwoError %}
@@ -119,7 +119,8 @@ selectReferenceData %}
       {% set toRangeError = form.errorFor('toRange') %}
 
       <div class="govuk-form-group">
-        <fieldset class="govuk-fieldset">
+        <fieldset class="govuk-fieldset" aria-label="Fee Type">
+          <legend></legend>
           <div id="fee-type">
             {{ radioGroup(form = form, checked=false, name = 'type', label = t('Fee Type'), options = [
               { label: t('Fixed'), value: 'fixed', onclick: "disableRangedFees"},
@@ -150,14 +151,15 @@ selectReferenceData %}
           {% set VolumeAmountVal = form.valueFor('amount') %}
       {% endif %}
       <div class="govuk-form-group">
-        <fieldset class="govuk-fieldset">
+        <fieldset class="govuk-fieldset" aria-label="Amount Type">
+          <legend></legend>
           <label class="form-label-bold">Amount Type</label>
             <div id="verticalRadio" class = "form-group">
               <div class = "multiple-choice">
                 {% if form.valueFor('amountType') == 'flat' %}
-                  <input type="radio" id="flat" name="amountType" value="flat" checked="checked" >
+                  <input type="radio" class="flat" name="amountType" title="Amount Type" value="flat" checked="checked" >
                 {%else%}
-                  <input type="radio" id="flat" name="amountType" value="flat" >
+                  <input type="radio" class="flat" name="amountType" title="Amount Type" value="flat" >
                 {%endif%}
                 <label class="label-float">Flat</label>
               </div>
@@ -169,18 +171,18 @@ selectReferenceData %}
                 {% endif %}
                 <div class = "form-group">
                   <div class="input-icon">
-                    <input type="text" name="amount" id="amount" value="{{flatAmountVal}}" class="form-control {{ 'form-control-error' if amounError}}">
+                    <input type="text" name="amount" title="Amount" id="amount" value="{{flatAmountVal}}" class="form-control {{ 'form-control-error' if amounError}}">
                     <i>£</i>
                   </div>
                 </div>
               </div>
 
-            <div id="verticalRadio" class = "form-group">
+            <div class="verticalRadio" class = "form-group">
               <div class = "multiple-choice">
                 {% if form.valueFor('amountType') == 'percentage' %}
-                  <input type="radio" id="percentage" name="amountType" value="percentage" checked="checked" >
+                  <input type="radio" class="percentage" name="amountType" title="Amount Type" value="percentage" checked="checked" >
                 {%else%}
-                  <input type="radio" id="percentage" name="amountType" value="percentage">
+                  <input type="radio" class="percentage" name="amountType" title="Amount Type" value="percentage">
                 {%endif%}
                 <label class="label-float">Percentage</label>
               </div>
@@ -191,16 +193,16 @@ selectReferenceData %}
                 {% endif %}
                 <div class = "form-group">
                   <div class="input-icon">
-                    <input type="text" name="percentage" id="percentage" value="{{form.valueFor('percentage')}}" class="form-control {{ 'form-control-error' if percentageError}}">
+                    <input type="text" name="percentage" title="Percentage" id="percentage" value="{{form.valueFor('percentage')}}" class="form-control {{ 'form-control-error' if percentageError}}">
                   </div>
                 </div>
             </div>
-            <div id="verticalRadio" class = "form-group">
+            <div class="verticalRadio" class = "form-group">
               <div class = "multiple-choice">
                 {% if form.valueFor('amountType') == 'volume' %}
-                  <input type="radio" id="volume" name="amountType" value="volume" checked="checked">
+                  <input type="radio" class="volume" name="amountType" title="Amount Type" value="volume" checked="checked">
                 {%else%}
-                  <input type="radio" id="volume" name="amountType" value="volume">
+                  <input type="radio" class="volume" name="amountType" title="Amount Type" value="volume">
                 {%endif%}
                 <label class="label-float">Volume</label>
               </div>
@@ -212,7 +214,7 @@ selectReferenceData %}
                 {% endif %}
                 <div class = "form-group">
                   <div class="input-icon">
-                    <input type="text" name="volAmount" id="volAmount" value="{{VolumeAmountVal}}" class="form-control {{ 'form-control-error' if volumeAmountError}}">
+                    <input type="text" name="volAmount" title="Volume Amount" id="volAmount" value="{{VolumeAmountVal}}" class="form-control {{ 'form-control-error' if volumeAmountError}}">
                     <i>£</i>
                   </div>
                 </div>
