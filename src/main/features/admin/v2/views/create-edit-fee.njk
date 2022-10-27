@@ -52,9 +52,9 @@ selectReferenceData %}
             {% if serviceError %}
               <span class="error-message"> {{serviceError}} </span>
             {% endif %}
-            <div id='serviceParent'>
+            <div class='serviceParent'>
               {% for serviceName in referenceData.serviceTypes %}
-                <div id="serviceChild" class = "form-group">
+                <div class="form-group serviceChild">
                   <div class = "multiple-choice">
                     {% if form.valueFor('service') == serviceName.name %}
                       <input type="radio" class="{{serviceName.name}}" name="service" title="service" value="{{serviceName.name}}" checked="checked">
@@ -77,7 +77,7 @@ selectReferenceData %}
               <span class="error-message"> {{jurisdictionOneError}} </span>
             {% endif %}
           {% for jurisdiction1 in referenceData.jurisdictions1 %}
-            <div id="verticalRadio" class = "form-group">
+            <div class="form-group verticalRadio">
                 <div class = "multiple-choice">
                 {% if form.valueFor('jurisdiction1') == jurisdiction1.name %}
                   <input type="radio" class="{{jurisdiction1.name}}" name="jurisdiction1" title="jurisdiction1" value="{{jurisdiction1.name}}" checked="checked">
@@ -98,9 +98,9 @@ selectReferenceData %}
             {% if jurisdictionTwoError %}
               <span class="error-message"> {{jurisdictionTwoError}} </span>
             {% endif %}
-          <div id='serviceParent'>
+          <div class='serviceParent'>
             {% for jurisdiction2 in referenceData.jurisdictions2 %}
-              <div id="serviceChild" class = "form-group">
+              <div class="form-group serviceChild">
                 <div class = "multiple-choice">
                   {% if form.valueFor('jurisdiction2') == jurisdiction2.name %}
                     <input type="radio" class="{{jurisdiction2.name}}" name="jurisdiction2" title="jurisdiction2" value="{{jurisdiction2.name}}" checked="checked">
@@ -154,7 +154,7 @@ selectReferenceData %}
         <fieldset class="govuk-fieldset" aria-label="Amount Type">
           <legend></legend>
           <label class="form-label-bold">Amount Type</label>
-            <div id="verticalRadio" class = "form-group">
+            <div class="form-group verticalRadio">
               <div class = "multiple-choice">
                 {% if form.valueFor('amountType') == 'flat' %}
                   <input type="radio" class="flat" name="amountType" title="Amount Type" value="flat" checked="checked" >
@@ -177,7 +177,7 @@ selectReferenceData %}
                 </div>
               </div>
 
-            <div class="verticalRadio" class = "form-group">
+            <div class="form-group verticalRadio">
               <div class = "multiple-choice">
                 {% if form.valueFor('amountType') == 'percentage' %}
                   <input type="radio" class="percentage" name="amountType" title="Amount Type" value="percentage" checked="checked" >
@@ -197,7 +197,7 @@ selectReferenceData %}
                   </div>
                 </div>
             </div>
-            <div class="verticalRadio" class = "form-group">
+            <div class="form-group verticalRadio">
               <div class = "multiple-choice">
                 {% if form.valueFor('amountType') == 'volume' %}
                   <input type="radio" class="volume" name="amountType" title="Amount Type" value="volume" checked="checked">
@@ -229,9 +229,9 @@ selectReferenceData %}
           {% if eventError %}
             <span class="error-message"> {{eventError}} </span>
           {% endif %}
-          <div id='serviceParent'>
+          <div class='serviceParent'>
             {% for event in referenceData.eventTypes %}
-              <div id="serviceChild" class = "form-group">
+              <div class="form-group serviceChild">
                 <div class = "multiple-choice">
                   {% if form.valueFor('event') == event.name %}
                     <input type="radio" class="{{event.name}}" name="event" title="Event" value="{{event.name}}" checked="checked">
@@ -254,7 +254,7 @@ selectReferenceData %}
             <span class="error-message"> {{channelError}} </span>
           {% endif %}
           {% for  channel in referenceData.channelTypes %}
-            <div id="verticalRadio" class = "form-group">
+            <div class="form-group verticalRadio">
               <div class = "multiple-choice">
                 {% if form.valueFor('channel') == channel.name %}
                   <input type="radio" class="{{channel.name}}" name="channel" title="Channel" value="{{channel.name}}" checked="checked">
@@ -283,7 +283,7 @@ selectReferenceData %}
             <span class="error-message"> {{applicantTypeError}} </span>
           {% endif %}
           {% for applicant in referenceData.applicantTypes %}
-            <div id="verticalRadio" class = "form-group">
+            <div class="form-group verticalRadio">
               <div class = "multiple-choice">
                 {% if form.valueFor('applicantType') == applicant.name %}
                   <input type="radio" class="{{applicant.name}}" name="applicantType" title="Applicant Type" value="{{applicant.name}}" checked="checked">
@@ -304,7 +304,7 @@ selectReferenceData %}
           {% if directionError %}
             <span class="error-message"> {{directionError}} </span>
           {% endif %}
-          <div id='serviceParent'>
+          <div class='serviceParent'>
             {% for direction in referenceData.directionTypes %}
             <div class="form-group serviceChild">
               <div class = "multiple-choice">
