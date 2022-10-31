@@ -9,7 +9,7 @@
     <input type='hidden' id='userRole' value=''/>
     <div class="downloadbtn-container downloadbtn-container-align">
       <div>
-        <a href="#" id="mybutton" class="a-create-link">{{nextButton(t("Download all fees"), t("govuk-button2 black-text"))}}</a>
+        <a href="#" id="mybutton" class="a-create-link" role="button" aria-label="Download Fees">{{nextButton(t("Download all fees"), t("govuk-button2 black-text"))}}</a>
       </div>
     </div>
 
@@ -37,7 +37,7 @@
   <p class="govuk-!-margin-top-9 govuk-!-margin-bottom-0"> &nbsp;</p>
 </div>
 {% if isEditor(user.allInfo.roles) or isAdmin(user.allInfo.roles)%}
-   <a href="./fees/create" class="a-create-link">{{nextButton(t("Create a new fee"), t("govuk-button2 black-text"))}}</a>
+   <a href="./fees/create" class="a-create-link" aria-label="Create Fee">{{nextButton(t("Create a new fee"), t("govuk-button2 black-text"))}}</a>
 {% endif %}
 
 <div class="fee-register-table-size">

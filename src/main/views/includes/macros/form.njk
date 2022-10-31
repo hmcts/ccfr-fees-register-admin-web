@@ -43,13 +43,13 @@
 
   {% macro submitButton(label) %}
 <div class="form-group">
-<input id="submit" type="submit" class="button" value="{{ t(label) | default(t('Continue')) }}">
+<input class="submit" type="submit" class="button" value="{{ t(label) | default(t('Continue')) }}">
 </div>
   {% endmacro %}
 
     {% macro nextButton(label, className) %}
 <div class="form-group">
-<input id="submit" type="submit" class="{{ t(className) | default(t('button')) }}" value="{{ t(label) | default(t('Continue')) }}">
+<input class="submit" type="submit" class="{{ t(className) | default(t('button')) }}" value="{{ t(label) | default(t('Continue')) }}">
 </div>
   {% endmacro %}
 
