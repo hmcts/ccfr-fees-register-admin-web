@@ -31,8 +31,8 @@ async function runEditorTests() {
         'click element .button',
         'wait for path to be /admin/V2/all-fees',
       ],
-      wait: 2000,
-      timeout: 70000,
+      wait: 100000,
+      timeout: 200000,
       screenCapture: `${outputFolder}/admin-V2-all-fees.png`,
       log: {
         debug: console.log,
@@ -49,8 +49,8 @@ async function runEditorTests() {
         'click element .button',
         'wait for path to be /admin/V2/all-approvedbutnotlive',
       ],
-      wait: 2000,
-      timeout: 70000,
+      wait: 100000,
+      timeout: 200000,
       screenCapture: `${outputFolder}/admin-V2-all-approvedbutnotlive.png`,
       log: {
         debug: console.log,
@@ -68,8 +68,8 @@ async function runEditorTests() {
         'click element .button',
         'wait for path to be /admin/V2/all-discontinued',
       ],
-      wait: 2000,
-      timeout: 70000,
+      wait: 100000,
+      timeout: 200000,
       screenCapture: `${outputFolder}/admin-V2-all-discontinued.png`,
       log: {
         debug: console.log,
@@ -87,8 +87,8 @@ async function runEditorTests() {
         'click element .button',
         'wait for path to be /admin/v2/upload',
       ],
-      wait: 2000,
-      timeout: 70000,
+      wait: 100000,
+      timeout: 200000,
       screenCapture: `${outputFolder}/admin-V2-upload.png`,
       log: {
         debug: console.log,
@@ -106,8 +106,8 @@ async function runEditorTests() {
         'click element .button',
         'wait for path to be /admin/v2/fees/create',
       ],
-      wait: 2000,
-      timeout: 70000,
+      wait: 100000,
+      timeout: 200000,
       screenCapture: `${outputFolder}/admin-V2-fees-create.png`,
       log: {
         debug: console.log,
@@ -125,8 +125,8 @@ async function runEditorTests() {
         'click element .button',
         'wait for path to be /admin/v2/reference-data',
       ],
-      wait: 2000,
-      timeout: 70000,
+      wait: 100000,
+      timeout: 200000,
       screenCapture: `${outputFolder}/admin-V2-reference-data.png`,
       log: {
         debug: console.log,
@@ -169,8 +169,8 @@ async function runApproverTests() {
         'click element .button',
         'wait for path to be /admin/V2/pending-approval',
       ],
-      wait: 2000,
-      timeout: 70000,
+      wait: 100000,
+      timeout: 200000,
       screenCapture: `${outputFolder}/admin-V2-pending-approval.png`,
       log: {
         debug: console.log,
@@ -187,8 +187,8 @@ async function runApproverTests() {
         'click element .button',
         'wait for element .heading-xlarge to be visible',
       ],
-      wait: 2000,
-      timeout: 70000,
+      wait: 100000,
+      timeout: 200000,
       screenCapture: `${outputFolder}/admin-V2-fee-details.png`,
       log: {
         debug: console.log,
@@ -205,8 +205,8 @@ async function runApproverTests() {
         'click element .button',
         'wait for element .govuk-panel__title to be visible'
       ],
-      wait: 2000,
-      timeout: 70000,
+      wait: 100000,
+      timeout: 200000,
       screenCapture: `${outputFolder}/admin-V2-approval-confirmation .png`,
       log: {
         debug: console.log,
@@ -227,7 +227,7 @@ async function runApproverTests() {
         'wait for element .govuk-panel__title to be visible'
       ],
       wait: 100000,
-      timeout: 100000,
+      timeout: 200000,
       screenCapture: `${outputFolder}/admin-V2-reject-fee-reason.png`,
       log: {
         debug: console.log,
