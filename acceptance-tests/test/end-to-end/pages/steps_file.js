@@ -108,7 +108,7 @@ module.exports = () => actor({
     this.fillField({ css: '#fromDate'}, formattedFromDate);
     this.fillField({ css: '#naturalAccountCode'}, '232425');
     this.wait(CCPBConstants.tenSecondWaitTime);
-    this.click('input[id="submit"]');
+    this.click('input[class="submit"]');
     this.wait(CCPBConstants.tenSecondWaitTime);
 
     let newFeeObj = {
@@ -152,7 +152,7 @@ module.exports = () => actor({
     this.fillField({ css: '#fromDate'}, formattedFromDate);
 
     this.wait(CCPBConstants.fiveSecondWaitTime);
-    this.click('input[id="submit"]');
+    this.click('input[class="submit"]');
     this.wait(CCPBConstants.fiveSecondWaitTime);
   },
   submitForApproval() {
