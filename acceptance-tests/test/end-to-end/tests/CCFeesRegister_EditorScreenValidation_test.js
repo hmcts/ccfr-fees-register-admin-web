@@ -118,7 +118,7 @@ Scenario('@functional @crossbrowser FeesRegister Admin Console Editor Discontinu
   I.click('Sign out');
 }).retry(CCFRATConstants.retryScenario);
 
-Scenario.skip('@functional FeesRegister Add New Fee and Submit for Approval', async I => {
+Scenario('@functional FeesRegister Add New Fee and Submit for Approval', async I => {
 
   const feeKeyword = "SN" + new Date().valueOf().toString();
   let fromDate = new Date();
@@ -142,7 +142,7 @@ Scenario.skip('@functional FeesRegister Add New Fee and Submit for Approval', as
   I.click('Sign out');
 }).retry(CCFRATConstants.retryScenario);
 
-Scenario.skip('@functional FeesRegister Edit the Fee', async I => {
+Scenario('@functional FeesRegister Edit the Fee', async I => {
   const feeKeyword = "SN" + new Date().valueOf().toString();
   let fromDate = new Date();
   fromDate.setDate(fromDate.getDate() + 2);
