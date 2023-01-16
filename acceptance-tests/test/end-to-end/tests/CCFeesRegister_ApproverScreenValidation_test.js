@@ -32,7 +32,7 @@ Scenario('@functional FeesRegister Admin Console Approver Header and Tab Validat
   I.wait(CCFRATConstants.tenSecondWaitTime);
   I.see("Fees");
   I.click("Fees");
-  I.wait(CCFRATConstants.twoSecondWaitTime);
+  I.wait(CCFRATConstants.fiveSecondWaitTime);
   I.waitForText("Live fees","20");
   I.verifyDownloadLink();
   I.clickDownloadLink();
