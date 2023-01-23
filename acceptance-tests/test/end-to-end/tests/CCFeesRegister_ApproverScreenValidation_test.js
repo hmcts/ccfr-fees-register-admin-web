@@ -37,16 +37,20 @@ Scenario('@functional FeesRegister Admin Console Approver Header and Tab Validat
   I.verifyDownloadLink();
   I.clickDownloadLink();
   I.click("Approved but not live fees");
+  I.wait(CCFRATConstants.fiveSecondWaitTime);
   I.waitForText("Approved but not live fees","10");
   I.see("Code");
   I.click("Discontinued fees");
+  I.wait(CCFRATConstants.fiveSecondWaitTime);
   I.waitForText("Discontinued fees","10");
   I.see("Code");
   I.see("Approvals");
   I.click("Approvals");
+  I.wait(CCFRATConstants.fiveSecondWaitTime);
   I.waitForText("Awaiting approval", "10");
   I.see("Reference Data");
   I.click("Reference Data");
+  I.wait(CCFRATConstants.fiveSecondWaitTime);
   I.waitForText("Applicants","10");
   I.click('Sign out');
 }).retry(CCFRATConstants.retryScenario);
@@ -56,6 +60,7 @@ Scenario('@functional FeesRegister Verify Pending For Approval header list',  I 
   I.wait(CCFRATConstants.tenSecondWaitTime);
   I.see("Approvals");
   I.click("Approvals");
+  I.wait(CCFRATConstants.fiveSecondWaitTime);
   I.waitForText("Awaiting approval",CCFRATConstants.tenSecondWaitTime);
   I.verifyFeeDraftHeadersAwaitingApproval();
   I.click('Sign out');

@@ -246,7 +246,9 @@ Scenario('@functional FeesRegister Editor Screen For Fee Draft Rejected by appro
   I.wait(CCFRATConstants.fiveSecondWaitTime);
   I.see("Your Drafts");
   I.click("Your Drafts");
+  I.wait(CCFRATConstants.fiveSecondWaitTime);
   I.click("Rejected by approver");
+  I.wait(CCFRATConstants.fiveSecondWaitTime);
   I.waitForText('Rejected by approver', CCFRATConstants.tenSecondWaitTime);
   I.verifyFeeDraftHeaders();
   I.click('Sign out');
