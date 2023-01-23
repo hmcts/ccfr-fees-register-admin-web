@@ -9,6 +9,7 @@
       "dom"
     ],
     "target": "ES6",
+    "moduleResolution": "node",
     "baseUrl": "src/main",
     "paths": {
       "app/*": [
