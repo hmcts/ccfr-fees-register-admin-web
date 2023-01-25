@@ -4,9 +4,10 @@ import {
   ValidationOptions,
   ValidatorConstraint,
   ValidatorConstraintInterface
-} from 'class-validator'
+} from 'class-validator';
 
-import * as validator from 'validator'
+import validator from 'validator';
+//import * as validator from 'validator'
 
 @ValidatorConstraint()
 export class FractionsConstraint implements ValidatorConstraintInterface {
