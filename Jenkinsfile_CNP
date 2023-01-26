@@ -35,18 +35,18 @@ withPipeline("nodejs", product, component) {
   enableSlackNotifications('#cc-payments-tech')
   enableAksStagingDeployment()
   disableLegacyDeployment()
-  after('checkout') {
+  afterAlways('checkout') {
     sh "yarn cache clean"
     echo 'ccfr-fees-register-admin-web checked out'
   }
-  after('build') {
+  afterAlways('build') {
     sh 'yarn setup'
   }
 
   //Sync demo,ithc and perftest with master branch
   syncBranchesWithMaster(branchesToSync)
 
-  after('functionalTest:preview') {
+  afterAlways('functionalTest:preview') {
     publishHTML target: [
       allowMissing         : true,
       alwaysLinkToLastBuild: true,
@@ -57,7 +57,7 @@ withPipeline("nodejs", product, component) {
     ]
   }
 
-  after('functionalTest:aat') {
+  afterAlways('functionalTest:aat') {
     publishHTML target: [
       allowMissing         : true,
       alwaysLinkToLastBuild: true,
