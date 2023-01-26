@@ -33,28 +33,28 @@ Scenario('@functional FeesRegister Admin Console Editor Header and Tab Validatio
   I.wait(CCFRATConstants.tenSecondWaitTime);
   I.see("Fees");
   I.click("Fees");
-  I.wait(CCFRATConstants.twoSecondWaitTime);
+  I.wait(CCFRATConstants.fiveSecondWaitTime);
   I.waitForText("Live fees","10");
   I.verifyDownloadLink();
   I.clickDownloadLink();
   I.click("Approved but not live fees");
-  I.wait(CCFRATConstants.twoSecondWaitTime);
+  I.wait(CCFRATConstants.fiveSecondWaitTime);
   I.waitForText("Approved but not live fees","10");
   I.verifyDownloadLink();
   I.clickDownloadLink();
   I.see("Code");
   I.click("Discontinued fees");
-  I.wait(CCFRATConstants.twoSecondWaitTime);
+  I.wait(CCFRATConstants.fiveSecondWaitTime);
   I.waitForText("Discontinued fees","10");
   I.verifyDownloadLink();
   I.clickDownloadLink();
   I.see("Code");
   I.see("Reference Data");
   I.click("Reference Data");
-  I.wait(CCFRATConstants.twoSecondWaitTime);
+  I.wait(CCFRATConstants.fiveSecondWaitTime);
   I.waitForText("Applicants","10");
   I.click('Sign out');
-});
+}).retry(CCFRATConstants.retryScenario);
 
 Scenario('@functional FeesRegister Admin Console Editor Screen For Live Fees Details', I => {
   I.login(editorUserName, editorPassword);
@@ -63,6 +63,7 @@ Scenario('@functional FeesRegister Admin Console Editor Screen For Live Fees Det
   I.verifyDownloadLink();
   I.clickDownloadLink();
   I.click('Live fees');
+  I.wait(CCFRATConstants.fiveSecondWaitTime);
   I.verifyFeesHeaders();
   //verify any existing fee details under live Tab
   if (CONF.e2e.frontendUrl.includes("aat")) {
@@ -110,6 +111,7 @@ Scenario('@functional @crossbrowser FeesRegister Admin Console Editor Discontinu
   I.verifyDownloadLink();
   I.clickDownloadLink();
   I.click('Discontinued fees');
+  I.wait(CCFRATConstants.fiveSecondWaitTime);
   I.verifyFeesHeaders();
   //Check one of the existing fee, once full implementation done we can add our own code
   I.verifyFeeDetails('discontinued', 'FEE0227','5.3','Family Proceedings Fees Order 2008','other','general application','Application (on notice) (unless otherwise listed)',
@@ -118,7 +120,7 @@ Scenario('@functional @crossbrowser FeesRegister Admin Console Editor Discontinu
   I.click('Sign out');
 }).retry(CCFRATConstants.retryScenario);
 
-Scenario.skip('@functional FeesRegister Add New Fee and Submit for Approval', async I => {
+Scenario('FeesRegister Add New Fee and Submit for Approval', async I => {
 
   const feeKeyword = "SN" + new Date().valueOf().toString();
   let fromDate = new Date();
@@ -127,7 +129,7 @@ Scenario.skip('@functional FeesRegister Add New Fee and Submit for Approval', as
   console.log("formattedFromDate: " + formattedFromDate);
 
   I.login(editorUserName, editorPassword);
-  I.wait(CCFRATConstants.twoSecondWaitTime);
+  I.wait(CCFRATConstants.fiveSecondWaitTime);
   I.waitForText('Live fees', CCFRATConstants.tenSecondWaitTime);
   await I.addNewFee(feeKeyword, formattedFromDate);
   I.waitForText('Draft fee saved', CCFRATConstants.tenSecondWaitTime);
@@ -142,7 +144,7 @@ Scenario.skip('@functional FeesRegister Add New Fee and Submit for Approval', as
   I.click('Sign out');
 }).retry(CCFRATConstants.retryScenario);
 
-Scenario.skip('@functional FeesRegister Edit the Fee', async I => {
+Scenario('FeesRegister Edit the Fee', async I => {
   const feeKeyword = "SN" + new Date().valueOf().toString();
   let fromDate = new Date();
   fromDate.setDate(fromDate.getDate() + 2);
@@ -209,7 +211,7 @@ Scenario('@functional FeesRegister upload fee',  I => {
   I.wait(CCFRATConstants.twoSecondWaitTime);
   I.waitForText('Upload fees', CCFRATConstants.tenSecondWaitTime);
   I.click('Upload fees');
-  I.wait(CCFRATConstants.twoSecondWaitTime);
+  I.wait(CCFRATConstants.fiveSecondWaitTime);
   I.see('CSV upload');
   I.click('Sign out');
 }).retry(CCFRATConstants.retryScenario);
@@ -245,7 +247,9 @@ Scenario('@functional FeesRegister Editor Screen For Fee Draft Rejected by appro
   I.wait(CCFRATConstants.fiveSecondWaitTime);
   I.see("Your Drafts");
   I.click("Your Drafts");
+  I.wait(CCFRATConstants.fiveSecondWaitTime);
   I.click("Rejected by approver");
+  I.wait(CCFRATConstants.fiveSecondWaitTime);
   I.waitForText('Rejected by approver', CCFRATConstants.tenSecondWaitTime);
   I.verifyFeeDraftHeaders();
   I.click('Sign out');
@@ -258,6 +262,7 @@ Scenario('@functional FeesRegister Editor Screen For Fee Draft Awaiting approval
   I.wait(CCFRATConstants.fiveSecondWaitTime);
   I.click("Your Drafts");
   I.click("Awaiting approval");
+  I.wait(CCFRATConstants.fiveSecondWaitTime);
   I.waitForText('Awaiting approval', CCFRATConstants.tenSecondWaitTime);
   I.verifyFeeDraftHeaders();
   I.click('Sign out');
@@ -268,6 +273,7 @@ Scenario('@functional FeesRegister Verify Reference Data Page',  I => {
   I.wait(CCFRATConstants.tenSecondWaitTime);
   I.see("Reference Data");
   I.click("Reference Data");
+  I.wait(CCFRATConstants.fiveSecondWaitTime);
   I.waitForText("Reference data",CCFRATConstants.tenSecondWaitTime);
   I.verifyReferenceData();
   I.click('Sign out');

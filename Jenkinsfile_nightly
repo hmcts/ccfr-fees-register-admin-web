@@ -51,20 +51,20 @@ withNightlyPipeline("nodejs", product, component) {
   enableFortifyScan()
   enableCrossBrowserTest()
   enableSecurityScan()
-  after('checkout') {
+  afterAlways('checkout') {
     sh "yarn cache clean"
     echo 'ccfr-fees-register-admin-web checked out'
   }
-  after('build') {
+  afterAlways('build') {
     sh 'yarn setup'
     sh 'mkdir -p functional-output'
     sh 'chmod +x bin/run-crossbrowser-tests.sh'
   }
-  after('fortify-scan') {
+  afterAlways('fortify-scan') {
     steps.archiveArtifacts allowEmptyArchive: true, artifacts: '**/Fortify Scan/**/*'
   }
 
-  after('fullFunctionalTest') {
+  afterAlways('fullFunctionalTest') {
     publishHTML target: [
       allowMissing         : true,
       alwaysLinkToLastBuild: true,
