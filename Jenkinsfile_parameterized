@@ -30,7 +30,7 @@ properties([
 ])
 
 withParameterizedPipeline('nodejs', 'fees-register', 'frontend', params.ENVIRONMENT, 'sandbox') {
-  after('build') {
+  afterAlways('build') {
     sh 'yarn setup'
   }
   loadVaultSecrets(secrets)
