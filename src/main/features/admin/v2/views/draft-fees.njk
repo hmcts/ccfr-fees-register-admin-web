@@ -2,8 +2,11 @@
 {% from "includes/macros/form.njk" import nextButton%}
 
 {% set title = t('Fees | ' + serviceName) %}
-{% set heading = t('Your Drafts') %}
 {% block content %}
+
+<div style="white-space:nowrap;">
+	<h1 class="govuk-heading-xl">Your Drafts</h1>
+</div>
 
 <input type='hidden' id='userRole' value='{{ 'Approver' if isApprover(user.allInfo.roles) else 'Editor' }}'/>
 	<ul class="govuk-tabs__list govuk-!-margin-top-8">
