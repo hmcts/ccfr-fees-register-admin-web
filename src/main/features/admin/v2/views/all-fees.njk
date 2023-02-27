@@ -9,28 +9,28 @@
     <input type='hidden' id='userRole' value=''/>
 
     <div class="govuk-grid-row">
-      <div class="govuk-grid-column-one-half">
+      <div class="govuk-grid-column-two-thirds">
         <h1 class="govuk-heading-xl">Fees</h1>
       </div>
-      <div class="govuk-grid-column-one-half" style="margin-left:auto;margin-right:0;">
-        <a href="#" id="mybutton" class="a-create-link">{{nextButton(t("Download all fees"), t("govuk-button2 black-text"))}}</a>
+      <div class="govuk-grid-column-one-third">
+        <a href="#" id="mybutton" class="a-create-link ">{{nextButton(t("Download all fees"), t("govuk-button2 black-text"))}}</a>
       </div>
     </div>
 
 
 <ul class="govuk-tabs__list govuk-!-margin-top-7">
 <li class="govuk-tabs__list-item govuk-tabs__list-item--selected">
-    <a class="govuk-tabs__tab govuk-tabs__tab--selected" href="/admin/V2/all-fees">
+    <a class="govuk-tabs__tab govuk-tabs__tab--selected" href="/admin/V2/all-fees" role="tab">
         {{ t("Live fees") }}
     </a>
 </li>
 <li class="govuk-tabs__list-item">
-    <a class="govuk-tabs__tab" href="/admin/V2/all-approvedbutnotlive">
+    <a class="govuk-tabs__tab" href="/admin/V2/all-approvedbutnotlive" role="tab">
       {{ t("Approved but not live fees") }}
     </a>
 </li>
 <li class="govuk-tabs__list-item">
-    <a class="govuk-tabs__tab" href="/admin/V2/all-discontinued">
+    <a class="govuk-tabs__tab" href="/admin/V2/all-discontinued" role="tab">
          {{ t("Discontinued fees") }}
     </a>
 </li>
