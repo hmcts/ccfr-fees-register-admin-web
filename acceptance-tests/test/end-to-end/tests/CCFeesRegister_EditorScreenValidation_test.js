@@ -211,7 +211,7 @@ Scenario('@functional FeesRegister upload fee',  I => {
   I.waitForText('Upload fees', CCFRATConstants.tenSecondWaitTime);
   I.click('Upload fees');
   I.wait(CCFRATConstants.fiveSecondWaitTime);
-  I.see('CSV upload');
+  I.see('Upload Fees');
   I.click('Sign out');
 }).retry(CCFRATConstants.retryScenario);
 
