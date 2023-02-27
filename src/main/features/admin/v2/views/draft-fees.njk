@@ -3,6 +3,8 @@
 
 {% set title = t('Fees | ' + serviceName) %}
 {% block content %}
+<h1 class="govuk-heading-l">Your Drafts</h1>
+
 <input type='hidden' id='userRole' value='{{ 'Approver' if isApprover(user.allInfo.roles) else 'Editor' }}'/>
 	<ul class="govuk-tabs__list govuk-!-margin-top-8">
 

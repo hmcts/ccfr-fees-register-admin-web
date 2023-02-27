@@ -6,6 +6,8 @@
 
   {% block content %}
 
+  <h1 class="govuk-heading-l">Upload Fees</h1>
+
 <div class="grid-row">
 <input type='hidden' id='userRole' value='{{ 'Approver' if isApprover(user.allInfo.roles) else 'Editor' }}'/>
 
