@@ -3,7 +3,7 @@
 
 {% set title = t('Fees | ' + serviceName) %}
 {% block content %}
-<h1 class="govuk-heading-l">Your Drafts</h1>
+<h1 class="govuk-heading-xl">Your Drafts</h1>
 
 <input type='hidden' id='userRole' value='{{ 'Approver' if isApprover(user.allInfo.roles) else 'Editor' }}'/>
 	<ul class="govuk-tabs__list govuk-!-margin-top-8">
@@ -31,7 +31,7 @@
 			<div class="row">
 
 				<div class="title-with-secondary">
-					<h1 class="heading">{{t("Drafts")}}</h1>
+					<h2 class="govuk-heading-l">{{t("Drafts")}}</h2>
 					<div class="title-with-secondary live-fee-al"></div>
 					<a href="./fees/create">{{nextButton(t("Create a new fee"), t("govuk-button2 black-text"))}}</a>
 				</div>
