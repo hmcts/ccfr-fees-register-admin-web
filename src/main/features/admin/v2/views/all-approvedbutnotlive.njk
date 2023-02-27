@@ -6,9 +6,12 @@
   {% block content %}
     <input type='hidden' id='userRole' value=''/>
 
-    <div class="downloadbtn-container downloadbtn-container-align">
-      <div>
-        <a href="#" id="mybutton" class="a-create-link">{{nextButton(t("Download all fees"), t("govuk-button2 black-text"))}}</a>
+    <div class="govuk-grid-row" style="position:relative;">
+      <div class="govuk-grid-column-two-thirds">
+        <h1 class="govuk-heading-xl">Fees</h1>
+      </div>
+      <div class="govuk-grid-column-one-third">
+        <a href="#" id="mybutton" class="a-create-link" style="position:absolute;right:0;">{{nextButton(t("Download all fees"), t("govuk-button2 black-text"))}}</a>
       </div>
     </div>
 
@@ -30,7 +33,7 @@
 </li>
 </ul>
 <div class="title-with-secondary">
-  <h1 class="govuk-heading-xl govuk-!-margin-bottom-6 govuk-!-margin-top-7">{{t("Approved but not live fees")}}</h1>
+  <h2 class="govuk-heading-l govuk-!-margin-bottom-6 govuk-!-margin-top-7">{{t("Approved but not live fees")}}</h2>
 </div>
 
 <div class="fee-register-table-size" style="width:100%;overflow-x:scroll;">
