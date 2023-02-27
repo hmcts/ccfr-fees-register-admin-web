@@ -6,11 +6,19 @@
   {% set title = t('Fees | ' + serviceName) %}
   {% block content %}
 
-    <h1 class="govuk-heading-l">Fees</h1>
-    
     <input type='hidden' id='userRole' value=''/>
     <div class="downloadbtn-container downloadbtn-container-align">
       <div>
+        <h1 class="govuk-heading-xl">Fees</h1>
+        <a href="#" id="mybutton" class="a-create-link">{{nextButton(t("Download all fees"), t("govuk-button2 black-text"))}}</a>
+      </div>
+    </div>
+
+    <div class="govuk-grid-row">
+      <div class="govuk-grid-column-two-thirds">
+        <h1 class="govuk-heading-xl">Fees</h1>
+      </div>
+      <div class="govuk-grid-column-one-third">
         <a href="#" id="mybutton" class="a-create-link">{{nextButton(t("Download all fees"), t("govuk-button2 black-text"))}}</a>
       </div>
     </div>
@@ -34,7 +42,7 @@
 </li>
 </ul>
 <div class="title-with-secondary">
-  <h1 class="govuk-heading-xl govuk-!-margin-bottom-6 govuk-!-margin-top-7">{{t("Live fees")}}</h1>
+  <h2 class="govuk-heading-l govuk-!-margin-bottom-6 govuk-!-margin-top-7">{{t("Live fees")}}</h2>
   <div class="title-with-secondary live-fee-al"></div>
   <p class="govuk-!-margin-top-9 govuk-!-margin-bottom-0"> &nbsp;</p>
 </div>
