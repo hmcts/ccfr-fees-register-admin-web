@@ -94,12 +94,12 @@
   {% endif %}
 
   {% if heading %}
-  <h2 class="{%if xLargeTable %}{{ xLargeTable }}{{ t('-') }}{% endif %}govuk-heading-m">
+  <h1 class="{%if xLargeTable %}{{ xLargeTable }}{{ t('-') }}{% endif %}govuk-heading-xl">
     {{ heading }}
     {% if headingSecondary %}
     <span class="heading-secondary">{{ headingSecondary }}</span>
     {% endif %}
-  </h2>
+  </h1>
   {% endif %}
 
   {% block content %}{% endblock %}

@@ -2,15 +2,13 @@
   {% extends "layout.njk" %}
 
   {% set title = t('CSV upload | ' + serviceName + ' V2') %}
-  {% set heading = t('CSV upload') %}
+  {% set heading = t('Upload Fees') %}
 
   {% block content %}
 
-  <h1 class="govuk-heading-l">Upload Fees</h1>
-
 <div class="grid-row">
-<input type='hidden' id='userRole' value='{{ 'Approver' if isApprover(user.allInfo.roles) else 'Editor' }}'/>
-
+  <h2 class="govuk-heading-l">CSV Upload</h2>
+  <input type='hidden' id='userRole' value='{{ 'Approver' if isApprover(user.allInfo.roles) else 'Editor' }}'/>
   <div class="column-full">
     <div id="upload-form" class="form-group">
       <form method="post" action="upload?_csrf={{csrfToken}}" enctype="multipart/form-data">
