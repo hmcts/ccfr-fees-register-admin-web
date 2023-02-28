@@ -16,7 +16,7 @@
   <input type='hidden' id='userRole' value=''/>
 
 	<div class="govuk-grid-row">
-		<div class="govuk-grid-column-full govuk-!-margin-top-4">
+		<div class="govuk-grid-column-full govuk-!-margin-top-8">
 			<nav aria-label="Sub navigation">
 				<div class="jui-width-container">
 					<ul class="hmcts-sub-navigation__list">
@@ -33,7 +33,7 @@
 					</ul>
 				</div>
 			</nav>
-			<h2 class="govuk-heading-l">
+			<h2 class="govuk-heading-l govuk-!-margin-top-5">
 				{{t('Fee versions')}}
 			</h2>
 			{% for version in feeDto.fee_versions | reverse %}
