@@ -4,6 +4,18 @@
   {% set title = t('Fee | ' + serviceName) %}
   
   {% block content %}
+
+	<div class="govuk-!-margin-top-8" style="white-space:nowrap;">
+		<h1 class="govuk-heading-xl">
+			{% if feeDto.code %}
+				{{feeDto.code}}
+			{% else %}
+				&nbsp;
+			{% endif %}
+		</h1>
+	</div>
+
+    
   <input type='hidden' id='userRole' value=''/>
 
   {% if versionNo %}
@@ -27,9 +39,9 @@
         </ul>
       </div>
     </nav>
-    <h1 class="heading-xlarge margin-bottom-0">
+    <h2 class="govuk-heading-l margin-bottom-0">
             {{t('Fee details')}}
-      </h1>
+    </h2>
   </div>
 </div>
 

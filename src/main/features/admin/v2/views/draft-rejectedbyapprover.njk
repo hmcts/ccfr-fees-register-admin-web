@@ -11,17 +11,17 @@
 <input type='hidden' id='userRole' value='{{ 'Approver' if isApprover(user.allInfo.roles) else 'Editor' }}'/>
 	<ul class="govuk-tabs__list govuk-!-margin-top-8">
 		<li class="govuk-tabs__list-item">
-			<a class="govuk-tabs__tab" href="/admin/V2/draft-fees">
+			<a class="govuk-tabs__tab" href="/admin/V2/draft-fees" role="tab">
 				{{ t("Draft") }}
 			</a>
 		</li>
 		<li class="govuk-tabs__list-item govuk-tabs__list-item--selected">
-			<a class="govuk-tabs__tab govuk-tabs__tab--selected" href="/admin/V2/draft-rejectedbyapprover">
+			<a class="govuk-tabs__tab govuk-tabs__tab--selected" href="/admin/V2/draft-rejectedbyapprover" role="tab">
 				{{ t("Rejected by approver") }}
 			</a>
 		</li>
 		<li class="govuk-tabs__list-item">
-			<a class="govuk-tabs__tab" href="/admin/V2/draft-awaitingapproval">
+			<a class="govuk-tabs__tab" href="/admin/V2/draft-awaitingapproval" role="tab">
 				{{ t("Awaiting approval") }}
 			</a>
 		</li>
@@ -41,7 +41,7 @@
 							<th class="govuk-table__header draft-col4" scope="col">Description</th>
 							<th class="govuk-table__header draft-col5" scope="col">Statutory Instrument</th>
 							<th class="govuk-table__header draft-col5" scope="col">Valid from</th>
-							<th class="govuk-table__header draft-col6" scope="col"></th>
+							<th class="govuk-table__header draft-col6" scope="col">View Fee</th>
 						</tr>
 					</thead>
 
