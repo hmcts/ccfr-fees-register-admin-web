@@ -21,8 +21,8 @@
   {% if versionNo %}
     {% set version = getSelectedVersion(feeDto, versionNo) %}
   {% endif %}
-<div class="govuk-grid-row govuk-!-margin-top-4">
-  <div class="govuk-grid-column-full">
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-full govuk-!-margin-top-4">
     <nav class="hmcts-sub-navigation" aria-label="Sub navigation">
       <div class="jui-width-container">
         <ul class="hmcts-sub-navigation__list">
@@ -39,7 +39,7 @@
         </ul>
       </div>
     </nav>
-    <h2 class="govuk-heading-l govuk-!-margin-bottom-8">
+    <h2 class="govuk-heading-l">
             {{t('Fee details')}}
     </h2>
   </div>
@@ -47,7 +47,7 @@
 
 {% if pageType =='livefee' or pageType =='disconfee' or pageType =='notlivefee' %}
 
-<dl class="govuk-check-your-answers govuk-check-your-answers--short">
+<dl class="govuk-check-your-answers govuk-check-your-answers--short" style="margin-top:-20px;">
 <div class="govuk-check-your-answers__contents">
   <dt class="govuk-check-your-answers__question">
     <label class="bold">Code</label> 
