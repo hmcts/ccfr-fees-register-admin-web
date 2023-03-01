@@ -431,13 +431,14 @@ a.custom-draft-all-fees:visited {
   color: white; }
 
 .custom-reference-data {
-  font-family: "nta", Arial, sans-serif;
-  float: right;
-  font-size: 18px;
-  font-weight: 600;
-  position: relative;
-  text-transform: none;
-  margin-left: 75%;
+    font-family: "nta", Arial, sans-serif;
+    font-size: 18px;
+    font-weight: 600;
+    text-transform: none;
+    position: absolute;
+    right: 0;
+    display: inline-block;
+    margin-top: 18px;
 }
 
 a.custom-reference-data:link {
@@ -457,6 +458,7 @@ a.custom-reference-data:visited {
   font-size: 18px;
   position: relative;
   text-transform: none;
+  margin-top: 38px;
 }
 
 a.custom-logout:link {
@@ -464,6 +466,15 @@ a.custom-logout:link {
 
 a.custom-logout:visited {
   color: white; }
+
+@media screen and (max-width: 760px) {
+  .custom-logout {
+    margin-top: 27px;
+  }
+  .header {
+    height: 115px;
+  }
+}
 
 .username-log {
   float: left;
