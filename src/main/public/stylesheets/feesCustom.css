@@ -414,7 +414,12 @@ a.custom-header-title:visited {
 a.custom-header-title:hover {
   text-decoration: underline;}
 
-.custom-draft-all-fees {
+a:focus {
+  background-color: #ffdd00;
+  outline: 2px solid #ffdd00;
+}
+
+a.custom-draft-all-fees {
   font-family: "nta", Arial, sans-serif;
   font-size: 18px;
   font-weight: 600;
@@ -467,9 +472,13 @@ a.custom-logout:link {
 a.custom-logout:visited {
   color: white; }
 
-.a-create-link.download-fees, .govuk-button2.black-text {
+.a-create-link.download-fees {
   position:absolute;
   right:0;
+}
+
+.fees-header {
+  margin-top: 25px;
 }
 
 @media screen and (max-width: 760px) {
@@ -482,13 +491,10 @@ a.custom-logout:visited {
   .custom-header-ul {
     margin-right: 50px;
   }
-  .govuk-grid-column-two-thirds {
-    margin-top: 30px;
-  }
   .govuk-tabs__list {
     margin-top: 60px!important;
   }
-  .a-create-link.download-fees, .govuk-button2.black-text {
+  .a-create-link.download-fees {
     position:absolute;
     left:0;
     margin-left: 15px;
