@@ -503,6 +503,12 @@ a.custom-logout:visited {
     left:0;
     margin-left: 15px;
   }
+  .govuk-header__navigation-list {
+    margin-left: 15px;
+  }
+  .custom-reference-data {
+    margin-right: 50px;
+  }
 }
 
 .username-log {
