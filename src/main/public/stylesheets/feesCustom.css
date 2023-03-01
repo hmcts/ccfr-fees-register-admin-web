@@ -467,7 +467,7 @@ a.custom-logout:link {
 a.custom-logout:visited {
   color: white; }
 
-.a-create-link .download-fees {
+.a-create-link.download-fees, .govuk-button2.black-text {
   position:absolute;
   right:0;
 }
@@ -486,9 +486,9 @@ a.custom-logout:visited {
     margin-top: 30px;
   }
   .govuk-tabs__list {
-    margin-top: 100px!important;
+    margin-top: 60px!important;
   }
-  .a-create-link .download-fees {
+  .a-create-link.download-fees, .govuk-button2.black-text {
     position:absolute;
     left:0;
     margin-left: 15px;
