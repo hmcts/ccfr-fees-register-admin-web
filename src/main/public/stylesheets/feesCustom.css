@@ -418,6 +418,10 @@ a:focus {
   background-color: #ffdd00;
   outline: 2px solid #ffdd00;
 }
+input:focus {
+  border: 3.5px solid #ffdd00;
+  outline: 3.5px solid #ffdd00;
+}
 
 a.custom-draft-all-fees {
   font-family: "nta", Arial, sans-serif;
