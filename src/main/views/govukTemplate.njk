@@ -68,8 +68,12 @@
   <div class="header">
     <div class="header-global">
       <div class="header-proposition">
+
         <a href="{{ homepage_url|default('https://www.gov.uk') }}" class="custom-header-title">{{ t('Fee register') }} </a>
+        {% block proposition_header %}{% endblock %}
+
       <ul class="custom-header-ul">
+
         <a href="/admin/V2/all-fees" class="custom-draft-all-fees">{{ t('Fees') }} </a>
         {% if isEditor(user.allInfo.roles) or isAdmin(user.allInfo.roles) %}
         <a href="/admin/V2/draft-fees" class="custom-draft-all-fees">{{ t('Your Drafts') }} </a>
@@ -77,11 +81,12 @@
         {% elif isApprover(user.allInfo.roles)%}
         <a href="/admin/V2/pending-approval" class="custom-draft-all-fees">{{ t('Approvals') }} </a>
         {% endif %}
+        <a href="/admin/V2/reference-data" class="custom-reference-data">{{ t('Reference Data') }} </a>
       </ul>
       </div>
       {% block inside_header %}{% endblock %}
     </div>
-    {% block proposition_header %}{% endblock %}
+    
   </div>
 </header>
 
