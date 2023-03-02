@@ -437,10 +437,12 @@ a.custom-draft-all-fees {
 }
 
 a.custom-draft-all-fees:link {
-  color: white; }
+  color: white; 
+}
 
 a.custom-draft-all-fees:visited {
-  color: white; }
+  color: white; 
+}
 
 .custom-reference-data {
     font-family: "nta", Arial, sans-serif;
@@ -493,7 +495,7 @@ a.custom-logout:visited {
 }
 
 .active {
-  color:	#1d70b8;
+  color:	#1d8feb;
 }
 
 @media screen and (max-width: 760px) {
