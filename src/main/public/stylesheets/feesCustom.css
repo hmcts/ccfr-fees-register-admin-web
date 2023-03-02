@@ -419,7 +419,10 @@ a:focus {
   outline: 2px solid #ffdd00;
 }
 input:focus {
-  border: 3.5px solid #ffdd00;
+  outline: 3.5px solid #ffdd00;
+}
+
+details:focus {
   outline: 3.5px solid #ffdd00;
 }
 
@@ -487,6 +490,10 @@ a.custom-logout:visited {
 
 .govuk-header__navigation {
   position: relative;
+}
+
+.active {
+  color:	#1d70b8;
 }
 
 @media screen and (max-width: 760px) {
