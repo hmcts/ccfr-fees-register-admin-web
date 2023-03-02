@@ -495,7 +495,7 @@ a.custom-logout:visited {
 }
 
 .active {
-  color:	#1d8feb;
+  color:	#1d8feb!important;
 }
 
 @media screen and (max-width: 760px) {
