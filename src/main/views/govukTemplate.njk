@@ -87,7 +87,7 @@
             </li>
             {% elif isApprover(user.allInfo.roles)%}
             <li class="govuk-header__navigation-item">
-              <a href="/admin/V2/pending-approval" class="custom-draft-all-fees {% if (currentPage == 'approvals') %}active{% endif %}">{{ t('Approvals') }} </a>
+              <a href="/admin/V2/pending-approval" class="custom-draft-all-fees {% if (currentPage == 'pending-approval') %}active{% endif %}">{{ t('Approvals') }} </a>
             </li>
             {% endif %}
             <li class="govuk-header__navigation-item">
