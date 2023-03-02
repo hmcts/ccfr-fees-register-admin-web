@@ -75,23 +75,23 @@
 
         <nav aria-label="Menu" class="govuk-header__navigation ">
           <ul id="navigation" class="govuk-header__navigation-list">
-            <li class="govuk-header__navigation-item active">
-              <a href="/admin/V2/all-fees" class="custom-draft-all-fees">{{ t('Fees') }} </a>
+            <li class="govuk-header__navigation-item">
+              <a href="/admin/V2/all-fees" class="custom-draft-all-fees {% if (currentPage == 'all-fees' or currentPage == 'all-approvedbutnotlive' or currentPage == 'all-discontinued') %}active{% endif %}">{{ t('Fees') }} </a>
             </li>
             {% if isEditor(user.allInfo.roles) or isAdmin(user.allInfo.roles) %}
             <li class="govuk-header__navigation-item">
-              <a href="/admin/V2/draft-fees" class="custom-draft-all-fees">{{ t('Your Drafts') }} </a>
+              <a href="/admin/V2/draft-fees" class="custom-draft-all-fees {% if (currentPage == 'draft-fees' or currentPage == 'draft-rejectedbyapprover' or currentPage == 'draft-awaitingapproval') %}active{% endif %}">{{ t('Your Drafts') }} </a>
             </li>
             <li class="govuk-header__navigation-item">
-              <a href="/admin/v2/upload" class="custom-draft-all-fees">{{ t('Upload fees') }} </a>
+              <a href="/admin/v2/upload" class="custom-draft-all-fees {% if (currentPage == 'upload') %}active{% endif %}">{{ t('Upload fees') }} </a>
             </li>
             {% elif isApprover(user.allInfo.roles)%}
             <li class="govuk-header__navigation-item">
-              <a href="/admin/V2/pending-approval" class="custom-draft-all-fees">{{ t('Approvals') }} </a>
+              <a href="/admin/V2/pending-approval" class="custom-draft-all-fees {% if (currentPage == 'approvals') %}active{% endif %}">{{ t('Approvals') }} </a>
             </li>
             {% endif %}
             <li class="govuk-header__navigation-item">
-              <a href="/admin/V2/reference-data" class="custom-reference-data">{{ t('Reference Data') }} </a>
+              <a href="/admin/V2/reference-data" class="custom-reference-data {% if (currentPage == 'reference-data') %}active{% endif %}">{{ t('Reference Data') }} </a>
             </li>
           </ul>
         </nav>
