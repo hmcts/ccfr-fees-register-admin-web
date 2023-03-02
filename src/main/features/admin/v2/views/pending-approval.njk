@@ -1,11 +1,14 @@
 {% extends "layout.njk" %}
   {% from "includes/macros/form.njk" import nextButton%}
 
-  {% set title = t('Fees | ' + serviceName) %}
+  {% set title = t('Pending approval | ' + serviceName + ' | GOV.UK') %}
+  {% set currentPage = 'pending-approval' %}
+
   {% block content %}
   <input type='hidden' id='userRole' value=''/>
 
-  <h1 class="govuk-heading-xl govuk-!-margin-bottom-6 govuk-!-margin-top-7">{{t("Awaiting approval")}}</h1>
+  <h1 class="govuk-heading-xl govuk-!-margin-bottom-6 govuk-!-margin-top-7">{{t("Approvals")}}</h1>
+  <h2 class="govuk-heading-l govuk-!-margin-bottom-6 govuk-!-margin-top-7">{{t("Awaiting approval")}}</h2>
 
 {% if (fees | length) > 0 %}
   <table class="custom-table-body">
