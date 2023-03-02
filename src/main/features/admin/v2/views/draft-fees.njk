@@ -1,7 +1,7 @@
 {% extends "layout.njk" %}
 {% from "includes/macros/form.njk" import nextButton%}
 
-{% set title = t('Fees | ' + serviceName) %}
+{% set title = t('Your drafts | ' + serviceName + ' | GOV.UK') %}
 {% block content %}
 
 <div class="govuk-!-margin-top-8" style="white-space:nowrap;">
@@ -88,7 +88,7 @@
 											{% if user %}
 												<a href="/admin/V2/fee-details?draft=true&feeCode={{ fee.code }}&pageType=draftfee&vno={{version.version}}">View</a>
 											{% else  %}
-												<a href="/admin/V2/fee-details?draft=true&feeCode={{ fee.code }}&pageType=draftfee">View</a>
+												<a href="/admin/V2/fee-details?draft=true&feeCode={{ fee.code }}&pageType=draftfee" aria-label="View {{ fee.code }}">View</a>
 											{% endif %}
 										</td>
 									</tr>
