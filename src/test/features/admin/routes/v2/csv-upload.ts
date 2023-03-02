@@ -27,7 +27,7 @@ describe('Csv fees upload', () => {
       await request(app)
         .get(AdminPaths.csvUploadPage.uri)
         .set('Cookie', `${cookieName}=JWT`)
-        .expect(res => (expect(res).to.be as any).successful.withText('CSV upload'))
+        .expect(res => (expect(res).to.be as any).successful.withText('Upload fees'))
     })
   })
 
