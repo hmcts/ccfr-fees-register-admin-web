@@ -22,7 +22,7 @@
 <label for="{{ name }}"></label>
 <span class="{{ prefixClass }}">
     <input id="{{ name }}" name="{{ name }}" type="text"
-           class="form-control {{ inputClass }} {% if error %} form-control-error {% endif %}"
+           class="form-control {{ inputClass }} {% if error %} govuk-input--error {% endif %}"
            value="{{ form.valueFor(name) }}">
   </span>
   {% endmacro %}
@@ -37,7 +37,7 @@
 <span class="error-message">{{ error }}</span>
 <label for="{{ name }}" id="{{ name }}[label]" class="form-label-bold">{{ label }}</label>
 <textarea id="{{ name }}" name="{{ name }}" rows="{{ rows }}"
-          class="form-control form-control-3-4 {% if error %} form-control-error {% endif %}">{{ form.valueFor(name) }}</textarea>
+          class="form-control form-control-3-4 {% if error %} govuk-input--error {% endif %}">{{ form.valueFor(name) }}</textarea>
 </div>
   {% endmacro %}
 
@@ -163,7 +163,7 @@ disabled = disabled
 <span class="error-message">
       {{ error }}
     </span>
-<select class="form-control {% if error %} form-control-error {% endif %}"
+<select class="form-control {% if error %} govuk-input--error {% endif %}"
         id="{{ name }}" name="{{ name }}" {% if disabled %} disabled="disabled" {% endif %} >
 <option disabled="disabled"
 {% if selection === '' %}selected{% endif %} value="">
