@@ -8,7 +8,7 @@
   </label>
   <span class="error-message">{{ error }}</span>
   <input id="{{ name }}" name="{{ name }}" type="{{ type }}"
-         class="form-control {{ inputClass }} {% if error %} form-control-error {% endif %}"
+         class="form-control {{ inputClass }} {% if error %} govuk-input--error {% endif %}"
          value="{{ form.valueFor(name) }}" {% if disabled %} disabled="disabled" {% endif %}>
 </div>
   {% endmacro %}
