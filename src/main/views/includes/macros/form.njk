@@ -34,7 +34,7 @@
   {% macro textArea(label, name, form, rows=5) %}
   {% set error = form.errorFor(name) %}
     <div class="form-group {% if error %} govuk-form-group--error {% endif %}">
-      <label for="{{ name }}" id="{{ name }}[label]" class="govuk-label">{{ label }}</label>
+      <label for="{{ name }}" class="govuk-label">{{ label }}</label>
       <p id="{{ name }}-error" class="govuk-error-message">
         <span class="govuk-visually-hidden">Error:</span>{{ error }}
       </p>
