@@ -8,7 +8,7 @@
   </label>
   <span class="error-message">{{ error }}</span>
   <input id="{{ name }}" name="{{ name }}" type="{{ type }}"
-         class="form-control {{ inputClass }} {% if error %} govuk-input--error {% endif %}"
+         class="form-control {{ inputClass }} {% if error %} form-control-error {% endif %}"
          value="{{ form.valueFor(name) }}" {% if disabled %} disabled="disabled" {% endif %}>
 </div>
   {% endmacro %}
@@ -22,7 +22,7 @@
 <label for="{{ name }}"></label>
 <span class="{{ prefixClass }}">
     <input id="{{ name }}" name="{{ name }}" type="text"
-           class="form-control {{ inputClass }} {% if error %} govuk-input--error {% endif %}"
+           class="form-control {{ inputClass }} {% if error %} form-control-error {% endif %}"
            value="{{ form.valueFor(name) }}">
   </span>
   {% endmacro %}
@@ -37,7 +37,7 @@
 <span class="error-message">{{ error }}</span>
 <label for="{{ name }}" id="{{ name }}[label]" class="form-label-bold">{{ label }}</label>
 <textarea id="{{ name }}" name="{{ name }}" rows="{{ rows }}"
-          class="form-control form-control-3-4 {% if error %} govuk-input--error {% endif %}">{{ form.valueFor(name) }}</textarea>
+          class="form-control form-control-3-4 {% if error %} form-control-error {% endif %}">{{ form.valueFor(name) }}</textarea>
 </div>
   {% endmacro %}
 
@@ -163,7 +163,7 @@ disabled = disabled
 <span class="error-message">
       {{ error }}
     </span>
-<select class="form-control {% if error %} govuk-input--error {% endif %}"
+<select class="form-control {% if error %} form-control-error {% endif %}"
         id="{{ name }}" name="{{ name }}" {% if disabled %} disabled="disabled" {% endif %} >
 <option disabled="disabled"
 {% if selection === '' %}selected{% endif %} value="">
@@ -198,7 +198,7 @@ disabled = disabled
 </h1>
 <ul class="error-summary-list">
   {% for error in form.validationErrors %}
-  <li><a href="#{{ error.fieldName }}[label]">{{ t(error.message) }}</a></li>
+  <li><a href="#{{ error.fieldName }}">{{ t(error.message) }}</a></li>
   {% endfor %}
   {% for error in form.backendErrors %}
   <li><a href="#">{{ t(error) }}</a></li>
