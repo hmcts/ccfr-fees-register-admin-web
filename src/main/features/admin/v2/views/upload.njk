@@ -21,9 +21,9 @@
         </div>
         {% endif %}
 
-        <label for="csvdata">
-          <input class="upload-file" type="file" name="csvdata" accept="text/csv"/>
-        </label>
+        <label for="csvupload" class="form-label-bold">Upload a CSV file</label>
+        <input id="csvupload" class="upload-file" type="file" name="csvdata" accept="text/csv"/>
+        
         <p>
           {{ submitButton(t('Next')) }}
         </p>
