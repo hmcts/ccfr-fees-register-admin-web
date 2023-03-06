@@ -11,7 +11,6 @@
   <input type='hidden' id='userRole' value='{{ 'Approver' if isApprover(user.allInfo.roles) else 'Editor' }}'/>
   <div class="column-full">
     <div id="upload-form" class="form-group">
-      <h2 class="govuk-heading-l">CSV Upload</h2>
       <form method="post" action="upload?_csrf={{csrfToken}}" enctype="multipart/form-data">
         {% if UPLOAD_ERR %}
         <div class="error-summary" role="group" aria-labelledby="failure-error-summary-heading" tabindex="-1">
@@ -21,7 +20,7 @@
         </div>
         {% endif %}
 
-        <label for="csvupload" class="form-label-bold">Upload a CSV file</label>
+        <label for="csvupload" class="govuk-label govuk-label--l govuk-!-margin-bottom-6">Upload a CSV file</label>
         <input id="csvupload" class="upload-file" type="file" name="csvdata" accept="text/csv"/>
         
         <p>
