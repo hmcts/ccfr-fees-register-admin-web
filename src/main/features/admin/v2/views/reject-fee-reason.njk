@@ -2,13 +2,13 @@
 {% extends "layout.njk" %}
 
 {% set title = t('Fee | ' + serviceName) %}
-{% set heading = t('Why are you rejecting this draft fee?') %}
+{% set heading = t('Reject Fee') %}
 {% block content %}
 <input type='hidden' id='userRole' value=''/>
 
     <form id="reasonRejectFeesId" method="post">
         {{ csrfProtection(csrfToken) }}
-        <label class="govuk-hint">State your reason for rejecting this draft fee.</label>
+        <label class="govuk-label govuk-label--l govuk-!-margin-bottom-4">Why are you rejecting this draft fee?</label>
         {{ textArea(t(''), 'reasonForReject', form) }}
         {{ submitButton(t('Submit')) }}
     </form>
