@@ -10,14 +10,8 @@ selectInline,
 selectReferenceData %}
 {% extends "layout.njk" %}
 
-{% if edit %}
-  {% set thisPageHeading = 'Edit Fee' %}
-{% else %}
-  {% set thisPageHeading = 'Create a new fee' %}
-{% endif %}
 
 {% set title = t(thisPageHeading + ' | ' + serviceName) %}
-{% set heading = t(thisPageHeading) %}
 
 {% block content %}
 <input type='hidden' id='userRole' value='{{ 'Approver' if isApprover(user.allInfo.roles) else 'Editor' }}'/>
@@ -26,10 +20,15 @@ selectReferenceData %}
       <form method="post" id="createForm" action="create">
         <fieldset class="govuk-fieldset">
           <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
-            <h1 class="govuk-fieldset__heading">
-              Create a new fee
+            <h1 class="govuk-heading-xl">
+              {% if edit %}
+                Edit Fee
+              {% else %}
+                Create a new fee
+              {% endif %}
             </h1>
           </legend>
+
         {{ csrfProtection(csrfToken) }}
         {% if edit %}
           <div class="form-group">
