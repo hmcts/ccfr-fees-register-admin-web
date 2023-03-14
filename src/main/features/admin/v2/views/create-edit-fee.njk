@@ -43,7 +43,7 @@ selectReferenceData %}
 
         {{ textArea(t('Reason For Fee Update'), 'reasonForUpdate', form, rows=2) }}
 
-        {{ textArea(t('Description'), 'description', form, rows=4) }}
+        {{ textArea(t('Description of the Case'), 'description', form, rows=4) }}
 
         {{ textInput(t('Statutory Instrument'), 'statutoryInstrument', form, style="width:400px;") }}
         {{ textArea(t('Last Amending SI'), 'lastAmendingSi', form, rows=2) }}
@@ -72,7 +72,7 @@ selectReferenceData %}
       </div>
       {% set jurisdictionOneError = form.errorFor('jurisdiction1') %}
       <div class="govuk-form-group {{ 'form-group-error' if jurisdictionOneError}}">
-          <label class="form-label-bold">Jurisdiction 1</label>
+          <label class="form-label-bold" id="jurisdiction1">Jurisdiction 1</label>
             {% if jurisdictionOneError %}
               <span class="error-message"> {{jurisdictionOneError}} </span>
             {% endif %}
@@ -91,7 +91,7 @@ selectReferenceData %}
       </div>
       {% set jurisdictionTwoError = form.errorFor('jurisdiction2') %}
       <div class="govuk-form-group {{ 'form-group-error' if jurisdictionTwoError}}">
-          <label class="form-label-bold">Jurisdiction 2</label>
+          <label class="form-label-bold" id="jurisdiction2">Jurisdiction 2</label>
             {% if jurisdictionTwoError %}
               <span class="error-message"> {{jurisdictionTwoError}} </span>
             {% endif %}
@@ -213,7 +213,7 @@ selectReferenceData %}
       </div>
       {% set eventError = form.errorFor('event') %}
       <div class="govuk-form-group {{ 'form-group-error' if eventError}}">
-          <label class="form-label-bold">Event</label>
+          <label class="form-label-bold" id="event">Event</label>
           {% if eventError %}
             <span class="error-message"> {{eventError}} </span>
           {% endif %}
@@ -234,7 +234,7 @@ selectReferenceData %}
       </div>
       {% set channelError = form.errorFor('channel') %}
       <div class="govuk-form-group {{ 'form-group-error' if channelError}}">
-          <label class="form-label-bold">Channel</label>
+          <label class="form-label-bold" id="channel">Channel</label>
           {% if channelError %}
             <span class="error-message"> {{channelError}} </span>
           {% endif %}
@@ -260,7 +260,7 @@ selectReferenceData %}
         </p>
       {% set applicantTypeError = form.errorFor('applicantType') %}
       <div class="govuk-form-group {{ 'form-group-error' if applicantTypeError}}">
-          <label class="form-label-bold">Applicant</label>
+          <label class="form-label-bold" id="applicantType">Applicant</label>
           {% if applicantTypeError %}
             <span class="error-message"> {{applicantTypeError}} </span>
           {% endif %}
@@ -279,7 +279,7 @@ selectReferenceData %}
       </div>
       {% set directionError = form.errorFor('direction') %}
       <div class="govuk-form-group {{ 'form-group-error' if directionError}}">
-          <label class="form-label-bold">Direction</label>
+          <label class="form-label-bold" id="direction">Direction</label>
           {% if directionError %}
             <span class="error-message"> {{directionError}} </span>
           {% endif %}
