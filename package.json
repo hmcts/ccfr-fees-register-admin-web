@@ -187,6 +187,10 @@
     "nanoid": "^3.1.31",
     "moment": "^2.29.4",
     "ajv": "^6.12.3",
-    "codecov": "3.6.2"
+    "codecov": "3.6.2",
+    "minimatch": "3.0.5",
+    "decode-uri-component": "0.2.1",
+    "cookiejar": "2.1.4",
+    "qs": "6.7.3"
   }
 }
