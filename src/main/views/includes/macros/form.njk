@@ -38,8 +38,14 @@
         {{ error }}
         {% if (error == 'Enter description') %} for the case {% endif %}
       </span>
-      <label for="{{ name }}" id="{{ name }}[label]" class="form-label-bold">{{ label }}</label>
-      <textarea id="{{ name }}" name="{{ name }}" rows="{{ rows }}"
+      <label for="{{ name }}" id="{{ name }}[label]" class="form-label-bold">
+        {% if (name == 'reasonForReject') %}
+          Explain why you are rejecting the draft fee. Keep your answer brief and write in short sentences.
+        {% else %}
+          {{ label }}
+        {% endif %}
+       </label>
+      <textarea id="{{ name }}" name="{{ name }}" rows="{{ rows }}" aria-describedby="{{ name }}[label]"
               class="form-control form-control-3-4 {% if error %} form-control-error {% endif %}">{{ form.valueFor(name) }}</textarea>
     </div>
   {% endmacro %}
