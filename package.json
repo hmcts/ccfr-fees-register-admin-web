@@ -193,5 +193,6 @@
     "cookiejar": "2.1.4",
     "qs": "6.7.3",
     "xml2js": "0.5.0"
-  }
+  },
+  "packageManager": "yarn@3.5.1"
 }
