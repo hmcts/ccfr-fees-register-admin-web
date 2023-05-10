@@ -1,11 +1,15 @@
-FROM hmctspublic.azurecr.io/base/node:12-alpine as base
+FROM hmctspublic.azurecr.io/base/node:14-alpine as base
+
+USER root
+RUN corepack enable
+USER hmcts
 
 ENV WORKDIR /opt/app
 WORKDIR ${WORKDIR}
 
 COPY --chown=hmcts:hmcts package.json yarn.lock  server.js gulpfile.js tsconfig.json ./
-RUN yarn install --production  \
-    && yarn cache clean
+RUN yarn workspaces focus --all --production \
+  && yarn cache clean
 
 # ---- Build image ----
 FROM base as build
