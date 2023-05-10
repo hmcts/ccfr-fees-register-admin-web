@@ -301,6 +301,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@tootallnate/once@npm:1":
+  version: 1.1.2
+  resolution: "@tootallnate/once@npm:1.1.2"
+  checksum: e1fb1bbbc12089a0cb9433dc290f97bddd062deadb6178ce9bcb93bb7c1aecde5e60184bc7065aec42fe1663622a213493c48bbd4972d931aae48315f18e1be9
+  languageName: node
+  linkType: hard
+
 "@tootallnate/once@npm:2":
   version: 2.0.0
   resolution: "@tootallnate/once@npm:2.0.0"
@@ -549,10 +556,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/nunjucks@npm:^3.1.2":
-  version: 3.1.3
-  resolution: "@types/nunjucks@npm:3.1.3"
-  checksum: 056c3ceced8bec20e8ffac0b5d6200dde9a9f6e22bba8d6d6f2994c5b8e66f5a714c4d2a1995a3cf298f1b8e0678b8cf43ea5ab8996d8d17b0445595aef52169
+"@types/nunjucks@npm:^3.2.2":
+  version: 3.2.2
+  resolution: "@types/nunjucks@npm:3.2.2"
+  checksum: e0fdc68f01635b34ea6f5e8845ed6d2e8d11be6347b2f28c8093636454e2401f02c26a2ad6aa459da56f2459f2d59bf72914b6e4774bcd058fa12e2ae5f0f6ef
   languageName: node
   linkType: hard
 
@@ -1230,7 +1237,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"argv@npm:^0.0.2":
+"argv@npm:0.0.2":
   version: 0.0.2
   resolution: "argv@npm:0.0.2"
   checksum: e703f1af475dfd35f4065c21d7324368e3a9f1b5ff63d49c11fd442155aa0fd4f8498b57b535947fac86b79e1c9913cf0324300cbddbdc0af92fcf62eac0f5d2
@@ -2410,19 +2417,18 @@ __metadata:
   languageName: node
   linkType: hard
 
-"codecov@npm:3.6.2":
-  version: 3.6.2
-  resolution: "codecov@npm:3.6.2"
+"codecov@npm:3.7.1":
+  version: 3.7.1
+  resolution: "codecov@npm:3.7.1"
   dependencies:
-    argv: ^0.0.2
-    ignore-walk: ^3.0.1
-    js-yaml: ^3.13.1
-    teeny-request: ^3.11.3
-    urlgrey: ^0.4.4
-    validator: ^12.1.0
+    argv: 0.0.2
+    ignore-walk: 3.0.3
+    js-yaml: 3.13.1
+    teeny-request: 6.0.1
+    urlgrey: 0.4.4
   bin:
     codecov: bin/codecov
-  checksum: 4a86ee85f9802713a438cd4ac8cd0ab376abe354156060b4b78f2059e7e544e2ae4666a454bc1fa3abbe2f40cb422f465e98d192a3c4e52ca6fefb07ef4520bb
+  checksum: b4748dde7f92397125a45d6972c18ec7e54a7fb661389a08a8494e718ac4ff675f8a453f4797ec13be6400341e55c8a14bffd7cd6e67fbbe0957ffdb23097fa1
   languageName: node
   linkType: hard
 
@@ -4188,7 +4194,7 @@ __metadata:
     "@types/mocha": "*"
     "@types/nock": ^10.0.0
     "@types/node": ^10.5.2
-    "@types/nunjucks": ^3.1.2
+    "@types/nunjucks": ^3.2.2
     "@types/request-promise-native": ^1.0.2
     "@types/shortid": ^0.0.29
     "@types/supertest": "*"
@@ -4246,7 +4252,7 @@ __metadata:
     multer: ^1.4.2
     nock: ^13.0.5
     node-mocks-http: ^1.7.0
-    nunjucks: ^3.2.3
+    nunjucks: ^3.2.4
     nunjucks-date-filter: ^0.1.1
     nunjucks-numeral-filter: 0.0.2
     nyc: ^14.0.0
@@ -5668,6 +5674,17 @@ __metadata:
   languageName: node
   linkType: hard
 
+"http-proxy-agent@npm:^4.0.0":
+  version: 4.0.1
+  resolution: "http-proxy-agent@npm:4.0.1"
+  dependencies:
+    "@tootallnate/once": 1
+    agent-base: 6
+    debug: 4
+  checksum: c6a5da5a1929416b6bbdf77b1aca13888013fe7eb9d59fc292e25d18e041bb154a8dfada58e223fc7b76b9b2d155a87e92e608235201f77d34aa258707963a82
+  languageName: node
+  linkType: hard
+
 "http-proxy-agent@npm:^5.0.0":
   version: 5.0.0
   resolution: "http-proxy-agent@npm:5.0.0"
@@ -5850,6 +5867,15 @@ __metadata:
   version: 1.0.1
   resolution: "ignore-by-default@npm:1.0.1"
   checksum: 441509147b3615e0365e407a3c18e189f78c07af08564176c680be1fabc94b6c789cad1342ad887175d4ecd5225de86f73d376cec8e06b42fd9b429505ffcf8a
+  languageName: node
+  linkType: hard
+
+"ignore-walk@npm:3.0.3":
+  version: 3.0.3
+  resolution: "ignore-walk@npm:3.0.3"
+  dependencies:
+    minimatch: ^3.0.4
+  checksum: 34bc6f0497276a9bfad7ba1ae301c7d16bc6424890755a21d90536eaa1f4b7acd598686a01033e64345483b2fef41dad8f93794af73c8b13a7cf21a3cae34a4e
   languageName: node
   linkType: hard
 
@@ -8627,9 +8653,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"nunjucks@npm:^3.2.3":
-  version: 3.2.3
-  resolution: "nunjucks@npm:3.2.3"
+"nunjucks@npm:^3.2.4":
+  version: 3.2.4
+  resolution: "nunjucks@npm:3.2.4"
   dependencies:
     a-sync-waterfall: ^1.0.0
     asap: ^2.0.3
@@ -8641,7 +8667,7 @@ __metadata:
       optional: true
   bin:
     nunjucks-precompile: bin/precompile
-  checksum: 9d0125acf917166675af2d9b5d525b6d3edaba68ec6f8c92edee8ad05140cfa8aef12feb46f4c3da52ed2836cadfb9d26fbf1fa9d9be6bef4660d03ce1e89dbe
+  checksum: 8b902a9deb9ff0f5c9ebbd2c7f96dfe5800bf42bdfc91d8f829fc0440ec1f87901593e20479f5ba1bddcc9f2472b16a5e932be5863dcdec0899a27c01a03df32
   languageName: node
   linkType: hard
 
@@ -11039,6 +11065,15 @@ __metadata:
   languageName: node
   linkType: hard
 
+"stream-events@npm:^1.0.5":
+  version: 1.0.5
+  resolution: "stream-events@npm:1.0.5"
+  dependencies:
+    stubs: ^3.0.0
+  checksum: 969ce82e34bfbef5734629cc06f9d7f3705a9ceb8fcd6a526332f9159f1f8bbfdb1a453f3ced0b728083454f7706adbbe8428bceb788a0287ca48ba2642dc3fc
+  languageName: node
+  linkType: hard
+
 "stream-exhaust@npm:^1.0.1":
   version: 1.0.2
   resolution: "stream-exhaust@npm:1.0.2"
@@ -11247,6 +11282,13 @@ __metadata:
   bin:
     strip-json-comments: cli.js
   checksum: 8a6487da5db2f5cf75630bc7c0185e13ece71b180b9dd1f786c1737c88a685080ca680b776443fce862867f3bd0b41145304a1c17f6f6ce7e495459523d31392
+  languageName: node
+  linkType: hard
+
+"stubs@npm:^3.0.0":
+  version: 3.0.0
+  resolution: "stubs@npm:3.0.0"
+  checksum: dec7b82186e3743317616235c59bfb53284acc312cb9f4c3e97e2205c67a5c158b0ca89db5927e52351582e90a2672822eeaec9db396e23e56893d2a8676e024
   languageName: node
   linkType: hard
 
@@ -11472,14 +11514,16 @@ __metadata:
   languageName: node
   linkType: hard
 
-"teeny-request@npm:^3.11.3":
-  version: 3.11.3
-  resolution: "teeny-request@npm:3.11.3"
+"teeny-request@npm:6.0.1":
+  version: 6.0.1
+  resolution: "teeny-request@npm:6.0.1"
   dependencies:
-    https-proxy-agent: ^2.2.1
+    http-proxy-agent: ^4.0.0
+    https-proxy-agent: ^4.0.0
     node-fetch: ^2.2.0
+    stream-events: ^1.0.5
     uuid: ^3.3.2
-  checksum: b531a66669f5010e74ac7d02bc25ad6f45d46120cd647e351a43edee22997da6fd3ebfc0d5bd785a55b3806a29023afce2e200dbb825e9631eae6d1a76ffead1
+  checksum: 789c8ce43a8d761ffd9de351a243a304e148d30d0a556c7c50f24c1d714ce4aa93de6e6a21809df92c6850e0dc5e55faf12ddfe0350a3aa47bc7310c3cd7acfb
   languageName: node
   linkType: hard
 
@@ -12175,7 +12219,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"urlgrey@npm:^0.4.4":
+"urlgrey@npm:0.4.4":
   version: 0.4.4
   resolution: "urlgrey@npm:0.4.4"
   checksum: db5884ffca497430eb99fcf7bd88402ff3647c1ba7b5687c595d3af884afc198399301ec181582501ff61074d9bf342ad12825eb11aa020bc6aeae7bc815a04c
@@ -12276,13 +12320,6 @@ __metadata:
   version: 10.11.0
   resolution: "validator@npm:10.11.0"
   checksum: b945e5712af888fc5c984312cf9a7736d16a03f989556291d7984e5747efaaee6cdff671f6b0ef2630a6e2866a2728ab0f341877b878a9ffb8ad770dfcad7170
-  languageName: node
-  linkType: hard
-
-"validator@npm:^12.1.0":
-  version: 12.2.0
-  resolution: "validator@npm:12.2.0"
-  checksum: f635a8136a043a47ea7ade7aac8d6735609ebd40732517ed383d7c35155767d41742a858a9dd0b63833483014c508fef90457d7ea12e9166983a39eb798b38d6
   languageName: node
   linkType: hard
 
