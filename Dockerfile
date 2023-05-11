@@ -4,17 +4,15 @@ USER root
 RUN corepack enable
 USER hmcts
 
-ENV WORKDIR /opt/app
-WORKDIR ${WORKDIR}
-
 COPY --chown=hmcts:hmcts package.json yarn.lock  server.js gulpfile.js tsconfig.json ./
-RUN yarn workspaces focus --all --production \
+RUN yarn install --prefer-offline --ignore-optional --network-timeout 1200000 \
   && yarn cache clean
 
 # ---- Build image ----
 FROM base as build
 COPY --chown=hmcts:hmcts . ./
-RUN yarn install && yarn setup
+RUN yarn setup \
+  && yarn install --prefer-offline --ignore-optional --network-timeout 1200000
 
 # ---- Runtime image ----
 FROM base as runtime
