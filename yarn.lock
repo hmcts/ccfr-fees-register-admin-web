@@ -4450,14 +4450,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"flat@npm:^4.1.0":
-  version: 4.1.0
-  resolution: "flat@npm:4.1.0"
-  dependencies:
-    is-buffer: ~2.0.3
+"flat@npm:5.0.1":
+  version: 5.0.1
+  resolution: "flat@npm:5.0.1"
   bin:
     flat: cli.js
-  checksum: 41a91335be78c5c16813672a6371871034763db85ed84b31926b132ebeb145d63cd05460e33e4197358ed6a862e2c25c01721c8b2b20d292ff1e166795655f09
+  checksum: db669d7cc909b767b79b3da0a5e3ce66798ab32b3d24051c65fe38ad3e2984f836eb5a1503bef1705449a36267f090a73e8c24b24933e1f2fc54794b93b711fd
   languageName: node
   linkType: hard
 
@@ -6118,13 +6116,6 @@ __metadata:
   version: 1.1.6
   resolution: "is-buffer@npm:1.1.6"
   checksum: 4a186d995d8bbf9153b4bd9ff9fd04ae75068fe695d29025d25e592d9488911eeece84eefbd8fa41b8ddcc0711058a71d4c466dcf6f1f6e1d83830052d8ca707
-  languageName: node
-  linkType: hard
-
-"is-buffer@npm:~2.0.3":
-  version: 2.0.4
-  resolution: "is-buffer@npm:2.0.4"
-  checksum: b1616ff40c1644e219d6038819044608e31edcc60eb287e5f214391222dea889a68c659f0654865ce34b6c4dcfa2c8cae0174343a0f6ae3f2150f7856326cb80
   languageName: node
   linkType: hard
 
