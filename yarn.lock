@@ -4281,7 +4281,6 @@ __metadata:
     uuid: ^3.0.1
     uuid-validate: ^0.0.3
     webdriverio: ^6.12.1
-    yarn: ^1.6.0
   languageName: unknown
   linkType: soft
 
@@ -12865,16 +12864,6 @@ __metadata:
     y18n: ^3.2.1
     yargs-parser: ^5.0.0
   checksum: 207d461b5bb7b9f99dc6dc172e806e16aac07df31a9a85cda3f37a792cbe9909e054575b5091d888b452b8e50c7b3a8ce3401fcc4260c3a784b06f9951cef928
-  languageName: node
-  linkType: hard
-
-"yarn@npm:^1.6.0":
-  version: 1.22.0
-  resolution: "yarn@npm:1.22.0"
-  bin:
-    yarn: ./bin/yarn.js
-    yarnpkg: ./bin/yarn.js
-  checksum: cbfb837a0bc80bb73b6c9867f922bf9975d94a3cc408b7869dc8c95cd8e0be5e50b6b7fdd02770b64176c1b1801ea55ba2b4e95716a059696dbd36dfbc6fee5f
   languageName: node
   linkType: hard
 
