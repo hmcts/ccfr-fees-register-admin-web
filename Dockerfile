@@ -7,13 +7,12 @@ USER hmcts
 ENV WORKDIR /opt/app
 WORKDIR ${WORKDIR}
 
-COPY --chown=hmcts:hmcts package.json yarn.lock  server.js gulpfile.js tsconfig.json ./
+COPY --chown=hmcts:hmcts . .
 RUN yarn workspaces focus --all --production \
   && yarn cache clean
 
 # ---- Build image ----
 FROM base as build
-COPY --chown=hmcts:hmcts . ./
 RUN yarn setup \
   && yarn install --network-timeout 1200000
 
