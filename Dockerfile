@@ -4,25 +4,12 @@ USER root
 RUN corepack enable
 USER hmcts
 
-COPY --chown=hmcts:hmcts .yarn ./.yarn
-COPY --chown=hmcts:hmcts config ./config
-COPY --chown=hmcts:hmcts package.json yarn.lock .yarnrc.yml tsconfig.json ./
+ENV WORKDIR /opt/app
+WORKDIR ${WORKDIR}
 
-RUN yarn workspaces focus --all --production && yarn cache clean
-
-# ---- Build image ----
-FROM base as build
-COPY --chown=hmcts:hmcts . ./
-RUN PUPPETEER_SKIP_CHROMIUM_DOWNLOAD=true yarn install --immutable
-COPY tsconfig.json gulpfile.js server.js ./
-COPY --chown=hmcts:hmcts src/main ./src/main
-RUN yarn setup
-
-# ---- Runtime image ----
-FROM base as runtime
-COPY --from=build $WORKDIR/src/main ./src/main
-COPY --from=build $WORKDIR/server.js $WORKDIR/tsconfig.json ./
-COPY --from=build $WORKDIR/types ./types
+COPY --chown=hmcts:hmcts . .
+RUN yarn workspaces focus --all --production \
+  && yarn cache clean
 
 EXPOSE 3000
 CMD [ "yarn", "start" ]
