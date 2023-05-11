@@ -10,7 +10,9 @@ import * as https from 'https'
 import { AppInsights } from './app-insights/app-insights'
 
 // App Insights needs to be enabled as early as possible as it monitors other libraries as well
+console.log(`In server.ts`)
 AppInsights.enable()
+console.log(`Appinsights enabled!`)
 
 const port: string = process.env.PORT || '3000'
 
