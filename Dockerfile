@@ -14,11 +14,10 @@ RUN yarn workspaces focus --all --production \
 # ---- Build image ----
 FROM base as build
 RUN yarn setup \
-  && yarn install --network-timeout 1200000
+  && yarn install
 
 # ---- Runtime image ----
 FROM base as runtime
-
 COPY --chown=hmcts:hmcts --from=build ${WORKDIR}/src/main src/main/
 COPY --chown=hmcts:hmcts --from=build ${WORKDIR}/config config/
 COPY --chown=hmcts:hmcts --from=build ${WORKDIR}/types types/
