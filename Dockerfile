@@ -8,7 +8,7 @@ ENV WORKDIR /opt/app
 WORKDIR ${WORKDIR}
 
 COPY --chown=hmcts:hmcts package.json yarn.lock  server.js gulpfile.js tsconfig.json ./
-RUN yarn workspaces focus --all --production --network-timeout 1200000 \
+RUN yarn workspaces focus --all --production \
   && yarn cache clean
 
 # ---- Build image ----
