@@ -15,4 +15,4 @@ idam-pr:
   enabled: true
   redirect_uris:
     fees-register-admin:
-      - https://${SERVICE_FQDN}/oauth2/callback
+      - https://${SERVICE_NAME}.preview.platform.hmcts.net/oauth2/callback
