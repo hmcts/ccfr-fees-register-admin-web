@@ -107,7 +107,7 @@ Scenario('@functional @crossbrowser FeesRegister Admin Console Editor Discontinu
   I.login(editorUserName, editorPassword);
   I.wait(CCFRATConstants.tenSecondWaitTime);
   I.waitForText('Discontinued fees', CCFRATConstants.tenSecondWaitTime);
-  I.RejectFeeRegAdminWebCookies
+  I.RejectFeeRegAdminWebCookies();
   I.verifyDownloadLink();
   I.clickDownloadLink();
   I.click('Discontinued fees');
@@ -170,6 +170,7 @@ Scenario('@functional FeesRegister Delete the Fee', async I => {
   feeCode = await I.createNewFeeApi(editorUserName, editorPassword, fromDate, feeKeyword);
   I.login(editorUserName, editorPassword);
   I.wait(CCFRATConstants.tenSecondWaitTime);
+  I.AcceptFeeRegAdminWebCookies();
   I.click("Your Drafts");
   I.wait(CCFRATConstants.fiveSecondWaitTime);
   I.waitForText('Drafts', CCFRATConstants.tenSecondWaitTime);

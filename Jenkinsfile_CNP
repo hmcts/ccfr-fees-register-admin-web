@@ -11,7 +11,11 @@ def product = "fees-register"
 def component = "frontend"
 def secrets = [
   'fees-register-${env}'      : [
-    secret('freg-idam-client-secret', 'CLIENT_SECRET')
+    secret('freg-idam-client-secret', 'CLIENT_SECRET'),
+    secret('editors-username', 'EDITOR_USERNAME'),
+    secret('editors-password', 'EDITOR_PASSWORD'),
+    secret('approver-username', 'APPROVER_USERNAME'),
+    secret('approver-password', 'APPROVER_PASSWORD')
   ]
 ]
 
@@ -55,6 +59,8 @@ withPipeline("nodejs", product, component) {
       reportFiles          : "fees-reg-admin-web-e2e-result.html",
       reportName           : "Fees Reg Admin Web E2E tests result"
     ]
+    sh 'yarn test:a11y'
+    steps.archiveArtifacts allowEmptyArchive: true, artifacts: 'functional-output/**/*'
   }
 
   afterAlways('functionalTest:aat') {
