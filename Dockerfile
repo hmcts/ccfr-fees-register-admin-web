@@ -23,4 +23,4 @@ COPY --chown=hmcts:hmcts --from=build ${WORKDIR}/types types/
 COPY --chown=hmcts:hmcts --from=build ${WORKDIR}/server.js ${WORKDIR}/tsconfig.json ./
 
 EXPOSE 3000
-# ----  CMD [ "yarn", "start" ]
+CMD [ "yarn", "start" ]
