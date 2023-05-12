@@ -4,6 +4,9 @@ USER root
 RUN corepack enable
 USER hmcts
 
+ENV WORKDIR /opt/app
+WORKDIR ${WORKDIR}
+
 COPY --chown=hmcts:hmcts .yarn ./.yarn
 COPY --chown=hmcts:hmcts config ./config
 COPY --chown=hmcts:hmcts package.json yarn.lock server.js gulpfile.js .yarnrc.yml tsconfig.json ./
@@ -12,7 +15,7 @@ RUN yarn install && yarn cache clean
 # ---- Build image ----
 FROM base as build
 COPY --chown=hmcts:hmcts . ./
-RUN yarn install --immutable && yarn setup
+RUN yarn install && yarn setup
 
 # ---- Runtime image ----
 FROM base as runtime
