@@ -21,7 +21,7 @@ FROM base as runtime
 COPY --chown=hmcts:hmcts --from=build $WORKDIR/src/main src/main/
 COPY --chown=hmcts:hmcts --from=build $WORKDIR/config config/
 COPY --chown=hmcts:hmcts --from=build $WORKDIR/types types/
-COPY --chown=hmcts:hmcts --from=build $WORKDIR/server.js ${WORKDIR}/tsconfig.json ./
+COPY --chown=hmcts:hmcts --from=build $WORKDIR/server.js $WORKDIR/tsconfig.json ./
 
 EXPOSE 3000
 CMD [ "yarn", "start" ]
