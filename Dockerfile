@@ -7,8 +7,10 @@ USER hmcts
 ENV WORKDIR /opt/app
 WORKDIR ${WORKDIR}
 
+COPY --chown=hmcts:hmcts .yarn ./.yarn
+COPY --chown=hmcts:hmcts config ./config
 COPY --chown=hmcts:hmcts package.json yarn.lock server.js gulpfile.js tsconfig.json ./
-RUN yarn install && yarn cache clean
+RUN yarn workspaces focus --all --production && yarn cache clean
 
 # ---- Build image ----
 FROM base as build
