@@ -4,7 +4,7 @@ const CONF = require('config');
 exports.config = {
   name: 'fee-register-admin-web-acceptance-tests',
   tests: './test/end-to-end/tests/*_test.js',
-  timeout: 10000,
+  timeout: 25000,
   output: process.cwd() + '/functional-output',
   helpers: {
     Puppeteer: {

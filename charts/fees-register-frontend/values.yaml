@@ -3,10 +3,8 @@ nodejs:
   aadIdentityName: ccpay
   memoryLimits: 1024Mi
   cpuLimits: 1000m
-  readinessDelay: 120
-  readinessPeriod: 75
-  livenessDelay: 120
-  livenessPeriod: 75
+  readinessPeriod: 120
+  livenessPeriod: 120
   keyVaults:
     ccpay:
       secrets:
