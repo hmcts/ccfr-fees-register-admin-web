@@ -1,6 +1,6 @@
 nodejs:
   image: ${IMAGE_NAME}
-  ingressHost: ${SERVICE_FQDN}
+  ingressHost: ${SERVICE_NAME}.preview.platform.hmcts.net
   devmemoryRequests: 1024Mi
   devcpuRequests: 1000m
   devmemoryLimits: 1024Mi
@@ -15,4 +15,4 @@ idam-pr:
   enabled: true
   redirect_uris:
     fees-register-admin:
-      - https://${SERVICE_FQDN}/oauth2/callback
+      - https://${SERVICE_NAME}.preview.platform.hmcts.net/oauth2/callback
