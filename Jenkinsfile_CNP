@@ -37,6 +37,7 @@ withPipeline("nodejs", product, component) {
   disableLegacyDeployment()
   afterAlways('checkout') {
     sh "yarn cache clean"
+    sh "yarn --version"
     echo 'ccfr-fees-register-admin-web checked out'
   }
   afterAlways('build') {
