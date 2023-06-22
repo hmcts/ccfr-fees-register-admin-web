@@ -18,7 +18,7 @@ Private NPM repository is defined in `.npmrc` file. All dependencies should be p
 
 ### Running the application
 
-Install dependencies by executing the following command:
+Install  dependencies by executing the following command:
 
  ```bash
 $ yarn install
