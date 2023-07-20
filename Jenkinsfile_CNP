@@ -31,8 +31,6 @@ withPipeline("nodejs", product, component) {
 
   loadVaultSecrets(secrets)
 
-  //installCharts()
-  enableSlackNotifications('#cc-payments-tech')
   enableAksStagingDeployment()
   disableLegacyDeployment()
   afterAlways('checkout') {
