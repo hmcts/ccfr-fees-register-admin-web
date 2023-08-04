@@ -22,7 +22,7 @@ async function runEditorTests() {
 
   try {
 
-    // Pages    running the tests
+    // Pages running the tests
     console.log("admin/V2/all-fees page");
     const pa11yResult1 = await pa11y(`${url}/admin/V2/all-fees`, {
       actions: [
