@@ -4111,7 +4111,7 @@ __metadata:
     ts-mockito: ^2.3.0
     ts-node: ^8.6.2
     tsconfig-paths: ^4.0.0
-    tslint: ^6.1.3
+    tslint: ^5.1.0
     tslint-config-standard: ^9.0.0
     typescript: ^5.1.6
     uuid: ^3.0.1
@@ -11313,7 +11313,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"tslib@npm:^1.13.0":
+"tslib@npm:^1.8.0":
   version: 1.14.1
   resolution: "tslib@npm:1.14.1"
   checksum: dbe628ef87f66691d5d2959b3e41b9ca0045c3ee3c7c7b906cc1e328b39f199bb1ad9e671c39025bd56122ac57dfbf7385a94843b1cc07c60a4db74795829acd
@@ -11357,9 +11357,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"tslint@npm:^6.1.3":
-  version: 6.1.3
-  resolution: "tslint@npm:6.1.3"
+"tslint@npm:^5.1.0":
+  version: 5.20.1
+  resolution: "tslint@npm:5.20.1"
   dependencies:
     "@babel/code-frame": ^7.0.0
     builtin-modules: ^1.1.1
@@ -11369,16 +11369,16 @@ __metadata:
     glob: ^7.1.1
     js-yaml: ^3.13.1
     minimatch: ^3.0.4
-    mkdirp: ^0.5.3
+    mkdirp: ^0.5.1
     resolve: ^1.3.2
     semver: ^5.3.0
-    tslib: ^1.13.0
+    tslib: ^1.8.0
     tsutils: ^2.29.0
   peerDependencies:
-    typescript: ">=2.3.0-dev || >=2.4.0-dev || >=2.5.0-dev || >=2.6.0-dev || >=2.7.0-dev || >=2.8.0-dev || >=2.9.0-dev || >=3.0.0-dev || >= 3.1.0-dev || >= 3.2.0-dev || >= 4.0.0-dev"
+    typescript: ">=2.3.0-dev || >=2.4.0-dev || >=2.5.0-dev || >=2.6.0-dev || >=2.7.0-dev || >=2.8.0-dev || >=2.9.0-dev || >=3.0.0-dev || >= 3.1.0-dev || >= 3.2.0-dev"
   bin:
-    tslint: bin/tslint
-  checksum: 7348b7abd6b8939f0b295c4dddbb104adfe2e96c9cc5be4a946a87a28df648bde61046cfb07951708938192f553eba6254f7729b85fd230efebbd72f7988255e
+    tslint: ./bin/tslint
+  checksum: b11ee16c012a65bce260de9d004de4716d8a35baa9658a42d501d8f9e1276e055e68a2bf40a4d5a225e79edceef5f0af9ac8a6259217536c54484bfefd1c2237
   languageName: node
   linkType: hard
 
