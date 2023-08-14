@@ -533,10 +533,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/node@npm:^14.14.20":
-  version: 14.18.46
-  resolution: "@types/node@npm:14.18.46"
-  checksum: 69f2288111b96a8af25ef72a95abbd729262a4a5ac4249e22d2a515ca1e172797a57890ad6103eb310645600cbcf61d81639ff672a51c6bb11e56f91e3820149
+"@types/node@npm:^18.11.9":
+  version: 18.17.4
+  resolution: "@types/node@npm:18.17.4"
+  checksum: d4c458202d82c999f38d85ca9ae8a2d3e521645c7f1b908cd6a0303d0e13c7d5eb3f888c41f584ba029ecf802d0a0005b7816c149400371a3c035abc4bd9a4c5
   languageName: node
   linkType: hard
 
@@ -4027,7 +4027,7 @@ __metadata:
     "@types/lodash": ^4.14.52
     "@types/mocha": "*"
     "@types/nock": ^10.0.0
-    "@types/node": ^14.14.20
+    "@types/node": ^18.11.9
     "@types/nunjucks": ^3.2.2
     "@types/request-promise-native": ^1.0.2
     "@types/shortid": ^0.0.29
@@ -4113,7 +4113,7 @@ __metadata:
     tsconfig-paths: ^4.0.0
     tslint: ^5.1.0
     tslint-config-standard: ^9.0.0
-    typescript: ^4.1.2
+    typescript: ^5.1.6
     uuid: ^3.0.1
     uuid-validate: ^0.0.3
     webdriverio: ^6.12.1
@@ -11313,7 +11313,14 @@ __metadata:
   languageName: node
   linkType: hard
 
-"tslib@npm:^1.8.0, tslib@npm:^1.8.1":
+"tslib@npm:^1.8.0":
+  version: 1.14.1
+  resolution: "tslib@npm:1.14.1"
+  checksum: dbe628ef87f66691d5d2959b3e41b9ca0045c3ee3c7c7b906cc1e328b39f199bb1ad9e671c39025bd56122ac57dfbf7385a94843b1cc07c60a4db74795829acd
+  languageName: node
+  linkType: hard
+
+"tslib@npm:^1.8.1":
   version: 1.11.0
   resolution: "tslib@npm:1.11.0"
   checksum: f0b5533697792def77fbc1bc9d2669321264ebcedff471f3d679957e9de8a4b5404072d7deae8ba9f836aba6ca828f182282663e0e15ec979e80378710a22e11
@@ -11488,23 +11495,23 @@ __metadata:
   languageName: node
   linkType: hard
 
-"typescript@npm:^4.1.2":
-  version: 4.9.5
-  resolution: "typescript@npm:4.9.5"
+"typescript@npm:^5.1.6":
+  version: 5.1.6
+  resolution: "typescript@npm:5.1.6"
   bin:
     tsc: bin/tsc
     tsserver: bin/tsserver
-  checksum: ee000bc26848147ad423b581bd250075662a354d84f0e06eb76d3b892328d8d4440b7487b5a83e851b12b255f55d71835b008a66cbf8f255a11e4400159237db
+  checksum: b2f2c35096035fe1f5facd1e38922ccb8558996331405eb00a5111cc948b2e733163cc22fab5db46992aba7dd520fff637f2c1df4996ff0e134e77d3249a7350
   languageName: node
   linkType: hard
 
-"typescript@patch:typescript@^4.1.2#~builtin<compat/typescript>":
-  version: 4.9.5
-  resolution: "typescript@patch:typescript@npm%3A4.9.5#~builtin<compat/typescript>::version=4.9.5&hash=289587"
+"typescript@patch:typescript@^5.1.6#~builtin<compat/typescript>":
+  version: 5.1.6
+  resolution: "typescript@patch:typescript@npm%3A5.1.6#~builtin<compat/typescript>::version=5.1.6&hash=77c9e2"
   bin:
     tsc: bin/tsc
     tsserver: bin/tsserver
-  checksum: 1f8f3b6aaea19f0f67cba79057674ba580438a7db55057eb89cc06950483c5d632115c14077f6663ea76fd09fce3c190e6414bb98582ec80aa5a4eaf345d5b68
+  checksum: 21e88b0a0c0226f9cb9fd25b9626fb05b4c0f3fddac521844a13e1f30beb8f14e90bd409a9ac43c812c5946d714d6e0dee12d5d02dfc1c562c5aacfa1f49b606
   languageName: node
   linkType: hard
 
