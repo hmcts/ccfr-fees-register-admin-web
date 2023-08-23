@@ -11,6 +11,7 @@ const approverPassword = randomData.getRandomUserPassword();
 const editorUserName = 'feeregeditor.' + randomData.getRandomEmailAddress();
 const editorPassword = randomData.getRandomUserPassword();
 
+
 let feeCode;
 
 Feature('CC FeesRegister Admin Acceptance Tests For Approver');
