@@ -25,6 +25,7 @@ package-lock.json
 .project
 .settings/
 functional-output/
+smoke-output/
 mochawesome-report/
 acceptance-tests/output
 
