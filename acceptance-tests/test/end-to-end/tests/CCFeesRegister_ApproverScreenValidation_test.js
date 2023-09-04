@@ -27,7 +27,7 @@ AfterSuite(async () => {
   }
 });
 
-Scenario('@functional FeesRegister Admin Console Approver Header and Tab Validation', I => {
+Scenario('@functional FeesRegister Admin Console Approver Header and Tab Validation', ({ I }) => {
   I.login(approverUserName, approverPassword);
   I.wait(CCFRATConstants.tenSecondWaitTime);
   I.see("Fees");
@@ -55,7 +55,7 @@ Scenario('@functional FeesRegister Admin Console Approver Header and Tab Validat
   I.click('Sign out');
 }).retry(CCFRATConstants.retryScenario);
 
-Scenario('@functional FeesRegister Verify Pending For Approval header list',  I => {
+Scenario('@functional FeesRegister Verify Pending For Approval header list',  ({ I }) => {
   I.login(approverUserName, approverPassword);
   I.wait(CCFRATConstants.tenSecondWaitTime);
   I.see("Approvals");

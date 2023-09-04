@@ -65,8 +65,8 @@ withNightlyPipeline("nodejs", product, component) {
       allowMissing         : true,
       alwaysLinkToLastBuild: true,
       keepAll              : true,
-      reportDir            : "functional-output",
-      reportFiles          : "fees-reg-admin-web-e2e-result.html",
+      reportDir            : "functional-output/functional/allure",
+      reportFiles          : "index.html",
       reportName           : "Fees Reg Admin Web E2E tests result"
     ]
     sh 'yarn test:a11y'
