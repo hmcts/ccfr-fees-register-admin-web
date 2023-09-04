@@ -45,14 +45,38 @@ withPipeline("nodejs", product, component) {
   //Sync demo,ithc and perftest with master branch
   syncBranchesWithMaster(branchesToSync)
 
+  afterAlways('smokeTest:preview') {
+    publishHTML target: [
+      allowMissing         : true,
+      alwaysLinkToLastBuild: true,
+      keepAll              : true,
+      reportDir            : "smoke-output/allure",
+      reportFiles          : "index.html",
+      reportName           : "Fees Reg Admin Web smoke test result"
+    ]
+  }
+
   afterAlways('functionalTest:preview') {
     publishHTML target: [
       allowMissing         : true,
       alwaysLinkToLastBuild: true,
       keepAll              : true,
-      reportDir            : "functional-output",
-      reportFiles          : "fees-reg-admin-web-e2e-result.html",
+      reportDir            : "functional-output/functional/allure",
+      reportFiles          : "index.html",
       reportName           : "Fees Reg Admin Web E2E tests result"
+    ]
+    sh 'yarn test:a11y'
+    steps.archiveArtifacts allowEmptyArchive: true, artifacts: 'functional-output/**/*'
+  }
+
+  afterAlways('smokeTest:aat') {
+    publishHTML target: [
+      allowMissing         : true,
+      alwaysLinkToLastBuild: true,
+      keepAll              : true,
+      reportDir            : "smoke-output/allure",
+      reportFiles          : "index.html",
+      reportName           : "Fees Reg Admin Web smoke test result"
     ]
   }
 
@@ -61,8 +85,8 @@ withPipeline("nodejs", product, component) {
       allowMissing         : true,
       alwaysLinkToLastBuild: true,
       keepAll              : true,
-      reportDir            : "functional-output",
-      reportFiles          : "fees-reg-admin-web-e2e-result.html",
+      reportDir            : "functional-output/functional/allure",
+      reportFiles          : "index.html",
       reportName           : "Fees Reg Admin Web E2E tests result"
     ]
     sh 'yarn test:a11y'
