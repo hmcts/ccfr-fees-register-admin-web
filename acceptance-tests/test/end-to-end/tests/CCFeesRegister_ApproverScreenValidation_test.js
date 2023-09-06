@@ -11,20 +11,12 @@ const approverPassword = randomData.getRandomUserPassword();
 const editorUserName = 'feeregeditor.' + randomData.getRandomEmailAddress();
 const editorPassword = randomData.getRandomUserPassword();
 
-let feeCode;
-
 Feature('CC FeesRegister Admin Acceptance Tests For Approver');
 
 BeforeSuite(async() => {
   await idamHelper.createUserUsingTestingSupportService('Admin', adminUserName, adminPassword, ['freg', 'freg-admin']);
   await idamHelper.createUserUsingTestingSupportService('Approver', approverUserName, approverPassword, ['freg', 'freg-approver']);
   await idamHelper.createUserUsingTestingSupportService('Editor', editorUserName, editorPassword, ['freg', 'freg-editor']);
-});
-
-AfterSuite(async () => {
-  if(feeCode) {
-    await fregHelper.deleteFee(adminUserName, adminPassword, feeCode)
-  }
 });
 
 Scenario('@functional FeesRegister Admin Console Approver Header and Tab Validation', ({ I }) => {
