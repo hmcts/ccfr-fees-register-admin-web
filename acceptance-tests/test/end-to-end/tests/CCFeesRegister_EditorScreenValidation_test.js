@@ -22,7 +22,7 @@ BeforeSuite(async() => {
   await idamHelper.createUserUsingTestingSupportService('Editor', editorUserName, editorPassword, ['freg', 'freg-editor']);
 });
 
-AfterSuite(async () => {
+After(async () => {
   if(feeCode) {
     await fregHelper.deleteFee(adminUserName, adminPassword, feeCode)
   }
