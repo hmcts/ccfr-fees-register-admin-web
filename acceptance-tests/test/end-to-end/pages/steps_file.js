@@ -64,11 +64,12 @@ module.exports = () => actor({
     console.log("newDate----------->"+newDate);
     return newDate;
   },
+
   async getFeeCode(){
-    let feeCodeConfirmationText = await this.grabTextFrom({css: '.govuk-panel__title'});
-    const FeeCode = feeCodeConfirmationText.split(" ")[0];
-    console.log(FeeCode);
-    return FeeCode;
+    const feeCodeConfirmationText = await this.grabTextFrom({css: '.govuk-panel__title'});
+    const FeeCode = feeCodeConfirmationText.toString().split(" ");
+    console.log('FeeCode: ' + FeeCode[1]);
+    return FeeCode[1];
   },
 
   async addNewFee(feeKeyword, formattedFromDate) {

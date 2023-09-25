@@ -1,14 +1,13 @@
-/* eslint-disable no-magic-numbers */
 const CONF = require('config');
 
 exports.config = {
-  name: 'fee-register-admin-web-acceptance-tests',
-  tests: './test/end-to-end/tests/*_test.js',
-  timeout: 180000,
-  output: `${process.cwd()}/functional-output/functional/reports`,
+  name: 'fee-reg-admin-webb-smoke-test',
+  tests: './test/smoke-test.js',
+  timeout: 10000,
+  output: `${process.cwd()}/smoke-output/reports`,
   helpers: {
     Playwright: {
-      url: CONF.e2e.frontendUrl,
+      url: `${CONF.e2e.frontendUrl}/health`,
       show: false,
       browser: 'chromium',
       waitForTimeout: 60001,
@@ -19,13 +18,13 @@ exports.config = {
       fullPageScreenshots: true,
       uniqueScreenshotNames: true,
       recordVideo: {
-        dir: `${process.cwd()}/functional-output/functional/reports`,
+        dir: `${process.cwd()}/smoke-output/reports`,
         size : {
           width: 1024,
           height: 768
         }
       }
-    }
+    },
   },
   plugins: {
     retryFailedStep: {
@@ -43,6 +42,5 @@ exports.config = {
       require: '@codeceptjs/allure-legacy'
     },
   },
-  include: { I: './test/end-to-end/pages/steps_file.js' },
   mocha: {}
 };
