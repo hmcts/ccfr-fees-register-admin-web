@@ -14,16 +14,16 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
         with:
           fetch-depth: 0
-      - name: use node.js 12.20.0
-        uses: actions/setup-node@v1
+      - name: use node.js 18
+        uses: actions/setup-node@v3
         with:
-          node-version: 12.20.0
+          node-version: 18
           registry-url: https://registry.npmjs.org/
       - name: Yarn install
-        run: yarn dependency-setup-with-yarn-lock
+        run: yarn install --immutable
       - name: Install codecov globally
         run: npm install -g codecov
       - name: yarn version
@@ -42,7 +42,7 @@ jobs:
       - name: Yarn test ally
         run: yarn test:a11y
       - name: Yarn coverage unit
-        run: yarn test:coverage-unit    
+        run: yarn test:coverage-unit
       - name: Upload coverage to Codecov
         uses: codecov/codecov-action@v1
         with:
