@@ -53,7 +53,7 @@ $ yarn test
 configure the following environment variables
 E2E_FRONTEND_URL=<PR/AAT>
 TEST_URL=<PR/AAT>
-To see steps running and screenshots on failover change the ```--reporter mochawesome``` to ```--steps"``` for ```yarn test:acceptance``` under package.
+To see steps running and screenshots on failover change the ```--reporter mochawesome``` to ```--steps"``` for ```yarn test:facceptance``` under package.
 
 Run them with:
 ```bash
