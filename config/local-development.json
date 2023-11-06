@@ -1,0 +1,30 @@
+{
+  "security": {
+    "clientId": "FEES_CLIENT_ID",
+    "clientSecret": "FEES_CLIENT_SECRET"
+  },
+  "idam": {
+    "authentication-web": {
+      "url": "http://localhost:9002"
+    },
+    "login": {
+      "url": "http://localhost:9002/login"
+    },
+    "api": {
+      "url": "http://localhost:5000"
+    }
+  },
+  "session": {
+    "cookieName": "SESSION_ID"
+  },
+  "fees": {
+    "url": "http://localhost:8091"
+  },
+  "e2e": {
+    "frontendUrl": "https://localhost:4200/"
+  },
+  "appInsights": {
+    "instrumentationKey": "some-key",
+    "roleName": "fees-register-admin"
+  }
+}
