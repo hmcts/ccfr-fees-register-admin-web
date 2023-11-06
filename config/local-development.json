@@ -1,7 +1,11 @@
 {
   "security": {
-    "clientId": "FEES_CLIENT_ID",
-    "clientSecret": "FEES_CLIENT_SECRET"
+    "clientId": "fees_admin_frontend"
+  },
+  "secrets": {
+    "ccpay": {
+      "freg-idam-client-secret": "LOOKINVAULT"
+    }
   },
   "idam": {
     "authentication-web": {
