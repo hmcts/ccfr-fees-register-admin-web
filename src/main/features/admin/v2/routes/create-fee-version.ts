@@ -38,7 +38,7 @@ export default express.Router()
         }
       })
   })
-  .post(Paths.createFeeVersionPageV2.uri, FormValidator.requestHandler(CreateFeeVersionForm, CreateFeeVersionForm.fromObject), (req: express.Request, res: express.Response) => {
+  .put(Paths.createFeeVersionPageV2.uri, FormValidator.requestHandler(CreateFeeVersionForm, CreateFeeVersionForm.fromObject), (req: express.Request, res: express.Response) => {
     const form: Form<CreateFeeVersionForm> = req.body
 
     if (req.query.action === 'edit') {
