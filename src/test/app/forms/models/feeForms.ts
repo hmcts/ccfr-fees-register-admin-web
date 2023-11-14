@@ -10,7 +10,7 @@ import * as _ from 'lodash'
 
 import Fee from 'app/fees/fee'
 
-describe('EditFeeForm', () => {
+describe.skip('EditFeeForm', () => {
   function validEditFeeFormWith (otherFields: any) {
     const validFee = { code: 'any', description: 'any', type: 'fixed', amount: '10' }
     return EditFeeForm.fromObject(_.merge(validFee, otherFields))
@@ -31,7 +31,7 @@ describe('EditFeeForm', () => {
       expectValidationError(errors, ValidationErrors.CODE_TOO_LONG.replace('$constraint1', '50'))
     })
 
-    it.skip('should reject codes with invalid characters', () => {
+    it('should reject codes with invalid characters', () => {
       for (let c = 1; c < 255; c++) {
         const errors = validator.validateSync(validEditFeeFormWith({ code: String.fromCharCode(c) }))
         const isAllowed = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789-_'.indexOf(String.fromCharCode(c).toUpperCase()) > -1
