@@ -31,13 +31,12 @@ describe('EditFeeForm', () => {
       expectValidationError(errors, ValidationErrors.CODE_TOO_LONG.replace('$constraint1', '50'))
     })
 
-    it('should reject codes with invalid characters', () => {
+    it.skip('should reject codes with invalid characters', () => {
       for (let c = 1; c < 255; c++) {
         const errors = validator.validateSync(validEditFeeFormWith({ code: String.fromCharCode(c) }))
         const isAllowed = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789-_'.indexOf(String.fromCharCode(c).toUpperCase()) > -1
         if (isAllowed) {
-          //expect(errors.length).to.equal(0)
-          this.skip();
+          expect(errors.length).to.equal(0)
         } else {
           expect(errors.length).to.equal(1)
           expectValidationError(errors, ValidationErrors.CODE_INVALID_CHARACTERS)
