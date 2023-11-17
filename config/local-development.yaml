@@ -1,0 +1,6 @@
+security:
+  clientId: freg
+secrets:
+  ccpay:
+    freg-idam-client-secret: foo
+
