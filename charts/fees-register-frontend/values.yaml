@@ -1,5 +1,5 @@
 nodejs:
-  ingressHost: fees-register.{{ .Values.global.environment }}.platform.hmcts.net
+  ingressHost: fees-register.{{ .Values.global.environment }}.platform.hmcts.netgit
   memoryLimits: 1024Mi
   cpuLimits: 1000m
   readinessPeriod: 120
