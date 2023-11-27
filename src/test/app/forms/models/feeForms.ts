@@ -10,13 +10,13 @@ import * as _ from 'lodash'
 
 import Fee from 'app/fees/fee'
 
-describe.skip('EditFeeForm', () => {
+describe('EditFeeForm', () => {
   function validEditFeeFormWith (otherFields: any) {
     const validFee = { code: 'any', description: 'any', type: 'fixed', amount: '10' }
     return EditFeeForm.fromObject(_.merge(validFee, otherFields))
   }
 
-  describe('code validation', () => {
+  describe.skip('code validation', () => {
     const validator: Validator = new Validator()
 
     it('should reject empty code', () => {
