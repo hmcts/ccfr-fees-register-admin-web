@@ -19,7 +19,7 @@ describe('EditRangeGroupForm', () => {
 
     it('should reject empty code', () => {
       const errors = validator.validateSync(validEditRangeGroupFormWith({ code: null }))
-      expect(errors.length).to.equal(1)
+      expect(errors.length).to.equal(0) // DTRJ deliberate break, should be '1'.
       expectValidationError(errors, ValidationErrors.CODE_REQUIRED)
     })
 
