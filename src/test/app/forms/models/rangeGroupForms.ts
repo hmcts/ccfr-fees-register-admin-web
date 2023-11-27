@@ -8,7 +8,7 @@ import { expectValidationError } from './validationUtils'
 import * as _ from 'lodash'
 import { CreateRangeGroupForm, EditRangeGroupForm, RangeForm, ValidationErrors } from 'app/forms/models/rangeGroupForms'
 
-describe.skip('EditRangeGroupForm', () => {
+describe('EditRangeGroupForm', () => {
   function validEditRangeGroupFormWith (otherFields: any) {
     const validRangeGroup = { code: 'any', description: 'any', ranges: [] }
     return EditRangeGroupForm.fromObject(_.merge(validRangeGroup, otherFields))

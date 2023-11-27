@@ -16,7 +16,7 @@ describe('EditFeeForm', () => {
     return EditFeeForm.fromObject(_.merge(validFee, otherFields))
   }
 
-  describe.skip('code validation', () => {
+  describe('code validation', () => {
     const validator: Validator = new Validator()
 
     it('should reject empty code', () => {
