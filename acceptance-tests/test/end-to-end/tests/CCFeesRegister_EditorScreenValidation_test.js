@@ -250,11 +250,11 @@ Scenario('@functional FeesRegister Editor Screen For Fee Draft Rejected by appro
   I.click("Your Drafts");
   I.wait(CCFRATConstants.fiveSecondWaitTime);
   I.click("Rejected by approver");
-  I.wait(CCFRATConstants.fiveSecondWaitTime);
+  I.wait(CCFRATConstants.tenSecondWaitTime);
   I.waitForText('Rejected by approver', CCFRATConstants.tenSecondWaitTime);
   I.verifyFeeDraftHeaders();
   I.click('Sign out');
-}); //.retry(CCFRATConstants.retryScenario);
+}).retry(CCFRATConstants.retryScenario);
 
 Scenario('@functional FeesRegister Editor Screen For Fee Draft Awaiting approval', async ({ I }) => {
   let feeObj = await I.addNewFeeAndSubmitForApprovalUsingApi(editorUserName, editorPassword);
