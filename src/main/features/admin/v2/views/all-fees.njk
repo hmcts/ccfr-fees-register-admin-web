@@ -3,36 +3,40 @@
 {% extends "layout.njk" %}
   {% from "includes/macros/form.njk" import nextButton%}
 
-  {% set title = t('Fees | ' + serviceName) %}
+  {% set title = t('Fees | ' + serviceName + ' | GOV.UK') %}
   {% block content %}
 
     <input type='hidden' id='userRole' value=''/>
-    <div class="downloadbtn-container downloadbtn-container-align">
-      <div>
-        <a href="#" id="mybutton" class="a-create-link">{{nextButton(t("Download all fees"), t("govuk-button2 black-text"))}}</a>
+
+    <div class="govuk-grid-row" style="position:relative;">
+      <div class="govuk-grid-column-two-thirds">
+        <h1 class="govuk-heading-xl fees-header">Fees</h1>
+      </div>
+      <div class="govuk-grid-column-one-third">
+        <a href="#" id="mybutton" class="a-create-link download-fees">{{nextButton(t("Download all fees"), t("govuk-button2 black-text"))}}</a>
       </div>
     </div>
 
 
 <ul class="govuk-tabs__list govuk-!-margin-top-7">
 <li class="govuk-tabs__list-item govuk-tabs__list-item--selected">
-    <a class="govuk-tabs__tab govuk-tabs__tab--selected" href="/admin/V2/all-fees">
+    <a class="govuk-tabs__tab govuk-tabs__tab--selected" href="/admin/V2/all-fees" role="tab">
         {{ t("Live fees") }}
     </a>
 </li>
 <li class="govuk-tabs__list-item">
-    <a class="govuk-tabs__tab" href="/admin/V2/all-approvedbutnotlive">
+    <a class="govuk-tabs__tab" href="/admin/V2/all-approvedbutnotlive" role="tab">
       {{ t("Approved but not live fees") }}
     </a>
 </li>
 <li class="govuk-tabs__list-item">
-    <a class="govuk-tabs__tab" href="/admin/V2/all-discontinued">
+    <a class="govuk-tabs__tab" href="/admin/V2/all-discontinued" role="tab">
          {{ t("Discontinued fees") }}
     </a>
 </li>
 </ul>
 <div class="title-with-secondary">
-  <h1 class="govuk-heading-xl govuk-!-margin-bottom-6 govuk-!-margin-top-7">{{t("Live fees")}}</h1>
+  <h2 class="govuk-heading-l govuk-!-margin-bottom-6 govuk-!-margin-top-7">{{t("Live fees")}}</h2>
   <div class="title-with-secondary live-fee-al"></div>
   <p class="govuk-!-margin-top-9 govuk-!-margin-bottom-0"> &nbsp;</p>
 </div>
@@ -40,7 +44,10 @@
    <a href="./fees/create" class="a-create-link">{{nextButton(t("Create a new fee"), t("govuk-button2 black-text"))}}</a>
 {% endif %}
 
-<div class="fee-register-table-size">
+<div class="fee-register-table-size" style="width:100%;overflow-x:scroll;">
+    <div class="scroll-top" style="height:10px;"></div>
+</div>
+<div class="fee-register-table-size" style="width:100%;overflow-x:scroll;">
   <table class="custom-table-body">
     <thead>
     <tr>
