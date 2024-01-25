@@ -22,7 +22,7 @@ describe('Csv fees upload', () => {
 
   describe('on GET', () => {
     it('should render csv upload page', async () => {
-      idamServiceMock.resolveRetrieveUserFor(1, 'admin', 'admin')
+      await idamServiceMock.resolveRetrieveUserFor(1, 'admin', 'admin')
 
       await request(app)
         .get(AdminPaths.csvUploadPage.uri)
@@ -33,7 +33,7 @@ describe('Csv fees upload', () => {
 
   describe('on POST render the CSV import fees', () => {
     it('should render the CSV import fees after upload', async () => {
-      idamServiceMock.resolveRetrieveUserFor(1, 'admin', 'admin')
+      await idamServiceMock.resolveRetrieveUserFor(1, 'admin', 'admin')
 
       await request(app)
         .post(AdminPaths.csvImportFeePage.uri)
@@ -46,7 +46,7 @@ describe('Csv fees upload', () => {
   describe('on POST save CSV fixed fees', () => {
     it('should render the save CSV fees confirmation page', async () => {
       feesServiceMock.createFixedFee()
-      idamServiceMock.resolveRetrieveUserFor(1, 'admin', 'admin')
+      await idamServiceMock.resolveRetrieveUserFor(1, 'admin', 'admin')
 
       await request(app)
         .post(AdminPaths.createBulkFeesPage.uri)
@@ -106,7 +106,7 @@ describe('Csv fees upload', () => {
   describe('on POST save CSV fixed fees', () => {
     it('should render the save CSV fees confirmation page', async () => {
       feesServiceMock.createBandedFee()
-      idamServiceMock.resolveRetrieveUserFor(1, 'admin', 'admin')
+      await idamServiceMock.resolveRetrieveUserFor(1, 'admin', 'admin')
 
       await request(app)
         .post(AdminPaths.createBulkFeesPage.uri)
@@ -166,7 +166,7 @@ describe('Csv fees upload', () => {
   describe('on POST save CSV fixed fees', () => {
     it('should render the save CSV fees confirmation page', async () => {
       feesServiceMock.createRateableFee()
-      idamServiceMock.resolveRetrieveUserFor(1, 'admin', 'admin')
+      await idamServiceMock.resolveRetrieveUserFor(1, 'admin', 'admin')
 
       await request(app)
         .post(AdminPaths.createBulkFeesPage.uri)
@@ -226,7 +226,7 @@ describe('Csv fees upload', () => {
   describe('on POST save CSV fixed fees', () => {
     it('should render the save CSV fees confirmation page', async () => {
       feesServiceMock.createRelationalFee()
-      idamServiceMock.resolveRetrieveUserFor(1, 'admin', 'admin')
+      await idamServiceMock.resolveRetrieveUserFor(1, 'admin', 'admin')
 
       await request(app)
         .post(AdminPaths.createBulkFeesPage.uri)
@@ -286,7 +286,7 @@ describe('Csv fees upload', () => {
   describe('on POST save CSV ranged fees', () => {
     it('should render the save CSV fees confirmation page', async () => {
       feesServiceMock.createRangedFee()
-      idamServiceMock.resolveRetrieveUserFor(1, 'admin', 'admin')
+      await idamServiceMock.resolveRetrieveUserFor(1, 'admin', 'admin')
 
       await request(app)
         .post(AdminPaths.createBulkFeesPage.uri)
@@ -352,7 +352,7 @@ describe('Csv fees upload', () => {
   describe('on POST render CSV data to JSON', () => {
     it('should render csv data into json', async () => {
       feesServiceMock.renderCsvToJsonPage()
-      idamServiceMock.resolveRetrieveUserFor(1, 'admin', 'admin')
+      await idamServiceMock.resolveRetrieveUserFor(1, 'admin', 'admin')
 
       await request(app)
         .post(AdminPaths.csvToJsonPage.uri)
