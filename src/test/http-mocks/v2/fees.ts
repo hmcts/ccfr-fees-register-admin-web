@@ -90,7 +90,7 @@ export function renderCsvImportFee () {
 }
 
 export function renderCsvToJsonPage () {
-  mock(`/admin/v2`)
+  mock(`http://localhost/admin/v2`)
     .post(new RegExp(`/tojson`))
     .reply(HttpStatus.OK, {
       resObj: csvJSONStr
