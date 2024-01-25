@@ -594,10 +594,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/lodash@npm:^4.14.52":
-  version: 4.14.149
-  resolution: "@types/lodash@npm:4.14.149"
-  checksum: 6caf68cf38d9672851490cdb0a9ef25a90495c05903ca16e62d1d78ebb8b12ee46b20c2a5e29b7667612baedca0087c10f56debc305e486aba08b3dbefb93865
+"@types/lodash@npm:^4.14.202":
+  version: 4.14.202
+  resolution: "@types/lodash@npm:4.14.202"
+  checksum: a91acf3564a568c6f199912f3eb2c76c99c5a0d7e219394294213b3f2d54f672619f0fde4da22b29dc5d4c31457cd799acc2e5cb6bd90f9af04a1578483b6ff7
   languageName: node
   linkType: hard
 
@@ -4334,7 +4334,7 @@ __metadata:
     "@types/i18next-express-middleware": ^1.7.0
     "@types/i18next-sprintf-postprocessor": ^0.2.0
     "@types/left-pad": ^1.1.1
-    "@types/lodash": ^4.14.52
+    "@types/lodash": ^4.14.202
     "@types/mocha": "*"
     "@types/nock": ^10.0.0
     "@types/node": ^18.11.9
@@ -4396,7 +4396,7 @@ __metadata:
     moment: ^2.19.4
     morgan: ^1.6.1
     multer: ^1.4.2
-    nock: ^13.0.5
+    nock: ^13.5.0
     node-mocks-http: ^1.7.0
     npm-run-all: ^4.1.5
     nunjucks: ^3.2.4
@@ -7609,13 +7609,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"lodash.set@npm:^4.3.2":
-  version: 4.3.2
-  resolution: "lodash.set@npm:4.3.2"
-  checksum: a9122f49eef9f2d0fc9061a33d87f8e5b8c6b23d46e8b9e9ce1529d3588d79741bd1145a3abdfa3b13082703e65af27ff18d8a07bfc22b9be32f3fc36f763f70
-  languageName: node
-  linkType: hard
-
 "lodash.union@npm:^4.6.0":
   version: 4.6.0
   resolution: "lodash.union@npm:4.6.0"
@@ -8519,15 +8512,14 @@ __metadata:
   languageName: node
   linkType: hard
 
-"nock@npm:^13.0.5":
-  version: 13.0.5
-  resolution: "nock@npm:13.0.5"
+"nock@npm:^13.5.0":
+  version: 13.5.0
+  resolution: "nock@npm:13.5.0"
   dependencies:
     debug: ^4.1.0
     json-stringify-safe: ^5.0.1
-    lodash.set: ^4.3.2
     propagate: ^2.0.0
-  checksum: a6cf5502aefb3646f200c6da8b776550c2d799ba63f62d533affeb6a20f7df41135706fe7af9215ecd52e4063447ef80d4312935829476f618770f383228facc
+  checksum: b50d680da3287859f81626b426234ed81a43aae16455efd259a3044f4a6139677d97c7001f532def6b308e7c3ecf7517925f2a34b3aaf80ee2ced920cfce2799
   languageName: node
   linkType: hard
 
