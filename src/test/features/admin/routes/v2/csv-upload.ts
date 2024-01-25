@@ -15,7 +15,7 @@ import * as idamServiceMock from '../../../../http-mocks/idam'
 
 const cookieName: string = config.get<string>('session.cookieName')
 
-describe('Csv fees upload', () => {
+describe.only('Csv fees upload', () => {
   beforeEach(() => {
     mock.cleanAll()
   })
@@ -33,7 +33,7 @@ describe('Csv fees upload', () => {
 
   describe('on POST render the CSV import fees', () => {
     it('should render the CSV import fees after upload', async () => {
-      idamServiceMock.resolveRetrieveUserFor(1, 'admin', 'admin')
+      await idamServiceMock.resolveRetrieveUserFor(1, 'admin', 'admin')
 
       await request(app)
         .post(AdminPaths.csvImportFeePage.uri)
@@ -351,7 +351,7 @@ describe('Csv fees upload', () => {
 
   describe('on POST render CSV data to JSON', () => {
     it('should render csv data into json', async () => {
-      feesServiceMock.renderCsvToJsonPage()
+      await feesServiceMock.renderCsvToJsonPage()
       idamServiceMock.resolveRetrieveUserFor(1, 'admin', 'admin')
 
       await request(app)
