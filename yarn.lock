@@ -594,10 +594,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/lodash@npm:^4.14.52":
-  version: 4.14.149
-  resolution: "@types/lodash@npm:4.14.149"
-  checksum: 6caf68cf38d9672851490cdb0a9ef25a90495c05903ca16e62d1d78ebb8b12ee46b20c2a5e29b7667612baedca0087c10f56debc305e486aba08b3dbefb93865
+"@types/lodash@npm:^4.14.202":
+  version: 4.14.202
+  resolution: "@types/lodash@npm:4.14.202"
+  checksum: a91acf3564a568c6f199912f3eb2c76c99c5a0d7e219394294213b3f2d54f672619f0fde4da22b29dc5d4c31457cd799acc2e5cb6bd90f9af04a1578483b6ff7
   languageName: node
   linkType: hard
 
@@ -4334,7 +4334,7 @@ __metadata:
     "@types/i18next-express-middleware": ^1.7.0
     "@types/i18next-sprintf-postprocessor": ^0.2.0
     "@types/left-pad": ^1.1.1
-    "@types/lodash": ^4.14.52
+    "@types/lodash": ^4.14.202
     "@types/mocha": "*"
     "@types/nock": ^10.0.0
     "@types/node": ^18.11.9
