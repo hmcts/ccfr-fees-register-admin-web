@@ -450,11 +450,11 @@ __metadata:
   linkType: hard
 
 "@types/chai-as-promised@npm:^7.1.0":
-  version: 7.1.2
-  resolution: "@types/chai-as-promised@npm:7.1.2"
+  version: 7.1.8
+  resolution: "@types/chai-as-promised@npm:7.1.8"
   dependencies:
     "@types/chai": "*"
-  checksum: d6ed7f624461516aa1d9426ef21cc76f8ce024fb9b0b6e0bb7470062d34a33d9c6957eba31de8272a7317f4ffbbd0a8561647f0222bdb9ff68c62f935a56ae2d
+  checksum: f0e5eab451b91bc1e289ed89519faf6591932e8a28d2ec9bbe95826eb73d28fe43713633e0c18706f3baa560a7d97e7c7c20dc53ce639e5d75bac46b2a50bf21
   languageName: node
   linkType: hard
 
