@@ -8,6 +8,7 @@ const replace = require('gulp-replace');
 
 const repoRoot = path.join(__dirname, '/');
 const govUkFrontendToolkitRoot = path.join(repoRoot, 'node_modules/govuk_frontend_toolkit/stylesheets');
+const chrisRoot = path.join(repoRoot, 'chris');
 const govUkElementRoot = path.join(repoRoot, 'node_modules/govuk-elements-sass/public/sass');
 
 const assetsDirectory = './src/main/public';
@@ -18,6 +19,7 @@ gulp.task('sass', function(done) {
   .pipe(sass({
     includePaths: [
       govUkFrontendToolkitRoot,
+      chrisRoot,
       govUkElementRoot
     ]
   }))
