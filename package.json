@@ -170,7 +170,7 @@
     "all": true
   },
   "resolutions": {
-    "axios": "^0.21.1",
+    "axios": "^0.28.0",
     "async": "^3.2.2",
     "glob-parent": "^6.0.1",
     "hosted-git-info": "^3.0.8",
