@@ -13,8 +13,8 @@ const govUkElementRoot = path.join(repoRoot, 'node_modules/govuk-elements-sass/p
 const assetsDirectory = './src/main/public';
 const stylesheetsDirectory = `${assetsDirectory}/stylesheets`;
 
-gulp.task('sass', function(done) {
-  gulp.src(stylesheetsDirectory + '/*.scss')
+gulp.task('sass', function() {
+  return gulp.src(stylesheetsDirectory + '/*.scss')
   .pipe(sass({
     includePaths: [
       govUkFrontendToolkitRoot,
@@ -24,8 +24,6 @@ gulp.task('sass', function(done) {
   .pipe(plumber())
   .pipe(gulp.dest(stylesheetsDirectory))
   .pipe(livereload());
-
-  done();
 
 })
 
@@ -74,7 +72,7 @@ gulp.src([
 })
 
 gulp.task("watch", function() {
-  gulp.watch(stylesheetsDirectory + '/**/*.scss', ['sass'])
+  return gulp.watch(stylesheetsDirectory + '/**/*.scss', ['sass'])
 });
 
 gulp.task('develop', function() {
