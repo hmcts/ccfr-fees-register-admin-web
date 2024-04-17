@@ -30,7 +30,7 @@ Run:
 $ yarn start
 ```
 
-It will be available at https://localhost:3000
+It will be available at https://localhost:3001
 
 ## Developing
 
