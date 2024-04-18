@@ -5,7 +5,7 @@
   },
   "secrets": {
     "ccpay": {
-      "freg-idam-client-secret": "EGNH7CZ6WUPL72FC"
+      "freg-idam-client-secret": "foo"
     }
   },
   "idam": {
@@ -13,17 +13,17 @@
       "url": "https://idam-web-public.aat.platform.hmcts.net/"
     },
     "login": {
-      "url": "https://idam-web-public.aat.platform.hmcts.net/login"
+      "url": "http://localhost:5556/login"
     },
     "api": {
-      "url": "https://idam-api.aat.platform.hmcts.net"
+      "url": "http://localhost:5556/login"
     }
   },
   "session": {
     "cookieName": "SESSION_ID"
   },
   "fees": {
-    "url": "http://fees-register.aat.platform.hmcts.net/"
+    "url": "http://localhost:8091"
   },
   "e2e": {
     "frontendUrl": "https://localhost:4200/"
