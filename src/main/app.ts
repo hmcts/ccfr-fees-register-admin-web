@@ -24,7 +24,7 @@ const bodyParser = require('body-parser')
 
 logger.info({
   microservice: 'fees-register-admin-web',
-  team: 'cc',
+  team: 'fees-pay',
   environment: process.env.NODE_ENV
 })
 
@@ -69,6 +69,8 @@ app.use(express.static(path.join(__dirname, 'public')))
 
 if (env !== 'development') {
   new CsrfProtection().enableFor(app)
+} else {
+  logger.warn('CSRF protection is disabled')
 }
 
 if (!config.has('security.clientId') || !config.has('secrets.ccpay.freg-idam-client-secret')) {
