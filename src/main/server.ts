@@ -11,7 +11,7 @@ AppInsights.enable()
 
 let port: string = process.env.PORT || '3000'
 
-if (app.locals.ENV === 'development') {
+if (process.env.NODE_ENV === 'development') {
   port = '3001'
 }
 app.listen(port, () => {
