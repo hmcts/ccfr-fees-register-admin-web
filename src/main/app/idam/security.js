@@ -120,6 +120,8 @@ Security.prototype.logout = function () {
     var token = req.cookies[SECURITY_COOKIE];
     res.clearCookie(SECURITY_COOKIE);
     res.clearCookie(REDIRECT_COOKIE);
+    res.clearCookie(ACCESS_TOKEN_OAUTH2);
+    res.redirect('/');
   }
 
 };
