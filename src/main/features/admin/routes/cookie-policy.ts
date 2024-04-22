@@ -11,7 +11,9 @@ export default express.Router()
         res.render(Paths.cookiePolicyPage.associatedView, { 
             countCookiesByCatGoogle: CookiePolicy.countCookies(Category.GOOGLE),
             countCookiesByCatDynatrace: CookiePolicy.countCookies(Category.DYNATRACE),
+            countCookiesByCatSecurity: CookiePolicy.countCookies(Category.SECURITY),
             cookiesByCatGoogle: CookiePolicy.cookiesByCat(Category.GOOGLE),
-            cookiesByCatDynatrace: CookiePolicy.cookiesByCat(Category.DYNATRACE) 
+            cookiesByCatDynatrace: CookiePolicy.cookiesByCat(Category.DYNATRACE),
+            cookiesByCatSecurity: CookiePolicy.cookiesByCat(Category.SECURITY) 
         })
     })

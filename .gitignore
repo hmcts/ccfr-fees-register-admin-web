@@ -39,4 +39,4 @@ acceptance-tests/output
 .pnp.*
 
 config/
-config/local-development.json
+config/local-development.*

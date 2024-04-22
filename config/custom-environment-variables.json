@@ -1,5 +1,4 @@
 {
-	"protocol": "http",
 	"security": {
     "clientId": "FEES_CLIENT_ID"
 	},

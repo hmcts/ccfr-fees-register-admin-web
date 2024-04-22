@@ -122,12 +122,8 @@ Security.prototype.logout = function () {
 
     res.clearCookie(SECURITY_COOKIE);
     res.clearCookie(REDIRECT_COOKIE);
-
-    if (token) {
-      res.redirect(self.opts.loginUrl + "/logout?jwt=" + token);
-    } else {
-      res.redirect(self.opts.loginUrl + "/logout");
-    }
+    res.clearCookie(ACCESS_TOKEN_OAUTH2);
+    res.redirect('/');
   }
 
 };

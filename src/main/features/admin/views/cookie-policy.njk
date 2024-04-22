@@ -84,6 +84,7 @@
         
 
              {% if countCookiesByCatDynatrace > 0 %}
+
              <div class="tabs-2">
               <h2 class="govuk-heading-l" id="2-to-measure-website-usage">Cookies used to measure application performance
               </h2>
@@ -106,7 +107,7 @@
                 </tr>
                 </thead>
                 <tbody>
-                  {% for cookie in cookies %}
+                  {% for cookie in cookiesByCatDynatrace %}
                   <tr class="govuk-table__row" scope="col">
                       <td class="govuk-table__cell">{{cookie.name}}</td>
                       <td class="govuk-table__cell">{{cookie.purpose}}</td>
@@ -115,47 +116,29 @@
                   {% endfor %}
                 </tbody>
               </table>
+            
+            {% endif %}
+
+            {% if countCookiesByCatSecurity > 0 %}
+
               <h3 class="heading-medium">Essential cookies</h3>
               <p>These essential cookies make the service more secure. They always need to be on.</p>
               <table aria-label="cookie-details" class="govuk-table">
-                <thead>
-                <tr>
-                    <th scope="col">Cookie name</th>
-                    <th scope="col">What this cookie is for</th>
-                    <th scope="col">Expires after</th>
+                <thead class="govuk-table__head">
+                <tr class="govuk-table__row">
+                    <th scope="col" class="govuk-table__header">Cookie name</th>
+                    <th scope="col" class="govuk-table__header">What this cookie is for</th>
+                    <th scope="col" class="govuk-table__header">Expires after</th>
                 </tr>
                 </thead>
                 <tbody>
-                <tr>
-                    <th scope="col">Idam.Session</th>
-                    <td>Keeps track of your login state</td>
-                    <td>When session ends</td>
-                </tr>
-                <tr>
-                    <th scope="col">Idam.AuthId</th>
-                    <td>Keeps track of your login state when using multi-factor authentication</td>
-                    <td>When session ends</td>
-                </tr>
-                <tr>
-                    <th scope="col">Idam.SSOSession</th>
-                    <td>Keeps track of your login state when using federated authentication</td>
-                    <td>When session ends</td>
-                </tr>
-                <tr>
-                    <th scope="col">idam_ui_locales</th>
-                    <td>Stores your language preferences</td>
-                    <td>10 years</td>
-                </tr>
-                <tr>
-                    <th scope="col">XSRF-TOKEN</th>
-                    <td>Helps protect against forgery</td>
-                    <td>When session ends</td>
-                </tr>
-                <tr>
-                  <th scope="col">fee-register-admin-web-cookie-preferences</th>
-                  <td>For user preferences while using the application</td>
-                  <td>24 hours</td>
-                </tr>
+                  {% for cookie in cookiesByCatSecurity %}
+                  <tr class="govuk-table__row" scope="col">
+                      <td class="govuk-table__cell">{{cookie.name}}</td>
+                      <td class="govuk-table__cell">{{cookie.purpose}}</td>
+                      <td class="govuk-table__cell">{{cookie.expires}}</td>
+                    </tr>
+                  {% endfor %}
                 </tbody>
             </table>
              <p><a href="/admin/cookies-details" target="_blank">Find out more about essential cookies (opens in new tab)</a>.</p>
