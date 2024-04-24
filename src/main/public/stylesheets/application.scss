@@ -107,16 +107,16 @@ $govuk-background-color: #dee0e2;
   margin-right: 15px;
 }
 
-.govuk-footer__copyright-logo {
-  background-image: url($path + '/govuk-crest.png');
-}
-
 .link-back {
   cursor: pointer;
 }
 
+.copyright-logo-overwrite {
+  background-image: url($path + '/govuk-crest.png');
+}
+
 @media only screen and (min-resolution: 192dpi), only screen and (min-resolution: 2dppx) {
-  .govuk-footer__copyright-logo {
+  .copyright-logo-overwrite {
     background-image: url($path + '/govuk-crest-2x.png');
   }
 }
