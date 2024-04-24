@@ -106,3 +106,17 @@ $govuk-background-color: #dee0e2;
 .footer-link {
   margin-right: 15px;
 }
+
+.govuk-footer__copyright-logo {
+  background-image: url($path + '/govuk-crest.png');
+}
+
+.link-back {
+  cursor: pointer;
+}
+
+@media only screen and (min-resolution: 192dpi), only screen and (min-resolution: 2dppx) {
+  .govuk-footer__copyright-logo {
+    background-image: url($path + '/govuk-crest-2x.png');
+  }
+}

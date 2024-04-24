@@ -169,6 +169,10 @@ export default class Nunjucks {
       return isExists
     })
 
+    // nunjucksEnv.addFilter('back', function(){
+    //   history.back();
+    // })
+
     return nunjucksEnv
   }
 }
