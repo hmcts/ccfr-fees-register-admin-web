@@ -264,13 +264,13 @@ __metadata:
   linkType: hard
 
 "@hmcts/nodejs-logging@npm:^3.0.0":
-  version: 3.0.1
-  resolution: "@hmcts/nodejs-logging@npm:3.0.1"
+  version: 3.0.4
+  resolution: "@hmcts/nodejs-logging@npm:3.0.4"
   dependencies:
     moment: ^2.19.3
     on-finished: ^2.3.0
-    winston: ^2.4.1
-  checksum: f61628a122e1a51a059e64fc0c30c546cc15f6c87e54238b32cc1767954913529e574a33d7a11dfa58917a45c50d8aaaa32c216371bf313cb07f403255d0b58c
+    winston: ^2.4.5
+  checksum: d690f06f3cc99c8c2d03c1da1d305dcbc7ddd2f2e374d347659e869aa0795d75de9e75b2a336a0b94e34e20ad3da5b27f8d89405acc474316ef3fb6ca545dcf2
   languageName: node
   linkType: hard
 
@@ -12846,20 +12846,6 @@ __metadata:
   dependencies:
     string-width: ^1.0.2 || 2 || 3 || 4
   checksum: d5fc37cd561f9daee3c80e03b92ed3e84d80dde3365a8767263d03dacfc8fa06b065ffe1df00d8c2a09f731482fcacae745abfbb478d4af36d0a891fad4834d3
-  languageName: node
-  linkType: hard
-
-"winston@npm:^2.4.1":
-  version: 2.4.4
-  resolution: "winston@npm:2.4.4"
-  dependencies:
-    async: ~1.0.0
-    colors: 1.0.x
-    cycle: 1.0.x
-    eyes: 0.1.x
-    isstream: 0.1.x
-    stack-trace: 0.0.x
-  checksum: e3f7b31c1270e701b143d49efbea4186e3df1ff4dab2ceeec3f7496193cf99e494574a76f0a6e2983e6c53940e88199ae04d472c4c5ea2bb23b311700850cd93
   languageName: node
   linkType: hard
 
