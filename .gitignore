@@ -37,3 +37,5 @@ acceptance-tests/output
 !.yarn/sdks
 !.yarn/versions
 .pnp.*
+
+config/local-development*
