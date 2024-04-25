@@ -95,3 +95,28 @@ $notification-banner-border-color: #00703c;
 .notification-banner--success {
   border: 5px solid $notification-banner-border-color;
 }
+
+$govuk-background-color: #dee0e2;
+
+.govuk-footer {
+  background-color: $govuk-background-color;
+  font-size: 16px;
+}
+
+.footer-link {
+  margin-right: 15px;
+}
+
+.link-back {
+  cursor: pointer;
+}
+
+.copyright-logo-overwrite {
+  background-image: url($path + '/govuk-crest.png');
+}
+
+@media only screen and (min-resolution: 192dpi), only screen and (min-resolution: 2dppx) {
+  .copyright-logo-overwrite {
+    background-image: url($path + '/govuk-crest-2x.png');
+  }
+}

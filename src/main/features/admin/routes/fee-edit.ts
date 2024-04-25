@@ -10,7 +10,7 @@ import { FormValidator } from 'app/forms/validation/formValidator'
 import { CreateFeeForm, EditFeeForm } from 'app/forms/models/feeForms'
 import { ensureUriSafeOrFallback } from 'utils/ReturnUriValidator'
 
-function ensureSafeReturnUri (returnUri: string) {
+function ensureSafeReturnUri (returnUri: any) {
   return ensureUriSafeOrFallback(returnUri, Paths.feeListPage.uri)
 }
 
