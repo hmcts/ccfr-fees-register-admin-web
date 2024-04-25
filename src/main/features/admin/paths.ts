@@ -66,4 +66,7 @@ export class Paths {
   /* Cookie Banner */
   static readonly cookiePolicyPage = new RoutablePath('/admin/cookies','admin/views/cookie-policy')
   static readonly cookieDetailsPage = new RoutablePath('/admin/cookies-details','admin/views/cookie-details')
+
+  /* Accessibility Statement */
+  static readonly accessibilityPage = new RoutablePath('/admin/accessibility', 'admin/views/accessibility-statement')
 }
