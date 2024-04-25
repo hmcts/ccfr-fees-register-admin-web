@@ -38,5 +38,4 @@ acceptance-tests/output
 !.yarn/versions
 .pnp.*
 
-config/
-config/local-development.*
+config/local-development*
