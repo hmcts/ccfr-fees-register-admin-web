@@ -24,7 +24,7 @@ function addOAuth2Parameters(url, state, self, req) {
   url.query.response_type = "code";
   url.query.state = state;
   url.query.client_id = self.opts.clientId;
-  url.query.scope = 'openid profile roles search-user';
+  url.query.scope = 'openid profile roles';
   url.query.redirect_uri = req.protocol + "://" + req.get('host') + self.opts.redirectUri;
 
 }
@@ -117,17 +117,11 @@ Security.prototype.logout = function () {
 
 // eslint-disable-next-line no-unused-vars
   return function (req, res, next) {
-
     var token = req.cookies[SECURITY_COOKIE];
-
     res.clearCookie(SECURITY_COOKIE);
     res.clearCookie(REDIRECT_COOKIE);
-
-    if (token) {
-      res.redirect(self.opts.loginUrl + "/logout?jwt=" + token);
-    } else {
-      res.redirect(self.opts.loginUrl + "/logout");
-    }
+    res.clearCookie(ACCESS_TOKEN_OAUTH2);
+    res.redirect('/');
   }
 
 };
