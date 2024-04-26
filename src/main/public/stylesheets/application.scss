@@ -112,11 +112,11 @@ $govuk-background-color: #dee0e2;
 }
 
 .copyright-logo-overwrite {
-  background-image: url($path + '/govuk-crest.png');
+  background-image: url($path + 'govuk-crest.png');
 }
 
 @media only screen and (min-resolution: 192dpi), only screen and (min-resolution: 2dppx) {
   .copyright-logo-overwrite {
-    background-image: url($path + '/govuk-crest-2x.png');
+    background-image: url($path + 'govuk-crest-2x.png');
   }
 }
