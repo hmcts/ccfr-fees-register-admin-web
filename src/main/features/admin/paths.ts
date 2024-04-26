@@ -68,5 +68,5 @@ export class Paths {
   static readonly cookieDetailsPage = new RoutablePath('/admin/cookies-details','admin/views/cookie-details')
 
   /* Accessibility Statement */
-  static readonly accessibilityPage = new RoutablePath('/admin/accessibility', 'admin/views/accessibility-statement')
+  static readonly accessibilityPage = new RoutablePath('/admin/accessibility','admin/views/accessibility-statement')
 }
