@@ -5060,6 +5060,7 @@ __metadata:
     pa11y-reporter-html: ^1.0.0
     playwright: ^1.36.1
     randomstring: ^1.1.5
+    request: ^2.88.2
     request-promise-native: ^1.0.3
     require-directory: ^2.1.1
     sass: ^1.62.1
@@ -11300,7 +11301,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"request@npm:^2.88.0":
+"request@npm:^2.88.0, request@npm:^2.88.2":
   version: 2.88.2
   resolution: "request@npm:2.88.2"
   dependencies:
