@@ -25,10 +25,10 @@
           <p >A cookie is a small piece of data that’s stored on your computer, tablet, or phone when
               you visit a website. Most websites need cookies to work properly.</p>
            <hr>
-    
+
             <h2 class="heading-large" id="how-cookies-are-used-in-this-service">How cookies are used in this service</h2>
             <p>This service uses them to:</p>
-    
+
             <ul class="govuk-list--bullet">
               <li>measure how you use the service so it can be improved</li>
               <li>remember the notifications you’ve seen so that you’re not shown them again</li>
@@ -45,7 +45,7 @@
               <h2 class="govuk-heading-l" id="1-to-measure-website-usage">Cookies used to measure website usage</h2>
               <p >We use Google Analytics software to collect information about how you use this service. We do this to help make sure the service is meeting the needs of its users and to help us make improvements, for example improving site search.</p>
               <p >Google Analytics stores information about:</p>
-    
+
               <ul class="govuk-list--bullet">
                 <li>the pages you visit</li>
                 <li>how long you spend on each page</li>
@@ -81,7 +81,7 @@
              </div>
 
              {% endif %}
-        
+
 
              {% if countCookiesByCatDynatrace > 0 %}
 
@@ -89,13 +89,13 @@
               <h2 class="govuk-heading-l" id="2-to-measure-website-usage">Cookies used to measure application performance
               </h2>
               <p >We use Dynatrace Software Intelligence Platform to provide an Application Performance Monitoring Service to collect information about how you use HMCTS services. We do this to monitor HMCTS services in order to resolve issues within our services as well as collect data on how our services can be improved. HMCTS store information about:</p>
-            
+
               <ul class="govuk-list--bullet">
                 <li>site performance</li>
                 <li>website usage</li>
                 <li>user behaviour</li>
               </ul>
-    
+
               <p >Information is presented within the Application Performance Monitoring service for the purposes detailed above. We do not use or share the information for any other purpose. We do not allow Dynatrace to use or share the information for any other purposes.</p>
               <table aria-label="cookie-details" class="govuk-table">
                 <thead class="govuk-table__head">
@@ -116,7 +116,7 @@
                   {% endfor %}
                 </tbody>
               </table>
-            
+
             {% endif %}
 
             {% if countCookiesByCatSecurity > 0 %}
@@ -141,7 +141,6 @@
                   {% endfor %}
                 </tbody>
             </table>
-             <p><a href="/admin/cookies-details" target="_blank">Find out more about essential cookies (opens in new tab)</a>.</p>
              <form class="cookie-preferences-form">
               {{ govukRadios({
                 classes: 'govuk-radios',
@@ -167,7 +166,7 @@
                   }
                 ]
               }) }}
-            
+
               {{ govukRadios({
                 classes: 'govuk-radios',
                 idPrefix: 'apm',
@@ -192,18 +191,18 @@
                   }
                 ]
               }) }}
-            
+
               {{ govukButton({
                 text: 'Save',
                 classes: 'notification-fs'
               }) }}
-            </form> 
+            </form>
               </div>
              {% endif %}
 
-      </div>   
+      </div>
   </main>
 </div>
-  
+
 {% endblock content %}
 
