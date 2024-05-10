@@ -5,20 +5,10 @@ export class CookiePolicy {
 
   static cookieDetails: Cookie[] =
     [
-      { name: 'bar-web', cat: Category.SECURITY, purpose: 'Used to secure communications with HMCTS data services', expires: '8 hours' },
-      { name: 'rxVisitor', cat: Category.USAGE, purpose: 'Generated user ID for usage tracking (Dynatrace)', expires: '2 years' },
-      { name: 'ai_user', cat: Category.USAGE, purpose: 'Generated user ID for usage tracking (Application Insights)', expires: '6 months' },
-      { name: '_oauth2_proxy', cat: Category.SECURITY, purpose: 'Used to protect your login session', expires: '4 hours' },
-      {
-        name: '__auth__',
-        cat: Category.SECURITY,
-        purpose: 'Information about your current system authorisations', expires: 'When you close your browser'
-      },
-      {
-        name: 'XSRF-TOKEN',
-        cat: Category.SECURITY,
-        purpose: 'Used to protect your session against cross site scripting attacks', expires: 'When you close your browser'
-      },
+      { name: 'fee-register-admin-web-cookie-preferences', cat: Category.SECURITY, purpose: 'Used tostore application preferences', expires: '1 year' },
+      { name: '_csrf', cat: Category.SECURITY, purpose: 'Helps protect against forgery', expires: 'When session ends' },
+      { name: '__auth-token', cat: Category.SECURITY, purpose: 'Identifies you to the service', expires: 'When you close your browser' },
+      { name: 'lang', cat: Category.SECURITY, purpose: 'Identifies application language', expires: '1 year'},
       { name: 'dtCookie', cat: Category.DYNATRACE, purpose: 'Tracks a visit across multiple request', expires: 'When session ends' },
       {
         name: '_ga',
@@ -35,7 +25,6 @@ export class CookiePolicy {
       },
       { name: '_gat', cat: Category.GOOGLE, purpose: 'Manages the rate at which page view requests are made', expires: '10 minutes' },
       { name: 'dtSa', cat: Category.DYNATRACE, purpose: 'Intermediate store for page-spanning actions', expires: 'When session ends' },
-      { name: '__userid__', cat: Category.IDENTIFY, purpose: 'Your user ID', expires: 'When you close your browser' },
       { name: 'rxVisitor', cat: Category.DYNATRACE, purpose: 'Visitor ID to correlate sessions', expires: '1 year' },
       { name: '_gid', cat: Category.GOOGLE, purpose: 'Identifies you to the service', expires: '24 hours' },
       { name: 'rxvt', cat: Category.DYNATRACE, purpose: 'Session timeout', expires: 'When session ends' }
