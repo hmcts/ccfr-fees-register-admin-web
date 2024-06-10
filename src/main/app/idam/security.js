@@ -315,7 +315,7 @@ Security.prototype.OAuth2CallbackEndpoint = function () {
     }
 
     if (!req.query.code) {
-      return res.redirect(redirectInfo.continue_url);
+      return res.redirect(redirectInfo.continue_url || (req.query.code && validator.isAlphanumeric(req.query.code));
     }
 
     getTokenFromCode(self, req).end(function (err, response) { /* We ask for the token */
