@@ -314,8 +314,8 @@ Security.prototype.OAuth2CallbackEndpoint = function () {
       return denyAccess(next, "Invalid redirect_uri: " + redirectInfo.continue_url);
     }
 
-    if (!req.query.code) {
-      return res.redirect(redirectInfo.continue_url || (req.query.code && validator.isAlphanumeric(req.query.code));
+    if (!req.query.code || (req.query.code && validator.isAlphanumeric(req.query.code))) {
+      return res.redirect(redirectInfo.continue_url);
     }
 
     getTokenFromCode(self, req).end(function (err, response) { /* We ask for the token */
