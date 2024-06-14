@@ -39,5 +39,6 @@
 "10112_Session Management Response Identified_https://fees-register.aat.platform.hmcts.net/robots.txt_GET": "ignore",
 "10112_Session Management Response Identified_https://fees-register.aat.platform.hmcts.net/sitemap.xml_GET": "ignore",
 "10112_Session Management Response Identified_https://fees-register.aat.platform.hmcts.net_GET": "ignore",
-"10112_Session Management Response Identified_https://fees-register.aat.platform.hmcts.net_GET": "ignore"
+"10112_Session Management Response Identified_https://fees-register.aat.platform.hmcts.net_GET": "ignore",
+  "10096_Timestamp Disclosure - Unix_https://paybubble.aat.platform.hmcts.net/sitemap.xml_GET":"ignore"
 }

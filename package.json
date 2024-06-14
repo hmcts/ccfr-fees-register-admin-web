@@ -39,7 +39,7 @@
     "@hmcts/cookie-manager": "^1.0.0",
     "@hmcts/nodejs-healthcheck": "^1.8.4",
     "@hmcts/nodejs-logging": "^4.0.4",
-    "@hmcts/properties-volume": "^1.0.0",
+    "@hmcts/properties-volume": "^1.1.0",
     "@types/config": "^0.0.35",
     "@types/csurf": "^1.9.33",
     "@types/express": "^4.0.35",
@@ -109,6 +109,8 @@
     "uuid-validate": "^0.0.3"
   },
   "devDependencies": {
+    "@azure/identity": "^4.2.1",
+    "@azure/msal-node": "^2.9.2",
     "@codeceptjs/allure-legacy": "^1.0.2",
     "@codeceptjs/helper": "^1.0.2",
     "@types/chai": "^4.1.4",
@@ -208,7 +210,7 @@
     "semver": "^7.5.2",
     "ip": "^2.0.1",
     "debug": "^4.3.4",
-    "braces": ">=3.0.3"
+    "braces": "^3.0.2"
   },
   "packageManager": "yarn@3.5.1",
   "husky": {
