@@ -210,7 +210,7 @@
     "semver": "^7.5.2",
     "ip": "^2.0.1",
     "debug": "^4.3.4",
-    "braces": "^3.0.2"
+    "braces": "^3.0.3"
   },
   "packageManager": "yarn@3.5.1",
   "husky": {
