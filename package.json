@@ -171,6 +171,8 @@
     "all": true
   },
   "resolutions": {
+    "ip": "^2.0.1",
+    "braces": "3.0.3",
     "formidable": "^3.2.4",
     "tar": "6.2.1",
     "axios": "^0.21.1",
@@ -206,7 +208,6 @@
     "validator": "13.7.0",
     "tough-cookie": "^4.1.3",
     "semver": "^7.5.2",
-    "ip": "^2.0.1",
     "debug": "^4.3.4"
   },
   "packageManager": "yarn@3.5.1",
