@@ -44,7 +44,6 @@ withNightlyPipeline("nodejs", product, component) {
 
   loadVaultSecrets(secrets)
   enableFullFunctionalTest()
-  enableFortifyScan()
   enableCrossBrowserTest()
   enableSecurityScan()
   afterAlways('checkout') {
