@@ -315,6 +315,9 @@ Security.prototype.OAuth2CallbackEndpoint = function () {
     }
 
     if (!req.query.code) {
+      if (!redirectInfo.continue_url.startsWith('/')) {
+        return denyAccess(next, "Invalid redirect_uri: " + redirectInfo.continue_url);
+      }
       return res.redirect(redirectInfo.continue_url);
     }
 
