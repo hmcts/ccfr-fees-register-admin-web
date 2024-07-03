@@ -1029,11 +1029,11 @@ __metadata:
   linkType: hard
 
 "@types/i18next-sprintf-postprocessor@npm:^0.2.0":
-  version: 0.2.0
-  resolution: "@types/i18next-sprintf-postprocessor@npm:0.2.0"
+  version: 0.2.3
+  resolution: "@types/i18next-sprintf-postprocessor@npm:0.2.3"
   dependencies:
     i18next: ">=17.0.11"
-  checksum: be1203358724c253a402f08043ba5900661849ee0ae103c5a9928f07b17e0ff1558fe22219a10d1a28a915af5564337135ee91572c6ae7f2a427bb67291e6800
+  checksum: d647c6bb75e2e038ee82d2e5bac762c0254d4fe31232f2fba5f35945779e8509cfa687746219280e2a126e33a647fd459641e8353cf922ddcd2a4e528a1234ba
   languageName: node
   linkType: hard
 
