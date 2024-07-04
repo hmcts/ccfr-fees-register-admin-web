@@ -18,7 +18,7 @@
     "cookieName": "SESSION_ID"
   },
   "fees": {
-    "url": "http://localhost:8091"
+    "url": "http://localhost:8092"
   },
   "e2e": {
     "frontendUrl": "https://localhost:4200/"
