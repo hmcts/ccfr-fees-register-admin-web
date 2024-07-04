@@ -10,6 +10,8 @@ const REDIRECT_COOKIE = '__redirect';
 
 const ACCESS_TOKEN_OAUTH2 = 'access_token';
 
+const REDIRECT = '/';
+
 function Security(options) {
   this.opts = options || {};
 
@@ -121,7 +123,7 @@ Security.prototype.logout = function () {
     res.clearCookie(SECURITY_COOKIE);
     res.clearCookie(REDIRECT_COOKIE);
     res.clearCookie(ACCESS_TOKEN_OAUTH2);
-    res.redirect('/');
+    res.redirect(REDIRECT);
   }
 
 };
@@ -315,7 +317,10 @@ Security.prototype.OAuth2CallbackEndpoint = function () {
     }
 
     if (!req.query.code) {
-      return res.redirect(redirectInfo.continue_url);
+      if (!redirectInfo.continue_url.startsWith('/')) {
+        return denyAccess(next, "Invalid redirect_uri: " + redirectInfo.continue_url);
+      }
+      return res.redirect(REDIRECT);
     }
 
     getTokenFromCode(self, req).end(function (err, response) { /* We ask for the token */
