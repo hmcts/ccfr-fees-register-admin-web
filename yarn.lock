@@ -6420,7 +6420,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"es5-ext@npm:^0.10.35, es5-ext@npm:^0.10.46, es5-ext@npm:^0.10.62, es5-ext@npm:^0.10.64, es5-ext@npm:~0.10.14":
+"es5-ext@npm:0.10.64":
   version: 0.10.64
   resolution: "es5-ext@npm:0.10.64"
   dependencies:
