@@ -204,12 +204,15 @@ function myFunction() {
 
           function sanitizeString(str) {
               if (str) {
-                  return str.replace(/^=/, '').replace(/[\t\r]/g, '');
+                  // Remove tabs and carriage returns
+                  str = str.replace(/[\t\r\n]/g, '');
+                  // Check if the first character is '=' and remove it
+                  if (str.charAt(0) === '=') {
+                      str = str.substring(1);
+                  }
+                  return str;
               }
               return '';
           }
-
-
-//     });  //end of Ajax
 
 }  //end of function
