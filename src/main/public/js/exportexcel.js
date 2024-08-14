@@ -117,33 +117,33 @@ function myFunction() {
                var JsonInsert = {};
                if (feesExcel[j].Status === 'approved') {
 
-                    JsonInsert['Code'] = feesExcel[j].code;
-                    JsonInsert['Description'] = feesExcel[j].Description;
+                    JsonInsert['Code'] = sanitizeString(feesExcel[j].code);
+                    JsonInsert['Description'] = sanitizeString(feesExcel[j].Description);
                     if (isNaN(feesExcel[j].Amount)) {
-                         JsonInsert['Amount'] = ''; 
+                         JsonInsert['Amount'] = '';
                     } else {
                     JsonInsert['Amount'] = '£' + feesExcel[j].Amount; }
-                    JsonInsert['Statutory Instrument'] = feesExcel[j].Statutory_Instrument;
-                    JsonInsert['Last Amending SI'] = feesExcel[j].Last_Amending_Si;
-                    JsonInsert['SI Ref ID'] = feesExcel[j].SI_Ref_ID;
-                    JsonInsert['Consolidated/Original Fee Order Name'] = feesExcel[j].Consolidated_Fee_Order_Name;
-                    JsonInsert['Service'] = feesExcel[j].Service;
-                    JsonInsert['Jurisdiction1'] = feesExcel[j].Jurisdiction1;
-                    JsonInsert['Jurisdiction2'] = feesExcel[j].Jurisdiction2;
-                    JsonInsert['Event'] = feesExcel[j].Event;
-                    JsonInsert['Range from'] = feesExcel[j].Range_from;
-                    JsonInsert['Range to'] = feesExcel[j].Range_to;
-                    JsonInsert['Unit'] = feesExcel[j].Unit;
-                    JsonInsert['Fee Type'] = feesExcel[j].Fee_Type;
-                    JsonInsert['Amount type'] = feesExcel[j].Amount_type;
-                    JsonInsert['%'] = feesExcel[j].percent;
-                    JsonInsert['Channel'] = feesExcel[j].Channel;
-                    JsonInsert['Keyword'] = feesExcel[j].Keyword;
-                    JsonInsert['Applicant type'] = feesExcel[j].Applicant_type;
-                    JsonInsert['Version'] = feesExcel[j].Version.toString();
-                    JsonInsert['Direction'] = feesExcel[j].Direction;
-                    JsonInsert['Valid from'] = feesExcel[j].Valid_from;
-                    JsonInsert['Valid to'] = feesExcel[j].Valid_to;
+                    JsonInsert['Statutory Instrument'] = sanitizeString(feesExcel[j].Statutory_Instrument);
+                    JsonInsert['Last Amending SI'] = sanitizeString(feesExcel[j].Last_Amending_Si);
+                    JsonInsert['SI Ref ID'] = sanitizeString(feesExcel[j].SI_Ref_ID);
+                    JsonInsert['Consolidated/Original Fee Order Name'] = sanitizeString(feesExcel[j].Consolidated_Fee_Order_Name);
+                    JsonInsert['Service'] = sanitizeString(feesExcel[j].Service);
+                    JsonInsert['Jurisdiction1'] = sanitizeString(feesExcel[j].Jurisdiction1);
+                    JsonInsert['Jurisdiction2'] = sanitizeString(feesExcel[j].Jurisdiction2);
+                    JsonInsert['Event'] = sanitizeString(feesExcel[j].Event);
+                    JsonInsert['Range from'] = sanitizeString(feesExcel[j].Range_from);
+                    JsonInsert['Range to'] = sanitizeString(feesExcel[j].Range_to);
+                    JsonInsert['Unit'] = sanitizeString(feesExcel[j].Unit);
+                    JsonInsert['Fee Type'] = sanitizeString(feesExcel[j].Fee_Type);
+                    JsonInsert['Amount type'] = sanitizeString(feesExcel[j].Amount_type);
+                    JsonInsert['%'] = sanitizeString(feesExcel[j].percent);
+                    JsonInsert['Channel'] = sanitizeString(feesExcel[j].Channel);
+                    JsonInsert['Keyword'] = sanitizeString(feesExcel[j].Keyword);
+                    JsonInsert['Applicant type'] = sanitizeString(feesExcel[j].Applicant_type);
+                    JsonInsert['Version'] = sanitizeString(feesExcel[j].Version.toString());
+                    JsonInsert['Direction'] = sanitizeString(feesExcel[j].Direction);
+                    JsonInsert['Valid from'] = sanitizeString(feesExcel[j].Valid_from);
+                    JsonInsert['Valid to'] = sanitizeString(feesExcel[j].Valid_to);
 
                     if (feesExcel[j].Valid_to != '') {
                          var validToDate = new Date(feesExcel[j].Valid_to)
@@ -152,9 +152,9 @@ function myFunction() {
                          var validFromDate = new Date(feesExcel[j].Valid_from)
                     } else { var validFromDate = '' }
 
-                    JsonInsert['Status'] = feesExcel[j].Status;
-                    JsonInsert['Memo'] = feesExcel[j].Memo;
-                    JsonInsert['Natural Account Code'] = feesExcel[j].Natural_Account_Code;
+                    JsonInsert['Status'] = sanitizeString(feesExcel[j].Status);
+                    JsonInsert['Memo'] = sanitizeString(feesExcel[j].Memo);
+                    JsonInsert['Natural Account Code'] = sanitizeString(feesExcel[j].Natural_Account_Code);
                     if (validToDate != '' && validToDate < currentDate) {
                          JsonInsert['Page type'] = 'Discontinued fees';
                     }
@@ -202,7 +202,17 @@ function myFunction() {
                document.getElementById('mybutton').querySelector('#submit').removeAttribute('disabled');
           }
 
-
-//     });  //end of Ajax
+          function sanitizeString(str) {
+              if (str) {
+                  // Remove tabs and carriage returns
+                  str = str.replace(/^[\t\r\n@]+|[\t\r\n@]/g, (match, offset) => offset === 0 ? '' : ' ');
+                  // Check if the first character is '=' and remove it
+                  if (str.charAt(0) === '=') {
+                      str = str.substring(1);
+                  }
+                  return str;
+              }
+              return '';
+          }
 
 }  //end of function
