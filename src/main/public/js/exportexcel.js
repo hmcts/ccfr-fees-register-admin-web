@@ -206,8 +206,14 @@ function myFunction() {
               if (str) {
                   // Remove tabs and carriage returns
                   str = str.replace(/^[\t\r\n@]+|[\t\r\n@]/g, (match, offset) => offset === 0 ? '' : ' ');
-                  // Check if the first character is '=' and remove it
-                  if (str.charAt(0) === '=') {
+                  // Remove the patterns '-cmd', '+cmd', and '=cmd' throughout the string
+                  str = str.replace(/[-+=]cmd/g, '');
+                  // Check if the first character is '=' or '-' and remove it
+                  if (str.charAt(0) === '=' || str.charAt(0) === '-') {
+                      str = str.substring(1);
+                  }
+                  // Check if the first character is '-' or '=' and remove it after if block
+                  if (str.charAt(0) === '-' || str.charAt(0) === '=') {
                       str = str.substring(1);
                   }
                   return str;
