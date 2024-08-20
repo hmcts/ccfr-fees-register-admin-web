@@ -9,7 +9,7 @@ import { AppInsights } from './app-insights/app-insights'
 // App Insights needs to be enabled as early as possible as it monitors other libraries as well
 AppInsights.enable()
 
-let port: string = process.env.PORT || '3000'
+let port: string = process.env.PORT || '3001'
 
 if (process.env.NODE_ENV === 'development') {
   port = '3001'
