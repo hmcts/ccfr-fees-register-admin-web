@@ -206,6 +206,10 @@ function myFunction() {
               if (str) {
                   // Remove tabs and carriage returns
                   str = str.replace(/^[\t\r\n@]+|[\t\r\n@]/g, (match, offset) => offset === 0 ? '' : ' ');
+
+                  // Replace any occurrence of '-' with "'-"
+                  str = str.replace(/-/g, "'-");
+                  str = str.replace(/\+/g, "'+");
                   // Check if the first character is '=' and remove it
                   if (str.charAt(0) === '=') {
                       str = str.substring(1);
