@@ -56,7 +56,6 @@
     "@types/shortid": "^0.0.29",
     "HTML_CodeSniffer": "https://github.com/squizlabs/HTML_CodeSniffer/archive/2.0.7.tar.gz",
     "applicationinsights": "^1.0.2",
-    "body-parser": "^1.20.0",
     "build-url": "^2.0.0",
     "class-validator": "^0.14.0",
     "cli": "^1.0.1",
@@ -67,7 +66,7 @@
     "csurf": "^1.9.0",
     "csv-string": "^3.0.3",
     "es6-promisify": "^6.0.0",
-    "express": "4.19.2",
+    "express": "4.20.0",
     "fast-csv": "^4.3.6",
     "feature-toggles": "^1.4.0",
     "govuk-elements-sass": "^3.0.2",
@@ -211,7 +210,10 @@
     "semver": "^7.5.2",
     "debug": "^4.3.4",
     "es5-ext": "^0.10.64",
-    "micromatch": "^4.0.8"
+    "micromatch": "^4.0.8",
+    "body-parser": "^1.20.3",
+    "path-to-regexp": "^0.1.10",
+    "send": "^0.19.0"
   },
   "packageManager": "yarn@3.5.1",
   "husky": {
