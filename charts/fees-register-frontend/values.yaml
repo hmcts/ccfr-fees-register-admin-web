@@ -1,7 +1,5 @@
 nodejs:
   ingressHost: fees-register.{{ .Values.global.environment }}.platform.hmcts.net
-  memoryLimits: 1024Mi
-  cpuLimits: 1000m
   readinessPeriod: 120
   livenessPeriod: 120
   keyVaults:
