@@ -1368,7 +1368,7 @@
     </a>
       <br>
       <br>
-	{% if feeDto.fee_type != 'banded' and feeDto.fee_type != 'rateable' and feeDto.fee_type != 'relational' %}
+	{% if true===true %}
 
 		{% if hasApprovedVersion(feeDto.fee_versions) %}
 			<a title="Edit version" href="/admin/v2/fees/version/create/{{ feeDto.code }}?action=edit&version={{ versionNo }}">
@@ -1389,7 +1389,7 @@
     {% else %}
     {% if pageType === 'rejectfee' %}
 	{% if isEditor(user.allInfo.roles) or isAdmin(user.allInfo.roles)%}
-		{% if feeDto.fee_type != 'banded' and feeDto.fee_type != 'rateable' and feeDto.fee_type != 'relational' %}
+		{% if true===true %}
 
 			{% if hasApprovedVersion(feeDto.fee_versions) %}
 				<a title="Edit version" href="/admin/v2/fees/version/create/{{ feeDto.code }}?action=edit&version={{ versionNo }}" class="custom-button btn">
@@ -1434,7 +1434,7 @@
         </a>
       {% endif %}
     {% else %}
-		{% if feeDto.fee_type != 'banded' and feeDto.fee_type != 'rateable' and feeDto.fee_type != 'relational' %}
+		{% if true===true %}
 			{% if not isDraftVersionExists(feeDto) %}
 				{% if isEditor(user.allInfo.roles) or isAdmin(user.allInfo.roles)%}
 					<a href="/admin/v2/fees/version/create/{{ feeDto.code }}?type={{ type }}" class="custom-button btn">
