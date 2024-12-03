@@ -443,7 +443,7 @@
     {% elif version.direction and (pageType === 'disconfee' or pageType === 'notlivefee') %}
       {{version.direction}}  
     {% else %}
-      &nbsp;
+      {{version.direction}} or {{feeDto.current_version.direction}}
     {% endif %}
   </dd>
 </div>
