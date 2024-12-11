@@ -8,7 +8,7 @@ const idamTestingSupportApi = process.env.IDAM_TESTING_SUPPORT_API || 'https://i
 const clientId ='fees_admin_frontend';
 const clientSecret = process.env.CLIENT_SECRET;
 const clientRedirectUri = process.env.CLIENT_REDIRECT_URI || 'https://fees-register.aat.platform.hmcts.net/oauth2/callback';
-const scope = 'openid profile roles';
+const scope = 'openid profile roles search-user';
 
 async function getAccessTokenClientSecret() {
   let searchParams = new URLSearchParams();
