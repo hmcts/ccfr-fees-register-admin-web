@@ -95,7 +95,7 @@ export class FeesClient {
     
     return request
       .post({
-        uri: `${feesUrl}/fees-register/fixed-fees/`,
+        uri: `${feesUrl}/fees-register/fixed-fees`,
         json: true,
         headers: {
           Authorization: `Bearer ${user.bearerToken}`
@@ -125,7 +125,7 @@ export class FeesClient {
 
     return request
       .post({
-        uri: `${feesUrl}/fees-register/ranged-fees/`,
+        uri: `${feesUrl}/fees-register/ranged-fees`,
         json: true,
         headers: {
           Authorization: `Bearer ${user.bearerToken}`
@@ -155,7 +155,7 @@ export class FeesClient {
 
     return request
       .post({
-        uri: `${feesUrl}/fees-register/banded-fees/`,
+        uri: `${feesUrl}/fees-register/banded-fees`,
         json: true,
         headers: {
           Authorization: `Bearer ${user.bearerToken}`
@@ -171,7 +171,7 @@ export class FeesClient {
 
     return request
       .post({
-        uri: `${feesUrl}/fees-register/rateable-fees/`,
+        uri: `${feesUrl}/fees-register/rateable-fees`,
         json: true,
         headers: {
           Authorization: `Bearer ${user.bearerToken}`
@@ -187,7 +187,7 @@ export class FeesClient {
 
     return request
       .post({
-        uri: `${feesUrl}/fees-register/relational-fees/`,
+        uri: `${feesUrl}/fees-register/relational-fees`,
         json: true,
         headers: {
           Authorization: `Bearer ${user.bearerToken}`
