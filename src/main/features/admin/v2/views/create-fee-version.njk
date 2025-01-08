@@ -58,7 +58,7 @@
 
       {% set isPercentage = form.valueFor('amountType') == 'percentage' %}
 
-      {% if feeVersionDto.flat_amount.amount %}
+      {% if feeVersionDto.flat_amount or feeVersionDto.flat_amount.amount %}
       <tr>
         <td>
           {{ radioGroup(form = form, name = 'amountType', label = t('Amount Type'), options = [
@@ -88,7 +88,7 @@
         <td>
           {{ radioGroup(form = form, name = 'amountType', label = t('Amount Type'), options = [
           { label: t('Volume'), value: 'volume' }
-          ]) }}
+          ]) }}  ESTE es el valor {{ feeVersionDto.flat_amount }} orVALUE {{ feeVersionDto.flat_amount.amount }} or {{  feeVersionDto | dump }}<
         </td>
 
         <td>{{ textInput(t('Amount (£)*'), 'amount', form) }}</td>
