@@ -239,6 +239,19 @@ Scenario('@functional FeesRegister Verify Edit button for the fixed Fee',  ({ I 
   I.click('Sign out');
 }).retry(CCFRATConstants.retryScenario);
 
+Scenario('@functional FeesRegister Verify Edit button for the ranged Fee',  ({ I }) => {
+  I.login(editorUserName, editorPassword);
+  I.wait(CCFRATConstants.twoSecondWaitTime);
+  I.waitForText('Live fees', CCFRATConstants.tenSecondWaitTime);
+  I.click('FEE0514');
+  I.wait(CCFRATConstants.fiveSecondWaitTime);
+  I.waitForText('Fee details', CCFRATConstants.tenSecondWaitTime);
+  I.click('Edit fee');
+  I.wait(CCFRATConstants.fiveSecondWaitTime);
+  I.waitForText('Create Fee Version', CCFRATConstants.tenSecondWaitTime);
+  I.click('Sign out');
+}).retry(CCFRATConstants.retryScenario);
+
 Scenario('@functional FeesRegister Verify Edit button for the banded Fee',  ({ I }) => {
   I.login(editorUserName, editorPassword);
   I.wait(CCFRATConstants.twoSecondWaitTime);
