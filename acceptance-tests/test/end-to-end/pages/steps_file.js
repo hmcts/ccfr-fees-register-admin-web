@@ -119,15 +119,15 @@ module.exports = () => actor({
   },
 
   editDraft(){
-    this.click(  'Edit fee');
+    this.click('Edit fee');
     this.waitForText(  'Statutory Instrument', '10');
     this.fillField({ css: '#description'}, "E2E Testing Edit");
     this.fillField('textarea[id="reasonForUpdate"]', 'Edited this fee');
     this.fillField('textarea[id="lastAmendingSi"]', 'Edit last amending SI');
     this.fillField({ css: '#consolidatedFeeOrderName'}, 'Edit consolidated fee');
-    this.checkOption('input[id="percentage"]');
+    // this.checkOption('input[id="percentage"]');
     this.wait(CCPBConstants.twoSecondWaitTime);
-    this.fillField('//input[@type="text" and @id="percentage"]', '10');
+    // this.fillField('//input[@type="text" and @id="percentage"]', '10');
 
     //service
     this.checkOption('input[id="probate"]');
@@ -137,7 +137,7 @@ module.exports = () => actor({
     this.checkOption('input[id="county court"]');
     //FeeType
     this.checkOption('input[id="typefixed"]');
-    this.fillField({ css: '#amount'}, 150.00);
+    this.fillField({ css: '#amount'}, 600.00);
     this.wait(CCPBConstants.twoSecondWaitTime);
     //event
     this.checkOption('input[id="issue"]');
@@ -150,9 +150,9 @@ module.exports = () => actor({
 
     const fromDate = new Date();
     const formattedFromDate = fromDate.toLocaleDateString('en-GB');
-    this.fillField({ css: '#fromDate'}, formattedFromDate);
+    // this.fillField({ css: '#fromDate'}, formattedFromDate);
 
-    this.wait(CCPBConstants.fiveSecondWaitTime);
+    // this.wait(CCPBConstants.fiveSecondWaitTime);
     this.click('input[id="submit"]');
     this.wait(CCPBConstants.fiveSecondWaitTime);
   },

@@ -1368,7 +1368,7 @@
     </a>
       <br>
       <br>
-	{% if feeDto.fee_type != 'banded' and feeDto.fee_type != 'rateable' and feeDto.fee_type != 'relational' %}
+
 
 		{% if hasApprovedVersion(feeDto.fee_versions) %}
 			<a title="Edit version" href="/admin/v2/fees/version/create/{{ feeDto.code }}?action=edit&version={{ versionNo }}">
@@ -1381,7 +1381,7 @@
 		{% endif %}
 		<br>
 		<br>
-	{% endif %}
+
       <a title="Delete version" href="/admin/v2/draft-delete-are-you-sure?feeCode={{ feeDto.code }}&version={{ versionNo }}&pageType={{ pageType }}">
         Delete
       </a>
@@ -1389,7 +1389,7 @@
     {% else %}
     {% if pageType === 'rejectfee' %}
 	{% if isEditor(user.allInfo.roles) or isAdmin(user.allInfo.roles)%}
-		{% if feeDto.fee_type != 'banded' and feeDto.fee_type != 'rateable' and feeDto.fee_type != 'relational' %}
+
 
 			{% if hasApprovedVersion(feeDto.fee_versions) %}
 				<a title="Edit version" href="/admin/v2/fees/version/create/{{ feeDto.code }}?action=edit&version={{ versionNo }}" class="custom-button btn">
@@ -1400,7 +1400,7 @@
 					Edit fee
 				</a>
 			{% endif %}
-		{% endif %}
+
 		<br>
 		<br>
       <form method="post" action="">
@@ -1434,8 +1434,8 @@
         </a>
       {% endif %}
     {% else %}
-		{% if feeDto.fee_type != 'banded' and feeDto.fee_type != 'rateable' and feeDto.fee_type != 'relational' %}
-			{% if not isDraftVersionExists(feeDto) %}
+
+		{% if not isDraftVersionExists(feeDto) %}
 				{% if isEditor(user.allInfo.roles) or isAdmin(user.allInfo.roles)%}
 					<a href="/admin/v2/fees/version/create/{{ feeDto.code }}?type={{ type }}" class="custom-button btn">
 					Edit fee
@@ -1443,6 +1443,6 @@
 				{% endif %}
 			{% endif %}
 		{% endif%}
-    {% endif %}
+
 {% endif %}
   {% endblock %}

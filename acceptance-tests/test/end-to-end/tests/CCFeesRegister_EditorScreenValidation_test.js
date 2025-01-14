@@ -113,9 +113,15 @@ Scenario('@functional @crossbrowser FeesRegister Admin Console Editor Discontinu
   I.wait(CCFRATConstants.fiveSecondWaitTime);
   I.verifyFeesHeaders();
   //Check one of the existing fee, once full implementation done we can add our own code
-  I.verifyFeeDetails('discontinued', 'FEE0227','5.3','Family Proceedings Fees Order 2008','other','general application','Application (on notice) (unless otherwise listed)',
-    '2014 No 877','The Family Proceedings Fees (Amendment) Order 2014','family','family court','fixed','Flat','155.00','', '21 April 2014','29 September 2021', '1', '', '4481102165', 'RECEIPT OF FEES - Family GA other',
-    'cost recovery', 'all', 'GAOnNotice', 'default', 'approved', '124756', 'pkiauq puuujbhe');
+  if (CONF.e2e.frontendUrl.includes("aat")) {
+    I.verifyFeeDetails('discontinued', 'FEE0227', '5.3', 'Family Proceedings Fees Order 2008', 'other', 'general application', 'Application (on notice) (unless otherwise listed)',
+      '2014 No 877', 'The Family Proceedings Fees (Amendment) Order 2014', 'family', 'family court', 'fixed', 'Flat', '155.00', '', '21 April 2014', '29 September 2021', '1', '', '4481102165', 'RECEIPT OF FEES - Family GA other',
+      'cost recovery', 'all', 'GAOnNotice', 'default', 'approved', '124756', 'pkiauq puuujbhe');
+  } else if (CONF.e2e.frontendUrl.includes("demo")) {
+    I.verifyFeeDetails('discontinued', 'FEE0227', '5.3', 'Family Proceedings Fees Order 2008', 'other', 'general application', 'Application (on notice) (unless otherwise listed)',
+      '2014 No 877', 'The Family Proceedings Fees (Amendment) Order 2014', 'family', 'family court', 'fixed', 'Flat', '155.00', '', '21 April 2014', '29 September 2021', '1', '', '4481102165', 'RECEIPT OF FEES - Family GA other',
+      'cost recovery', 'all', 'GAOnNotice', 'default', 'approved', 'ltlfnujoi hgptjqehf', 'TOTO TOTO');
+  }
   I.click('Sign out');
 }).retry(CCFRATConstants.retryScenario);
 
@@ -145,24 +151,37 @@ Scenario('@functional @crossbrowser FeesRegister Admin Console Editor Discontinu
 //   I.click('Sign out');
 // }).retry(CCFRATConstants.retryScenario);
 
-//This is going to fixed in the ticket  https://tools.hmcts.net/jira/browse/PAY-6446
-// Scenario('@functional FeesRegister Edit the Fee', async ({ I }) => {
-//   const feeKeyword = "SN" + new Date().valueOf().toString();
-//   let fromDate = new Date();
-//   fromDate.setDate(fromDate.getDate() + 2);
-//
-//   feeCode = await I.createNewFeeApi(editorUserName, editorPassword, fromDate, feeKeyword);
-//   I.login(editorUserName, editorPassword);
-//   I.wait(CCFRATConstants.tenSecondWaitTime);
-//   I.click("Your Drafts");
-//   I.wait(CCFRATConstants.fiveSecondWaitTime);
-//   I.waitForText('Drafts', CCFRATConstants.tenSecondWaitTime);
-//   I.click('.govuk-tabs__panel > div > div > table > tbody > tr:nth-child(1) > td:nth-child(7) > a');
-//   I.wait(CCFRATConstants.fiveSecondWaitTime);
-//   I.editDraft();
-//   I.waitForText('Draft fee saved', CCFRATConstants.tenSecondWaitTime);
-//   I.click('Sign out');
-// }).retry(CCFRATConstants.retryScenario);
+Scenario('@functional FeesRegister Edit Fee and submit for Approval', async ({ I }) => {
+  const feeKeyword = "SN" + new Date().valueOf().toString();
+  let fromDate = new Date();
+  fromDate.setDate(fromDate.getDate() + 2);
+
+  feeCode = await I.createNewFeeApi(editorUserName, editorPassword, fromDate, feeKeyword);
+  I.login(editorUserName, editorPassword);
+  I.wait(CCFRATConstants.tenSecondWaitTime);
+  I.click("Your Drafts");
+  I.wait(CCFRATConstants.fiveSecondWaitTime);
+  I.waitForText('Drafts', CCFRATConstants.tenSecondWaitTime);
+  I.click(`//td/a[contains(@href, ${feeCode})]`);
+  I.wait(CCFRATConstants.fiveSecondWaitTime);
+  I.editDraft();
+  I.waitForText('Draft fee saved', CCFRATConstants.tenSecondWaitTime);
+  I.click('View draft fee');
+  I.wait(CCFRATConstants.fiveSecondWaitTime);
+  I.waitForText('Amount', CCFRATConstants.tenSecondWaitTime);
+  I.waitForText('View', CCFRATConstants.fiveSecondWaitTime);
+  I.click(`//td/a[contains(@href, ${feeCode})]`);
+  I.submitForApproval();
+  I.waitForText(`${feeCode} has been submitted for approval`);
+  I.click('View draft fees');
+  I.wait(CCFRATConstants.fiveSecondWaitTime);
+  I.waitForText('Awaiting approval', CCFRATConstants.tenSecondWaitTime);
+  I.click(`//td/a[contains(@href, ${feeCode})]`);
+  I.wait(CCFRATConstants.fiveSecondWaitTime);
+  I.waitForText('Fee details', CCFRATConstants.tenSecondWaitTime);
+  I.dontSeeElement('Edit fee')
+  I.click('Sign out');
+}).retry(CCFRATConstants.retryScenario);
 
 Scenario('@functional FeesRegister Delete the Fee', async ({ I }) => {
   const feeKeyword = "SN" + new Date().valueOf().toString();
@@ -200,10 +219,75 @@ Scenario('@functional FeesRegister Verify Version details for existing fee',  ({
   } else if (CONF.e2e.frontendUrl.includes("demo")) {
     I.verifyCurrentFeeVersion('5', 'Previously: 4', 'Filing an application for a divorce, nullity or civil partnership dissolution', 'Previously: Filing an application for a divorce, nullity or civil partnership dissolution – fees order 1.2.',
       '2016 No 402', 'Previously: 2016 No. 402 (L. 5)', '29 September 2021', 'Previously: 20 March 2016', 'RECEIPT OF FEES - Family issue divorce', 'Previously: GOV - App for divorce/nullity of marriage or CP',
-      'ltlfnujoi hgptjqehf', 'Previously:', 'pkiauq puuujbhe', 'Previously:', 'FEE0002', 'divorce', 'issue', 'family', 'family court', 'fixed', 'Flat', 'all', '', 'default', '550', '1.2', '', '', 'The Civil Proceedings, Family Proceedings and Upper Tribunal Fees (Amendment) Order 2016',
+      'ltlfnujoi hgptjqehf', 'Previously:', 'TOTO TOTO', 'Previously:', 'FEE0002', 'divorce', 'issue', 'family', 'family court', 'fixed', 'Flat', 'all', '', 'default', '550', '1.2', '', '', 'The Civil Proceedings, Family Proceedings and Upper Tribunal Fees (Amendment) Order 2016',
       '21 March 2016', '4481102159', 'approved', 'enhanced');
   }
   I.verifyPreviousFeeVersion('4', 'FEE0002', 'divorce', 'issue', 'family', 'family court', 'fixed', 'Flat', 'all', '', 'default');
+  I.click('Sign out');
+}).retry(CCFRATConstants.retryScenario);
+
+Scenario('@functional FeesRegister Verify Edit button for the fixed Fee',  ({ I }) => {
+  I.login(editorUserName, editorPassword);
+  I.wait(CCFRATConstants.twoSecondWaitTime);
+  I.waitForText('Live fees', CCFRATConstants.tenSecondWaitTime);
+  I.click('FEE0002');
+  I.wait(CCFRATConstants.fiveSecondWaitTime);
+  I.waitForText('Fee details', CCFRATConstants.tenSecondWaitTime);
+  I.click('Edit fee');
+  I.wait(CCFRATConstants.fiveSecondWaitTime);
+  I.waitForText('Create Fee Version', CCFRATConstants.tenSecondWaitTime);
+  I.click('Sign out');
+}).retry(CCFRATConstants.retryScenario);
+
+Scenario('@functional FeesRegister Verify Edit button for the ranged Fee',  ({ I }) => {
+  I.login(editorUserName, editorPassword);
+  I.wait(CCFRATConstants.twoSecondWaitTime);
+  I.waitForText('Live fees', CCFRATConstants.tenSecondWaitTime);
+  I.click('FEE0514');
+  I.wait(CCFRATConstants.fiveSecondWaitTime);
+  I.waitForText('Fee details', CCFRATConstants.tenSecondWaitTime);
+  I.click('Edit fee');
+  I.wait(CCFRATConstants.fiveSecondWaitTime);
+  I.waitForText('Create Fee Version', CCFRATConstants.tenSecondWaitTime);
+  I.click('Sign out');
+}).retry(CCFRATConstants.retryScenario);
+
+Scenario('@functional FeesRegister Verify Edit button for the banded Fee',  ({ I }) => {
+  I.login(editorUserName, editorPassword);
+  I.wait(CCFRATConstants.twoSecondWaitTime);
+  I.waitForText('Live fees', CCFRATConstants.tenSecondWaitTime);
+  I.click('FEE0491');
+  I.wait(CCFRATConstants.fiveSecondWaitTime);
+  I.waitForText('Fee details', CCFRATConstants.tenSecondWaitTime);
+  I.click('Edit fee');
+  I.wait(CCFRATConstants.fiveSecondWaitTime);
+  I.waitForText('Create Fee Version', CCFRATConstants.tenSecondWaitTime);
+  I.click('Sign out');
+}).retry(CCFRATConstants.retryScenario);
+
+Scenario('@functional FeesRegister Verify Edit button for the rateable Fee',  ({ I }) => {
+  I.login(editorUserName, editorPassword);
+  I.wait(CCFRATConstants.twoSecondWaitTime);
+  I.waitForText('Live fees', CCFRATConstants.tenSecondWaitTime);
+  I.click('FEE0421');
+  I.wait(CCFRATConstants.fiveSecondWaitTime);
+  I.waitForText('Fee details', CCFRATConstants.tenSecondWaitTime);
+  I.click('Edit fee');
+  I.wait(CCFRATConstants.fiveSecondWaitTime);
+  I.waitForText('Create Fee Version', CCFRATConstants.tenSecondWaitTime);
+  I.click('Sign out');
+}).retry(CCFRATConstants.retryScenario);
+
+Scenario('@functional FeesRegister Verify Edit button for the relational Fee',  ({ I }) => {
+  I.login(editorUserName, editorPassword);
+  I.wait(CCFRATConstants.twoSecondWaitTime);
+  I.waitForText('Live fees', CCFRATConstants.tenSecondWaitTime);
+  I.click('FEE0424');
+  I.wait(CCFRATConstants.fiveSecondWaitTime);
+  I.waitForText('Fee details', CCFRATConstants.tenSecondWaitTime);
+  I.click('Edit fee');
+  I.wait(CCFRATConstants.fiveSecondWaitTime);
+  I.waitForText('Create Fee Version', CCFRATConstants.tenSecondWaitTime);
   I.click('Sign out');
 }).retry(CCFRATConstants.retryScenario);
 
