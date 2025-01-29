@@ -171,7 +171,7 @@
   },
   "resolutions": {
     "@azure/identity": ">=4.2.1",
-    "ip": "^2.0.1",
+    "socks": "^2.8.3",
     "braces": "3.0.3",
     "formidable": "^3.2.4",
     "tar": "6.2.1",
