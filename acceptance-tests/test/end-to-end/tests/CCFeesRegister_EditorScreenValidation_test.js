@@ -116,7 +116,7 @@ Scenario('@functional @crossbrowser FeesRegister Admin Console Editor Discontinu
   if (CONF.e2e.frontendUrl.includes("aat")) {
     I.verifyFeeDetails('discontinued', 'FEE0227', '5.3', 'Family Proceedings Fees Order 2008', 'other', 'general application', 'Application (on notice) (unless otherwise listed)',
       '2014 No 877', 'The Family Proceedings Fees (Amendment) Order 2014', 'family', 'family court', 'fixed', 'Flat', '155.00', '', '21 April 2014', '29 September 2021', '1', '', '4481102165', 'RECEIPT OF FEES - Family GA other',
-      'cost recovery', 'all', 'GAOnNotice', 'default', 'approved', '124756', 'pkiauq puuujbhe');
+      'cost recovery', 'all', 'GAOnNotice', 'default', 'approved', 'The user\'s details are unavailable', 'pkiauq puuujbhe');
   } else if (CONF.e2e.frontendUrl.includes("demo")) {
     I.verifyFeeDetails('discontinued', 'FEE0227', '5.3', 'Family Proceedings Fees Order 2008', 'other', 'general application', 'Application (on notice) (unless otherwise listed)',
       '2014 No 877', 'The Family Proceedings Fees (Amendment) Order 2014', 'family', 'family court', 'fixed', 'Flat', '155.00', '', '21 April 2014', '29 September 2021', '1', '', '4481102165', 'RECEIPT OF FEES - Family GA other',
