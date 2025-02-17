@@ -69,11 +69,11 @@ Scenario('@functional FeesRegister Admin Console Editor Screen For Live Fees Det
   if (CONF.e2e.frontendUrl.includes("aat")) {
     I.verifyFeeDetails('live', 'FEE0002','1.2','Family Proceedings Fees Order 2008','divorce','issue','Filing an application for a divorce, nullity or civil partnership dissolution',
       '2021 No 985','The Court Fees (Miscellaneous Amendments) Order 2021','family','family court','fixed','Flat','593.00','',
-      '30 September 2021', '', '6', 'Inflationary Increase', '4481102159', 'RECEIPT OF FEES - Family issue divorce', 'inflationary', 'all', 'DivorceCivPart', 'default', 'approved', 'cef56daa-572c-464b-bd32-4a487c771d47', 'pkiauq puuujbhe');
+      '30 September 2021', '', '6', 'Inflationary Increase', '4481102159', 'RECEIPT OF FEES - Family issue divorce', 'inflationary', 'all', 'DivorceCivPart', 'default', 'approved', 'The user\'s details are unavailable', 'pkiauq puuujbhe');
   } else if (CONF.e2e.frontendUrl.includes("demo")) {
     I.verifyFeeDetails('live', 'FEE0002','1.2','Family Proceedings Fees Order 2008','divorce','issue','Filing an application for a divorce, nullity or civil partnership dissolution',
       '2021 No 985','The Court Fees (Miscellaneous Amendments) Order 2021','family','family court','fixed','Flat','593.00','',
-      '30 September 2021', '', '6', 'Inflationary Increase', '4481102159', 'RECEIPT OF FEES - Family issue divorce', 'inflationary', 'all', 'DivorceCivPart', 'default', 'approved', 'cef56daa-572c-464b-bd32-4a487c771d47', 'TOTO TOTO');
+      '30 September 2021', '', '6', 'Inflationary Increase', '4481102159', 'RECEIPT OF FEES - Family issue divorce', 'inflationary', 'all', 'DivorceCivPart', 'default', 'approved', 'The user\'s details are unavailable', 'TOTO TOTO');
   }
   I.click('Sign out');
 }).retry(CCFRATConstants.retryScenario);
@@ -116,7 +116,7 @@ Scenario('@functional @crossbrowser FeesRegister Admin Console Editor Discontinu
   if (CONF.e2e.frontendUrl.includes("aat")) {
     I.verifyFeeDetails('discontinued', 'FEE0227', '5.3', 'Family Proceedings Fees Order 2008', 'other', 'general application', 'Application (on notice) (unless otherwise listed)',
       '2014 No 877', 'The Family Proceedings Fees (Amendment) Order 2014', 'family', 'family court', 'fixed', 'Flat', '155.00', '', '21 April 2014', '29 September 2021', '1', '', '4481102165', 'RECEIPT OF FEES - Family GA other',
-      'cost recovery', 'all', 'GAOnNotice', 'default', 'approved', '124756', 'pkiauq puuujbhe');
+      'cost recovery', 'all', 'GAOnNotice', 'default', 'approved', 'The user\'s details are unavailable', 'pkiauq puuujbhe');
   } else if (CONF.e2e.frontendUrl.includes("demo")) {
     I.verifyFeeDetails('discontinued', 'FEE0227', '5.3', 'Family Proceedings Fees Order 2008', 'other', 'general application', 'Application (on notice) (unless otherwise listed)',
       '2014 No 877', 'The Family Proceedings Fees (Amendment) Order 2014', 'family', 'family court', 'fixed', 'Flat', '155.00', '', '21 April 2014', '29 September 2021', '1', '', '4481102165', 'RECEIPT OF FEES - Family GA other',
