@@ -47,7 +47,7 @@ selectReferenceData %}
         {% set serviceError = form.errorFor('service') %}
         <div class="govuk-form-group {{ 'form-group-error' if serviceError}}">
           <fieldset class="govuk-fieldset">
-            <label class="form-label-bold">Service</label>
+            <legend class="form-label-bold">Service</legend>
             {% if serviceError %}
               <span class="error-message"> {{serviceError}} </span>
             {% endif %}
@@ -70,7 +70,7 @@ selectReferenceData %}
       {% set jurisdictionOneError = form.errorFor('jurisdiction1') %}
       <div class="govuk-form-group {{ 'form-group-error' if jurisdictionOneError}}">
         <fieldset class="govuk-fieldset">
-          <label class="form-label-bold">Jurisdiction 1</label>
+          <legend class="form-label-bold">Jurisdiction 1</legend>
             {% if jurisdictionOneError %}
               <span class="error-message"> {{jurisdictionOneError}} </span>
             {% endif %}
@@ -91,7 +91,7 @@ selectReferenceData %}
       {% set jurisdictionTwoError = form.errorFor('jurisdiction2') %}
       <div class="govuk-form-group {{ 'form-group-error' if jurisdictionTwoError}}">
         <fieldset class="govuk-fieldset">
-          <label class="form-label-bold">Jurisdiction 2</label>
+          <legend class="form-label-bold">Jurisdiction 2</legend>
             {% if jurisdictionTwoError %}
               <span class="error-message"> {{jurisdictionTwoError}} </span>
             {% endif %}
