@@ -35,12 +35,12 @@
                 <th class="govuk-table__header draft-col4" scope="col">Description</th>
                 <th class="govuk-table__header draft-col5" scope="col">Statutory Instrument</th>
                 <th class="govuk-table__header draft-col5" scope="col">Valid from</th>
-                <th class="govuk-table__header draft-col6" scope="col"></th>
+                <th class="govuk-table__header draft-col6" scope="col">Link</th>
             </tr>
          </thead>
           <tbody>
            {% for fee in fees %}
-           {% set version = getLiveFeeVersion(fee) %}  
+           {% set version = getLiveFeeVersion(fee) %}
            <tr>
                 <td data-label="Code" class="padding10 whitespace-inherit">{{ fee.code }}</td>
                 {% if version.flat_amount %}
@@ -50,11 +50,11 @@
                 {% else %}
                 <td class="padding20 whitespace-inherit">{{ version.percentage_amount.percentage }}%</td>
                 {% endif %}
-                                    
+
                 <td data-label="Service" class="padding10 whitespace-inherit">{{ fee.service_type.name }}</td>
 
                 <td data-label="Jurisdiction 2" class="padding10 whitespace-inherit">{{ version.description }}</td>
-                                    
+
                 <td data-label="Description" class="padding10 whitespace-inherit">{{ version.statutory_instrument }}</td>
 
                 {% if version.valid_from %}
@@ -71,12 +71,12 @@
                 {% endif %}
                 </td>
             </tr>
-        {% endfor %}            
+        {% endfor %}
          </tbody>
     </table>
      {% else %}
     <p>No fees awaiting approval</p>
-  {% endif %} 
-                
+  {% endif %}
+
 </div>
   {% endblock %}
