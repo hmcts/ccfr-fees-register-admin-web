@@ -148,7 +148,7 @@ selectReferenceData %}
       {% endif %}
       <div class="govuk-form-group">
         <fieldset class="govuk-fieldset">
-          <label class="form-label-bold">Amount Type</label>
+          <legend class="form-label-bold">Amount Type</legend>
             <div id="verticalRadio" class = "form-group">
               <div class = "multiple-choice">
                 {% if form.valueFor('amountType') == 'flat' %}
@@ -219,7 +219,7 @@ selectReferenceData %}
       {% set eventError = form.errorFor('event') %}
       <div class="govuk-form-group {{ 'form-group-error' if eventError}}">
         <fieldset class="govuk-fieldset">
-          <label class="form-label-bold">Event</label>
+          <legend class="form-label-bold">Event</legend>
           {% if eventError %}
             <span class="error-message"> {{eventError}} </span>
           {% endif %}
@@ -242,7 +242,7 @@ selectReferenceData %}
       {% set channelError = form.errorFor('channel') %}
       <div class="govuk-form-group {{ 'form-group-error' if channelError}}">
         <fieldset class="govuk-fieldset">
-          <label class="form-label-bold">Channel</label>
+          <legend class="form-label-bold">Channel</legend>
           {% if channelError %}
             <span class="error-message"> {{channelError}} </span>
           {% endif %}
@@ -270,7 +270,7 @@ selectReferenceData %}
       {% set applicantTypeError = form.errorFor('applicantType') %}
       <div class="govuk-form-group {{ 'form-group-error' if applicantTypeError}}">
         <fieldset class="govuk-fieldset">
-          <label class="form-label-bold">Applicant</label>
+          <legend class="form-label-bold">Applicant</legend>
           {% if applicantTypeError %}
             <span class="error-message"> {{applicantTypeError}} </span>
           {% endif %}
@@ -291,7 +291,7 @@ selectReferenceData %}
       {% set directionError = form.errorFor('direction') %}
       <div class="govuk-form-group {{ 'form-group-error' if directionError}}">
         <fieldset class="govuk-fieldset">
-          <label class="form-label-bold">Direction</label>
+          <legend class="form-label-bold">Direction</legend>
           {% if directionError %}
             <span class="error-message"> {{directionError}} </span>
           {% endif %}
