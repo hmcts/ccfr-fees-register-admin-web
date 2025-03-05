@@ -58,7 +58,7 @@
 
 <div id="skiplink-container">
   <div>
-    <a href="#content" class="skiplink">{{ skip_link_message|default('Skip to main content') }}</a>
+    <a tabindex="1" href="#content" class="skiplink">{{ skip_link_message|default('Skip to main content') }}</a>
   </div>
 </div>
 
@@ -68,14 +68,14 @@
   <div class="header">
     <div class="header-global">
       <div class="header-proposition">
-        <a href="{{ homepage_url|default('https://www.gov.uk') }}" class="custom-header-title">{{ t('Fee register') }} </a>
+        <a tabindex="1" href="{{ homepage_url|default('https://www.gov.uk') }}" class="custom-header-title">{{ t('Fee register') }} </a>
       <ul class="custom-header-ul">
-        <a href="/admin/V2/all-fees" class="custom-draft-all-fees">{{ t('Fees') }} </a>
+        <a tabindex="2" href="/admin/V2/all-fees" class="custom-draft-all-fees">{{ t('Fees') }} </a>
         {% if isEditor(user.allInfo.roles) or isAdmin(user.allInfo.roles) %}
-        <a href="/admin/V2/draft-fees" class="custom-draft-all-fees">{{ t('Your Drafts') }} </a>
-        <a href="/admin/v2/upload" class="custom-draft-all-fees">{{ t('Upload fees') }} </a>
+        <a tabindex="2" href="/admin/V2/draft-fees" class="custom-draft-all-fees">{{ t('Your Drafts') }} </a>
+        <a tabindex="2" href="/admin/v2/upload" class="custom-draft-all-fees">{{ t('Upload fees') }} </a>
         {% elif isApprover(user.allInfo.roles)%}
-        <a href="/admin/V2/pending-approval" class="custom-draft-all-fees">{{ t('Approvals') }} </a>
+        <a tabindex="2" href="/admin/V2/pending-approval" class="custom-draft-all-fees">{{ t('Approvals') }} </a>
         {% endif %}
       </ul>
       </div>
@@ -106,7 +106,7 @@
 </main>
 
 {% block footer %}
-  {% include "includes/footer.njk" %}  
+  {% include "includes/footer.njk" %}
 {% endblock %}
 
 <div id="global-app-error" class="app-error hidden"></div>

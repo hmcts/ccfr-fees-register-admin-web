@@ -6,11 +6,11 @@
         {% if isLoggedIn %}
         <div class="user.ts">
         <p class="username-log">{{ user.allInfo.forename }} {{ user.allInfo.surname }}</p>
-        <a href="/logout" class="custom-signout-link">{{ t('Sign out') }}</a>
+        <a tabindex="1" href="/logout" class="custom-signout-link">{{ t('Sign out') }}</a>
         {% endif %}
         </div>
       </ul>
-      <a href="/admin/V2/reference-data" class="custom-reference-data">{{ t('Reference Data') }} </a>
+      <a tabindex="2" href="/admin/V2/reference-data" class="custom-reference-data">{{ t('Reference Data') }} </a>
     </nav>
   </div>
 </div>

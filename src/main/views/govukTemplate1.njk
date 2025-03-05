@@ -58,7 +58,7 @@
 
 <div id="skiplink-container">
   <div>
-    <a href="#content" class="skiplink">{{ skip_link_message|default('Skip to main content') }}</a>
+    <a tabindex="1" href="#content" class="skiplink">{{ skip_link_message|default('Skip to main content') }}</a>
   </div>
 </div>
 
@@ -73,7 +73,7 @@
   <div class="header">
     <div class="header-global">
       <div class="header-proposition">
-        <a href="{{ homepage_url|default('https://www.gov.uk') }}" class="custom-header-title">{{ t('Fee register') }} </a>
+        <a tabindex="1" href="{{ homepage_url|default('https://www.gov.uk') }}" class="custom-header-title">{{ t('Fee register') }} </a>
       </div>
       {% block inside_header %}{% endblock %}
     </div>
@@ -102,7 +102,7 @@
 </main>
 
 {% block footer %}
-  {% include "includes/footer.njk" %}  
+  {% include "includes/footer.njk" %}
 {% endblock %}
 
 <div id="global-app-error" class="app-error hidden"></div>
