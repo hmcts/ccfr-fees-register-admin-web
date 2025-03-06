@@ -5,6 +5,11 @@
   <input type='hidden' id='userRole' value=''/>
 
 	<div class="govuk-grid-row">
+    <div class="govuk-grid-column-full">
+      <h1 class="heading-xlarge margin-bottom-1">
+        {{feeDto.code}}
+      </h1>
+    </div>
 		<div class="govuk-grid-column-full">
 			<nav aria-label="Sub navigation">
 				<div class="jui-width-container">
@@ -22,9 +27,9 @@
 					</ul>
 				</div>
 			</nav>
-			<h1 class="heading-xlarge">
+			<h2 class="heading-xlarge">
 				{{t('Fee versions')}}
-			</h1>
+			</h2>
 			{% for version in feeDto.fee_versions | reverse %}
 				<details class="govuk-details">
 					<summary class="govuk-details__summary">
@@ -92,7 +97,7 @@
 										</dd>
 									</div>
 								{% endif %}
-								
+
 							{% endfor %}
 							{% for version2 in feeDto.fee_versions | reverse %}
 								{% if version2.version == version.version-1 and version.si_ref_id != version2.si_ref_id%}
