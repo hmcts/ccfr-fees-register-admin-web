@@ -69,7 +69,7 @@ selectReferenceData %}
       </div>
       {% set jurisdictionOneError = form.errorFor('jurisdiction1') %}
       <div class="govuk-form-group {{ 'form-group-error' if jurisdictionOneError}}">
-        <fieldset class="govuk-fieldset">
+        <fieldset id="jurisdiction1" class="govuk-fieldset">
           <legend class="form-label-bold">Jurisdiction 1</legend>
             {% if jurisdictionOneError %}
               <span class="error-message"> {{jurisdictionOneError}} </span>
@@ -90,7 +90,7 @@ selectReferenceData %}
       </div>
       {% set jurisdictionTwoError = form.errorFor('jurisdiction2') %}
       <div class="govuk-form-group {{ 'form-group-error' if jurisdictionTwoError}}">
-        <fieldset class="govuk-fieldset">
+        <fieldset id="jurisdiction2" class="govuk-fieldset">
           <legend class="form-label-bold">Jurisdiction 2</legend>
             {% if jurisdictionTwoError %}
               <span class="error-message"> {{jurisdictionTwoError}} </span>
@@ -218,7 +218,7 @@ selectReferenceData %}
       </div>
       {% set eventError = form.errorFor('event') %}
       <div class="govuk-form-group {{ 'form-group-error' if eventError}}">
-        <fieldset class="govuk-fieldset">
+        <fieldset id="event" class="govuk-fieldset">
           <legend class="form-label-bold">Event</legend>
           {% if eventError %}
             <span class="error-message"> {{eventError}} </span>
@@ -241,7 +241,7 @@ selectReferenceData %}
       </div>
       {% set channelError = form.errorFor('channel') %}
       <div class="govuk-form-group {{ 'form-group-error' if channelError}}">
-        <fieldset class="govuk-fieldset">
+        <fieldset id="channel" class="govuk-fieldset">
           <legend class="form-label-bold">Channel</legend>
           {% if channelError %}
             <span class="error-message"> {{channelError}} </span>
@@ -269,7 +269,7 @@ selectReferenceData %}
         </p>
       {% set applicantTypeError = form.errorFor('applicantType') %}
       <div class="govuk-form-group {{ 'form-group-error' if applicantTypeError}}">
-        <fieldset class="govuk-fieldset">
+        <fieldset id="applicantType" class="govuk-fieldset">
           <legend class="form-label-bold">Applicant</legend>
           {% if applicantTypeError %}
             <span class="error-message"> {{applicantTypeError}} </span>
@@ -290,7 +290,7 @@ selectReferenceData %}
       </div>
       {% set directionError = form.errorFor('direction') %}
       <div class="govuk-form-group {{ 'form-group-error' if directionError}}">
-        <fieldset class="govuk-fieldset">
+        <fieldset id="direction" class="govuk-fieldset">
           <legend class="form-label-bold">Direction</legend>
           {% if directionError %}
             <span class="error-message"> {{directionError}} </span>

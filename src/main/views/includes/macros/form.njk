@@ -198,7 +198,7 @@ disabled = disabled
 </h1>
 <ul class="error-summary-list">
   {% for error in form.validationErrors %}
-  <li><a href="#{{ error.fieldName }}[label]">{{ t(error.message) }}</a></li>
+  <li><a href="#{{ error.fieldName }}">{{ t(error.message) }}</a></li>
   {% endfor %}
   {% for error in form.backendErrors %}
   <li><a href="#">{{ t(error) }}</a></li>
