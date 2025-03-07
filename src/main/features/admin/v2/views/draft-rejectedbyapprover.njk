@@ -72,19 +72,19 @@
 
 									<td >
 										{% if user %}
-											<a href="/admin/V2/fee-details?draft=true&feeCode={{ fee.code }}&pageType=rejectfee&vno={{version.version}}">View</a>
+											<a href="/admin/V2/fee-details?draft=true&feeCode={{ fee.code }}&pageType=rejectfee&vno={{version.version}}" aria-label="View {{ fee.code }}">View</a>
 										{% else  %}
-											<a href="/admin/V2/fee-details?draft=true&feeCode={{ fee.code }}&pageType=rejectfee">View</a>
+											<a href="/admin/V2/fee-details?draft=true&feeCode={{ fee.code }}&pageType=rejectfee" aria-label="View {{ fee.code }}">View</a>
 										{% endif %}
 									</td>
 								</tr>
 							{% else %}
-	
+
 							{% endif %}
 						{% endfor %}
 						{% if isApprovedDraft == false %}
 							<tr>
-								<td colspan='7'> 
+								<td colspan='7'>
 									No draft fees.
 								</td>
 							</tr>
