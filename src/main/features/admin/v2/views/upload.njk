@@ -21,8 +21,10 @@
         {% endif %}
 
         <label for="csvdata">
-          <input type="file" name="csvdata" accept="text/csv"/>
+          {{  t('Upload a file') }}
         </label>
+        <br>
+        <input type="file" id="csvdata" accept="text/csv"/>
         <p>
           {{ submitButton(t('Next')) }}
         </p>
