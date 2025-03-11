@@ -77,7 +77,7 @@
         {% elif isApprover(user.allInfo.roles)%}
         <a tabindex="2" href="/admin/V2/pending-approval" class="custom-draft-all-fees">{{ t('Approvals') }} </a>
         {% endif %}
-        <a tabindex="2" href="/admin/V2/reference-data" class="custom-draft-all-fees">{{ t('Reference Data') }} </a>
+        <a tabindex="2" href="/admin/V2/reference-data" id="referenceData" class="custom-draft-all-fees">{{ t('Reference Data') }} </a>
       </ul>
       </div>
       {% block inside_header %}{% endblock %}
