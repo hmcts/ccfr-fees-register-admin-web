@@ -451,7 +451,7 @@ a.custom-reference-data:visited {
   position: relative;
 }
 
-.custom-header-ul a:last-child{
+#referenceData {
   float: right;
 }
 
