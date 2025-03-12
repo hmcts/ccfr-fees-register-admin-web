@@ -130,6 +130,9 @@
 #verticalRadio.form-group {
   margin-bottom: 10px;
 }
+#yourDraftsHeading{
+  margin-top: 25px;
+}
 .govuk-form-group {
   margin-bottom: 30px;
 }
@@ -798,7 +801,7 @@ a.custom-reference-data:visited {
   width: 100%;
 }
 .downloadbtn-container-align {
-  justify-content: flex-end;
+  justify-content: space-between;
 }
 /* Fee Custom Cookie Styles*/
 h1.cookies-xlarge-heading {
