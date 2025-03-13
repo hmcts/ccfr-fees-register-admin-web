@@ -345,5 +345,13 @@ selectReferenceData %}
 
   </div>
   </div>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const element = document.getElementById('error-summary-heading')
+      if (element && document.contains(element)){
+        element.focus()
+      }
+    } );
+  </script>
 
 {% endblock %}

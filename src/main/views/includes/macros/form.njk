@@ -193,7 +193,7 @@ disabled = disabled
   {% macro errorSummary(form) %}
   {% if form.hasErrors() %}
 <div class="error-summary" role="group" aria-labelledby="error-summary-heading" tabindex="-1">
-<h1 class="heading-medium error-summary-heading" id="error-summary-heading">
+<h1 tabindex="0" class="heading-medium error-summary-heading" id="error-summary-heading">
   {{ t('Please correct the following errors') }}
 </h1>
 <ul class="error-summary-list">

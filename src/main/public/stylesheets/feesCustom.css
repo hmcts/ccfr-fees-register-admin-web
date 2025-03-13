@@ -126,6 +126,10 @@
 #RangedUnitValue {
   width: 25%;
 }
+#error-summary-heading:focus{
+  outline: none;
+}
+
 #serviceChild.form-group,
 #verticalRadio.form-group {
   margin-bottom: 10px;
