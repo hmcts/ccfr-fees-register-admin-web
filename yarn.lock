@@ -977,10 +977,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/cookiejar@npm:*":
-  version: 2.1.1
-  resolution: "@types/cookiejar@npm:2.1.1"
-  checksum: 7b2967a3344e8e646e79e1dc09ef30a70c4ceeb348364c4eb75b56e2f2e695605fbddd40a50f468b2b5932d2ffb58694ba550f0f52d074c972023910c77de2f6
+"@types/cookiejar@npm:^2.1.5":
+  version: 2.1.5
+  resolution: "@types/cookiejar@npm:2.1.5"
+  checksum: 04d5990e87b6387532d15a87d9ec9b2eb783039291193863751dcfd7fc723a3b3aa30ce4c06b03975cba58632e933772f1ff031af23eaa3ac7f94e71afa6e073
   languageName: node
   linkType: hard
 
@@ -1087,6 +1087,13 @@ __metadata:
   version: 4.14.202
   resolution: "@types/lodash@npm:4.14.202"
   checksum: a91acf3564a568c6f199912f3eb2c76c99c5a0d7e219394294213b3f2d54f672619f0fde4da22b29dc5d4c31457cd799acc2e5cb6bd90f9af04a1578483b6ff7
+  languageName: node
+  linkType: hard
+
+"@types/methods@npm:^1.1.4":
+  version: 1.1.4
+  resolution: "@types/methods@npm:1.1.4"
+  checksum: ad2a7178486f2fd167750f3eb920ab032a947ff2e26f55c86670a6038632d790b46f52e5b6ead5823f1e53fc68028f1e9ddd15cfead7903e04517c88debd72b1
   languageName: node
   linkType: hard
 
@@ -1220,22 +1227,25 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/superagent@npm:*":
-  version: 4.1.7
-  resolution: "@types/superagent@npm:4.1.7"
+"@types/superagent@npm:^8.1.0":
+  version: 8.1.9
+  resolution: "@types/superagent@npm:8.1.9"
   dependencies:
-    "@types/cookiejar": "*"
+    "@types/cookiejar": ^2.1.5
+    "@types/methods": ^1.1.4
     "@types/node": "*"
-  checksum: 090a9fd148d82550a8feda89df4a9f3051ff2e253b02cf5f84e01c23f6e5225c0bf814d600167449c5bd090a02e42449dfbe8fa089fc24b7c10e397d814e37b9
+    form-data: ^4.0.0
+  checksum: 530d8c2e87706315c82c8c9696500c40621de3353bc54ea9b104947f3530243abf54d0a49a6ae219d4947606a102ceb94bedfc43b9cc49f74069a18cbb3be8e2
   languageName: node
   linkType: hard
 
 "@types/supertest@npm:*":
-  version: 2.0.8
-  resolution: "@types/supertest@npm:2.0.8"
+  version: 6.0.2
+  resolution: "@types/supertest@npm:6.0.2"
   dependencies:
-    "@types/superagent": "*"
-  checksum: d9e83a782b0de3a21da196ad3b3adaeb89d7ded4bb5b070bac922628420433b0271f445fa07dfcb0f93d304c776d2a92bd328ff530333aabc1ed055603b5e84e
+    "@types/methods": ^1.1.4
+    "@types/superagent": ^8.1.0
+  checksum: 1eafa472665757a6fd984439d11f388ae0480c6d243a6884066c474c4e0357de5373316488da503b1690c3163e075ca8c64c0c4853b3bb7deb09e05d1b64e556
   languageName: node
   linkType: hard
 
