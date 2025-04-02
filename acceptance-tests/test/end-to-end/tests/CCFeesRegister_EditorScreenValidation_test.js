@@ -68,12 +68,12 @@ Scenario('@functional FeesRegister Admin Console Editor Screen For Live Fees Det
   //verify any existing fee details under live Tab
   if (CONF.e2e.frontendUrl.includes("aat")) {
     I.verifyFeeDetails('live', 'FEE0002','1.2','Family Proceedings Fees Order 2008','divorce','issue','Filing an application for a divorce, nullity or civil partnership dissolution',
-      '2021 No 985','The Court Fees (Miscellaneous Amendments) Order 2021','family','family court','fixed','Flat','593.00','',
-      '30 September 2021', '', '6', 'Inflationary Increase', '4481102159', 'RECEIPT OF FEES - Family issue divorce', 'inflationary', 'all', 'DivorceCivPart', 'default', 'approved', 'The user\'s details are unavailable', 'pkiauq puuujbhe');
+      '2021 No 985','The Court Fees (Miscellaneous Amendments) Order 2021','family','family court','fixed','Flat','612.00','',
+      '30 September 2021', '', '8', 'Inflationary Increase', '4481102159', 'RECEIPT OF FEES - Family issue divorce', 'inflationary', 'all', 'DivorceCivPart', 'default', 'approved', 'The user\'s details are unavailable', 'pkiauq puuujbhe');
   } else if (CONF.e2e.frontendUrl.includes("demo")) {
     I.verifyFeeDetails('live', 'FEE0002','1.2','Family Proceedings Fees Order 2008','divorce','issue','Filing an application for a divorce, nullity or civil partnership dissolution',
-      '2021 No 985','The Court Fees (Miscellaneous Amendments) Order 2021','family','family court','fixed','Flat','593.00','',
-      '30 September 2021', '', '6', 'Inflationary Increase', '4481102159', 'RECEIPT OF FEES - Family issue divorce', 'inflationary', 'all', 'DivorceCivPart', 'default', 'approved', 'The user\'s details are unavailable', 'TOTO TOTO');
+      '2021 No 985','The Court Fees (Miscellaneous Amendments) Order 2021','family','family court','fixed','Flat','612.00','',
+      '30 September 2021', '', '8', 'Inflationary Increase', '4481102159', 'RECEIPT OF FEES - Family issue divorce', 'inflationary', 'all', 'DivorceCivPart', 'default', 'approved', 'The user\'s details are unavailable', 'TOTO TOTO');
   }
   I.click('Sign out');
 }).retry(CCFRATConstants.retryScenario);
