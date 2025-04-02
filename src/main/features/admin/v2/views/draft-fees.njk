@@ -82,9 +82,9 @@
 
 										<td >
 											{% if user %}
-												<a href="/admin/V2/fee-details?draft=true&feeCode={{ fee.code }}&pageType=draftfee&vno={{version.version}}" aria-label="View {{ fee.code }}">View</a>
+												<a href="/admin/V2/fee-details?draft=true&feeCode={{ fee.code }}&pageType=draftfee&vno={{version.version}}" aria-label="View {{ fee.code }}" style="white-space: nowrap;">View {{  fee.code }}</a>
 											{% else  %}
-												<a href="/admin/V2/fee-details?draft=true&feeCode={{ fee.code }}&pageType=draftfee" aria-label="View {{ fee.code }}">View</a>
+												<a href="/admin/V2/fee-details?draft=true&feeCode={{ fee.code }}&pageType=draftfee" aria-label="View {{ fee.code }}" style="white-space: nowrap;">View {{ fee.code }}</a>
 											{% endif %}
 										</td>
 									</tr>
