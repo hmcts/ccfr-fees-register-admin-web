@@ -68,12 +68,12 @@ Scenario('@functional FeesRegister Admin Console Editor Screen For Live Fees Det
   //verify any existing fee details under live Tab
   if (CONF.e2e.frontendUrl.includes("aat")) {
     I.verifyFeeDetails('live', 'FEE0002','1.2','Family Proceedings Fees Order 2008','divorce','issue','Filing an application for a divorce, nullity or civil partnership dissolution',
-      '2025 No 351','The Court Fees (Miscellaneous Amendments) Order 2021','family','family court','fixed','Flat','612.00','',
-      '29 March 2025', '', '8', 'Inflationary Increase', '4481102159', 'RECEIPT OF FEES - Family issue divorce', 'enhanced', 'all', 'DivorceCivPart', 'default', 'approved', 'The user\'s details are unavailable', 'pkiauq puuujbhe');
+      '2025 No 351','The Court and Tribunal Fees (Miscellaneous Amendments) Order 2025','family','family court','fixed','Flat','612.00','',
+      '29 March 2025', '', '8', 'Inflationary Increases', '4481102159', 'RECEIPT OF FEES - Family issue divorce', 'enhanced', 'all', 'DivorceCivPart', 'default', 'approved', 'The user\'s details are unavailable', 'pkiauq puuujbhe');
   } else if (CONF.e2e.frontendUrl.includes("demo")) {
     I.verifyFeeDetails('live', 'FEE0002','1.2','Family Proceedings Fees Order 2008','divorce','issue','Filing an application for a divorce, nullity or civil partnership dissolution',
-      '2025 No 351','The Court Fees (Miscellaneous Amendments) Order 2021','family','family court','fixed','Flat','612.00','',
-      '29 March 2025', '', '8', 'Inflationary Increase', '4481102159', 'RECEIPT OF FEES - Family issue divorce', 'enhanced', 'all', 'DivorceCivPart', 'default', 'approved', 'The user\'s details are unavailable', 'TOTO TOTO');
+      '2025 No 351','The Court and Tribunal Fees (Miscellaneous Amendments) Order 2025','family','family court','fixed','Flat','612.00','',
+      '29 March 2025', '', '8', 'Inflationary Increases', '4481102159', 'RECEIPT OF FEES - Family issue divorce', 'enhanced', 'all', 'DivorceCivPart', 'default', 'approved', 'The user\'s details are unavailable', 'TOTO TOTO');
   }
   I.click('Sign out');
 }).retry(CCFRATConstants.retryScenario);
