@@ -5,7 +5,8 @@ function verifyFeeDetails(feeTypeFlag, feeCode, siRefID, consolidatedOriginalFee
                           lastAmendingSI, jurisdiction1, jurisdiction2, feeType, amountType, amount, percentage, validFrom, validTo, version, reasonForFeeUpdate, naturalAccountCode,
                           memo, direction, applicantType, keyword, channel, status, editor, approver) {
   const I = this;
-  I.click(feeCode);
+  I.click(locate('a').withText(feeCode).last());
+  //I.click(feeCode);
   I.waitForText('Fee details', CCFRAcceptanceTestConstants.tenSecondWaitTime);
   I.see('Code');
   I.see(feeCode);
