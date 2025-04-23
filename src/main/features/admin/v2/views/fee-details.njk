@@ -11,11 +11,6 @@
   {% endif %}
 <div class="govuk-grid-row">
   <div class="govuk-grid-column-full">
-    <h1 class="heading-xlarge margin-bottom-1">
-    {{feeDto.code}}
-    </h1>
-  </div>
-  <div class="govuk-grid-column-full">
     <nav class="hmcts-sub-navigation" aria-label="Sub navigation">
       <div class="jui-width-container">
         <ul class="hmcts-sub-navigation__list">
@@ -32,9 +27,9 @@
         </ul>
       </div>
     </nav>
-    <h2 class="heading-xlarge margin-bottom-0">
-            {{t('Fee details')}}
-    </h2>
+    <h1 class="heading-xlarge margin-bottom-0">
+            {{t('Fee details - ')}} {{ feeDto.code }}
+    </h1>
   </div>
 </div>
 
