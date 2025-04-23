@@ -362,7 +362,7 @@
   width: 100%;
   font-size: .1px;
   list-style: none;
-  padding: 0;
+  padding-top: 27px;
 }
 
 .hmcts-sub-navigation__item {
@@ -460,6 +460,8 @@ a.custom-reference-data:visited {
 
 #referenceData {
   float: right;
+  margin-right: 0;
+  top: 20px;
 }
 
 .custom-logout {
