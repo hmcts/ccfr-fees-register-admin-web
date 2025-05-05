@@ -1,14 +1,14 @@
 {% from "includes/macros/form.njk" import submitButton %}
   {% extends "layout.njk" %}
 
-  {% set title = t('CSV upload | ' + serviceName + ' V2') %}
-  {% set heading = t('CSV upload') %}
+  {% set title = t('Upload fees | ' + serviceName + ' | GOV.UK') %}
+  {% set heading = t('Upload Fees') %}
+  {% set currentPage = 'upload' %}
 
   {% block content %}
 
 <div class="grid-row">
-<input type='hidden' id='userRole' value='{{ 'Approver' if isApprover(user.allInfo.roles) else 'Editor' }}'/>
-
+  <input type='hidden' id='userRole' value='{{ 'Approver' if isApprover(user.allInfo.roles) else 'Editor' }}'/>
   <div class="column-full">
     <div id="upload-form" class="form-group">
       <form method="post" action="upload?_csrf={{csrfToken}}" enctype="multipart/form-data">
@@ -20,9 +20,9 @@
         </div>
         {% endif %}
 
-        <label for="csvdata">
-          <input type="file" name="csvdata" accept="text/csv"/>
-        </label>
+        <label for="csvupload" class="govuk-label govuk-label--l govuk-!-margin-bottom-6">Upload a CSV file</label>
+        <input id="csvupload" class="upload-file" type="file" name="csvdata" accept="text/csv"/>
+        
         <p>
           {{ submitButton(t('Next')) }}
         </p>
