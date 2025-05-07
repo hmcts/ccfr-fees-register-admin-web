@@ -69,6 +69,14 @@
     <div class="header-global">
       <div class="header-proposition">
         <a tabindex="1" href="{{ homepage_url|default('https://www.gov.uk') }}" class="custom-header-title">{{ t('Fee register') }} </a>
+        {% if isLoggedIn %}
+          <ul class="custom-logout">
+
+          <p class="username-log">{{ user.allInfo.forename }} {{ user.allInfo.surname }}</p>
+          <a tabindex="1" href="/logout" class="custom-signout-link">{{ t('Sign out') }}</a>
+          </ul>
+
+          {% endif %}
       <ul class="custom-header-ul">
         <a tabindex="2" href="/admin/V2/all-fees" class="custom-draft-all-fees">{{ t('Fees') }} </a>
         {% if isEditor(user.allInfo.roles) or isAdmin(user.allInfo.roles) %}
