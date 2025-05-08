@@ -1,7 +1,7 @@
 {% extends "layout.njk" %}
 {% from "includes/macros/form.njk" import nextButton%}
 
-{% set title = t('Fees | ' + serviceName) %}
+{% set title = t('Your Drafts | ' + serviceName) %}
 {% block content %}
 <input type='hidden' id='userRole' value='{{ 'Approver' if isApprover(user.allInfo.roles) else 'Editor' }}'/>
   <h1 class="govuk-heading-xl" id="yourDraftsHeading">{{t("Your Drafts")}}</h1>
