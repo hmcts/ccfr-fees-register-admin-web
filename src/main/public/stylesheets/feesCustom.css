@@ -497,6 +497,8 @@ p.username-log {
   margin: 0 auto;
   color: white;
   height: 100px;
+  z-index: 1;
+  position: relative;
 }
 
 .custom-proposition-name {
