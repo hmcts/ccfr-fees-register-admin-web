@@ -46,7 +46,7 @@ selectReferenceData %}
         {{ textArea(t('Consolidated/Original Fee Order Name'), 'consolidatedFeeOrderName', form, rows=2) }}
         {% set serviceError = form.errorFor('service') %}
         <div class="govuk-form-group {{ 'form-group-error' if serviceError}}">
-          <fieldset class="govuk-fieldset">
+          <fieldset id="service" class="govuk-fieldset">
             <legend class="form-label-bold">Service</legend>
             {% if serviceError %}
               <span class="error-message"> {{serviceError}} </span>
