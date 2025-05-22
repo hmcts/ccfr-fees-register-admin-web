@@ -126,9 +126,16 @@
 #RangedUnitValue {
   width: 25%;
 }
+#error-summary-heading:focus{
+  outline: none;
+}
+
 #serviceChild.form-group,
 #verticalRadio.form-group {
   margin-bottom: 10px;
+}
+#yourDraftsHeading{
+  margin-top: 25px;
 }
 .govuk-form-group {
   margin-bottom: 30px;
@@ -203,7 +210,7 @@
 }
 
 .govuk-\!-margin-top-7 {
-  margin-top: 40px !important;
+  margin-top: 18px !important;
 }
 
 .govuk-tabs__list:after {
@@ -292,6 +299,7 @@
   display: flex;
   flex-grow: 1;
   width: auto;
+  margin-top: 22px;
 }
 
 .govuk-table__header {
@@ -315,7 +323,7 @@
   font-size: 19px;
   line-height: 25px;
   font-weight: 400;
-} 
+}
 .govuk-check-your-answers--short {
   width: 100%;
 }
@@ -355,7 +363,7 @@
   width: 100%;
   font-size: .1px;
   list-style: none;
-  padding: 0;
+  padding-top: 53px;
 }
 
 .hmcts-sub-navigation__item {
@@ -404,11 +412,11 @@ a.btn {
 }
 
 a.custom-header-title:link {
-  color: white; 
+  color: white;
   text-decoration: none;}
 
 a.custom-header-title:visited {
-  color: white; 
+  color: white;
   text-decoration: none;}
 
 a.custom-header-title:hover {
@@ -451,12 +459,20 @@ a.custom-reference-data:visited {
   position: relative;
 }
 
+#referenceData {
+  float: right;
+  margin-right: 0;
+  top: 19px;
+}
+
 .custom-logout {
   font-family: "nta", Arial, sans-serif;
   float: right;
   font-size: 18px;
   position: relative;
   text-transform: none;
+  top: 13px;
+  height: 40px;
 }
 
 a.custom-logout:link {
@@ -481,6 +497,8 @@ p.username-log {
   margin: 0 auto;
   color: white;
   height: 100px;
+  z-index: 1;
+  position: relative;
 }
 
 .custom-proposition-name {
@@ -631,7 +649,7 @@ text-align: left;
 }
 .govuk-details {
   margin-bottom: 30px;
-  
+
 }
 
 .govuk-details-text {
@@ -654,12 +672,12 @@ text-align: left;
   padding-left: 25px;
   text-decoration: underline;
 }
-.link-button { 
+.link-button {
   background: none;
   border: none;
   color: #1a0dab;
   text-decoration: underline;
-  cursor: pointer; 
+  cursor: pointer;
   margin-left: -5px;
 }
 h1.heading-xlarge {
@@ -792,9 +810,10 @@ a.custom-reference-data:visited {
 .downloadbtn-container {
   display: flex;
   width: 100%;
+  margin-top: 53px;
 }
 .downloadbtn-container-align {
-  justify-content: flex-end;
+  justify-content: space-between;
 }
 /* Fee Custom Cookie Styles*/
 h1.cookies-xlarge-heading {
