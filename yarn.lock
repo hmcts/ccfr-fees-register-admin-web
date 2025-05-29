@@ -3467,12 +3467,12 @@ __metadata:
   linkType: hard
 
 "cookie-parser@npm:^1.3.3":
-  version: 1.4.4
-  resolution: "cookie-parser@npm:1.4.4"
+  version: 1.4.7
+  resolution: "cookie-parser@npm:1.4.7"
   dependencies:
-    cookie: 0.3.1
+    cookie: 0.7.2
     cookie-signature: 1.0.6
-  checksum: 52eabd66f471c8745c7266324d70cec2be830cbbf2354b51c9484c8962ff983e4d315e77a001cdcff37619db2a86efe1f1f5c8ce7e095bfa016ae79df954db4f
+  checksum: 243fa13f217e793d20a57675e6552beea08c5989fcc68495d543997a31646875335e0e82d687b42dcfd466df57891d22bae7f5ba6ab33b7705ed2dd6eb989105
   languageName: node
   linkType: hard
 
