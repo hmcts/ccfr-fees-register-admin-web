@@ -7143,9 +7143,9 @@ __metadata:
   linkType: hard
 
 "is-undefined@npm:^1.0.8":
-  version: 1.0.10
-  resolution: "is-undefined@npm:1.0.10"
-  checksum: 0a81ad01be8d0ee123ea087d8ee0c3ea75102db9ce4babd1ca9ef8dea3a748e23f8a80a3209fbfd08e0e9b61d8f349e9778323addddf61c87c3079f6bd550dcc
+  version: 1.0.12
+  resolution: "is-undefined@npm:1.0.12"
+  checksum: 49bc2841e0c9859791d02b169214e0ac71d7decce85a6ae145883796e994d9d9e47bcb6bd686490f1b4055df0e82151b35ae12cfe74ed06447f5a894bf847f19
   languageName: node
   linkType: hard
 
