@@ -3,7 +3,8 @@ import * as featureToggles from 'feature-toggles'
 
 import { Paths } from 'admin/paths'
 
-import { FeesClient, FeesClientError } from 'app/fees/feesClient'
+import { FeesClientError } from 'app/client/request'
+import { FeesClient } from 'app/fees/feesClient'
 import RangeGroup from 'fees/rangeGroup'
 import { Form } from 'app/forms/form'
 import { CreateRangeGroupForm, EditRangeGroupForm, RangeForm } from 'app/forms/models/rangeGroupForms'
