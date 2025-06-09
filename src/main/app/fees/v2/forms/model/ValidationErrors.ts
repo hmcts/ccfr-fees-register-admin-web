@@ -4,7 +4,7 @@ export class ValidationErrors {
   static readonly CODE_TOO_LONG: string = 'Enter code no longer than $constraint1 characters'
   static readonly CODE_INVALID_CHARACTERS: string = 'Enter code containing on alphanumeric characters, underscore or dash'
   static readonly CODE_EXISTS: string = 'Enter code that does not exist'
-  static readonly DESCRIPTION_REQUIRED: string = 'Enter description'
+  static readonly DESCRIPTION_REQUIRED: string = 'Enter description of fee'
   static readonly DESCRIPTION_TOO_LONG: string = 'Enter description no longer than $constraint1 characters'
   static readonly VERSION_EXISTS: string = 'Enter version that does not exist'
   static readonly VERSION_REQUIRED: string = 'Enter the version number'
