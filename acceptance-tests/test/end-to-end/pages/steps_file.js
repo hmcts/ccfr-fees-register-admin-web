@@ -176,7 +176,7 @@ module.exports = () => actor({
     this.see('Code');
     this.see('Service');
     // we are trying to use fee code already existed and created as par of editor journey
-    this.click({xpath: '//td[.="E2E Testing"]/following-sibling::td/a[.="View"][1]'});
+    this.click({ xpath: '//td[.="E2E Testing"]/following-sibling::td/a[contains(text(), "View")][1]' });
     //this.click({xpath: '//td/a[1]'});
     this.waitForText('Direction','10');
     this.click("Approve fee");
