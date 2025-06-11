@@ -220,3 +220,58 @@ export function resolvePrevalidate () {
     .get(new RegExp(`/fees/prevalidate`))
     .reply(HttpStatus.OK)
 }
+
+function resolveRetrieveMockedData(endpoint: string, data: { name: string, creationTime: string, lastUpdated: string }[]) {
+  mock(`${serviceBaseURL}`)
+    .get(endpoint)
+    .reply(HttpStatus.OK, data);
+}
+
+export function resolveRetrieveServices () {
+  resolveRetrieveMockedData('/service-types', [
+      {name: 'service1', creationTime: '2020-01-01', lastUpdated: '2022-01-01'},
+      {name: 'service2', creationTime: '2020-02-01', lastUpdated: '2022-02-01'},
+    ]);
+}
+
+export function resolveRetrieveDirections () {
+  resolveRetrieveMockedData('/direction-types', [
+    {name: 'direction1', creationTime: '2020-01-01', lastUpdated: '2022-01-01'},
+    {name: 'direction2', creationTime: '2020-02-01', lastUpdated: '2022-02-01'},
+  ])
+}
+
+export function resolveRetrieveChannels () {
+  resolveRetrieveMockedData('/channel-types', [
+    {name: 'channel1', creationTime: '2020-01-01', lastUpdated: '2022-01-01'},
+    {name: 'channel2', creationTime: '2020-02-01', lastUpdated: '2022-02-01'},
+  ]);
+}
+
+export function resolveRetrieveApplicants () {
+  resolveRetrieveMockedData('/applicant-types', [
+    {name: 'applicant1', creationTime: '2020-01-01', lastUpdated: '2022-01-01'},
+    {name: 'applicant2', creationTime: '2020-02-01', lastUpdated: '2022-02-01'},
+  ]);
+}
+
+export function resolveRetrieveJurisdiction1 () {
+  resolveRetrieveMockedData('/jurisdictions1', [
+    {name: 'jurisdiction1-1', creationTime: '2020-01-01', lastUpdated: '2022-01-01'},
+    {name: 'jurisdiction1-2', creationTime: '2020-02-01', lastUpdated: '2022-02-01'},
+  ]);
+}
+
+export function resolveRetrieveJurisdiction2 () {
+  resolveRetrieveMockedData('/jurisdictions2', [
+    {name: 'jurisdiction2-1', creationTime: '2020-01-01', lastUpdated: '2022-01-01'},
+    {name: 'jurisdiction2-2', creationTime: '2020-02-01', lastUpdated: '2022-02-01'},
+  ]);
+}
+
+export function resolveRetrieveEvents () {
+  resolveRetrieveMockedData('/event-types', [
+    {name: 'event1', creationTime: '2020-01-01', lastUpdated: '2022-01-01'},
+    {name: 'event2', creationTime: '2020-02-01', lastUpdated: '2022-02-01'},
+  ]);
+}

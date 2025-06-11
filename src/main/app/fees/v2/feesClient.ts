@@ -1,28 +1,13 @@
 import * as config from 'config'
 
-import request from 'client/request'
+import makeRequest from 'client/request'
 import * as model from 'app/fees/v2/model/fees-register-api-contract'
-import { StatusCodeError } from 'request-promise-native/errors'
 import {
   AllReferenceDataDto, FixedFeeDto, Fee2Dto, FeeVersionDto, RangedFeeDto, RateableFeeDto, RelationalFeeDto, BandedFeeDto
 } from 'fees/v2/model/fees-register-api-contract'
 
 const feesUrl = config.get('fees.url')
 
-export class FeesClientError extends Error {
-  constructor (public message: string) {
-    super(message)
-    Object.setPrototypeOf(this, FeesClientError.prototype)
-  }
-}
-
-function FeesClientErrorMapper (reason: Error) {
-  if (reason instanceof StatusCodeError) {
-    throw new FeesClientError((reason as any).response.body.cause)
-  } else {
-    throw reason
-  }
-}
 
 export class FeesClient {
 
@@ -42,196 +27,76 @@ export class FeesClient {
     return FeesClient.invokePatch(`${feesUrl}/fees/${feeCode}/versions/${version}/submit-for-review`, user)
   }
 
+  static async delete(url: string, token: string): Promise<boolean> {
+    const response = await makeRequest(url, 'DELETE', token);
+    return response.ok;
+  }
+
+  static async update(url: string, method: string, token: string, body: object): Promise<boolean> {
+    const response = await makeRequest(url, method, token, body);
+    return response.ok;
+  }
+
   static deleteFee (user, feeCode: string): Promise<boolean> {
-    return request
-      .delete({
-        uri: `${feesUrl}/fees-register/fees/${feeCode}`,
-        headers: {
-          Authorization: `Bearer ${user.bearerToken}`
-        }
-      })
-      .then(() => true)
-      .catch(FeesClientErrorMapper)
+    return this.delete(`${feesUrl}/fees-register/fees/${feeCode}`, user.bearerToken);
   }
 
   static createFeeVersion (user, feeCode: string, dto: FeeVersionDto): Promise<boolean> {
-    return request
-      .post({
-        uri: `${feesUrl}/fees/${feeCode}/versions`,
-        headers: {
-          Authorization: `Bearer ${user.bearerToken}`
-        },
-        body: dto
-      }).then(() => true)
-      .catch(FeesClientErrorMapper)
+    return this.update(`${feesUrl}/fees/${feeCode}/versions`, 'POST', user.bearerToken, dto);
   }
 
   static updateFeeVersion (user, feeCode: string, feeVersion: number, dto: FeeVersionDto): Promise<boolean> {
-    return request
-      .put({
-        uri: `${feesUrl}/fees/${feeCode}/versions/${feeVersion}`,
-        headers: {
-          Authorization: `Bearer ${user.bearerToken}`
-        },
-        body: dto
-      }).then(() => true)
-      .catch(FeesClientErrorMapper)
+    return this.update(`${feesUrl}/fees/${feeCode}/versions/${feeVersion}`, 'PUT', user.bearerToken, dto);
   }
 
   static deleteFeeVersion (user, feeCode: string, version: number): Promise<boolean> {
-
-    return request
-      .delete({
-        uri: `${feesUrl}/fees/${feeCode}/versions/${version}`,
-        headers: {
-          Authorization: `Bearer ${user.bearerToken}`
-        }
-      })
-      .then(() => true)
-      .catch(FeesClientErrorMapper)
+    return this.delete(`${feesUrl}/fees/${feeCode}/versions/${version}`, user.bearerToken);
   }
 
   static createFixedFee (user, dto: FixedFeeDto): Promise<boolean> {
-    
-    return request
-      .post({
-        uri: `${feesUrl}/fees-register/fixed-fees`,
-        json: true,
-        headers: {
-          Authorization: `Bearer ${user.bearerToken}`
-        },
-        body: dto
-      })
-      .then(() => true)
-      .catch(FeesClientErrorMapper)
-
+    return this.update(`${feesUrl}/fees-register/fixed-fees`, 'POST', user.bearerToken, dto);
   }
 
   static updateFixedFee (user, dto: FixedFeeDto): Promise<boolean> {
-    return request
-      .put({
-        uri: `${feesUrl}/fees-register/fixed-fees/${dto.code}`,
-        json: true,
-        headers: {
-          Authorization: `Bearer ${user.bearerToken}`
-        },
-        body: dto
-      })
-      .then(() => true)
-      .catch(FeesClientErrorMapper)
+    return this.update(`${feesUrl}/fees-register/fixed-fees/${dto.code}`, 'PUT', user.bearerToken, dto);
   }
 
   static createRangedFee (user, dto: RangedFeeDto): Promise<boolean> {
-
-    return request
-      .post({
-        uri: `${feesUrl}/fees-register/ranged-fees`,
-        json: true,
-        headers: {
-          Authorization: `Bearer ${user.bearerToken}`
-        },
-        body: dto
-      })
-      .then(() => true)
-      .catch(FeesClientErrorMapper)
-
+    return this.update(`${feesUrl}/fees-register/ranged-fees`, 'POST', user.bearerToken, dto);
   }
 
   static updateRangedFee (user, dto: RangedFeeDto): Promise<boolean> {
-    return request
-      .put({
-        uri: `${feesUrl}/fees-register/ranged-fees/${dto.code}`,
-        json: true,
-        headers: {
-          Authorization: `Bearer ${user.bearerToken}`
-        },
-        body: dto
-      })
-      .then(() => true)
-      .catch(FeesClientErrorMapper)
+    return this.update(`${feesUrl}/fees-register/ranged-fees/${dto.code}`, 'PUT', user.bearerToken, dto);
   }
 
   static createBandedFee (user, dto: BandedFeeDto): Promise<boolean> {
-
-    return request
-      .post({
-        uri: `${feesUrl}/fees-register/banded-fees`,
-        json: true,
-        headers: {
-          Authorization: `Bearer ${user.bearerToken}`
-        },
-        body: dto
-      })
-      .then(() => true)
-      .catch(FeesClientErrorMapper)
-
+    return this.update(`${feesUrl}/fees-register/banded-fees`, 'POST', user.bearerToken, dto);
   }
 
   static createRateableFee (user, dto: RateableFeeDto): Promise<boolean> {
-
-    return request
-      .post({
-        uri: `${feesUrl}/fees-register/rateable-fees`,
-        json: true,
-        headers: {
-          Authorization: `Bearer ${user.bearerToken}`
-        },
-        body: dto
-      })
-      .then(() => true)
-      .catch(FeesClientErrorMapper)
-
+    return this.update(`${feesUrl}/fees-register/rateable-fees`, 'POST', user.bearerToken, dto);
   }
 
   static createRelationalFee (user, dto: RelationalFeeDto): Promise<boolean> {
-
-    return request
-      .post({
-        uri: `${feesUrl}/fees-register/relational-fees`,
-        json: true,
-        headers: {
-          Authorization: `Bearer ${user.bearerToken}`
-        },
-        body: dto
-      })
-      .then(() => true)
-      .catch(FeesClientErrorMapper)
-
+    return this.update(`${feesUrl}/fees-register/relational-fees`, 'POST', user.bearerToken, dto);
   }
 
-  static checkFeeExists (code: string): Promise<boolean> {
-
-    return request.head(`${feesUrl}/fees-register/fees/${code}`)
-      .then(() => true).catch(() => false)
-
+  static async checkFeeExists (code: string): Promise<boolean> {
+      const response = await makeRequest(`${feesUrl}/fees-register/fees/${code}`, 'HEAD');
+      return response.ok;
   }
 
-  static getFee (user, feeCode: string): Promise<Fee2Dto> {
-
-    return request
-      .get({
-        uri: `${feesUrl}/fees-register/fees/${feeCode}`,
-        headers: {
-          Authorization: `Bearer ${user.bearerToken}`
-        }
-      })
-      .then(response => {
-        return response as Fee2Dto
-      })
-      .catch(FeesClientErrorMapper)
+  static async getFee (user, feeCode: string): Promise<Fee2Dto> {
+    const resp = await makeRequest(`${feesUrl}/fees-register/fees/${feeCode}`, 'GET', user.bearerToken);
+    return await resp.json() as Fee2Dto;
   }
 
-  static getAnonUserFee (feeCode: string): Promise<Fee2Dto> {
-    let url: string = `${feesUrl}/fees-register/fees/${feeCode}`;
-    return request
-      .get(url)
-      .then(response => {
-        return response as Fee2Dto
-      })
-      .catch(FeesClientErrorMapper)
+  static async getAnonUserFee (feeCode: string): Promise<Fee2Dto> {
+    const resp = await makeRequest(`${feesUrl}/fees-register/fees/${feeCode}`, 'GET')
+    return await resp.json() as Fee2Dto;
   }
-  static prevalidate (user, event: string, service: string, channel: string, jurisdiction1: string, jurisdiction2: string, keyword: string, rangeFrom: string, rangeTo: string): Promise<boolean> {
 
+  static async prevalidate (user, event: string, service: string, channel: string, jurisdiction1: string, jurisdiction2: string, keyword: string, rangeFrom: string, rangeTo: string): Promise<boolean> {
     let url: string = `${feesUrl}/fees-register/fees/prevalidate?event=${event}&channel=${channel}&service=${service}&jurisdiction1=${jurisdiction1}&jurisdiction2=${jurisdiction2}&keyword=${keyword}`
 
     if (rangeFrom) {
@@ -242,164 +107,79 @@ export class FeesClient {
       url += `&rangeTo=${rangeTo}`
     }
 
-    return request.get({
-
-      headers: {
-        Authorization: `Bearer ${user.bearerToken}`
-      },
-      uri: encodeURI(url)
-    })
-      .then(() => true).catch(() => false)
+    const resp = await makeRequest(encodeURI(url), 'GET', user.bearerToken);
+    return resp.ok;
   }
 
-  static checkFeeVersionExists (code: string, version: number): Promise<boolean> {
-    return request.head(`${feesUrl}/fees/${code}/versions/${version}`)
-      .then(() => false).catch(() => true)
+  static async checkFeeVersionExists (code: string, version: number): Promise<boolean> {
+    const resp = await makeRequest(`${feesUrl}/fees/${code}/versions/${version}`, 'HEAD');
+    return resp.ok;
   }
 
-  static searchFees (versionStatus: string, author?: string, approvedBy?: string, isActive?: boolean, isExpired?: boolean, isDraft?: boolean): Promise<Array<model.Fee2Dto>> {
+  static async searchFees (versionStatus: string, author?: string, approvedBy?: string, isActive?: boolean, isExpired?: boolean, isDraft?: boolean): Promise<Array<model.Fee2Dto>> {
 
-    let uri: string = `${feesUrl}/fees-register/fees?`
+    const params = new URLSearchParams();
+    if (versionStatus != null) { params.append('feeVersionStatus', versionStatus); }
+    if (author != null) { params.append('author', author); }
+    if (approvedBy != null) { params.append('approvedBy', approvedBy); }
+    if (isActive != null) { params.append('isActive', isActive.toString()); }
+    if (isExpired != null) { params.append('isExpired', isExpired.toString()); }
+    if (isDraft != null) { params.append('isDraft', isDraft.toString()); }
 
-    if (versionStatus != null) {
-      uri = uri + `&feeVersionStatus=${versionStatus}`
-    }
+    const uri = `${feesUrl}/fees-register/fees?${params.toString()}`;
+    const resp = await makeRequest(uri, 'GET');
+    const payload = await resp.json();
 
-    if (author != null) {
-      uri = uri + `&author=${author}`
-    }
-
-    if (approvedBy != null) {
-      uri = uri + `&approvedBy=${approvedBy}`
-    }
-
-    if (isActive != null) {
-      uri = uri + `&isActive=${isActive}`
-    }
-
-    if (isExpired != null) {
-      uri = uri + `&isExpired=${isExpired}`
-    }
-
-    if (isDraft != null) {
-      uri = uri + `&isDraft=${isDraft}`
-    }
-
-    return request
-      .get(uri)
-      .then(response => {
-
-        /* Hack dates */
-
-        if (response.validFrom) {
-          response.validFrom = new Date(response.validFrom)
-        }
-
-        if (response.validTo) {
-          response.validTo = new Date(response.validTo)
-        }
-
-        return response as Array<model.Fee2Dto>
-      }).catch(FeesClientErrorMapper)
-
+    return payload as Array<model.Fee2Dto>
   }
 
-  static retrieveReferenceData (): Promise<AllReferenceDataDto> {
-    return request
-      .get(`${feesUrl}/referenceData`)
-      .then(response => {
-        return response as AllReferenceDataDto
-      })
-      .catch(FeesClientErrorMapper)
+  static async retrieveReferenceData (): Promise<AllReferenceDataDto> {
+    const resp = await makeRequest(`${feesUrl}/referenceData`, 'GET');
+    return await resp.json() as AllReferenceDataDto;
   }
 
-  static retrieveServices (): Promise<Array<model.ServiceType>> {
-    return request
-      .get(`${feesUrl}/service-types`)
-      .then(response => {
-        return response as Array<model.ServiceTypeDto>
-      })
-      .catch(FeesClientErrorMapper)
+  static async retrieveServices (): Promise<Array<model.ServiceType>> {
+    const resp = await makeRequest(`${feesUrl}/service-types`, 'GET');
+    return await resp.json() as Array<model.ServiceTypeDto>;
   }
 
-  static retrieveDirections (): Promise<Array<model.DirectionTypeDto>> {
-    return request
-      .get(`${feesUrl}/direction-types`)
-      .then(response => {
-        return response as Array<model.DirectionTypeDto>
-      })
-      .catch(FeesClientErrorMapper)
+  static async retrieveDirections (): Promise<Array<model.DirectionTypeDto>> {
+    const resp = await makeRequest(`${feesUrl}/direction-types`, 'GET');
+    return await resp.json() as Array<model.DirectionTypeDto>;
   }
 
-  static retrieveChannels (): Promise<Array<model.ChannelTypeDto>> {
-    return request
-      .get(`${feesUrl}/channel-types`)
-      .then(response => {
-        return response as Array<model.ChannelTypeDto>
-      })
-      .catch(FeesClientErrorMapper)
+  static async retrieveChannels (): Promise<Array<model.ChannelTypeDto>> {
+    const resp = await makeRequest(`${feesUrl}/channel-types`, 'GET');
+    return await resp.json() as Array<model.ChannelTypeDto>;
   }
 
-  static retrieveApplicants (): Promise<Array<model.ApplicantTypeDto>> {
-    return request
-      .get(`${feesUrl}/applicant-types`)
-      .then(response => {
-        return response as Array<model.ApplicantTypeDto>
-      })
-      .catch(FeesClientErrorMapper)
+  static async retrieveApplicants (): Promise<Array<model.ApplicantTypeDto>> {
+    const resp = await makeRequest(`${feesUrl}/applicant-types`, 'GET');
+    return await resp.json() as Array<model.ApplicantTypeDto>;
   }
 
-  static retrieveJurisdiction1 (): Promise<Array<model.Jurisdiction1Dto>> {
-    return request
-      .get(`${feesUrl}/jurisdictions1`)
-      .then(response => {
-        return response as Array<model.Jurisdiction1Dto>
-      })
-      .catch(FeesClientErrorMapper)
+  static async retrieveJurisdiction1 (): Promise<Array<model.Jurisdiction1Dto>> {
+    const resp = await makeRequest(`${feesUrl}/jurisdictions1`, 'GET');
+    return await resp.json() as Array<model.Jurisdiction1Dto>;
   }
 
-  static retrieveJurisdiction2 (): Promise<Array<model.Jurisdiction2Dto>> {
-    return request
-      .get(`${feesUrl}/jurisdictions2`)
-      .then(response => {
-        return response as Array<model.Jurisdiction2Dto>
-      })
-      .catch(FeesClientErrorMapper)
+  static async retrieveJurisdiction2 (): Promise<Array<model.Jurisdiction2Dto>> {
+    const resp = await makeRequest(`${feesUrl}/jurisdictions2`, 'GET');
+    return await resp.json() as Array<model.Jurisdiction2Dto>;
   }
 
-  static retrieveEvents (): Promise<Array<model.EventTypeDto>> {
-    return request
-      .get(`${feesUrl}/event-types`)
-      .then(response => {
-        return response as Array<model.EventTypeDto>
-      })
-      .catch(FeesClientErrorMapper)
+  static async retrieveEvents (): Promise<Array<model.EventTypeDto>> {
+    const resp = await makeRequest(`${feesUrl}/event-types`, 'GET');
+    return await resp.json() as Array<model.EventTypeDto>;
   }
 
-  private static invokePatch (url: string, user): Promise<boolean> {
-    return request
-      .patch({
-        uri: `${url}`,
-        json: true,
-        headers: {
-          Authorization: `Bearer ${user.bearerToken}`
-        }
-      })
-      .then(() => true)
-      .catch(FeesClientErrorMapper)
+  private static async invokePatch (url: string, user): Promise<boolean> {
+    const resp = await makeRequest(url, 'PATCH', user.bearerToken);
+    return resp.ok;
   }
 
-  private static invokePatchDto (url: string, user, dto: model.ReasonDto): Promise<boolean> {
-    return request
-      .patch({
-        uri: `${url}`,
-        json: true,
-        headers: {
-          Authorization: `Bearer ${user.bearerToken}`
-        },
-        body: dto
-      })
-      .then(() => true)
-      .catch(FeesClientErrorMapper)
+  private static async invokePatchDto (url: string, user, dto: model.ReasonDto): Promise<boolean> {
+    const resp = await makeRequest(url, 'PATCH', user.bearerToken, dto);
+    return resp.ok;
   }
 }
