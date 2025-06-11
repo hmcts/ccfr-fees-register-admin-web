@@ -1,9 +1,10 @@
 {% extends "layout.njk" %}
 {% from "includes/macros/form.njk" import nextButton%}
 
-{% set title = t('Fees | ' + serviceName) %}
+{% set title = t('Your Drafts | ' + serviceName) %}
 {% block content %}
 <input type='hidden' id='userRole' value='{{ 'Approver' if isApprover(user.allInfo.roles) else 'Editor' }}'/>
+  <h1 class="govuk-heading-xl" id="yourDraftsHeading">{{t("Your Drafts")}}</h1>
 	<ul class="govuk-tabs__list govuk-!-margin-top-8">
 
 		<li class="govuk-tabs__list-item govuk-tabs__list-item--selected">
@@ -29,7 +30,7 @@
 			<div class="row">
 
 				<div class="title-with-secondary">
-					<h1 class="heading">{{t("Drafts")}}</h1>
+					<h2 class="heading">{{t("Drafts")}}</h2>
 					<div class="title-with-secondary live-fee-al"></div>
 					<a href="./fees/create">{{nextButton(t("Create a new fee"), t("govuk-button2 black-text"))}}</a>
 				</div>
@@ -43,7 +44,7 @@
 								<th class="govuk-table__header draft-col4" scope="col">Description</th>
 								<th class="govuk-table__header draft-col5" scope="col">Statutory Instrument</th>
 								<th class="govuk-table__header draft-col5" scope="col">Valid from</th>
-								<th class="govuk-table__header draft-col6" scope="col"></th>
+								<th class="govuk-table__header draft-col6" scope="col">Link</th>
 							</tr>
 						</thead>
 						<tbody>
@@ -81,9 +82,9 @@
 
 										<td >
 											{% if user %}
-												<a href="/admin/V2/fee-details?draft=true&feeCode={{ fee.code }}&pageType=draftfee&vno={{version.version}}">View</a>
+												<a href="/admin/V2/fee-details?draft=true&feeCode={{ fee.code }}&pageType=draftfee&vno={{version.version}}" aria-label="View {{ fee.code }}" style="white-space: nowrap;">View {{  fee.code }}</a>
 											{% else  %}
-												<a href="/admin/V2/fee-details?draft=true&feeCode={{ fee.code }}&pageType=draftfee">View</a>
+												<a href="/admin/V2/fee-details?draft=true&feeCode={{ fee.code }}&pageType=draftfee" aria-label="View {{ fee.code }}" style="white-space: nowrap;">View {{ fee.code }}</a>
 											{% endif %}
 										</td>
 									</tr>
@@ -92,7 +93,7 @@
 								{% endfor %}
 								{% if isApprovedDraft == false %}
 								<tr>
-									<td colspan='7'> 
+									<td colspan='7'>
 									No draft fees.
 									</td>
 								</tr>

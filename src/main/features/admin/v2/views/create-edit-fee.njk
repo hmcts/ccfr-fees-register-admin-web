@@ -38,7 +38,7 @@ selectReferenceData %}
 
         {{ textArea(t('Reason For Fee Update'), 'reasonForUpdate', form, rows=2) }}
 
-        {{ textArea(t('Description'), 'description', form, rows=4) }}
+        {{ textArea(t('Description of fee'), 'description', form, rows=4) }}
 
         {{ textInput(t('Statutory Instrument'), 'statutoryInstrument', form, style="width:400px;") }}
         {{ textArea(t('Last Amending SI'), 'lastAmendingSi', form, rows=2) }}
@@ -46,8 +46,8 @@ selectReferenceData %}
         {{ textArea(t('Consolidated/Original Fee Order Name'), 'consolidatedFeeOrderName', form, rows=2) }}
         {% set serviceError = form.errorFor('service') %}
         <div class="govuk-form-group {{ 'form-group-error' if serviceError}}">
-          <fieldset class="govuk-fieldset">
-            <label class="form-label-bold">Service</label>
+          <fieldset id="service" class="govuk-fieldset">
+            <legend class="form-label-bold">Service</legend>
             {% if serviceError %}
               <span class="error-message"> {{serviceError}} </span>
             {% endif %}
@@ -69,8 +69,8 @@ selectReferenceData %}
       </div>
       {% set jurisdictionOneError = form.errorFor('jurisdiction1') %}
       <div class="govuk-form-group {{ 'form-group-error' if jurisdictionOneError}}">
-        <fieldset class="govuk-fieldset">
-          <label class="form-label-bold">Jurisdiction 1</label>
+        <fieldset id="jurisdiction1" class="govuk-fieldset">
+          <legend class="form-label-bold">Jurisdiction 1</legend>
             {% if jurisdictionOneError %}
               <span class="error-message"> {{jurisdictionOneError}} </span>
             {% endif %}
@@ -90,8 +90,8 @@ selectReferenceData %}
       </div>
       {% set jurisdictionTwoError = form.errorFor('jurisdiction2') %}
       <div class="govuk-form-group {{ 'form-group-error' if jurisdictionTwoError}}">
-        <fieldset class="govuk-fieldset">
-          <label class="form-label-bold">Jurisdiction 2</label>
+        <fieldset id="jurisdiction2" class="govuk-fieldset">
+          <legend class="form-label-bold">Jurisdiction 2</legend>
             {% if jurisdictionTwoError %}
               <span class="error-message"> {{jurisdictionTwoError}} </span>
             {% endif %}
@@ -148,7 +148,7 @@ selectReferenceData %}
       {% endif %}
       <div class="govuk-form-group">
         <fieldset class="govuk-fieldset">
-          <label class="form-label-bold">Amount Type</label>
+          <legend class="form-label-bold">Amount Type</legend>
             <div id="verticalRadio" class = "form-group">
               <div class = "multiple-choice">
                 {% if form.valueFor('amountType') == 'flat' %}
@@ -218,8 +218,8 @@ selectReferenceData %}
       </div>
       {% set eventError = form.errorFor('event') %}
       <div class="govuk-form-group {{ 'form-group-error' if eventError}}">
-        <fieldset class="govuk-fieldset">
-          <label class="form-label-bold">Event</label>
+        <fieldset id="event" class="govuk-fieldset">
+          <legend class="form-label-bold">Event</legend>
           {% if eventError %}
             <span class="error-message"> {{eventError}} </span>
           {% endif %}
@@ -241,8 +241,8 @@ selectReferenceData %}
       </div>
       {% set channelError = form.errorFor('channel') %}
       <div class="govuk-form-group {{ 'form-group-error' if channelError}}">
-        <fieldset class="govuk-fieldset">
-          <label class="form-label-bold">Channel</label>
+        <fieldset id="channel" class="govuk-fieldset">
+          <legend class="form-label-bold">Channel</legend>
           {% if channelError %}
             <span class="error-message"> {{channelError}} </span>
           {% endif %}
@@ -269,8 +269,8 @@ selectReferenceData %}
         </p>
       {% set applicantTypeError = form.errorFor('applicantType') %}
       <div class="govuk-form-group {{ 'form-group-error' if applicantTypeError}}">
-        <fieldset class="govuk-fieldset">
-          <label class="form-label-bold">Applicant</label>
+        <fieldset id="applicantType" class="govuk-fieldset">
+          <legend class="form-label-bold">Applicant</legend>
           {% if applicantTypeError %}
             <span class="error-message"> {{applicantTypeError}} </span>
           {% endif %}
@@ -290,8 +290,8 @@ selectReferenceData %}
       </div>
       {% set directionError = form.errorFor('direction') %}
       <div class="govuk-form-group {{ 'form-group-error' if directionError}}">
-        <fieldset class="govuk-fieldset">
-          <label class="form-label-bold">Direction</label>
+        <fieldset id="direction" class="govuk-fieldset">
+          <legend class="form-label-bold">Direction</legend>
           {% if directionError %}
             <span class="error-message"> {{directionError}} </span>
           {% endif %}
@@ -345,5 +345,13 @@ selectReferenceData %}
 
   </div>
   </div>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const element = document.getElementById('error-summary-heading')
+      if (element && document.contains(element)){
+        element.focus()
+      }
+    } );
+  </script>
 
 {% endblock %}

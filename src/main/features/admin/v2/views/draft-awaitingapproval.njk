@@ -4,6 +4,7 @@
   {% set title = t('Fees | ' + serviceName) %}
   {% block content %}
 <input type='hidden' id='userRole' value='{{ 'Approver' if isApprover(user.allInfo.roles) else 'Editor' }}'/>
+<h1 class="govuk-heading-xl" id="yourDraftsHeading">{{t("Your Drafts")}}</h1>
 <ul class="govuk-tabs__list govuk-!-margin-top-8">
 <li class="govuk-tabs__list-item">
     <a class="govuk-tabs__tab" href="/admin/V2/draft-fees">
@@ -23,7 +24,7 @@
 </ul>
 <div class="govuk-tabs__panel" id="past-day">
  <div class="title-with-secondary">
-  <h1 class="heading">{{t("Awaiting approval")}}</h1>
+  <h2 class="heading">{{t("Awaiting approval")}}</h2>
 </div>
   {% if (fees | length) > 0 %}
      <table class="govuk-table" >
@@ -35,12 +36,12 @@
                 <th class="govuk-table__header draft-col4" scope="col">Description</th>
                 <th class="govuk-table__header draft-col5" scope="col">Statutory Instrument</th>
                 <th class="govuk-table__header draft-col5" scope="col">Valid from</th>
-                <th class="govuk-table__header draft-col6" scope="col"></th>
+                <th class="govuk-table__header draft-col6" scope="col">Link</th>
             </tr>
          </thead>
           <tbody>
            {% for fee in fees %}
-           {% set version = getLiveFeeVersion(fee) %}  
+           {% set version = getLiveFeeVersion(fee) %}
            <tr>
                 <td data-label="Code" class="padding10 whitespace-inherit">{{ fee.code }}</td>
                 {% if version.flat_amount %}
@@ -50,11 +51,11 @@
                 {% else %}
                 <td class="padding20 whitespace-inherit">{{ version.percentage_amount.percentage }}%</td>
                 {% endif %}
-                                    
+
                 <td data-label="Service" class="padding10 whitespace-inherit">{{ fee.service_type.name }}</td>
 
                 <td data-label="Jurisdiction 2" class="padding10 whitespace-inherit">{{ version.description }}</td>
-                                    
+
                 <td data-label="Description" class="padding10 whitespace-inherit">{{ version.statutory_instrument }}</td>
 
                 {% if version.valid_from %}
@@ -65,18 +66,18 @@
 
                  <td >
                 {% if user %}
-                    <a href="/admin/V2/fee-details?draft=true&feeCode={{ fee.code }}&pageType=afa">View</a>
+                    <a href="/admin/V2/fee-details?draft=true&feeCode={{ fee.code }}&pageType=afa" aria-label="View {{ fee.code }}" style="white-space: nowrap;">View {{  fee.code }}</a>
                 {% else  %}
-                    <a href="/fees/{{fee.code}}">View</a>
+                    <a href="/fees/{{fee.code}}" aria-label="View {{ fee.code }}" style="white-space: nowrap;">View {{  fee.code }}</a>
                 {% endif %}
                 </td>
             </tr>
-        {% endfor %}            
+        {% endfor %}
          </tbody>
     </table>
      {% else %}
     <p>No fees awaiting approval</p>
-  {% endif %} 
-                
+  {% endif %}
+
 </div>
   {% endblock %}

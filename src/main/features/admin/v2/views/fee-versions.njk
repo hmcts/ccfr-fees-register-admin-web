@@ -23,7 +23,7 @@
 				</div>
 			</nav>
 			<h1 class="heading-xlarge">
-				{{t('Fee versions')}}
+				{{t('Fee versions - ') }} {{ feeDto.code }}
 			</h1>
 			{% for version in feeDto.fee_versions | reverse %}
 				<details class="govuk-details">
@@ -92,7 +92,7 @@
 										</dd>
 									</div>
 								{% endif %}
-								
+
 							{% endfor %}
 							{% for version2 in feeDto.fee_versions | reverse %}
 								{% if version2.version == version.version-1 and version.si_ref_id != version2.si_ref_id%}

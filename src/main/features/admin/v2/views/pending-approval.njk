@@ -4,8 +4,8 @@
   {% set title = t('Fees | ' + serviceName) %}
   {% block content %}
   <input type='hidden' id='userRole' value=''/>
-
-  <h1 class="govuk-heading-xl govuk-!-margin-bottom-6 govuk-!-margin-top-7">{{t("Awaiting approval")}}</h1>
+  <h1 class="govuk-heading-xl" id="yourDraftsHeading">{{t("Your Drafts")}}</h1>
+  <h2 class="govuk-heading-xl govuk-!-margin-bottom-6 govuk-!-margin-top-7">{{t("Awaiting approval")}}</h2>
 
 {% if (fees | length) > 0 %}
   <table class="custom-table-body">
@@ -16,7 +16,7 @@
       <th class="govuk-table__header">Service</th>
       <th class="govuk-table__header">Description</th>
       <th class="govuk-table__header">Valid from</th>
-      <th class="govuk-table__header"></th>
+      <th class="govuk-table__header">Link</th>
     </tr>
     </thead>
     <tbody>
@@ -33,7 +33,7 @@
       <td >{{ fee.service_type.name }}</td>
       <td >{{ displayedFeeVersion.description }}</td>
       <td >{{ displayedFeeVersion.valid_from | date("DD MMMM YYYY") }}</td>
-      <td><a href="/admin/V2/fee-details?draft=true&feeCode={{ fee.code }}&pageType=pa&vno={{displayedFeeVersion.version}}">View</a></td>
+      <td><a href="/admin/V2/fee-details?draft=true&feeCode={{ fee.code }}&pageType=pa&vno={{displayedFeeVersion.version}}" aria-label="View {{ fee.code }}" style="white-space: nowrap;">View {{  fee.code }}</a></td>
     </tr>
     {% endfor %}
     </tbody>

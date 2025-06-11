@@ -7,29 +7,30 @@
     <input type='hidden' id='userRole' value=''/>
 
     <div class="downloadbtn-container downloadbtn-container-align">
+      <h1 class="govuk-heading-xl">{{t("Fees")}}</h1>
       <div>
         <a href="#" id="mybutton" class="a-create-link">{{nextButton(t("Download all fees"), t("govuk-button2 black-text"))}}</a>
       </div>
     </div>
-<ul class="govuk-tabs__list govuk-!-margin-top-7">
-<li class="govuk-tabs__list-item ">
+<ul class="govuk-tabs__list govuk-!-margin-top-7" role="tablist">
+<li class="govuk-tabs__list-item " role="tab">
     <a class="govuk-tabs__tab" href="/admin/V2/all-fees">
         {{ t("Live fees") }}
     </a>
 </li>
-<li class="govuk-tabs__list-item">
+<li class="govuk-tabs__list-item" role="tab">
     <a class="govuk-tabs__tab" href="/admin/V2/all-approvedbutnotlive">
       {{ t("Approved but not live fees") }}
     </a>
 </li>
-<li class="govuk-tabs__list-item govuk-tabs__list-item--selected">
+<li class="govuk-tabs__list-item govuk-tabs__list-item--selected" role="tab" aria-selected="true">
     <a class="govuk-tabs__tab govuk-tabs__tab--selected" href="/admin/V2/all-discontinued">
          {{ t("Discontinued fees") }}
     </a>
 </li>
 </ul>
 <div class="title-with-secondary">
-  <h1 class="govuk-heading-xl govuk-!-margin-bottom-6 govuk-!-margin-top-7">{{t("Discontinued fees")}}</h1>
+  <h2 class="govuk-heading-xl govuk-!-margin-bottom-6 govuk-!-margin-top-7">{{t("Discontinued fees")}}</h2>
 </div>
 <div class="fee-register-table-size">
 
@@ -83,7 +84,7 @@
       {% else %}
       <td/>
       {% endif %}
-      
+
       <td >{{ version.statutory_instrument }}</td>
       <td>{{ version.last_amending_si }}</td>
       <td >{{ version.si_ref_id }}</td>

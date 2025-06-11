@@ -8,8 +8,8 @@
 
     <form id="reasonRejectFeesId" method="post">
         {{ csrfProtection(csrfToken) }}
-        {{ textArea(t(''), 'reasonForReject', form) }}
+        {{ textArea(t('Rejection reason'), 'reasonForReject', form) }}
         {{ submitButton(t('Submit')) }}
     </form>
 
-{% endblock %} 
+{% endblock %}

@@ -4,6 +4,7 @@
 {% set title = t('Fees | ' + serviceName) %}
 {% block content %}
 <input type='hidden' id='userRole' value='{{ 'Approver' if isApprover(user.allInfo.roles) else 'Editor' }}'/>
+  <h1 class="govuk-heading-xl" id="yourDraftsHeading">{{t("Your Drafts")}}</h1>
 	<ul class="govuk-tabs__list govuk-!-margin-top-8">
 		<li class="govuk-tabs__list-item">
 			<a class="govuk-tabs__tab" href="/admin/V2/draft-fees">
@@ -24,7 +25,7 @@
 	<div class="govuk-tabs__panel" id="past-day">
 
 		<div class="title-with-secondary">
-			<h1 class="heading">{{t("Rejected by approver")}}</h1>
+			<h2 class="heading">{{t("Rejected by approver")}}</h2>
 		</div>
 		{% if (fees | length) > 0 %}
 				<table class="govuk-table">
@@ -72,19 +73,19 @@
 
 									<td >
 										{% if user %}
-											<a href="/admin/V2/fee-details?draft=true&feeCode={{ fee.code }}&pageType=rejectfee&vno={{version.version}}">View</a>
+											<a href="/admin/V2/fee-details?draft=true&feeCode={{ fee.code }}&pageType=rejectfee&vno={{version.version}}" aria-label="View {{ fee.code }}" style="white-space: nowrap;">View {{  fee.code }}</a>
 										{% else  %}
-											<a href="/admin/V2/fee-details?draft=true&feeCode={{ fee.code }}&pageType=rejectfee">View</a>
+											<a href="/admin/V2/fee-details?draft=true&feeCode={{ fee.code }}&pageType=rejectfee" aria-label="View {{ fee.code }}" style="white-space: nowrap;">View {{  fee.code }}</a>
 										{% endif %}
 									</td>
 								</tr>
 							{% else %}
-	
+
 							{% endif %}
 						{% endfor %}
 						{% if isApprovedDraft == false %}
 							<tr>
-								<td colspan='7'> 
+								<td colspan='7'>
 									No draft fees.
 								</td>
 							</tr>
