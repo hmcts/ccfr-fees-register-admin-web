@@ -11144,11 +11144,11 @@ __metadata:
   linkType: hard
 
 "shortid@npm:^2.2.6":
-  version: 2.2.15
-  resolution: "shortid@npm:2.2.15"
+  version: 2.2.17
+  resolution: "shortid@npm:2.2.17"
   dependencies:
-    nanoid: ^2.1.0
-  checksum: 2f2cff1aa2a46e2980684e4220cfe7dd71195e69f43c0846539b916d3b67b62b1b4e6842b69ba2b8e15d8e4b664862bdd72f7ae385dec5d4226b55d791588057
+    nanoid: ^3.3.8
+  checksum: e661408a6f7fb86a9947178984e739bdc99478745ffb8c8632b7b98c2a8d03d97c33aab6dcb9de73b8a64827a253266d407c362b6ac8b904b12014e8e428f9cd
   languageName: node
   linkType: hard
 
