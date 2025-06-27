@@ -1011,12 +1011,11 @@ __metadata:
   linkType: hard
 
 "@types/csurf@npm:^1.9.33":
-  version: 1.9.36
-  resolution: "@types/csurf@npm:1.9.36"
+  version: 1.11.5
+  resolution: "@types/csurf@npm:1.11.5"
   dependencies:
-    "@types/express": "*"
     "@types/express-serve-static-core": "*"
-  checksum: 3ecc53cf05d3c382c345585e8b898b3ddda6a565d615ea40d1c124bf7818c86b327f580acca559b965c4bfcafccd3619ced3705c95b1b146f63908a1c36a8f91
+  checksum: a51b0f3276a8c88eb986709790c227c5cc4b7d663136ee360edd17ac88df1dab5d8ccf9feed737ee46530243bff11f66ead725c585e417c1ca710d0b0245ded3
   languageName: node
   linkType: hard
 
@@ -1030,7 +1029,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/express@npm:*, @types/express@npm:^4.0.35":
+"@types/express@npm:^4.0.35":
   version: 4.17.2
   resolution: "@types/express@npm:4.17.2"
   dependencies:
