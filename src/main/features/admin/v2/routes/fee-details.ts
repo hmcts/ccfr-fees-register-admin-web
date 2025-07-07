@@ -5,7 +5,7 @@ import { Paths } from 'admin/paths'
 import { FeesClient } from 'app/fees/v2/feesClient'
 
 import { Fee2Dto } from 'fees/v2/model/fees-register-api-contract'
-import { AuthOptions } from 'request'
+import { AuthOptions } from 'app/client/request'
 
 class Renderer {
 

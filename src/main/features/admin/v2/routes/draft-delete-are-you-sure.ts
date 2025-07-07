@@ -3,7 +3,7 @@ import * as express from 'express'
 import { Paths } from 'admin/paths'
 import { FeesClient } from 'app/fees/v2/feesClient'
 
-import { AuthOptions } from 'request'
+import { AuthOptions } from 'app/client/request'
 
 class Renderer {
   static executeAction (user: AuthOptions, feeCode: string, version: number): Promise<Boolean> {

@@ -27,6 +27,10 @@ const fetchWithTimeout = async (url: string, options: RequestInit = {}) => {
 
 const wrappedFetch = new Proxy(fetchWithTimeout, new RequestLoggingHandler(logger))
 
+export interface AuthOptions {
+  bearerToken?: string
+}
+
 export class FeesClientError extends Error {
   constructor (public message: string) {
     super(message)
