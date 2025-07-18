@@ -165,7 +165,6 @@
     "all": true
   },
   "resolutions": {
-    "node-gettext": "3.0.0",
     "i18next-conv": "15.1.0",
     "@azure/identity": ">=4.2.1",
     "@babel/runtime": "~7.27.0",
