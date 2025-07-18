@@ -10,6 +10,8 @@
     ],
     "target": "ES6",
     "moduleResolution": "node",
+    "module": "commonjs",
+    "outDir": "dist",
     "baseUrl": "src/main",
     "paths": {
       "app/*": [
