@@ -7,6 +7,7 @@
   },
   "scripts": {
     "start": "node server.js",
+    "start:test": "ts-node src/test/routes/welcome.ts",
     "start:angular-dev": "ng serve --proxy-config proxy.conf.json",
     "start:express-dev": "cross-env NODE_ENV=development nodemon --inspect start.js",
     "start:express-prod": "cross-env IGNORE_CERTS=true nodemon --inspect start.js",
