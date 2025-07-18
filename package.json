@@ -7,6 +7,7 @@
   },
   "scripts": {
     "start": "node server.js",
+    "start:test": "ts-node src/test/routes/welcome.ts",
     "start:angular-dev": "ng serve --proxy-config proxy.conf.json",
     "start:express-dev": "cross-env NODE_ENV=development nodemon --inspect start.js",
     "start:express-prod": "cross-env IGNORE_CERTS=true nodemon --inspect start.js",
@@ -73,7 +74,7 @@
     "helmet": "^3.1.0",
     "http-status-codes": "^1.1.6",
     "i18next": "^12.0.0",
-    "i18next-conv": "^10.1.0",
+    "i18next-conv": "15.1.0",
     "i18next-express-middleware": "^1.7.0",
     "i18next-sprintf-postprocessor": "^0.2.0",
     "is-undefined": "^1.0.8",
@@ -165,6 +166,7 @@
     "all": true
   },
   "resolutions": {
+    "i18next-conv": "15.1.0",
     "@azure/identity": ">=4.2.1",
     "@babel/runtime": "~7.27.0",
     "socks": "^2.8.3",
