@@ -1727,14 +1727,14 @@ __metadata:
   linkType: hard
 
 "applicationinsights@npm:^1.0.2":
-  version: 1.7.2
-  resolution: "applicationinsights@npm:1.7.2"
+  version: 1.8.10
+  resolution: "applicationinsights@npm:1.8.10"
   dependencies:
     cls-hooked: ^4.2.2
     continuation-local-storage: ^3.2.1
-    diagnostic-channel: 0.2.0
-    diagnostic-channel-publishers: ^0.3.3
-  checksum: a422f923e94a2e675945052f7a12024653ac41d24efc9ce6b336e8a71402360e1c696519f0f7d54bcb67025e151f0464b7c98a1399f5f29387cc7ef9416e4706
+    diagnostic-channel: 0.3.1
+    diagnostic-channel-publishers: 0.4.4
+  checksum: e7ced2466d681e00aa2aa79140c7aa5208e30a2fbb2b924bd4615db6fdeb1b709e8663f2eea6139f6998bdf85fefc6ddc0a56469b09f259ecc4f852cc58444a2
   languageName: node
   linkType: hard
 
@@ -3924,21 +3924,21 @@ __metadata:
   languageName: node
   linkType: hard
 
-"diagnostic-channel-publishers@npm:^0.3.3":
-  version: 0.3.3
-  resolution: "diagnostic-channel-publishers@npm:0.3.3"
+"diagnostic-channel-publishers@npm:0.4.4":
+  version: 0.4.4
+  resolution: "diagnostic-channel-publishers@npm:0.4.4"
   peerDependencies:
     diagnostic-channel: "*"
-  checksum: 6e9a3df5318bc4e661cdb0e66e24935e147705950518d7da0a1c3aa4ccf1fc11e1b385141e1befb29b682741811ce85d80d35fb0133001647e5f8b3b4b554013
+  checksum: a05c9cc57a8c3cc3311acecfb0310d2743614891fe99b11251f4dcd09e5e664c9d112b400fa3c657b7d11239fdcf58e77c317ad9d59bee462ce3759038004087
   languageName: node
   linkType: hard
 
-"diagnostic-channel@npm:0.2.0":
-  version: 0.2.0
-  resolution: "diagnostic-channel@npm:0.2.0"
+"diagnostic-channel@npm:0.3.1":
+  version: 0.3.1
+  resolution: "diagnostic-channel@npm:0.3.1"
   dependencies:
     semver: ^5.3.0
-  checksum: 0e7d2c1f2573421aef2fdb2fff82705014e9732facee251c5da1ec8ee03de66b23eeb2b855e1c7886336703275e8dd9d2bfb8073a1940f3d83d722d81c208dd6
+  checksum: 1a2d42f3e36abb870ad1b06c8563c314d48cf4ee3be14eedf07fcad119dd5d4caaafb3bcc7c970f04dbe8a54b52c271bcf8b6b9ea9ea9142bc262a1b9be3ec96
   languageName: node
   linkType: hard
 
