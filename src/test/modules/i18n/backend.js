@@ -43,4 +43,16 @@ describe("A gettext backend for i18next", function () {
       done()
     })
   })
+
+  it("should fail with a parse error when PO file is malformed", function (done) {
+    backend.init(null, {
+      loadPath: path.join(__dirname, 'fixtures/bad.po')
+    });
+
+    backend.read('cy', 'translation', function (err, translation) {
+      expect(err).to.be.an("error");
+      expect(translation).to.be.null;
+      done();
+    });
+  });
 });
