@@ -1,9 +1,12 @@
-'use strict';
-const { readFile } = require('fs');
-const { po2i18next } = require('gettext-converter'); // replace i18next-conv
+"use strict";
 
+const {readFile} = require('fs');
+const {po2i18next} = require('gettext-converter'); // replace i18next-conv
+
+/**
+ A gettext backend for i18next framework
+ */
 class Backend {
-  static type = 'backend';
 
   static defaultsOptions() {
     return { loadPath: '/locales/{{lng}}/{{ns}}.po' };
@@ -28,7 +31,7 @@ class Backend {
   read(language, namespace, callback) {
     const translationFile = this.options.loadPath.replace(/{{lng}}/, language).replace(/{{ns}}/, namespace);
 
-    readFile(translationFile, 'utf8', function (err, data) {
+    readFile(translationFile, function (err, data) {
       if (err) {
         return callback(err, null);
       }
@@ -40,9 +43,9 @@ class Backend {
         callback(parseError, null);
       }
     });
-
   }
-
 }
+
+Backend.type = "backend";
 
 module.exports = Backend;
