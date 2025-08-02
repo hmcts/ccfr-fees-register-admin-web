@@ -148,13 +148,12 @@
   },
   "nyc": {
     "extension": [
-      ".ts"
+      ".ts", ".js"
     ],
     "include": [
       "src/main"
     ],
     "exclude": [
-      "src/main/modules/i18n/**",
       "**/*.d.ts",
       "src/main/public"
     ],
