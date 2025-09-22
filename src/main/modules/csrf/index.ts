@@ -1,5 +1,5 @@
 import * as express from 'express'
-import * as csrf from 'csurf'
+const csrf = require('csurf');
 
 export class CsrfProtection {
   enableFor (app: express.Express) {
