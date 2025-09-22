@@ -3,11 +3,9 @@ import * as helmet from 'helmet'
 
 import { ContentSecurityPolicy } from './modules/contentSecurityPolicy'
 import { ReferrerPolicy } from './modules/referredPolicy'
-import { HttpPublicKeyPinning, Config as HPKP } from './modules/httpPublicKeyPinning'
 
 export interface Config {
   referrerPolicy: string
-  hpkp: HPKP
 }
 
 /**
@@ -25,10 +23,6 @@ export class Helmet {
 
     if (this.config.referrerPolicy) {
       new ReferrerPolicy(this.config.referrerPolicy).enableFor(app)
-    }
-
-    if (this.config.hpkp) {
-      new HttpPublicKeyPinning(this.config.hpkp).enableFor(app)
     }
   }
 }
