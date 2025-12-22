@@ -7,6 +7,7 @@ export class AppInsights {
       .setAutoDependencyCorrelation(true)
       .setAutoCollectConsole(true, true)
     appInsights.defaultClient.context.tags[appInsights.defaultClient.context.keys.cloudRole] = config.get<string>('appInsights.roleName')
+    appInsights.defaultClient.config.samplingPercentage = 1
     appInsights.start()
   }
 }
