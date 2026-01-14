@@ -8,6 +8,11 @@ export class AppInsights {
       .setAutoCollectConsole(true, true)
     appInsights.defaultClient.context.tags[appInsights.defaultClient.context.keys.cloudRole] = config.get<string>('appInsights.roleName')
     appInsights.defaultClient.config.samplingPercentage = 1
+
+    appInsights.defaultClient.addTelemetryProcessor((envelope) =>
+      !envelope.data?.baseData?.name?.includes('GET /health')
+    )
+
     appInsights.start()
   }
 }
