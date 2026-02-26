@@ -34,6 +34,7 @@
 					<div class="title-with-secondary live-fee-al"></div>
 					<a href="./fees/create">{{nextButton(t("Create a new fee"), t("govuk-button2 black-text"))}}</a>
 				</div>
+
 				{% if (fees | length) > 0 %}
 					<table class="govuk-table">
 						<thead class="govuk-table__head font-16">
@@ -50,32 +51,42 @@
 						<tbody>
 						{% set isApprovedDraft = false %}
 							{% for fee in fees %}
-								{% if fee.current_version != null %}
-									{% set version = fee.current_version %}
-								{% else %}
+								{% if fee.current_version == null %}
 									{% set version = fee.fee_versions[0] %}
-								{% endif %}
+								{% else %}
+								  {% set version = fee.current_version %}
+							  {% endif %}
+
+
 
 								{% if version.approvedBy == null or version.approvedBy == '' %}
 								   {% set isApprovedDraft = true %}
 									<tr>
 										<td data-label="Code" class="padding10 whitespace-inherit">{{ fee.code }}</td>
 										{% if version.flat_amount %}
-											<td  class="padding20 whitespace-inherit" >£{{ version.flat_amount.amount.toFixed(2).toString()}}</td>
-										{% elif version.volume_amount %}
+											{% if version.flat_amount.amount %}
+											  <td  class="padding20 whitespace-inherit" >£{{ version.flat_amount.amount}}</td>
+											{% else %}
+											  <td  class="padding20 whitespace-inherit" ></td>
+											{% endif %}
+								   {% endif %}
+
+										{% if version.volume_amount %}
 											<td class="padding20 whitespace-inherit">£{{ version.volume_amount.amount.toFixed(2).toString()}}</td>
-										{% else %}
-											<td class="padding20 whitespace-inherit">{{ version.percentage_amount.percentage }}%</td>
 										{% endif %}
+
+										{% if version.percentage_amount %}
+											  <td class="padding20 whitespace-inherit">{{ version.percentage_amount.percentage }}%</td>
+									  {% endif %}
 
 										<td data-label="Service" class="padding10 whitespace-inherit">{{ fee.service_type.name }}</td>
 
-										<td data-label="Jurisdiction 2" class="padding10 whitespace-inherit">{{ version.description }}</td>
+										<td data-label="Description" class="padding10 whitespace-inherit">{{ version.description }}</td>
 
-										<td data-label="Description" class="padding10 whitespace-inherit">{{ version.statutory_instrument }}</td>
+										<td data-label="statutory_instrument" class="padding10 whitespace-inherit">{{ version.statutory_instrument }}</td>
 
 										{% if version.valid_from %}
-											<td class="padding20 alignleft whitespace-inherit" >{{ version.valid_from | date("DD MMMM YYYY") }}</td>
+											<td class="padding10 alignleft whitespace-inherit" >{{ version.valid_from | date("DD MMMM YYYY") }}</td>
 										{% else %}
 											<td/>
 										{% endif %}
