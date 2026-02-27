@@ -1054,14 +1054,27 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@types/express-serve-static-core@npm:^4.17.33":
+  version: 4.19.8
+  resolution: "@types/express-serve-static-core@npm:4.19.8"
+  dependencies:
+    "@types/node": "*"
+    "@types/qs": "*"
+    "@types/range-parser": "*"
+    "@types/send": "*"
+  checksum: 7bb52381a302de5af5af0f1cc8aa8144cdd4c244a7bbd8f989fb06b6a21368481ad52ddcb989e17f818f1cb4ec65c296e2e851b07335bea5ad2124eff80812d7
+  languageName: node
+  linkType: hard
+
 "@types/express@npm:^4.0.35":
-  version: 4.17.2
-  resolution: "@types/express@npm:4.17.2"
+  version: 4.17.25
+  resolution: "@types/express@npm:4.17.25"
   dependencies:
     "@types/body-parser": "*"
-    "@types/express-serve-static-core": "*"
-    "@types/serve-static": "*"
-  checksum: db8e85f84f040014a35b10f3f2e1d39b0f7b16c46cbe012ff2fa7eea7d49bc2a90e81ab81f052fd76f1790c02bf3f940571c406106d29f278f3259486ecc9ee9
+    "@types/express-serve-static-core": ^4.17.33
+    "@types/qs": "*"
+    "@types/serve-static": ^1
+  checksum: 285d16008489d37b2be03e2e050bcf201d5d6ed9278ca13619d9029efd2055b192b2445f769116f716cfcf53d9d799a03f4e76199af9cea0ea3dee3d88595931
   languageName: node
   linkType: hard
 
@@ -1069,6 +1082,13 @@ __metadata:
   version: 4.0.0
   resolution: "@types/http-cache-semantics@npm:4.0.0"
   checksum: c820774eb1d9d8d0c13077834e870cc1afd2500dc9d0ac1b67abc050c7c115aee4024f90fda65b50babc258de0464fc4459709e4fa12552f65094328e5a551c6
+  languageName: node
+  linkType: hard
+
+"@types/http-errors@npm:*":
+  version: 2.0.5
+  resolution: "@types/http-errors@npm:2.0.5"
+  checksum: a88da669366bc483e8f3b3eb3d34ada5f8d13eeeef851b1204d77e2ba6fc42aba4566d877cca5c095204a3f4349b87fe397e3e21288837bdd945dd514120755b
   languageName: node
   linkType: hard
 
@@ -1147,10 +1167,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/mime@npm:*":
-  version: 2.0.1
-  resolution: "@types/mime@npm:2.0.1"
-  checksum: 46211b631c8c70b33406198a43044689585137ab747a10d2dc6c55a15c2120087d7b9e9304910a747cd71bb90d1300e5fe779b286efb82b155a98e4f9e506d6c
+"@types/mime@npm:^1":
+  version: 1.3.5
+  resolution: "@types/mime@npm:1.3.5"
+  checksum: e29a5f9c4776f5229d84e525b7cd7dd960b51c30a0fb9a028c0821790b82fca9f672dab56561e2acd9e8eed51d431bde52eafdfef30f643586c4162f1aecfc78
   languageName: node
   linkType: hard
 
@@ -1227,6 +1247,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@types/qs@npm:*":
+  version: 6.14.0
+  resolution: "@types/qs@npm:6.14.0"
+  checksum: 1909205514d22b3cbc7c2314e2bd8056d5f05dfb21cf4377f0730ee5e338ea19957c41735d5e4806c746176563f50005bbab602d8358432e25d900bdf4970826
+  languageName: node
+  linkType: hard
+
 "@types/range-parser@npm:*":
   version: 1.2.3
   resolution: "@types/range-parser@npm:1.2.3"
@@ -1243,13 +1270,33 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/serve-static@npm:*":
-  version: 1.13.3
-  resolution: "@types/serve-static@npm:1.13.3"
+"@types/send@npm:*":
+  version: 1.2.1
+  resolution: "@types/send@npm:1.2.1"
   dependencies:
-    "@types/express-serve-static-core": "*"
-    "@types/mime": "*"
-  checksum: 530a4673c2818c5b9b84e8b10b09950b21ab7fedc1d69abfebddb5bc902c9ba25f31f14fe90993205b1de8b4d57645160a915bf321d473946dadbaa98ba30d6c
+    "@types/node": "*"
+  checksum: 3b8388edeec77ae62f7bbc384c98ca06140614e4ef34fc04b35824f19937f472f8ff3785e83570e0d40e6d7c934c015d4831c82a74a1ade0d9676720835702c5
+  languageName: node
+  linkType: hard
+
+"@types/send@npm:<1":
+  version: 0.17.6
+  resolution: "@types/send@npm:0.17.6"
+  dependencies:
+    "@types/mime": ^1
+    "@types/node": "*"
+  checksum: 5bd287f1357380963eb4b12daef5c8982f52a3269308ff3414304074d4ad7f05fe466f2cb476f54798096877ad3c5343692978776bd674b25261ecbeab87640f
+  languageName: node
+  linkType: hard
+
+"@types/serve-static@npm:^1":
+  version: 1.15.10
+  resolution: "@types/serve-static@npm:1.15.10"
+  dependencies:
+    "@types/http-errors": "*"
+    "@types/node": "*"
+    "@types/send": <1
+  checksum: f216eef2aaf2c8eff09f431c420c5c2989eaf0dfc15d106db9fb64c14577a4059af24fb0ae2eba7984d6360950c8cbc1fb52f65608106477729d251481bc96fe
   languageName: node
   linkType: hard
 
