@@ -649,13 +649,13 @@ __metadata:
   linkType: hard
 
 "@hmcts/nodejs-healthcheck@npm:^1.8.4":
-  version: 1.8.4
-  resolution: "@hmcts/nodejs-healthcheck@npm:1.8.4"
+  version: 1.8.6
+  resolution: "@hmcts/nodejs-healthcheck@npm:1.8.6"
   dependencies:
     "@hmcts/nodejs-logging": ^4.0.4
-    js-yaml: ^3.8.4
-    superagent: 8
-  checksum: 8b2a6d1745fc2b63bd933a4034b92e9b144c385e8e57a9c9cde454ef2dff19467911aa1c5ade2ece54fff10868c07b966814c31fe1d743c59ab10d5706db898e
+    js-yaml: ^4.0.0
+    superagent: ^10.2.2
+  checksum: 11ae01f6890f562a76250b6d73da1ba4d6f0a8a559451a0562edd27e3923c65dddda11f0f39abd7d69cf49e340eee12c3de17a744622242715463649b96c9be4
   languageName: node
   linkType: hard
 
@@ -3285,6 +3285,13 @@ __metadata:
   version: 1.3.0
   resolution: "component-emitter@npm:1.3.0"
   checksum: b3c46de38ffd35c57d1c02488355be9f218e582aec72d72d1b8bbec95a3ac1b38c96cd6e03ff015577e68f550fbb361a3bfdbd9bb248be9390b7b3745691be6b
+  languageName: node
+  linkType: hard
+
+"component-emitter@npm:^1.3.1":
+  version: 1.3.1
+  resolution: "component-emitter@npm:1.3.1"
+  checksum: 94550aa462c7bd5a61c1bc480e28554aa306066930152d1b1844a0dd3845d4e5db7e261ddec62ae184913b3e59b55a2ad84093b9d3596a8f17c341514d6c483d
   languageName: node
   linkType: hard
 
@@ -7246,7 +7253,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"js-yaml@npm:3.13.1, js-yaml@npm:^3.13.1, js-yaml@npm:^3.4.6, js-yaml@npm:^3.5.1, js-yaml@npm:^3.5.4, js-yaml@npm:^3.8.4":
+"js-yaml@npm:3.13.1, js-yaml@npm:^3.13.1, js-yaml@npm:^3.4.6, js-yaml@npm:^3.5.1, js-yaml@npm:^3.5.4":
   version: 3.13.1
   resolution: "js-yaml@npm:3.13.1"
   dependencies:
@@ -7266,6 +7273,17 @@ __metadata:
   bin:
     js-yaml: bin/js-yaml.js
   checksum: c7830dfd456c3ef2c6e355cc5a92e6700ceafa1d14bba54497b34a99f0376cecbb3e9ac14d3e5849b426d5a5140709a66237a8c991c675431271c4ce5504151a
+  languageName: node
+  linkType: hard
+
+"js-yaml@npm:^4.0.0":
+  version: 4.1.1
+  resolution: "js-yaml@npm:4.1.1"
+  dependencies:
+    argparse: ^2.0.1
+  bin:
+    js-yaml: bin/js-yaml.js
+  checksum: ea2339c6930fe048ec31b007b3c90be2714ab3e7defcc2c27ebf30c74fd940358f29070b4345af0019ef151875bf3bc3f8644bea1bab0372652b5044813ac02d
   languageName: node
   linkType: hard
 
@@ -11374,21 +11392,20 @@ __metadata:
   languageName: node
   linkType: hard
 
-"superagent@npm:8":
-  version: 8.1.2
-  resolution: "superagent@npm:8.1.2"
+"superagent@npm:^10.2.2":
+  version: 10.3.0
+  resolution: "superagent@npm:10.3.0"
   dependencies:
-    component-emitter: ^1.3.0
+    component-emitter: ^1.3.1
     cookiejar: ^2.1.4
-    debug: ^4.3.4
+    debug: ^4.3.7
     fast-safe-stringify: ^2.1.1
-    form-data: ^4.0.0
-    formidable: ^2.1.2
+    form-data: ^4.0.5
+    formidable: ^3.5.4
     methods: ^1.1.2
     mime: 2.6.0
-    qs: ^6.11.0
-    semver: ^7.3.8
-  checksum: f3601c5ccae34d5ba684a03703394b5d25931f4ae2e1e31a1de809f88a9400e997ece037f9accf148a21c408f950dc829db1e4e23576a7f9fe0efa79fd5c9d2f
+    qs: ^6.14.1
+  checksum: a29406b60522ab195cb7e743eec4eef8fc36ae5bdeeafa70328c41eb5f177cbdf31b43fcc415bfcc568547b74500f8847608e69b383ffb01421d9b018ec4b8dd
   languageName: node
   linkType: hard
 
