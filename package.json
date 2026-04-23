@@ -216,7 +216,7 @@
     "send": "^0.19.0",
     "cookie": "^0.7.0",
     "cross-spawn": "7.0.6",
-    "brace-expansion": "1.1.12"
+    "brace-expansion": "1.1.13"
   },
   "packageManager": "yarn@3.5.1",
   "husky": {
