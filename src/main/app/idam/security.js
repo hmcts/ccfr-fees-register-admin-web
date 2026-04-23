@@ -3,7 +3,7 @@
 
 const request = require('superagent');
 const URL = require("url");
-const UUID = require("uuid/v4");
+const { v4: UUID } = require("uuid");
 
 const SECURITY_COOKIE = '__auth-token';
 const REDIRECT_COOKIE = '__redirect';
