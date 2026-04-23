@@ -6555,7 +6555,7 @@ __metadata:
     tslint: ^5.1.0
     tslint-config-standard: ^9.0.0
     typescript: ^5.1.6
-    uuid: ^3.0.1
+    uuid: ^14.0.0
     uuid-validate: ^0.0.3
     webdriverio: ^6.12.1
   languageName: unknown
@@ -9275,18 +9275,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"js-yaml@npm:3.13.1":
-  version: 3.13.1
-  resolution: "js-yaml@npm:3.13.1"
-  dependencies:
-    argparse: ^1.0.7
-    esprima: ^4.0.0
-  bin:
-    js-yaml: bin/js-yaml.js
-  checksum: 7511b764abb66d8aa963379f7d2a404f078457d106552d05a7b556d204f7932384e8477513c124749fa2de52eb328961834562bd09924902c6432e40daa408bc
-  languageName: node
-  linkType: hard
-
 "js-yaml@npm:3.14.2, js-yaml@npm:^3.4.6, js-yaml@npm:^3.5.1, js-yaml@npm:^3.5.4":
   version: 3.14.2
   resolution: "js-yaml@npm:3.14.2"
@@ -9296,17 +9284,6 @@ __metadata:
   bin:
     js-yaml: bin/js-yaml.js
   checksum: 626fc207734a3452d6ba84e1c8c226240e6d431426ed94d0ab043c50926d97c509629c08b1d636f5d27815833b7cfd225865631da9fb33cb957374490bf3e90b
-  languageName: node
-  linkType: hard
-
-"js-yaml@npm:4.1.0":
-  version: 4.1.0
-  resolution: "js-yaml@npm:4.1.0"
-  dependencies:
-    argparse: ^2.0.1
-  bin:
-    js-yaml: bin/js-yaml.js
-  checksum: c7830dfd456c3ef2c6e355cc5a92e6700ceafa1d14bba54497b34a99f0376cecbb3e9ac14d3e5849b426d5a5140709a66237a8c991c675431271c4ce5504151a
   languageName: node
   linkType: hard
 
@@ -15458,30 +15435,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"uuid@npm:11.1.0":
-  version: 11.1.0
-  resolution: "uuid@npm:11.1.0"
+"uuid@npm:^14.0.0":
+  version: 14.0.0
+  resolution: "uuid@npm:14.0.0"
   bin:
-    uuid: dist/esm/bin/uuid
-  checksum: 840f19758543c4631e58a29439e51b5b669d5f34b4dd2700b6a1d15c5708c7a6e0c3e2c8c4a2eae761a3a7caa7e9884d00c86c02622ba91137bd3deade6b4b4a
-  languageName: node
-  linkType: hard
-
-"uuid@npm:^3.0.0, uuid@npm:^3.0.1, uuid@npm:^3.3.2":
-  version: 3.4.0
-  resolution: "uuid@npm:3.4.0"
-  bin:
-    uuid: ./bin/uuid
-  checksum: 58de2feed61c59060b40f8203c0e4ed7fd6f99d42534a499f1741218a1dd0c129f4aa1de797bcf822c8ea5da7e4137aa3673431a96dae729047f7aca7b27866f
-  languageName: node
-  linkType: hard
-
-"uuid@npm:^8.0.0, uuid@npm:^8.3.0, uuid@npm:^8.3.2":
-  version: 8.3.2
-  resolution: "uuid@npm:8.3.2"
-  bin:
-    uuid: dist/bin/uuid
-  checksum: 5575a8a75c13120e2f10e6ddc801b2c7ed7d8f3c8ac22c7ed0c7b2ba6383ec0abda88c905085d630e251719e0777045ae3236f04c812184b7c765f63a70e58df
+    uuid: dist-node/bin/uuid
+  checksum: 08608584a79e987cdae000fa8eb724fa51dd8aafc136cd9fa9a8c87d07b246c56eec5fd9027fdb3e49a863eedf758bc19e325909ce281955c7a027fed67dc89e
   languageName: node
   linkType: hard
 
