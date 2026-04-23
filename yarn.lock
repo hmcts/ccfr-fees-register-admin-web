@@ -4977,7 +4977,7 @@ __metadata:
     tslint: ^5.1.0
     tslint-config-standard: ^9.0.0
     typescript: ^5.1.6
-    uuid: ^3.0.1
+    uuid: ^14.0.0
     uuid-validate: ^0.0.3
     webdriverio: ^6.12.1
   languageName: unknown
@@ -12348,7 +12348,16 @@ __metadata:
   languageName: node
   linkType: hard
 
-"uuid@npm:^3.0.0, uuid@npm:^3.0.1, uuid@npm:^3.3.2":
+"uuid@npm:^14.0.0":
+  version: 14.0.0
+  resolution: "uuid@npm:14.0.0"
+  bin:
+    uuid: dist-node/bin/uuid
+  checksum: 08608584a79e987cdae000fa8eb724fa51dd8aafc136cd9fa9a8c87d07b246c56eec5fd9027fdb3e49a863eedf758bc19e325909ce281955c7a027fed67dc89e
+  languageName: node
+  linkType: hard
+
+"uuid@npm:^3.0.0, uuid@npm:^3.3.2":
   version: 3.4.0
   resolution: "uuid@npm:3.4.0"
   bin:
