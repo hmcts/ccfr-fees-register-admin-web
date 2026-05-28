@@ -3,7 +3,7 @@
 
 const request = require('superagent');
 const URL = require("url");
-const UUID = require("uuid/v4");
+const {v4: uuidV4} = require('uuid');
 
 const SECURITY_COOKIE = '__auth-token';
 const REDIRECT_COOKIE = '__redirect';
@@ -266,7 +266,7 @@ Security.prototype.protectWithUplift = function (role, roleToUplift) {
 };
 
 function generateState() {
-  return UUID();
+  return uuidV4();
 }
 
 function storeRedirectCookie(req, res, continue_url, state) {
