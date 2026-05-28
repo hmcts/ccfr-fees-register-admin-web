@@ -6927,13 +6927,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"ip-address@npm:^9.0.5":
-  version: 9.0.5
-  resolution: "ip-address@npm:9.0.5"
-  dependencies:
-    jsbn: 1.1.0
-    sprintf-js: ^1.1.3
-  checksum: aa15f12cfd0ef5e38349744e3654bae649a34c3b10c77a674a167e99925d1549486c5b14730eebce9fea26f6db9d5e42097b00aa4f9f612e68c79121c71652dc
+"ip-address@npm:^10.2.0":
+  version: 10.2.0
+  resolution: "ip-address@npm:10.2.0"
+  checksum: 3ffba04dc4cdaf81ed2ed6edc47eee1494bb97550ef73f1918ca28405d175c03efa416b8337e868123b08c2cc677e3a07c5ce03eda3b1aeb2741c149bd37ddf9
   languageName: node
   linkType: hard
 
@@ -7517,13 +7514,6 @@ __metadata:
   dependencies:
     xmlcreate: ^1.0.1
   checksum: 4e0ff6b6951192cb3bc2d06425b14785f9efc3b5e36c36cc7c67640004eaa07b508c0dd4d3e26bebe59dac7bd04dfe2774ca8b1a1ab00ef187d554794f0ae9c3
-  languageName: node
-  linkType: hard
-
-"jsbn@npm:1.1.0":
-  version: 1.1.0
-  resolution: "jsbn@npm:1.1.0"
-  checksum: 944f924f2bd67ad533b3850eee47603eed0f6ae425fd1ee8c760f477e8c34a05f144c1bd4f5a5dd1963141dc79a2c55f89ccc5ab77d039e7077f3ad196b64965
   languageName: node
   linkType: hard
 
@@ -11408,13 +11398,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"sprintf-js@npm:^1.1.3":
-  version: 1.1.3
-  resolution: "sprintf-js@npm:1.1.3"
-  checksum: a3fdac7b49643875b70864a9d9b469d87a40dfeaf5d34d9d0c5b1cda5fd7d065531fcb43c76357d62254c57184a7b151954156563a4d6a747015cfb41021cad0
-  languageName: node
-  linkType: hard
-
 "ssri@npm:^9.0.0":
   version: 9.0.1
   resolution: "ssri@npm:9.0.1"
@@ -12692,48 +12675,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"uuid@npm:9.0.0":
-  version: 9.0.0
-  resolution: "uuid@npm:9.0.0"
-  bin:
-    uuid: dist/bin/uuid
-  checksum: 8dd2c83c43ddc7e1c71e36b60aea40030a6505139af6bee0f382ebcd1a56f6cd3028f7f06ffb07f8cf6ced320b76aea275284b224b002b289f89fe89c389b028
-  languageName: node
-  linkType: hard
-
 "uuid@npm:^14.0.0":
   version: 14.0.0
   resolution: "uuid@npm:14.0.0"
   bin:
     uuid: dist-node/bin/uuid
   checksum: 08608584a79e987cdae000fa8eb724fa51dd8aafc136cd9fa9a8c87d07b246c56eec5fd9027fdb3e49a863eedf758bc19e325909ce281955c7a027fed67dc89e
-  languageName: node
-  linkType: hard
-
-"uuid@npm:^3.0.0, uuid@npm:^3.3.2":
-  version: 3.4.0
-  resolution: "uuid@npm:3.4.0"
-  bin:
-    uuid: ./bin/uuid
-  checksum: 58de2feed61c59060b40f8203c0e4ed7fd6f99d42534a499f1741218a1dd0c129f4aa1de797bcf822c8ea5da7e4137aa3673431a96dae729047f7aca7b27866f
-  languageName: node
-  linkType: hard
-
-"uuid@npm:^8.0.0, uuid@npm:^8.3.0, uuid@npm:^8.3.2":
-  version: 8.3.2
-  resolution: "uuid@npm:8.3.2"
-  bin:
-    uuid: dist/bin/uuid
-  checksum: 5575a8a75c13120e2f10e6ddc801b2c7ed7d8f3c8ac22c7ed0c7b2ba6383ec0abda88c905085d630e251719e0777045ae3236f04c812184b7c765f63a70e58df
-  languageName: node
-  linkType: hard
-
-"uuid@npm:^9.0":
-  version: 9.0.1
-  resolution: "uuid@npm:9.0.1"
-  bin:
-    uuid: dist/bin/uuid
-  checksum: 39931f6da74e307f51c0fb463dc2462807531dc80760a9bff1e35af4316131b4fc3203d16da60ae33f07fdca5b56f3f1dd662da0c99fea9aaeab2004780cc5f4
   languageName: node
   linkType: hard
 

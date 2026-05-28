@@ -168,6 +168,7 @@
     "all": true
   },
   "resolutions": {
+    "uuid": "^14.0.0",
     "serialize-javascript": "7.0.5",
     "form-data": "~2.5.4",
     "on-headers": "~1.1.0",
@@ -222,7 +223,8 @@
     "jws": "4.0.1",
     "js-yaml": "4.1.1",
     "diff": "5.2.2",
-    "picomatch": "^2.3.2"
+    "picomatch": "^2.3.2",
+    "ip-address": "^10.2.0"
   },
   "packageManager": "yarn@3.5.1",
   "husky": {
