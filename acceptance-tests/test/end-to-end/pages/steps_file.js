@@ -14,17 +14,35 @@ const {verifyReferenceData} = require('./reference_data');
 const CCDNumber = faker.random.number(RANDOM_NUMBER);
 module.exports = () => actor({
   // done/
-  login(email, password) {
+  async login(email, password) {
     this.amOnPage('/');
     this.wait(CCPBConstants.twoSecondWaitTime);
-    this.resizeWindow(CCPBConstants.windowsSizeX, CCPBConstants.windowsSizeY);
-    this.wait(CCPBConstants.twoSecondWaitTime);
-    this.retry(CCPBConstants.retryCountForStep).waitForElement('#username', CCPBConstants.thirtySecondWaitTime);
-    this.fillField('Email address', email);
-    this.fillField('Password', password);
-    this.waitForElement({ css: '[type="submit"]' }, CCPBConstants.thirtySecondWaitTime);
-    this.click({ css: '[type="submit"]' });
+    const header = await this.grabTextFrom('//h1');
+    if (header.trim() === 'Sign in') {
+      this.fillField('Email address', email);
+      this.fillField('Password', password);
+      this.click({ css: '[type="submit"]' });
+      this.AcceptPayBubbleCookies();
+      return;
+    }
+    if (header.trim() === 'Enter your email address') {
+      this.fillField('//*[@id="email"]', email);
+      this.click({ css: '[type="submit"]' });
+      this.fillField('//*[@id="password"]', password);
+      this.click({ css: '[type="submit"]' });
+      this.AcceptPayBubbleCookies();
+      return;
+    }
+    throw new Error(`Unexpected login heading "${header}"`);
   },
+
+  AcceptPayBubbleCookies() {
+    this.waitForText('Cookies on Fees Register Admin console', 5);
+    this.click({ css: 'button.cookie-banner-accept-button' });
+    this.click({ css: 'div.cookie-banner-accept-message > div.govuk-button-group > button' });
+    this.wait(CCPBConstants.twoSecondWaitTime);
+  },
+
   Logout(role) {
     const signoutLabel = "Sign out (test " + role + ")";
     this.moveCursorTo('#proposition-links > ul > a');

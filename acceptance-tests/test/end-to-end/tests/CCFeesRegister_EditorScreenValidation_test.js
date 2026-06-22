@@ -28,8 +28,8 @@ After(async () => {
   }
 });
 
-Scenario('@functional FeesRegister Admin Console Editor Header and Tab Validation', ({ I }) => {
-  I.login(editorUserName, editorPassword);
+Scenario('@functional FeesRegister Admin Console Editor Header and Tab Validation', async ({ I }) => {
+  await I.login(editorUserName, editorPassword);
   I.wait(CCFRATConstants.tenSecondWaitTime);
   I.see("Fees");
   I.click("Fees");
@@ -56,8 +56,8 @@ Scenario('@functional FeesRegister Admin Console Editor Header and Tab Validatio
   I.click('Sign out');
 }).retry(CCFRATConstants.retryScenario);
 
-Scenario('@functional FeesRegister Admin Console Editor Screen For Live Fees Details', ({ I }) => {
-  I.login(editorUserName, editorPassword);
+Scenario('@functional FeesRegister Admin Console Editor Screen For Live Fees Details', async ({ I }) => {
+  await I.login(editorUserName, editorPassword);
   I.wait(CCFRATConstants.tenSecondWaitTime);
   // to-do based on updates and future stories
   I.verifyDownloadLink();
@@ -81,12 +81,12 @@ Scenario('@functional FeesRegister Admin Console Editor Screen For Live Fees Det
 Scenario('@functional FeesRegister Admin Console Editor Approved but not live Fees Details Check', async ({ I }) => {
   let feeObj = await I.addNewFeeAndSubmitForApprovalUsingApi(editorUserName, editorPassword);
   feeCode = feeObj.feeCode;
-  I.login(approverUserName, approverPassword);
+  await I.login(approverUserName, approverPassword);
   I.wait(CCFRATConstants.fiveSecondWaitTime);
   I.see('Awaiting approval');
   await I.retry(3).verifyFeesSentForApprovalAndApprove();
   I.click('Sign out');
-  I.login(editorUserName, editorPassword);
+  await I.login(editorUserName, editorPassword);
   I.wait(CCFRATConstants.tenSecondWaitTime);
   I.waitForText('Approved but not live fees', CCFRATConstants.tenSecondWaitTime);
   I.verifyDownloadLink();
@@ -102,8 +102,8 @@ Scenario('@functional FeesRegister Admin Console Editor Approved but not live Fe
   I.click('Sign out');
 }).retry(CCFRATConstants.retryScenario);
 
-Scenario('@functional @crossbrowser FeesRegister Admin Console Editor Discontinued Fees Details Check', ({ I }) => {
-  I.login(editorUserName, editorPassword);
+Scenario('@functional @crossbrowser FeesRegister Admin Console Editor Discontinued Fees Details Check', async ({ I }) => {
+  await I.login(editorUserName, editorPassword);
   I.wait(CCFRATConstants.tenSecondWaitTime);
   I.waitForText('Discontinued fees', CCFRATConstants.tenSecondWaitTime);
   I.RejectFeeRegAdminWebCookies
@@ -135,7 +135,7 @@ Scenario('@functional @crossbrowser FeesRegister Admin Console Editor Discontinu
 //   let formattedFromDate = fromDate.toLocaleDateString('en-GB');
 //   console.log("formattedFromDate: " + formattedFromDate);
 //
-//   I.login(editorUserName, editorPassword);
+//   await I.login(editorUserName, editorPassword);
 //   I.wait(CCFRATConstants.fiveSecondWaitTime);
 //   I.waitForText('Live fees', CCFRATConstants.tenSecondWaitTime);
 //   await I.addNewFee(feeKeyword, formattedFromDate);
@@ -157,7 +157,7 @@ Scenario('@functional FeesRegister Edit Fee and submit for Approval', async ({ I
   fromDate.setDate(fromDate.getDate() + 2);
 
   feeCode = await I.createNewFeeApi(editorUserName, editorPassword, fromDate, feeKeyword);
-  I.login(editorUserName, editorPassword);
+  await I.login(editorUserName, editorPassword);
   I.wait(CCFRATConstants.tenSecondWaitTime);
   I.click("Your Drafts");
   I.wait(CCFRATConstants.fiveSecondWaitTime);
@@ -189,7 +189,7 @@ Scenario('@functional FeesRegister Delete the Fee', async ({ I }) => {
   fromDate.setDate(fromDate.getDate() + 2);
 
   feeCode = await I.createNewFeeApi(editorUserName, editorPassword, fromDate, feeKeyword);
-  I.login(editorUserName, editorPassword);
+  await I.login(editorUserName, editorPassword);
   I.wait(CCFRATConstants.tenSecondWaitTime);
   I.click("Your Drafts");
   I.wait(CCFRATConstants.fiveSecondWaitTime);
@@ -202,8 +202,8 @@ Scenario('@functional FeesRegister Delete the Fee', async ({ I }) => {
 }).retry(CCFRATConstants.retryScenario);
 
 // Version To field is appearing in latest version even though that's not filled out as part of creating fee
-Scenario('@functional FeesRegister Verify Version details for existing fee',  ({ I }) => {
-  I.login(editorUserName, editorPassword);
+Scenario('@functional FeesRegister Verify Version details for existing fee',  async ({ I }) => {
+  await I.login(editorUserName, editorPassword);
   I.wait(CCFRATConstants.twoSecondWaitTime);
   I.waitForText('Live fees', CCFRATConstants.tenSecondWaitTime);
   I.click('FEE0002');
@@ -226,8 +226,8 @@ Scenario('@functional FeesRegister Verify Version details for existing fee',  ({
   I.click('Sign out');
 }).retry(CCFRATConstants.retryScenario);
 
-Scenario('@functional FeesRegister Verify Edit button for the fixed Fee',  ({ I }) => {
-  I.login(editorUserName, editorPassword);
+Scenario('@functional FeesRegister Verify Edit button for the fixed Fee',  async ({ I }) => {
+  await I.login(editorUserName, editorPassword);
   I.wait(CCFRATConstants.twoSecondWaitTime);
   I.waitForText('Live fees', CCFRATConstants.tenSecondWaitTime);
   I.click('FEE0002');
@@ -239,8 +239,8 @@ Scenario('@functional FeesRegister Verify Edit button for the fixed Fee',  ({ I 
   I.click('Sign out');
 }).retry(CCFRATConstants.retryScenario);
 
-Scenario('@functional FeesRegister Verify Edit button for the ranged Fee',  ({ I }) => {
-  I.login(editorUserName, editorPassword);
+Scenario('@functional FeesRegister Verify Edit button for the ranged Fee',  async ({ I }) => {
+  await I.login(editorUserName, editorPassword);
   I.wait(CCFRATConstants.twoSecondWaitTime);
   I.waitForText('Live fees', CCFRATConstants.tenSecondWaitTime);
   I.click('FEE0514');
@@ -252,8 +252,8 @@ Scenario('@functional FeesRegister Verify Edit button for the ranged Fee',  ({ I
   I.click('Sign out');
 }).retry(CCFRATConstants.retryScenario);
 
-Scenario('@functional FeesRegister Verify Edit button for the banded Fee',  ({ I }) => {
-  I.login(editorUserName, editorPassword);
+Scenario('@functional FeesRegister Verify Edit button for the banded Fee',  async ({ I }) => {
+  await I.login(editorUserName, editorPassword);
   I.wait(CCFRATConstants.twoSecondWaitTime);
   I.waitForText('Live fees', CCFRATConstants.tenSecondWaitTime);
   I.click('FEE0491');
@@ -265,8 +265,8 @@ Scenario('@functional FeesRegister Verify Edit button for the banded Fee',  ({ I
   I.click('Sign out');
 }).retry(CCFRATConstants.retryScenario);
 
-Scenario('@functional FeesRegister Verify Edit button for the rateable Fee',  ({ I }) => {
-  I.login(editorUserName, editorPassword);
+Scenario('@functional FeesRegister Verify Edit button for the rateable Fee',  async ({ I }) => {
+  await I.login(editorUserName, editorPassword);
   I.wait(CCFRATConstants.twoSecondWaitTime);
   I.waitForText('Live fees', CCFRATConstants.tenSecondWaitTime);
   I.click('FEE0421');
@@ -278,8 +278,8 @@ Scenario('@functional FeesRegister Verify Edit button for the rateable Fee',  ({
   I.click('Sign out');
 }).retry(CCFRATConstants.retryScenario);
 
-Scenario('@functional FeesRegister Verify Edit button for the relational Fee',  ({ I }) => {
-  I.login(editorUserName, editorPassword);
+Scenario('@functional FeesRegister Verify Edit button for the relational Fee',  async ({ I }) => {
+  await I.login(editorUserName, editorPassword);
   I.wait(CCFRATConstants.twoSecondWaitTime);
   I.waitForText('Live fees', CCFRATConstants.tenSecondWaitTime);
   I.click('FEE0424');
@@ -291,8 +291,8 @@ Scenario('@functional FeesRegister Verify Edit button for the relational Fee',  
   I.click('Sign out');
 }).retry(CCFRATConstants.retryScenario);
 
-Scenario('@functional FeesRegister upload fee',  ({ I }) => {
-  I.login(editorUserName, editorPassword);
+Scenario('@functional FeesRegister upload fee',  async ({ I }) => {
+  await I.login(editorUserName, editorPassword);
   I.wait(CCFRATConstants.twoSecondWaitTime);
   I.waitForText('Upload fees', CCFRATConstants.tenSecondWaitTime);
   I.click('Upload fees');
@@ -309,7 +309,7 @@ Scenario('@functional FeesRegister Admin Console Editor Screen For Fee Draft Det
 
   feeCode = await I.createNewFeeApi(editorUserName, editorPassword, fromDate, feeKeyword);
 
-  I.login(editorUserName, editorPassword);
+  await I.login(editorUserName, editorPassword);
   I.wait(CCFRATConstants.tenSecondWaitTime);
   I.click("Your Drafts");
   I.wait(CCFRATConstants.fiveSecondWaitTime);
@@ -322,13 +322,13 @@ Scenario('@functional FeesRegister Editor Screen For Fee Draft Rejected by appro
   let feeObj = await I.addNewFeeAndSubmitForApprovalUsingApi(editorUserName, editorPassword);
   feeCode = feeObj.feeCode;
 
-  I.login(approverUserName, approverPassword);
+  await I.login(approverUserName, approverPassword);
   I.wait(CCFRATConstants.fiveSecondWaitTime);
   I.waitForText("Awaiting approval","10");
   await I.rejectFees();
   I.click('Sign out');
   I.wait(CCFRATConstants.fiveSecondWaitTime);
-  I.login(editorUserName, editorPassword);
+  await I.login(editorUserName, editorPassword);
   I.wait(CCFRATConstants.fiveSecondWaitTime);
   I.see("Your Drafts");
   I.click("Your Drafts");
@@ -343,7 +343,7 @@ Scenario('@functional FeesRegister Editor Screen For Fee Draft Rejected by appro
 Scenario('@functional FeesRegister Editor Screen For Fee Draft Awaiting approval', async ({ I }) => {
   let feeObj = await I.addNewFeeAndSubmitForApprovalUsingApi(editorUserName, editorPassword);
   feeCode = feeObj.feeCode;
-  I.login(editorUserName, editorPassword);
+  await I.login(editorUserName, editorPassword);
   I.wait(CCFRATConstants.fiveSecondWaitTime);
   I.click("Your Drafts");
   I.click("Awaiting approval");
@@ -353,8 +353,8 @@ Scenario('@functional FeesRegister Editor Screen For Fee Draft Awaiting approval
   I.click('Sign out');
 }).retry(CCFRATConstants.retryScenario);
 
-Scenario('@functional FeesRegister Verify Reference Data Page',  ({ I }) => {
-  I.login(approverUserName, approverPassword);
+Scenario('@functional FeesRegister Verify Reference Data Page',  async ({ I }) => {
+  await I.login(approverUserName, approverPassword);
   I.wait(CCFRATConstants.tenSecondWaitTime);
   I.see("Reference Data");
   I.click("Reference Data");
