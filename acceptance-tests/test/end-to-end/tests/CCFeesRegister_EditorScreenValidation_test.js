@@ -86,6 +86,7 @@ Scenario('@functional FeesRegister Admin Console Editor Approved but not live Fe
   I.see('Awaiting approval');
   await I.retry(3).verifyFeesSentForApprovalAndApprove();
   I.click('Sign out');
+  I.clearCookie();
   await I.login(editorUserName, editorPassword);
   I.wait(CCFRATConstants.tenSecondWaitTime);
   I.waitForText('Approved but not live fees', CCFRATConstants.tenSecondWaitTime);
@@ -327,7 +328,7 @@ Scenario('@functional FeesRegister Editor Screen For Fee Draft Rejected by appro
   I.waitForText("Awaiting approval","10");
   await I.rejectFees();
   I.click('Sign out');
-  I.wait(CCFRATConstants.fiveSecondWaitTime);
+  I.clearCookie();
   await I.login(editorUserName, editorPassword);
   I.wait(CCFRATConstants.fiveSecondWaitTime);
   I.see("Your Drafts");
