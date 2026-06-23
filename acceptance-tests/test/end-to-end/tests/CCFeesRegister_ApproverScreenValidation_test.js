@@ -19,8 +19,8 @@ BeforeSuite(async() => {
   await idamHelper.createUserUsingTestingSupportService('Editor', editorUserName, editorPassword, ['freg', 'freg-editor']);
 });
 
-Scenario('@functional FeesRegister Admin Console Approver Header and Tab Validation', ({ I }) => {
-  I.login(approverUserName, approverPassword);
+Scenario('@functional FeesRegister Admin Console Approver Header and Tab Validation', async ({ I }) => {
+  await I.login(approverUserName, approverPassword);
   I.wait(CCFRATConstants.tenSecondWaitTime);
   I.see("Fees");
   I.click("Fees");
@@ -47,8 +47,8 @@ Scenario('@functional FeesRegister Admin Console Approver Header and Tab Validat
   I.click('Sign out');
 }).retry(CCFRATConstants.retryScenario);
 
-Scenario('@functional FeesRegister Verify Pending For Approval header list',  ({ I }) => {
-  I.login(approverUserName, approverPassword);
+Scenario('@functional FeesRegister Verify Pending For Approval header list',  async ({ I }) => {
+  await I.login(approverUserName, approverPassword);
   I.wait(CCFRATConstants.tenSecondWaitTime);
   I.see("Approvals");
   I.click("Approvals");
