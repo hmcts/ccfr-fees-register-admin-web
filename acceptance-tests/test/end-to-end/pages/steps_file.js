@@ -12,24 +12,35 @@ const {verifyCurrentFeeVersion, verifyPreviousFeeVersion} = require('./fee_versi
 const {verifyFeeDraftHeaders, verifyFeeDraftHeadersAwaitingApproval} = require('./fee_draft_dashboard_list');
 const {verifyReferenceData} = require('./reference_data');
 const CCDNumber = faker.random.number(RANDOM_NUMBER);
+let activeLoginEmail;
 module.exports = () => actor({
   // done/
   async login(email, password) {
     this.amOnPage('/');
     this.wait(CCPBConstants.twoSecondWaitTime);
     const header = await this.grabTextFrom('//h1');
-    if (header.trim() === 'Sign in') {
+    const heading = header.trim();
+    const isLoginPage = heading === 'Sign in' || heading === 'Enter your email address';
+    if (activeLoginEmail === email && !isLoginPage) {
+      const signOutLinks = await this.grabNumberOfVisibleElements('//a[contains(normalize-space(), "Sign out")] | //button[contains(normalize-space(), "Sign out")]');
+      if (signOutLinks > 0) {
+        return;
+      }
+    }
+    if (heading === 'Sign in') {
       this.fillField('Email address', email);
       this.fillField('Password', password);
       this.click({ css: '[type="submit"]' });
+      activeLoginEmail = email;
       this.AcceptPayBubbleCookies();
       return;
     }
-    if (header.trim() === 'Enter your email address') {
+    if (heading === 'Enter your email address') {
       this.fillField('//*[@id="email"]', email);
       this.click({ css: '[type="submit"]' });
       this.fillField('//*[@id="password"]', password);
       this.click({ css: '[type="submit"]' });
+      activeLoginEmail = email;
       this.AcceptPayBubbleCookies();
       return;
     }
@@ -48,6 +59,7 @@ module.exports = () => actor({
     this.moveCursorTo('#proposition-links > ul > a');
     this.see(signoutLabel);
     this.click(signoutLabel);
+    activeLoginEmail = undefined;
     this.wait(CCPBConstants.fiveSecondWaitTime);
   },
 
