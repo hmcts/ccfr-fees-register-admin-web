@@ -44,6 +44,7 @@ withNightlyPipeline("nodejs", product, component) {
 
   loadVaultSecrets(secrets)
   enableFullFunctionalTest()
+  //https://tools.hmcts.net/jira/browse/PAY-8869
   //enableFortifyScan()
   enableCrossBrowserTest()
   enableSecurityScan()
