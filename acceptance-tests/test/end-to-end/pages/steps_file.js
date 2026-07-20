@@ -35,7 +35,7 @@ module.exports = () => actor({
     }
     throw new Error(`Unexpected login heading "${header}"`);
   },
-
+  // TES TES TES
   AcceptPayBubbleCookies() {
     this.waitForText('Cookies on Fees Register Admin console', 5);
     this.click({ css: 'button.cookie-banner-accept-button' });
