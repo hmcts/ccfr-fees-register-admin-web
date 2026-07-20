@@ -16,7 +16,7 @@ module.exports = () => actor({
   // done/
   async login(email, password) {
     this.amOnPage('/');
-    this.wait(CCPBConstants.twoSecondWaitTime);
+      this.wait(CCPBConstants.tenSecondWaitTime);
     const header = await this.grabTextFrom('//h1');
     if (header.trim() === 'Sign in') {
       this.fillField('Email address', email);
