@@ -2660,13 +2660,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"brace-expansion@npm:1.1.13":
-  version: 1.1.13
-  resolution: "brace-expansion@npm:1.1.13"
+"brace-expansion@npm:2.1.2":
+  version: 2.1.2
+  resolution: "brace-expansion@npm:2.1.2"
   dependencies:
     balanced-match: "npm:^1.0.0"
-    concat-map: "npm:0.0.1"
-  checksum: 10/b5f4329fdbe9d2e25fa250c8f866ebd054ba946179426e99b86dcccddabdb1d481f0e40ee5430032e62a7d0a6c2837605ace6783d015aa1d65d85ca72154d936
+  checksum: 10/0e0f9b0df1f0809e9c326470e022eeb24334ddb54c43b1ac39f1d38f3cbaeb940794de1db826f5491843ac00d7932c43f10350a65ccd51fe7d05da627152f204
   languageName: node
   linkType: hard
 
@@ -3615,13 +3614,6 @@ __metadata:
     normalize-path: "npm:^3.0.0"
     readable-stream: "npm:^3.6.0"
   checksum: 10/1ebe27b75e7ef635cce683671da9aa771c237b39e0b9527f6a49cf6159b8bd13d5b1150c8936ea09b863cdf9a1892f764753866ba9a3ff8ca4fcdfe899dc2d70
-  languageName: node
-  linkType: hard
-
-"concat-map@npm:0.0.1":
-  version: 0.0.1
-  resolution: "concat-map@npm:0.0.1"
-  checksum: 10/9680699c8e2b3af0ae22592cb764acaf973f292a7b71b8a06720233011853a58e256c89216a10cbe889727532fd77f8bcd49a760cedfde271b8e006c20e079f2
   languageName: node
   linkType: hard
 
