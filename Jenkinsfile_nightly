@@ -9,6 +9,7 @@ properties([
     string(name: 'IDAM_API_URL', defaultValue: 'https://idam-api.aat.platform.hmcts.net', description: 'The Idam Api you want to run these tests against to get access token'),
     string(name: 'IDAM_TESTING_SUPPORT_API', defaultValue: 'https://idam-testing-support-api.aat.platform.hmcts.net', description: 'The Idam Testing Support Api you want to run these tests against to create Idam burner Users'),
     string(name: 'REDIRECT_URI', defaultValue: 'https://fees-register.aat.platform.hmcts.net/oauth2/callback', description: 'The Redirect Uri you want to run these tests against to get Idam Access token'),
+    string(name: 'ZAP_URL_EXCLUSIONS', defaultValue: "-config globalexcludeurl.url_list.url\\(0\\).regex=https?:\\/\\/.*(?:idam-web-public|hmcts-access).*", description: 'ZAP regex exclusions for third-party auth/access endpoints')
   ])
 ])
 
@@ -16,6 +17,7 @@ properties([
 
 def product = "fees-register"
 def component = "frontend"
+def urlExclusions = params.ZAP_URL_EXCLUSIONS
 
 def secrets = [
   'fees-register-${env}'      : [
@@ -40,13 +42,14 @@ withNightlyPipeline("nodejs", product, component) {
   env.IDAM_API_URL = params.IDAM_API_URL
   env.IDAM_TESTING_SUPPORT_API = params.IDAM_TESTING_SUPPORT_API
   env.REDIRECT_URI = params.REDIRECT_URI
+  env.ZAP_URL_EXCLUSIONS = urlExclusions
   env.NIGHTLY_TEST= true
 
   loadVaultSecrets(secrets)
   enableFullFunctionalTest()
   enableFortifyScan()
   enableCrossBrowserTest()
-  enableSecurityScan()
+  enableSecurityScan(urlExclusion: urlExclusions, urlExclusions: urlExclusions)
   afterAlways('checkout') {
     sh "yarn cache clean"
     echo 'ccfr-fees-register-admin-web checked out'
