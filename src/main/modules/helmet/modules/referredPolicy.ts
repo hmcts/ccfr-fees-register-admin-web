@@ -1,5 +1,5 @@
 import * as express from 'express'
-import * as helmet from 'helmet'
+import { referrerPolicy } from 'helmet'
 
 export class ReferrerPolicy {
 
@@ -10,8 +10,8 @@ export class ReferrerPolicy {
   }
 
   enableFor (app: express.Express) {
-    app.use(helmet.referrerPolicy({
-      policy: this.policy
-    }))
+    app.use(referrerPolicy({
+      policy: this.policy as any
+    }) as express.RequestHandler)
   }
 }
