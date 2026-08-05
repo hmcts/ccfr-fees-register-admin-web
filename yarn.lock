@@ -1291,11 +1291,11 @@ __metadata:
   linkType: hard
 
 "@types/chai-spies@npm:^1.0.0":
-  version: 1.0.1
-  resolution: "@types/chai-spies@npm:1.0.1"
+  version: 1.0.6
+  resolution: "@types/chai-spies@npm:1.0.6"
   dependencies:
     "@types/chai": "npm:*"
-  checksum: 10/00fda7fc7ba2ab4cbe0bc2940fca61aa93857705e56ad86d0d68d6314ab9f0f5b5056c138739778f446a2a8f34cc0eba5830bdf88fe12b35e66cb3a6705ad4ce
+  checksum: 10/a4ac71270654bc39983f93a91b1c106ad2c49992d81aba42ebec95f3a4ef09c44411982dd1f9e1500303dbac04283b7c899e5a821823ab90bc6c346b05dde113
   languageName: node
   linkType: hard
 
@@ -2992,11 +2992,11 @@ __metadata:
   linkType: hard
 
 "chai-spies@npm:^1.0.0":
-  version: 1.0.0
-  resolution: "chai-spies@npm:1.0.0"
+  version: 1.1.0
+  resolution: "chai-spies@npm:1.1.0"
   peerDependencies:
     chai: "*"
-  checksum: 10/dcde5e05644409127270727cc32851498cd781be6555cd8ab4956ff31e74603f804298cef8dc5c95de151c746f1e93f9876a3b3b8fc3e41d670072384af53f95
+  checksum: 10/652983d777fa882de61c1ee87c41fa358452f0093a47637fefd85ee2bb0f4e6a259bbe9a17214629597072439ca853182ca1c4523fe0d53f63fc7cbef3afd259
   languageName: node
   linkType: hard
 
