@@ -1,5 +1,5 @@
 import * as express from 'express'
-import * as helmet from 'helmet'
+import { contentSecurityPolicy } from 'helmet'
 
 const none = '\'none\''
 const self = '\'self\''
@@ -20,7 +20,8 @@ export class ContentSecurityPolicy {
       connectSrc.push('ws://localhost:35729')
     }
 
-    app.use(helmet.contentSecurityPolicy({
+    app.use(contentSecurityPolicy({
+      useDefaults: false,
       directives: {
         defaultSrc: [none],
         fontSrc: [self, 'data:', 'https://fonts.gstatic.com'],
@@ -30,6 +31,6 @@ export class ContentSecurityPolicy {
         connectSrc: connectSrc,
         objectSrc: [self]
       }
-    }))
+    }) as express.RequestHandler)
   }
 }

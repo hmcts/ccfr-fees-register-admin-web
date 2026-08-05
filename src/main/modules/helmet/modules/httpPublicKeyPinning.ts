@@ -1,5 +1,4 @@
 import * as express from 'express'
-import * as helmet from 'helmet'
 
 export interface Config {
   maxAge: number
@@ -15,13 +14,8 @@ export class HttpPublicKeyPinning {
   }
 
   enableFor (app: express.Express) {
-    app.use(helmet.hpkp({
-      setIf: (req: express.Request) => {
-        return req.secure
-      },
-      maxAge: this.config.maxAge,
-      sha256s: this.config.pins.split(',').map(_ => _.trim()),
-      includeSubdomains: true
-    }))
+    // HPKP was removed in helmet 8.x as it is deprecated
+    // This functionality is no longer available
+    console.warn('HPKP (HTTP Public Key Pinning) is deprecated and removed from helmet 8.x')
   }
 }
