@@ -1322,10 +1322,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/config@npm:^0.0.35":
-  version: 0.0.35
-  resolution: "@types/config@npm:0.0.35"
-  checksum: 10/5e955c54098dcfe96f17ad69304454b8e61bad3a2f9a09e9d81a6900e447df13faafc197bdda85ba20d6ff332792f0e0238fff28ffb29fb167dea376b97bad02
+"@types/config@npm:^0.0.41":
+  version: 0.0.41
+  resolution: "@types/config@npm:0.0.41"
+  checksum: 10/528eb5e5d60c48cf82a2b0988ee1e5e088472698ad25944131b0ba87b2e3bb0989f3b4d45edb9d49eefcc8bf158c267905c386aaec15857b9fb24be449c3f27c
   languageName: node
   linkType: hard
 
@@ -5118,7 +5118,7 @@ __metadata:
     "@types/chai": "npm:^4.1.4"
     "@types/chai-as-promised": "npm:^7.1.0"
     "@types/chai-spies": "npm:^1.0.0"
-    "@types/config": "npm:^0.0.35"
+    "@types/config": "npm:^0.0.41"
     "@types/csurf": "npm:^1.9.33"
     "@types/express": "npm:^4.0.35"
     "@types/i18next": "npm:^8.4.4"
