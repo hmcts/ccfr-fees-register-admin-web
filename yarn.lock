@@ -1550,10 +1550,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/shortid@npm:^0.0.29":
-  version: 0.0.29
-  resolution: "@types/shortid@npm:0.0.29"
-  checksum: 10/f0ba8dcc3ba0da60a16fe11edb745b0cc6b1d1acbe26f33d4193ad23a5a86a05220b4637619673dee0009f7e6ba80bd5bb72e6346bb49e1e4477d52a9653630d
+"@types/shortid@npm:^0.0.32":
+  version: 0.0.32
+  resolution: "@types/shortid@npm:0.0.32"
+  checksum: 10/ab2957a3d3c01f0c51a94d6f80b90e0ee130aaab4f0d41bf548fdc5d06ce2be90553777ff16168b1042c96a26d21240b5e1e2e2ada3d1d0850e757f46081e396
   languageName: node
   linkType: hard
 
@@ -5128,7 +5128,7 @@ __metadata:
     "@types/nock": "npm:^10.0.0"
     "@types/node": "npm:^18.11.9"
     "@types/nunjucks": "npm:^3.2.2"
-    "@types/shortid": "npm:^0.0.29"
+    "@types/shortid": "npm:^0.0.32"
     "@types/supertest": "npm:*"
     HTML_CodeSniffer: "https://github.com/squizlabs/HTML_CodeSniffer/archive/2.0.7.tar.gz"
     allure-commandline: "npm:^2.17.2"
