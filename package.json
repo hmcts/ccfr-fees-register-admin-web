@@ -8,7 +8,7 @@
   "scripts": {
     "start": "node server.js",
     "start:angular-dev": "ng serve --proxy-config proxy.conf.json",
-    "start:express-dev": "cross-env NODE_ENV=development nodemon --inspect start.js",
+    "start:express-dev": "cross-env NODE_ENV=development nodemon --inspect --source-map start.js",
     "start:express-prod": "cross-env IGNORE_CERTS=true nodemon --inspect start.js",
     "debug": "NODE_OPTIONS=--inspect ./node_modules/.bin/ts-node --inspect --no-lazy -r tsconfig-paths/register src/main/server.ts",
     "setup": "gulp sass copy-files",
@@ -101,6 +101,10 @@
     "uuid-validate": "^0.0.3"
   },
   "devDependencies": {
+    "@angular-builders/custom-webpack": "^20.0.0",
+    "@angular-devkit/build-angular": "^20.3.12",
+    "@angular/compiler": "^20.3.25",
+    "@angular/compiler-cli": "^20.3.25",
     "@codeceptjs/allure-legacy": "^1.0.2",
     "@codeceptjs/helper": "^1.0.2",
     "@types/chai": "^4.1.4",
