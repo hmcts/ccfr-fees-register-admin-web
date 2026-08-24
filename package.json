@@ -101,10 +101,6 @@
     "uuid-validate": "^0.0.3"
   },
   "devDependencies": {
-    "@angular-builders/custom-webpack": "^20.0.0",
-    "@angular-devkit/build-angular": "^20.3.12",
-    "@angular/compiler": "^20.3.25",
-    "@angular/compiler-cli": "^20.3.25",
     "@codeceptjs/allure-legacy": "^1.0.2",
     "@codeceptjs/helper": "^1.0.2",
     "@types/chai": "^4.1.4",
