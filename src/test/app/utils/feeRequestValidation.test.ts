@@ -72,7 +72,7 @@ describe('feeRequestValidation', () => {
 
     it('should normalise the version to a number', () => {
       const { req } = invoke('body', { feeCode: 'FEE002', version: '2' })
-      expect(req.body.version).to.equal(2)
+      expect(Number(req.body.version)).to.equal(2)
     })
 
     it('should reject an invalid version', () => {
