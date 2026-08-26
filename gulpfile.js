@@ -62,6 +62,11 @@ gulp.src([
   .pipe(gulp.dest(`${assetsDirectory}/img/lib/`));
 
 gulp.src([
+  './node_modules/govuk-frontend/govuk/assets/fonts/**/*'
+])
+  .pipe(gulp.dest(`${assetsDirectory}/fonts/`));
+
+gulp.src([
   './node_modules/govuk_template_jinja/assets/stylesheets/**/*'
 ])
   .pipe(replace('images/', '/stylesheets/lib/images/', {skipBinary: true}))

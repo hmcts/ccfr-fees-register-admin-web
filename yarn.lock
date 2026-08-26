@@ -2653,12 +2653,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"brace-expansion@npm:2.1.2":
-  version: 2.1.2
-  resolution: "brace-expansion@npm:2.1.2"
+"brace-expansion@npm:2.1.4":
+  version: 2.1.4
+  resolution: "brace-expansion@npm:2.1.4"
   dependencies:
     balanced-match: "npm:^1.0.0"
-  checksum: 10/0e0f9b0df1f0809e9c326470e022eeb24334ddb54c43b1ac39f1d38f3cbaeb940794de1db826f5491843ac00d7932c43f10350a65ccd51fe7d05da627152f204
+  checksum: 10/11e18dc39706037331abedbb742af1da733267042f94c0f08487ef1a63cee068c1859f8d5f95523869725191133eb1a69753de457ed4b76b7c187d9ea0646737
   languageName: node
   linkType: hard
 
@@ -5111,7 +5111,7 @@ __metadata:
     faker: "npm:^4.1.0"
     fast-csv: "npm:^4.3.6"
     feature-toggles: "npm:^1.4.0"
-    gettext-converter: "npm:^1.3.0"
+    gettext-converter: "npm:^1.3.3"
     govuk-elements-sass: "npm:^3.0.2"
     govuk-frontend: "npm:^4.3.0"
     govuk_template_jinja: "npm:0.25.0"
@@ -5786,14 +5786,14 @@ __metadata:
   languageName: node
   linkType: hard
 
-"gettext-converter@npm:^1.3.0":
-  version: 1.3.0
-  resolution: "gettext-converter@npm:1.3.0"
+"gettext-converter@npm:^1.3.3":
+  version: 1.3.4
+  resolution: "gettext-converter@npm:1.3.4"
   dependencies:
     arrify: "npm:^2.0.1"
     content-type: "npm:1.0.5"
     encoding: "npm:0.1.13"
-  checksum: 10/332220b8f9f260851915202d44a423b5a4528bec97f7a488b5d0c2552c6926edb5902dfa67728727babfa7a289f1ab6d7d7330e1c34983a4633e61dddeb884cf
+  checksum: 10/cf5b31ea05aefeb7083b3f3799ff81eec4572ae11309a1ce06eef5935771a1f935b821125014e54273bdc395f62d76d3bc241051df26c1e82843451863d807d6
   languageName: node
   linkType: hard
 
@@ -6837,10 +6837,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"ip-address@npm:^10.2.0":
-  version: 10.2.0
-  resolution: "ip-address@npm:10.2.0"
-  checksum: 10/12fec399e1af5753ac322e47a6d81a50d3a528b3abb17c09525b2a2edcaedcca628c40520706f7037bc4d8e951b0296c47e7b86d0a8e6e2335c8f0ba4afcfac1
+"ip-address@npm:10.3.1":
+  version: 10.3.1
+  resolution: "ip-address@npm:10.3.1"
+  checksum: 10/cc0d5b9953acb4114990a3887e0701f8fe843903811f982cf2856cd307c5fb6cdca426ad16c39a1f4950091935c8be4d42631a443f797a96626cce161fffed41
   languageName: node
   linkType: hard
 
@@ -8735,12 +8735,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"nanoid@npm:^3.1.31":
-  version: 3.3.11
-  resolution: "nanoid@npm:3.3.11"
+"nanoid@npm:^3.3.17":
+  version: 3.3.18
+  resolution: "nanoid@npm:3.3.18"
   bin:
     nanoid: bin/nanoid.cjs
-  checksum: 10/73b5afe5975a307aaa3c95dfe3334c52cdf9ae71518176895229b8d65ab0d1c0417dd081426134eb7571c055720428ea5d57c645138161e7d10df80815527c48
+  checksum: 10/1b3b4fdac831b92b56d1dbe8b1e63a372432faf86ea383134e3b53141ef8108a60b7f84343b5cefecac9550bb74edf8164da93ea07d1c4f757039bc75d8a5d9e
   languageName: node
   linkType: hard
 

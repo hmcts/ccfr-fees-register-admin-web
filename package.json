@@ -64,7 +64,7 @@
     "express": "4.21.2",
     "fast-csv": "^4.3.6",
     "feature-toggles": "^1.4.0",
-    "gettext-converter": "^1.3.0",
+    "gettext-converter": "^1.3.3",
     "govuk-elements-sass": "^3.0.2",
     "govuk-frontend": "^4.3.0",
     "govuk_template_jinja": "0.25.0",
@@ -167,7 +167,7 @@
   },
   "resolutions": {
     "js-yaml": "5.2.2",
-    "brace-expansion": "2.1.2",
+    "brace-expansion": "2.1.4",
     "shell-quote": "1.10.0",
     "tar": "7.5.21",
     "validator": "13.15.35",
@@ -198,7 +198,7 @@
     "minimist": "^1.2.6",
     "json-schema": "^0.4.0",
     "copy-props": "^2.0.5",
-    "nanoid": "^3.1.31",
+    "nanoid": "^3.3.17",
     "moment": "^2.29.4",
     "ajv": "^8.0.0",
     "codecov": "3.7.1",
@@ -223,7 +223,7 @@
     "jws": "4.0.1",
     "diff": "5.2.2",
     "picomatch": "^2.3.2",
-    "ip-address": "^10.2.0"
+    "ip-address": "10.3.1"
   },
   "packageManager": "yarn@4.17.1",
   "husky": {
