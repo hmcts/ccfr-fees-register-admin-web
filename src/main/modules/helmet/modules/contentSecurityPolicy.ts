@@ -5,6 +5,7 @@ const none = '\'none\''
 const self = '\'self\''
 const googleAnalyticsDomain = '*.google-analytics.com';
 const tagManager = ['*.googletagmanager.com', 'https://tagmanager.google.com'];
+const dynatrace = 'https://*.dynatrace.com';
 
 export class ContentSecurityPolicy {
 
@@ -12,8 +13,8 @@ export class ContentSecurityPolicy {
   }
 
   enableFor (app: express.Express) {
-    const scriptSrc = [self, ...tagManager, googleAnalyticsDomain, "'unsafe-inline'", "'unsafe-eval'"]
-    const connectSrc = [self, googleAnalyticsDomain]
+    const scriptSrc = [self, ...tagManager, googleAnalyticsDomain, dynatrace, "'unsafe-inline'", "'unsafe-eval'"]
+    const connectSrc = [self, googleAnalyticsDomain, dynatrace]
 
     if (this.developmentMode) {
       scriptSrc.push('http://localhost:35729')
