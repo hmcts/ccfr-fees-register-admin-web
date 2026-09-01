@@ -34,31 +34,31 @@ export interface FeeParamSpec {
 export function validateFeeParams (specs: FeeParamSpec[]): express.RequestHandler {
   return (req: express.Request, res: express.Response, next: express.NextFunction) => {
     try {
+
       for (const spec of specs) {
         const container: any = spec.source === 'body' ? req.body : spec.source === 'query' ? req.query : req.params
         const field: string = spec.field || spec.name
         const required: boolean = spec.required === true
+        const value = container[field]
 
-        if (required && (container[field] === undefined || container[field] === null || container[field] === '')) {
+        if (required && (value === undefined || value === null || value === '')) {
           throw new BadRequestError(`Invalid ${spec.name}`)
         }
-        if (container[field] === undefined || container[field] === null || container[field] === '') {
+        if (value === undefined || value === null || value === '') {
           continue
         }
 
         if (spec.name === 'version') {
-          const parsed = parseVersion(container[field])
-          if (parsed === null) {
+          if (parseVersion(value) === null) {
             throw new BadRequestError('Invalid version')
           }
-          container[field] = parsed
         } else {
-          if (!isValidFeeCode(container[field])) {
+          if (!isValidFeeCode(value)) {
             throw new BadRequestError('Invalid feeCode')
           }
         }
       }
-      next()
+      return next();
     } catch (err) {
       next(err)
     }
