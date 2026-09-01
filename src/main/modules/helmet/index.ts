@@ -1,5 +1,5 @@
 import * as express from 'express'
-import * as helmet from 'helmet'
+import helmet from 'helmet'
 
 import { ContentSecurityPolicy } from './modules/contentSecurityPolicy'
 import { ReferrerPolicy } from './modules/referredPolicy'
@@ -19,7 +19,7 @@ export class Helmet {
   }
 
   enableFor (app: express.Express) {
-    app.use(helmet({xssFilter: false}))
+    app.use(helmet() as express.RequestHandler)
 
     new ContentSecurityPolicy(this.developmentMode).enableFor(app)
 
