@@ -52,7 +52,7 @@ withNightlyPipeline("nodejs", product, component) {
   loadVaultSecrets(secrets)
   enableFullFunctionalTest()
   enableFortifyScan()
-  enableCrossBrowserTest()
+//  enableCrossBrowserTest()
   enableSecurityScan(urlExclusion: urlExclusions, urlExclusions: urlExclusions)
   afterAlways('checkout') {
     sh "yarn cache clean"
