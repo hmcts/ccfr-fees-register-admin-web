@@ -1,20 +1,23 @@
-{"value":"@npmcli/move-file","children":{"ID":"@npmcli/move-file (deprecation)","Issue":"This functionality has been moved to @npmcli/fs","Severity":"moderate","Vulnerable Versions":"2.0.1","Tree Versions":["2.0.1"],"Dependents":["cacache@npm:16.1.3"]}}
-{"value":"@tootallnate/once","children":{"ID":1119438,"Issue":"@tootallnate/once vulnerable to Incorrect Control Flow Scoping","URL":"https://github.com/advisories/GHSA-vpq2-c234-7xj6","Severity":"low","Vulnerable Versions":"<2.0.1","Tree Versions":["1.1.2","2.0.0"],"Dependents":["http-proxy-agent@npm:4.0.1","http-proxy-agent@npm:5.0.0"]}}
-{"value":"are-we-there-yet","children":{"ID":"are-we-there-yet (deprecation)","Issue":"This package is no longer supported.","Severity":"moderate","Vulnerable Versions":"1.1.5","Tree Versions":["1.1.5"],"Dependents":["npmlog@npm:4.1.2"]}}
-{"value":"argv","children":{"ID":"argv (deprecation)","Issue":"Package no longer supported. Contact Support at https://www.npmjs.com/support for more info.","Severity":"moderate","Vulnerable Versions":"0.0.2","Tree Versions":["0.0.2"],"Dependents":["codecov@npm:3.7.1"]}}
-{"value":"build-url","children":{"ID":"build-url (deprecation)","Issue":"This package is no longer maintained","Severity":"moderate","Vulnerable Versions":"2.0.0","Tree Versions":["2.0.0"],"Dependents":["fees-register-admin-web@workspace:."]}}
-{"value":"csurf","children":{"ID":"csurf (deprecation)","Issue":"This package is archived and no longer maintained. For support, visit https://github.com/expressjs/express/discussions","Severity":"moderate","Vulnerable Versions":"1.11.0","Tree Versions":["1.11.0"],"Dependents":["fees-register-admin-web@workspace:."]}}
-{"value":"fsevents","children":{"ID":"fsevents (deprecation)","Issue":"Upgrade to fsevents v2 to mitigate potential security issues","Severity":"moderate","Vulnerable Versions":"1.2.11","Tree Versions":["1.2.11"],"Dependents":["chokidar@npm:2.1.8"]}}
-{"value":"gauge","children":{"ID":"gauge (deprecation)","Issue":"This package is no longer supported.","Severity":"moderate","Vulnerable Versions":"2.7.4","Tree Versions":["2.7.4"],"Dependents":["npmlog@npm:4.1.2"]}}
-{"value":"glob","children":{"ID":"glob (deprecation)","Issue":"Old versions of glob are not supported, and contain widely publicized security vulnerabilities, which have been fixed in the current version. Please update. Support for old versions may be purchased (at exorbitant rates) by contacting i@izs.me","Severity":"moderate","Vulnerable Versions":"8.1.0","Tree Versions":["8.1.0"],"Dependents":["cacache@npm:16.1.3"]}}
-{"value":"govuk-elements-sass","children":{"ID":"govuk-elements-sass (deprecation)","Issue":"GOV.UK Elements is no longer maintained. Use the GOV.UK Design System instead: https://frontend.design-system.service.gov.uk/v4/migrating-from-legacy-products/","Severity":"moderate","Vulnerable Versions":"3.1.3","Tree Versions":["3.1.3"],"Dependents":["fees-register-admin-web@workspace:."]}}
-{"value":"govuk_frontend_toolkit","children":{"ID":"govuk_frontend_toolkit (deprecation)","Issue":"GOV.UK Frontend Toolkit is no longer maintained. Use the GOV.UK Design System instead: https://frontend.design-system.service.gov.uk/v4/migrating-from-legacy-products/","Severity":"moderate","Vulnerable Versions":"7.6.0","Tree Versions":["7.6.0"],"Dependents":["govuk-elements-sass@npm:3.1.3"]}}
-{"value":"govuk_template_jinja","children":{"ID":"govuk_template_jinja (deprecation)","Issue":"GOV.UK Template is no longer maintained. Use the GOV.UK Design System instead: https://frontend.design-system.service.gov.uk/v4/migrating-from-legacy-products/","Severity":"moderate","Vulnerable Versions":"0.25.0","Tree Versions":["0.25.0"],"Dependents":["fees-register-admin-web@workspace:."]}}
-{"value":"inflight","children":{"ID":"inflight (deprecation)","Issue":"This module is not supported, and leaks memory. Do not use it. Check out lru-cache if you want a good and tested way to coalesce async requests by a key value, which is much more comprehensive and powerful.","Severity":"moderate","Vulnerable Versions":"1.0.6","Tree Versions":["1.0.6"],"Dependents":["glob@npm:7.1.6"]}}
-{"value":"left-pad","children":{"ID":"left-pad (deprecation)","Issue":"use String.prototype.padStart()","Severity":"moderate","Vulnerable Versions":"1.3.0","Tree Versions":["1.3.0"],"Dependents":["fees-register-admin-web@workspace:."]}}
-{"value":"lodash.isequal","children":{"ID":"lodash.isequal (deprecation)","Issue":"This package is deprecated. Use require('node:util').isDeepStrictEqual instead.","Severity":"moderate","Vulnerable Versions":"4.5.0","Tree Versions":["4.5.0"],"Dependents":["@fast-csv/format@npm:4.3.5"]}}
-{"value":"node-pre-gyp","children":{"ID":"node-pre-gyp (deprecation)","Issue":"Please upgrade to @mapbox/node-pre-gyp: the non-scoped node-pre-gyp package is deprecated and only the @mapbox scoped package will recieve updates in the future","Severity":"moderate","Vulnerable Versions":"0.17.0","Tree Versions":["0.17.0"],"Dependents":["fsevents@npm:1.2.11"]}}
-{"value":"npmlog","children":{"ID":"npmlog (deprecation)","Issue":"This package is no longer supported.","Severity":"moderate","Vulnerable Versions":"4.1.2","Tree Versions":["4.1.2"],"Dependents":["node-pre-gyp@npm:0.17.0"]}}
-{"value":"osenv","children":{"ID":"osenv (deprecation)","Issue":"This package is no longer supported.","Severity":"moderate","Vulnerable Versions":"0.1.5","Tree Versions":["0.1.5"],"Dependents":["nopt@npm:4.0.3"]}}
-{"value":"rimraf","children":{"ID":"rimraf (deprecation)","Issue":"Rimraf versions prior to v4 are no longer supported","Severity":"moderate","Vulnerable Versions":"2.7.1","Tree Versions":["2.7.1"],"Dependents":["node-pre-gyp@npm:0.17.0"]}}
-{"value":"superagent","children":{"ID":"superagent (deprecation)","Issue":"Please upgrade to superagent v10.2.2+, see release notes at https://github.com/forwardemail/superagent/releases/tag/v10.2.2 - maintenance is supported by Forward Email @ https://forwardemail.net","Severity":"moderate","Vulnerable Versions":"8.1.2","Tree Versions":["8.1.2"],"Dependents":["@hmcts/nodejs-healthcheck@npm:1.8.4"]}}
+➤ YN0001: RequestError: Timeout awaiting 'socket' for 60000ms
+    at ClientRequest.<anonymous> (/Users/skynet/Desktop/mis_cosas/work/MoJ/repositories-payment-front-end/ccfr-fees-register-admin-web/.yarn/releases/yarn-4.17.1.cjs:146:14230)
+    at Object.onceWrapper (node:events:629:26)
+    at ClientRequest.emit (node:events:526:35)
+    at c.emit (/Users/skynet/Desktop/mis_cosas/work/MoJ/repositories-payment-front-end/ccfr-fees-register-admin-web/.yarn/releases/yarn-4.17.1.cjs:141:22975)
+    at TLSSocket.socketErrorListener (node:_http_client:501:9)
+    at TLSSocket.emit (node:events:514:28)
+    at emitErrorNT (node:internal/streams/destroy:151:8)
+    at emitErrorCloseNT (node:internal/streams/destroy:116:3)
+    at process.processTicksAndRejections (node:internal/process/task_queues:82:21)
+    at h (/Users/skynet/Desktop/mis_cosas/work/MoJ/repositories-payment-front-end/ccfr-fees-register-admin-web/.yarn/releases/yarn-4.17.1.cjs:142:15326)
+    at ClientRequest.C (/Users/skynet/Desktop/mis_cosas/work/MoJ/repositories-payment-front-end/ccfr-fees-register-admin-web/.yarn/releases/yarn-4.17.1.cjs:142:15570)
+    at Object.onceWrapper (node:events:628:28)
+    at ClientRequest.emit (node:events:526:35)
+    at c.emit (/Users/skynet/Desktop/mis_cosas/work/MoJ/repositories-payment-front-end/ccfr-fees-register-admin-web/.yarn/releases/yarn-4.17.1.cjs:141:22975)
+    at TLSSocket.emitRequestTimeout (node:_http_client:847:9)
+    at Object.onceWrapper (node:events:628:28)
+    at TLSSocket.emit (node:events:526:35)
+    at Socket._onTimeout (node:net:571:8)
+    at listOnTimeout (node:internal/timers:569:17)
+
+➤ Errors happened when preparing the environment required to run this command.
+➤ This might be caused by packages being missing from the lockfile, in which case running "yarn install" might help.
