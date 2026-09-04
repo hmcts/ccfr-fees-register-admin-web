@@ -42,7 +42,7 @@ describe('Dashboard page', () => {
     })
 
     it('should delete fee version', async () => {
-      feesServiceMock.resolveApprove('FEE002', 1, 'delete')
+      feesServiceMock.resolveDeleteFeeVersion('FEE002', 1)
       feesServiceMock.resolveGetFees()
       await request(app)
         .post(AdminPaths.dashboard.uri)
