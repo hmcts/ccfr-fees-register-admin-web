@@ -6,6 +6,7 @@ import { FeesClient } from 'app/fees/v2/feesClient'
 
 import { Fee2Dto } from 'fees/v2/model/fees-register-api-contract'
 import { AuthOptions } from 'app/client/request'
+import { validateFeeParams } from 'app/utils/feeRequestValidation'
 
 class Renderer {
 
@@ -31,13 +32,16 @@ export default express.Router()
           feeDto: feeDto })
       })
   })
-  .post(Paths.feeDetailsViewPagev2.uri, (req: express.Request, res: express.Response) => {
-    Renderer.executeAction(res.locals.user, req.body.action, req.body.feeCode, req.body.version)
-      .then(() => {
-        if(req.body.action === 'approve') {
-          res.redirect(`/admin/v2/approval-confirmation?feeCode=${req.query.feeCode}`)
-        } else if(req.body.action === 'submit') {
-          res.redirect(`/admin/v2/approval-request-confirmation?feeCode=${req.query.feeCode}`)
-        }
-      })
-  })
+  .post(Paths.feeDetailsViewPagev2.uri,
+    validateFeeParams([{ source: 'body', name: 'feeCode', required: true }, { source: 'body', name: 'version', required: true }]),
+    (req: express.Request, res: express.Response, next: express.NextFunction) => {
+      Renderer.executeAction(res.locals.user, req.body.action, req.body.feeCode, req.body.version)
+        .then(() => {
+          if (req.body.action === 'approve') {
+            res.redirect(`/admin/v2/approval-confirmation?feeCode=${req.query.feeCode}`)
+          } else if (req.body.action === 'submit') {
+            res.redirect(`/admin/v2/approval-request-confirmation?feeCode=${req.query.feeCode}`)
+          }
+        })
+        .catch(next)
+    })

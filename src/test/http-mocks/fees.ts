@@ -215,6 +215,12 @@ export function resolveApprove (code: string, version: number, action: string) {
     .reply(HttpStatus.OK)
 }
 
+export function resolveDeleteFeeVersion (code: string, version: number) {
+  mock(`${serviceBaseURL}`)
+    .delete(new RegExp(`/fees/${code}/versions/${version}`))
+    .reply(HttpStatus.OK)
+}
+
 export function resolvePrevalidate () {
   mock(`${serviceBaseURL}/fees-register`)
     .get(new RegExp(`/fees/prevalidate`))

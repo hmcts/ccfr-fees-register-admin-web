@@ -6,6 +6,7 @@ import { FeesClient } from 'app/fees/v2/feesClient'
 
 import { Fee2Dto } from 'fees/v2/model/fees-register-api-contract'
 import { AuthOptions } from 'app/client/request'
+import { validateFeeParams } from 'app/utils/feeRequestValidation'
 
 class Renderer {
 
@@ -59,8 +60,10 @@ export default express.Router()
   .get(Paths.dashboard.uri, (req: express.Request, res: express.Response) => {
     Renderer.render(res)
   })
-  .post(Paths.dashboard.uri, (req: express.Request, res: express.Response) => {
-    Renderer.executeAction(res.locals.user, req.body.action, req.body.feeCode, req.body.version)
-      .then(() => Renderer.render(res))
-      .catch(() => Renderer.render(res))
-  })
+  .post(Paths.dashboard.uri,
+    validateFeeParams([{ source: 'body', name: 'feeCode', required: true }, { source: 'body', name: 'version', required: true }]),
+    (req: express.Request, res: express.Response, next: express.NextFunction) => {
+      Renderer.executeAction(res.locals.user, req.body.action, req.body.feeCode, req.body.version)
+        .then(() => Renderer.render(res))
+        .catch(next)
+    })
