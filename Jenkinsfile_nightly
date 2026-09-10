@@ -18,6 +18,7 @@ properties([
 def product = "fees-register"
 def component = "frontend"
 def urlExclusions = params.ZAP_URL_EXCLUSIONS
+def yarnBuilder = new uk.gov.hmcts.contino.YarnBuilder(this)
 
 def secrets = [
   'fees-register-${env}'      : [
@@ -52,7 +53,6 @@ withNightlyPipeline("nodejs", product, component) {
   loadVaultSecrets(secrets)
   enableFullFunctionalTest()
   enableFortifyScan()
-//  enableCrossBrowserTest()
   enableSecurityScan(urlExclusion: urlExclusions, urlExclusions: urlExclusions)
   afterAlways('checkout') {
     sh "yarn cache clean"
@@ -65,6 +65,26 @@ withNightlyPipeline("nodejs", product, component) {
   }
   afterAlways('fortify-scan') {
     steps.archiveArtifacts allowEmptyArchive: true, artifacts: '**/Fortify Scan/**/*'
+
+    stage('crossBrowserTest') {
+      warnError('Failure in crossBrowserTest') {
+        timeoutWithMsg(time: 120, unit: 'MINUTES', action: 'Cross browser test') {
+          try {
+            yarnBuilder.yarn('test:crossbrowser')
+          } finally {
+            publishHTML target: [
+              allowMissing         : true,
+              alwaysLinkToLastBuild: true,
+              keepAll              : true,
+              reportDir            : 'functional-output/cross-browser/allure',
+              reportFiles          : 'index.html',
+              reportName           : 'Cross Browser Test Report'
+            ]
+            steps.archiveArtifacts allowEmptyArchive: true, artifacts: 'functional-output/cross-browser/reports/**/*'
+          }
+        }
+      }
+    }
   }
 
   afterAlways('fullFunctionalTest') {
