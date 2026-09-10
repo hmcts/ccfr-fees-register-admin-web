@@ -29,6 +29,7 @@
     "test:functional": "npm-run-all -scl test:acceptance test:functional:report",
     "test:fullfunctional": "npm-run-all -scl test:acceptance test:functional:report",
     "test:acceptance": "codeceptjs run-workers 6 parallel --config acceptance-tests/codecept.conf.js --grep @functional",
+    "test:auth-cache": "mocha acceptance-tests/test/end-to-end/helpers/local_auth_cache.test.js",
     "test:functional:report": "allure generate functional-output/functional/reports -c -o functional-output/functional/allure",
     "test:crossbrowser": "npm-run-all -scl test:crossbrowser:e2e test:crossbrowser:report",
     "test:crossbrowser:e2e": "NODE_TLS_REJECT_UNAUTHORIZED=0 codeceptjs run-multiple --all --config acceptance-tests/saucelabs.conf.js --grep @crossbrowser",

@@ -2,6 +2,7 @@
 
 const fetch = require('node-fetch');
 const uuid = require('uuid');
+const authCache = require('./local_auth_cache');
 
 const idamApi = process.env.IDAM_API_URL || 'https://idam-api.aat.platform.hmcts.net';
 const idamTestingSupportApi = process.env.IDAM_TESTING_SUPPORT_API || 'https://idam-testing-support-api.aat.platform.hmcts.net';
@@ -11,24 +12,29 @@ const clientRedirectUri = process.env.CLIENT_REDIRECT_URI || 'https://fees-regis
 const scope = 'openid profile roles search-user';
 
 async function getAccessTokenClientSecret() {
-  let searchParams = new URLSearchParams();
-  searchParams.set('grant_type', 'client_credentials');
-  searchParams.set('client_id', clientId);
-  searchParams.set('client_secret', clientSecret);
-  searchParams.set('scope', 'profile roles');
+  return authCache.getOrCreate(['fees-register-admin-web', idamApi, 'client_credentials', clientId], async () => {
+    let searchParams = new URLSearchParams();
+    searchParams.set('grant_type', 'client_credentials');
+    searchParams.set('client_id', clientId);
+    searchParams.set('client_secret', clientSecret);
+    searchParams.set('scope', 'profile roles');
 
-  return fetch(`${idamApi}/o/token`, {
-    method: 'POST',
-    body: searchParams,
-    headers: {
-      'Content-Type': 'application/x-www-form-urlencoded'
+    const response = await fetch(`${idamApi}/o/token`, {
+      method: 'POST',
+      body: searchParams,
+      headers: {
+        'Content-Type': 'application/x-www-form-urlencoded'
+      }
+    });
+    if (!response.ok) {
+      throw new Error(`IDAM client credentials request failed with status ${response.status}`);
     }
-  }).then(response => {
-    return response.json();
-  }).then((json) => {
+
+    const json = await response.json();
+    if (!json.access_token) {
+      throw new Error('IDAM client credentials response did not include access_token');
+    }
     return json.access_token;
-  }).catch(err => {
-    console.log(err);
   });
 }
 
@@ -60,32 +66,39 @@ async function createIdamUserUsingTestingSupportService(forename, email, passwor
 }
 
 async function getIdamUserAccessToken(username, password) {
-  let searchParams = new URLSearchParams();
-  searchParams.set('grant_type', 'password');
-  searchParams.set('username', username);
-  searchParams.set('password', password);
-  searchParams.set('client_id', clientId);
-  searchParams.set('client_secret', clientSecret);
-  searchParams.set('redirect_uri', clientRedirectUri);
-  searchParams.set('scope', scope);
+  return authCache.getOrCreate(
+    ['fees-register-admin-web', idamApi, 'password', username, clientId, clientRedirectUri, scope],
+    async () => {
+      let searchParams = new URLSearchParams();
+      searchParams.set('grant_type', 'password');
+      searchParams.set('username', username);
+      searchParams.set('password', password);
+      searchParams.set('client_id', clientId);
+      searchParams.set('client_secret', clientSecret);
+      searchParams.set('redirect_uri', clientRedirectUri);
+      searchParams.set('scope', scope);
 
-  return fetch(`${idamApi}/o/token`, {
-    method: 'POST',
-    body: searchParams,
-    headers: {
-      'Content-Type': 'application/x-www-form-urlencoded'
+      const response = await fetch(`${idamApi}/o/token`, {
+        method: 'POST',
+        body: searchParams,
+        headers: {
+          'Content-Type': 'application/x-www-form-urlencoded'
+        }
+      });
+      if (!response.ok) {
+        throw new Error(`IDAM user token request failed with status ${response.status} for ${username}`);
+      }
+
+      const json = await response.json();
+      if (!json.access_token) {
+        throw new Error(`IDAM user token response did not include access_token for ${username}`);
+      }
+      return json.access_token;
     }
-  }).then(response => {
-    return response.json();
-  }).then((json) => {
-    return json.access_token;
-  }).catch(err => {
-    console.log(err);
-  });
+  );
 }
 
 module.exports = {
   getAccessTokenClientSecret, createUserUsingTestingSupportService: createIdamUserUsingTestingSupportService, getIdamUserAccessToken
 };
-
 
