@@ -115,7 +115,7 @@
     "codeceptjs": "^3.5.2",
     "cross-env": "^5.2.0",
     "debug": "^4.3.4",
-    "faker": "^4.1.0",
+    "@faker-js/faker": "^4.1.0",
     "gulp-cli": "2.3.0",
     "gulp-livereload": "^4.0.1",
     "gulp-nodemon": "^2.5.0",
