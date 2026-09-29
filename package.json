@@ -166,7 +166,7 @@
     "all": true
   },
   "resolutions": {
-    "js-yaml": "5.2.2",
+    "js-yaml": "5.4.1",
     "brace-expansion": "2.1.4",
     "shell-quote": "1.10.0",
     "@opentelemetry/core": "2.8.0",
