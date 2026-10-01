@@ -86,7 +86,7 @@ withNightlyPipeline("nodejs", product, component) {
         warnError('Failure in crossBrowserTest') {
           timeoutWithMsg(time: 120, unit: 'MINUTES', action: 'Cross browser test') {
             try {
-              yarnBuilder.yarn('test:crossbrowser')
+              sh 'yarn test:crossbrowser'
             } finally {
               publishHTML target: [
                 allowMissing         : true,
