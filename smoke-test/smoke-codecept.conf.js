@@ -10,6 +10,7 @@ exports.config = {
       url: `${CONF.e2e.frontendUrl}/health`,
       show: false,
       browser: 'chromium',
+      userAgent: 'fees-register-admin-web-smoke-tests',
       waitForTimeout: 60001,
       waitForAction: 500,
       timeout: 20002,
