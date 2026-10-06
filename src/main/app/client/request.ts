@@ -46,7 +46,7 @@ export default async function makeRequest(
 ): Promise<Response> {
   const options: {method: string, headers: object, body?: string} = {
     method,
-    headers: { 'Content-Type': 'application/json' }
+    headers: { 'Content-Type': 'application/json', 'User-Agent': 'fees-register-admin-web' }
   }
 
   if (token) { options.headers['Authorization'] = `Bearer ${token}` }

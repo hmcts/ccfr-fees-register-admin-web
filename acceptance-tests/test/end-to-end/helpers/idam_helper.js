@@ -9,6 +9,7 @@ const clientId ='fees_admin_frontend';
 const clientSecret = process.env.CLIENT_SECRET;
 const clientRedirectUri = process.env.CLIENT_REDIRECT_URI || 'https://fees-register.aat.platform.hmcts.net/oauth2/callback';
 const scope = 'openid profile roles search-user';
+const userAgent = 'fees-register-admin-web-acceptance-tests';
 
 async function getAccessTokenClientSecret() {
   let searchParams = new URLSearchParams();
@@ -21,7 +22,8 @@ async function getAccessTokenClientSecret() {
     method: 'POST',
     body: searchParams,
     headers: {
-      'Content-Type': 'application/x-www-form-urlencoded'
+      'Content-Type': 'application/x-www-form-urlencoded',
+      'User-Agent': userAgent
     }
   }).then(response => {
     return response.json();
@@ -49,7 +51,7 @@ async function createIdamUserUsingTestingSupportService(forename, email, passwor
   return fetch(`${idamTestingSupportApi}/test/idam/users`, {
     method: 'POST',
     body: JSON.stringify(data),
-    headers: {'Content-Type': 'application/json', 'Authorization': 'Bearer ' + accessToken},
+    headers: {'Content-Type': 'application/json', 'Authorization': 'Bearer ' + accessToken, 'User-Agent': userAgent},
   }).then(res => res.json())
     .then((json) => {
       return json;
@@ -73,7 +75,8 @@ async function getIdamUserAccessToken(username, password) {
     method: 'POST',
     body: searchParams,
     headers: {
-      'Content-Type': 'application/x-www-form-urlencoded'
+      'Content-Type': 'application/x-www-form-urlencoded',
+      'User-Agent': userAgent
     }
   }).then(response => {
     return response.json();
@@ -87,5 +90,4 @@ async function getIdamUserAccessToken(username, password) {
 module.exports = {
   getAccessTokenClientSecret, createUserUsingTestingSupportService: createIdamUserUsingTestingSupportService, getIdamUserAccessToken
 };
-
 

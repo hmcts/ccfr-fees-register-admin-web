@@ -30,6 +30,7 @@ const setupConfig = {
   helpers: {
     Playwright: {
       url: CONF.e2e.frontendUrl,
+      userAgent: 'fees-register-admin-web-acceptance-tests',
       waitForTimeout: 60002,
       waitForAction: 800,
       timeout: 20004,
