@@ -11,6 +11,7 @@ exports.config = {
       url: CONF.e2e.frontendUrl,
       show: false,
       browser: 'chromium',
+      userAgent: 'fees-register-admin-web-acceptance-tests',
       waitForTimeout: 60001,
       waitForAction: 500,
       timeout: 20002,

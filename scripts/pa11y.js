@@ -9,6 +9,7 @@ const editorUsername = process.env.EDITOR_USERNAME;
 const editorPassword = process.env.EDITOR_PASSWORD;
 const approverUsername = process.env.APPROVER_USERNAME;
 const approverPassword = process.env.APPROVER_PASSWORD;
+const userAgent = 'fees-register-admin-web-a11y-tests';
 
 // Generates HTML reporter
 const generateHTMLReport = html => new Promise((resolve, reject) => {
@@ -33,6 +34,7 @@ async function runEditorTests() {
       ],
       wait: 2000,
       timeout: 70000,
+      userAgent,
       screenCapture: `${outputFolder}/admin-V2-all-fees.png`,
       log: {
         debug: console.log,
@@ -51,6 +53,7 @@ async function runEditorTests() {
       ],
       wait: 2000,
       timeout: 70000,
+      userAgent,
       screenCapture: `${outputFolder}/admin-V2-all-approvedbutnotlive.png`,
       log: {
         debug: console.log,
@@ -70,6 +73,7 @@ async function runEditorTests() {
       ],
       wait: 2000,
       timeout: 70000,
+      userAgent,
       screenCapture: `${outputFolder}/admin-V2-all-discontinued.png`,
       log: {
         debug: console.log,
@@ -89,6 +93,7 @@ async function runEditorTests() {
       ],
       wait: 2000,
       timeout: 70000,
+      userAgent,
       screenCapture: `${outputFolder}/admin-V2-upload.png`,
       log: {
         debug: console.log,
@@ -108,6 +113,7 @@ async function runEditorTests() {
       ],
       wait: 2000,
       timeout: 70000,
+      userAgent,
       screenCapture: `${outputFolder}/admin-V2-fees-create.png`,
       log: {
         debug: console.log,
@@ -127,6 +133,7 @@ async function runEditorTests() {
       ],
       wait: 2000,
       timeout: 70000,
+      userAgent,
       screenCapture: `${outputFolder}/admin-V2-reference-data.png`,
       log: {
         debug: console.log,
@@ -171,6 +178,7 @@ async function runApproverTests() {
       ],
       wait: 2000,
       timeout: 70000,
+      userAgent,
       screenCapture: `${outputFolder}/admin-V2-pending-approval.png`,
       log: {
         debug: console.log,
@@ -189,6 +197,7 @@ async function runApproverTests() {
       ],
       wait: 2000,
       timeout: 70000,
+      userAgent,
       screenCapture: `${outputFolder}/admin-V2-fee-details.png`,
       log: {
         debug: console.log,
@@ -207,6 +216,7 @@ async function runApproverTests() {
       ],
       wait: 2000,
       timeout: 70000,
+      userAgent,
       screenCapture: `${outputFolder}/admin-V2-approval-confirmation .png`,
       log: {
         debug: console.log,
@@ -228,6 +238,7 @@ async function runApproverTests() {
       ],
       wait: 2000,
       timeout: 70000,
+      userAgent,
       screenCapture: `${outputFolder}/admin-V2-reject-fee-reason.png`,
       log: {
         debug: console.log,
