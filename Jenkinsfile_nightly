@@ -10,6 +10,10 @@ properties([
     string(name: 'IDAM_TESTING_SUPPORT_API', defaultValue: 'https://idam-testing-support-api.aat.platform.hmcts.net', description: 'The Idam Testing Support Api you want to run these tests against to create Idam burner Users'),
     string(name: 'REDIRECT_URI', defaultValue: 'https://fees-register.aat.platform.hmcts.net/oauth2/callback', description: 'The Redirect Uri you want to run these tests against to get Idam Access token'),
     string(name: 'ZAP_URL_EXCLUSIONS', defaultValue: "-config connection.defaultUserAgent=fees-register-admin-web-nightly-zap -config replacer.full_list\\(0\\).description=zap-user-agent -config replacer.full_list\\(0\\).enabled=true -config replacer.full_list\\(0\\).matchtype=REQ_HEADER -config replacer.full_list\\(0\\).matchstr=User-Agent -config replacer.full_list\\(0\\).regex=false -config replacer.full_list\\(0\\).replacement=fees-register-admin-web-nightly-zap -config globalexcludeurl.url_list.url\\(0\\).regex=https?:\\/\\/.*(?:idam-web-public|hmcts-access).* -config globalexcludeurl.url_list.url\\(1\\).regex=https?:\\/\\/.*\\/stylesheets\\/.* -config globalexcludeurl.url_list.url\\(2\\).regex=https?:\\/\\/.*\\/js\\/.*", description: 'ZAP options for headers and URL exclusions')
+    booleanParam(name: 'skipFortifyScan', defaultValue: false, description: 'Tick the checkbox for skip'),
+    booleanParam(name: 'skipSecurityScanTests', defaultValue: false, description: 'Tick the checkbox for skip'),
+    booleanParam(name: 'skipFullFunctionalTests', defaultValue: false, description: 'Tick the checkbox for skip'),
+    booleanParam(name: 'skipCrossBrowserTest', defaultValue: false, description: 'Tick the checkbox for skip')
   ])
 ])
 
@@ -50,10 +54,19 @@ withNightlyPipeline("nodejs", product, component) {
   env.NIGHTLY_TEST= true
 
   loadVaultSecrets(secrets)
-  enableFullFunctionalTest()
-  enableFortifyScan()
-//  enableCrossBrowserTest()
-  enableSecurityScan(urlExclusion: urlExclusions, urlExclusions: urlExclusions)
+
+  if (!params.skipFullFunctionalTests) {
+    enableFullFunctionalTest()
+  }
+
+  if (!params.skipFortifyScan) {
+    enableFortifyScan()
+  }
+
+  if (params.ENVIRONMENT == 'aat' && !params.skipSecurityScanTests) {
+    enableSecurityScan(urlExclusion: urlExclusions, urlExclusions: urlExclusions)
+  }
+
   afterAlways('checkout') {
     sh "yarn cache clean"
     echo 'ccfr-fees-register-admin-web checked out'
@@ -65,6 +78,30 @@ withNightlyPipeline("nodejs", product, component) {
   }
   afterAlways('fortify-scan') {
     steps.archiveArtifacts allowEmptyArchive: true, artifacts: '**/Fortify Scan/**/*'
+  }
+
+  if (!params.skipCrossBrowserTest) {
+    afterAlways('DependencyCheckNightly') {
+      stage('crossBrowserTest') {
+        warnError('Failure in crossBrowserTest') {
+          timeoutWithMsg(time: 120, unit: 'MINUTES', action: 'Cross browser test') {
+            try {
+              sh 'yarn test:crossbrowser'
+            } finally {
+              publishHTML target: [
+                allowMissing         : true,
+                alwaysLinkToLastBuild: true,
+                keepAll              : true,
+                reportDir            : 'functional-output/cross-browser/allure',
+                reportFiles          : 'index.html',
+                reportName           : 'Cross Browser Test Report'
+              ]
+              steps.archiveArtifacts allowEmptyArchive: true, artifacts: 'functional-output/cross-browser/reports/**/*'
+            }
+          }
+        }
+      }
+    }
   }
 
   afterAlways('fullFunctionalTest') {
