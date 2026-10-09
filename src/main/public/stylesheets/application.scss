@@ -111,6 +111,13 @@ $govuk-background-color: #dee0e2;
   cursor: pointer;
 }
 
+.accessibility-statement-content {
+  .govuk-body,
+  .govuk-list {
+    font-size: 20px;
+  }
+}
+
 .copyright-logo-overwrite {
   background-image: url($path + 'govuk-crest.png');
 }

@@ -21,7 +21,16 @@ describe('Accessibility Page', () => {
 
             await request(app)
                 .get(AdminPaths.accessibilityPage.uri)
-                .expect(res => (expect(res).to.be as any).successful.withText('Accessibility statement for Fee Register'))
+                .expect(res => {
+                    (expect(res).to.be as any).successful
+                    expect(res.text).to.contain('Accessibility statement for Fee Register')
+                    expect(res.text).to.contain('This service is partially compliant with WCAG 2.2')
+                    expect(res.text).to.contain('href="https://www.equalityadvisoryservice.com/"')
+                    expect(res.text).to.contain('href="https://www.w3.org/TR/WCAG22/"')
+                    expect(res.text).to.contain('class="govuk-heading-xl"')
+                    expect(res.text).to.contain('class="govuk-grid-column-two-thirds accessibility-statement-content"')
+                    expect(res.text).to.contain('class="govuk-body"')
+                })
         })
     })
 
