@@ -53,7 +53,7 @@
       {% endif %}
       <td>
         {% if isDraftFeeSubmittable(fee) %}
-        <form method="post" action="">
+        <form method="post" action="" enctype="application/x-www-form-urlencoded">
           {{ csrfProtection(csrfToken) }}
           <input type="hidden" name="feeCode" value="{{ fee.code }}"/>
           <input type="hidden" name="version" value="{{ displayedFeeVersion.version }}"/>
@@ -64,7 +64,7 @@
       </td>
 
       <td>
-        <form method="post" action="">
+        <form method="post" action="" enctype="application/x-www-form-urlencoded">
           {{ csrfProtection(csrfToken) }}
           <input type="hidden" name="feeCode" value="{{ fee.code }}"/>
           <input type="hidden" name="version" value="{{ displayedFeeVersion.version }}"/>
@@ -183,7 +183,7 @@
     <tr>
       {% if isApprover(user.allInfo.roles) or isAdmin(user.allInfo.roles) %}
       <td>
-        <form method="post" action="">
+        <form method="post" action="" enctype="application/x-www-form-urlencoded">
           {{ csrfProtection(csrfToken) }}
           <input type="hidden" name="feeCode" value="{{ fee.code }}"/>
           <input type="hidden" name="version" value="{{ displayedFeeVersion.version }}"/>
@@ -192,7 +192,7 @@
         </form>
       </td>
       <td>
-        <form method="post" action="">
+        <form method="post" action="" enctype="application/x-www-form-urlencoded">
           {{ csrfProtection(csrfToken) }}
           <input type="hidden" name="feeCode" value="{{ fee.code }}"/>
           <input type="hidden" name="version" value="{{ displayedFeeVersion.version }}"/>
