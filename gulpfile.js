@@ -81,7 +81,7 @@ gulp.task("copy-files", function() {
 
     gulp.src([
       './node_modules/govuk_template_jinja/assets/stylesheets/**/*'
-    ])
+    ], { encoding: false })
     .pipe(replace('images/', '/stylesheets/lib/images/', {skipBinary: true}))
     .pipe(gulp.dest(`${assetsDirectory}/stylesheets/lib/`))
   ];
