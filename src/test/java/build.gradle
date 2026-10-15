@@ -23,6 +23,12 @@ dependencies {
 }
 // end::dependencies[]
 
+tasks.register('resolveFortifyDependencies') {
+  doLast {
+    configurations.testRuntimeClasspath.files
+  }
+}
+
 task fortifyScan(type: JavaExec)  {
   mainClass = "uk.gov.hmcts.fortifyclient.FortifyClientMainApp"
   classpath += sourceSets.test.runtimeClasspath
