@@ -104,6 +104,18 @@ withNightlyPipeline("nodejs", product, component) {
     }
   }
 
+  afterAlways('smokeTest') {
+    publishHTML target: [
+      allowMissing         : true,
+      alwaysLinkToLastBuild: true,
+      keepAll              : true,
+      reportDir            : "smoke-output/allure",
+      reportFiles          : "index.html",
+      reportName           : "Fees Reg Admin Web Smoke tests result"
+    ]
+    steps.archiveArtifacts allowEmptyArchive: true, artifacts: 'smoke-output/**/*'
+  }
+
   afterAlways('fullFunctionalTest') {
     publishHTML target: [
       allowMissing         : true,
