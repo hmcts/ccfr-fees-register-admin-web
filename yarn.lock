@@ -1401,12 +1401,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/node@npm:^18.11.9":
-  version: 18.19.121
-  resolution: "@types/node@npm:18.19.121"
+"@types/node@npm:^22.0.0":
+  version: 22.20.5
+  resolution: "@types/node@npm:22.20.5"
   dependencies:
-    undici-types: "npm:~5.26.4"
-  checksum: 10/1de136a9db2fe373744a7c40e3dcccaf7904ffdd76d115bd3ef639814aab54c4ea42a61476b54254cd606e7b5fbdc0958ca13b21e589d784c0eecad97c6f2bb1
+    undici-types: "npm:~6.21.0"
+  checksum: 10/a223a73e00e948b751b00144523674ecc73e7a3f14f48a0f3a6fca40745ff548a8b0ff5baca090d45ae8b61481cc56c1158db4df312970baeb6fc1b81fc511a1
   languageName: node
   linkType: hard
 
@@ -4194,7 +4194,7 @@ __metadata:
     "@types/lodash": "npm:^4.14.202"
     "@types/mocha": "npm:*"
     "@types/nock": "npm:^10.0.0"
-    "@types/node": "npm:^18.11.9"
+    "@types/node": "npm:^22.0.0"
     "@types/nunjucks": "npm:^3.2.2"
     "@types/shortid": "npm:^0.0.29"
     "@types/supertest": "npm:*"
@@ -10021,10 +10021,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"undici-types@npm:~5.26.4":
-  version: 5.26.5
-  resolution: "undici-types@npm:5.26.5"
-  checksum: 10/0097779d94bc0fd26f0418b3a05472410408877279141ded2bd449167be1aed7ea5b76f756562cb3586a07f251b90799bab22d9019ceba49c037c76445f7cddd
+"undici-types@npm:~6.21.0":
+  version: 6.21.0
+  resolution: "undici-types@npm:6.21.0"
+  checksum: 10/ec8f41aa4359d50f9b59fa61fe3efce3477cc681908c8f84354d8567bb3701fafdddf36ef6bff307024d3feb42c837cf6f670314ba37fc8145e219560e473d14
   languageName: node
   linkType: hard
 
