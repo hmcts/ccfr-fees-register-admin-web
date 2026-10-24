@@ -224,7 +224,7 @@
     "jws": "4.0.1",
     "diff": "5.2.2",
     "picomatch": "^2.3.2",
-    "ip-address": "10.7.2",
+    "ip-address": "10.7.4",
     "proxy-addr": "2.0.8"
   },
   "packageManager": "yarn@4.17.1",
