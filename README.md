@@ -8,7 +8,7 @@ This is the frontend application for CMC.
 
 ### Prerequisites
 
-* [Node.js](https://nodejs.org/) >= v18.17.1
+* [Node.js](https://nodejs.org/) 22.23.4 (see `.nvmrc`)
 * [yarn](https://yarnpkg.com/)
 * [Gulp](http://gulpjs.com/)
 
