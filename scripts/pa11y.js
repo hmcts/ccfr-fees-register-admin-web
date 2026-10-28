@@ -27,7 +27,7 @@ async function runEditorTests() {
     console.log("admin/V2/all-fees page");
     const pa11yResult1 = await pa11y(`${url}/admin/V2/all-fees`, {
       actions: [
-        `set field #username to ${editorUsername}`,
+        `set field #email to ${editorUsername}`,
         `set field #password to ${editorPassword}`,
         'click element .button',
         'wait for path to be /admin/V2/all-fees',
@@ -46,7 +46,7 @@ async function runEditorTests() {
     console.log("admin/V2/all-approvedbutnotlive page");
     const pa11yResult2 = await pa11y(`${url}/admin/V2/all-approvedbutnotlive`, {
       actions: [
-        `set field #username to ${editorUsername}`,
+        `set field #email to ${editorUsername}`,
         `set field #password to ${editorPassword}`,
         'click element .button',
         'wait for path to be /admin/V2/all-approvedbutnotlive',
@@ -66,7 +66,7 @@ async function runEditorTests() {
     const pa11yResult3 = await pa11y(`${url}/admin/V2/all-discontinued`, {
 
       actions: [
-        `set field #username to ${editorUsername}`,
+        `set field #email to ${editorUsername}`,
         `set field #password to ${editorPassword}`,
         'click element .button',
         'wait for path to be /admin/V2/all-discontinued',
@@ -86,7 +86,7 @@ async function runEditorTests() {
     const pa11yResult4 = await pa11y(`${url}/admin/v2/upload`, {
 
       actions: [
-        `set field #username to ${editorUsername}`,
+        `set field #email to ${editorUsername}`,
         `set field #password to ${editorPassword}`,
         'click element .button',
         'wait for path to be /admin/v2/upload',
@@ -106,7 +106,7 @@ async function runEditorTests() {
     const pa11yResult5 = await pa11y(`${url}/admin/v2/fees/create`, {
 
       actions: [
-        `set field #username to ${editorUsername}`,
+        `set field #email to ${editorUsername}`,
         `set field #password to ${editorPassword}`,
         'click element .button',
         'wait for path to be /admin/v2/fees/create',
@@ -126,7 +126,7 @@ async function runEditorTests() {
     const pa11yResult6 = await pa11y(`${url}/admin/v2/reference-data`, {
 
       actions: [
-        `set field #username to ${editorUsername}`,
+        `set field #email to ${editorUsername}`,
         `set field #password to ${editorPassword}`,
         'click element .button',
         'wait for path to be /admin/v2/reference-data',
@@ -171,7 +171,7 @@ async function runApproverTests() {
     console.log("admin/V2/pending-approval page");
     const pa11yResult1 = await pa11y(`${url}/admin/V2/pending-approval`, {
       actions: [
-        `set field #username to ${approverUsername}`,
+        `set field #email to ${approverUsername}`,
         `set field #password to ${approverPassword}`,
         'click element .button',
         'wait for path to be /admin/V2/pending-approval',
@@ -190,7 +190,7 @@ async function runApproverTests() {
     console.log("admin/V2/fee-details page");
     const pa11yResult2 = await pa11y(`${url}/admin/V2/fee-details?draft=true&feeCode=FEE0002&pageType=pa&vno=1`, {
       actions: [
-        `set field #username to ${approverUsername}`,
+        `set field #email to ${approverUsername}`,
         `set field #password to ${approverPassword}`,
         'click element .button',
         'wait for element .heading-xlarge to be visible',
@@ -209,7 +209,7 @@ async function runApproverTests() {
     console.log("admin/V2/approval-confirmation page");
     const pa11yResult3 = await pa11y(`${url}/admin/V2/approval-confirmation?feeCode=FEE1291`, {
       actions: [
-        `set field #username to ${approverUsername}`,
+        `set field #email to ${approverUsername}`,
         `set field #password to ${approverPassword}`,
         'click element .button',
         'wait for element .govuk-panel__title to be visible'
@@ -228,7 +228,7 @@ async function runApproverTests() {
     console.log("admin/V2/reject-fee-reason page");
     const pa11yResult4 = await pa11y(`${url}/admin/v2/reject-fee-reason/FEE1286/1`, {
       actions: [
-        `set field #username to ${approverUsername}`,
+        `set field #email to ${approverUsername}`,
         `set field #password to ${approverPassword}`,
         'click element .button',
         'wait for element .heading-xlarge to be visible',
