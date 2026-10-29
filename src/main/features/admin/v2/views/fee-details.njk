@@ -1403,7 +1403,7 @@
 
 		<br>
 		<br>
-      <form method="post" action="">
+      <form method="post" action="" enctype="application/x-www-form-urlencoded">
        {{ csrfProtection(csrfToken) }}
         <input type="hidden" name="feeCode" value="{{ feeDto.code }}"/>
         <input type="hidden" name="version" value="{{ versionNo }}"/>
@@ -1419,7 +1419,7 @@
 	{% if isApprover(user.allInfo.roles) %}
       <br>
       <br>
-      <form method="post" action="">
+      <form method="post" action="" enctype="application/x-www-form-urlencoded">
        {{ csrfProtection(csrfToken) }}
         <input type="hidden" name="feeCode" value="{{ feeDto.code }}"/>
         <input type="hidden" name="version" value="{{ versionNo }}"/>
