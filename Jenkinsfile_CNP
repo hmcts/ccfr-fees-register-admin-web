@@ -45,7 +45,7 @@ withPipeline("nodejs", product, component) {
   //Sync demo,ithc and perftest with master branch
   syncBranchesWithMaster(branchesToSync)
 
-  afterAlways('smokeTest:preview') {
+  afterAlways('smoketest:preview') {
     publishHTML target: [
       allowMissing         : true,
       alwaysLinkToLastBuild: true,
@@ -69,7 +69,7 @@ withPipeline("nodejs", product, component) {
     steps.archiveArtifacts allowEmptyArchive: true, artifacts: 'functional-output/**/*'
   }
 
-  afterAlways('smokeTest:aat') {
+  afterAlways('smoketest:aat') {
     publishHTML target: [
       allowMissing         : true,
       alwaysLinkToLastBuild: true,
