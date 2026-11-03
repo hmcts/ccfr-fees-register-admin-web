@@ -202,7 +202,7 @@
     "moment": "^2.31.0",
     "ajv": "^8.0.0",
     "codecov": "3.7.1",
-    "minimatch": "3.1.4",
+    "minimatch": "11.0.1",
     "decode-uri-component": "0.2.1",
     "cookiejar": "2.1.4",
     "qs": "6.16.1",
