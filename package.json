@@ -80,6 +80,7 @@
     "morgan": "^1.12.1",
     "multer": "^2.5.0",
     "nock": "^13.5.0",
+    "node-fetch": "^2.6.7",
     "npm-run-all2": "9.0.4",
     "nunjucks": "^3.2.4",
     "nunjucks-date-filter": "^0.1.1",

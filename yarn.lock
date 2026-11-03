@@ -4232,6 +4232,7 @@ __metadata:
     morgan: "npm:^1.12.1"
     multer: "npm:^2.5.0"
     nock: "npm:^13.5.0"
+    node-fetch: "npm:^2.6.7"
     node-mocks-http: "npm:^1.7.0"
     nodemon: "npm:^3.1.14"
     npm-run-all2: "npm:9.0.4"
