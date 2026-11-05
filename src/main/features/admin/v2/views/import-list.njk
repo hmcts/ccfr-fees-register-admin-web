@@ -7,10 +7,10 @@
   {% block content %}
 
 <div class="custom-grid-row">
-  <div class="column-quarter">
+  <div class="govuk-grid-column-one-quarter">
     <form action="bulkfeesupload" method="post">
       {{ csrfProtection(csrfToken) }}
-      <table class="column-quarter">
+      <table class="govuk-grid-column-one-quarter">
         <thead>
         <tr>
           <th class="bold-xxsmall">Fee code</th>
@@ -79,7 +79,7 @@
       </p>
     </form>
     <p>
-      <a href="/admin/v2/upload" class="link-back">{{ t('Back') }}</a>
+      <a href="/admin/v2/upload" class="govuk-back-link">{{ t('Back') }}</a>
     </p>
   </div>
 </div>

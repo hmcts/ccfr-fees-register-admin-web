@@ -6,14 +6,14 @@
 
   {% block content %}
 
-<div class="grid-row">
-  <div class="column-full">
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-full">
     <form method="post" action="/admin/categories/edit/{{ form.model.code }}">
       {{ csrfProtection(csrfToken) }}
       <input type="hidden" name="code" value="{{ form.model.code }}"/>
       {{ textArea(t('Description'), 'description', form) }}
 
-      <h3 class="heading-medium">Range Group</h3>
+      <h3 class="govuk-heading-m">Range Group</h3>
       <table>
         <thead>
         <tr>
@@ -27,7 +27,7 @@
         </tbody>
       </table>
 
-      <h3 class="heading-medium">Flat Fees</h3>
+      <h3 class="govuk-heading-m">Flat Fees</h3>
       <table>
         <thead>
         <tr>
@@ -53,7 +53,7 @@
       </p>
     </form>
 
-    <p><a href="/admin/categories/" class="link-back">{{ t("Back to categories list") }}</a></p>
+    <p><a href="/admin/categories/" class="govuk-back-link">{{ t("Back to categories list") }}</a></p>
   </div>
 </div>
 

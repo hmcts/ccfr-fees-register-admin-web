@@ -21,13 +21,13 @@ selectReferenceData %}
 
 {% block content %}
 <input type='hidden' id='userRole' value='{{ 'Approver' if isApprover(user.allInfo.roles) else 'Editor' }}'/>
-  <div class="grid-row">
-    <div class="column-full">
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-full">
       <form method="post" id="createForm" action="create">
         {{ csrfProtection(csrfToken) }}
         {% if edit %}
-          <div class="form-group">
-            <label class="form-label-bold">Fee Code</label>
+          <div class="govuk-form-group">
+            <label class="govuk-label govuk-label--s">Fee Code</label>
             <p>{{ form.valueFor('code') }}</p>
           </div>
           <input type="hidden" name="code" id="code" value="{{ form.valueFor('code') }}">
@@ -45,11 +45,11 @@ selectReferenceData %}
         {{ textInput(t('SI REF ID'), 'siRefId', form, style="width:150px;") }}
         {{ textArea(t('Consolidated/Original Fee Order Name'), 'consolidatedFeeOrderName', form, rows=2) }}
         {% set serviceError = form.errorFor('service') %}
-        <div class="govuk-form-group {{ 'form-group-error' if serviceError}}">
+        <div class="govuk-form-group {{ 'govuk-form-group--error' if serviceError}}">
           <fieldset id="service" class="govuk-fieldset">
-            <legend class="form-label-bold">Service</legend>
+            <legend class="govuk-fieldset__legend govuk-fieldset__legend--s">Service</legend>
             {% if serviceError %}
-              <span class="error-message"> {{serviceError}} </span>
+              <span class="govuk-error-message">{{serviceError}}</span>
             {% endif %}
             <div id='serviceParent'>
               {% for serviceName in referenceData.serviceTypes %}
@@ -68,11 +68,11 @@ selectReferenceData %}
           </fieldset>
       </div>
       {% set jurisdictionOneError = form.errorFor('jurisdiction1') %}
-      <div class="govuk-form-group {{ 'form-group-error' if jurisdictionOneError}}">
+      <div class="govuk-form-group {{ 'govuk-form-group--error' if jurisdictionOneError}}">
         <fieldset id="jurisdiction1" class="govuk-fieldset">
-          <legend class="form-label-bold">Jurisdiction 1</legend>
+          <legend class="govuk-fieldset__legend govuk-fieldset__legend--s">Jurisdiction 1</legend>
             {% if jurisdictionOneError %}
-              <span class="error-message"> {{jurisdictionOneError}} </span>
+              <span class="govuk-error-message">{{jurisdictionOneError}}</span>
             {% endif %}
           {% for jurisdiction1 in referenceData.jurisdictions1 %}
             <div id="verticalRadio" class = "form-group">
@@ -89,11 +89,11 @@ selectReferenceData %}
         </fieldset>
       </div>
       {% set jurisdictionTwoError = form.errorFor('jurisdiction2') %}
-      <div class="govuk-form-group {{ 'form-group-error' if jurisdictionTwoError}}">
+      <div class="govuk-form-group {{ 'govuk-form-group--error' if jurisdictionTwoError}}">
         <fieldset id="jurisdiction2" class="govuk-fieldset">
-          <legend class="form-label-bold">Jurisdiction 2</legend>
+          <legend class="govuk-fieldset__legend govuk-fieldset__legend--s">Jurisdiction 2</legend>
             {% if jurisdictionTwoError %}
-              <span class="error-message"> {{jurisdictionTwoError}} </span>
+              <span class="govuk-error-message">{{jurisdictionTwoError}}</span>
             {% endif %}
           <div id='serviceParent'>
             {% for jurisdiction2 in referenceData.jurisdictions2 %}
@@ -148,7 +148,7 @@ selectReferenceData %}
       {% endif %}
       <div class="govuk-form-group">
         <fieldset class="govuk-fieldset">
-          <legend class="form-label-bold">Amount Type</legend>
+          <legend class="govuk-fieldset__legend govuk-fieldset__legend--s">Amount Type</legend>
             <div id="verticalRadio" class = "form-group">
               <div class = "multiple-choice">
                 {% if form.valueFor('amountType') == 'flat' %}
@@ -160,13 +160,13 @@ selectReferenceData %}
               </div>
             </div>
               <div id="flatAmount" class="mid-box {{ 'disply-section' if form.valueFor('amountType') == 'flat'}}" >
-                <label class="form-label-bold">Amount</label>
+                <label class="govuk-label govuk-label--s">Amount</label>
                 {% if amounError %}
-                  <span class="error-message"> {{amounError}} </span>
+                  <span class="govuk-error-message">{{amounError}}</span>
                 {% endif %}
                 <div class = "form-group">
                   <div class="input-icon">
-                    <input type="text" name="amount" id="amount" value="{{flatAmountVal}}" class="form-control {{ 'form-control-error' if amounError}}">
+                    <input type="text" name="amount" id="amount" value="{{flatAmountVal}}" class="govuk-input {{ 'govuk-input--error' if amounError}}">
                     <i>£</i>
                   </div>
                 </div>
@@ -184,11 +184,11 @@ selectReferenceData %}
             </div>
            <div id="percentageAmount" class="small-box {{ 'disply-section' if form.valueFor('amountType') == 'percentage'}}">
                 {% if percentageError %}
-                  <span class="error-message"> {{percentageError}} </span>
+                  <span class="govuk-error-message">{{percentageError}}</span>
                 {% endif %}
                 <div class = "form-group">
                   <div class="input-icon">
-                    <input type="text" name="percentage" id="percentage" value="{{form.valueFor('percentage')}}" class="form-control {{ 'form-control-error' if percentageError}}">
+                    <input type="text" name="percentage" id="percentage" value="{{form.valueFor('percentage')}}" class="govuk-input {{ 'govuk-input--error' if percentageError}}">
                   </div>
                 </div>
             </div>
@@ -203,13 +203,13 @@ selectReferenceData %}
               </div>
             </div>
             <div id="volumeAmount" class="mid-box {{ 'disply-section' if form.valueFor('amountType') == 'volume'}}" >
-               <label class="form-label-bold">Amount</label>
+               <label class="govuk-label govuk-label--s">Amount</label>
                 {% if volumeAmountError %}
-                  <span class="error-message"> {{volumeAmountError}} </span>
+                  <span class="govuk-error-message">{{volumeAmountError}}</span>
                 {% endif %}
                 <div class = "form-group">
                   <div class="input-icon">
-                    <input type="text" name="volAmount" id="volAmount" value="{{VolumeAmountVal}}" class="form-control {{ 'form-control-error' if volumeAmountError}}">
+                    <input type="text" name="volAmount" id="volAmount" value="{{VolumeAmountVal}}" class="govuk-input {{ 'govuk-input--error' if volumeAmountError}}">
                     <i>£</i>
                   </div>
                 </div>
@@ -217,11 +217,11 @@ selectReferenceData %}
         </fieldset>
       </div>
       {% set eventError = form.errorFor('event') %}
-      <div class="govuk-form-group {{ 'form-group-error' if eventError}}">
+      <div class="govuk-form-group {{ 'govuk-form-group--error' if eventError}}">
         <fieldset id="event" class="govuk-fieldset">
-          <legend class="form-label-bold">Event</legend>
+          <legend class="govuk-fieldset__legend govuk-fieldset__legend--s">Event</legend>
           {% if eventError %}
-            <span class="error-message"> {{eventError}} </span>
+            <span class="govuk-error-message">{{eventError}}</span>
           {% endif %}
           <div id='serviceParent'>
             {% for event in referenceData.eventTypes %}
@@ -240,11 +240,11 @@ selectReferenceData %}
         </fieldset>
       </div>
       {% set channelError = form.errorFor('channel') %}
-      <div class="govuk-form-group {{ 'form-group-error' if channelError}}">
+      <div class="govuk-form-group {{ 'govuk-form-group--error' if channelError}}">
         <fieldset id="channel" class="govuk-fieldset">
-          <legend class="form-label-bold">Channel</legend>
+          <legend class="govuk-fieldset__legend govuk-fieldset__legend--s">Channel</legend>
           {% if channelError %}
-            <span class="error-message"> {{channelError}} </span>
+            <span class="govuk-error-message">{{channelError}}</span>
           {% endif %}
           {% for  channel in referenceData.channelTypes %}
             <div id="verticalRadio" class = "form-group">
@@ -263,16 +263,16 @@ selectReferenceData %}
 
         <p>{{ textInput(t('Keyword'), 'keyword', form) }}</p>
         <p id="keyword-error" hidden="true">
-          <span class="form-group-error form-label-bold">
+          <span class="govuk-form-group--error govuk-label govuk-label--s">
             Keyword already in use
           </span>
         </p>
       {% set applicantTypeError = form.errorFor('applicantType') %}
-      <div class="govuk-form-group {{ 'form-group-error' if applicantTypeError}}">
+      <div class="govuk-form-group {{ 'govuk-form-group--error' if applicantTypeError}}">
         <fieldset id="applicantType" class="govuk-fieldset">
-          <legend class="form-label-bold">Applicant</legend>
+          <legend class="govuk-fieldset__legend govuk-fieldset__legend--s">Applicant</legend>
           {% if applicantTypeError %}
-            <span class="error-message"> {{applicantTypeError}} </span>
+            <span class="govuk-error-message">{{applicantTypeError}}</span>
           {% endif %}
           {% for applicant in referenceData.applicantTypes %}
             <div id="verticalRadio" class = "form-group">
@@ -289,11 +289,11 @@ selectReferenceData %}
         </fieldset>
       </div>
       {% set directionError = form.errorFor('direction') %}
-      <div class="govuk-form-group {{ 'form-group-error' if directionError}}">
+      <div class="govuk-form-group {{ 'govuk-form-group--error' if directionError}}">
         <fieldset id="direction" class="govuk-fieldset">
-          <legend class="form-label-bold">Direction</legend>
+          <legend class="govuk-fieldset__legend govuk-fieldset__legend--s">Direction</legend>
           {% if directionError %}
-            <span class="error-message"> {{directionError}} </span>
+            <span class="govuk-error-message">{{directionError}}</span>
           {% endif %}
           <div id='serviceParent'>
             {% for direction in referenceData.directionTypes %}
@@ -319,18 +319,18 @@ selectReferenceData %}
         {{ textInput(t('Memo Line'), 'memoLine', form) }}
 
         {% set fromDateError = form.errorFor('fromDate') %}
-        <div class="form-group date-field--width {% if fromDateError %} form-group-error {% endif %}">
-          <label class="form-label-bold" for="fromDate" id="fromDate[label]">From Date</label>
+        <div class="govuk-form-group date-field--width {% if fromDateError %} govuk-form-group--error {% endif %}">
+          <label class="govuk-label govuk-label--s" for="fromDate" id="fromDate[label]">From Date</label>
           <input type="date" id="fromDate"
-          class="form-control {% if fromDateError %} form-control-error {% endif %}"
+          class="govuk-input {% if fromDateError %} govuk-input--error {% endif %}"
           name="fromDate"
           value="{{ form.valueFor('fromDate') }}"/>
         </div>
 
         {% set toDateError = form.errorFor('toDate') %}
-        <div class="form-group date-field--width {% if toDateError %} form-group-error {% endif %}">
-          <label class="form-label-bold" for="toDate" id="toDate[label]">To Date</label>
-          <input type="date" class="form-control {% if toDateError %} form-control-error {% endif %}"
+        <div class="govuk-form-group date-field--width {% if toDateError %} govuk-form-group--error {% endif %}">
+          <label class="govuk-label govuk-label--s" for="toDate" id="toDate[label]">To Date</label>
+          <input type="date" class="govuk-input {% if toDateError %} govuk-input--error {% endif %}"
           id="toDate"
           name="toDate"
           value="{{ form.valueFor('toDate') }}"/>

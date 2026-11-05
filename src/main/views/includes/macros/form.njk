@@ -1,14 +1,14 @@
 {% macro input(label, name, form, hint='', type='text', inputClass='', disabled = false) %}
   {% set error = form.errorFor(name) %}
-<div class="form-group {% if error %} form-group-error {% endif %}">
-  <label for="{{ name }}" id="{{ name }}[label]" class="form-label-bold">{{ label }}
+<div class="govuk-form-group {% if error %} govuk-form-group--error {% endif %}">
+  <label for="{{ name }}" id="{{ name }}[label]" class="govuk-label govuk-label--s">{{ label }}
     {% if hint != '' %}
-    <span class="form-hint">{{ hint }}</span>
+    <span class="govuk-hint">{{ hint }}</span>
     {% endif %}
   </label>
-  <span class="error-message">{{ error }}</span>
+  {% if error %}<p class="govuk-error-message">{{ error }}</p>{% endif %}
   <input id="{{ name }}" name="{{ name }}" type="{{ type }}"
-         class="form-control {{ inputClass }} {% if error %} form-control-error {% endif %}"
+         class="govuk-input {{ inputClass }} {% if error %} govuk-input--error {% endif %}"
          value="{{ form.valueFor(name) }}" {% if disabled %} disabled="disabled" {% endif %}>
 </div>
   {% endmacro %}
@@ -22,7 +22,7 @@
 <label for="{{ name }}"></label>
 <span class="{{ prefixClass }}">
     <input id="{{ name }}" name="{{ name }}" type="text"
-           class="form-control {{ inputClass }} {% if error %} form-control-error {% endif %}"
+           class="govuk-input {{ inputClass }} {% if error %} govuk-input--error {% endif %}"
            value="{{ form.valueFor(name) }}">
   </span>
   {% endmacro %}
@@ -33,23 +33,23 @@
 
   {% macro textArea(label, name, form, rows=5) %}
   {% set error = form.errorFor(name) %}
-<div class="form-group {% if error %} form-group-error {% endif %}">
-<span class="error-message">{{ error }}</span>
-<label for="{{ name }}" id="{{ name }}[label]" class="form-label-bold">{{ label }}</label>
+<div class="govuk-form-group {% if error %} govuk-form-group--error {% endif %}">
+<label for="{{ name }}" id="{{ name }}[label]" class="govuk-label govuk-label--s">{{ label }}</label>
+{% if error %}<p class="govuk-error-message">{{ error }}</p>{% endif %}
 <textarea id="{{ name }}" name="{{ name }}" rows="{{ rows }}"
-          class="form-control form-control-3-4 {% if error %} form-control-error {% endif %}">{{ form.valueFor(name) }}</textarea>
+          class="govuk-textarea govuk-!-width-three-quarters {% if error %} govuk-textarea--error {% endif %}">{{ form.valueFor(name) }}</textarea>
 </div>
   {% endmacro %}
 
   {% macro submitButton(label) %}
-<div class="form-group">
-<input id="submit" type="submit" class="button" value="{{ t(label) | default(t('Continue')) }}">
+<div class="govuk-form-group">
+<input id="submit" type="submit" class="govuk-button" value="{{ t(label) | default(t('Continue')) }}">
 </div>
   {% endmacro %}
 
     {% macro nextButton(label, className) %}
-<div class="form-group">
-<input id="submit" type="submit" class="{{ t(className) | default(t('button')) }}" value="{{ t(label) | default(t('Continue')) }}">
+<div class="govuk-form-group">
+<input id="submit" type="submit" class="{{ t(className) | default(t('govuk-button')) }}" value="{{ t(label) | default(t('Continue')) }}">
 </div>
   {% endmacro %}
 
@@ -75,39 +75,31 @@
   {% endmacro %}
 
   {% macro option(label, name, form, value, type, hint = '', checked = false, bold = false, disabled = false) %}
-<div class="multiple-choice" data-target="{{ name }}-{{ value }}">
+{% set kind = 'radios' if type == 'radio' else 'checkboxes' %}
 {% set idValue = name + value | replace(' ', '') %}
-<input id="{{ idValue }}" type="{{ type }}" name="{{ name }}"
+<div class="govuk-{{ kind }}__item">
+<input class="govuk-{{ kind }}__input" id="{{ idValue }}" type="{{ type }}" name="{{ name }}"
        value="{{ value }}" {% if checked %} checked="checked" {% endif %} {% if disabled %} disabled="disabled" {% endif
-%}>
-<label for="{{ idValue }}">
-  {% if hint == '' %}
+%}{% if hint %} aria-describedby="{{ idValue }}-hint"{% endif %}>
+<label class="govuk-label govuk-{{ kind }}__label {% if bold and hint %}govuk-label--s{% endif %}" for="{{ idValue }}">
   {{ t(label) }}
-  {% else %}
-  {% if bold %}
-  <strong class="bold-small">{{ t(label) }}</strong>
-  {% else %}
-  {{ t(label) }}
-  {% endif %}
-  <br>
-  {{ t(hint) }}
-  {% endif %}
 </label>
+{% if hint %}
+<div id="{{ idValue }}-hint" class="govuk-hint govuk-{{ kind }}__hint">{{ t(hint) }}</div>
+{% endif %}
 </div>
   {% endmacro %}
 
   {% macro checkboxGroup(label, name, options, form, isInline = false, bold = false, legendHidden = false) %}
   {% set error = form.errorFor(name) %}
   {% set selection = form.valueFor(name) %}
-<div class="form-group {% if error %} form-group-error {% endif %}">
-<fieldset id="{{ name }}[label]"
-{% if isInline %} class="inline" {% endif %}>
-<legend>
-        <span class="form-label-bold {% if legendHidden %}visually-hidden{% endif %}">
-          {{ label }}
-        </span>
-  <span class="error-message">{{ t(error) }}</span>
+<div class="govuk-form-group {% if error %} govuk-form-group--error {% endif %}">
+<fieldset class="govuk-fieldset" id="{{ name }}[label]">
+<legend class="govuk-fieldset__legend govuk-fieldset__legend--s {% if legendHidden %}govuk-visually-hidden{% endif %}">
+  {{ label }}
 </legend>
+{% if error %}<p class="govuk-error-message">{{ t(error) }}</p>{% endif %}
+<div class="govuk-checkboxes {% if isInline %}govuk-checkboxes--inline{% endif %}" data-module="govuk-checkboxes">
 {% for option in options %}
 {{ checkboxOption(
 label = option.label,
@@ -119,6 +111,7 @@ checked = (selection === option.value),
 bold = bold
 ) }}
 {% endfor %}
+</div>
 </fieldset>
   </div>
   {% endmacro %}
@@ -126,15 +119,13 @@ bold = bold
   {% macro radioGroup(label, name, options, form, isInline = false, disabled = false) %}
   {% set error = form.errorFor(name) %}
   {% set selection = form.valueFor(name) %}
-<div class="form-group {% if error %} form-group-error {% endif %}">
-<fieldset id="{{ name }}[label]"
-{% if isInline %} class="inline" {% endif %}>
-<legend>
-        <span class="form-label-bold">
-          {{ label }}
-        </span>
-  <span class="error-message">{{ t(error) }}</span>
+<div class="govuk-form-group {% if error %} govuk-form-group--error {% endif %}">
+<fieldset class="govuk-fieldset" id="{{ name }}[label]">
+<legend class="govuk-fieldset__legend govuk-fieldset__legend--s">
+  {{ label }}
 </legend>
+{% if error %}<p class="govuk-error-message">{{ t(error) }}</p>{% endif %}
+<div class="govuk-radios {% if isInline %}govuk-radios--inline{% endif %}" data-module="govuk-radios">
 {% for option in options %}
 {{ radioOption(
 label = option.label,
@@ -147,6 +138,7 @@ bold = option.bold,
 disabled = disabled
 ) }}
 {% endfor %}
+</div>
 </fieldset>
   </div>
   {% endmacro %}
@@ -155,15 +147,13 @@ disabled = disabled
   {% set error = form.errorFor(name) %}
   {% set selection = form.valueFor(name) %}
 
-<div class="form-group {% if error %} form-group-error {% endif %}">
+<div class="govuk-form-group {% if error %} govuk-form-group--error {% endif %}">
 
-<label for="{{ name }}" class="form-label-bold" id="{{ name }}[label]">
+<label for="{{ name }}" class="govuk-label govuk-label--s" id="{{ name }}[label]">
   {{ displayName }}
 </label>
-<span class="error-message">
-      {{ error }}
-    </span>
-<select class="form-control {% if error %} form-control-error {% endif %}"
+{% if error %}<p class="govuk-error-message">{{ error }}</p>{% endif %}
+<select class="govuk-select {% if error %} govuk-select--error {% endif %}"
         id="{{ name }}" name="{{ name }}" {% if disabled %} disabled="disabled" {% endif %} >
 <option disabled="disabled"
 {% if selection === '' %}selected{% endif %} value="">
@@ -182,7 +172,7 @@ disabled = disabled
   {% set error = form.errorFor(name) %}
   {% set selection = form.valueFor(name) %}
 <label for="{{ name }}"></label>
-<select class="form-control" id="{{ name }}" name="{{ name }}">
+<select class="govuk-select" id="{{ name }}" name="{{ name }}">
 {% for option in options %}
 <option value="{{ option.value }}"
 {% if option.value == selection %} selected {% endif %}>{{ option.label }}</option>
@@ -192,11 +182,12 @@ disabled = disabled
 
   {% macro errorSummary(form) %}
   {% if form.hasErrors() %}
-<div class="error-summary" role="group" aria-labelledby="error-summary-heading" tabindex="-1">
-<h1 tabindex="0" class="heading-medium error-summary-heading" id="error-summary-heading">
+<div class="govuk-error-summary" role="group" aria-labelledby="error-summary-heading" tabindex="-1" data-module="govuk-error-summary">
+<h1 tabindex="0" class="govuk-error-summary__title" id="error-summary-heading">
   {{ t('Please correct the following errors') }}
 </h1>
-<ul class="error-summary-list">
+<div class="govuk-error-summary__body">
+<ul class="govuk-list govuk-error-summary__list">
   {% for error in form.validationErrors %}
   <li><a href="#{{ error.fieldName }}">{{ t(error.message) }}</a></li>
   {% endfor %}
@@ -204,6 +195,7 @@ disabled = disabled
   <li><a href="#">{{ t(error) }}</a></li>
   {% endfor %}
 </ul>
+</div>
 </div>
   {% endif %}
   {% endmacro %}

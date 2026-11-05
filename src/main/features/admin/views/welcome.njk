@@ -7,11 +7,11 @@
 
   {% block content %}
 
-<div class="grid-row">
+<div class="govuk-grid-row">
 
-  <div class="column-full">
-    <h4 class="heading-small">Choose an action</h4>
-    <ul class="list list-bullet">
+  <div class="govuk-grid-column-full">
+    <h4 class="govuk-heading-s">Choose an action</h4>
+    <ul class="govuk-list govuk-list--bullet">
 
       {% if isEditor(user.allInfo.roles) or isAdmin(user.allInfo.roles) %}
       <li><a href="/admin/v2/fees/create">{{ t("Add a new fee") }}</a></li>
@@ -24,9 +24,9 @@
     </ul>
   </div>
 
-  <div class="column-full">
-    <h4 class="heading-small">Reference Data</h4>
-    <ul class="list list-bullet">
+  <div class="govuk-grid-column-full">
+    <h4 class="govuk-heading-s">Reference Data</h4>
+    <ul class="govuk-list govuk-list--bullet">
       <li><a href="/admin/v2/applicants">{{ t("Applicants") }}</a></li>
       <li><a href="/admin/v2/jurisdictions1">{{ t("Jurisdictions 1") }}</a></li>
       <li><a href="/admin/v2/jurisdictions2">{{ t("Jurisdictions 2") }}</a></li>
@@ -37,9 +37,9 @@
     </ul>
   </div>
 
-  <!-- div class="column-full">
-      <h4 class="heading-small">Legacy Register: Choose an action</h4>
-      <ul class="list list-bullet">
+  <!-- div class="govuk-grid-column-full">
+      <h4 class="govuk-heading-s">Legacy Register: Choose an action</h4>
+      <ul class="govuk-list govuk-list--bullet">
         {% if (isFeatureEnabled('edit')) %}
           <li><a href="/admin/categories" style="font-size: 1.5em">{{ t("Edit categories") }}</a></li>
           <li><a href="/admin/range-groups">{{ t("Edit range groups") }}</a></li>

@@ -6,8 +6,8 @@
 
   {% block content %}
 
-<div class="column-full">
-  <h3 class="heading-medium">Fees</h3>
+<div class="govuk-grid-column-full">
+  <h3 class="govuk-heading-m">Fees</h3>
   <table>
     <thead>
     <tr>
@@ -32,10 +32,10 @@
   </table>
 
   {% if (isFeatureEnabled('edit')) %}
-  <p><a href="/admin/fees/create" class="button" role="button">{{ t("Create new fee") }}</a></p>
+  <p><a href="/admin/fees/create" class="govuk-button" role="button">{{ t("Create new fee") }}</a></p>
   {% endif %}
 
-  <p><a href="/admin/welcome/" class="link-back">{{ t("Back to welcome page") }}</a></p>
+  <p><a href="/admin/welcome/" class="govuk-back-link">{{ t("Back to welcome page") }}</a></p>
 </div>
 
   {% endblock %}

@@ -6,13 +6,13 @@
 
   {% block content %}
 
-<div class="column-full">
+<div class="govuk-grid-column-full">
 
   {% if isEditor(user.allInfo.roles) or isAdmin(user.allInfo.roles) %}
   {% if isAdmin(user.allInfo.roles) %}
-  <h4 class="heading-small">All draft Fees</h4>
+  <h4 class="govuk-heading-s">All draft Fees</h4>
   {% else %}
-  <h4 class="heading-small">My draft Fees</h4>
+  <h4 class="govuk-heading-s">My draft Fees</h4>
   {% endif %}
 
   {% if (draftFees | length) > 0 %}
@@ -58,7 +58,7 @@
           <input type="hidden" name="feeCode" value="{{ fee.code }}"/>
           <input type="hidden" name="version" value="{{ displayedFeeVersion.version }}"/>
           <input type="hidden" name="action" value="submit"/>
-          <input type="submit" class="button" value="Submit">
+          <input type="submit" class="govuk-button" value="Submit">
         </form>
         {% endif %}
       </td>
@@ -69,7 +69,7 @@
           <input type="hidden" name="feeCode" value="{{ fee.code }}"/>
           <input type="hidden" name="version" value="{{ displayedFeeVersion.version }}"/>
           <input type="hidden" name="action" value="delete"/>
-          <input type="submit" class="button delete-button" value="Delete">
+          <input type="submit" class="govuk-button govuk-button--warning" value="Delete">
         </form>
       </td>
       <td class="font-xxsmall center-text">
@@ -136,11 +136,11 @@
   <p></p>
 
   {% if isAdmin(user.allInfo.roles) %}
-  <h4 class="heading-small">All fees pending approval</h4>
+  <h4 class="govuk-heading-s">All fees pending approval</h4>
   {% elseif isEditor(user.allInfo.roles) %}
-  <h4 class="heading-small">My fees pending approval</h4>
+  <h4 class="govuk-heading-s">My fees pending approval</h4>
   {% else %}
-  <h4 class="heading-small">Fees pending approval</h4>
+  <h4 class="govuk-heading-s">Fees pending approval</h4>
   {% endif %}
 
   {% if (pendingApprovalFees | length) > 0 %}
@@ -188,7 +188,7 @@
           <input type="hidden" name="feeCode" value="{{ fee.code }}"/>
           <input type="hidden" name="version" value="{{ displayedFeeVersion.version }}"/>
           <input type="hidden" name="action" value="approve"/>
-          <input type="submit" class="button" value="Approve">
+          <input type="submit" class="govuk-button" value="Approve">
         </form>
       </td>
       <td>
@@ -197,7 +197,7 @@
           <input type="hidden" name="feeCode" value="{{ fee.code }}"/>
           <input type="hidden" name="version" value="{{ displayedFeeVersion.version }}"/>
           <input type="hidden" name="action" value="reject"/>
-          <input type="submit" class="button delete-button" value="Reject">
+          <input type="submit" class="govuk-button govuk-button--warning" value="Reject">
         </form>
       </td>
       {% endif %}
@@ -255,11 +255,11 @@
   <p></p>
 
   {% if isAdmin(user.allInfo.roles) %}
-  <h4 class="heading-small">All approved fees</h4>
+  <h4 class="govuk-heading-s">All approved fees</h4>
   {% elseif isEditor(user.allInfo.roles) %}
-  <h4 class="heading-small">My approved fees</h4>
+  <h4 class="govuk-heading-s">My approved fees</h4>
   {% else %}
-  <h4 class="heading-small">Fees approved by me</h4>
+  <h4 class="govuk-heading-s">Fees approved by me</h4>
   {% endif %}
 
   {% if (approvedFees | length) > 0 %}
@@ -344,7 +344,7 @@
   <p>No approved fees</p>
   {% endif %}
 
-  <p><a href="/admin/welcome/" class="link-back">{{ t("Back to welcome page") }}</a></p>
+  <p><a href="/admin/welcome/" class="govuk-back-link">{{ t("Back to welcome page") }}</a></p>
 </div>
 
   {% endblock %}

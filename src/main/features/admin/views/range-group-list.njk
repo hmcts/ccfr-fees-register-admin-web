@@ -5,7 +5,7 @@
 
   {% block content %}
 
-<div class="column-full">
+<div class="govuk-grid-column-full">
   <table>
     <thead>
     <tr>
@@ -30,10 +30,10 @@
   </table>
 
   {% if (isFeatureEnabled('edit')) %}
-  <p><a href="/admin/range-groups/create" class="button" role="button">{{ t("Create new range group") }}</a></p>
+  <p><a href="/admin/range-groups/create" class="govuk-button" role="button">{{ t("Create new range group") }}</a></p>
   {% endif %}
 
-  <p><a href="/admin/welcome/" class="link-back">{{ t("Back to welcome page") }}</a></p>
+  <p><a href="/admin/welcome/" class="govuk-back-link">{{ t("Back to welcome page") }}</a></p>
 </div>
 
   {% endblock %}

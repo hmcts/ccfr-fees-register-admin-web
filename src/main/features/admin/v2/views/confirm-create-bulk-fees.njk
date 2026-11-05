@@ -5,26 +5,26 @@
 
   {% block content %}
 
-<div class="grid-row">
-  <div class="column-full">
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-full">
 
     {% if bulkFeeError %}
-    <div class="error-summary" role="group" aria-labelledby="failure-error-summary-heading" tabindex="-1">
-      <h2 class="heading-medium error-summary-heading" id="failure-error-summary-heading">
+    <div class="govuk-error-summary" role="group" aria-labelledby="failure-error-summary-heading" tabindex="-1">
+      <h2 class="govuk-error-summary__title" id="failure-error-summary-heading">
         {{ errCause }}
       </h2>
     </div>
     {% elif success %}
     <div class="success-summary" role="group" aria-labelledby="failure-error-summary-heading" tabindex="1">
-      <h2 class="heading-medium error-summary-heading">
+      <h2 class="govuk-error-summary__title">
         {{ msg }}
       </h2>
     </div>
     {% endif %}
   </div>
 
-  <div class="column-full">
-    <a href="/admin/V2/all-fees" class="link-back">{{ t('Return to welcome page') }}</a>
+  <div class="govuk-grid-column-full">
+    <a href="/admin/V2/all-fees" class="govuk-back-link">{{ t('Return to welcome page') }}</a>
   </div>
 
 </div>

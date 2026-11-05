@@ -1,0 +1,105 @@
+// Remaining compatibility rules from the retired govuk-elements-sass /
+// govuk_template_jinja packages. Templates now use govuk-frontend classes;
+// only what is still referenced lives here. Remove rules once unused.
+
+// Base element styles previously provided by govuk-template.css / govuk-elements.
+// Many pages still render unclassed p, a and table elements.
+body {
+  @include govuk-font($size: 19);
+  color: govuk-functional-colour(text);
+  margin: 0;
+}
+
+a {
+  @include govuk-link-style-default;
+
+  &:focus {
+    @include govuk-focused-text;
+  }
+}
+
+p {
+  margin-top: 0;
+  margin-bottom: govuk-spacing(4);
+}
+
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+  width: 100%;
+}
+
+th,
+td {
+  @include govuk-font($size: 19);
+  border-bottom: 1px solid $govuk-border-colour;
+  padding: 0.6em 1em 0.5em 0;
+  text-align: left;
+}
+
+th {
+  @include govuk-typography-weight-bold;
+}
+
+td.numeric,
+th.numeric {
+  @include govuk-font-tabular-numbers;
+  text-align: right;
+}
+
+fieldset {
+  border: 0;
+  margin: 0;
+  padding: 0;
+}
+
+legend {
+  padding: 0;
+}
+
+input,
+select,
+textarea,
+button {
+  font-family: inherit;
+}
+
+// Custom header (govuk_template); see feesCustom.css for the rest
+#global-header {
+  background-color: $govuk-text-colour;
+  width: 100%;
+}
+
+.header-proposition {
+  @include govuk-font($size: 19);
+}
+
+// Hand-built radio lists in create-edit-fee.njk (driven by create-fee.js)
+.form-group {
+  @extend .govuk-form-group;
+}
+
+.multiple-choice {
+  @include govuk-font($size: 19);
+  display: block;
+  margin-bottom: govuk-spacing(2);
+  min-height: 40px;
+  padding-left: 50px;
+  position: relative;
+
+  input {
+    accent-color: $govuk-text-colour;
+    height: 30px;
+    left: 0;
+    margin: 0;
+    position: absolute;
+    top: 2px;
+    width: 30px;
+  }
+
+  label {
+    cursor: pointer;
+    display: block;
+    padding: 8px 0;
+  }
+}

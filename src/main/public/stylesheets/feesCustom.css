@@ -1,7 +1,7 @@
 
 /* Large table data columns */
 .font-xxsmall {
-  font-family: "nta", Arial, sans-serif;
+  font-family: "GDS Transport", arial, sans-serif;
   font-weight: 300;
   text-transform: none;
   font-size: 13px;
@@ -10,7 +10,7 @@
 
 /* Large table header columns */
 .bold-xxsmall {
-  font-family: "nta", Arial, sans-serif;
+  font-family: "GDS Transport", arial, sans-serif;
   font-weight: 600;
   text-transform: none;
   font-size: 14px;
@@ -25,7 +25,9 @@
 }
 
 @media (min-width: 641px) {
-  .form-control {
+  .govuk-input:not(.govuk-date-input__input),
+  .govuk-select,
+  .govuk-textarea {
     font-size: 24px;
     line-height: 1.31579;
     width: 66%;
@@ -38,7 +40,7 @@
 
 .custom-heading-xlarge {
   margin: 0 -250px;
-  font-family: "nta", Arial, sans-serif;
+  font-family: "GDS Transport", arial, sans-serif;
   font-weight: 700;
   text-transform: none;
   font-size: 32px;
@@ -188,7 +190,7 @@
 .disply-section {
   display: block !important;
 }
-#createForm span.error-message {
+#createForm .govuk-error-message {
   width: 300px;
 }
 .label-float {
@@ -223,7 +225,7 @@
   font-size: 48px;
   line-height: 50px;
   color: #0b0c0c;
-  font-family: "nta", Arial, sans-serif;
+  font-family: "GDS Transport", arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   font-weight: 700;
@@ -240,7 +242,7 @@
 .custom-table-body {
   background-color: #fff;
   color: #0b0c0c;
-    font-family: "nta", Arial, sans-serif;
+    font-family: "GDS Transport", arial, sans-serif;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     font-weight: 400;
@@ -251,7 +253,7 @@
 
 }
 .govuk-button2 {
-  font-family: "nta", Arial, sans-serif;
+  font-family: "GDS Transport", arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   font-weight: 400;
@@ -402,7 +404,7 @@ a.btn {
   color: white;
 }
 .custom-header-title {
-  font-family: "nta", Arial, sans-serif;
+  font-family: "GDS Transport", arial, sans-serif;
   font-size: 24px;
   font-weight: 600;
   position: relative;
@@ -423,7 +425,7 @@ a.custom-header-title:hover {
   text-decoration: underline;}
 
 .custom-draft-all-fees {
-  font-family: "nta", Arial, sans-serif;
+  font-family: "GDS Transport", arial, sans-serif;
   font-size: 18px;
   font-weight: 600;
   position: relative;
@@ -439,7 +441,7 @@ a.custom-draft-all-fees:visited {
   color: white; }
 
 .custom-reference-data {
-  font-family: "nta", Arial, sans-serif;
+  font-family: "GDS Transport", arial, sans-serif;
   float: right;
   font-size: 18px;
   font-weight: 600;
@@ -466,7 +468,7 @@ a.custom-reference-data:visited {
 }
 
 .custom-logout {
-  font-family: "nta", Arial, sans-serif;
+  font-family: "GDS Transport", arial, sans-serif;
   float: right;
   font-size: 18px;
   position: relative;
@@ -502,7 +504,7 @@ p.username-log {
 }
 
 .custom-proposition-name {
-  font-family: "nta", Arial, sans-serif;
+  font-family: "GDS Transport", arial, sans-serif;
     font-weight: 400;
     text-transform: none;
     font-size: 24px;
@@ -525,7 +527,7 @@ h1.margin-bottom-0 {
 }
 
 .custom-signout-link {
-  font-family: "nta", Arial, sans-serif;
+  font-family: "GDS Transport", arial, sans-serif;
     float: right;
     font-size: 18px;
     position: relative;
@@ -544,7 +546,6 @@ a.custom-signout-link:visited {
     -webkit-box-sizing: border-box;
     box-sizing: border-box;
     padding: 0 15px;
-    bottom: 50px;
   }
 
   .govuk-grid-row {
@@ -680,9 +681,6 @@ text-align: left;
   cursor: pointer;
   margin-left: -5px;
 }
-h1.heading-xlarge {
-  float: left;
-}
 .govuk-panel__body {
   font-weight: 400;
   font-size: 36px;
@@ -743,7 +741,7 @@ a.custom-reference-data:visited {
 
 .fee-details-header {
     float: left;
-    font-family: "nta", Arial, sans-serif;
+    font-family: "GDS Transport", arial, sans-serif;
     font-weight: 700;
     font-size: 32px;
     line-height: 1.09375;
@@ -801,7 +799,7 @@ a.custom-reference-data:visited {
   overflow: scroll;
   width: 100%;
 }
-#reasonRejectFeesId > .form-group-error {
+#reasonRejectFeesId > .govuk-form-group--error {
   border: 0;
 }
 .draft-success-padding15 {

@@ -15,7 +15,7 @@ function formatDecimals(event) {
 
 function showKeywordError() {
   document.getElementById("keyword-error").hidden = false;
-  document.getElementById("keyword").className = keywordClass + "form-control-error";
+  document.getElementById("keyword").className = keywordClass + " govuk-input--error";
   document.getElementById("submit").disabled = true;
 }
 

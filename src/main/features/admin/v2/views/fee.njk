@@ -3,174 +3,174 @@
   {% set title = t('Fee | ' + serviceName) %}
   {% set heading = t('Fee details')  %}
   {% block content %}
-<div class="gird-row downloadbtn-container ">
-  <div class="column-third">
-    <label class="bold">Code:</label> {{ feeDto.code }}
+<div class="govuk-grid-row downloadbtn-container ">
+  <div class="govuk-grid-column-one-third">
+    <label class="govuk-!-font-weight-bold">Code:</label> {{ feeDto.code }}
   </div>
-  <div class="column-third">
-    <label class="bold">Type:</label> {{ feeDto.fee_type }}
+  <div class="govuk-grid-column-one-third">
+    <label class="govuk-!-font-weight-bold">Type:</label> {{ feeDto.fee_type }}
   </div>
 </div>
 <hr width=100%>
 
   {% if feeDto.fee_type == 'ranged' %}
-<div class="gird-row">
-<div class="column-third">
-  <label class="bold">Min range:</label> {{ feeDto.min_range }}
+<div class="govuk-grid-row">
+<div class="govuk-grid-column-one-third">
+  <label class="govuk-!-font-weight-bold">Min range:</label> {{ feeDto.min_range }}
 </div>
-<div class="column-third">
-  <label class="bold">Max range:</label> {{ feeDto.max_range }}
+<div class="govuk-grid-column-one-third">
+  <label class="govuk-!-font-weight-bold">Max range:</label> {{ feeDto.max_range }}
 </div>
-<div class="column-third">
-  <label class="bold">Range unit:</label> {{ feeDto.range_unit }}
+<div class="govuk-grid-column-one-third">
+  <label class="govuk-!-font-weight-bold">Range unit:</label> {{ feeDto.range_unit }}
 </div>
 </div>
 <hr width=100%>
 
   {% endif %}
 
-<div class="gird-row">
-<div class="column-third">
-  <label class="bold">Channel:</label> {{ feeDto.channel_type.name }}
+<div class="govuk-grid-row">
+<div class="govuk-grid-column-one-third">
+  <label class="govuk-!-font-weight-bold">Channel:</label> {{ feeDto.channel_type.name }}
 </div>
-<div class="column-third">
-  <label class="bold">Event:</label> {{ feeDto.event_type.name }}
+<div class="govuk-grid-column-one-third">
+  <label class="govuk-!-font-weight-bold">Event:</label> {{ feeDto.event_type.name }}
 </div>
-<div class="column-third">
-  <label class="bold">Jurisdiction1:</label> {{ feeDto.jurisdiction1.name }}
+<div class="govuk-grid-column-one-third">
+  <label class="govuk-!-font-weight-bold">Jurisdiction1:</label> {{ feeDto.jurisdiction1.name }}
 </div>
 <hr>
-<div class="column-third">
-  <label class="bold">Jurisdiction2:</label> {{ feeDto.jurisdiction2.name }}
+<div class="govuk-grid-column-one-third">
+  <label class="govuk-!-font-weight-bold">Jurisdiction2:</label> {{ feeDto.jurisdiction2.name }}
 </div>
-<div class="column-third">
-  <label class="bold">Service:</label> {{ feeDto.service_type.name }}
+<div class="govuk-grid-column-one-third">
+  <label class="govuk-!-font-weight-bold">Service:</label> {{ feeDto.service_type.name }}
 </div>
-<div class="column-third">
-  <label class="bold">Keyword:</label> {{ feeDto.keyword }}
+<div class="govuk-grid-column-one-third">
+  <label class="govuk-!-font-weight-bold">Keyword:</label> {{ feeDto.keyword }}
 </div>
-<div class="column-third">
-  <label class="bold">Applicant type:</label> {{ feeDto.applicant_type.name }}
+<div class="govuk-grid-column-one-third">
+  <label class="govuk-!-font-weight-bold">Applicant type:</label> {{ feeDto.applicant_type.name }}
 </div>
 </div>
 <hr width=100%>
 
 
-<div class="gird-row">
+<div class="govuk-grid-row">
 <div class="column">
-  <h2 class="heading-medium">
-    <label class="bold">Live version</label>
+  <h2 class="govuk-heading-m">
+    <label class="govuk-!-font-weight-bold">Live version</label>
   </h2>
 </div>
 </div>
 
-<div class="gird-row">
-<div class="column-third">
-  <label class="bold">version:</label> {{ feeDto.current_version.version }}
+<div class="govuk-grid-row">
+<div class="govuk-grid-column-one-third">
+  <label class="govuk-!-font-weight-bold">version:</label> {{ feeDto.current_version.version }}
 </div>
-<div class="column-third">
-  <label class="bold">Valid from:</label> {{ feeDto.current_version.valid_from }}
+<div class="govuk-grid-column-one-third">
+  <label class="govuk-!-font-weight-bold">Valid from:</label> {{ feeDto.current_version.valid_from }}
 </div>
-<div class="column-third">
-  <label class="bold">Valid to:</label> {{ feeDto.current_version.valid_to }}
+<div class="govuk-grid-column-one-third">
+  <label class="govuk-!-font-weight-bold">Valid to:</label> {{ feeDto.current_version.valid_to }}
 </div>
-<div class="column-third">
-  <label class="bold">Author:</label> {{ feeDto.current_version.author }}
+<div class="govuk-grid-column-one-third">
+  <label class="govuk-!-font-weight-bold">Author:</label> {{ feeDto.current_version.author }}
 </div>
-<div class="column-third">
-  <label class="bold">Approved by:</label> {{ feeDto.current_version.approvedBy }}
+<div class="govuk-grid-column-one-third">
+  <label class="govuk-!-font-weight-bold">Approved by:</label> {{ feeDto.current_version.approvedBy }}
 </div>
-<div class="column-third">
-  <label class="bold">Direction:</label> {{ feeDto.current_version.direction }}
+<div class="govuk-grid-column-one-third">
+  <label class="govuk-!-font-weight-bold">Direction:</label> {{ feeDto.current_version.direction }}
 </div>
-<div class="column-third">
-  <label class="bold">Status:</label> {{ feeDto.current_version.status }}
+<div class="govuk-grid-column-one-third">
+  <label class="govuk-!-font-weight-bold">Status:</label> {{ feeDto.current_version.status }}
 </div>
-<div class="column-third">
-  <label class="bold">Amount:</label>
+<div class="govuk-grid-column-one-third">
+  <label class="govuk-!-font-weight-bold">Amount:</label>
   {% if feeDto.current_version.flat_amount.amount %}
   {{ feeDto.current_version.flat_amount.amount }}
   {% elif feeDto.current_version.percentage_amount.percentage %}
   {{ feeDto.current_version.percentage_amount.percentage }}
   {% endif %}
 </div>
-<div class="column-two-thirds">
-  <label class="bold">Memo line:</label> {{ feeDto.current_version.memo_line }}
+<div class="govuk-grid-column-two-thirds">
+  <label class="govuk-!-font-weight-bold">Memo line:</label> {{ feeDto.current_version.memo_line }}
 </div>
-<div class="column-two-thirds">
-  <label class="bold">Natural account code:</label> {{ feeDto.current_version.natural_account_code }}
+<div class="govuk-grid-column-two-thirds">
+  <label class="govuk-!-font-weight-bold">Natural account code:</label> {{ feeDto.current_version.natural_account_code }}
 </div>
-<div class="column-two-thirds">
-  <label class="bold">Description:</label> {{ feeDto.current_version.description }}
+<div class="govuk-grid-column-two-thirds">
+  <label class="govuk-!-font-weight-bold">Description:</label> {{ feeDto.current_version.description }}
 </div>
 </div>
 <hr width=100%>
 
-<div class="gird-row">
+<div class="govuk-grid-row">
 <div class="column">
-  <h2 class="heading-medium">
-    <label class="bold">Versions</label>
+  <h2 class="govuk-heading-m">
+    <label class="govuk-!-font-weight-bold">Versions</label>
   </h2>
 </div>
 </div>
 
 
   {% for version in feeDto.fee_versions%}
-<div class="gird-row">
-<div class="column-third">
-  <label class="bold">version:</label> {{ version.version }}
+<div class="govuk-grid-row">
+<div class="govuk-grid-column-one-third">
+  <label class="govuk-!-font-weight-bold">version:</label> {{ version.version }}
 </div>
-<div class="column-third">
-  <label class="bold">Valid from:</label> {{ version.valid_from }}
+<div class="govuk-grid-column-one-third">
+  <label class="govuk-!-font-weight-bold">Valid from:</label> {{ version.valid_from }}
 </div>
-<div class="column-third">
-  <label class="bold">Valid to:</label> {{ version.valid_to }}
+<div class="govuk-grid-column-one-third">
+  <label class="govuk-!-font-weight-bold">Valid to:</label> {{ version.valid_to }}
 </div>
-<div class="column-third">
-  <label class="bold">Author:</label> {{ version.author }}
+<div class="govuk-grid-column-one-third">
+  <label class="govuk-!-font-weight-bold">Author:</label> {{ version.author }}
 </div>
-<div class="column-third">
-  <label class="bold">Approved by:</label> {{ version.approvedBy }}
+<div class="govuk-grid-column-one-third">
+  <label class="govuk-!-font-weight-bold">Approved by:</label> {{ version.approvedBy }}
 </div>
-<div class="column-third">
-  <label class="bold">Direction:</label> {{ version.direction }}
+<div class="govuk-grid-column-one-third">
+  <label class="govuk-!-font-weight-bold">Direction:</label> {{ version.direction }}
 </div>
-<div class="column-third">
-  <label class="bold">Status:</label> {{ version.status }}
+<div class="govuk-grid-column-one-third">
+  <label class="govuk-!-font-weight-bold">Status:</label> {{ version.status }}
 </div>
-<div class="column-third">
-  <label class="bold">Amount:</label>
+<div class="govuk-grid-column-one-third">
+  <label class="govuk-!-font-weight-bold">Amount:</label>
   {% if version.flat_amount.amount %}
   {{ version.flat_amount.amount }}
   {% elif version.percentage_amount.percentage %}
   {{ version.percentage_amount.percentage }}
   {% endif %}
 </div>
-<div class="column-two-thirds">
-  <label class="bold">Memo line:</label> {{ version.memo_line }}
+<div class="govuk-grid-column-two-thirds">
+  <label class="govuk-!-font-weight-bold">Memo line:</label> {{ version.memo_line }}
 </div>
-<div class="column-two-thirds">
-  <label class="bold">Natural account code:</label> {{ version.natural_account_code }}
+<div class="govuk-grid-column-two-thirds">
+  <label class="govuk-!-font-weight-bold">Natural account code:</label> {{ version.natural_account_code }}
 </div>
-<div class="column-two-thirds">
-  <label class="bold">Description:</label> {{ version.description }}
+<div class="govuk-grid-column-two-thirds">
+  <label class="govuk-!-font-weight-bold">Description:</label> {{ version.description }}
 </div>
 </div>
 <hr width=100%>
   {% endfor %}
 {% if not isDraftVersionExists(feeDto) %}
   {% if isEditor(user.allInfo.roles) %}
-  <div class="gird-row">
+  <div class="govuk-grid-row">
   <div class="column">
-    <h2 class="heading-medium">
-      <label class="bold">Actions</label>
+    <h2 class="govuk-heading-m">
+      <label class="govuk-!-font-weight-bold">Actions</label>
     </h2>
   </div>
   </div>
 
-  <div class="gird-row">
-  <div class="column-third">
-    <ul class="list list-bullet">
+  <div class="govuk-grid-row">
+  <div class="govuk-grid-column-one-third">
+    <ul class="govuk-list govuk-list--bullet">
       <li>
         {% if feeDto.current_version.flat_amount.amount %}
           {% set type = 'flat' %}
@@ -189,9 +189,9 @@
 {% endif %}
 
 
-<div class="grid-row">
+<div class="govuk-grid-row">
 <div class="column">
-  <p><a href="/fees" class="link-back">{{ t("View all fees") }}</a></p>
+  <p><a href="/fees" class="govuk-back-link">{{ t("View all fees") }}</a></p>
 </div>
 </div>
   {% endblock %}
