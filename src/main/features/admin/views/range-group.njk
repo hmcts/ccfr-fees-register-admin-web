@@ -7,34 +7,34 @@
   {% block content %}
 
 <div class="govuk-grid-column-full">
-  <table>
-    <thead>
-    <tr>
-      <th>Category</th>
-      <th>Fee code</th>
-      <th>Fee description</th>
-      <th>Range from</th>
-      <th>Range to</th>
-      <th>Fixed fee</th>
-      <th>Percentage fee</th>
+  <table class="govuk-table">
+    <thead class="govuk-table__head">
+    <tr class="govuk-table__row">
+      <th class="govuk-table__header">Category</th>
+      <th class="govuk-table__header">Fee code</th>
+      <th class="govuk-table__header">Fee description</th>
+      <th class="govuk-table__header">Range from</th>
+      <th class="govuk-table__header">Range to</th>
+      <th class="govuk-table__header">Fixed fee</th>
+      <th class="govuk-table__header">Percentage fee</th>
     </tr>
     </thead>
-    <tbody>
+    <tbody class="govuk-table__body">
     {% for range in rangeGroup.ranges %}
-    <tr>
-      <td>{{ rangeGroup.code }}</td>
-      <td>{{ range.fee.code }}</td>
-      <td>{{ range.fee.description }}</td>
-      <td>{{ range.from }}</td>
-      <td>{{ range.to }}</td>
-      <td>{{ range.fee.amount }}</td>
-      <td>{{ range.fee.percentage }}</td>
+    <tr class="govuk-table__row">
+      <td class="govuk-table__cell">{{ rangeGroup.code }}</td>
+      <td class="govuk-table__cell">{{ range.fee.code }}</td>
+      <td class="govuk-table__cell">{{ range.fee.description }}</td>
+      <td class="govuk-table__cell">{{ range.from }}</td>
+      <td class="govuk-table__cell">{{ range.to }}</td>
+      <td class="govuk-table__cell">{{ range.fee.amount }}</td>
+      <td class="govuk-table__cell">{{ range.fee.percentage }}</td>
     </tr>
     {% endfor %}
     </tbody>
   </table>
 
-  <p><a href="/admin/welcome/" class="govuk-back-link">{{ t("Back to welcome page") }}</a></p>
+  <p class="govuk-body"><a href="/admin/welcome/" class="govuk-back-link">{{ t("Back to welcome page") }}</a></p>
 </div>
 
   {% endblock %}

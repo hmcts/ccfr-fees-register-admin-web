@@ -1363,7 +1363,7 @@
 {% endif %}
 {% if pageType === 'draftfee' %}
  {% if isEditor(user.allInfo.roles) or isAdmin(user.allInfo.roles)%}
-    <a href="/admin/v2/confirm-draft-approval?feeCode={{ feeDto.code }}&version={{ versionNo }}&pageType={{ pageType }}" class="custom-button btn">
+    <a href="/admin/v2/confirm-draft-approval?feeCode={{ feeDto.code }}&version={{ versionNo }}&pageType={{ pageType }}" class="govuk-button govuk-!-margin-top-6" role="button" draggable="false" data-module="govuk-button">
       Request approval
     </a>
       <br>
@@ -1371,18 +1371,18 @@
 
 
 		{% if hasApprovedVersion(feeDto.fee_versions) %}
-			<a title="Edit version" href="/admin/v2/fees/version/create/{{ feeDto.code }}?action=edit&version={{ versionNo }}">
+			<a class="govuk-link" title="Edit version" href="/admin/v2/fees/version/create/{{ feeDto.code }}?action=edit&version={{ versionNo }}">
 			Edit fee
 			</a>
 		{% else %}
-			<a title="Edit fee" href="/admin/v2/fees/create?action=edit&feeCode={{ feeDto.code }}">
+			<a class="govuk-link" title="Edit fee" href="/admin/v2/fees/create?action=edit&feeCode={{ feeDto.code }}">
 			Edit fee
 			</a>
 		{% endif %}
 		<br>
 		<br>
 
-      <a title="Delete version" href="/admin/v2/draft-delete-are-you-sure?feeCode={{ feeDto.code }}&version={{ versionNo }}&pageType={{ pageType }}">
+      <a class="govuk-link" title="Delete version" href="/admin/v2/draft-delete-are-you-sure?feeCode={{ feeDto.code }}&version={{ versionNo }}&pageType={{ pageType }}">
         Delete
       </a>
 	  {% endif %}
@@ -1392,11 +1392,11 @@
 
 
 			{% if hasApprovedVersion(feeDto.fee_versions) %}
-				<a title="Edit version" href="/admin/v2/fees/version/create/{{ feeDto.code }}?action=edit&version={{ versionNo }}" class="custom-button btn">
+				<a title="Edit version" href="/admin/v2/fees/version/create/{{ feeDto.code }}?action=edit&version={{ versionNo }}" class="govuk-button govuk-!-margin-top-6" role="button" draggable="false" data-module="govuk-button">
 					Edit fee
 				</a>
 			{% else %}
-				<a title="Edit fee" href="/admin/v2/fees/create?action=edit&feeCode={{ feeDto.code }}" class="custom-button btn">
+				<a title="Edit fee" href="/admin/v2/fees/create?action=edit&feeCode={{ feeDto.code }}" class="govuk-button govuk-!-margin-top-6" role="button" draggable="false" data-module="govuk-button">
 					Edit fee
 				</a>
 			{% endif %}
@@ -1411,7 +1411,7 @@
         <input type="submit" class="link-button" value="Request approval">
       </form>
       <br>
-      <a title="Delete version" href="/admin/v2/draft-delete-are-you-sure?feeCode={{ feeDto.code }}&version={{ versionNo }}&pageType={{ pageType }}">
+      <a class="govuk-link" title="Delete version" href="/admin/v2/draft-delete-are-you-sure?feeCode={{ feeDto.code }}&version={{ versionNo }}&pageType={{ pageType }}">
         Delete
       </a>
 	{% endif %}
@@ -1429,7 +1429,7 @@
 
         <br>
         <br>
-        <a title="Reject version" href="/admin/v2/reject-fee-reason/{{ feeDto.code }}/{{ versionNo }}">
+        <a class="govuk-link" title="Reject version" href="/admin/v2/reject-fee-reason/{{ feeDto.code }}/{{ versionNo }}">
           Reject fee
         </a>
       {% endif %}
@@ -1437,7 +1437,7 @@
 
 		{% if not isDraftVersionExists(feeDto) %}
 				{% if isEditor(user.allInfo.roles) or isAdmin(user.allInfo.roles)%}
-					<a href="/admin/v2/fees/version/create/{{ feeDto.code }}?type={{ type }}" class="custom-button btn">
+					<a href="/admin/v2/fees/version/create/{{ feeDto.code }}?type={{ type }}" class="govuk-button govuk-!-margin-top-6" role="button" draggable="false" data-module="govuk-button">
 					Edit fee
 					</a>
 				{% endif %}

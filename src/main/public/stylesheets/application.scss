@@ -5,7 +5,12 @@ $govuk-fonts-path: '/fonts/';
 $govuk-images-path: $path;
 
 @import 'govuk-frontend/dist/govuk/index';
-@import 'legacy-compat';
+
+// Custom markup (fee details lists, tab lists, data table cells) inherits the GOV.UK font from here
+body {
+  @include govuk-font($size: 19);
+  color: govuk-functional-colour(text);
+}
 
 .notice {
   margin-bottom: 1.5rem;
@@ -30,7 +35,22 @@ $govuk-images-path: $path;
   }
 }
 
+// Long reference data radio lists (create-edit-fee.njk) laid out in three columns
+.fee-radios--columns {
+  @include govuk-media-query($from: tablet) {
+    display: flex;
+    flex-wrap: wrap;
+
+    .govuk-radios__item {
+      flex: 0 0 33.33%;
+      box-sizing: border-box;
+      padding-right: govuk-spacing(3);
+    }
+  }
+}
+
 .link-button {
+  @include govuk-font($size: 19);
   background: none;
   border: 0;
   color: $govuk-link-colour;

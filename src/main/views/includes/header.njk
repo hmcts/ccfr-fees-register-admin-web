@@ -1,0 +1,56 @@
+{% from "govuk/components/generic-header/macro.njk" import govukGenericHeader %}
+{% from "govuk/components/service-navigation/macro.njk" import govukServiceNavigation %}
+
+{% set path = currentPath | default('') %}
+{% set roles = user.allInfo.roles if user and user.allInfo else [] %}
+
+{{ govukGenericHeader({
+  logoText: t('Fee register'),
+  url: '/admin/V2/all-fees' if isLoggedIn else '/fees'
+}) }}
+
+{% if isLoggedIn %}
+  {% set accountItems %}
+    <li class="govuk-service-navigation__item">
+      <span class="govuk-service-navigation__text">{{ user.allInfo.forename }} {{ user.allInfo.surname }}</span>
+    </li>
+    <li class="govuk-service-navigation__item">
+      <a class="govuk-service-navigation__link" href="/logout">{{ t('Sign out') }}</a>
+    </li>
+  {% endset %}
+
+  {{ govukServiceNavigation({
+    navigationLabel: t('Main navigation'),
+    navigation: [
+      {
+        href: '/admin/V2/all-fees',
+        text: t('Fees'),
+        active: path.startsWith('/admin/v2/all-') or path.startsWith('/admin/v2/fees')
+      },
+      {
+        href: '/admin/V2/draft-fees',
+        text: t('Your Drafts'),
+        active: path.startsWith('/admin/v2/draft')
+      } if isEditor(roles) or isAdmin(roles),
+      {
+        href: '/admin/v2/upload',
+        text: t('Upload fees'),
+        active: path.startsWith('/admin/v2/upload')
+      } if isEditor(roles) or isAdmin(roles),
+      {
+        href: '/admin/V2/pending-approval',
+        text: t('Approvals'),
+        active: path.startsWith('/admin/v2/pending-approval')
+      } if isApprover(roles) and not (isEditor(roles) or isAdmin(roles)),
+      {
+        href: '/admin/V2/reference-data',
+        text: t('Reference Data'),
+        active: path.startsWith('/admin/v2/reference-data'),
+        attributes: { id: 'referenceData' }
+      }
+    ],
+    slots: {
+      navigationEnd: accountItems
+    }
+  }) }}
+{% endif %}

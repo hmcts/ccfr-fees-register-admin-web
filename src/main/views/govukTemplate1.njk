@@ -1,3 +1,4 @@
+{% from "includes/macros/form.njk" import errorSummary -%}
 {% block top_of_page %}{% endblock %}
 <!DOCTYPE html>
 <html lang="{{ html_lang|default('en') }}" class="govuk-template">
@@ -26,7 +27,7 @@
 
 {% block body_start %}{% endblock %}
 
-<a tabindex="1" href="#content" class="govuk-skip-link" data-module="govuk-skip-link">{{ skip_link_message|default('Skip to main content') }}</a>
+<a href="#content" class="govuk-skip-link" data-module="govuk-skip-link">{{ skip_link_message|default('Skip to main content') }}</a>
 
 <div id="global-cookie-message">
 
@@ -35,16 +36,8 @@
 </div>
 
 
-<header role="banner" id="global-header" class="{% block header_class %}{% endblock %}">
-  <div class="header">
-    <div class="header-global">
-      <div class="header-proposition">
-        <a tabindex="1" href="{{ homepage_url|default('https://www.gov.uk') }}" class="custom-header-title">{{ t('Fee register') }} </a>
-      </div>
-      {% block inside_header %}{% endblock %}
-    </div>
-    {% block proposition_header %}{% endblock %}
-  </div>
+<header class="govuk-template__header">
+  {% include "includes/header.njk" %}
 </header>
 
 

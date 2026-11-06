@@ -120,62 +120,24 @@ function onKeywordChanged() {
 
 /* eslint-enable */
 
-function displayRangeFeesSection() {
-  document.getElementById("ranged-container").style.display="block";
-  type = "ranged";
+// Showing and hiding the ranged section is handled by the govuk-radios conditional reveal
+function setFeeType(newType) {
+  type = newType;
 
   onKeywordChanged();
-}
-
-function hideRangeFeesSection() {
-  document.getElementById("ranged-container").style.display="none";
-  document.getElementById("ranged-container").classList.remove("disply-section")
-  type = "fixed";
-
-  onKeywordChanged();
-}
-
-function showFlatAmountSection() {
-  document.getElementById("flatAmount").style.display="block";
-  document.getElementById("percentageAmount").style.display="none";
-  document.getElementById("percentageAmount").classList.remove("disply-section")
-  document.getElementById("volumeAmount").style.display="none";
-  document.getElementById("volumeAmount").classList.remove("disply-section")
-}
-
-function showPercentageSection() {
-  document.getElementById("volumeAmount").style.display="none";
-  document.getElementById("volumeAmount").classList.remove("disply-section")
-  document.getElementById("flatAmount").style.display="none";
-  document.getElementById("flatAmount").classList.remove("disply-section")
-  document.getElementById("percentageAmount").style.display="block";
-}
-
-function showVolumeAmountSection() {
-  document.getElementById("volumeAmount").style.display="block";
-  document.getElementById("percentageAmount").style.display="none";
-  document.getElementById("percentageAmount").classList.remove("disply-section")
-  document.getElementById("flatAmount").style.display="none";
-  document.getElementById("flatAmount").classList.remove("disply-section")
 }
 
 document.addEventListener("DOMContentLoaded", function () {
 
   if (document.getElementById("typefixed") && document.getElementById("typeranged")) {
-  document.getElementById("typefixed")
-    .addEventListener("click", hideRangeFeesSection);
-  document.getElementById("typeranged")
-    .addEventListener("click", displayRangeFeesSection);
-  }
-
-  if (document.getElementById("flat") && document.getElementById("percentage") && document.getElementById("volume")) {
-    document.getElementById("flat")
-      .addEventListener("click", showFlatAmountSection);
-    document.getElementById("percentage")
-      .addEventListener("click", showPercentageSection);
-      document.getElementById("volume")
-      .addEventListener("click", showVolumeAmountSection);
+    if (document.getElementById("typeranged").checked) {
+      type = "ranged";
     }
+    document.getElementById("typefixed")
+      .addEventListener("click", () => setFeeType("fixed"));
+    document.getElementById("typeranged")
+      .addEventListener("click", () => setFeeType("ranged"));
+  }
 
   if (document.getElementById("amount")) {
     document.getElementById("amount").onchange = formatDecimals;

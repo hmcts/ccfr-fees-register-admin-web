@@ -17,41 +17,41 @@
 
   {% if (draftFees | length) > 0 %}
 
-  <table>
-    <thead>
-    <tr>
-      <th class="bold-xxsmall center"></th>
-      <th class="bold-xxsmall center-text"></th>
-      <th class="bold-xxsmall center-text">Code</th>
-      <th class="bold-xxsmall center-text">Description</th>
-      <th class="bold-xxsmall center-text">Type</th>
-      <th class="bold-xxsmall center-text">Range from</th>
-      <th class="bold-xxsmall center-text">Range to</th>
-      <th class="bold-xxsmall center-text">Amount Type</th>
-      <th class="bold-xxsmall center-text">Amount / %</th>
-      <th class="bold-xxsmall center-text">Jurisdiction 1</th>
-      <th class="bold-xxsmall center-text">Jurisdiction 2</th>
-      <th class="bold-xxsmall center-text">Service</th>
-      <th class="bold-xxsmall center-text">Event</th>
-      <th class="bold-xxsmall center-text">Channel</th>
-      <th class="bold-xxsmall center-text">Keyword</th>
-      <th class="bold-xxsmall center-text">Version</th>
-      <th class="bold-xxsmall center-text">Valid From</th>
-      <th class="bold-xxsmall center-text">Valid To</th>
-      <th class="bold-xxsmall center-text">Reason For Fee Update</th>
+  <table class="govuk-table">
+    <thead class="govuk-table__head">
+    <tr class="govuk-table__row">
+      <th class="govuk-table__header bold-xxsmall center"></th>
+      <th class="govuk-table__header bold-xxsmall center-text"></th>
+      <th class="govuk-table__header bold-xxsmall center-text">Code</th>
+      <th class="govuk-table__header bold-xxsmall center-text">Description</th>
+      <th class="govuk-table__header bold-xxsmall center-text">Type</th>
+      <th class="govuk-table__header bold-xxsmall center-text">Range from</th>
+      <th class="govuk-table__header bold-xxsmall center-text">Range to</th>
+      <th class="govuk-table__header bold-xxsmall center-text">Amount Type</th>
+      <th class="govuk-table__header bold-xxsmall center-text">Amount / %</th>
+      <th class="govuk-table__header bold-xxsmall center-text">Jurisdiction 1</th>
+      <th class="govuk-table__header bold-xxsmall center-text">Jurisdiction 2</th>
+      <th class="govuk-table__header bold-xxsmall center-text">Service</th>
+      <th class="govuk-table__header bold-xxsmall center-text">Event</th>
+      <th class="govuk-table__header bold-xxsmall center-text">Channel</th>
+      <th class="govuk-table__header bold-xxsmall center-text">Keyword</th>
+      <th class="govuk-table__header bold-xxsmall center-text">Version</th>
+      <th class="govuk-table__header bold-xxsmall center-text">Valid From</th>
+      <th class="govuk-table__header bold-xxsmall center-text">Valid To</th>
+      <th class="govuk-table__header bold-xxsmall center-text">Reason For Fee Update</th>
       <th/>
       <th/>
     </tr>
     </thead>
-    <tbody>
+    <tbody class="govuk-table__body">
     {% for fee in draftFees %}
-    <tr>
+    <tr class="govuk-table__row">
       {% if fee.current_version != null %}
       {% set displayedFeeVersion = fee.current_version %}
       {% else %}
       {% set displayedFeeVersion = fee.fee_versions[0] %}
       {% endif %}
-      <td>
+      <td class="govuk-table__cell">
         {% if isDraftFeeSubmittable(fee) %}
         <form method="post" action="">
           {{ csrfProtection(csrfToken) }}
@@ -63,7 +63,7 @@
         {% endif %}
       </td>
 
-      <td>
+      <td class="govuk-table__cell">
         <form method="post" action="">
           {{ csrfProtection(csrfToken) }}
           <input type="hidden" name="feeCode" value="{{ fee.code }}"/>
@@ -72,68 +72,68 @@
           <input type="submit" class="govuk-button govuk-button--warning" value="Delete">
         </form>
       </td>
-      <td class="font-xxsmall center-text">
+      <td class="govuk-table__cell font-xxsmall center-text">
         {% if hasApprovedVersion(fee.fee_versions) %}
-          <a title="Edit version" href="/admin/v2/fees/version/create/{{ fee.code }}?action=edit&version={{ displayedFeeVersion.version }}">
+          <a class="govuk-link" title="Edit version" href="/admin/v2/fees/version/create/{{ fee.code }}?action=edit&version={{ displayedFeeVersion.version }}">
             {{ fee.code }}
           </a>
         {% else %}
-        <a title="Edit fee" href="/admin/v2/fees/create?action=edit&feeCode={{ fee.code }}">
+        <a class="govuk-link" title="Edit fee" href="/admin/v2/fees/create?action=edit&feeCode={{ fee.code }}">
           {{ fee.code }}
         </a>
         {% endif %}
       </td>
-      <td class="font-xxsmall center-text">{{ displayedFeeVersion.description }}</td>
-      <td class="font-xxsmall center-text">{{ fee.fee_type }}</td>
+      <td class="govuk-table__cell font-xxsmall center-text">{{ displayedFeeVersion.description }}</td>
+      <td class="govuk-table__cell font-xxsmall center-text">{{ fee.fee_type }}</td>
       {% if fee.min_range %}
-      <td class="font-xxsmall center-text">£{{ fee.min_range }}</td>
+      <td class="govuk-table__cell font-xxsmall center-text">£{{ fee.min_range }}</td>
       {% else %}
-      <td class="font-xxsmall center-text">n/a</td>
+      <td class="govuk-table__cell font-xxsmall center-text">n/a</td>
       {% endif %}
       {% if fee.max_range %}
-      <td class="font-xxsmall center-text">£{{ fee.max_range }}</td>
+      <td class="govuk-table__cell font-xxsmall center-text">£{{ fee.max_range }}</td>
       {% else %}
-      <td class="font-xxsmall center-text">n/a</td>
+      <td class="govuk-table__cell font-xxsmall center-text">n/a</td>
       {% endif %}
       {% if displayedFeeVersion.flat_amount %}
-      <td class="font-xxsmall center-text">Flat</td>
-      <td class="font-xxsmall center-text">£{{ displayedFeeVersion.flat_amount.amount }}</td>
+      <td class="govuk-table__cell font-xxsmall center-text">Flat</td>
+      <td class="govuk-table__cell font-xxsmall center-text">£{{ displayedFeeVersion.flat_amount.amount }}</td>
       {% elif displayedFeeVersion.volume_amount %}
-      <td class="font-xxsmall center-text">Volume</td>
-      <td class="font-xxsmall center-text">£{{ displayedFeeVersion.volume_amount.amount }}</td>
+      <td class="govuk-table__cell font-xxsmall center-text">Volume</td>
+      <td class="govuk-table__cell font-xxsmall center-text">£{{ displayedFeeVersion.volume_amount.amount }}</td>
       {% else %}
-      <td class="font-xxsmall center-text">Percentage</td>
-      <td class="font-xxsmall center-text">{{ displayedFeeVersion.percentage_amount.percentage }}%</td>
+      <td class="govuk-table__cell font-xxsmall center-text">Percentage</td>
+      <td class="govuk-table__cell font-xxsmall center-text">{{ displayedFeeVersion.percentage_amount.percentage }}%</td>
       {% endif %}
-      <td class="font-xxsmall center-text">{{ fee.jurisdiction1.name }}</td>
-      <td class="font-xxsmall center-text">{{ fee.jurisdiction2.name }}</td>
-      <td class="font-xxsmall center-text">{{ fee.service_type.name }}</td>
-      <td class="font-xxsmall center-text">{{ fee.event_type.name }}</td>
-      <td class="font-xxsmall center-text">{{ fee.channel_type.name }}</td>
-      <td class="font-xxsmall center-text">{{ fee.keyword }}</td>
-      <td class="font-xxsmall center-text">{{ displayedFeeVersion.version }}</td>
+      <td class="govuk-table__cell font-xxsmall center-text">{{ fee.jurisdiction1.name }}</td>
+      <td class="govuk-table__cell font-xxsmall center-text">{{ fee.jurisdiction2.name }}</td>
+      <td class="govuk-table__cell font-xxsmall center-text">{{ fee.service_type.name }}</td>
+      <td class="govuk-table__cell font-xxsmall center-text">{{ fee.event_type.name }}</td>
+      <td class="govuk-table__cell font-xxsmall center-text">{{ fee.channel_type.name }}</td>
+      <td class="govuk-table__cell font-xxsmall center-text">{{ fee.keyword }}</td>
+      <td class="govuk-table__cell font-xxsmall center-text">{{ displayedFeeVersion.version }}</td>
       {% if displayedFeeVersion.valid_from %}
-      <td class="font-xxsmall center-text">{{ displayedFeeVersion.valid_from | date}}</td>
+      <td class="govuk-table__cell font-xxsmall center-text">{{ displayedFeeVersion.valid_from | date}}</td>
       {% else %}
       <td/>
       {% endif %}
       {% if displayedFeeVersion.valid_to %}
-      <td class="font-xxsmall center-text">{{ displayedFeeVersion.valid_to | date }}</td>
+      <td class="govuk-table__cell font-xxsmall center-text">{{ displayedFeeVersion.valid_to | date }}</td>
       {% else %}
       <td/>
       {% endif %}
-      <td class="font-xxsmall center-text">{{ displayedFeeVersion.reason_for_update}}</td>
+      <td class="govuk-table__cell font-xxsmall center-text">{{ displayedFeeVersion.reason_for_update}}</td>
     </tr>
     {% endfor %}
     </tbody>
   </table>
 
   {% else %}
-  <p>No draft fees</p>
+  <p class="govuk-body">No draft fees</p>
   {% endif %}
   {% endif %}
 
-  <p></p>
+  <p class="govuk-body"></p>
 
   {% if isAdmin(user.allInfo.roles) %}
   <h4 class="govuk-heading-s">All fees pending approval</h4>
@@ -145,44 +145,44 @@
 
   {% if (pendingApprovalFees | length) > 0 %}
 
-  <table>
-    <thead>
-    <tr>
+  <table class="govuk-table">
+    <thead class="govuk-table__head">
+    <tr class="govuk-table__row">
       {% if isApprover(user.allInfo.roles) or isAdmin(user.allInfo.roles) %}
-      <th class="bold-xxsmall center-text"></th>
-      <th class="bold-xxsmall center-text"></th>
+      <th class="govuk-table__header bold-xxsmall center-text"></th>
+      <th class="govuk-table__header bold-xxsmall center-text"></th>
       {% endif %}
-      <th class="bold-xxsmall center-text">Code</th>
-      <th class="bold-xxsmall center-text">Description</th>
-      <th class="bold-xxsmall center-text">Type</th>
-      <th class="bold-xxsmall center-text">Range from</th>
-      <th class="bold-xxsmall center-text">Range to</th>
-      <th class="bold-xxsmall center-text">Amount Type</th>
-      <th class="bold-xxsmall center-text">Amount / %</th>
-      <th class="bold-xxsmall center-text">Jurisdiction 1</th>
-      <th class="bold-xxsmall center-text">Jurisdiction 2</th>
-      <th class="bold-xxsmall center-text">Service</th>
-      <th class="bold-xxsmall center-text">Event</th>
-      <th class="bold-xxsmall center-text">Channel</th>
-      <th class="bold-xxsmall center-text">Keyword</th>
-      <th class="bold-xxsmall center-text">Version</th>
-      <th class="bold-xxsmall center-text">Valid From</th>
-      <th class="bold-xxsmall center-text">Valid To</th>
-      <th class="bold-xxsmall center-text">Reason For Fee Update</th>
+      <th class="govuk-table__header bold-xxsmall center-text">Code</th>
+      <th class="govuk-table__header bold-xxsmall center-text">Description</th>
+      <th class="govuk-table__header bold-xxsmall center-text">Type</th>
+      <th class="govuk-table__header bold-xxsmall center-text">Range from</th>
+      <th class="govuk-table__header bold-xxsmall center-text">Range to</th>
+      <th class="govuk-table__header bold-xxsmall center-text">Amount Type</th>
+      <th class="govuk-table__header bold-xxsmall center-text">Amount / %</th>
+      <th class="govuk-table__header bold-xxsmall center-text">Jurisdiction 1</th>
+      <th class="govuk-table__header bold-xxsmall center-text">Jurisdiction 2</th>
+      <th class="govuk-table__header bold-xxsmall center-text">Service</th>
+      <th class="govuk-table__header bold-xxsmall center-text">Event</th>
+      <th class="govuk-table__header bold-xxsmall center-text">Channel</th>
+      <th class="govuk-table__header bold-xxsmall center-text">Keyword</th>
+      <th class="govuk-table__header bold-xxsmall center-text">Version</th>
+      <th class="govuk-table__header bold-xxsmall center-text">Valid From</th>
+      <th class="govuk-table__header bold-xxsmall center-text">Valid To</th>
+      <th class="govuk-table__header bold-xxsmall center-text">Reason For Fee Update</th>
       <th/>
       <th/>
     </tr>
     </thead>
-    <tbody>
+    <tbody class="govuk-table__body">
     {% for fee in pendingApprovalFees %}
     {% if fee.current_version != null %}
     {% set displayedFeeVersion = fee.current_version %}
     {% else %}
     {% set displayedFeeVersion = fee.fee_versions[0] %}
     {% endif %}
-    <tr>
+    <tr class="govuk-table__row">
       {% if isApprover(user.allInfo.roles) or isAdmin(user.allInfo.roles) %}
-      <td>
+      <td class="govuk-table__cell">
         <form method="post" action="">
           {{ csrfProtection(csrfToken) }}
           <input type="hidden" name="feeCode" value="{{ fee.code }}"/>
@@ -191,7 +191,7 @@
           <input type="submit" class="govuk-button" value="Approve">
         </form>
       </td>
-      <td>
+      <td class="govuk-table__cell">
         <form method="post" action="">
           {{ csrfProtection(csrfToken) }}
           <input type="hidden" name="feeCode" value="{{ fee.code }}"/>
@@ -201,47 +201,47 @@
         </form>
       </td>
       {% endif %}
-      <td class="font-xxsmall center-text">{{ fee.code }}</td>
-      <td class="font-xxsmall center-text">{{ displayedFeeVersion.description }}</td>
-      <td class="font-xxsmall center-text">{{ fee.fee_type }}</td>
+      <td class="govuk-table__cell font-xxsmall center-text">{{ fee.code }}</td>
+      <td class="govuk-table__cell font-xxsmall center-text">{{ displayedFeeVersion.description }}</td>
+      <td class="govuk-table__cell font-xxsmall center-text">{{ fee.fee_type }}</td>
       {% if fee.min_range %}
-      <td class="font-xxsmall center-text">£{{ fee.min_range }}</td>
+      <td class="govuk-table__cell font-xxsmall center-text">£{{ fee.min_range }}</td>
       {% else %}
-      <td class="font-xxsmall center-text">n/a</td>
+      <td class="govuk-table__cell font-xxsmall center-text">n/a</td>
       {% endif %}
       {% if fee.max_range %}
-      <td class="font-xxsmall center-text">£{{ fee.max_range }}</td>
+      <td class="govuk-table__cell font-xxsmall center-text">£{{ fee.max_range }}</td>
       {% else %}
-      <td class="font-xxsmall center-text">n/a</td>
+      <td class="govuk-table__cell font-xxsmall center-text">n/a</td>
       {% endif %}
       {% if displayedFeeVersion.flat_amount %}
-      <td class="font-xxsmall center-text">Flat</td>
-      <td class="font-xxsmall center-text">£{{ displayedFeeVersion.flat_amount.amount }}</td>
+      <td class="govuk-table__cell font-xxsmall center-text">Flat</td>
+      <td class="govuk-table__cell font-xxsmall center-text">£{{ displayedFeeVersion.flat_amount.amount }}</td>
       {% elif displayedFeeVersion.volume_amount %}
-      <td class="font-xxsmall center-text">Volume</td>
-      <td class="font-xxsmall center-text">£{{ displayedFeeVersion.volume_amount.amount }}</td>
+      <td class="govuk-table__cell font-xxsmall center-text">Volume</td>
+      <td class="govuk-table__cell font-xxsmall center-text">£{{ displayedFeeVersion.volume_amount.amount }}</td>
       {% else %}
-      <td class="font-xxsmall center-text">Percentage</td>
-      <td class="font-xxsmall center-text">{{ displayedFeeVersion.percentage_amount.percentage }}%</td>
+      <td class="govuk-table__cell font-xxsmall center-text">Percentage</td>
+      <td class="govuk-table__cell font-xxsmall center-text">{{ displayedFeeVersion.percentage_amount.percentage }}%</td>
       {% endif %}
-      <td class="font-xxsmall center-text">{{ fee.jurisdiction1.name }}</td>
-      <td class="font-xxsmall center-text">{{ fee.jurisdiction2.name }}</td>
-      <td class="font-xxsmall center-text">{{ fee.service_type.name }}</td>
-      <td class="font-xxsmall center-text">{{ fee.event_type.name }}</td>
-      <td class="font-xxsmall center-text">{{ fee.channel_type.name }}</td>
-      <td class="font-xxsmall center-text">{{ fee.keyword }}</td>
-      <td class="font-xxsmall center-text">{{ displayedFeeVersion.version }}</td>
+      <td class="govuk-table__cell font-xxsmall center-text">{{ fee.jurisdiction1.name }}</td>
+      <td class="govuk-table__cell font-xxsmall center-text">{{ fee.jurisdiction2.name }}</td>
+      <td class="govuk-table__cell font-xxsmall center-text">{{ fee.service_type.name }}</td>
+      <td class="govuk-table__cell font-xxsmall center-text">{{ fee.event_type.name }}</td>
+      <td class="govuk-table__cell font-xxsmall center-text">{{ fee.channel_type.name }}</td>
+      <td class="govuk-table__cell font-xxsmall center-text">{{ fee.keyword }}</td>
+      <td class="govuk-table__cell font-xxsmall center-text">{{ displayedFeeVersion.version }}</td>
       {% if displayedFeeVersion.valid_from %}
-      <td class="font-xxsmall center-text">{{ displayedFeeVersion.valid_from | date }}</td>
+      <td class="govuk-table__cell font-xxsmall center-text">{{ displayedFeeVersion.valid_from | date }}</td>
       {% else %}
       <td/>
       {% endif %}
       {% if displayedFeeVersion.valid_to %}
-      <td class="font-xxsmall center-text">{{ displayedFeeVersion.valid_to | date }}</td>
+      <td class="govuk-table__cell font-xxsmall center-text">{{ displayedFeeVersion.valid_to | date }}</td>
       {% else %}
       <td/>
       {% endif %}
-      <td class="font-xxsmall center-text">{{ displayedFeeVersion.reason_for_update}}</td>
+      <td class="govuk-table__cell font-xxsmall center-text">{{ displayedFeeVersion.reason_for_update}}</td>
 
     </tr>
     {% endfor %}
@@ -249,10 +249,10 @@
   </table>
 
   {% else %}
-  <p>No fees pending approval</p>
+  <p class="govuk-body">No fees pending approval</p>
   {% endif %}
 
-  <p></p>
+  <p class="govuk-body"></p>
 
   {% if isAdmin(user.allInfo.roles) %}
   <h4 class="govuk-heading-s">All approved fees</h4>
@@ -263,88 +263,88 @@
   {% endif %}
 
   {% if (approvedFees | length) > 0 %}
-  <table>
-    <thead>
-    <tr>
-      <th class="bold-xxsmall center-text">Code</th>
-      <th class="bold-xxsmall center-text">Description</th>
-      <th class="bold-xxsmall center-text">Type</th>
-      <th class="bold-xxsmall center-text">Range from</th>
-      <th class="bold-xxsmall center-text">Range to</th>
-      <th class="bold-xxsmall center-text">Amount Type</th>
-      <th class="bold-xxsmall center-text">Amount / %</th>
-      <th class="bold-xxsmall center-text">Jurisdiction 1</th>
-      <th class="bold-xxsmall center-text">Jurisdiction 2</th>
-      <th class="bold-xxsmall center-text">Service</th>
-      <th class="bold-xxsmall center-text">Event</th>
-      <th class="bold-xxsmall center-text">Channel</th>
-      <th class="bold-xxsmall center-text">Keyword</th>
-      <th class="bold-xxsmall center-text">Version</th>
-      <th class="bold-xxsmall center-text">Valid From</th>
-      <th class="bold-xxsmall center-text">Valid To</th>
-      <th class="bold-xxsmall center-text">Reason For Fee Update</th>
+  <table class="govuk-table">
+    <thead class="govuk-table__head">
+    <tr class="govuk-table__row">
+      <th class="govuk-table__header bold-xxsmall center-text">Code</th>
+      <th class="govuk-table__header bold-xxsmall center-text">Description</th>
+      <th class="govuk-table__header bold-xxsmall center-text">Type</th>
+      <th class="govuk-table__header bold-xxsmall center-text">Range from</th>
+      <th class="govuk-table__header bold-xxsmall center-text">Range to</th>
+      <th class="govuk-table__header bold-xxsmall center-text">Amount Type</th>
+      <th class="govuk-table__header bold-xxsmall center-text">Amount / %</th>
+      <th class="govuk-table__header bold-xxsmall center-text">Jurisdiction 1</th>
+      <th class="govuk-table__header bold-xxsmall center-text">Jurisdiction 2</th>
+      <th class="govuk-table__header bold-xxsmall center-text">Service</th>
+      <th class="govuk-table__header bold-xxsmall center-text">Event</th>
+      <th class="govuk-table__header bold-xxsmall center-text">Channel</th>
+      <th class="govuk-table__header bold-xxsmall center-text">Keyword</th>
+      <th class="govuk-table__header bold-xxsmall center-text">Version</th>
+      <th class="govuk-table__header bold-xxsmall center-text">Valid From</th>
+      <th class="govuk-table__header bold-xxsmall center-text">Valid To</th>
+      <th class="govuk-table__header bold-xxsmall center-text">Reason For Fee Update</th>
       <th/>
       <th/>
     </tr>
     </thead>
-    <tbody>
+    <tbody class="govuk-table__body">
     {% for fee in approvedFees %}
     {% if fee.current_version != null %}
     {% set displayedFeeVersion = fee.current_version %}
     {% else %}
     {% set displayedFeeVersion = fee.fee_versions[0] %}
     {% endif %}
-    <tr>
-      <td class="font-xxsmall center-text">{{ fee.code }}</td>
-      <td class="font-xxsmall center-text">{{ displayedFeeVersion.description }}</td>
-      <td class="font-xxsmall center-text">{{ fee.fee_type }}</td>
+    <tr class="govuk-table__row">
+      <td class="govuk-table__cell font-xxsmall center-text">{{ fee.code }}</td>
+      <td class="govuk-table__cell font-xxsmall center-text">{{ displayedFeeVersion.description }}</td>
+      <td class="govuk-table__cell font-xxsmall center-text">{{ fee.fee_type }}</td>
       {% if fee.min_range %}
-      <td class="font-xxsmall center-text">£{{ fee.min_range }}</td>
+      <td class="govuk-table__cell font-xxsmall center-text">£{{ fee.min_range }}</td>
       {% else %}
-      <td class="font-xxsmall center-text">n/a</td>
+      <td class="govuk-table__cell font-xxsmall center-text">n/a</td>
       {% endif %}
       {% if fee.max_range %}
-      <td class="font-xxsmall center-text">£{{ fee.max_range }}</td>
+      <td class="govuk-table__cell font-xxsmall center-text">£{{ fee.max_range }}</td>
       {% else %}
-      <td class="font-xxsmall center-text">n/a</td>
+      <td class="govuk-table__cell font-xxsmall center-text">n/a</td>
       {% endif %}
       {% if displayedFeeVersion.flat_amount %}
-      <td class="font-xxsmall center-text">Flat</td>
-      <td class="font-xxsmall center-text">£{{ displayedFeeVersion.flat_amount.amount }}</td>
+      <td class="govuk-table__cell font-xxsmall center-text">Flat</td>
+      <td class="govuk-table__cell font-xxsmall center-text">£{{ displayedFeeVersion.flat_amount.amount }}</td>
       {% elif displayedFeeVersion.volume_amount %}
-      <td class="font-xxsmall center-text">Volume</td>
-      <td class="font-xxsmall center-text">£{{ displayedFeeVersion.volume_amount.amount }}</td>
+      <td class="govuk-table__cell font-xxsmall center-text">Volume</td>
+      <td class="govuk-table__cell font-xxsmall center-text">£{{ displayedFeeVersion.volume_amount.amount }}</td>
       {% else %}
-      <td class="font-xxsmall center-text">Percentage</td>
-      <td class="font-xxsmall center-text">{{ displayedFeeVersion.percentage_amount.percentage }}%</td>
+      <td class="govuk-table__cell font-xxsmall center-text">Percentage</td>
+      <td class="govuk-table__cell font-xxsmall center-text">{{ displayedFeeVersion.percentage_amount.percentage }}%</td>
       {% endif %}
-      <td class="font-xxsmall center-text">{{ fee.jurisdiction1.name }}</td>
-      <td class="font-xxsmall center-text">{{ fee.jurisdiction2.name }}</td>
-      <td class="font-xxsmall center-text">{{ fee.service_type.name }}</td>
-      <td class="font-xxsmall center-text">{{ fee.event_type.name }}</td>
-      <td class="font-xxsmall center-text">{{ fee.channel_type.name }}</td>
-      <td class="font-xxsmall center-text">{{ fee.keyword }}</td>
-      <td class="font-xxsmall center-text">{{ displayedFeeVersion.version }}</td>
+      <td class="govuk-table__cell font-xxsmall center-text">{{ fee.jurisdiction1.name }}</td>
+      <td class="govuk-table__cell font-xxsmall center-text">{{ fee.jurisdiction2.name }}</td>
+      <td class="govuk-table__cell font-xxsmall center-text">{{ fee.service_type.name }}</td>
+      <td class="govuk-table__cell font-xxsmall center-text">{{ fee.event_type.name }}</td>
+      <td class="govuk-table__cell font-xxsmall center-text">{{ fee.channel_type.name }}</td>
+      <td class="govuk-table__cell font-xxsmall center-text">{{ fee.keyword }}</td>
+      <td class="govuk-table__cell font-xxsmall center-text">{{ displayedFeeVersion.version }}</td>
       {% if displayedFeeVersion.valid_from %}
-      <td class="font-xxsmall center-text">{{ displayedFeeVersion.valid_from | date }}</td>
+      <td class="govuk-table__cell font-xxsmall center-text">{{ displayedFeeVersion.valid_from | date }}</td>
       {% else %}
       <td/>
       {% endif %}
       {% if displayedFeeVersion.valid_to %}
-      <td class="font-xxsmall center-text">{{ displayedFeeVersion.valid_to | date }}</td>
+      <td class="govuk-table__cell font-xxsmall center-text">{{ displayedFeeVersion.valid_to | date }}</td>
       {% else %}
       <td/>
       {% endif %}
-      <td class="font-xxsmall center-text">{{ displayedFeeVersion.reason_for_update}}</td>
+      <td class="govuk-table__cell font-xxsmall center-text">{{ displayedFeeVersion.reason_for_update}}</td>
     </tr>
     {% endfor %}
     </tbody>
   </table>
   {% else %}
-  <p>No approved fees</p>
+  <p class="govuk-body">No approved fees</p>
   {% endif %}
 
-  <p><a href="/admin/welcome/" class="govuk-back-link">{{ t("Back to welcome page") }}</a></p>
+  <p class="govuk-body"><a href="/admin/welcome/" class="govuk-back-link">{{ t("Back to welcome page") }}</a></p>
 </div>
 
   {% endblock %}

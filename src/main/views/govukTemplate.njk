@@ -1,3 +1,4 @@
+{% from "includes/macros/form.njk" import errorSummary -%}
 {% block top_of_page %}{% endblock %}
 <!DOCTYPE html>
 <html lang="{{ html_lang|default('en') }}" class="govuk-template">
@@ -26,38 +27,12 @@
 
 {% block body_start %}{% endblock %}
 
-<a tabindex="1" href="#content" class="govuk-skip-link" data-module="govuk-skip-link">{{ skip_link_message|default('Skip to main content') }}</a>
+<a href="#content" class="govuk-skip-link" data-module="govuk-skip-link">{{ skip_link_message|default('Skip to main content') }}</a>
 
 {% block cookie_banner %}{% endblock %}
 
-<header role="banner" id="global-header" class="{% block header_class %}{% endblock %}">
-  <div class="header">
-    <div class="header-global">
-      <div class="header-proposition">
-        <a tabindex="1" href="{{ homepage_url|default('https://www.gov.uk') }}" class="custom-header-title">{{ t('Fee register') }} </a>
-        {% if isLoggedIn %}
-          <ul class="custom-logout">
-
-          <p class="username-log">{{ user.allInfo.forename }} {{ user.allInfo.surname }}</p>
-          <a tabindex="1" href="/logout" class="custom-signout-link">{{ t('Sign out') }}</a>
-          </ul>
-
-          {% endif %}
-      <ul class="custom-header-ul">
-        <a tabindex="2" href="/admin/V2/all-fees" class="custom-draft-all-fees">{{ t('Fees') }} </a>
-        {% if isEditor(user.allInfo.roles) or isAdmin(user.allInfo.roles) %}
-        <a tabindex="2" href="/admin/V2/draft-fees" class="custom-draft-all-fees">{{ t('Your Drafts') }} </a>
-        <a tabindex="2" href="/admin/v2/upload" class="custom-draft-all-fees">{{ t('Upload fees') }} </a>
-        {% elif isApprover(user.allInfo.roles)%}
-        <a tabindex="2" href="/admin/V2/pending-approval" class="custom-draft-all-fees">{{ t('Approvals') }} </a>
-        {% endif %}
-        <a tabindex="2" href="/admin/V2/reference-data" id="referenceData" class="custom-draft-all-fees">{{ t('Reference Data') }} </a>
-      </ul>
-      </div>
-      {% block inside_header %}{% endblock %}
-    </div>
-    {% block proposition_header %}{% endblock %}
-  </div>
+<header class="govuk-template__header">
+  {% include "includes/header.njk" %}
 </header>
 
 

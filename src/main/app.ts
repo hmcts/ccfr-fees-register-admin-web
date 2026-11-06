@@ -61,6 +61,7 @@ app.use(bodyParser.urlencoded({
 
 app.use((req, res, next) => {
   res.setHeader('Cache-Control', 'no-cache, max-age=0, must-revalidate, no-store')
+  res.locals.currentPath = req.path.toLowerCase()
   next()
 })
 

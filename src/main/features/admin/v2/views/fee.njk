@@ -179,7 +179,7 @@
         {% elif feeDto.current_version.volume_amount.volume %}
           {% set type = 'volume' %}
         {% endif %}
-        <a href="/admin/v2/fees/version/create/{{ feeDto.code }}?type={{ type }}" class="link">{{ t("Create a new fee version") }}</a>
+        <a href="/admin/v2/fees/version/create/{{ feeDto.code }}?type={{ type }}" class="govuk-link link">{{ t("Create a new fee version") }}</a>
       </li>
     </ul>
   </div>
@@ -191,7 +191,7 @@
 
 <div class="govuk-grid-row">
 <div class="column">
-  <p><a href="/fees" class="govuk-back-link">{{ t("View all fees") }}</a></p>
+  <p class="govuk-body"><a href="/fees" class="govuk-back-link">{{ t("View all fees") }}</a></p>
 </div>
 </div>
   {% endblock %}

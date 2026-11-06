@@ -14,12 +14,12 @@
     <ul class="govuk-list govuk-list--bullet">
 
       {% if isEditor(user.allInfo.roles) or isAdmin(user.allInfo.roles) %}
-      <li><a href="/admin/v2/fees/create">{{ t("Add a new fee") }}</a></li>
-      <li><a href="/admin/v2/upload">{{ t("Upload fees") }}</a></li>
+      <li><a class="govuk-link" href="/admin/v2/fees/create">{{ t("Add a new fee") }}</a></li>
+      <li><a class="govuk-link" href="/admin/v2/upload">{{ t("Upload fees") }}</a></li>
       {% endif %}
-      <li><a href="/admin/v2/all-fees">{{ t("View all fees") }}</a></li>
-      <li><a href="/admin/v2/discontinued-fees">{{ t("View all discontinued fees") }}</a></li>
-      <li><a href="/admin/v2/dashboard">{{ t("My open actions") }}</a></li>
+      <li><a class="govuk-link" href="/admin/v2/all-fees">{{ t("View all fees") }}</a></li>
+      <li><a class="govuk-link" href="/admin/v2/discontinued-fees">{{ t("View all discontinued fees") }}</a></li>
+      <li><a class="govuk-link" href="/admin/v2/dashboard">{{ t("My open actions") }}</a></li>
 
     </ul>
   </div>
@@ -27,13 +27,13 @@
   <div class="govuk-grid-column-full">
     <h4 class="govuk-heading-s">Reference Data</h4>
     <ul class="govuk-list govuk-list--bullet">
-      <li><a href="/admin/v2/applicants">{{ t("Applicants") }}</a></li>
-      <li><a href="/admin/v2/jurisdictions1">{{ t("Jurisdictions 1") }}</a></li>
-      <li><a href="/admin/v2/jurisdictions2">{{ t("Jurisdictions 2") }}</a></li>
-      <li><a href="/admin/v2/services">{{ t("Services") }}</a></li>
-      <li><a href="/admin/v2/channels">{{ t("Channels") }}</a></li>
-      <li><a href="/admin/v2/events">{{ t("Events") }}</a></li>
-      <li><a href="/admin/v2/directions">{{ t("Directions") }}</a></li>
+      <li><a class="govuk-link" href="/admin/v2/applicants">{{ t("Applicants") }}</a></li>
+      <li><a class="govuk-link" href="/admin/v2/jurisdictions1">{{ t("Jurisdictions 1") }}</a></li>
+      <li><a class="govuk-link" href="/admin/v2/jurisdictions2">{{ t("Jurisdictions 2") }}</a></li>
+      <li><a class="govuk-link" href="/admin/v2/services">{{ t("Services") }}</a></li>
+      <li><a class="govuk-link" href="/admin/v2/channels">{{ t("Channels") }}</a></li>
+      <li><a class="govuk-link" href="/admin/v2/events">{{ t("Events") }}</a></li>
+      <li><a class="govuk-link" href="/admin/v2/directions">{{ t("Directions") }}</a></li>
     </ul>
   </div>
 
@@ -41,15 +41,15 @@
       <h4 class="govuk-heading-s">Legacy Register: Choose an action</h4>
       <ul class="govuk-list govuk-list--bullet">
         {% if (isFeatureEnabled('edit')) %}
-          <li><a href="/admin/categories" style="font-size: 1.5em">{{ t("Edit categories") }}</a></li>
-          <li><a href="/admin/range-groups">{{ t("Edit range groups") }}</a></li>
-          <li><a href="/admin/fees">{{ t("Edit fees") }}</a></li>
+          <li><a class="govuk-link" href="/admin/categories" style="font-size: 1.5em">{{ t("Edit categories") }}</a></li>
+          <li><a class="govuk-link" href="/admin/range-groups">{{ t("Edit range groups") }}</a></li>
+          <li><a class="govuk-link" href="/admin/fees">{{ t("Edit fees") }}</a></li>
         {% else %}
-          <li><a href="/admin/categories" style="font-size: 1.5em">{{ t("Categories") }}</a></li>
-          <li><a href="/admin/range-groups">{{ t("Range groups") }}</a></li>
-          <li><a href="/admin/fees">{{ t("Fees") }}</a></li>
+          <li><a class="govuk-link" href="/admin/categories" style="font-size: 1.5em">{{ t("Categories") }}</a></li>
+          <li><a class="govuk-link" href="/admin/range-groups">{{ t("Range groups") }}</a></li>
+          <li><a class="govuk-link" href="/admin/fees">{{ t("Fees") }}</a></li>
         {% endif %}
-          <li><a href="/admin/all-fees">{{ t("All fees") }}</a></li>
+          <li><a class="govuk-link" href="/admin/all-fees">{{ t("All fees") }}</a></li>
       </ul>
   </div-->
 

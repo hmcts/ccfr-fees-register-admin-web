@@ -1,6 +1,6 @@
 {% set currentPage = 'create-fee-version' %}
 
-{% from "includes/macros/form.njk" import csrfProtection, errorSummary, textArea, textInput, radioGroup, submitButton, selectInline, selectReferenceData %}
+{% from "includes/macros/form.njk" import csrfProtection, textArea, textInput, dateInput, selectReferenceData %}
   {% extends "layout.njk" %}
 
   {% set title = t('Create Fee Version | ' + serviceName) %}
@@ -8,114 +8,64 @@
 
   {% block content %}
 <input type='hidden' id='userRole' value='{{ 'Approver' if isApprover(user.allInfo.roles) else 'Editor' }}'/>
-<div class="govuk-grid-row">
-  <div class="govuk-grid-column-full">
-    <form method="post" action="">
-      {{ csrfProtection(csrfToken) }}
-      <table id="create-fee-form-table">
-        <tr>
-          <td>{{ textInput(t('Memo Line*'), 'memoLine', form) }}</td>
+{% set amountType = form.valueFor('amountType') %}
+{% set amountTypeLabels = { flat: 'Flat', percentage: 'Percentage', volume: 'Volume' } %}
+<form method="post" action="" id="create-fee-version-form" novalidate>
+  {{ csrfProtection(csrfToken) }}
 
-          <td>{{ textInput(t('Natural Account Code*'), 'naturalAccountCode', form) }}</td>
-
-        </tr>
-      <tr>
-        <td colspan="3">
-          {{ textArea(t('Reason For Fee Update'), 'reasonForUpdate', form, rows=2) }}  
-        </td>
-      </tr>
-        <tr>
-          <td colspan="3">
-            {{ textArea(t('Description*'), 'description', form) }}
-          </td>
-        </tr>
-
-        <tr>
-          <td>
-
-            {% set fromDateError = form.errorFor('fromDate') %}
-            <div class="govuk-form-group {% if fromDateError %} govuk-form-group--error {% endif %}">
-              <label class="govuk-label govuk-label--s" for="fromDate" id="fromDate[label]">From Date*</label>
-              <input type="date" id="fromDate"
-                     class="govuk-input {% if fromDateError %} govuk-input--error {% endif %}"
-                     name="fromDate"
-                     value="{{ form.valueFor('fromDate') }}"/>
-            </div>
-          </td>
-
-          <td>
-            <div class="govuk-form-group">
-              <label class="govuk-label govuk-label--s" for="toDate" id="toDate[label]">To Date</label>
-              <input type="date" class="govuk-input"
-                     id="toDate"
-                     name="toDate"
-                     value="{{ form.valueFor('toDate') }}"/>
-            </div>
-          </td>
-        </tr>
-
-      </tr>
-
-      {% set isPercentage = form.valueFor('amountType') == 'percentage' %}
-
-      {% if feeVersionDto.flat_amount or feeVersionDto.flat_amount.amount %}
-      <tr>
-        <td>
-          {{ radioGroup(form = form, name = 'amountType', label = t('Amount Type'), options = [
-          { label: t('Flat'), value: 'flat' }
-          ]) }}
-        </td>
-
-        <td>{{ textInput(t('Amount (£)*'), 'amount', form) }}</td>
-
-      </tr>
-
-      {% elif feeVersionDto.percentage_amount.percentage %}
-      <tr>
-        <td rowspan="2">
-          {{ radioGroup(form = form, name = 'amountType', label = t('Amount Type'), options = [
-          { label: t('Percentage'), value: 'percentage' }
-          ]) }}
-        </td>
-      </tr>
-
-      <tr>
-        <td>{{ textInput(t('Percentage (%)*'), 'percentage', form) }}</td>
-      </tr>
-
-      {% else %}
-      <tr>
-        <td>
-          {{ radioGroup(form = form, name = 'amountType', label = t('Amount Type'), options = [
-          { label: t('Volume'), value: 'volume' }
-          ]) }}
-        </td>
-
-        <td>{{ textInput(t('Amount (£)*'), 'amount', form) }}</td>
-      </tr>
-      {% endif %}
-
-
-      <tr>
-        <td colspan="2">
-          {{ selectReferenceData ('direction', referenceData.directionTypes, form, 'Direction*') }}
-        </td>
-      </tr>
-      <tr>
-        <td> {{ textInput(t('Statutory Instrument'), 'statutoryInstrument', form) }}</td>
-        <td> {{ textInput(t('SI REF ID'), 'siRefId', form) }}</td>
-      </tr>
-      <tr>
-        <td> {{ textInput(t('Last Amending SI*'), 'lastAmendingSi', form) }}</td>
-        <td> {{ textInput(t('Consolidated/Original Fee Order Name*'), 'consolidatedFeeOrderName', form) }}</td>
-      </tr>
-    </table>
-    <br/>
-    {{ submitButton(t('Next')) }}
-  </form>
-  <input type="hidden" name="feeCode" value="{{ feeCode }}"/>
-  <a href="/admin/v2/all-fees" class="govuk-back-link">{{ t('Cancel') }}</a>
-</div>
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-one-half">{{ textInput(t('Memo Line*'), 'memoLine', form) }}</div>
+    <div class="govuk-grid-column-one-half">{{ textInput(t('Natural Account Code*'), 'naturalAccountCode', form) }}</div>
   </div>
 
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-full">
+      {{ textArea(t('Reason For Fee Update'), 'reasonForUpdate', form, rows=2) }}
+      {{ textArea(t('Description*'), 'description', form) }}
+    </div>
+  </div>
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-one-half">{{ dateInput(t('From Date*'), 'fromDate', form) }}</div>
+    <div class="govuk-grid-column-one-half">{{ dateInput(t('To Date'), 'toDate', form) }}</div>
+  </div>
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-one-half">
+      <div class="govuk-form-group">
+        <p class="govuk-body govuk-!-font-weight-bold govuk-!-margin-bottom-1" id="amountType[label]">{{ t('Amount Type') }}</p>
+        <p class="govuk-body" id="amountType-value">{{ t(amountTypeLabels[amountType] or amountType) }}</p>
+        <input type="hidden" name="amountType" value="{{ amountType }}"/>
+      </div>
+    </div>
+    <div class="govuk-grid-column-one-half">
+      {% if amountType == 'percentage' %}
+        {{ textInput(t('Percentage (%)*'), 'percentage', form, inputClass='govuk-input--width-10') }}
+      {% else %}
+        {{ textInput(t('Amount (£)*'), 'amount', form, inputClass='govuk-input--width-10') }}
+      {% endif %}
+    </div>
+  </div>
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-one-half">
+      {{ selectReferenceData('direction', referenceData.directionTypes, form, t('Direction*')) }}
+    </div>
+  </div>
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-one-half">{{ textInput(t('Statutory Instrument'), 'statutoryInstrument', form) }}</div>
+    <div class="govuk-grid-column-one-half">{{ textInput(t('SI REF ID'), 'siRefId', form) }}</div>
+  </div>
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-one-half">{{ textInput(t('Last Amending SI*'), 'lastAmendingSi', form) }}</div>
+    <div class="govuk-grid-column-one-half">{{ textInput(t('Consolidated/Original Fee Order Name*'), 'consolidatedFeeOrderName', form) }}</div>
+  </div>
+
+  <div class="govuk-button-group">
+    <button id="submit" type="submit" class="govuk-button" data-module="govuk-button">{{ t('Next') }}</button>
+    <a href="/admin/v2/all-fees" class="govuk-link">{{ t('Cancel') }}</a>
+  </div>
+</form>
   {% endblock %}

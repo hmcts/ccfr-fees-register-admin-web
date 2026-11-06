@@ -35,9 +35,9 @@
 <div class="fee-register-table-size">
 
 <div class="custom-table-body">
-  <table>
-    <thead>
-    <tr>
+  <table class="govuk-table">
+    <thead class="govuk-table__head">
+    <tr class="govuk-table__row">
     <th class="govuk-table__header table-colsl">Code</th>
       <th class="govuk-table__header table-colxl">Description</th>
       <th class="govuk-table__header table-colsl">Amount</th>
@@ -67,72 +67,72 @@
       <th class="govuk-table__header table-colsl">Natural Account Code</th>
     </tr>
     </thead>
-    <tbody>
+    <tbody class="govuk-table__body">
     {% for fee in fees %}
     {% set version = getDiscontinuedFeeVersion(fee) %}
     {% if version.status === 'approved' %}
-    <tr>
-      <td >
-        <a href="/admin/V2/fee-details?feeCode={{ fee.code }}&pageType=disconfee&vno={{ version.version }} ">{{ fee.code }}</a>
+    <tr class="govuk-table__row">
+      <td class="govuk-table__cell" >
+        <a class="govuk-link" href="/admin/V2/fee-details?feeCode={{ fee.code }}&pageType=disconfee&vno={{ version.version }} ">{{ fee.code }}</a>
       </td>
-      <td >{{ version.description }}</td>
+      <td class="govuk-table__cell" >{{ version.description }}</td>
 
       {% if version.flat_amount %}
-      <td >£{{ version.flat_amount.amount }}</td>
+      <td class="govuk-table__cell" >£{{ version.flat_amount.amount }}</td>
       {% elif version.volume_amount %}
-      <td >£{{ version.volume_amount.amount }}</td>
+      <td class="govuk-table__cell" >£{{ version.volume_amount.amount }}</td>
       {% else %}
       <td/>
       {% endif %}
 
-      <td >{{ version.statutory_instrument }}</td>
-      <td>{{ version.last_amending_si }}</td>
-      <td >{{ version.si_ref_id }}</td>
-      <td>{{ version.consolidated_fee_order_name }}</td>
-      <td >{{ fee.service_type.name }}</td>
-      <td >{{ fee.jurisdiction1.name }}</td>
-      <td >{{ fee.jurisdiction2.name }}</td>
-      <td >{{ fee.event_type.name }}</td>
+      <td class="govuk-table__cell" >{{ version.statutory_instrument }}</td>
+      <td class="govuk-table__cell">{{ version.last_amending_si }}</td>
+      <td class="govuk-table__cell" >{{ version.si_ref_id }}</td>
+      <td class="govuk-table__cell">{{ version.consolidated_fee_order_name }}</td>
+      <td class="govuk-table__cell" >{{ fee.service_type.name }}</td>
+      <td class="govuk-table__cell" >{{ fee.jurisdiction1.name }}</td>
+      <td class="govuk-table__cell" >{{ fee.jurisdiction2.name }}</td>
+      <td class="govuk-table__cell" >{{ fee.event_type.name }}</td>
       {% if fee.min_range %}
-      <td >{{ fee.min_range }}</td>
+      <td class="govuk-table__cell" >{{ fee.min_range }}</td>
       {% else %}
       <td/>
       {% endif %}
       {% if fee.max_range %}
-      <td >{{ fee.max_range }}</td>
+      <td class="govuk-table__cell" >{{ fee.max_range }}</td>
       {% else %}
       <td/>
       {% endif %}
-      <td >{{ fee.range_unit }}</td>
-      <td >{{ fee.fee_type }}</td>
+      <td class="govuk-table__cell" >{{ fee.range_unit }}</td>
+      <td class="govuk-table__cell" >{{ fee.fee_type }}</td>
       {% if version.flat_amount %}
-      <td >Flat</td>
+      <td class="govuk-table__cell" >Flat</td>
       <td/>
       {% elif version.volume_amount %}
-      <td >Volume</td>
+      <td class="govuk-table__cell" >Volume</td>
       <td/>
       {% else %}
-      <td >Percentage</td>
-      <td>{{ version.percentage_amount.percentage }}</td>
+      <td class="govuk-table__cell" >Percentage</td>
+      <td class="govuk-table__cell">{{ version.percentage_amount.percentage }}</td>
       {% endif %}
-      <td >{{ fee.channel_type.name }}</td>
-      <td >{{ fee.keyword }}</td>
-      <td >{{ fee.applicant_type.name }}</td>
-      <td >{{ version.version }}</td>
-      <td >{{ version.direction }}</td>
+      <td class="govuk-table__cell" >{{ fee.channel_type.name }}</td>
+      <td class="govuk-table__cell" >{{ fee.keyword }}</td>
+      <td class="govuk-table__cell" >{{ fee.applicant_type.name }}</td>
+      <td class="govuk-table__cell" >{{ version.version }}</td>
+      <td class="govuk-table__cell" >{{ version.direction }}</td>
        {% if version.valid_from %}
-      <td >{{ version.valid_from | date("DD MMMM YYYY") }}</td>
+      <td class="govuk-table__cell" >{{ version.valid_from | date("DD MMMM YYYY") }}</td>
       {% else %}
       <td/>
       {% endif %}
       {% if version.valid_to %}
-      <td >{{ version.valid_to | date("DD MMMM YYYY") }}</td>
+      <td class="govuk-table__cell" >{{ version.valid_to | date("DD MMMM YYYY") }}</td>
       {% else %}
       <td/>
       {% endif %}
-      <td >{{ version.status }}</td>
-      <td >{{ version.memo_line }}</td>
-      <td >{{ version.natural_account_code }}</td>
+      <td class="govuk-table__cell" >{{ version.status }}</td>
+      <td class="govuk-table__cell" >{{ version.memo_line }}</td>
+      <td class="govuk-table__cell" >{{ version.natural_account_code }}</td>
     </tr>
     {% endif %}
     {% endfor %}
