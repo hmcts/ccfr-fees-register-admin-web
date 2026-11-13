@@ -6,7 +6,7 @@
 
 {{ govukGenericHeader({
   logoText: t('Fee register'),
-  url: '/admin/V2/all-fees' if isLoggedIn else '/fees'
+  url: homepage_url | default('https://www.gov.uk')
 }) }}
 
 {% if isLoggedIn %}
