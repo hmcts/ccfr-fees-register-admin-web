@@ -27,7 +27,7 @@ export default class Nunjucks {
   enableFor (app: express.Express) {
     app.set('view engine', 'njk')
     const nunjucksEnv = nunjucks.configure([
-      path.join(__dirname, '..', '..','..', '..', 'node_modules', 'govuk-frontend'),
+      path.join(__dirname, '..', '..','..', '..', 'node_modules', 'govuk-frontend', 'dist'),
       path.join(__dirname, '..', '..', 'views'),
       path.join(__dirname, '..', '..', 'features')
     ], {
@@ -41,7 +41,7 @@ export default class Nunjucks {
     nunjucksEnv.addGlobal('asset_paths', appAssetPaths)
     nunjucksEnv.addGlobal('serviceName', 'Fees Register Admin console | GOV.UK')
     nunjucksEnv.addGlobal('development', this.developmentMode)
-    nunjucksEnv.addGlobal('govuk_template_version', packageDotJson.dependencies.govuk_template_jinja)
+    nunjucksEnv.addGlobal('asset_version', packageDotJson.version)
     nunjucksEnv.addGlobal('t', (key: string, options?: TranslationOptions): string => this.i18next.t(key, options))
     nunjucksEnv.addFilter('date', dateFilter)
     nunjucksEnv.addFilter('numeral', numeralFilter)

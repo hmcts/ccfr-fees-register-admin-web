@@ -4,11 +4,13 @@
   {% set title = t('Fee details') %}
   {% block content %}
     <input type='hidden' id='userRole' value=''/>
-  <div class="grid-row">
-    <div class="column-full govuk-panel govuk-panel--confirmation">
-      <h2 class="govuk-panel__title title-margin-btm"> {{feeCode}} has been submitted for approval</h2>
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-full">
+      <div class="govuk-panel govuk-panel--confirmation">
+        <h2 class="govuk-panel__title">{{feeCode}} has been submitted for approval</h2>
+      </div>
     </div>
-    <div class="column-full">
+    <div class="govuk-grid-column-full">
       <h2 class="govuk-heading-m">What happens next</h2>
       <p class="govuk-body">
         If the approver rejects the fee, you’ll need to review it again before resubmitting the draft for approval.
@@ -17,8 +19,8 @@
         Once the fee has been approved, it will appear in the Fee Register on the agreed date.
       </p>
     </div>
-    <div class="column-full">
-      <a href="/admin/v2/draft-awaitingapproval" class="custom-button btn margin-top-0 ">
+    <div class="govuk-grid-column-full">
+      <a href="/admin/v2/draft-awaitingapproval" class="govuk-button" role="button" draggable="false" data-module="govuk-button">
         View draft fees
       </a>     
     </div>

@@ -6,36 +6,36 @@
 
   {% block content %}
 
-<div class="column-full">
-  <h3 class="heading-medium">Fees</h3>
-  <table>
-    <thead>
-    <tr>
-      <th scope="col">{{ t('Code') }}</th>
-      <th scope="col">{{ t('Description') }}</th>
-      <th scope="col">{{ t('Amount') }}</th>
+<div class="govuk-grid-column-full">
+  <h3 class="govuk-heading-m">Fees</h3>
+  <table class="govuk-table">
+    <thead class="govuk-table__head">
+    <tr class="govuk-table__row">
+      <th class="govuk-table__header" scope="col">{{ t('Code') }}</th>
+      <th class="govuk-table__header" scope="col">{{ t('Description') }}</th>
+      <th class="govuk-table__header" scope="col">{{ t('Amount') }}</th>
     </tr>
     </thead>
-    <tbody>
+    <tbody class="govuk-table__body">
     {% for fee in fees | sort(attribute='code') %}
-    <tr>
+    <tr class="govuk-table__row">
       {% if (isFeatureEnabled('edit')) %}
-      <td><a href="/admin/fees/edit/{{ fee.code }}">{{ fee.code }}</a></td>
+      <td class="govuk-table__cell"><a class="govuk-link" href="/admin/fees/edit/{{ fee.code }}">{{ fee.code }}</a></td>
       {% else %}
-      <td>{{ fee.code }}</td>
+      <td class="govuk-table__cell">{{ fee.code }}</td>
       {% endif %}
-      <td>{{ fee.description }}</td>
-      <td>{{ feeAmount(fee) }}</td>
+      <td class="govuk-table__cell">{{ fee.description }}</td>
+      <td class="govuk-table__cell">{{ feeAmount(fee) }}</td>
     </tr>
     {% endfor %}
     </tbody>
   </table>
 
   {% if (isFeatureEnabled('edit')) %}
-  <p><a href="/admin/fees/create" class="button" role="button">{{ t("Create new fee") }}</a></p>
+  <p class="govuk-body"><a href="/admin/fees/create" class="govuk-button" role="button">{{ t("Create new fee") }}</a></p>
   {% endif %}
 
-  <p><a href="/admin/welcome/" class="link-back">{{ t("Back to welcome page") }}</a></p>
+  <p class="govuk-body"><a href="/admin/welcome/" class="govuk-back-link">{{ t("Back to welcome page") }}</a></p>
 </div>
 
   {% endblock %}

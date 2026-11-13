@@ -1,5 +1,5 @@
 {% macro link(code, name) %}
-<a href="?lang={{ code }}">{{ name }}</a>
+<a class="govuk-link" href="?lang={{ code }}">{{ name }}</a>
   {% endmacro %}
 
   {% if language === 'en' %}

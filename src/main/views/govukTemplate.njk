@@ -1,45 +1,15 @@
+{% from "includes/macros/form.njk" import errorSummary -%}
 {% block top_of_page %}{% endblock %}
-  <!DOCTYPE html>
-  <!--[if lt IE 9]>
-  <html class="lte-ie8" lang="{{ html_lang|default('en') }}"><![endif]-->
-  <!--[if gt IE 8]><!-->
-<html lang="{{ html_lang|default('en') }}"><!--<![endif]-->
+<!DOCTYPE html>
+<html lang="{{ html_lang|default('en') }}" class="govuk-template">
 <head>
   <meta charset="utf-8"/>
   <title>{{ title }}</title>
 
-  <!--[if gt IE 8]><!-->
-  <link href="{{ asset_paths['style_vendor'] }}/govuk-template.css?{{ govuk_template_version }}" media="screen"
-        rel="stylesheet"/><!--<![endif]-->
-  <!--[if IE 6]>
-  <link href="{{ asset_paths['style_vendor'] }}/govuk-template-ie6.css?{{ govuk_template_version }}" media="screen"
-        rel="stylesheet"/><![endif]-->
-  <!--[if IE 7]>
-  <link href="{{ asset_paths['style_vendor'] }}/govuk-template-ie7.css?{{ govuk_template_version }}" media="screen"
-        rel="stylesheet"/><![endif]-->
-  <!--[if IE 8]>
-  <link href="{{ asset_paths['style_vendor'] }}/govuk-template-ie8.css?{{ govuk_template_version }}" media="screen"
-        rel="stylesheet"/><![endif]-->
-  <link href="{{ asset_paths['style_vendor'] }}/govuk-template-print.css?{{ govuk_template_version }}" media="print"
-        rel="stylesheet"/>
-
-  <!--[if IE 8]>
-  <link href="{{ asset_paths['style_vendor'] }}/fonts-ie8.css?{{ govuk_template_version }}" media="all"
-        rel="stylesheet"/><![endif]-->
-  <!--[if gte IE 9]><!-->
-  <link href="{{ asset_paths['style_vendor'] }}/fonts.css?{{ govuk_template_version }}" media="all"
-        rel="stylesheet"/><!--<![endif]-->
-
-  <link rel="mask-icon" href="{{ asset_paths['images_vendor'] }}/gov.uk_logotype_crown.svg?{{ govuk_template_version }}"
-        color="#0b0c0c">
-  <link rel="apple-touch-icon-precomposed" sizes="152x152"
-        href="{{ asset_paths['images_vendor'] }}/images/apple-touch-icon-152x152.png?{{ govuk_template_version }}">
-  <link rel="apple-touch-icon-precomposed" sizes="120x120"
-        href="{{ asset_paths['images_vendor'] }}/images/apple-touch-icon-120x120.png?{{ govuk_template_version }}">
-  <link rel="apple-touch-icon-precomposed" sizes="76x76"
-        href="{{ asset_paths['images_vendor'] }}/images/apple-touch-icon-76x76.png?{{ govuk_template_version }}">
-  <link rel="apple-touch-icon-precomposed"
-        href="{{ asset_paths['images_vendor'] }}/images/apple-touch-icon-60x60.png?{{ govuk_template_version }}">
+  <link rel="icon" sizes="48x48" href="{{ asset_paths['images_vendor'] }}/favicon.ico?{{ asset_version }}">
+  <link rel="icon" sizes="any" href="{{ asset_paths['images_vendor'] }}/favicon.svg?{{ asset_version }}" type="image/svg+xml">
+  <link rel="mask-icon" href="{{ asset_paths['images_vendor'] }}/govuk-icon-mask.svg?{{ asset_version }}" color="#0b0c0c">
+  <link rel="apple-touch-icon" href="{{ asset_paths['images_vendor'] }}/govuk-icon-180.png?{{ asset_version }}">
 
   {% if development %}
   <link href="{{ asset_paths['style_vendor'] }}/HTMLCSAuditor.css" rel="stylesheet"/>
@@ -47,66 +17,37 @@
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta property="og:image"
-        content="{{ asset_paths['images_vendor'] }}images/opengraph-image.png{{ govuk_template_version }}">
+        content="{{ asset_paths['images_vendor'] }}/govuk-opengraph-image.png?{{ asset_version }}">
 
   {% block head %}{% endblock %}
 </head>
-  <body class="{% block body_classes %}{% endblock %} {{ 'fees-overflow-scroll' if (currentPage == 'all-fees' or currentPage == 'all-approvedbutnotlive' or currentPage == 'all-discontinued') else '' }} ">
+<body class="govuk-template__body {% block body_classes %}{% endblock %} {{ 'fees-overflow-scroll' if (currentPage == 'all-fees' or currentPage == 'all-approvedbutnotlive' or currentPage == 'all-discontinued') else '' }} ">
+<script>document.body.className += ' js-enabled' + ('noModule' in HTMLScriptElement.prototype ? ' govuk-frontend-supported' : '');</script>
 
 
 {% block body_start %}{% endblock %}
 
-<div id="skiplink-container">
-  <div>
-    <a tabindex="1" href="#content" class="skiplink">{{ skip_link_message|default('Skip to main content') }}</a>
-  </div>
-</div>
+<a href="#content" class="govuk-skip-link" data-module="govuk-skip-link">{{ skip_link_message|default('Skip to main content') }}</a>
 
 {% block cookie_banner %}{% endblock %}
 
-<header role="banner" id="global-header" class="{% block header_class %}{% endblock %}">
-  <div class="header">
-    <div class="header-global">
-      <div class="header-proposition">
-        <a tabindex="1" href="{{ homepage_url|default('https://www.gov.uk') }}" class="custom-header-title">{{ t('Fee register') }} </a>
-        {% if isLoggedIn %}
-          <ul class="custom-logout">
-
-          <p class="username-log">{{ user.allInfo.forename }} {{ user.allInfo.surname }}</p>
-          <a tabindex="1" href="/logout" class="custom-signout-link">{{ t('Sign out') }}</a>
-          </ul>
-
-          {% endif %}
-      <ul class="custom-header-ul">
-        <a tabindex="2" href="/admin/V2/all-fees" class="custom-draft-all-fees">{{ t('Fees') }} </a>
-        {% if isEditor(user.allInfo.roles) or isAdmin(user.allInfo.roles) %}
-        <a tabindex="2" href="/admin/V2/draft-fees" class="custom-draft-all-fees">{{ t('Your Drafts') }} </a>
-        <a tabindex="2" href="/admin/v2/upload" class="custom-draft-all-fees">{{ t('Upload fees') }} </a>
-        {% elif isApprover(user.allInfo.roles)%}
-        <a tabindex="2" href="/admin/V2/pending-approval" class="custom-draft-all-fees">{{ t('Approvals') }} </a>
-        {% endif %}
-        <a tabindex="2" href="/admin/V2/reference-data" id="referenceData" class="custom-draft-all-fees">{{ t('Reference Data') }} </a>
-      </ul>
-      </div>
-      {% block inside_header %}{% endblock %}
-    </div>
-    {% block proposition_header %}{% endblock %}
-  </div>
+<header class="govuk-template__header">
+  {% include "includes/header.njk" %}
 </header>
 
 
 {% block after_header %}{% endblock %}
 
-<main id="content" role="main">
+<main id="content" class="govuk-width-container govuk-!-padding-bottom-6" role="main">
   {% if form %}
   {{ errorSummary(form) }}
   {% endif %}
 
   {% if heading %}
-  <h1 class="{%if xLargeTable %}{{ xLargeTable }}{{ t('-') }}{% endif %}heading-xlarge">
+  <h1 class="{% if xLargeTable %}{{ xLargeTable }}{{ t('-') }}heading-xlarge{% else %}govuk-heading-xl{% endif %}">
     {{ heading }}
     {% if headingSecondary %}
-    <span class="heading-secondary">{{ headingSecondary }}</span>
+    <span class="govuk-caption-l">{{ headingSecondary }}</span>
     {% endif %}
   </h1>
   {% endif %}
@@ -118,9 +59,7 @@
   {% include "includes/footer.njk" %}
 {% endblock %}
 
-<div id="global-app-error" class="app-error hidden"></div>
-
-<script src="{{ asset_paths['js_vendor'] }}/govuk-template.js?{{ govuk_template_version }}"></script>
+<div id="global-app-error" class="app-error govuk-!-display-none"></div>
 
 {% block body_end %}{% endblock %}
 

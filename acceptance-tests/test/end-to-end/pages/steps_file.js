@@ -85,9 +85,9 @@ module.exports = () => actor({
 
   async getFeeCode(){
     const feeCodeConfirmationText = await this.grabTextFrom({css: '.govuk-panel__title'});
-    const FeeCode = feeCodeConfirmationText.toString().split(" ");
-    console.log('FeeCode: ' + FeeCode[1]);
-    return FeeCode[1];
+    const FeeCode = feeCodeConfirmationText.toString().trim().split(/\s+/)[0];
+    console.log('FeeCode: ' + FeeCode);
+    return FeeCode;
   },
 
   async addNewFee(feeKeyword, formattedFromDate) {
@@ -127,7 +127,7 @@ module.exports = () => actor({
     this.fillField({ css: '#fromDate'}, formattedFromDate);
     this.fillField({ css: '#naturalAccountCode'}, '232425');
     this.wait(CCPBConstants.tenSecondWaitTime);
-    this.click('input[id="submit"]');
+    this.click('#submit');
     this.wait(CCPBConstants.tenSecondWaitTime);
 
     let newFeeObj = {
@@ -171,7 +171,7 @@ module.exports = () => actor({
     // this.fillField({ css: '#fromDate'}, formattedFromDate);
 
     // this.wait(CCPBConstants.fiveSecondWaitTime);
-    this.click('input[id="submit"]');
+    this.click('#submit');
     this.wait(CCPBConstants.fiveSecondWaitTime);
   },
   submitForApproval() {

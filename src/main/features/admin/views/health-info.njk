@@ -6,26 +6,26 @@
 
   {% block content %}
 
-<div class="column-full">
-  <table>
-    <thead>
-    <tr>
-      <th scope="col">Application</th>
-      <th scope="col">Status</th>
+<div class="govuk-grid-column-full">
+  <table class="govuk-table">
+    <thead class="govuk-table__head">
+    <tr class="govuk-table__row">
+      <th class="govuk-table__header" scope="col">Application</th>
+      <th class="govuk-table__header" scope="col">Status</th>
     </tr>
     </thead>
-    <tbody>
-    <tr>
-      <td scope="col">Fees-register-api</td>
-      <td scope="col">{{output.fees.status}}</td>
+    <tbody class="govuk-table__body">
+    <tr class="govuk-table__row">
+      <td class="govuk-table__cell" scope="col">Fees-register-api</td>
+      <td class="govuk-table__cell" scope="col">{{output.fees.status}}</td>
     </tr>
-    <tr>
-      <td scope="col">Idam-api</td>
-      <td scope="col">{{output.idamapi.status}}</td>
+    <tr class="govuk-table__row">
+      <td class="govuk-table__cell" scope="col">Idam-api</td>
+      <td class="govuk-table__cell" scope="col">{{output.idamapi.status}}</td>
     </tr>
-    <tr>
-      <td scope="col">Idam-aunthentication-web</td>
-      <td scope="col">{{output.idamauthenticationweb.status}}</td>
+    <tr class="govuk-table__row">
+      <td class="govuk-table__cell" scope="col">Idam-aunthentication-web</td>
+      <td class="govuk-table__cell" scope="col">{{output.idamauthenticationweb.status}}</td>
     </tr
 
     </tbody>

@@ -7,15 +7,7 @@
   {% endblock %}
 
   {% block cookie_message %}
-<p>{{ cookieText | safe }}</p>
-  {% endblock %}
-
-  {% block proposition_header %}
-  {% include "includes/propositional_navigation1.njk" %}
-  {% endblock %}
-
-  {% block header_class %}
-  with-proposition
+<p class="govuk-body">{{ cookieText | safe }}</p>
   {% endblock %}
 
   {% block footer_support_links %}

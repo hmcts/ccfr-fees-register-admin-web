@@ -8,9 +8,9 @@
   <h2 class="govuk-heading-xl govuk-!-margin-bottom-6 govuk-!-margin-top-7">{{t("Awaiting approval")}}</h2>
 
 {% if (fees | length) > 0 %}
-  <table class="custom-table-body">
-    <thead>
-    <tr>
+  <table class="govuk-table custom-table-body">
+    <thead class="govuk-table__head">
+    <tr class="govuk-table__row">
       <th class="govuk-table__header">Code</th>
       <th class="govuk-table__header">Version</th>
       <th class="govuk-table__header">Service</th>
@@ -19,7 +19,7 @@
       <th class="govuk-table__header">Link</th>
     </tr>
     </thead>
-    <tbody>
+    <tbody class="govuk-table__body">
     {% for fee in fees %}
 
     {% if fee.current_version != null %}
@@ -27,19 +27,19 @@
     {% else %}
     {% set displayedFeeVersion = fee.fee_versions[0] %}
     {% endif %}
-    <tr>
-      <td > {{ fee.code }} </td>
-      <td>{{ displayedFeeVersion.version }}</td>
-      <td >{{ fee.service_type.name }}</td>
-      <td >{{ displayedFeeVersion.description }}</td>
-      <td >{{ displayedFeeVersion.valid_from | date("DD MMMM YYYY") }}</td>
-      <td><a href="/admin/V2/fee-details?draft=true&feeCode={{ fee.code }}&pageType=pa&vno={{displayedFeeVersion.version}}" aria-label="View {{ fee.code }}" style="white-space: nowrap;">View {{  fee.code }}</a></td>
+    <tr class="govuk-table__row">
+      <td class="govuk-table__cell" > {{ fee.code }} </td>
+      <td class="govuk-table__cell">{{ displayedFeeVersion.version }}</td>
+      <td class="govuk-table__cell" >{{ fee.service_type.name }}</td>
+      <td class="govuk-table__cell" >{{ displayedFeeVersion.description }}</td>
+      <td class="govuk-table__cell" >{{ displayedFeeVersion.valid_from | date("DD MMMM YYYY") }}</td>
+      <td class="govuk-table__cell"><a class="govuk-link" href="/admin/V2/fee-details?draft=true&feeCode={{ fee.code }}&pageType=pa&vno={{displayedFeeVersion.version}}" aria-label="View {{ fee.code }}" style="white-space: nowrap;">View {{  fee.code }}</a></td>
     </tr>
     {% endfor %}
     </tbody>
   </table>
   {% else %}
-    <p>No fees awaiting approval</p>
+    <p class="govuk-body">No fees awaiting approval</p>
   {% endif %}
 
 

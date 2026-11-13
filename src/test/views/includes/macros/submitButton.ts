@@ -13,7 +13,7 @@ describe('submitButton', () => {
 
   it('should produce submit button with provided label', () => {
     const label = 'Save and Continue'
-    const submitTag = '<input id="submit" type="submit" class="button" value="' + label + '">'
+    const submitTag = '<button id="submit" type="submit" class="govuk-button" data-module="govuk-button">' + label + '</button>'
     let res = nunjucks.render('test/resources/submitButton.njk', {
       label: label
     })
@@ -21,7 +21,7 @@ describe('submitButton', () => {
   })
 
   it('should produce submit button with default label', () => {
-    const defaultTag = '<input id="submit" type="submit" class="button" value="Continue">'
+    const defaultTag = '<button id="submit" type="submit" class="govuk-button" data-module="govuk-button">Continue</button>'
     let res = nunjucks.render('test/resources/submitButton.njk', {})
     expect(res).to.contain(defaultTag)
   })
