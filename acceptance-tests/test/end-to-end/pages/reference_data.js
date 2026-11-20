@@ -1,23 +1,27 @@
 'use strict';
 const CCFRAcceptanceTestConstants = require('../tests/CCFRAcceptanceTestConstants');
 
+function section(label) {
+  return `//details/summary/span[normalize-space()="${label}"]`;
+}
+
 function verifyReferenceData() {
   const I = this;
 
   // Applicants
-  I.click('//*[@id="content"]/div/details[1]/summary/span');
+  I.click(section('Applicants'));
   I.waitForText('personal', CCFRAcceptanceTestConstants.fiveSecondWaitTime);
   I.see('all');
   I.see('professional');
 
   // Jurisdictions 1
-  I.click('//*[@id="content"]/div/details[2]/summary/span');
+  I.click(section('Jurisdictions 1'));
   I.waitForText('civil', CCFRAcceptanceTestConstants.fiveSecondWaitTime);
   I.see('family');
   I.see('tribunal');
 
   // Jurisdictions 2
-  I.click('//*[@id="content"]/div/details[3]/summary/span');
+  I.click(section('Jurisdictions 2'));
   I.waitForText('county court', CCFRAcceptanceTestConstants.fiveSecondWaitTime);
   I.see('high court');
   I.see('magistrates court');
@@ -35,7 +39,7 @@ function verifyReferenceData() {
   I.see('employment tribunal');
 
   // Services
-  I.click('//*[@id="content"]/div/details[4]/summary/span');
+  I.click(section('Services'));
   I.waitForText('civil money claims', CCFRAcceptanceTestConstants.fiveSecondWaitTime);
   I.see('possession claim');
   I.see('insolvency');
@@ -56,13 +60,13 @@ function verifyReferenceData() {
   I.see('civil');
 
   // Channels
-  I.click('//*[@id="content"]/div/details[5]/summary/span');
+  I.click(section('Channels'));
   I.waitForText('online', CCFRAcceptanceTestConstants.fiveSecondWaitTime);
   I.see('bulk');
   I.see('default');
 
   // Events
-  I.click('//*[@id="content"]/div/details[6]/summary/span');
+  I.click(section('Events'));
   I.waitForText('enforcement', CCFRAcceptanceTestConstants.fiveSecondWaitTime);
   I.see('enforcement');
   I.see('appeal');
@@ -75,7 +79,7 @@ function verifyReferenceData() {
   I.see('cost assessment');
 
   // Directions
-  I.click('//*[@id="content"]/div/details[7]/summary/span');
+  I.click(section('Directions'));
   I.waitForText('cost recovery', CCFRAcceptanceTestConstants.fiveSecondWaitTime);
   I.see('enhanced');
   I.see('licence');

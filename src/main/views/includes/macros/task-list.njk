@@ -1,6 +1,6 @@
 {% macro task(link, taskName, completedSection) %}
 <div class="task">
-  <a href="{{ link }}">
+  <a class="govuk-link" href="{{ link }}">
       <span class="task-name">
         {{ taskName }}
       </span>
@@ -23,7 +23,7 @@
   {% endmacro %}
 
   {% macro taskListHeading(number, heading) %}
-<span class="bold-medium">
+<span class="govuk-!-font-size-24 govuk-!-font-weight-bold">
     <span class="task-number">{{ number }}.</span>
     {{ heading }}
   </span>

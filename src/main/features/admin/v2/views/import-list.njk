@@ -7,79 +7,79 @@
   {% block content %}
 
 <div class="custom-grid-row">
-  <div class="column-quarter">
+  <div class="govuk-grid-column-one-quarter">
     <form action="bulkfeesupload" method="post">
       {{ csrfProtection(csrfToken) }}
-      <table class="column-quarter">
-        <thead>
-        <tr>
-          <th class="bold-xxsmall">Fee code</th>
-          <th class="bold-xxsmall">Fee description</th>
-          <th class="bold-xxsmall">Amount</th>
-          <th class="bold-xxsmall">Version</th>
-          <th class="bold-xxsmall">Status</th>
-          <th class="bold-xxsmall">Valid from</th>
-          <th class="bold-xxsmall">Valid to</th>
-          <th class="bold-xxsmall">Range from</th>
-          <th class="bold-xxsmall">Range to</th>
-          <th class="bold-xxsmall">Statutory instrument(SI)</th>
-          <th class="bold-xxsmall">Applicant type</th>
-          <th class="bold-xxsmall">Jurisdiction1</th>
-          <th class="bold-xxsmall">Jurisdiction2</th>
-          <th class="bold-xxsmall">Service</th>
-          <th class="bold-xxsmall">Event</th>
-          <th class="bold-xxsmall">Channel</th>
-          <th class="bold-xxsmall">Direction</th>
-          <th class="bold-xxsmall">Fee type</th>
-          <th class="bold-xxsmall">Amount type</th>
-          <th class="bold-xxsmall">Last Amending SI</th>
-          <th class="bold-xxsmall">Consolidated/Original Fee Order Name</th>
-          <th class="bold-xxsmall">Natural account code</th>
-          <th class="bold-xxsmall">Memo line</th>
-          <th class="bold-xxsmall">SI Ref ID</th>
-          <th class="bold-xxsmall">Keyword</th>
+      <table class="govuk-table govuk-grid-column-one-quarter">
+        <thead class="govuk-table__head">
+        <tr class="govuk-table__row">
+          <th class="govuk-table__header bold-xxsmall">Fee code</th>
+          <th class="govuk-table__header bold-xxsmall">Fee description</th>
+          <th class="govuk-table__header bold-xxsmall">Amount</th>
+          <th class="govuk-table__header bold-xxsmall">Version</th>
+          <th class="govuk-table__header bold-xxsmall">Status</th>
+          <th class="govuk-table__header bold-xxsmall">Valid from</th>
+          <th class="govuk-table__header bold-xxsmall">Valid to</th>
+          <th class="govuk-table__header bold-xxsmall">Range from</th>
+          <th class="govuk-table__header bold-xxsmall">Range to</th>
+          <th class="govuk-table__header bold-xxsmall">Statutory instrument(SI)</th>
+          <th class="govuk-table__header bold-xxsmall">Applicant type</th>
+          <th class="govuk-table__header bold-xxsmall">Jurisdiction1</th>
+          <th class="govuk-table__header bold-xxsmall">Jurisdiction2</th>
+          <th class="govuk-table__header bold-xxsmall">Service</th>
+          <th class="govuk-table__header bold-xxsmall">Event</th>
+          <th class="govuk-table__header bold-xxsmall">Channel</th>
+          <th class="govuk-table__header bold-xxsmall">Direction</th>
+          <th class="govuk-table__header bold-xxsmall">Fee type</th>
+          <th class="govuk-table__header bold-xxsmall">Amount type</th>
+          <th class="govuk-table__header bold-xxsmall">Last Amending SI</th>
+          <th class="govuk-table__header bold-xxsmall">Consolidated/Original Fee Order Name</th>
+          <th class="govuk-table__header bold-xxsmall">Natural account code</th>
+          <th class="govuk-table__header bold-xxsmall">Memo line</th>
+          <th class="govuk-table__header bold-xxsmall">SI Ref ID</th>
+          <th class="govuk-table__header bold-xxsmall">Keyword</th>
         </tr>
         </thead>
-        <tbody>
+        <tbody class="govuk-table__body">
         {% for csvFeeDto in csvFeeDtos %}
-        <tr>
-          <td class="font-xxsmall">{{ csvFeeDto.feeCode }}</td>
-          <td class="font-xxsmall">{{ csvFeeDto.feeDescription }}</td>
-          <td class="font-xxsmall">{{ csvFeeDto.feeAmount }}</td>
-          <td class="font-xxsmall">{{ csvFeeDto.feeVersion }}</td>
-          <td class="font-xxsmall">{{ csvFeeDto.feeStatus }}</td>
-          <td class="font-xxsmall">{{ csvFeeDto.validFrom }}</td>
-          <td class="font-xxsmall">{{ csvFeeDto.validTo }}</td>
-          <td class="font-xxsmall">{{ csvFeeDto.rangeFrom }}</td>
-          <td class="font-xxsmall">{{ csvFeeDto.rangeTo }}</td>
-          <td class="font-xxsmall">{{ csvFeeDto.statutoryInstrument }}</td>
-          <td class="font-xxsmall">{{ csvFeeDto.applicantType }}</td>
-          <td class="font-xxsmall">{{ csvFeeDto.jurisdiction1 }}</td>
-          <td class="font-xxsmall">{{ csvFeeDto.jurisdiction2 }}</td>
-          <td class="font-xxsmall">{{ csvFeeDto.service }}</td>
-          <td class="font-xxsmall">{{ csvFeeDto.event }}</td>
-          <td class="font-xxsmall">{{ csvFeeDto.channel }}</td>
-          <td class="font-xxsmall">{{ csvFeeDto.direction }}</td>
-          <td class="font-xxsmall">{{ csvFeeDto.feeType }}</td>
-          <td class="font-xxsmall">{{ csvFeeDto.amountType }}</td>
-          <td class="font-xxsmall">{{ csvFeeDto.lastAmendingSi }}</td>
-          <td class="font-xxsmall">{{ csvFeeDto.consolidatedFeeOrderName }}</td>
-          <td class="font-xxsmall">{{ csvFeeDto.naturalAccountCode }}</td>
-          <td class="font-xxsmall">{{ csvFeeDto.memoLine }}</td>
-          <td class="font-xxsmall">{{ csvFeeDto.siRefId }}</td>
-          <td class="font-xxsmall">{{ csvFeeDto.keyword }}</td>
+        <tr class="govuk-table__row">
+          <td class="govuk-table__cell font-xxsmall">{{ csvFeeDto.feeCode }}</td>
+          <td class="govuk-table__cell font-xxsmall">{{ csvFeeDto.feeDescription }}</td>
+          <td class="govuk-table__cell font-xxsmall">{{ csvFeeDto.feeAmount }}</td>
+          <td class="govuk-table__cell font-xxsmall">{{ csvFeeDto.feeVersion }}</td>
+          <td class="govuk-table__cell font-xxsmall">{{ csvFeeDto.feeStatus }}</td>
+          <td class="govuk-table__cell font-xxsmall">{{ csvFeeDto.validFrom }}</td>
+          <td class="govuk-table__cell font-xxsmall">{{ csvFeeDto.validTo }}</td>
+          <td class="govuk-table__cell font-xxsmall">{{ csvFeeDto.rangeFrom }}</td>
+          <td class="govuk-table__cell font-xxsmall">{{ csvFeeDto.rangeTo }}</td>
+          <td class="govuk-table__cell font-xxsmall">{{ csvFeeDto.statutoryInstrument }}</td>
+          <td class="govuk-table__cell font-xxsmall">{{ csvFeeDto.applicantType }}</td>
+          <td class="govuk-table__cell font-xxsmall">{{ csvFeeDto.jurisdiction1 }}</td>
+          <td class="govuk-table__cell font-xxsmall">{{ csvFeeDto.jurisdiction2 }}</td>
+          <td class="govuk-table__cell font-xxsmall">{{ csvFeeDto.service }}</td>
+          <td class="govuk-table__cell font-xxsmall">{{ csvFeeDto.event }}</td>
+          <td class="govuk-table__cell font-xxsmall">{{ csvFeeDto.channel }}</td>
+          <td class="govuk-table__cell font-xxsmall">{{ csvFeeDto.direction }}</td>
+          <td class="govuk-table__cell font-xxsmall">{{ csvFeeDto.feeType }}</td>
+          <td class="govuk-table__cell font-xxsmall">{{ csvFeeDto.amountType }}</td>
+          <td class="govuk-table__cell font-xxsmall">{{ csvFeeDto.lastAmendingSi }}</td>
+          <td class="govuk-table__cell font-xxsmall">{{ csvFeeDto.consolidatedFeeOrderName }}</td>
+          <td class="govuk-table__cell font-xxsmall">{{ csvFeeDto.naturalAccountCode }}</td>
+          <td class="govuk-table__cell font-xxsmall">{{ csvFeeDto.memoLine }}</td>
+          <td class="govuk-table__cell font-xxsmall">{{ csvFeeDto.siRefId }}</td>
+          <td class="govuk-table__cell font-xxsmall">{{ csvFeeDto.keyword }}</td>
         </tr>
         {% endfor %}
         </tbody>
       </table>
 
-      <p>
+      <p class="govuk-body">
         <input type="hidden" name="csvFees" value="{{ resObj }}"/>
         {{ submitButton(t('Save')) }}
       </p>
     </form>
-    <p>
-      <a href="/admin/v2/upload" class="link-back">{{ t('Back') }}</a>
+    <p class="govuk-body">
+      <a href="/admin/v2/upload" class="govuk-back-link">{{ t('Back') }}</a>
     </p>
   </div>
 </div>
