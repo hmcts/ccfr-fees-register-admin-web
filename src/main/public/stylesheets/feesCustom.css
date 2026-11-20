@@ -129,8 +129,12 @@
 }
 
 .fee-register-table-size {
-  width: 4000px;
+  margin-right: min(0px, calc(50% - 50vw + 30px));
+  overflow-x: auto;
+}
 
+.fee-register-table-size > .govuk-table {
+  width: max-content;
 }
 
 .custom-table-body {
@@ -521,11 +525,6 @@ a.custom-reference-data:visited {
   width: 165px;
 }
 
-.fees-overflow-scroll {
-  display: inline-block;
-  overflow: scroll;
-  width: 100%;
-}
 #reasonRejectFeesId > .govuk-form-group--error {
   border: 0;
 }

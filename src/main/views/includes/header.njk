@@ -1,15 +1,19 @@
-{% from "govuk/components/generic-header/macro.njk" import govukGenericHeader %}
+{% from "govuk/components/header/macro.njk" import govukHeader %}
 {% from "govuk/components/service-navigation/macro.njk" import govukServiceNavigation %}
 
 {% set path = currentPath | default('') %}
 {% set roles = user.allInfo.roles if user and user.allInfo else [] %}
 
-{{ govukGenericHeader({
-  logoText: t('Fee register'),
-  url: homepage_url | default('https://www.gov.uk')
+{{ govukHeader({
+  homepageUrl: homepage_url | default('https://www.gov.uk')
 }) }}
 
-{% if isLoggedIn %}
+{% if not isLoggedIn %}
+  {{ govukServiceNavigation({
+    serviceName: t('Fee register'),
+    serviceUrl: '/'
+  }) }}
+{% else %}
   {% set accountItems %}
     <li class="govuk-service-navigation__item">
       <span class="govuk-service-navigation__text">{{ user.allInfo.forename }} {{ user.allInfo.surname }}</span>
@@ -20,6 +24,8 @@
   {% endset %}
 
   {{ govukServiceNavigation({
+    serviceName: t('Fee register'),
+    serviceUrl: '/',
     navigationLabel: t('Main navigation'),
     navigation: [
       {

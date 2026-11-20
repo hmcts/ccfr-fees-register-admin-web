@@ -21,7 +21,7 @@
 
   {% block head %}{% endblock %}
 </head>
-<body class="govuk-template__body {% block body_classes %}{% endblock %} {{ 'fees-overflow-scroll' if (currentPage == 'all-fees' or currentPage == 'all-approvedbutnotlive' or currentPage == 'all-discontinued') else '' }} ">
+<body class="govuk-template__body {% block body_classes %}{% endblock %}">
 <script>document.body.className += ' js-enabled' + ('noModule' in HTMLScriptElement.prototype ? ' govuk-frontend-supported' : '');</script>
 
 
