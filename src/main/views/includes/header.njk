@@ -1,19 +1,22 @@
-{% from "govuk/components/header/macro.njk" import govukHeader %}
+{% from "govuk/components/generic-header/macro.njk" import govukGenericHeader %}
 {% from "govuk/components/service-navigation/macro.njk" import govukServiceNavigation %}
 
 {% set path = currentPath | default('') %}
 {% set roles = user.allInfo.roles if user and user.allInfo else [] %}
 
-{{ govukHeader({
-  homepageUrl: homepage_url | default('https://www.gov.uk')
+{#
+  Blue GOV.UK header with the service name in place of the GOV.UK logo.
+  govukHeader always renders the logo, so this uses the generic header with the
+  'govuk' namespace - the same way govukHeader builds itself in govuk-frontend v6.
+#}
+{% set feeRegisterLogo %}<span class="govuk-header__product-name">{{ t('Fee register') }}</span>{% endset %}
+{{ govukGenericHeader({
+  _namespace: 'govuk',
+  url: homepage_url | default('https://www.gov.uk'),
+  logoHtml: feeRegisterLogo
 }) }}
 
-{% if not isLoggedIn %}
-  {{ govukServiceNavigation({
-    serviceName: t('Fee register'),
-    serviceUrl: '/'
-  }) }}
-{% else %}
+{% if isLoggedIn %}
   {% set accountItems %}
     <li class="govuk-service-navigation__item">
       <span class="govuk-service-navigation__text">{{ user.allInfo.forename }} {{ user.allInfo.surname }}</span>
@@ -24,8 +27,6 @@
   {% endset %}
 
   {{ govukServiceNavigation({
-    serviceName: t('Fee register'),
-    serviceUrl: '/',
     navigationLabel: t('Main navigation'),
     navigation: [
       {
