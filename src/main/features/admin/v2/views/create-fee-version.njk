@@ -10,7 +10,7 @@
 <input type='hidden' id='userRole' value='{{ 'Approver' if isApprover(user.allInfo.roles) else 'Editor' }}'/>
 <div class="grid-row">
   <div class="column-full">
-    <form method="post" action="">
+    <form method="post" action="" enctype="application/x-www-form-urlencoded">
       {{ csrfProtection(csrfToken) }}
       <table id="create-fee-form-table">
         <tr>
