@@ -1,7 +1,7 @@
 {% from "includes/macros/form.njk" import csrfProtection, textInput, saveAndContinueButton %}
 
   {% macro addressForm(form) %}
-<form method="post">
+<form method="post" enctype="application/x-www-form-urlencoded">
   {{ csrfProtection(csrfToken) }}
   {{ textInput(t('Address line 1'), 'line1', form) }}
   {{ textInput(t('Address line 2 (optional)'), 'line2', form) }}
