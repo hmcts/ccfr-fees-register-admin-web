@@ -4215,7 +4215,7 @@ __metadata:
     helmet: "npm:^8.3.0"
     http-status-codes: "npm:^1.1.6"
     husky: "npm:^2.0.0"
-    i18next: "npm:^12.0.0"
+    i18next: "npm:^26.0.0"
     i18next-http-middleware: "npm:^3.9.7"
     i18next-sprintf-postprocessor: "npm:^0.2.0"
     is-undefined: "npm:^1.0.8"
@@ -5412,10 +5412,15 @@ __metadata:
   languageName: node
   linkType: hard
 
-"i18next@npm:^12.0.0":
-  version: 12.1.0
-  resolution: "i18next@npm:12.1.0"
-  checksum: 10/daefaa5d85283b1535bacf504d47eb8774344f020a6808619d46972f9b262eaf15ebd1b89bba32e49b23d13510009f4973918646a940ce7b9e0f81d66cef072b
+"i18next@npm:^26.0.0":
+  version: 26.7.2
+  resolution: "i18next@npm:26.7.2"
+  peerDependencies:
+    typescript: ^5 || ^6 || ^7
+  peerDependenciesMeta:
+    typescript:
+      optional: true
+  checksum: 10/43bc0c79b4590108c81887dcf0cf583107bf6052fb7d658281fdabb5a8e7304a1869031acab7dd3cfeb267bb445dfa6f967643a39098666fcfdfcb1d9a494b82
   languageName: node
   linkType: hard
 
