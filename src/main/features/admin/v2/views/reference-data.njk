@@ -4,15 +4,16 @@
 
   {% block content %}
   <input type='hidden' id='userRole' value=''/>
- <div class="column-full">
-    <details class="govuk-details" role="group">
-      <summary class="govuk-details-summary" role="button" aria-expanded="true">
-        <span>
-          Applicants
-        </span>
-      </summary>
-        <div class="govuk-details-text" aria-hidden="false">
-          <ul class="reference-ul">
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-full">
+      <details class="govuk-details">
+        <summary class="govuk-details__summary">
+          <span class="govuk-details__summary-text">
+            Applicants
+          </span>
+        </summary>
+        <div class="govuk-details__text">
+          <ul class="govuk-list reference-ul">
             {% for applicant in applicants %}
               <li>{{ applicant.name }}</li>
             {% endfor %}
@@ -20,14 +21,14 @@
         </div>
       </details>
 
-      <details class="govuk-details" role="group">
-      <summary class="govuk-details-summary" role="button" aria-expanded="true">
-        <span>
-          Jurisdictions 1
-        </span>
-      </summary>
-        <div class="govuk-details-text" aria-hidden="false">
-          <ul class="reference-ul">
+      <details class="govuk-details">
+        <summary class="govuk-details__summary">
+          <span class="govuk-details__summary-text">
+            Jurisdictions 1
+          </span>
+        </summary>
+        <div class="govuk-details__text">
+          <ul class="govuk-list reference-ul">
             {% for jurisdiction in jurisdictions %}
               <li>{{ jurisdiction.name }}</li>
             {% endfor %}
@@ -35,14 +36,14 @@
         </div>
       </details>
 
-      <details class="govuk-details" role="group">
-      <summary class="govuk-details-summary" role="button" aria-expanded="true">
-        <span>
-          Jurisdictions 2
-        </span>
-      </summary>
-        <div class="govuk-details-text"  aria-hidden="false">
-          <ul class="reference-ul">
+      <details class="govuk-details">
+        <summary class="govuk-details__summary">
+          <span class="govuk-details__summary-text">
+            Jurisdictions 2
+          </span>
+        </summary>
+        <div class="govuk-details__text">
+          <ul class="govuk-list reference-ul">
             {% for jurisdiction in jurisdictions2 %}
               <li>{{ jurisdiction.name }}</li>
             {% endfor %}
@@ -50,14 +51,14 @@
         </div>
       </details>
 
-      <details class="govuk-details" role="group">
-      <summary class="govuk-details-summary" role="button" aria-expanded="true">
-        <span>
-          Services
-        </span>
-      </summary>
-        <div class="govuk-details-text" aria-hidden="false">
-          <ul class="reference-ul">
+      <details class="govuk-details">
+        <summary class="govuk-details__summary">
+          <span class="govuk-details__summary-text">
+            Services
+          </span>
+        </summary>
+        <div class="govuk-details__text">
+          <ul class="govuk-list reference-ul">
             {% for service in services %}
               <li>{{ service.name }}</li>
             {% endfor %}
@@ -65,14 +66,14 @@
         </div>
       </details>
 
-      <details class="govuk-details" role="group">
-      <summary class="govuk-details-summary" role="button" aria-expanded="true">
-        <span>
-          Channels
-        </span>
-      </summary>
-        <div class="govuk-details-text" aria-hidden="false">
-          <ul class="reference-ul">
+      <details class="govuk-details">
+        <summary class="govuk-details__summary">
+          <span class="govuk-details__summary-text">
+            Channels
+          </span>
+        </summary>
+        <div class="govuk-details__text">
+          <ul class="govuk-list reference-ul">
             {% for channel in channels %}
               <li>{{ channel.name }}</li>
             {% endfor %}
@@ -80,14 +81,14 @@
         </div>
       </details>
 
-      <details class="govuk-details" role="group">
-      <summary class="govuk-details-summary" role="button" aria-expanded="true">
-        <span>
-          Events
-        </span>
-      </summary>
-        <div class="govuk-details-text" aria-hidden="false">
-          <ul class="reference-ul">
+      <details class="govuk-details">
+        <summary class="govuk-details__summary">
+          <span class="govuk-details__summary-text">
+            Events
+          </span>
+        </summary>
+        <div class="govuk-details__text">
+          <ul class="govuk-list reference-ul">
             {% for event in events %}
               <li>{{ event.name }}</li>
             {% endfor %}
@@ -95,19 +96,20 @@
         </div>
       </details>
 
-      <details class="govuk-details" role="group">
-      <summary class="govuk-details-summary" role="button" aria-expanded="true">
-        <span>
-          Directions
-        </span>
-      </summary>
-        <div class="govuk-details-text" aria-hidden="false">
-          <ul class="reference-ul">
+      <details class="govuk-details">
+        <summary class="govuk-details__summary">
+          <span class="govuk-details__summary-text">
+            Directions
+          </span>
+        </summary>
+        <div class="govuk-details__text">
+          <ul class="govuk-list reference-ul">
             {% for direction in directions %}
               <li>{{ direction.name }}</li>
             {% endfor %}
           </ul>
         </div>
       </details>
-
+    </div>
+  </div>
   {% endblock %}

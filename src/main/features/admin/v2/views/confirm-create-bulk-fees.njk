@@ -5,28 +5,33 @@
 
   {% block content %}
 
-<div class="grid-row">
-  <div class="column-full">
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-full">
 
     {% if bulkFeeError %}
-    <div class="error-summary" role="group" aria-labelledby="failure-error-summary-heading" tabindex="-1">
-      <h2 class="heading-medium error-summary-heading" id="failure-error-summary-heading">
-        {{ errCause }}
-      </h2>
+    <div class="govuk-error-summary" data-module="govuk-error-summary">
+      <div role="alert">
+        <h2 class="govuk-error-summary__title" id="failure-error-summary-heading">
+          {{ t('There is a problem') }}
+        </h2>
+        <div class="govuk-error-summary__body">
+          <p class="govuk-body">{{ errCause }}</p>
+        </div>
+      </div>
     </div>
     {% elif success %}
-    <div class="success-summary" role="group" aria-labelledby="failure-error-summary-heading" tabindex="1">
-      <h2 class="heading-medium error-summary-heading">
-        {{ msg }}
-      </h2>
+    <div class="govuk-notification-banner govuk-notification-banner--success" role="alert"
+         aria-labelledby="success-banner-title" data-module="govuk-notification-banner">
+      <div class="govuk-notification-banner__header">
+        <h2 class="govuk-notification-banner__title" id="success-banner-title">{{ t('Success') }}</h2>
+      </div>
+      <div class="govuk-notification-banner__content">
+        <p class="govuk-notification-banner__heading">{{ msg }}</p>
+      </div>
     </div>
     {% endif %}
-  </div>
 
-  <div class="column-full">
-    <a href="/admin/V2/all-fees" class="link-back">{{ t('Return to welcome page') }}</a>
+    <a href="/admin/V2/all-fees" class="govuk-link">{{ t('Return to fees') }}</a>
   </div>
-
 </div>
-
   {% endblock %}

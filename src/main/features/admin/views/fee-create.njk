@@ -6,8 +6,8 @@
 
   {% block content %}
 
-<div class="grid-row">
-  <div class="column-full">
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-full">
     <form method="post" action="create">
       {{ csrfProtection(csrfToken) }}
       {{ textInput(t('Code'), 'code', form) }}
@@ -18,7 +18,7 @@
       {{ submitButton(t('Next')) }}
     </form>
 
-    <a href="/admin/fees" class="link-back">{{ t('Cancel') }}</a>
+    <a href="/admin/fees" class="govuk-back-link">{{ t('Cancel') }}</a>
   </div>
 </div>
 

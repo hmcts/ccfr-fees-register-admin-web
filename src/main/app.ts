@@ -52,7 +52,7 @@ new Helmet(config.get<HelmetConfig>('security'), developmentMode)
   .enableFor(app)
 
 app.enable('trust proxy')
-app.use(favicon(path.join(__dirname, '/public/img/favicon.ico')))
+app.use(favicon(path.join(__dirname, '/public/img/lib/favicon.ico')))
 app.use(bodyParser.json({ limit: '20mb' }))
 app.use(bodyParser.urlencoded({
   limit: '20mb',
@@ -61,6 +61,7 @@ app.use(bodyParser.urlencoded({
 
 app.use((req, res, next) => {
   res.setHeader('Cache-Control', 'no-cache, max-age=0, must-revalidate, no-store')
+  res.locals.currentPath = req.path.toLowerCase()
   next()
 })
 

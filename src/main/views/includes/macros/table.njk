@@ -1,8 +1,8 @@
 {% macro tableStart( id, heading ) %}
-<fieldset id="{{ id }}" class="form-group">
-  <p class="heading-medium bottom-border">{{ t( heading ) }}</p>
+<fieldset id="{{ id }}" class="govuk-form-group">
+  <p class="govuk-heading-m bottom-border">{{ t( heading ) }}</p>
   <legend>
-    <span class="visually-hidden">{{ t( heading ) }}</span>
+    <span class="govuk-visually-hidden">{{ t( heading ) }}</span>
   </legend>
   {% endmacro %}
 
@@ -12,15 +12,15 @@
 
   {% macro row( label, value, changeLink = '' ) %}
 <div class="bottom-border">
-<div class="column-one-third">
+<div class="govuk-grid-column-one-third">
   <span>{{ t( label ) }}</span>
 </div>
-<div class="column-one-third">
+<div class="govuk-grid-column-one-third">
   <span>{{ value }}</span>
 </div>
 {% if changeLink !== '' %}
-<div class="column-one-third change-link-column">
-  <a href="{{ changeLink | safe }}" class="bold">{{ t('Change') }}</a>
+<div class="govuk-grid-column-one-third change-link-column">
+  <a href="{{ changeLink | safe }}" class="govuk-!-font-weight-bold">{{ t('Change') }}</a>
 </div>
 {% endif %}
 </div>
@@ -28,17 +28,17 @@
 
   {% macro rowWithMultipleValue( label, values, changeLink = '' ) %}
 <div class="bottom-border">
-<div class="column-one-third">
+<div class="govuk-grid-column-one-third">
   <span class="">{{ t( label ) }}</span>
 </div>
-<div class="column-one-third">
+<div class="govuk-grid-column-one-third">
   {% for value in values %}
-  <span class="block">{{ value }}</span>
+  <span class="govuk-!-display-block">{{ value }}</span>
   {% endfor %}
 </div>
 {% if changeLink !== '' %}
-<div class="column-one-third change-link-column">
-  <a href="{{ changeLink | safe }}" class="bold">{{ t('Change') }}</a>
+<div class="govuk-grid-column-one-third change-link-column">
+  <a href="{{ changeLink | safe }}" class="govuk-!-font-weight-bold">{{ t('Change') }}</a>
 </div>
 {% endif %}
 </div>

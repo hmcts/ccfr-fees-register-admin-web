@@ -35,7 +35,8 @@ function verifyFeesHeaders(){
 
 function verifyDownloadLink(){
   const I = this;
-  I.waitForValue('input','Download all fees', CCFRAcceptanceTestConstants.fiveSecondWaitTime);
+  
+  I.waitForElement(locate('button').withText('Download all fees'), CCFRAcceptanceTestConstants.fiveSecondWaitTime);
 }
 
 function clickDownloadLink(){

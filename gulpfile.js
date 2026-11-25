@@ -4,12 +4,11 @@ const plumber = require('gulp-plumber');
 const tinyLr = require('tiny-lr');
 const sass = require('gulp-sass')(require('sass'));
 const path = require('path');
-const replace = require('gulp-replace');
 const { finished } = require('stream/promises');
 
 const repoRoot = path.join(__dirname, '/');
-const govUkFrontendToolkitRoot = path.join(repoRoot, 'node_modules/govuk_frontend_toolkit/stylesheets');
-const govUkElementRoot = path.join(repoRoot, 'node_modules/govuk-elements-sass/public/sass');
+const nodeModulesRoot = path.join(repoRoot, 'node_modules');
+const govUkFrontendRoot = './node_modules/govuk-frontend/dist/govuk';
 
 const assetsDirectory = './src/main/public';
 const stylesheetsDirectory = `${assetsDirectory}/stylesheets`;
@@ -28,9 +27,10 @@ gulp.task('sass', function() {
   .pipe(plumber())
   .pipe(sass({
     includePaths: [
-      govUkFrontendToolkitRoot,
-      govUkElementRoot
-    ]
+      nodeModulesRoot
+    ],
+    quietDeps: true,
+    silenceDeprecations: ['import', 'global-builtin', 'mixed-decls']
   }))
   .pipe(gulp.dest(stylesheetsDirectory))
   .on('end', function() {
@@ -43,8 +43,7 @@ gulp.task("copy-files", function() {
   const streams = [
     gulp.src([
       './node_modules/jquery/dist/jquery.min.js',
-      './node_modules/govuk_frontend_toolkit/javascripts/**/*.js',
-      './node_modules/govuk_template_jinja/assets/javascripts/**/*.js'
+      `${govUkFrontendRoot}/govuk-frontend.min.js`
     ])
     .pipe(gulp.dest(`${assetsDirectory}/js/lib/`)),
 
@@ -69,21 +68,14 @@ gulp.task("copy-files", function() {
     .pipe(gulp.dest(`${assetsDirectory}/stylesheets/lib/`)),
 
     gulp.src([
-      './node_modules/govuk_frontend_toolkit/images/**/*',
-      './node_modules/govuk_template_jinja/assets/images/*.*'
+      `${govUkFrontendRoot}/assets/images/**/*`
     ], { encoding: false })
     .pipe(gulp.dest(`${assetsDirectory}/img/lib/`)),
 
     gulp.src([
-      './node_modules/govuk-frontend/govuk/assets/fonts/**/*'
+      `${govUkFrontendRoot}/assets/fonts/**/*`
     ], { encoding: false })
-    .pipe(gulp.dest(`${assetsDirectory}/fonts/`)),
-
-    gulp.src([
-      './node_modules/govuk_template_jinja/assets/stylesheets/**/*'
-    ], { encoding: false })
-    .pipe(replace('images/', '/stylesheets/lib/images/', {skipBinary: true}))
-    .pipe(gulp.dest(`${assetsDirectory}/stylesheets/lib/`))
+    .pipe(gulp.dest(`${assetsDirectory}/fonts/`))
   ];
 
   return Promise.all(streams.map(stream => finished(stream)));

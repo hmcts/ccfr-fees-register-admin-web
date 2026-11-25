@@ -5,35 +5,35 @@
 
   {% block content %}
 
-<div class="column-full">
-  <table>
-    <thead>
-    <tr>
-      <th scope="col">Code</th>
-      <th scope="col">Description</th>
-      <th class="numeric" scope="col">Range count</th>
+<div class="govuk-grid-column-full">
+  <table class="govuk-table">
+    <thead class="govuk-table__head">
+    <tr class="govuk-table__row">
+      <th class="govuk-table__header" scope="col">Code</th>
+      <th class="govuk-table__header" scope="col">Description</th>
+      <th class="govuk-table__header govuk-table__header--numeric" scope="col">Range count</th>
     </tr>
     </thead>
-    <tbody>
+    <tbody class="govuk-table__body">
     {% for rangeGroup in rangeGroups %}
-    <tr>
+    <tr class="govuk-table__row">
       {% if (isFeatureEnabled('edit')) %}
-      <td><a href="/admin/range-groups/edit/{{ rangeGroup.code }}">{{ rangeGroup.code }}</a></td>
+      <td class="govuk-table__cell"><a class="govuk-link" href="/admin/range-groups/edit/{{ rangeGroup.code }}">{{ rangeGroup.code }}</a></td>
       {% else %}
-      <td>{{ rangeGroup.code }}</td>
+      <td class="govuk-table__cell">{{ rangeGroup.code }}</td>
       {% endif %}
-      <td>{{ rangeGroup.description }}</td>
-      <td class="numeric"><a href="/admin/ranges-group/{{ rangeGroup.code }}">{{ rangeGroup.ranges.length }}</a></td>
+      <td class="govuk-table__cell">{{ rangeGroup.description }}</td>
+      <td class="govuk-table__cell govuk-table__cell--numeric"><a class="govuk-link" href="/admin/ranges-group/{{ rangeGroup.code }}">{{ rangeGroup.ranges.length }}</a></td>
     </tr>
     {% endfor %}
     </tbody>
   </table>
 
   {% if (isFeatureEnabled('edit')) %}
-  <p><a href="/admin/range-groups/create" class="button" role="button">{{ t("Create new range group") }}</a></p>
+  <p class="govuk-body"><a href="/admin/range-groups/create" class="govuk-button" role="button">{{ t("Create new range group") }}</a></p>
   {% endif %}
 
-  <p><a href="/admin/welcome/" class="link-back">{{ t("Back to welcome page") }}</a></p>
+  <p class="govuk-body"><a href="/admin/welcome/" class="govuk-back-link">{{ t("Back to welcome page") }}</a></p>
 </div>
 
   {% endblock %}
